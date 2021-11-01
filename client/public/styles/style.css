@@ -219,6 +219,8 @@ input[type="reset"] {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li .MemberSidebar-container-ul-li-text {
@@ -226,6 +228,10 @@ input[type="reset"] {
 }
 
 .MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li:hover {
+  color: #ffb257;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li-active {
   color: #ffb257;
 }
 
@@ -303,11 +309,18 @@ input[type="reset"] {
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  padding: 0.15rem 0.35rem;
   margin-top: 0.25rem;
   font-size: 1.35rem;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-CCardCon input {
+.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardInput {
+  width: 200px;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon input {
   width: 100px;
   margin-left: 0.25rem;
 }
@@ -332,5 +345,51 @@ input[type="reset"] {
   background: #d8a466;
   color: white;
   border-radius: 5px;
+}
+
+.OrderInfo {
+  height: calc(100vh - 50px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.OrderInfo .OrderInfo-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-header h1 {
+  font-weight: 100;
 }
 /*# sourceMappingURL=style.css.map */
