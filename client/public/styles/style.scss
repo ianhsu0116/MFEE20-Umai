@@ -1,4 +1,10 @@
 $themeColor: #d8a466;
+$activeColor: #ffb257;
+$fontColor: #666666;
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
 
 * {
   margin: 0;
@@ -8,6 +14,7 @@ $themeColor: #d8a466;
 
 body {
   font-family: "Noto Sans TC", sans-serif;
+  color: $fontColor;
 }
 
 // 移除所有button樣式
@@ -24,3 +31,6 @@ input[type="reset"] {
 }
 
 @import "./Navber";
+@import "./MemberCenter";
+@import "./MemberSidebar";
+@import "./MemberInfo";

@@ -7,6 +7,7 @@
 
 body {
   font-family: "Noto Sans TC", sans-serif;
+  color: #666666;
 }
 
 button,
@@ -99,5 +100,237 @@ input[type="reset"] {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.MemberCenter {
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.MemberCenter .MemberCenter-container {
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.MemberSidebar {
+  height: calc(100vh - 50px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.MemberSidebar .MemberSidebar-container {
+  height: 95%;
+  width: 200px;
+  padding: 1rem 0;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-pen {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  fill: white;
+  opacity: 0;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar:hover .MemberSidebar-container-avatar-img {
+  opacity: 0.5;
+  -webkit-filter: brightness(0.5);
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar:hover .MemberSidebar-container-avatar-pen {
+  opacity: 1;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-mamberName {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul {
+  list-style: none;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li {
+  padding: 0.5rem 0;
+  font-size: 1.35rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li .MemberSidebar-container-ul-li-text {
+  margin-left: 0.25rem;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li:hover {
+  color: #ffb257;
+}
+
+.MemberInfo {
+  height: calc(100vh - 50px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.MemberInfo .MemberInfo-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-header h1 {
+  font-weight: 100;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
+  margin-top: 0.25rem;
+  font-size: 1.35rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-CCardCon input {
+  width: 100px;
+  margin-left: 0.25rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-buttonCon {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 1rem 0;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-buttonCon .MemberInfo-container-buttonCon-btn {
+  padding: 0.35rem 0.75rem;
+  background: #d8a466;
+  color: white;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=style.css.map */
