@@ -1,0 +1,12 @@
+.MemberCenter {
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  .MemberCenter-container {
+    width: 70vw;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

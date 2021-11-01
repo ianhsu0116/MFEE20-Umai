@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import UmaiLogo from "./images/Umai.png";
-import avatar from "./images/avator.jpg";
+import avatar from "./images/avatar.jpg";
 
 const Navbar = (props) => {
   return (
@@ -30,13 +30,16 @@ const Navbar = (props) => {
           <button className="Navbar-container-item-btn2">
             <MdShoppingCart className="Navbar-container-item-btn2-cart" />
           </button>
-          <button className="Navbar-container-item-btn Navbar-container-item-btn2">
+          <Link
+            to="/memberCenter"
+            className="Navbar-container-item-btn Navbar-container-item-btn2"
+          >
             <img
               src={avatar}
               alt="avatar"
               className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
             />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

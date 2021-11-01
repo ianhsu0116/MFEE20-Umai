@@ -1,0 +1,73 @@
+$avatar-size: 130px;
+
+.MemberSidebar {
+  height: calc(100vh - 50px);
+  position: relative;
+  @include flex(row);
+  align-items: center;
+  .MemberSidebar-container {
+    height: 95%;
+    width: 200px;
+    padding: 1rem 0;
+    border-radius: 10px;
+    @include flex(column);
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+    .MemberSidebar-container-avatar {
+      width: $avatar-size;
+      height: $avatar-size;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0.5rem 0;
+      position: relative;
+      cursor: pointer;
+      .MemberSidebar-container-avatar-img {
+        width: $avatar-size;
+        height: $avatar-size;
+        border-radius: 50%;
+      }
+      .MemberSidebar-container-avatar-pen {
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+        fill: white;
+        opacity: 0;
+      }
+
+      &:hover {
+        .MemberSidebar-container-avatar-img {
+          opacity: 0.5;
+          -webkit-filter: brightness(0.5);
+        }
+        .MemberSidebar-container-avatar-pen {
+          opacity: 1;
+        }
+      }
+    }
+
+    .MemberSidebar-container-mamberName {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .MemberSidebar-container-ul {
+      list-style: none;
+      .MemberSidebar-container-ul-li {
+        padding: 0.5rem 0;
+        font-size: 1.35rem;
+        @include flex(row);
+        align-items: center;
+        cursor: pointer;
+        .MemberSidebar-container-ul-li-text {
+          margin-left: 0.25rem;
+        }
+
+        &:hover {
+          color: $activeColor;
+        }
+      }
+    }
+  }
+}
