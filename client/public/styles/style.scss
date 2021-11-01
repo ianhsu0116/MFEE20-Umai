@@ -1,4 +1,5 @@
 $themeColor: #d8a466;
+$themeColorBlue: #3f7289;
 $activeColor: #ffb257;
 $fontColor: #666666;
 @mixin flex($direction) {
@@ -29,8 +30,11 @@ input[type="reset"] {
   cursor: pointer;
   outline: inherit;
 }
-
+// 共用元件
 @import "./Navber";
+@import "./OptionBar";
+
+// member相關
 @import "./mamber/MemberCenter";
 @import "./mamber/MemberSidebar";
 @import "./mamber/MemberInfo";

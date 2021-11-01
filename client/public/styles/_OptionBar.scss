@@ -1,0 +1,28 @@
+.BoardChangeBar {
+  @include flex(row);
+  justify-content: center;
+  width: 100%;
+
+  .BoardChangeBar-ul {
+    width: 65%;
+    list-style: none;
+    @include flex(row);
+    justify-content: space-between;
+    border-radius: 100px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+
+    .BoardChangeBar-ul-li {
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      color: $themeColorBlue;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-weight: 900;
+    }
+
+    .BoardChangeBar-ul-li-active {
+      background: linear-gradient(45deg, $activeColor, $themeColor);
+      color: white;
+    }
+  }
+}

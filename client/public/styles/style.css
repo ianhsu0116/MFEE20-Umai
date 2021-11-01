@@ -102,6 +102,53 @@ input[type="reset"] {
   height: 100%;
 }
 
+.BoardChangeBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.BoardChangeBar .BoardChangeBar-ul {
+  width: 65%;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 100px;
+  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.BoardChangeBar .BoardChangeBar-ul .BoardChangeBar-ul-li {
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  color: #3f7289;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: 900;
+}
+
+.BoardChangeBar .BoardChangeBar-ul .BoardChangeBar-ul-li-active {
+  background: linear-gradient(45deg, #ffb257, #d8a466);
+  color: white;
+}
+
 .MemberCenter {
   font-weight: 100;
   display: -webkit-box;
