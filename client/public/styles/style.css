@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.Navbar {
+  background: #d8a466;
+  color: white;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Navbar .Navbar-container {
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .UmaiLogo {
+  width: 85px;
+  padding: 0.25rem 0;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  background: white;
+  margin: 0 0.15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
+  fill: #d8a466;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/*# sourceMappingURL=style.css.map */
