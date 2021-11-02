@@ -1,9 +1,10 @@
-.BoardChangeBar {
+.OptionBar {
   @include flex(row);
   justify-content: center;
   width: 100%;
+  margin: 1rem 0.5rem;
 
-  .BoardChangeBar-ul {
+  .OptionBar-ul {
     width: 65%;
     list-style: none;
     @include flex(row);
@@ -11,8 +12,8 @@
     border-radius: 100px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 
-    .BoardChangeBar-ul-li {
-      padding: 0.25rem 0.75rem;
+    .OptionBar-ul-li {
+      padding: 0.4rem 1rem;
       border-radius: 100px;
       color: $themeColorBlue;
       cursor: pointer;
@@ -20,7 +21,7 @@
       font-weight: 900;
     }
 
-    .BoardChangeBar-ul-li-active {
+    .OptionBar-ul-li-active {
       background: linear-gradient(45deg, $activeColor, $themeColor);
       color: white;
     }

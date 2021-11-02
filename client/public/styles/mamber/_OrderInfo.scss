@@ -25,5 +25,18 @@
         font-weight: 100;
       }
     }
+
+    .OrderInfo-container-tableHead {
+      width: 100%;
+      max-width: 900px;
+      @include flex(row);
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      margin: 1rem 0;
+
+      .OrderInfo-container-tableHead-item1 {
+        width: 48%;
+      }
+    }
   }
 }

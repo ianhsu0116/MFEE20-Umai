@@ -102,7 +102,7 @@ input[type="reset"] {
   height: 100%;
 }
 
-.BoardChangeBar {
+.OptionBar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,9 +114,10 @@ input[type="reset"] {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
+  margin: 1rem 0.5rem;
 }
 
-.BoardChangeBar .BoardChangeBar-ul {
+.OptionBar .OptionBar-ul {
   width: 65%;
   list-style: none;
   display: -webkit-box;
@@ -134,8 +135,8 @@ input[type="reset"] {
           box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.BoardChangeBar .BoardChangeBar-ul .BoardChangeBar-ul-li {
-  padding: 0.25rem 0.75rem;
+.OptionBar .OptionBar-ul .OptionBar-ul-li {
+  padding: 0.4rem 1rem;
   border-radius: 100px;
   color: #3f7289;
   cursor: pointer;
@@ -144,13 +145,66 @@ input[type="reset"] {
   font-weight: 900;
 }
 
-.BoardChangeBar .BoardChangeBar-ul .BoardChangeBar-ul-li-active {
+.OptionBar .OptionBar-ul .OptionBar-ul-li-active {
   background: linear-gradient(45deg, #ffb257, #d8a466);
   color: white;
 }
 
+.OrderCard {
+  max-width: 900px;
+  border-bottom: 1px solid #d8a466;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+  font-size: 90%;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.OrderCard .OrderCard-image-con {
+  width: 18%;
+  max-height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.OrderCard .OrderCard-image-con .OrderCard-image {
+  width: 100%;
+}
+
+.OrderCard .OrderCard-courseTitle {
+  width: 30%;
+}
+
+.OrderCard .OrderCard-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.OrderCard .OrderCard-mamberCount {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 .MemberCenter {
-  font-weight: 100;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -352,7 +406,7 @@ input[type="reset"] {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
@@ -360,7 +414,7 @@ input[type="reset"] {
   border: 1px solid #666666;
   padding: 0.15rem 0.35rem;
   margin-top: 0.25rem;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardInput {
@@ -392,6 +446,10 @@ input[type="reset"] {
   background: #d8a466;
   color: white;
   border-radius: 5px;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-buttonCon .MemberInfo-container-buttonCon-btn:hover {
+  background-color: #ffb257;
 }
 
 .OrderInfo {
@@ -438,5 +496,26 @@ input[type="reset"] {
 
 .OrderInfo .OrderInfo-container .OrderInfo-container-header h1 {
   font-weight: 100;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-tableHead {
+  width: 100%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.25rem 0;
+  margin: 1rem 0;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-tableHead .OrderInfo-container-tableHead-item1 {
+  width: 48%;
 }
 /*# sourceMappingURL=style.css.map */
