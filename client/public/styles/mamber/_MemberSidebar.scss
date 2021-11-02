@@ -60,6 +60,7 @@ $avatar-size: 130px;
         @include flex(row);
         align-items: center;
         cursor: pointer;
+        transition: 0.2s ease;
         .MemberSidebar-container-ul-li-text {
           margin-left: 0.25rem;
         }
@@ -67,6 +68,10 @@ $avatar-size: 130px;
         &:hover {
           color: $activeColor;
         }
+      }
+
+      .MemberSidebar-container-ul-li-active {
+        color: $activeColor;
       }
     }
   }

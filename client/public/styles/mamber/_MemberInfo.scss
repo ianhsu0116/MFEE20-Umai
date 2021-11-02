@@ -35,15 +35,24 @@
       .MemberInfo-container-inputCon {
         @include flex(column);
         margin-right: 1rem;
-        font-size: 1.25rem;
+        font-size: 1.15rem;
 
+        // 一般的input box
         .MemberInfo-container-inputCon-input {
+          border-radius: 5px;
+          border: 1px solid $fontColor;
+          padding: 0.15rem 0.35rem;
           margin-top: 0.25rem;
-          font-size: 1.35rem;
+          font-size: 1.25rem;
+        }
+
+        // 信用卡到期日, 安全碼的unput box
+        .MemberInfo-container-inputCon-ccardInput {
+          width: 200px;
         }
 
         // 信用卡輸入區塊
-        .MemberInfo-container-inputCon-CCardCon {
+        .MemberInfo-container-inputCon-ccardCon {
           & input {
             width: 100px;
             margin-left: 0.25rem;
@@ -63,6 +72,10 @@
         background: $themeColor;
         color: white;
         border-radius: 5px;
+
+        &:hover {
+          background-color: $activeColor;
+        }
       }
     }
   }

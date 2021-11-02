@@ -1,0 +1,33 @@
+.OrderCard {
+  max-width: 900px;
+  border-bottom: 1px solid $themeColor;
+  position: relative;
+  @include flex(row);
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 90%;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0;
+  .OrderCard-image-con {
+    width: 18%;
+    max-height: 80px;
+    position: relative;
+    overflow: hidden;
+    .OrderCard-image {
+      width: 100%;
+    }
+  }
+
+  .OrderCard-courseTitle {
+    width: 30%;
+  }
+
+  .OrderCard-items {
+    @include flex(column);
+    align-items: center;
+  }
+
+  .OrderCard-mamberCount {
+    align-items: flex-end;
+  }
+}
