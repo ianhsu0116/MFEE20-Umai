@@ -61,7 +61,7 @@ const MemberSidebar = (props) => {
               "MemberSidebar-container-ul-li-active"
             }`}
           >
-            <MdBookmarkBorder />
+            <MdOutlineFavoriteBorder />
             <span
               className="MemberSidebar-container-ul-li-text"
               onClick={handleChangeBoard}
@@ -75,7 +75,7 @@ const MemberSidebar = (props) => {
               "MemberSidebar-container-ul-li-active"
             }`}
           >
-            <MdOutlineFavoriteBorder />
+            <MdBookmarkBorder />
             <span
               className="MemberSidebar-container-ul-li-text"
               onClick={handleChangeBoard}
