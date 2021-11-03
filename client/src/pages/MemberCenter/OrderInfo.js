@@ -6,7 +6,7 @@ import OrderCard from "../../components/member/OrderCard";
 const allOrderStatus = ["未完成訂單", "已完成訂單", "歷史訂單"];
 const OrderInfo = () => {
   const [orderStatus, setOrderStatus] = useState("未完成訂單"); // 訂單狀態
-  const [currentData, setCurrentDate] = useState([]);
+  const [currentData, setCurrentDate] = useState([]); // 當前拿到的所有訂單
   useEffect(() => {
     switch (orderStatus) {
       case "未完成訂單":
@@ -25,8 +25,80 @@ const OrderInfo = () => {
             courseImage: "foodImg",
             courseName: "築地創意壽司 - 道地日本八十年老師父",
             orderStatus: "未完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0001",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本四十年老師父",
+            orderStatus: "未完成",
             orderBatch: "2021/12/22",
             courseMember: new Array(8).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0001",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本四十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/22",
+            courseMember: new Array(8).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0001",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本四十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/22",
+            courseMember: new Array(8).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0001",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本四十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/22",
+            courseMember: new Array(8).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "未完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
             courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
           },
         ]);
@@ -76,24 +148,36 @@ const OrderInfo = () => {
         <header className="OrderInfo-container-header">
           <h1>訂單資訊</h1>
         </header>
+
+        {/* 切換狀態的導覽列 */}
         <OptionBar
           allStatus={allOrderStatus}
           currentStatus={orderStatus}
           setCurrentStatus={setOrderStatus}
         />
+
+        {/* 表格標題列 */}
         <div className="OrderInfo-container-tableHead">
           <div className="OrderInfo-container-tableHead-item1">課程名稱</div>
           <div>訂單狀態</div>
           <div>報名梯次</div>
-          <div>&ensp;&ensp;&ensp;&ensp;&ensp;學員人數</div>
+          <div>&ensp;&ensp;&ensp;&ensp;學員人數</div>
         </div>
-        {currentData &&
-          currentData.map((orderDetail) => (
-            <OrderCard
-              orderDetail={orderDetail}
-              allOrderStatus={allOrderStatus}
-            />
-          ))}
+
+        {/* 訂單卡片 */}
+        <div className="OrderInfo-container-tableBody">
+          {currentData &&
+            currentData.map((orderDetail, index) => (
+              <OrderCard
+                key={index}
+                index={index}
+                orderDetail={orderDetail}
+                allOrderStatus={allOrderStatus}
+              />
+            ))}
+        </div>
+
+        {/* 沒有任何訂單的情況 */}
         {currentData && currentData.length === 0 && (
           <h3>目前還沒有任何訂單～</h3>
         )}
