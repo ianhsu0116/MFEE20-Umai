@@ -2,6 +2,8 @@ $themeColor: #d8a466;
 $themeColorBlue: #3f7289;
 $activeColor: #ffb257;
 $fontColor: #666666;
+$highLevelColor: #eb6b6a;
+$cardDarkColor: #5d5548;
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -18,6 +20,19 @@ body {
   color: $fontColor;
 }
 
+a {
+  text-decoration: none;
+  color: $fontColor;
+  &:hover {
+    color: $activeColor;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
 // 移除所有button樣式
 button,
 input[type="submit"],
@@ -30,10 +45,34 @@ input[type="reset"] {
   cursor: pointer;
   outline: inherit;
 }
+
+// 各個按鍵component的樣式
+.button-themeColor {
+  padding: 0.35rem 0.75rem;
+  background: $themeColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $activeColor;
+  }
+}
+.button-activeColor {
+  padding: 0.35rem 0.75rem;
+  background: $activeColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $activeColor;
+  }
+}
+
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
 @import "./OrderCard";
+@import "./CourseCard1";
 
 // member相關
 @import "./mamber/MemberCenter";

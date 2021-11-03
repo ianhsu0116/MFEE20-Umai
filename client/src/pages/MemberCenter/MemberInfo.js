@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import { GiXylophone } from "react-icons/gi";
+import Button from "../../components/Button";
 
-// 給創造信用卡卡號使用
+// 給創造信用卡卡號的四個input使用
 let cCardArray = [1, 2, 3, 4];
 const MemberInfo = (props) => {
   const [memberInfo, setMemberInfo] = useState({
@@ -14,6 +16,11 @@ const MemberInfo = (props) => {
     cardDate: "",
     cardSafety: "",
   });
+  const [passwordInfo, setPasswordInfo] = useState({
+    passwordConfirm: "",
+    newPassword: "",
+  });
+
   // 給信用卡16碼 => 分四個input box
   const cCardInputRefs = cCardArray.map((i) => React.createRef());
 
@@ -38,6 +45,36 @@ const MemberInfo = (props) => {
       console.log("f");
       setCardInfo({ ...cardInfo, [e.target.name]: e.target.value });
     }
+  };
+
+  // 個資修改
+  const handleInfoEdit = () => {
+    console.log("handleInfoEdit");
+  };
+
+  // 付款資訊修改
+  const handlePaymentEdit = () => {
+    console.log("handlePatmentEdit");
+  };
+
+  // 密碼修改容器開關
+  const [passwordConOpen, setPasswordConOpen] = useState(false);
+  const handlePasswordConOpen = () => {
+    passwordConOpen ? setPasswordConOpen(false) : setPasswordConOpen(true);
+    setPasswordInfo({
+      passwordConfirm: "",
+      newPassword: "",
+    });
+  };
+
+  // 即時抓取密碼填寫
+  const handlePasswordChange = (e) => {
+    setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value });
+  };
+
+  // 送出密碼修改
+  const handlePasswordEdit = () => {
+    console.log(passwordInfo);
   };
 
   return (
@@ -110,10 +147,59 @@ const MemberInfo = (props) => {
             />
           </div>
         </div>
-        <div className="MemberInfo-container-buttonCon">
-          <button className="MemberInfo-container-buttonCon-btn">
+        <div className="MemberInfo-container-row">
+          <div
+            className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
+              passwordConOpen && "MemberInfo-container-passwordCon-active"
+            }`}
+          >
+            <label
+              className="MemberInfo-container-inputCon-label"
+              htmlFor="password"
+            >
+              密碼
+            </label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              value={passwordInfo.passwordConfirm}
+              placeholder="舊密碼確認"
+              className="MemberInfo-container-inputCon-input"
+              onChange={handlePasswordChange}
+            />
+            <input
+              type="password"
+              name="newPassword"
+              id="password"
+              value={passwordInfo.newPassword}
+              placeholder="輸入新密碼"
+              className="MemberInfo-container-inputCon-input"
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <button
+            className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
+              passwordConOpen &&
+              "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+            }`}
+            onClick={handlePasswordEdit}
+          >
             確認修改
           </button>
+          <button
+            className="MemberInfo-container-inputCon-passwordEditBtn"
+            onClick={handlePasswordConOpen}
+          >
+            {passwordConOpen ? "取消修改" : "修改密碼"}
+          </button>
+        </div>
+        <div className="MemberInfo-container-buttonCon">
+          <Button
+            value={"確認修改"}
+            className={"button-themeColor"}
+            onClick={handleInfoEdit}
+          />
         </div>
         <header className="MemberInfo-container-header">
           <h1>付款資訊</h1>
@@ -157,7 +243,7 @@ const MemberInfo = (props) => {
               id="CCard-date"
               maxLength="5"
               className="MemberInfo-container-inputCon-input 
-              MemberInfo-container-inputCon-ccardInput"
+              "
               onChange={handleCCardChange()}
             />
           </div>
@@ -173,16 +259,18 @@ const MemberInfo = (props) => {
               name="cardSafety"
               maxLength="3"
               id="CCard-safety"
-              className="MemberInfo-container-inputCon-input MemberInfo-container-inputCon-ccardInput"
+              className="MemberInfo-container-inputCon-input "
               onChange={handleCCardChange()}
             />
           </div>
         </div>
 
         <div className="MemberInfo-container-buttonCon">
-          <button className="MemberInfo-container-buttonCon-btn">
-            確認修改
-          </button>
+          <Button
+            value={"確認修改"}
+            className={"button-themeColor"}
+            onClick={handlePaymentEdit}
+          />
         </div>
       </div>
     </div>

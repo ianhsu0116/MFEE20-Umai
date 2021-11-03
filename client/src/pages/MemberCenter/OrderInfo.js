@@ -74,33 +74,6 @@ const OrderInfo = () => {
             courseMember: new Array(8).fill(1), // 模擬已報名人數
             courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
           },
-          {
-            courseId: "0002",
-            courseImage: "foodImg",
-            courseName: "築地創意壽司 - 道地日本八十年老師父",
-            orderStatus: "未完成",
-            orderBatch: "2021/12/10",
-            courseMember: new Array(19).fill(1), // 模擬已報名人數
-            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
-          },
-          {
-            courseId: "0001",
-            courseImage: "foodImg",
-            courseName: "築地創意壽司 - 道地日本四十年老師父",
-            orderStatus: "未完成",
-            orderBatch: "2021/12/22",
-            courseMember: new Array(8).fill(1), // 模擬已報名人數
-            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
-          },
-          {
-            courseId: "0002",
-            courseImage: "foodImg",
-            courseName: "築地創意壽司 - 道地日本八十年老師父",
-            orderStatus: "未完成",
-            orderBatch: "2021/12/10",
-            courseMember: new Array(19).fill(1), // 模擬已報名人數
-            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
-          },
         ]);
         break;
       case "已完成訂單":
@@ -118,7 +91,25 @@ const OrderInfo = () => {
             courseId: "0004",
             courseImage: "foodImg",
             courseName: "台式奇怪壽司 - 道地金門四十年老師父",
-            orderStatus: "未完成",
+            orderStatus: "已完成",
+            orderBatch: "2021/12/22",
+            courseMember: new Array(8).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "已完成",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0001",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本四十年老師父",
+            orderStatus: "已完成",
             orderBatch: "2021/12/22",
             courseMember: new Array(8).fill(1), // 模擬已報名人數
             courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
@@ -134,6 +125,15 @@ const OrderInfo = () => {
             orderStatus: "歷史訂單",
             orderBatch: "2021/12/30",
             courseMember: new Array(13).fill(1), // 模擬已報名人數
+            courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
+          },
+          {
+            courseId: "0002",
+            courseImage: "foodImg",
+            courseName: "築地創意壽司 - 道地日本八十年老師父",
+            orderStatus: "歷史訂單",
+            orderBatch: "2021/12/10",
+            courseMember: new Array(19).fill(1), // 模擬已報名人數
             courseMemberLimit: new Array(30).fill(1), // 模擬課程報名上限
           },
         ]);

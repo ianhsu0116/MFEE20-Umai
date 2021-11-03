@@ -8,6 +8,7 @@ $avatar-size: 130px;
   .MemberSidebar-container {
     height: 95%;
     width: 200px;
+    overflow: scroll;
     padding: 1rem 0;
     border-radius: 10px;
     @include flex(column);
@@ -19,7 +20,7 @@ $avatar-size: 130px;
       width: $avatar-size;
       height: $avatar-size;
       border-radius: 50%;
-      overflow: hidden;
+      //overflow: hidden;
       margin: 0.5rem 0;
       position: relative;
       cursor: pointer;

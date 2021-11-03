@@ -12,8 +12,6 @@ const coures_info_json = {
   company_name: "餐廳名稱",
   company_address: "餐廳地址", // 供google地圖搜尋
   timeOfCourse: "平日上午10:30 ~ 下午04:00",
-  hourOfCourse: 8, // 單位/小時
-  course_price: 4500,
   course_ig: "https://www.instagram.com/",
   course_fb: "https://www.facebook.com/",
   title1_1: "標題1-1號",
