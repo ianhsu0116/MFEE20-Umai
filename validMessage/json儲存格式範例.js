@@ -38,10 +38,13 @@ const coures_info_json = {
   content2: "費用包含內容＋注意事項",
 };
 
-/// 主廚詳細資訊 JSON 格式範例
+// 主廚詳細資訊 JSON 格式範例
 const chef_intro = {
-  chef_word="主廚的名言",
-  chef_intro1="主廚簡單自介",
-  chef_title="餐廳名稱 + 主廚的全職位全名",
-  chef_experience="超過20年經驗\n創立四間餐飲品牌\n旗下品牌榮獲米其林二星"
-}
+  chef_word: "主廚的名言",
+  chef_intro1: "主廚簡單自介",
+  chef_title: "餐廳名稱 + 主廚的全職位全名",
+  chef_experience: "超過20年經驗\n創立四間餐飲品牌\n旗下品牌榮獲米其林二星",
+};
+
+// order_detail student_id欄位格式範例
+const student_id = ["stident_id1", "stident_id2", "stident_id3"];
