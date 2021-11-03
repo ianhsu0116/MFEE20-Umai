@@ -5,7 +5,7 @@ function InsertData(){
                 <h2>學員資料填寫</h2>
                 <table className="Insert-data">
                     <tr>
-                        <td className="Order-of-otudent"><h3>第1位學員資料填寫</h3></td>
+                        <td className="Order-of-otudent"><h3>第1位學員</h3></td>
                         <td className="Import-student-data"><a href="/ShoppingCart">匯入學員資料</a></td>
                     </tr>
                     <tr>

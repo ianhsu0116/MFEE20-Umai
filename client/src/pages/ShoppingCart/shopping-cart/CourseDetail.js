@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function CourseDetail(props){
     return(
     <>
@@ -5,16 +6,16 @@ function CourseDetail(props){
             <h2>消費明細</h2>
             <hr/>
         </div>
-        <table className="Consumer-details">
+        <table className="CourseDetail-Consumer-details">
             <tr>
                 <td><h4>應付金額</h4></td>
-                <td><h4>14400</h4></td>
+                <td><h4>9900</h4></td>
             </tr>
             <tr>
                 <td><h4>優惠券</h4></td>
                 <td>
                     <select>
-                        <option>滿 10000 折 500</option>
+                        <option>滿 5000 折 500</option>
                     </select>
                 </td>
             </tr>
@@ -24,11 +25,13 @@ function CourseDetail(props){
             </tr>
             <tr>
                 <td><h4>實付金額</h4></td>
-                <td><h4>13900</h4></td>
+                <td><h4>9400</h4></td>
             </tr>
         </table>
         <hr/>
-        <div><button><h5>選擇付款方式</h5></button></div>
+        <Link to="/ShoppingList">
+            <div><button><h5>選擇付款方式</h5></button></div>
+        </Link>
     </>     
     )
 }

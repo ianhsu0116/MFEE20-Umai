@@ -1,0 +1,48 @@
+.ShoppingBill-padding{
+  background: #ffffff;
+  padding: 10px;
+}
+.ShoppingBill-list {
+  width: 100%;
+  border-spacing: 0;
+  background: #ffffff;
+  h4 {
+    margin: 15px 0;
+  }
+  tr {
+    td,th {
+      &:nth-child(2),
+      &:nth-child(3) {
+        text-align: center;
+      }
+      &:last-child{
+        text-align: right;
+      }
+    }
+  }
+  .ShoppingBill-list-title {
+    background: #ffffff;
+    border-bottom: 3px solid var(--main-color-hover);
+    td:first-child {
+      text-align: left;
+    }
+    h2 {
+      height: auto;
+      font-weight: 500;
+      margin: 15px 0;
+    }
+  }
+  .ShoppingBill-list-total {
+    border-top: 3px solid var(--main-color-hover);
+  }
+  .ShoppingBill-list-Discount{
+    h4{
+      margin: 10px 0;
+    }
+  }
+  .ShoppingBill-list-count{
+    h3{
+      margin: 15px 0;
+    }
+  }
+}

@@ -41,8 +41,12 @@ input[type="reset"] {
 @import "./mamber/MemberInfo";
 @import "./mamber/OrderInfo";
 
-// shopping cart
-@import "./shoppingCart/ShoppingCart";
-@import "./shoppingCart/CourseList";
-@import "./shoppingCart/CourstDetail";
-@import "./shoppingCart/InsertData";
+// shoppingcart-shoppingcart
+@import "./shoppingCart/shoppingCart/ShoppingCart";
+@import "./shoppingCart/shoppingCart/CourseList";
+@import "./shoppingCart/shoppingCart/CourstDetail";
+@import "./shoppingCart/shoppingCart/InsertData";
+
+// shoppingcart-shoppinglist
+@import "./shoppingCart/shoppingList/ShoppingList";
+@import "./shoppingCart/shoppingList/ShoppingBill";
