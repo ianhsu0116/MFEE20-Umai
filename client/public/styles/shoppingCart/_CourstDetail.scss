@@ -1,0 +1,13 @@
+.Consumer-details {
+  width: 100%;
+  h4 {
+    margin: 5px 0;
+    font-weight: 500;
+  }
+  tr td:nth-of-type(2) {
+    text-align: right;
+  }
+  select {
+    max-width: 80px;
+  }
+}

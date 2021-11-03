@@ -1,0 +1,46 @@
+.Insert-data {
+  width: 90%;
+  margin: 0 auto;
+  tr {
+    height: 40px;
+  }
+  td {
+    width: 50%;
+  }
+  .Order-of-otudent {
+    h3 {
+      text-align: left;
+      margin: auto;
+    }
+  }
+  .Import-student-data {
+    text-align: right;
+    a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--main-color-hover);
+      color: black;
+    }
+  }
+  .Box {
+    text-align: left;
+    width: 90%;
+    margin: auto;
+    h5 {
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    input {
+      width: 100%;
+      border: 1px solid var(--main-color-hover);
+      height: 30px;
+    }
+  }
+  .Update-to-student {
+    vertical-align: bottom;
+    h4 {
+      display: inline-flex;
+      margin: auto;
+    }
+  }
+}

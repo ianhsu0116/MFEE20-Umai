@@ -5,10 +5,6 @@
   --radius: 4px;
   font-family: "Noto Sans TC", sans-serif;
 }
-body {
-  background: #f3f3f1;
-  margin: 0;
-}
 .wrapper {
   width: 70%;
   max-width: 1440px;
@@ -27,9 +23,18 @@ body {
 .main-block {
   margin: 10px auto;
   display: flex;
+  hr {
+    background: var(--main-color);
+    height: 5px;
+    border: 0px;
+  }
 }
 main {
+  width: 65%;
   margin: 0 40px;
+  div:last-child {
+    text-align: center;
+  }
 }
 .title {
   display: inline-flex;
@@ -43,53 +48,19 @@ main {
     font-weight: 400;
   }
 }
-.list-title h2 {
-  font-weight: 500;
-}
-table th,
-td {
-  width: 200px;
-}
-table th:first-child,
-td:first-child {
-  width: 250px;
-}
-.list-title {
-  background: #f3f3f1;
-}
-.list {
-  border-spacing: 0;
-  tr:first-child {
-    text-align: left;
-  }
-}
-.main-block hr {
-  background: var(--main-color);
-  height: 5px;
-  border: 0px;
-}
-.list-item td {
-  background: #fdfdfd;
-  height: 150px;
-  margin: 0;
-  padding: 0;
-  color: #888888;
-  border-width: 0px;
-}
-.list-tool {
-  background: #e6e6e6;
-  a {
-    color: #1f4557;
-  }
+.fas {
+  size: 7x;
 }
 .avatar {
-  --avatar-width: 200px;
+  --avatar-width: 250px;
   background: #fdfdfd;
   width: var(--avatar-width);
+  height: 350px;
   margin: 30px 0 0 0;
   min-width: 200px;
   display: inline-flex;
   main {
+    width: 100%;
     margin: 10px;
   }
   h2 {
@@ -100,34 +71,17 @@ td:first-child {
     height: 2px;
     border: 0px;
   }
-}
-.Consumer-details {
-  h4 {
-    margin: 5px 0;
-    font-weight: 500;
-  }
-  tr td:nth-of-type(2) {
-    text-align: right;
-  }
-  select {
-    max-width: 80px;
-  }
-}
-main div:last-child {
-  text-align: center;
-}
-.avatar {
   button {
     background: var(--main-color-hover);
     border: 0;
     height: 40px;
-    width: 100px;
+    width: 150px;
     margin-top: 5px;
     border-radius: 10px;
     h5 {
-        color: #f3f3f1;
-        margin: 0;
-        font-weight: 400;
-      }
+      color: #f3f3f1;
+      margin: 0;
+      font-weight: 400;
+    }
   }
 }
