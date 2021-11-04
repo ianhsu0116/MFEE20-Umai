@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MemberSidebar from "../../components/member/MemberSidebar";
 import MemberInfo from "./MemberInfo";
 import OrderInfo from "./OrderInfo";
+import CollectionCourse from "./CollectionCourse";
 
 const MemberCenter = (props) => {
   const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
@@ -16,7 +17,7 @@ const MemberCenter = (props) => {
         />
         {currentBoard === "會員資訊" && <MemberInfo />}
         {currentBoard === "訂單資訊" && <OrderInfo />}
-        {currentBoard === "收藏課程" && <MemberInfo />}
+        {currentBoard === "收藏課程" && <CollectionCourse />}
         {currentBoard === "收藏文章" && <MemberInfo />}
         {currentBoard === "優惠券" && <MemberInfo />}
       </div>

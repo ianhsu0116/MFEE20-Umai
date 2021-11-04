@@ -1,33 +1,130 @@
 .OrderCard {
-  max-width: 900px;
-  border-bottom: 1px solid $themeColor;
-  position: relative;
-  @include flex(row);
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: 90%;
-  margin-top: 0.5rem;
-  padding: 0.25rem 0;
-  .OrderCard-image-con {
-    width: 18%;
-    max-height: 80px;
+  .OrderCard-container {
+    max-width: 900px;
+    border-bottom: 1px solid $themeColor;
     position: relative;
-    overflow: hidden;
-    .OrderCard-image {
-      width: 100%;
+    @include flex(row);
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 90%;
+    //margin-top: 0.5rem;
+    padding: 0.5rem 0;
+
+    &:hover {
+      background: #eee;
+    }
+    .OrderCard-image-con {
+      width: 18%;
+      max-height: 80px;
+      position: relative;
+      overflow: hidden;
+      .OrderCard-image {
+        width: 100%;
+      }
+    }
+
+    .OrderCard-courseTitle {
+      width: 30%;
+    }
+
+    .OrderCard-items {
+      @include flex(column);
+      align-items: center;
+    }
+
+    .OrderCard-mamberCount {
+      align-items: flex-end;
     }
   }
 
-  .OrderCard-courseTitle {
-    width: 30%;
+  // 下拉式付款詳細內容
+  .OrderCard-detail {
+    width: 100%;
+    max-width: 900px;
+    height: 0;
+    opacity: 0;
+    background: #f3f3f3;
+    transition: 0.25s ease;
+    display: none; // 目前none => block 動畫問題尚未解決
+
+    .OrderCard-detail-title {
+      border-bottom: 1px solid $fontColor;
+      .hrderCard-detail-title-h3 {
+        padding: 0.5rem 0;
+      }
+    }
+
+    .OrderCard-detail-container,
+    .OrderCard-detail-container2 {
+      padding: 0.5rem 0;
+      @include flex(row);
+
+      // 付款詳細資訊
+      .OrderCard-detail-container-item {
+        flex: 1 1 300px;
+
+        .OrderCard-detail-container-item-title {
+          margin-bottom: 0.25rem;
+        }
+
+        .OrderCard-detail-container-item-content {
+          font-size: 90%;
+        }
+      }
+
+      // 課程評價
+      .OrderCard-detail-container2-left {
+        flex: 1 1 250px;
+        @include flex(row);
+        flex-wrap: wrap;
+        .OrderCard-detail-container2-left-textarea {
+          resize: none;
+          width: 100%;
+          font-size: 1rem;
+        }
+      }
+
+      .OrderCard-detail-container2-right {
+        @include flex(column);
+        justify-content: space-between;
+        flex: 5 1 250px;
+
+        .OrderCard-detail-container2-right-stars {
+          @include flex(row);
+          padding-left: 1rem;
+          .OrderCard-detail-container2-right-star {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+
+            &:hover {
+              background: url(../icons/star-solid.svg) no-repeat;
+            }
+
+            & svg {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .OrderCard-detail-container2-right-starActive {
+            background: url(../icons/star-solid.svg) no-repeat;
+          }
+        }
+
+        .OrderCard-detail-container2-right-buttonCon {
+          @include flex(row);
+          justify-content: flex-end;
+        }
+      }
+    }
   }
 
-  .OrderCard-items {
-    @include flex(column);
-    align-items: center;
-  }
-
-  .OrderCard-mamberCount {
-    align-items: flex-end;
+  .OrderCard-detail-active {
+    height: 100%;
+    opacity: 1;
+    border-bottom: 1px solid $themeColor;
+    padding: 0.5rem;
+    display: block; // 目前none => block 動畫問題尚未解決
   }
 }
