@@ -1,37 +1,68 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowUp,
-} from "react-icons/md";
+import React, { useState, useEffect, useRef } from "react";
+import { withRouter } from "react-router-dom";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "./Button";
 
 const DefaultStudentCard = (props) => {
-  let location = useParams();
-  console.log(location); // 目前卡在 無法抓到當前網址列，並且用網址判斷當前是否人在會員中心
+  let { index } = props;
+  let [pathname, setPathname] = useState("/");
+  let [cardOpen, setCardOpen] = useState(false);
+  let studentCardRefs = useRef();
+
+  useEffect(() => {
+    // 抓到當前網址去判斷卡片要呈現的樣式
+    setPathname(props.location.pathname);
+  }, []);
+
+  // 刪除學生(動畫)
+  const handleDeleteStudent = (index) => (e) => {
+    studentCardRefs.current.style.animation = "scaleDown 0.3s forwards";
+  };
+  // 等動畫跑完在真正刪除 (onAnimationEnd)
+  const handleSlowDelete = (e) => {
+    console.log("刪除學員");
+    studentCardRefs.current.remove();
+  };
+
+  // 啓閉學員詳細內容
+  const handleOpenCard = () => {
+    cardOpen ? setCardOpen(false) : setCardOpen(true);
+    console.log(pathname);
+  };
 
   return (
-    <div className="DefaultStudentCard">
+    <div
+      ref={studentCardRefs}
+      onAnimationEnd={handleSlowDelete}
+      className={`DefaultStudentCard ${
+        cardOpen && "DefaultStudentCard-active"
+      }`}
+    >
       <div className="DefaultStudentCard-title">
-        <div className="DefaultStudentCard-title-left">
+        <div className="DefaultStudentCard-title-left" onClick={handleOpenCard}>
           <MdOutlineKeyboardArrowDown />
-          <span>學員-1</span>
+
+          <span>學員-{index + 1}</span>
         </div>
         <div className="DefaultStudentCard-title-right">
-          <select
-            name=""
-            id=""
-            className="DefaultStudentCard-title-right-select"
-          >
-            <option value="">選擇預設學員</option>
-            <option value="id">學員名稱</option>
-            <option value="id">學員名稱</option>
-            <option value="id">學員名稱</option>
-          </select>
+          {/* 會員中心內不顯示此欄位 */}
+          {pathname !== "/memberCenter" && (
+            <select
+              name=""
+              id=""
+              className="DefaultStudentCard-title-right-select"
+            >
+              <option value="">選擇預設學員</option>
+              <option value="id">學員名稱</option>
+              <option value="id">學員名稱</option>
+              <option value="id">學員名稱</option>
+            </select>
+          )}
+
           <Button
             value={"刪除"}
             className={"button-activeColor DefaultStudentCard-title-right-btn"}
-            onClick=""
+            onClick={handleDeleteStudent(index)}
           />
         </div>
       </div>
@@ -112,40 +143,42 @@ const DefaultStudentCard = (props) => {
             />
           </div>
         </div>
-        <div className="DefaultStudentCard-main-row">
-          <div className="">
-            <input
-              type="checkbox"
-              id="addIntoStudent"
-              className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
-            />
-            &ensp;
-            <label
-              htmlFor="addIntoStudent"
-              className="DefaultStudentCard-main-row-item-label"
-            >
-              新增至預設學員資料
-            </label>
+        {/* 會員中心內不顯示此欄位 */}
+        {pathname !== "/memberCenter" && (
+          <div className="DefaultStudentCard-main-row">
+            <div className="">
+              <input
+                type="checkbox"
+                id="addIntoStudent"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+              />
+              &ensp;
+              <label
+                htmlFor="addIntoStudent"
+                className="DefaultStudentCard-main-row-item-label"
+              >
+                新增至預設學員資料
+              </label>
+            </div>
+            <div className="">
+              <input
+                type="checkbox"
+                id="autoUpdateMember"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+              />
+              &ensp;
+              <label
+                htmlFor="autoUpdateMember"
+                className="DefaultStudentCard-main-row-item-label"
+              >
+                同步更新會員資料
+              </label>
+            </div>
           </div>
-          <div className="">
-            <input
-              type="checkbox"
-              id="autoUpdateMember"
-              className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
-            />
-            &ensp;
-            <label
-              htmlFor="autoUpdateMember"
-              className="DefaultStudentCard-main-row-item-label"
-            >
-              同步更新會員資料
-            </label>
-          </div>
-        </div>
+        )}
       </div>
-      {/* <div className="DefaultStudentCard-footer"></div> */}
     </div>
   );
 };
 
-export default DefaultStudentCard;
+export default withRouter(DefaultStudentCard);

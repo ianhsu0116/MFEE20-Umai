@@ -10,7 +10,9 @@ const DefaultStudent = (props) => {
         </header>
 
         <div className="DefaultStudent-container-cards">
-          <DefaultStudentCard />
+          {new Array(5).fill(1).map((data, index) => (
+            <DefaultStudentCard key={index} index={index} />
+          ))}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Coupons from "../../components/Coupons";
 import OptionBar from "../../components/OptionBar";
+import DefaultStudentCard from "../../components/DefaultStudentCard";
 
 // 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未使用優惠券", "已使用優惠券", "已過期優惠券"];

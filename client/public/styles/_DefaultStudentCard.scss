@@ -2,15 +2,19 @@
   width: 80%;
   max-width: 900px;
   position: relative;
-  margin: 1rem;
+  margin: 0.5rem;
+  //overflow: hidden;
+  transition: 0.5s ease;
 
   .DefaultStudentCard-title {
     @include flex(row);
     justify-content: space-between;
     align-items: center;
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
     background: $titleBackgroundColor;
     padding: 0.75rem;
+    transition: 0.5s ease;
+    z-index: 2;
 
     .DefaultStudentCard-title-left {
       font-weight: 900;
@@ -24,6 +28,7 @@
       & svg {
         width: 30px;
         height: 30px;
+        transition: 0.35s ease;
       }
     }
 
@@ -42,14 +47,41 @@
       }
     }
   }
+
   .DefaultStudentCard-main {
-    // height: 350px;
+    max-height: 0;
+    transition: 0.35s ease-out;
+    opacity: 0;
+    overflow: hidden;
+    .DefaultStudentCard-main-row {
+      display: none;
+    }
+  }
+}
+
+// 卡片打開時
+.DefaultStudentCard-active {
+  .DefaultStudentCard-title {
+    border-radius: 15px 15px 0 0;
+
+    .DefaultStudentCard-title-left {
+      & svg {
+        transform: rotate(-180deg);
+        transition: 0.35s ease;
+      }
+    }
+  }
+  .DefaultStudentCard-main {
     border-radius: 0 0 15px 15px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     position: relative;
     padding: 1rem 2rem;
+    max-height: 500px;
+    transition: 0.35s ease-in;
+    opacity: 1;
 
     .DefaultStudentCard-main-row {
+      display: flex;
       width: 100%;
       margin-bottom: 1rem;
       @include flex(row);
@@ -91,5 +123,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes scaleDown {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
   }
 }

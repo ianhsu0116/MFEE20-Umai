@@ -737,7 +737,9 @@ input[type="reset"] {
   width: 80%;
   max-width: 900px;
   position: relative;
-  margin: 1rem;
+  margin: 0.5rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 .DefaultStudentCard .DefaultStudentCard-title {
@@ -754,9 +756,12 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 15px 15px 0 0;
+  border-radius: 15px;
   background: #eeeeee;
   padding: 0.75rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
 }
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left {
@@ -782,6 +787,8 @@ input[type="reset"] {
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
   width: 30px;
   height: 30px;
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
 }
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
@@ -802,18 +809,46 @@ input[type="reset"] {
 }
 
 .DefaultStudentCard .DefaultStudentCard-main {
+  max-height: 0;
+  -webkit-transition: 0.35s ease-out;
+  transition: 0.35s ease-out;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  display: none;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title {
+  border-radius: 15px 15px 0 0;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main {
   border-radius: 0 0 15px 15px;
   -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   padding: 1rem 2rem;
+  max-height: 500px;
+  -webkit-transition: 0.35s ease-in;
+  transition: 0.35s ease-in;
+  opacity: 1;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row {
-  width: 100%;
-  margin-bottom: 1rem;
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row {
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -827,7 +862,7 @@ input[type="reset"] {
           align-items: center;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -843,11 +878,11 @@ input[type="reset"] {
           align-items: flex-start;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-label {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-label {
   cursor: pointer;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-input {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-input {
   border-radius: 5px;
   border: 1px solid #666666;
   padding: 0.15rem 0.35rem;
@@ -856,11 +891,11 @@ input[type="reset"] {
   margin-top: 0.25rem;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-itemEmail {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-itemEmail {
   width: 100%;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox {
   display: inline-block;
   background-color: #aaa;
   padding: 3px 6px;
@@ -872,9 +907,31 @@ input[type="reset"] {
           user-select: none;
 }
 
-.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox:checked {
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox:checked {
   color: yellow;
   background-color: #3f7289;
+}
+
+@-webkit-keyframes scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
 }
 
 .MemberCenter {
