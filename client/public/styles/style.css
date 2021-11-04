@@ -58,6 +58,17 @@ input[type="reset"] {
   background-color: #ffb257;
 }
 
+.button-activeColor {
+  padding: 0.35rem 0.75rem;
+  background: #eb6b6a;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-activeColor:hover {
+  background-color: #eb6b6a;
+}
+
 .Navbar {
   background: #d8a466;
   color: white;
@@ -722,6 +733,150 @@ input[type="reset"] {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.DefaultStudentCard {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 1rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px 15px 0 0;
+  background: #eeeeee;
+  padding: 0.75rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left {
+  font-weight: 900;
+  font-size: 110%;
+  color: #d8a466;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  width: 30px;
+  height: 30px;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
+  font-size: 1rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-select {
+  padding: 0.25rem 0.25rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #666666;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 90%;
+  margin-left: 0.5rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main {
+  border-radius: 0 0 15px 15px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 1rem 2rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-label {
+  cursor: pointer;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  padding: 0.15rem 0.35rem;
+  font-size: 1.15rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-itemEmail {
+  width: 100%;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox {
+  display: inline-block;
+  background-color: #aaa;
+  padding: 3px 6px;
+  border: 1px solid gray;
+  color: #444;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox:checked {
+  color: yellow;
+  background-color: #3f7289;
+}
+
 .MemberCenter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -857,7 +1012,6 @@ input[type="reset"] {
 
 .MemberInfo {
   height: calc(100vh - 50px);
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1006,6 +1160,68 @@ input[type="reset"] {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin: 1rem 0;
+}
+
+.DefaultStudent {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.DefaultStudent .DefaultStudent-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-header h1 {
+  font-weight: 100;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .OrderInfo {

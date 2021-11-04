@@ -8,6 +8,10 @@ $cardDarkColor: #5d5548;
 $highLevelColor: #eb6b6a;
 $midLevelColor: #5f9e72;
 $lowLevelColor: #5eb2eb;
+
+// DefaultStudentCard 用
+$titleBackgroundColor: #eeeeee;
+
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -71,6 +75,16 @@ input[type="reset"] {
     background-color: $activeColor;
   }
 }
+.button-activeColor {
+  padding: 0.35rem 0.75rem;
+  background: $highLevelColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $highLevelColor;
+  }
+}
 
 // 共用元件
 @import "./Navber";
@@ -78,15 +92,18 @@ input[type="reset"] {
 @import "./OrderCard";
 @import "./CourseCard1";
 @import "./Coupons";
+@import "./DefaultStudentCard.scss";
 
 // member相關
-@import "./mamber/MemberCenter";
-@import "./mamber/MemberSidebar";
-@import "./mamber/MemberInfo";
-@import "./mamber/OrderInfo";
-@import "./mamber/CollectionCourse";
-@import "./mamber/CollectionCoupons";
+@import "./member/MemberCenter";
+@import "./member/MemberSidebar";
+@import "./member/MemberInfo";
+@import "./member/DefaultStudent";
+@import "./member/OrderInfo";
+@import "./member/CollectionCourse";
+@import "./member/CollectionCoupons";
 
+// RWD
 @media screen and (max-width: 1200px) {
   .Navbar {
     .Navbar-container {
