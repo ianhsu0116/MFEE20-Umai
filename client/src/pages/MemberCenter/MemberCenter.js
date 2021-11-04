@@ -17,6 +17,7 @@ const MemberCenter = (props) => {
           setCurrentBoard={setCurrentBoard}
         />
         {currentBoard === "會員資訊" && <MemberInfo />}
+        {currentBoard === "預設學員" && <MemberInfo />}
         {currentBoard === "訂單資訊" && <OrderInfo />}
         {currentBoard === "收藏課程" && <CollectionCourse />}
         {currentBoard === "收藏文章" && <MemberInfo />}

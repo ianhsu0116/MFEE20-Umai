@@ -5,9 +5,10 @@ $avatar-size: 130px;
   position: relative;
   @include flex(row);
   align-items: center;
+  width: 20%;
   .MemberSidebar-container {
     height: 95%;
-    width: 200px;
+    width: 100%;
     overflow: scroll;
     padding: 1rem 0;
     border-radius: 10px;

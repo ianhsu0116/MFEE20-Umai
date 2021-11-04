@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import OptionBar from "../../components/OptionBar";
 import OrderCard from "../../components/member/OrderCard";
 
-// 要丟入 BoardChangeBar 的三個按鍵值
+// 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未完成訂單", "已完成訂單", "歷史訂單"];
 const OrderInfo = () => {
   const [orderStatus, setOrderStatus] = useState("未完成訂單"); // 訂單狀態

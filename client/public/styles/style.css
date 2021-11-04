@@ -630,6 +630,98 @@ input[type="reset"] {
   width: 47%;
 }
 
+.Coupons {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  margin: 1rem;
+}
+
+.Coupons:hover {
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.Coupons .Coupons-imageCon {
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+  position: relative;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-img {
+  height: 100%;
+  width: 100%;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner:hover {
+  -webkit-transform: scale(1.1) rotate(45deg);
+          transform: scale(1.1) rotate(45deg);
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner a {
+  color: white;
+}
+
+.Coupons .Coupons-textCon {
+  height: 60%;
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-title {
+  font-size: 1.15rem;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom {
+  font-size: 85%;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-title {
+  font-weight: 900;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-expireDate {
+  color: #d8a466;
+}
+
+.Coupons-disabled {
+  cursor: not-allowed;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .MemberCenter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -666,11 +758,12 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 20%;
 }
 
 .MemberSidebar .MemberSidebar-container {
   height: 95%;
-  width: 200px;
+  width: 100%;
   overflow: scroll;
   padding: 1rem 0;
   border-radius: 10px;
@@ -771,7 +864,7 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 80%;
 }
 
 .MemberInfo .MemberInfo-container {
@@ -923,7 +1016,7 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 80%;
 }
 
 .OrderInfo .OrderInfo-container {
@@ -994,7 +1087,7 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 80%;
 }
 
 .CollectionCourse .CollectionCourse-container {
@@ -1046,13 +1139,12 @@ input[type="reset"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: 80%;
 }
 
 .CollectionCoupons .CollectionCoupons-container {
   height: 95%;
   width: 100%;
-  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -1088,5 +1180,25 @@ input[type="reset"] {
 .CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-cards {
   width: 100%;
   position: relative;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 1200px) {
+  .Navbar .Navbar-container {
+    width: 90%;
+  }
+  .MemberCenter .MemberCenter-container {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=style.css.map */
