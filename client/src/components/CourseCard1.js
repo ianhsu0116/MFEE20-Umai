@@ -8,7 +8,7 @@ import image1 from "./images/sushi-unsplash.jpg";
 
 const CourseCard1 = (props) => {
   let memberLimit = 25;
-  let member = 17;
+  let member = 15;
 
   // 模擬即時顯示進度條
   useEffect(() => {
@@ -37,7 +37,7 @@ const CourseCard1 = (props) => {
 
       <div className="CourseCard1-detailCon">
         <h4 className="CourseCard1-detailCon-h4">
-          <Link to="/course/category?id=course_id">築地創意壽司</Link>
+          <Link to="/courses/course_id">築地創意壽司</Link>
         </h4>
         <div className="CourseCard1-detailCon-stars">★★★★★ (55)</div>
         <div className="CourseCard1-detailCon-company">

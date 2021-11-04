@@ -86,3 +86,17 @@ input[type="reset"] {
 @import "./mamber/OrderInfo";
 @import "./mamber/CollectionCourse";
 @import "./mamber/CollectionCoupons";
+
+@media screen and (max-width: 1200px) {
+  .Navbar {
+    .Navbar-container {
+      width: 90%;
+    }
+  }
+
+  .MemberCenter {
+    .MemberCenter-container {
+      width: 90%;
+    }
+  }
+}
