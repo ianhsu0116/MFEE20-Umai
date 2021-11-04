@@ -11,6 +11,9 @@ const CollectionCourse = (props) => {
 
         <div className="CollectionCourse-container-cards">
           <CourseCard1 />
+          <CourseCard1 />
+          <CourseCard1 />
+          <CourseCard1 />
         </div>
       </div>
     </div>
