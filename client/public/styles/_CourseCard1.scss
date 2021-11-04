@@ -9,6 +9,7 @@
   position: relative;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin: 1rem 0;
 
   .CourseCard1-imageCon {
     height: 100%;
@@ -60,14 +61,20 @@
     .CourseCard1-detailCon-company {
       & svg {
         fill: $activeColor;
+        font-size: 1.15rem;
       }
+    }
+
+    .CourseCard1-detailCon-courseTime {
+      margin-top: 0.25rem;
     }
 
     .CourseCard1-detailCon-MemberCount {
       font-size: 80%;
+      margin-top: 0.25rem;
 
       .CourseCard1-detailCon-MemberCount-progressCon {
-        width: 120px;
+        width: 130px;
         height: 6px;
         border-radius: 5px;
         border: 1px solid $activeColor;
@@ -91,16 +98,17 @@
       width: 95%;
       justify-content: space-between;
       align-items: flex-end;
-      margin-top: -6px;
+      //margin-top: -6px;
 
       .CourseCard1-detailCon-bottom-courseLevel {
         display: block;
         color: white;
         background: $highLevelColor;
-        padding: 0.2rem 0.5rem;
+        padding: 0.15rem 0.5rem;
         border-radius: 5px;
         font-weight: 500;
         cursor: pointer;
+        font-size: 80%;
       }
 
       .CourseCard1-detailCon-bottom-coursePrice {

@@ -68,6 +68,7 @@ input[type="reset"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-size: 110%;
 }
 
 .Navbar .Navbar-container {
@@ -126,6 +127,11 @@ input[type="reset"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
@@ -359,6 +365,7 @@ input[type="reset"] {
 .OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg {
   width: 100%;
   height: 100%;
+  fill: #ffb257;
 }
 
 .OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive,
@@ -406,6 +413,7 @@ input[type="reset"] {
   -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin: 1rem 0;
 }
 
 .CourseCard1 .CourseCard1-imageCon {
@@ -462,14 +470,20 @@ input[type="reset"] {
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-company svg {
   fill: #ffb257;
+  font-size: 1.15rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-courseTime {
+  margin-top: 0.25rem;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount {
   font-size: 80%;
+  margin-top: 0.25rem;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon {
-  width: 120px;
+  width: 130px;
   height: 6px;
   border-radius: 5px;
   border: 1px solid #ffb257;
@@ -502,17 +516,17 @@ input[type="reset"] {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  margin-top: -6px;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-courseLevel {
   display: block;
   color: white;
   background: #eb6b6a;
-  padding: 0.2rem 0.5rem;
+  padding: 0.15rem 0.5rem;
   border-radius: 5px;
   font-weight: 500;
   cursor: pointer;
+  font-size: 80%;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice {
@@ -986,6 +1000,7 @@ input[type="reset"] {
 .CollectionCourse .CollectionCourse-container {
   height: 95%;
   width: 100%;
+  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -1019,6 +1034,58 @@ input[type="reset"] {
 }
 
 .CollectionCourse .CollectionCourse-container .CollectionCourse-container-cards {
+  width: 100%;
+  position: relative;
+}
+
+.CollectionCoupons {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.CollectionCoupons .CollectionCoupons-container {
+  height: 95%;
+  width: 100%;
+  overflow: scroll;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-header h1 {
+  font-weight: 100;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-cards {
   width: 100%;
   position: relative;
 }
