@@ -79,4 +79,17 @@ input[type="reset"] {
 @import "./mamber/MemberSidebar";
 @import "./mamber/MemberInfo";
 @import "./mamber/OrderInfo";
+<<<<<<< HEAD
 @import "./mamber/CollectionCourse";
+=======
+
+// shoppingcart-shoppingcart
+@import "./shoppingCart/shoppingCart/ShoppingCart";
+@import "./shoppingCart/shoppingCart/CourseList";
+@import "./shoppingCart/shoppingCart/CourstDetail";
+@import "./shoppingCart/shoppingCart/InsertData";
+
+// shoppingcart-shoppinglist
+@import "./shoppingCart/shoppingList/ShoppingList";
+@import "./shoppingCart/shoppingList/ShoppingBill";
+>>>>>>> shopping-cart
