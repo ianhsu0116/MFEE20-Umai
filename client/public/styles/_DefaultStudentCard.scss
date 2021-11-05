@@ -50,7 +50,7 @@
 
   .DefaultStudentCard-main {
     max-height: 0;
-    transition: 0.35s ease-out;
+    transition: 0.4s ease-out;
     opacity: 0;
     overflow: hidden;
     .DefaultStudentCard-main-row {
@@ -67,7 +67,7 @@
     .DefaultStudentCard-title-left {
       & svg {
         transform: rotate(-180deg);
-        transition: 0.35s ease;
+        transition: 0.4s ease;
       }
     }
   }
@@ -77,7 +77,7 @@
     position: relative;
     padding: 1rem 2rem;
     max-height: 500px;
-    transition: 0.35s ease-in;
+    transition: 0.4s ease-in;
     opacity: 1;
 
     .DefaultStudentCard-main-row {
@@ -126,7 +126,8 @@
   }
 }
 
-@keyframes scaleDown {
+//
+@keyframes DefaultStudentCard-scaleDown {
   from {
     transform: scale(1);
   }

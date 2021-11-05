@@ -47,6 +47,28 @@ input[type="reset"] {
   background-color: #ffb257;
 }
 
+.button-themeColorBlue {
+  padding: 0.35rem 0.75rem;
+  background: #0078b3;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-themeColorBlue:hover {
+  background-color: #006ca1;
+}
+
+.button-highLeveColor {
+  padding: 0.35rem 0.75rem;
+  background: #eb6b6a;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-highLeveColor:hover {
+  background-color: #cc5a5a;
+}
+
 .button-activeColor {
   padding: 0.35rem 0.75rem;
   background: #ffb257;
@@ -58,15 +80,15 @@ input[type="reset"] {
   background-color: #ffb257;
 }
 
-.button-activeColor {
+.button-darkColor {
   padding: 0.35rem 0.75rem;
-  background: #eb6b6a;
+  background: #666666;
   color: white;
   border-radius: 5px;
 }
 
-.button-activeColor:hover {
-  background-color: #eb6b6a;
+.button-darkColor:hover {
+  background-color: #424242;
 }
 
 .Navbar {
@@ -191,7 +213,7 @@ input[type="reset"] {
 .OptionBar .OptionBar-ul .OptionBar-ul-li {
   padding: 0.4rem 1rem;
   border-radius: 100px;
-  color: #3f7289;
+  color: #0078b3;
   cursor: pointer;
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
@@ -532,12 +554,23 @@ input[type="reset"] {
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-courseLevel {
   display: block;
   color: white;
-  background: #eb6b6a;
   padding: 0.15rem 0.5rem;
   border-radius: 5px;
   font-weight: 500;
   cursor: pointer;
   font-size: 80%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .highLevel {
+  background: #eb6b6a;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .midLevel {
+  background: #5f9e72;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .lowLevel {
+  background: #5eb2eb;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice {
@@ -810,8 +843,8 @@ input[type="reset"] {
 
 .DefaultStudentCard .DefaultStudentCard-main {
   max-height: 0;
-  -webkit-transition: 0.35s ease-out;
-  transition: 0.35s ease-out;
+  -webkit-transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
   opacity: 0;
   overflow: hidden;
 }
@@ -827,8 +860,8 @@ input[type="reset"] {
 .DefaultStudentCard-active .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
   -webkit-transform: rotate(-180deg);
           transform: rotate(-180deg);
-  -webkit-transition: 0.35s ease;
-  transition: 0.35s ease;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 .DefaultStudentCard-active .DefaultStudentCard-main {
@@ -838,8 +871,8 @@ input[type="reset"] {
   position: relative;
   padding: 1rem 2rem;
   max-height: 500px;
-  -webkit-transition: 0.35s ease-in;
-  transition: 0.35s ease-in;
+  -webkit-transition: 0.4s ease-in;
+  transition: 0.4s ease-in;
   opacity: 1;
 }
 
@@ -909,10 +942,10 @@ input[type="reset"] {
 
 .DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item-checkbox:checked {
   color: yellow;
-  background-color: #3f7289;
+  background-color: #0078b3;
 }
 
-@-webkit-keyframes scaleDown {
+@-webkit-keyframes DefaultStudentCard-scaleDown {
   from {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -923,7 +956,7 @@ input[type="reset"] {
   }
 }
 
-@keyframes scaleDown {
+@keyframes DefaultStudentCard-scaleDown {
   from {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -1464,6 +1497,141 @@ input[type="reset"] {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   overflow: scroll;
+}
+
+.DefaultStudentCard2 {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 0.5rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px 15px 0 0;
+  background: #c0c0c0;
+  padding: 0.75rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-left {
+  font-weight: 900;
+  font-size: 110%;
+  color: #0078b3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-left svg {
+  width: 30px;
+  height: 30px;
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right {
+  font-size: 1rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right .DefaultStudentCard2-title-right-select {
+  padding: 0.25rem 0.25rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #666666;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right .DefaultStudentCard2-title-right-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 90%;
+  margin-left: 0.5rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main {
+  border-radius: 0 0 15px 15px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 1rem 2rem;
+  max-height: 500px;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-label {
+  cursor: pointer;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  padding: 0.15rem 0.35rem;
+  font-size: 1.15rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-itemEmail {
+  width: 100%;
 }
 
 @media screen and (max-width: 1200px) {

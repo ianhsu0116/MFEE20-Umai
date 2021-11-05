@@ -55,7 +55,10 @@ const CourseCard1 = (props) => {
           <div>報名人數 8 / 25</div>
         </div>
         <div className="CourseCard1-detailCon-bottom">
-          <div className="CourseCard1-detailCon-bottom-courseLevel">進階</div>
+          {/* 這裡要自行判斷當前課程階級，切換className即可改變樣式(highLevel, midLevel, lowLevel) */}
+          <div className="CourseCard1-detailCon-bottom-courseLevel highLevel">
+            高階
+          </div>
           <div className="CourseCard1-detailCon-bottom-coursePrice">
             <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
               NT$7,560

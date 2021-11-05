@@ -1,5 +1,6 @@
 import React from "react";
 import DefaultStudentCard from "../../components/DefaultStudentCard";
+import DefaultStudentCard2 from "../../components/member/DefaultStudentCard2";
 
 const DefaultStudent = (props) => {
   return (
@@ -10,6 +11,7 @@ const DefaultStudent = (props) => {
         </header>
 
         <div className="DefaultStudent-container-cards">
+          <DefaultStudentCard2 />
           {new Array(5).fill(1).map((data, index) => (
             <DefaultStudentCard key={index} index={index} />
           ))}

@@ -7,6 +7,15 @@ const DefaultStudentCard = (props) => {
   let { index } = props;
   let [pathname, setPathname] = useState("/");
   let [cardOpen, setCardOpen] = useState(false);
+  let [newStudentData, setNewStudentData] = useState({
+    firstName: "",
+    lastName: "",
+    telephone: "",
+    birthday: "",
+    email: "",
+    addIntoStudent: false,
+    autoUpdateMember: false,
+  });
   let studentCardRefs = useRef();
 
   useEffect(() => {
@@ -14,9 +23,32 @@ const DefaultStudentCard = (props) => {
     setPathname(props.location.pathname);
   }, []);
 
+  // 即時抓取 input value
+  const handleInputChange = (e) => {
+    // 判斷當前input是否為 check box
+    if (
+      e.target.name !== "addIntoStudent" &&
+      e.target.name !== "autoUpdateMember"
+    ) {
+      setNewStudentData({ ...newStudentData, [e.target.name]: e.target.value });
+    } else {
+      setNewStudentData({
+        ...newStudentData,
+        [e.target.name]: e.target.checked,
+      });
+    }
+  };
+
+  // 送出編輯學生data
+  const handleEditStudent = () => {
+    console.log("編輯學員");
+    console.log(newStudentData);
+  };
+
   // 刪除學生(動畫)
   const handleDeleteStudent = (index) => (e) => {
-    studentCardRefs.current.style.animation = "scaleDown 0.3s forwards";
+    studentCardRefs.current.style.animation =
+      "DefaultStudentCard-scaleDown 0.3s forwards";
   };
   // 等動畫跑完在真正刪除 (onAnimationEnd)
   const handleSlowDelete = (e) => {
@@ -27,7 +59,6 @@ const DefaultStudentCard = (props) => {
   // 啓閉學員詳細內容
   const handleOpenCard = () => {
     cardOpen ? setCardOpen(false) : setCardOpen(true);
-    console.log(pathname);
   };
 
   return (
@@ -41,15 +72,14 @@ const DefaultStudentCard = (props) => {
       <div className="DefaultStudentCard-title">
         <div className="DefaultStudentCard-title-left" onClick={handleOpenCard}>
           <MdOutlineKeyboardArrowDown />
-
+          &ensp;
           <span>學員-{index + 1}</span>
         </div>
         <div className="DefaultStudentCard-title-right">
           {/* 會員中心內不顯示此欄位 */}
           {pathname !== "/memberCenter" && (
             <select
-              name=""
-              id=""
+              name="selectedStudent"
               className="DefaultStudentCard-title-right-select"
             >
               <option value="">選擇預設學員</option>
@@ -59,9 +89,18 @@ const DefaultStudentCard = (props) => {
             </select>
           )}
 
+          {pathname === "/memberCenter" && (
+            <Button
+              value={"編輯"}
+              className={"button-darkColor DefaultStudentCard-title-right-btn"}
+              onClick={handleEditStudent}
+            />
+          )}
           <Button
             value={"刪除"}
-            className={"button-activeColor DefaultStudentCard-title-right-btn"}
+            className={
+              "button-highLeveColor DefaultStudentCard-title-right-btn"
+            }
             onClick={handleDeleteStudent(index)}
           />
         </div>
@@ -78,8 +117,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="text"
               id="firstName"
+              name="firstName"
               placeholder="請輸入真實名字"
               className="DefaultStudentCard-main-row-item-input"
+              onChange={handleInputChange}
             />
           </div>
           <div className="DefaultStudentCard-main-row-item">
@@ -92,8 +133,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="text"
               id="lastName"
+              name="lastName"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -108,8 +151,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="text"
               id="telephone"
+              name="telephone"
               placeholder="請輸入手機號碼"
               className="DefaultStudentCard-main-row-item-input"
+              onChange={handleInputChange}
             />
           </div>
           <div className="DefaultStudentCard-main-row-item">
@@ -122,8 +167,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="date"
               id="birthday"
+              name="birthday"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -138,8 +185,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="請輸入Email"
               className="DefaultStudentCard-main-row-item-input"
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -150,7 +199,9 @@ const DefaultStudentCard = (props) => {
               <input
                 type="checkbox"
                 id="addIntoStudent"
+                name="addIntoStudent"
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                onChange={handleInputChange}
               />
               &ensp;
               <label
@@ -164,7 +215,9 @@ const DefaultStudentCard = (props) => {
               <input
                 type="checkbox"
                 id="autoUpdateMember"
+                name="autoUpdateMember"
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                onChange={handleInputChange}
               />
               &ensp;
               <label

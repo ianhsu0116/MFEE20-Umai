@@ -103,12 +103,21 @@
       .CourseCard1-detailCon-bottom-courseLevel {
         display: block;
         color: white;
-        background: $highLevelColor;
         padding: 0.15rem 0.5rem;
         border-radius: 5px;
         font-weight: 500;
         cursor: pointer;
         font-size: 80%;
+      }
+      // 三種不同的課程階級 顏色
+      & .highLevel {
+        background: $highLevelColor;
+      }
+      & .midLevel {
+        background: $midLevelColor;
+      }
+      & .lowLevel {
+        background: $lowLevelColor;
       }
 
       .CourseCard1-detailCon-bottom-coursePrice {

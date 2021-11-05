@@ -1,5 +1,6 @@
 $themeColor: #d8a466;
-$themeColorBlue: #3f7289;
+//$themeColorBlue: #3f7289;
+$themeColorBlue: #0078b3;
 $activeColor: #ffb257;
 $fontColor: #666666;
 
@@ -11,6 +12,7 @@ $lowLevelColor: #5eb2eb;
 
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
+$titleBackgroundColor2: #c0c0c0;
 
 @mixin flex($direction) {
   display: flex;
@@ -65,6 +67,26 @@ input[type="reset"] {
     background-color: $activeColor;
   }
 }
+.button-themeColorBlue {
+  padding: 0.35rem 0.75rem;
+  background: $themeColorBlue;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #006ca1;
+  }
+}
+.button-highLeveColor {
+  padding: 0.35rem 0.75rem;
+  background: $highLevelColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #cc5a5a;
+  }
+}
 .button-activeColor {
   padding: 0.35rem 0.75rem;
   background: $activeColor;
@@ -75,14 +97,14 @@ input[type="reset"] {
     background-color: $activeColor;
   }
 }
-.button-activeColor {
+.button-darkColor {
   padding: 0.35rem 0.75rem;
-  background: $highLevelColor;
+  background: $fontColor;
   color: white;
   border-radius: 5px;
 
   &:hover {
-    background-color: $highLevelColor;
+    background-color: #424242;
   }
 }
 
@@ -102,6 +124,7 @@ input[type="reset"] {
 @import "./member/OrderInfo";
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
+@import "./member/DefaultStudentCard2";
 
 // RWD
 @media screen and (max-width: 1200px) {

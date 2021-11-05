@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsPersonCircle, BsCloudCheck } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
