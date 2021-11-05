@@ -117,10 +117,14 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 110%;
+  font-size: 100%;
 }
 
 .Navbar .Navbar-container {
@@ -141,12 +145,35 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.Navbar .Navbar-container .Navbar-container-item .UmaiLogo {
+.Navbar .Navbar-container .Navbar-container-item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item a .UmaiLogo {
   width: 85px;
   padding: 0.25rem 0;
 }
@@ -161,6 +188,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  color: white;
 }
 
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 {
@@ -242,222 +270,6 @@ a:hover {
 .OptionBar .OptionBar-ul .OptionBar-ul-li-active {
   background: linear-gradient(45deg, #ffb257, #d8a466);
   color: white;
-}
-
-.OrderCard .OrderCard-container {
-  max-width: 900px;
-  border-bottom: 1px solid #d8a466;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  cursor: pointer;
-  font-size: 90%;
-  padding: 0.5rem 0;
-}
-
-.OrderCard .OrderCard-container:hover {
-  background: #eee;
-}
-
-.OrderCard .OrderCard-container .OrderCard-image-con {
-  width: 18%;
-  max-height: 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.OrderCard .OrderCard-container .OrderCard-image-con .OrderCard-image {
-  width: 100%;
-}
-
-.OrderCard .OrderCard-container .OrderCard-courseTitle {
-  width: 30%;
-}
-
-.OrderCard .OrderCard-container .OrderCard-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.OrderCard .OrderCard-container .OrderCard-mamberCount {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.OrderCard .OrderCard-detail {
-  width: 100%;
-  max-width: 900px;
-  background: #f3f3f3;
-  border-bottom: 1px solid #d8a466;
-  padding: 0.5rem;
-  -webkit-animation: OrderCard-scaleUp 1s forwards;
-          animation: OrderCard-scaleUp 1s forwards;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-title {
-  border-bottom: 1px solid #666666;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-title .hrderCard-detail-title-h3 {
-  padding: 0.5rem 0;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 {
-  padding: 0.5rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 300px;
-          flex: 1 1 300px;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-title,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-title {
-  margin-bottom: 0.25rem;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-content,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-content {
-  font-size: 90%;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 250px;
-          flex: 1 1 250px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea {
-  resize: none;
-  width: 100%;
-  font-size: 1rem;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-flex: 5;
-      -ms-flex: 5 1 250px;
-          flex: 5 1 250px;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  padding-left: 1rem;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover {
-  background: url(../icons/star-solid.svg) no-repeat;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg {
-  width: 100%;
-  height: 100%;
-  fill: #ffb257;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive {
-  background: url(../icons/star-solid.svg) no-repeat;
-}
-
-.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon,
-.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-@-webkit-keyframes OrderCard-scaleUp {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 450px;
-  }
-}
-
-@keyframes OrderCard-scaleUp {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 450px;
-  }
 }
 
 .CourseCard1 {
@@ -1047,6 +859,62 @@ a:hover {
   z-index: -1;
 }
 
+.Login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Login .Login-container {
+  top: -100%;
+  width: 50%;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  -webkit-animation: Login-scaleUp 0.35s ease-in;
+          animation: Login-scaleUp 0.35s ease-in;
+}
+
+@-webkit-keyframes Login-scaleUp {
+  from {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes Login-scaleUp {
+  from {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
 .MemberCenter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1400,7 +1268,7 @@ a:hover {
 .DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards {
   width: 100%;
   position: relative;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1472,7 +1340,8 @@ a:hover {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0.25rem 0;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
+  font-weight: 900;
 }
 
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableHead .OrderInfo-container-tableHead-item1 {
@@ -1482,6 +1351,214 @@ a:hover {
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
   margin: 0 0 1rem 0;
   overflow: scroll;
+}
+
+.OrderCard .OrderCard-container {
+  max-width: 900px;
+  border-bottom: 1px solid #d8a466;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+  font-size: 90%;
+  padding: 0.5rem 0;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.OrderCard .OrderCard-container:hover {
+  background: #eee;
+}
+
+.OrderCard .OrderCard-container .OrderCard-image-con {
+  width: 18%;
+  max-height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.OrderCard .OrderCard-container .OrderCard-image-con .OrderCard-image {
+  width: 100%;
+}
+
+.OrderCard .OrderCard-container .OrderCard-courseTitle {
+  width: 30%;
+}
+
+.OrderCard .OrderCard-container .OrderCard-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.OrderCard .OrderCard-container .OrderCard-mamberCount {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.OrderCard .OrderCard-detail {
+  width: 100%;
+  max-width: 900px;
+  max-height: 0px;
+  overflow: hidden;
+  padding: 0 0.5rem;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  border-bottom: 1px solid transparent;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-title {
+  border-bottom: 1px solid #666666;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-title .hrderCard-detail-title-h3 {
+  padding: 0.5rem 0;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 {
+  padding: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 300px;
+          flex: 1 1 300px;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-title,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-title {
+  margin-bottom: 0.25rem;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-content,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-content {
+  font-size: 90%;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 250px;
+          flex: 1 1 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea {
+  resize: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 5;
+      -ms-flex: 5 1 250px;
+          flex: 5 1 250px;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-left: 1rem;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover {
+  background: url(../icons/star-solid.svg) no-repeat;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg {
+  width: 100%;
+  height: 100%;
+  fill: #ffb257;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive {
+  background: url(../icons/star-solid.svg) no-repeat;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.OrderCard .OrderCard-detail-active {
+  width: 100%;
+  max-width: 900px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #d8a466;
+  max-height: 450px;
+  padding: 0.5rem;
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .CollectionCourse {
@@ -1533,7 +1610,7 @@ a:hover {
 .CollectionCourse .CollectionCourse-container .CollectionCourse-container-cards {
   width: 100%;
   position: relative;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1742,6 +1819,66 @@ a:hover {
 
 .DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-email {
   width: 100%;
+}
+
+.CollectionArticle {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.CollectionArticle .CollectionArticle-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-header h1 {
+  font-weight: 100;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
 }
 
 @media screen and (max-width: 1200px) {

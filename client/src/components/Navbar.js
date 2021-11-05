@@ -6,6 +6,7 @@ import UmaiLogo from "./images/Umai.png";
 import avatar from "./images/avatar.jpg";
 
 const Navbar = (props) => {
+  let { handleLoginClick } = props;
   return (
     <div className="Navbar">
       <div className="Navbar-container">
@@ -18,7 +19,7 @@ const Navbar = (props) => {
         <div className="Navbar-container-item">
           <button className="Navbar-container-item-btn">課程探索</button>
         </div>
-        <div className="Navbar-container-item">
+        <div className="Navbar-container-item ">
           <Link to="/">
             <img src={UmaiLogo} alt="Umai Logo" className="UmaiLogo" />
           </Link>
@@ -40,6 +41,14 @@ const Navbar = (props) => {
               className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
             />
           </Link>
+        </div>
+        <div className="Navbar-container-item">
+          <button
+            onClick={handleLoginClick}
+            className="Navbar-container-item-btn"
+          >
+            登入/註冊{" "}
+          </button>
         </div>
       </div>
     </div>

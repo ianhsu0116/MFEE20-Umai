@@ -9,6 +9,8 @@
     font-size: 90%;
     //margin-top: 0.5rem;
     padding: 0.5rem 0;
+    z-index: 5;
+    overflow: hidden;
 
     &:hover {
       background: #eee;
@@ -41,11 +43,11 @@
   .OrderCard-detail {
     width: 100%;
     max-width: 900px;
-    background: #f3f3f3;
-    border-bottom: 1px solid $themeColor;
-    padding: 0.5rem;
-    //display: block; // 目前none => block 動畫問題尚未解決
-    animation: OrderCard-scaleUp 1s forwards;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0 0.5rem;
+    transition: all 0.5s ease-out;
+    border-bottom: 1px solid transparent;
 
     .OrderCard-detail-title {
       border-bottom: 1px solid $fontColor;
@@ -122,15 +124,32 @@
   }
 }
 
-@keyframes OrderCard-scaleUp {
-  from {
-    //transform: scale(0);
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    //transform: scale(1);
-    opacity: 1;
+.OrderCard {
+  .OrderCard-detail-active {
+    width: 100%;
+    max-width: 900px;
+    background: #f3f3f3;
+    border-bottom: 1px solid $themeColor;
     max-height: 450px;
+    padding: 0.5rem;
+    transition: all 0.5s ease-in;
   }
 }
+
+// @keyframes OrderCard-scaleUp {
+//   to {
+//     //opacity: 1;
+//     max-height: 450px;
+//     padding: 0.5rem;
+//   }
+// }
+
+// @keyframes OrderCard-scaleDown {
+//   to {
+//     width: 100%;
+//     max-width: 900px;
+//     max-height: 0;
+//     overflow: hidden;
+//     padding: 0 0.5rem;
+//   }
+// }

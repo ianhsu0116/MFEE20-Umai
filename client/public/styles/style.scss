@@ -149,21 +149,23 @@ a {
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
-@import "./OrderCard";
 @import "./CourseCard1";
 @import "./Coupons";
 @import "./DefaultStudentCard.scss";
 @import "./StarGroup";
 
 // member相關
+@import "./member/Login";
 @import "./member/MemberCenter";
 @import "./member/MemberSidebar";
 @import "./member/MemberInfo";
 @import "./member/DefaultStudent";
 @import "./member/OrderInfo";
+@import "./member/OrderCard";
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
+@import "./member/CollectionArticle.scss";
 
 // RWD
 @media screen and (max-width: 1200px) {
