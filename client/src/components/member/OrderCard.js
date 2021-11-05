@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { AiOutlineStar } from "react-icons/ai";
 import foodImg from "../images/sushi-unsplash.jpg";
 
 const OrderCard = (props) => {
@@ -14,6 +14,11 @@ const OrderCard = (props) => {
     star: 1,
     comment: "",
   });
+
+  // 測試中 ==== 感應區問題
+  useEffect(() => {
+    console.log("didmount");
+  }, []);
 
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
@@ -47,11 +52,11 @@ const OrderCard = (props) => {
           <img src={foodImg} alt="courseImage" className="OrderCard-image" />
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
-          <h3>
+          <h5>
             <Link to="/course/category?id=course_id">
               {orderDetail.courseName}
             </Link>
-          </h3>
+          </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">
           <p>{orderDetail.orderStatus}</p>
@@ -78,13 +83,14 @@ const OrderCard = (props) => {
       </div>
 
       {/* 訂單詳細資訊的下拉式容器 */}
+
       <div
         className={`OrderCard-detail ${
           orderDetailOpen && "OrderCard-detail-active"
         }`}
       >
         <header className="OrderCard-detail-title">
-          <h3 className="hrderCard-detail-title-h3">付款詳細資訊</h3>
+          <h4 className="hrderCard-detail-title-h3">付款詳細資訊</h4>
         </header>
         <div className="OrderCard-detail-container">
           <div className="OrderCard-detail-container-item">
@@ -119,7 +125,7 @@ const OrderCard = (props) => {
         {orderDetail && orderDetail.orderStatus !== "未完成" && (
           <>
             <header className="OrderCard-detail-title">
-              <h3 className="hrderCard-detail-title-h3">課程評價</h3>
+              <h4 className="hrderCard-detail-title-h3">課程評價</h4>
             </header>
             <div className="OrderCard-detail-container2">
               <div className="OrderCard-detail-container2-left">

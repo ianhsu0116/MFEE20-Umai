@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Coupons from "../../components/Coupons";
 import OptionBar from "../../components/OptionBar";
-import DefaultStudentCard from "../../components/DefaultStudentCard";
 
 // 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未使用優惠券", "已使用優惠券", "已過期優惠券"];
@@ -112,7 +111,7 @@ const CollectionCoupons = (props) => {
     <div className="CollectionCoupons">
       <div className="CollectionCoupons-container">
         <header className="CollectionCoupons-container-header">
-          <h1>優惠券</h1>
+          <h2>優惠券</h2>
         </header>
 
         {/* 切換狀態的導覽列 */}
@@ -123,7 +122,10 @@ const CollectionCoupons = (props) => {
         />
 
         <div className="CollectionCoupons-container-cards">
-          {currentData && currentData.map((data) => <Coupons data={data} />)}
+          {currentData &&
+            currentData.map((data, index) => (
+              <Coupons key={index} data={data} />
+            ))}
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ $lowLevelColor: #5eb2eb;
 
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
-$titleBackgroundColor2: #c0c0c0;
 
 @mixin flex($direction) {
   display: flex;
@@ -30,17 +29,48 @@ body {
   color: $fontColor;
 }
 
-a {
-  text-decoration: none;
-  color: $fontColor;
-  &:hover {
-    color: $activeColor;
-  }
+// 覆蓋bootstrap樣式
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+ul,
+ol {
+  padding: 0;
+  margin: 0;
 }
+
+// h1 {
+//   font-size: calc(1.3rem + 1.2vw);
+// }
+// h2 {
+//   font-size: calc(1.25rem + 1vw);
+// }
+// h3 {
+//   font-size: calc(1.1rem + 0.8vw);
+// }
+// h4 {
+//   font-size: calc(1rem + 0.4vw);
+// }
+// h5 {
+//   font-size: calc(1rem + 0.3vw);
+// }
+// h6 {
+//   font-size: calc(1rem + 0.1vw);
+// }
 
 ul,
 ol {
   list-style: none;
+}
+
+img,
+svg {
+  vertical-align: baseline;
 }
 
 // 移除所有button樣式
@@ -54,6 +84,14 @@ input[type="reset"] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: $fontColor;
+  &:hover {
+    color: $activeColor;
+  }
 }
 
 // 各個按鍵component的樣式
@@ -111,20 +149,23 @@ input[type="reset"] {
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
-@import "./OrderCard";
 @import "./CourseCard1";
 @import "./Coupons";
 @import "./DefaultStudentCard.scss";
+@import "./StarGroup";
 
 // member相關
+@import "./member/Login";
 @import "./member/MemberCenter";
 @import "./member/MemberSidebar";
 @import "./member/MemberInfo";
 @import "./member/DefaultStudent";
 @import "./member/OrderInfo";
+@import "./member/OrderCard";
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
+@import "./member/CollectionArticle.scss";
 
 // RWD
 @media screen and (max-width: 1200px) {

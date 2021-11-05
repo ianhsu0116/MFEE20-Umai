@@ -35,13 +35,14 @@
       //flex-wrap: wrap;
       overflow: scroll;
       .MemberInfo-container-row {
-        width: 100%;
+        width: 70%;
         @include flex(row);
         align-items: flex-end;
         justify-content: flex-start;
         margin-bottom: 1rem;
 
         .MemberInfo-container-inputCon {
+          flex: 1 1 200px;
           @include flex(column);
           margin-right: 1rem;
           font-size: 1.15rem;
@@ -52,32 +53,30 @@
             border: 1px solid $fontColor;
             padding: 0.15rem 0.35rem;
             margin-top: 0.25rem;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             width: 100%;
           }
 
           // 信用卡輸入區塊
           .MemberInfo-container-inputCon-ccardCon {
-            max-width: 550px;
+            @include flex(row);
+
             .MemberInfo-container-inputCon-input {
-              width: 20%;
-              margin-left: 0.25rem;
+              margin-right: 0.25rem;
             }
           }
         }
 
         .MemberInfo-container-passwordCon {
-          width: 0px;
-          max-width: 200px;
-          height: 0px;
-          opacity: 0;
+          max-width: 0px;
+          max-height: 0;
           transition: 0.5s ease;
           font-size: 90%;
+          overflow: hidden;
         }
         .MemberInfo-container-passwordCon-active {
-          width: 50%;
-          height: 95px;
-          opacity: 1;
+          max-width: calc(50% - 1rem);
+          max-height: 95px;
         }
         // 密碼修改按鈕
         .MemberInfo-container-inputCon-passwordEditBtn,

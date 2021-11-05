@@ -6,7 +6,7 @@ const CollectionCourse = (props) => {
     <div className="CollectionCourse">
       <div className="CollectionCourse-container">
         <header className="CollectionCourse-container-header">
-          <h1>收藏課程</h1>
+          <h2>收藏課程</h2>
         </header>
 
         <div className="CollectionCourse-container-cards">
