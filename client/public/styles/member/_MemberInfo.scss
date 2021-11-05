@@ -7,7 +7,7 @@
   .MemberInfo-container {
     height: 95%;
     width: 100%;
-    overflow: scroll;
+    //overflow: scroll;
     padding: 1rem 2rem;
     margin-left: 1rem;
     border-radius: 10px;
@@ -27,75 +27,83 @@
       }
     }
 
-    .MemberInfo-container-row {
+    .MemberInfo-container-cards {
       width: 100%;
-      @include flex(row);
-      align-items: flex-end;
-      justify-content: flex-start;
-      margin-bottom: 1rem;
+      position: relative;
+      margin: 0 0 1rem 0;
+      @include flex(column);
+      //flex-wrap: wrap;
+      overflow: scroll;
+      .MemberInfo-container-row {
+        width: 100%;
+        @include flex(row);
+        align-items: flex-end;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
 
-      .MemberInfo-container-inputCon {
-        @include flex(column);
-        margin-right: 1rem;
-        font-size: 1.15rem;
+        .MemberInfo-container-inputCon {
+          @include flex(column);
+          margin-right: 1rem;
+          font-size: 1.15rem;
 
-        // 一般的input box
-        .MemberInfo-container-inputCon-input {
-          border-radius: 5px;
-          border: 1px solid $fontColor;
-          padding: 0.15rem 0.35rem;
-          margin-top: 0.25rem;
-          font-size: 1.25rem;
-          width: 100%;
-        }
-
-        // 信用卡輸入區塊
-        .MemberInfo-container-inputCon-ccardCon {
-          max-width: 550px;
+          // 一般的input box
           .MemberInfo-container-inputCon-input {
-            width: 20%;
-            margin-left: 0.25rem;
+            border-radius: 5px;
+            border: 1px solid $fontColor;
+            padding: 0.15rem 0.35rem;
+            margin-top: 0.25rem;
+            font-size: 1.25rem;
+            width: 100%;
+          }
+
+          // 信用卡輸入區塊
+          .MemberInfo-container-inputCon-ccardCon {
+            max-width: 550px;
+            .MemberInfo-container-inputCon-input {
+              width: 20%;
+              margin-left: 0.25rem;
+            }
           }
         }
-      }
 
-      .MemberInfo-container-passwordCon {
-        width: 0px;
-        max-width: 200px;
-        height: 0px;
-        opacity: 0;
-        transition: 0.5s ease;
-        font-size: 90%;
-      }
-      .MemberInfo-container-passwordCon-active {
-        width: 50%;
-        height: 95px;
-        opacity: 1;
-      }
-      // 密碼修改按鈕
-      .MemberInfo-container-inputCon-passwordEditBtn,
-      .MemberInfo-container-inputCon-passwordSubmitBtn {
-        border-radius: 5px;
-        padding: 0.15rem 0.35rem;
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid $fontColor;
-        margin-left: -10px;
-        margin-right: 20px;
-        font-size: 90%;
-
-        &:hover {
-          color: black;
-          border: 1px solid black;
+        .MemberInfo-container-passwordCon {
+          width: 0px;
+          max-width: 200px;
+          height: 0px;
+          opacity: 0;
+          transition: 0.5s ease;
+          font-size: 90%;
         }
-      }
+        .MemberInfo-container-passwordCon-active {
+          width: 50%;
+          height: 95px;
+          opacity: 1;
+        }
+        // 密碼修改按鈕
+        .MemberInfo-container-inputCon-passwordEditBtn,
+        .MemberInfo-container-inputCon-passwordSubmitBtn {
+          border-radius: 5px;
+          padding: 0.15rem 0.35rem;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid $fontColor;
+          margin-left: -10px;
+          margin-right: 20px;
+          font-size: 90%;
 
-      .MemberInfo-container-inputCon-passwordSubmitBtn {
-        display: none;
-        color: $highLevelColor;
-        border: 1px solid $highLevelColor;
-      }
-      .MemberInfo-container-inputCon-passwordSubmitBtn-active {
-        display: block;
+          &:hover {
+            color: black;
+            border: 1px solid black;
+          }
+        }
+
+        .MemberInfo-container-inputCon-passwordSubmitBtn {
+          display: none;
+          color: $highLevelColor;
+          border: 1px solid $highLevelColor;
+        }
+        .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+          display: block;
+        }
       }
     }
 

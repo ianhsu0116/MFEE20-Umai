@@ -83,194 +83,196 @@ const MemberInfo = (props) => {
         <header className="MemberInfo-container-header">
           <h1>會員資訊</h1>
         </header>
-        <div className="MemberInfo-container-row">
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="first-name"
-            >
-              名字
-            </label>
-            <input
-              type="text"
-              name="firstName"
-              id="first-name"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handleMemberInfoChange}
-            />
-          </div>
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="last-name"
-            >
-              姓氏
-            </label>
-            <input
-              type="text"
-              name="lastName"
-              id="last-name"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handleMemberInfoChange}
-            />
-          </div>
-        </div>
-        <div className="MemberInfo-container-row">
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="tele"
-            >
-              聯絡電話
-            </label>
-            <input
-              type="tele"
-              name="telephone"
-              id="tele"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handleMemberInfoChange}
-            />
-          </div>
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="birth"
-            >
-              出生日期
-            </label>
-            <input
-              type="date"
-              name="birthday"
-              id="birth"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handleMemberInfoChange}
-            />
-          </div>
-        </div>
-        <div className="MemberInfo-container-row">
-          <div
-            className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
-              passwordConOpen && "MemberInfo-container-passwordCon-active"
-            }`}
-          >
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="password"
-            >
-              密碼
-            </label>
-            <input
-              type="password"
-              name="passwordConfirm"
-              id="passwordConfirm"
-              value={passwordInfo.passwordConfirm}
-              placeholder="舊密碼確認"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handlePasswordChange}
-            />
-            <input
-              type="password"
-              name="newPassword"
-              id="password"
-              value={passwordInfo.newPassword}
-              placeholder="輸入新密碼"
-              className="MemberInfo-container-inputCon-input"
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <button
-            className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
-              passwordConOpen &&
-              "MemberInfo-container-inputCon-passwordSubmitBtn-active"
-            }`}
-            onClick={handlePasswordEdit}
-          >
-            確認修改
-          </button>
-          <button
-            className="MemberInfo-container-inputCon-passwordEditBtn"
-            onClick={handlePasswordConOpen}
-          >
-            {passwordConOpen ? "取消修改" : "修改密碼"}
-          </button>
-        </div>
-        <div className="MemberInfo-container-buttonCon">
-          <Button
-            value={"確認修改"}
-            className={"button-themeColor"}
-            onClick={handleInfoEdit}
-          />
-        </div>
-        <header className="MemberInfo-container-header">
-          <h1>付款資訊</h1>
-        </header>
-        <div className="MemberInfo-container-row">
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="creditCard-number"
-            >
-              信用卡卡號
-            </label>
-            <div className="MemberInfo-container-inputCon-ccardCon">
-              {/* 直接生成四個CCard input */}
-              {cCardArray.map((i, index) => (
-                <input
-                  key={index}
-                  ref={cCardInputRefs[index]}
-                  onChange={handleCCardChange(index)}
-                  name="cardNumber"
-                  type="text"
-                  maxLength="4"
-                  id={index === 0 && "creditCard-number"}
-                  className="MemberInfo-container-inputCon-input"
-                />
-              ))}
+        <div className="MemberInfo-container-cards">
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="first-name"
+              >
+                名字
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                id="first-name"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handleMemberInfoChange}
+              />
+            </div>
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="last-name"
+              >
+                姓氏
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                id="last-name"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handleMemberInfoChange}
+              />
             </div>
           </div>
-        </div>
-        <div className="MemberInfo-container-row">
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="CCard-date"
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="tele"
+              >
+                聯絡電話
+              </label>
+              <input
+                type="tele"
+                name="telephone"
+                id="tele"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handleMemberInfoChange}
+              />
+            </div>
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="birth"
+              >
+                出生日期
+              </label>
+              <input
+                type="date"
+                name="birthday"
+                id="birth"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handleMemberInfoChange}
+              />
+            </div>
+          </div>
+          <div className="MemberInfo-container-row">
+            <div
+              className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
+                passwordConOpen && "MemberInfo-container-passwordCon-active"
+              }`}
             >
-              到期日(MM/DD)
-            </label>
-            <input
-              type="text"
-              name="cardDate"
-              id="CCard-date"
-              maxLength="5"
-              className="MemberInfo-container-inputCon-input 
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="password"
+              >
+                密碼
+              </label>
+              <input
+                type="password"
+                name="passwordConfirm"
+                id="passwordConfirm"
+                value={passwordInfo.passwordConfirm}
+                placeholder="舊密碼確認"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handlePasswordChange}
+              />
+              <input
+                type="password"
+                name="newPassword"
+                id="password"
+                value={passwordInfo.newPassword}
+                placeholder="輸入新密碼"
+                className="MemberInfo-container-inputCon-input"
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <button
+              className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
+                passwordConOpen &&
+                "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+              }`}
+              onClick={handlePasswordEdit}
+            >
+              確認修改
+            </button>
+            <button
+              className="MemberInfo-container-inputCon-passwordEditBtn"
+              onClick={handlePasswordConOpen}
+            >
+              {passwordConOpen ? "取消修改" : "修改密碼"}
+            </button>
+          </div>
+          <div className="MemberInfo-container-buttonCon">
+            <Button
+              value={"確認修改"}
+              className={"button-themeColor"}
+              onClick={handleInfoEdit}
+            />
+          </div>
+          <header className="MemberInfo-container-header">
+            <h1>付款資訊</h1>
+          </header>
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="creditCard-number"
+              >
+                信用卡卡號
+              </label>
+              <div className="MemberInfo-container-inputCon-ccardCon">
+                {/* 直接生成四個CCard input */}
+                {cCardArray.map((i, index) => (
+                  <input
+                    key={index}
+                    ref={cCardInputRefs[index]}
+                    onChange={handleCCardChange(index)}
+                    name="cardNumber"
+                    type="text"
+                    maxLength="4"
+                    id={index === 0 && "creditCard-number"}
+                    className="MemberInfo-container-inputCon-input"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="CCard-date"
+              >
+                到期日(MM/DD)
+              </label>
+              <input
+                type="text"
+                name="cardDate"
+                id="CCard-date"
+                maxLength="5"
+                className="MemberInfo-container-inputCon-input 
               "
-              onChange={handleCCardChange()}
-            />
+                onChange={handleCCardChange()}
+              />
+            </div>
+            <div className="MemberInfo-container-inputCon">
+              <label
+                className="MemberInfo-container-inputCon-label"
+                htmlFor="CCard-safety"
+              >
+                末三碼
+              </label>
+              <input
+                type="text"
+                name="cardSafety"
+                maxLength="3"
+                id="CCard-safety"
+                className="MemberInfo-container-inputCon-input "
+                onChange={handleCCardChange()}
+              />
+            </div>
           </div>
-          <div className="MemberInfo-container-inputCon">
-            <label
-              className="MemberInfo-container-inputCon-label"
-              htmlFor="CCard-safety"
-            >
-              末三碼
-            </label>
-            <input
-              type="text"
-              name="cardSafety"
-              maxLength="3"
-              id="CCard-safety"
-              className="MemberInfo-container-inputCon-input "
-              onChange={handleCCardChange()}
-            />
-          </div>
-        </div>
 
-        <div className="MemberInfo-container-buttonCon">
-          <Button
-            value={"確認修改"}
-            className={"button-themeColor"}
-            onClick={handlePaymentEdit}
-          />
+          <div className="MemberInfo-container-buttonCon">
+            <Button
+              value={"確認修改"}
+              className={"button-themeColor"}
+              onClick={handlePaymentEdit}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -40,7 +40,8 @@
     }
 
     .OrderInfo-container-tableBody {
-      max-height: 70%;
+      //max-height: 70%;
+      margin: 0 0 1rem 0;
       overflow: scroll;
     }
   }

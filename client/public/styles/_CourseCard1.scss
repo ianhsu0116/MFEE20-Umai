@@ -3,7 +3,7 @@
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  height: 200px;
+  min-height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -56,6 +56,21 @@
     .CourseCard1-detailCon-h4 {
       font-weight: 900;
       font-size: 1.25rem;
+    }
+
+    .CourseCard1-detailCon-stars {
+      @include flex(row);
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 0.15rem;
+      & p {
+        font-size: 10%;
+      }
+
+      .CourseCard1-detailCon-stars-star {
+        max-width: 80px;
+        // background: url(../icons/starGroupBackground.svg);
+      }
     }
 
     .CourseCard1-detailCon-company {

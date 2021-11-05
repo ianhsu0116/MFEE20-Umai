@@ -439,7 +439,7 @@ input[type="reset"] {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  height: 200px;
+  min-height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -499,6 +499,31 @@ input[type="reset"] {
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-h4 {
   font-weight: 900;
   font-size: 1.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-stars p {
+  font-size: 10%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-stars .CourseCard1-detailCon-stars-star {
+  max-width: 80px;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-company svg {
@@ -1114,7 +1139,6 @@ input[type="reset"] {
 .MemberInfo .MemberInfo-container {
   height: 95%;
   width: 100%;
-  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -1146,7 +1170,21 @@ input[type="reset"] {
   font-weight: 100;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1164,7 +1202,7 @@ input[type="reset"] {
   margin-bottom: 1rem;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1176,7 +1214,7 @@ input[type="reset"] {
   font-size: 1.15rem;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
   border-radius: 5px;
   border: 1px solid #666666;
   padding: 0.15rem 0.35rem;
@@ -1185,16 +1223,16 @@ input[type="reset"] {
   width: 100%;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon {
   max-width: 550px;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon .MemberInfo-container-inputCon-input {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon .MemberInfo-container-inputCon-input {
   width: 20%;
   margin-left: 0.25rem;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-passwordCon {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon {
   width: 0px;
   max-width: 200px;
   height: 0px;
@@ -1204,14 +1242,14 @@ input[type="reset"] {
   font-size: 90%;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-passwordCon-active {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon-active {
   width: 50%;
   height: 95px;
   opacity: 1;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordEditBtn,
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordEditBtn,
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn {
   border-radius: 5px;
   padding: 0.15rem 0.35rem;
   background: rgba(0, 0, 0, 0.2);
@@ -1221,19 +1259,19 @@ input[type="reset"] {
   font-size: 90%;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordEditBtn:hover,
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn:hover {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordEditBtn:hover,
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn:hover {
   color: black;
   border: 1px solid black;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn {
   display: none;
   color: #eb6b6a;
   border: 1px solid #eb6b6a;
 }
 
-.MemberInfo .MemberInfo-container .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn-active {
   display: block;
 }
 
@@ -1381,7 +1419,7 @@ input[type="reset"] {
 }
 
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
-  max-height: 70%;
+  margin: 0 0 1rem 0;
   overflow: scroll;
 }
 
@@ -1399,7 +1437,6 @@ input[type="reset"] {
 .CollectionCourse .CollectionCourse-container {
   height: 95%;
   width: 100%;
-  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -1435,6 +1472,15 @@ input[type="reset"] {
 .CollectionCourse .CollectionCourse-container .CollectionCourse-container-cards {
   width: 100%;
   position: relative;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
 }
 
 .CollectionCoupons {
