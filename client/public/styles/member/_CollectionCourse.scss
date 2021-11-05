@@ -7,7 +7,7 @@
   .CollectionCourse-container {
     height: 95%;
     width: 100%;
-    overflow: scroll;
+    //overflow: scroll;
     padding: 1rem 2rem;
     margin-left: 1rem;
     border-radius: 10px;
@@ -30,6 +30,9 @@
     .CollectionCourse-container-cards {
       width: 100%;
       position: relative;
+      margin: 1rem 0;
+      @include flex(column);
+      overflow: scroll;
     }
   }
 }

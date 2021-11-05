@@ -5,6 +5,7 @@ import { GiCook } from "react-icons/gi";
 import { AiOutlineHeart } from "react-icons/ai";
 import Button from "./Button";
 import image1 from "./images/sushi-unsplash.jpg";
+import starGroup from "./images/starGroup.svg";
 
 const CourseCard1 = (props) => {
   let memberLimit = 25;
@@ -39,7 +40,15 @@ const CourseCard1 = (props) => {
         <h4 className="CourseCard1-detailCon-h4">
           <Link to="/courses/course_id">築地創意壽司</Link>
         </h4>
-        <div className="CourseCard1-detailCon-stars">★★★★★ (55)</div>
+        <div className="CourseCard1-detailCon-stars">
+          <img
+            src={starGroup}
+            alt="starGroup"
+            className="CourseCard1-detailCon-stars-star"
+          />
+          &thinsp;
+          <p>(55)</p>
+        </div>
         <div className="CourseCard1-detailCon-company">
           <IoLocationSharp />
           日本東京築地名店 <GiCook />

@@ -14,6 +14,8 @@ const CollectionCourse = (props) => {
           <CourseCard1 />
           <CourseCard1 />
           <CourseCard1 />
+          <CourseCard1 />
+          <CourseCard1 />
         </div>
       </div>
     </div>
