@@ -28,7 +28,7 @@ const Coupons = (props) => {
       </div>
       <div className="Coupons-textCon">
         <div className="Coupons-textCon-title">
-          <h4>{data.title}</h4>
+          <h5>{data.title}</h5>
         </div>
         <div className="Coupons-textCon-bottom">
           <div className="Coupons-textCon-bottom-title">優惠券代碼</div>

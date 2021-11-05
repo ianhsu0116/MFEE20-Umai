@@ -7,7 +7,7 @@ const DefaultStudent = (props) => {
     <div className="DefaultStudent">
       <div className="DefaultStudent-container">
         <header className="DefaultStudent-container-header">
-          <h1>預設學員</h1>
+          <h2>預設學員</h2>
         </header>
 
         <div className="DefaultStudent-container-cards">

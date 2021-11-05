@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { AiOutlineStar } from "react-icons/ai";
 import foodImg from "../images/sushi-unsplash.jpg";
 
 const OrderCard = (props) => {
@@ -14,6 +14,11 @@ const OrderCard = (props) => {
     star: 1,
     comment: "",
   });
+
+  // 測試中 ==== 感應區問題
+  useEffect(() => {
+    console.log("didmount");
+  }, []);
 
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
@@ -47,11 +52,11 @@ const OrderCard = (props) => {
           <img src={foodImg} alt="courseImage" className="OrderCard-image" />
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
-          <h3>
+          <h5>
             <Link to="/course/category?id=course_id">
               {orderDetail.courseName}
             </Link>
-          </h3>
+          </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">
           <p>{orderDetail.orderStatus}</p>
@@ -78,92 +83,90 @@ const OrderCard = (props) => {
       </div>
 
       {/* 訂單詳細資訊的下拉式容器 */}
-      <div
-        className={`OrderCard-detail ${
-          orderDetailOpen && "OrderCard-detail-active"
-        }`}
-      >
-        <header className="OrderCard-detail-title">
-          <h3 className="hrderCard-detail-title-h3">付款詳細資訊</h3>
-        </header>
-        <div className="OrderCard-detail-container">
-          <div className="OrderCard-detail-container-item">
-            <strong className="OrderCard-detail-container-item-title">
-              付款方式
-            </strong>
-            <div className="OrderCard-detail-container-item-content">
-              信用卡
-            </div>
-            <strong className="OrderCard-detail-container-item-title">
-              訂單日期
-            </strong>
-            <div className="OrderCard-detail-container-item-content">
-              2021-12-31
-            </div>
-          </div>
-          <div className="OrderCard-detail-container-item">
-            <strong className="OrderCard-detail-container-item-title">
-              發票資訊
-            </strong>
-            <div className="OrderCard-detail-container-item-content">
-              聯絡人：<span>Ian Hsu</span>
-            </div>
-            <div className="OrderCard-detail-container-item-content">
-              聯絡信箱：<span>ianian@fake.com</span>
-            </div>
-            <div className="OrderCard-detail-container-item-content">
-              電子發票 - 交給Umai幫您捐出去做愛心！
-            </div>
-          </div>
-        </div>
-        {orderDetail && orderDetail.orderStatus !== "未完成" && (
-          <>
-            <header className="OrderCard-detail-title">
-              <h3 className="hrderCard-detail-title-h3">課程評價</h3>
-            </header>
-            <div className="OrderCard-detail-container2">
-              <div className="OrderCard-detail-container2-left">
-                <textarea
-                  name="courseComment"
-                  className="OrderCard-detail-container2-left-textarea"
-                  onChange={handleCommentChange}
-                  cols="30"
-                  rows="7"
-                  maxLength="30"
-                  placeholder="課程評論(字數限制: 30)"
-                  value={commentAndStar.comment}
-                ></textarea>
+      {orderDetailOpen && (
+        <div className="OrderCard-detail OrderCard-detail-active">
+          <header className="OrderCard-detail-title">
+            <h4 className="hrderCard-detail-title-h3">付款詳細資訊</h4>
+          </header>
+          <div className="OrderCard-detail-container">
+            <div className="OrderCard-detail-container-item">
+              <strong className="OrderCard-detail-container-item-title">
+                付款方式
+              </strong>
+              <div className="OrderCard-detail-container-item-content">
+                信用卡
               </div>
+              <strong className="OrderCard-detail-container-item-title">
+                訂單日期
+              </strong>
+              <div className="OrderCard-detail-container-item-content">
+                2021-12-31
+              </div>
+            </div>
+            <div className="OrderCard-detail-container-item">
+              <strong className="OrderCard-detail-container-item-title">
+                發票資訊
+              </strong>
+              <div className="OrderCard-detail-container-item-content">
+                聯絡人：<span>Ian Hsu</span>
+              </div>
+              <div className="OrderCard-detail-container-item-content">
+                聯絡信箱：<span>ianian@fake.com</span>
+              </div>
+              <div className="OrderCard-detail-container-item-content">
+                電子發票 - 交給Umai幫您捐出去做愛心！
+              </div>
+            </div>
+          </div>
+          {orderDetail && orderDetail.orderStatus !== "未完成" && (
+            <>
+              <header className="OrderCard-detail-title">
+                <h4 className="hrderCard-detail-title-h3">課程評價</h4>
+              </header>
+              <div className="OrderCard-detail-container2">
+                <div className="OrderCard-detail-container2-left">
+                  <textarea
+                    name="courseComment"
+                    className="OrderCard-detail-container2-left-textarea"
+                    onChange={handleCommentChange}
+                    cols="30"
+                    rows="7"
+                    maxLength="30"
+                    placeholder="課程評論(字數限制: 30)"
+                    value={commentAndStar.comment}
+                  ></textarea>
+                </div>
 
-              <div className="OrderCard-detail-container2-right">
-                <ul className="OrderCard-detail-container2-right-stars">
-                  {/* 利用迴圈跑出星星 */}
-                  {new Array(5).fill(1).map((i, index) => (
-                    <li
-                      key={index}
-                      data-index={index}
-                      className={`OrderCard-detail-container2-right-star ${
-                        commentAndStar.star >= index + 1 &&
-                        "OrderCard-detail-container2-right-starActive"
-                      }`}
-                      onClick={handleStarClick}
-                    >
-                      <AiOutlineStar />
-                    </li>
-                  ))}
-                </ul>
-                <div className="OrderCard-detail-container2-right-buttonCon">
-                  <Button
-                    value={"送出評論"}
-                    className={"button-themeColor"}
-                    onClick={handleCommentSubmit}
-                  />
+                <div className="OrderCard-detail-container2-right">
+                  <ul className="OrderCard-detail-container2-right-stars">
+                    {/* 利用迴圈跑出星星 */}
+                    {new Array(5).fill(1).map((i, index) => (
+                      <li
+                        key={index}
+                        data-index={index}
+                        className={`OrderCard-detail-container2-right-star ${
+                          commentAndStar.star >= index + 1 &&
+                          "OrderCard-detail-container2-right-starActive"
+                        }`}
+                        onClick={handleStarClick}
+                      >
+                        <AiOutlineStar />
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="OrderCard-detail-container2-right-buttonCon">
+                    <Button
+                      value={"送出評論"}
+                      className={"button-themeColor"}
+                      onClick={handleCommentSubmit}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

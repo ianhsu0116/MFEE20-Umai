@@ -146,7 +146,7 @@ const OrderInfo = () => {
     <div className="OrderInfo">
       <div className="OrderInfo-container">
         <header className="OrderInfo-container-header">
-          <h1>訂單資訊</h1>
+          <h2>訂單資訊</h2>
         </header>
 
         {/* 切換狀態的導覽列 */}
@@ -172,7 +172,7 @@ const OrderInfo = () => {
                 key={index}
                 index={index}
                 orderDetail={orderDetail}
-                allOrderStatus={allOrderStatus}
+                //allOrderStatus={allOrderStatus}
               />
             ))}
         </div>

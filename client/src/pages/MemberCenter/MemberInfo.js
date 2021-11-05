@@ -81,7 +81,7 @@ const MemberInfo = (props) => {
     <div className="MemberInfo">
       <div className="MemberInfo-container">
         <header className="MemberInfo-container-header">
-          <h1>會員資訊</h1>
+          <h2>會員資訊</h2>
         </header>
         <div className="MemberInfo-container-cards">
           <div className="MemberInfo-container-row">
@@ -203,7 +203,7 @@ const MemberInfo = (props) => {
             />
           </div>
           <header className="MemberInfo-container-header">
-            <h1>付款資訊</h1>
+            <h2>付款資訊</h2>
           </header>
           <div className="MemberInfo-container-row">
             <div className="MemberInfo-container-inputCon">

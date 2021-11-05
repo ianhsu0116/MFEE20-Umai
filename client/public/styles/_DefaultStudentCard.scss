@@ -15,6 +15,7 @@
     padding: 0.75rem;
     transition: 0.5s ease;
     z-index: 2;
+    box-shadow: 2px 2px 5px rgba(32, 26, 26, 0.3);
 
     .DefaultStudentCard-title-left {
       font-weight: 900;
@@ -63,6 +64,7 @@
 .DefaultStudentCard-active {
   .DefaultStudentCard-title {
     border-radius: 15px 15px 0 0;
+    box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
 
     .DefaultStudentCard-title-left {
       & svg {
@@ -85,10 +87,12 @@
       width: 100%;
       margin-bottom: 1rem;
       @include flex(row);
-      justify-content: space-between;
+      //justify-content: space-between;
       align-items: center;
 
       .DefaultStudentCard-main-row-item {
+        flex: 1 1 200px;
+        margin: 0 1rem;
         @include flex(column);
         justify-content: center;
         align-items: flex-start;
@@ -101,7 +105,7 @@
           border-radius: 5px;
           border: 1px solid $fontColor;
           padding: 0.15rem 0.35rem;
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           width: 100%;
           margin-top: 0.25rem;
         }

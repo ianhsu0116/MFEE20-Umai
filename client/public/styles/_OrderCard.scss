@@ -41,11 +41,11 @@
   .OrderCard-detail {
     width: 100%;
     max-width: 900px;
-    height: 0;
-    opacity: 0;
     background: #f3f3f3;
-    transition: 0.25s ease;
-    display: none; // 目前none => block 動畫問題尚未解決
+    border-bottom: 1px solid $themeColor;
+    padding: 0.5rem;
+    //display: block; // 目前none => block 動畫問題尚未解決
+    animation: OrderCard-scaleUp 1s forwards;
 
     .OrderCard-detail-title {
       border-bottom: 1px solid $fontColor;
@@ -120,12 +120,17 @@
       }
     }
   }
+}
 
-  .OrderCard-detail-active {
-    height: 100%;
+@keyframes OrderCard-scaleUp {
+  from {
+    //transform: scale(0);
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    //transform: scale(1);
     opacity: 1;
-    border-bottom: 1px solid $themeColor;
-    padding: 0.5rem;
-    display: block; // 目前none => block 動畫問題尚未解決
+    max-height: 450px;
   }
 }

@@ -123,7 +123,7 @@ const DefaultStudentCard2 = (props) => {
               id="email"
               name="email"
               placeholder="請輸入Email"
-              className="DefaultStudentCard2-main-row-item-input"
+              className="DefaultStudentCard2-main-row-item-input DefaultStudentCard2-main-row-item-email"
               onChange={handleInputChange}
             />
           </div>
