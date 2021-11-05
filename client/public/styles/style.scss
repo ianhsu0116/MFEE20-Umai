@@ -1,5 +1,6 @@
 $themeColor: #d8a466;
-$themeColorBlue: #3f7289;
+//$themeColorBlue: #3f7289;
+$themeColorBlue: #0078b3;
 $activeColor: #ffb257;
 $fontColor: #666666;
 
@@ -8,6 +9,11 @@ $cardDarkColor: #5d5548;
 $highLevelColor: #eb6b6a;
 $midLevelColor: #5f9e72;
 $lowLevelColor: #5eb2eb;
+
+// DefaultStudentCard 用
+$titleBackgroundColor: #eeeeee;
+$titleBackgroundColor2: #c0c0c0;
+
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -61,6 +67,26 @@ input[type="reset"] {
     background-color: $activeColor;
   }
 }
+.button-themeColorBlue {
+  padding: 0.35rem 0.75rem;
+  background: $themeColorBlue;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #006ca1;
+  }
+}
+.button-highLeveColor {
+  padding: 0.35rem 0.75rem;
+  background: $highLevelColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #cc5a5a;
+  }
+}
 .button-activeColor {
   padding: 0.35rem 0.75rem;
   background: $activeColor;
@@ -71,6 +97,16 @@ input[type="reset"] {
     background-color: $activeColor;
   }
 }
+.button-darkColor {
+  padding: 0.35rem 0.75rem;
+  background: $fontColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #424242;
+  }
+}
 
 // 共用元件
 @import "./Navber";
@@ -78,15 +114,19 @@ input[type="reset"] {
 @import "./OrderCard";
 @import "./CourseCard1";
 @import "./Coupons";
+@import "./DefaultStudentCard.scss";
 
 // member相關
-@import "./mamber/MemberCenter";
-@import "./mamber/MemberSidebar";
-@import "./mamber/MemberInfo";
-@import "./mamber/OrderInfo";
-@import "./mamber/CollectionCourse";
-@import "./mamber/CollectionCoupons";
+@import "./member/MemberCenter";
+@import "./member/MemberSidebar";
+@import "./member/MemberInfo";
+@import "./member/DefaultStudent";
+@import "./member/OrderInfo";
+@import "./member/CollectionCourse";
+@import "./member/CollectionCoupons";
+@import "./member/DefaultStudentCard2";
 
+// RWD
 @media screen and (max-width: 1200px) {
   .Navbar {
     .Navbar-container {

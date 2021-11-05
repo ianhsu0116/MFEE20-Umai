@@ -87,14 +87,14 @@ const MemberInfo = (props) => {
           <div className="MemberInfo-container-inputCon">
             <label
               className="MemberInfo-container-inputCon-label"
-              htmlFor="last-name"
+              htmlFor="first-name"
             >
               名字
             </label>
             <input
               type="text"
-              name="lastName"
-              id="last-name"
+              name="firstName"
+              id="first-name"
               className="MemberInfo-container-inputCon-input"
               onChange={handleMemberInfoChange}
             />
@@ -102,14 +102,14 @@ const MemberInfo = (props) => {
           <div className="MemberInfo-container-inputCon">
             <label
               className="MemberInfo-container-inputCon-label"
-              htmlFor="first-name"
+              htmlFor="last-name"
             >
               姓氏
             </label>
             <input
               type="text"
-              name="firstName"
-              id="first-name"
+              name="lastName"
+              id="last-name"
               className="MemberInfo-container-inputCon-input"
               onChange={handleMemberInfoChange}
             />
