@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 
+// 測試元件區
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
 
@@ -13,7 +14,6 @@ function App() {
   // 開啟Login Container
   const handleLoginClick = (e) => {
     e.stopPropagation();
-    console.log("loginOpen");
     setShowLogin(true);
   };
 
@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);
-      console.log("window");
     });
   }, []);
 
@@ -31,7 +30,7 @@ function App() {
       {showLogin && <Login />}
       <Switch>
         <Route path="/" exact>
-          <h1>home</h1>
+          <h1>home Test</h1>
           <DefaultStudentCard />
           <StarGroup percent={96} allScore={50} />
         </Route>

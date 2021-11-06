@@ -1,0 +1,47 @@
+.CreditCards {
+  width: 80%;
+  max-width: 900px;
+  @include flex(row);
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+
+  .CreditCards-left {
+    margin: 0 1rem 0 0;
+    flex: 1 1 200px;
+    position: relative;
+  }
+  .CreditCards-right {
+    flex: 2 1 180px;
+    @include flex(column);
+    justify-content: space-between;
+    position: relative;
+    //max-width: 300px;
+    //height: calc(100% - 2rem);
+    //margin: 0 1rem 0 0;
+
+    .CreditCards-right-row {
+      padding: 0.5rem 0 0 0;
+      @include flex(row);
+      position: relative;
+
+      .CreditCards-right-row-input {
+        width: 100%;
+        margin: 0 1rem 0 0;
+        border-radius: 5px;
+        border: 1px solid $fontColor;
+        padding: 0.25rem 0.5rem;
+      }
+    }
+  }
+}
+
+// 強制修改Cards套件的寬度
+.rccs {
+  width: 275px !important;
+  position: relative;
+  .rccs__card {
+    width: 100% !important;
+  }
+}
