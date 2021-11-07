@@ -53,9 +53,7 @@ const OrderCard = (props) => {
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
           <h5>
-            <Link to="/course/category?id=course_id">
-              {orderDetail.courseName}
-            </Link>
+            <Link to="/courses/course_id">{orderDetail.courseName}</Link>
           </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">

@@ -1,5 +1,5 @@
 .CreditCards {
-  width: 80%;
+  width: 70%;
   max-width: 900px;
   @include flex(row);
   align-items: center;
@@ -43,5 +43,11 @@
   position: relative;
   .rccs__card {
     width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .CreditCards {
+    width: 80%;
   }
 }

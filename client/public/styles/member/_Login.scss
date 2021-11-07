@@ -4,7 +4,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  max-width: 1440px;
   z-index: 10;
   background: rgba(0, 0, 0, 0.3);
   @include flex(row);
@@ -15,6 +14,7 @@
     top: -100%;
     width: 50%;
     height: 500px;
+    max-width: 900px;
     background: white;
     border-radius: 15px;
     animation: Login-scaleUp 0.35s ease-in;
