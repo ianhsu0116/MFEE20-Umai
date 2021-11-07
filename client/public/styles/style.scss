@@ -1,8 +1,8 @@
 $themeColor: #d8a466;
-//$themeColorBlue: #3f7289;
 $themeColorBlue: #0078b3;
 $activeColor: #ffb257;
 $fontColor: #666666;
+$facebookBlue: rgb(66, 103, 178);
 
 // courseCard1用的變數
 $cardDarkColor: #5d5548;
@@ -44,25 +44,6 @@ ol {
   margin: 0;
 }
 
-// h1 {
-//   font-size: calc(1.3rem + 1.2vw);
-// }
-// h2 {
-//   font-size: calc(1.25rem + 1vw);
-// }
-// h3 {
-//   font-size: calc(1.1rem + 0.8vw);
-// }
-// h4 {
-//   font-size: calc(1rem + 0.4vw);
-// }
-// h5 {
-//   font-size: calc(1rem + 0.3vw);
-// }
-// h6 {
-//   font-size: calc(1rem + 0.1vw);
-// }
-
 ul,
 ol {
   list-style: none;
@@ -84,6 +65,14 @@ input[type="reset"] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+input {
+  color: $fontColor;
+  outline: none;
+  border: 1px solid $fontColor;
+  padding: 0.25rem 0.45rem;
+  font-size: 1rem;
 }
 
 a {

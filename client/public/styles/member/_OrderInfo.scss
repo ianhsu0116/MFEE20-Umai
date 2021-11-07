@@ -15,6 +15,8 @@
     justify-content: flex-start;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 
+    position: relative;
+
     .OrderInfo-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
@@ -44,6 +46,7 @@
       //max-height: 70%;
       margin: 0 0 1rem 0;
       overflow: scroll;
+      width: 100%;
     }
   }
 }
