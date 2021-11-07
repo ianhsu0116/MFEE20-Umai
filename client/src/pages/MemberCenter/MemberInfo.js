@@ -19,7 +19,7 @@ const MemberInfo = (props) => {
     cvc: "",
     expiry: "",
     name: "",
-    number: "",
+    number: "4477000000000000",
   });
 
   // 即時抓取基本資料填寫

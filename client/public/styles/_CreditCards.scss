@@ -1,5 +1,5 @@
 .CreditCards {
-  width: 80%;
+  width: 70%;
   max-width: 900px;
   @include flex(row);
   align-items: center;
@@ -31,7 +31,7 @@
         margin: 0 1rem 0 0;
         border-radius: 5px;
         border: 1px solid $fontColor;
-        padding: 0.25rem 0.5rem;
+        //padding: 0.25rem 0.5rem;
       }
     }
   }
@@ -43,5 +43,11 @@
   position: relative;
   .rccs__card {
     width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .CreditCards {
+    width: 80%;
   }
 }
