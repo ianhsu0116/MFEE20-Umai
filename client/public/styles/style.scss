@@ -151,7 +151,7 @@ a {
 @import "./OptionBar";
 @import "./CourseCard1";
 @import "./Coupons";
-@import "./DefaultStudentCard.scss";
+@import "./DefaultStudentCard";
 @import "./StarGroup";
 @import "./CreditCards";
 
@@ -166,7 +166,16 @@ a {
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
-@import "./member/CollectionArticle.scss";
+@import "./member/CollectionArticle";
+
+// shoppingcart-shoppingcart
+@import "./shoppingCart/shoppingCart/ShoppingCart";
+@import "./shoppingCart/shoppingCart/CourseList";
+@import "./shoppingCart/shoppingCart/CourstDetail";
+
+// shoppingcart-shoppinglist
+@import "./shoppingCart/shoppingList/ShoppingList";
+@import "./shoppingCart/shoppingList/ShoppingBill";
 
 // RWD
 @media screen and (max-width: 1200px) {

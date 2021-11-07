@@ -1,0 +1,82 @@
+.CourseList-title {
+  h2 {
+    margin-right: 5px;
+    display: inline-flex;
+  }
+  h4{
+    display: inline-flex;
+  }
+}
+.CourseList-list {
+  width: 100%;
+  border-spacing: 0;
+  tr:first-child {
+    text-align: left;
+  }
+  .CourseList-list-title {
+    background: #f3f3f1;
+    h2 {
+      font-weight: 500;
+      font-size: 25px;
+    }
+    th {
+      text-align: center;
+    }
+  }
+}
+.CourseList-list-item {
+  td {
+    background: #fdfdfd;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    color: #888888;
+    border-width: 0px;
+  }
+  td {
+    text-align: center;
+  }
+  td:nth-child(1) {
+    text-align: left;
+    width: 30%;
+  }
+  td:nth-child(2) {
+    h2 {
+      font-size: 30px;
+    }
+    width: 25%;
+  }
+  td:nth-child(3) {
+    width: 18%;
+  }
+}
+.CourseList-list-tool {
+  background: #e6e6e6;
+  a {
+    color: #1f4557;
+  }
+  &:nth-child(3) {
+    td:nth-child(5) {
+      font-size: 20px;
+      button {
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+        &:hover {
+          border-bottom: 1px solid var(--main-color-hover);
+        }
+      }
+    }
+  }
+}
+.Insert-area{
+  .Cardarea{
+    opacity: 0;
+    transition: 0.5s ease;
+  }
+}
+.Showarea{ 
+  .Cardarea{
+    max-height: 500px;
+    transition: .4s ease;
+    opacity: 1;
+  }
+}

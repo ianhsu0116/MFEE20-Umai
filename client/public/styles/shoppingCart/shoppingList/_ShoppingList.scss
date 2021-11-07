@@ -1,0 +1,31 @@
+.ShoppingBill-background{
+  width: 100vw;
+  height: calc(100vmin - 43.95px);
+  background: #e6e6e6;
+  padding-top: 20px;
+}
+.ShoppingBill-wrapper {
+  width: 70%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  hr {
+    background: var(--main-color);
+    height: 5px;
+    border: 0px;
+  }
+  h2 {
+    margin-right: 5px;
+    display: inline-flex;
+  }
+  h4{
+    display: inline-flex;
+  }
+}
+.ShoppingBill-remind{
+  width: 70%;
+  background: #ffffff;
+  text-align: center;
+  position: absolute;
+  bottom: 5%;
+}
