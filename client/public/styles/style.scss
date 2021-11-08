@@ -23,21 +23,41 @@ $titleBackgroundColor: #eeeeee;
   padding: 0;
   box-sizing: border-box;
 }
-*::-webkit-scrollbar {
-  display: none;
-}
+
 html {
-  overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  //overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
   height: 100%;
 }
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: $fontColor;
 
-  // 將scrollbar移除
-  -ms-overflow-style: none;
-  //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
-  overflow: auto;
+  // //將scrollbar移除
+  // -ms-overflow-style: none;
+  // //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+  // overflow: auto;
+}
+
+// 設定scrollbar樣式
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  //display: none;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  //background: $themeColor;
+  border-radius: 3px;
+  opacity: 0;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $activeColor;
+  opacity: 1;
 }
 
 // 覆蓋bootstrap樣式
@@ -155,6 +175,7 @@ a {
 @import "./DefaultStudentCard.scss";
 @import "./StarGroup";
 @import "./CreditCards";
+@import "./Calendar";
 
 // member相關
 @import "./member/Login";

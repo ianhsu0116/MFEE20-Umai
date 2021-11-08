@@ -1,0 +1,49 @@
+.Calender {
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 1px solid $themeColor;
+  max-width: 255px;
+  @include flex(column);
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .Calender-header {
+    width: 100%;
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Calender-table {
+    .Calender-table-head {
+      .Calender-table-tr {
+        border-bottom: 1px solid $fontColor;
+        .Calender-table-th {
+          padding: 0.35rem;
+          text-align: center;
+        }
+      }
+    }
+    .Calender-table-body {
+      .Calender-table-tr {
+        border-bottom: 1px solid $fontColor;
+        .Calender-table-td {
+          cursor: pointer;
+          padding: 0.35rem;
+          text-align: center;
+
+          &:hover {
+            background: #006394;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .today {
+      background: $themeColorBlue;
+      color: white;
+    }
+  }
+}

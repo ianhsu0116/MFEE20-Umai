@@ -7,6 +7,7 @@ import Login from "./components/member/Login";
 // 測試元件區
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
+import Calendar from "./components/Calendar";
 
 function App() {
   let [showLogin, setShowLogin] = useState(false);
@@ -33,6 +34,7 @@ function App() {
           <h1>home Test</h1>
           <DefaultStudentCard />
           <StarGroup percent={96} allScore={50} />
+          <Calendar />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter />
