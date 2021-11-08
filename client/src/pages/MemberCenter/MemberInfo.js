@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { BsXDiamond } from "react-icons/bs";
 import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
 
-// 給創造信用卡卡號的四個input使用
-let cCardArray = [1, 2, 3, 4];
 const MemberInfo = (props) => {
   const [memberInfo, setMemberInfo] = useState({
     lastName: "",
@@ -30,11 +29,13 @@ const MemberInfo = (props) => {
   // 個資修改
   const handleInfoEdit = () => {
     console.log("handleInfoEdit");
+    console.log(memberInfo);
   };
 
   // 付款資訊修改
   const handlePaymentEdit = () => {
     console.log("handlePatmentEdit");
+    console.log(creditCardsInfo);
   };
 
   // 密碼修改容器開關
