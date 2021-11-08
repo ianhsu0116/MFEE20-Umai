@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +6,21 @@
           box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  overflow: -moz-hidden-unscrollable;
+  /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  height: 100%;
+}
+
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: #666666;
+  -ms-overflow-style: none;
+  overflow: auto;
 }
 
 h1,
@@ -1245,12 +1258,27 @@ a:hover {
   width: 130px;
   height: 130px;
   border-radius: 50%;
+  overflow: hidden;
   margin: 0.5rem 0;
   position: relative;
   cursor: pointer;
 }
 
-.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-img {
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label .MemberSidebar-container-avatar-img {
   width: 130px;
   height: 130px;
   border-radius: 50%;

@@ -23,10 +23,21 @@ $titleBackgroundColor: #eeeeee;
   padding: 0;
   box-sizing: border-box;
 }
-
+*::-webkit-scrollbar {
+  display: none;
+}
+html {
+  overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  height: 100%;
+}
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: $fontColor;
+
+  // 將scrollbar移除
+  -ms-overflow-style: none;
+  //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+  overflow: auto;
 }
 
 // 覆蓋bootstrap樣式
