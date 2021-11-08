@@ -67,7 +67,8 @@ input[type="reset"] {
   outline: inherit;
 }
 
-input {
+input,
+textarea {
   color: $fontColor;
   outline: none;
   border: 1px solid $fontColor;

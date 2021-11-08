@@ -46,7 +46,8 @@ input[type="reset"] {
   outline: inherit;
 }
 
-input {
+input,
+textarea {
   color: #666666;
   outline: none;
   border: 1px solid #666666;
@@ -1728,7 +1729,6 @@ a:hover {
 .OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea {
   resize: none;
   width: 100%;
-  font-size: 1rem;
 }
 
 .OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right,
@@ -1804,7 +1804,6 @@ a:hover {
   background: #f3f3f3;
   border-bottom: 1px solid #d8a466;
   max-height: 450px;
-  padding: 0.5rem;
   -webkit-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 }
