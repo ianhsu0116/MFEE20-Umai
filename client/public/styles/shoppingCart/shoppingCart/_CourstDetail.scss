@@ -1,13 +1,46 @@
 .CourseDetail-Consumer-details {
   width: 100%;
   h4 {
-    margin: 5px 0;
+    margin: 10px 0;
     font-weight: 500;
   }
-  tr td:nth-of-type(2) {
-    text-align: right;
+  tr {
+    td:nth-of-type(2) {
+      text-align: right;
+    }
+    &:nth-child(4) {
+      h3 {
+        font-weight: 600;
+      }
+      td{
+        &:last-child{
+          h3 {
+            color: var(--main-color);
+          }
+        }
+      }
+    }
+    select {
+      width: 80%;
+      border: 1px solid #666666;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
   }
-  select {
-    max-width: 80px;
+}
+.ToShoppingList {
+  text-align: center;
+  button{
+    background: var(--main-color);
+    border: 0;
+    height: 50px;
+    width: 70%;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 20px / 50%;
+  }
+  h4 {
+    color: #f3f3f1;
+    margin: 0;
+    font-weight: 400;
   }
 }

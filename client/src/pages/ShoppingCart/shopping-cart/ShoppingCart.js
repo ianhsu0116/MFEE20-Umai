@@ -6,7 +6,7 @@ function shopping_cart() {
   return (
     <>
       <div className="main-block wrapper">
-          <main>
+          <main className="mainblock">
               <Course_list/>
           </main>
           <aside className="avatar">

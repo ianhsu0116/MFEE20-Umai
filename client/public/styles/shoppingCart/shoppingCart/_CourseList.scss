@@ -1,26 +1,68 @@
 .CourseList-title {
-  h2 {
+  h1 {
     margin-right: 5px;
     display: inline-flex;
+    color: var(--main-color);
   }
-  h4{
+  h5 {
     display: inline-flex;
   }
 }
 .CourseList-list {
   width: 100%;
   border-spacing: 0;
-  tr:first-child {
-    text-align: left;
-  }
-  .CourseList-list-title {
-    background: #f3f3f1;
-    h2 {
-      font-weight: 500;
-      font-size: 25px;
+  border-radius: 20px;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  tr {
+    &:first-child {
+      text-align: left;
+      td {
+        &:first-child {
+          border-top-left-radius: 20px;
+        }
+        &:last-child {
+          border-top-right-radius: 20px;
+        }
+      }
     }
-    th {
-      text-align: center;
+    &:nth-child(2) {
+      td {
+        &:first-child {
+          border-bottom-left-radius: 20px;
+        }
+        &:last-child {
+          border-bottom-right-radius: 20px;
+        }
+      }
+    }
+  }
+}
+.CourseList-list-title {
+  width: 100%;
+  margin: 20px 0;
+  h2 {
+    font-weight: 500;
+    font-size: 25px;
+  }
+  th {
+    text-align: center;
+    &:nth-child(1) {
+      text-align: left;
+      width: 30%;
+      h2{
+        margin-left: 48px;}
+    }
+    &:nth-child(2) {
+      width: 25%;
+    }
+    &:nth-child(3) {
+      width: 17%;
+    }
+    &:nth-child(4) {
+      width: 13%;
+    }
+    &:nth-child(5) {
+      width: 15%;
     }
   }
 }
@@ -32,34 +74,36 @@
     padding: 0;
     color: #888888;
     border-width: 0px;
-  }
-  td {
     text-align: center;
-  }
-  td:nth-child(1) {
-    text-align: left;
-    width: 30%;
-  }
-  td:nth-child(2) {
-    h2 {
-      font-size: 30px;
+    &:nth-child(1) {
+      text-align: left;
+      width: 30%;
     }
-    width: 25%;
-  }
-  td:nth-child(3) {
-    width: 18%;
+    &:nth-child(2) {
+      h2 {
+        font-size: 30px;
+      }
+      width: 25%;
+    }
+    &:nth-child(3) {
+      width: 17%;
+    }
+    &:nth-child(4) {
+      width: 13%;
+    }
+    &:nth-child(5) {
+      width: 15%;
+    }
   }
 }
 .CourseList-list-tool {
-  background: #e6e6e6;
-  a {
-    color: #1f4557;
-  }
+  background: #EEEEEE;
   &:nth-child(3) {
     td:nth-child(5) {
       font-size: 20px;
       button {
         border-bottom: 1px solid rgba(0, 0, 0, 0);
+        color: #1F4557;
         &:hover {
           border-bottom: 1px solid var(--main-color-hover);
         }
@@ -67,16 +111,21 @@
     }
   }
 }
-.Insert-area{
-  .Cardarea{
-    opacity: 0;
-    transition: 0.5s ease;
+.Insert-area {
+  .Cardarea {
+    transition: 0.5s cubic-bezier(0, 1, 0, 1);
+    overflow: hidden;
+    max-height: 0;
+    position: relative;
+    bottom: 0;
+    .DefaultStudentCard{
+      margin-bottom: 20px;
+    }
   }
 }
-.Showarea{ 
-  .Cardarea{
-    max-height: 500px;
-    transition: .4s ease;
-    opacity: 1;
+.Showarea {
+  .Cardarea {
+    max-height: 2000px;
+    transition: 0.3s cubic-bezier(1, 0, 1, 0); 
   }
 }

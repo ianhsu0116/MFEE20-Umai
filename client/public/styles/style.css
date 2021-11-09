@@ -1972,36 +1972,13 @@ a:hover {
   background: var(--main-color);
   height: 5px;
   border: 0px;
+  opacity: 1;
 }
 
-main {
+.mainblock {
   width: 70%;
-  margin-right: 40px;
-}
-
-main div:last-child {
-  text-align: center;
-}
-
-.title {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.title h2 {
-  font-weight: 500;
-}
-
-.title h4 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-left: 5px;
-  font-weight: 400;
+  margin-right: 30px;
+  min-width: 740px;
 }
 
 .fas {
@@ -2011,16 +1988,23 @@ main div:last-child {
 .avatar {
   background: #fdfdfd;
   width: 30%;
-  height: 350px;
+  min-width: 251px;
+  max-height: 366px;
   margin: 30px 0 0 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 96.65px;
 }
 
 .avatar main {
   width: 100%;
-  margin: 10px;
+  margin: 14px;
 }
 
 .avatar h2 {
@@ -2033,29 +2017,15 @@ main div:last-child {
   border: 0px;
 }
 
-.avatar button {
-  background: var(--main-color-hover);
-  border: 0;
-  height: 40px;
-  width: 150px;
-  margin-top: 5px;
-  border-radius: 10px;
-}
-
-.avatar button h5 {
-  color: #f3f3f1;
-  margin: 0;
-  font-weight: 400;
-}
-
-.CourseList-title h2 {
+.CourseList-title h1 {
   margin-right: 5px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  color: var(--main-color);
 }
 
-.CourseList-title h4 {
+.CourseList-title h5 {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -2064,23 +2034,68 @@ main div:last-child {
 .CourseList-list {
   width: 100%;
   border-spacing: 0;
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .CourseList-list tr:first-child {
   text-align: left;
 }
 
-.CourseList-list .CourseList-list-title {
-  background: #f3f3f1;
+.CourseList-list tr:first-child td:first-child {
+  border-top-left-radius: 20px;
 }
 
-.CourseList-list .CourseList-list-title h2 {
+.CourseList-list tr:first-child td:last-child {
+  border-top-right-radius: 20px;
+}
+
+.CourseList-list tr:nth-child(2) td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.CourseList-list tr:nth-child(2) td:last-child {
+  border-bottom-right-radius: 20px;
+}
+
+.CourseList-list-title {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.CourseList-list-title h2 {
   font-weight: 500;
   font-size: 25px;
 }
 
-.CourseList-list .CourseList-list-title th {
+.CourseList-list-title th {
   text-align: center;
+}
+
+.CourseList-list-title th:nth-child(1) {
+  text-align: left;
+  width: 30%;
+}
+
+.CourseList-list-title th:nth-child(1) h2 {
+  margin-left: 48px;
+}
+
+.CourseList-list-title th:nth-child(2) {
+  width: 25%;
+}
+
+.CourseList-list-title th:nth-child(3) {
+  width: 17%;
+}
+
+.CourseList-list-title th:nth-child(4) {
+  width: 13%;
+}
+
+.CourseList-list-title th:nth-child(5) {
+  width: 15%;
 }
 
 .CourseList-list-item td {
@@ -2090,9 +2105,6 @@ main div:last-child {
   padding: 0;
   color: #888888;
   border-width: 0px;
-}
-
-.CourseList-list-item td {
   text-align: center;
 }
 
@@ -2110,15 +2122,19 @@ main div:last-child {
 }
 
 .CourseList-list-item td:nth-child(3) {
-  width: 18%;
+  width: 17%;
+}
+
+.CourseList-list-item td:nth-child(4) {
+  width: 13%;
+}
+
+.CourseList-list-item td:nth-child(5) {
+  width: 15%;
 }
 
 .CourseList-list-tool {
-  background: #e6e6e6;
-}
-
-.CourseList-list-tool a {
-  color: #1f4557;
+  background: #EEEEEE;
 }
 
 .CourseList-list-tool:nth-child(3) td:nth-child(5) {
@@ -2127,6 +2143,7 @@ main div:last-child {
 
 .CourseList-list-tool:nth-child(3) td:nth-child(5) button {
   border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color: #1F4557;
 }
 
 .CourseList-list-tool:nth-child(3) td:nth-child(5) button:hover {
@@ -2134,16 +2151,22 @@ main div:last-child {
 }
 
 .Insert-area .Cardarea {
-  opacity: 0;
-  -webkit-transition: 0.5s ease;
-  transition: 0.5s ease;
+  -webkit-transition: 0.5s cubic-bezier(0, 1, 0, 1);
+  transition: 0.5s cubic-bezier(0, 1, 0, 1);
+  overflow: hidden;
+  max-height: 0;
+  position: relative;
+  bottom: 0;
+}
+
+.Insert-area .Cardarea .DefaultStudentCard {
+  margin-bottom: 20px;
 }
 
 .Showarea .Cardarea {
-  max-height: 500px;
-  -webkit-transition: .4s ease;
-  transition: .4s ease;
-  opacity: 1;
+  max-height: 2000px;
+  -webkit-transition: 0.3s cubic-bezier(1, 0, 1, 0);
+  transition: 0.3s cubic-bezier(1, 0, 1, 0);
 }
 
 .CourseDetail-Consumer-details {
@@ -2151,7 +2174,7 @@ main div:last-child {
 }
 
 .CourseDetail-Consumer-details h4 {
-  margin: 5px 0;
+  margin: 10px 0;
   font-weight: 500;
 }
 
@@ -2159,8 +2182,40 @@ main div:last-child {
   text-align: right;
 }
 
-.CourseDetail-Consumer-details select {
-  max-width: 80px;
+.CourseDetail-Consumer-details tr:nth-child(4) h3 {
+  font-weight: 600;
+}
+
+.CourseDetail-Consumer-details tr:nth-child(4) td:last-child h3 {
+  color: var(--main-color);
+}
+
+.CourseDetail-Consumer-details tr select {
+  width: 80%;
+  border: 1px solid #666666;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.ToShoppingList {
+  text-align: center;
+}
+
+.ToShoppingList button {
+  background: var(--main-color);
+  border: 0;
+  height: 50px;
+  width: 70%;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px / 50%;
+}
+
+.ToShoppingList h4 {
+  color: #f3f3f1;
+  margin: 0;
+  font-weight: 400;
 }
 
 .ShoppingBill-background {

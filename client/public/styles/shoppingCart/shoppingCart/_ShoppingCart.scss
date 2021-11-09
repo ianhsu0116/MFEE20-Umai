@@ -23,26 +23,14 @@
     background: var(--main-color);
     height: 5px;
     border: 0px;
+    opacity: 1;
   }
+
 }
-main {
+.mainblock {
   width: 70%;
-  margin-right:40px;
-  div:last-child {
-    text-align: center;
-  }
-}
-.title {
-  display: inline-flex;
-  h2 {
-    font-weight: 500;
-  }
-  h4 {
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-    font-weight: 400;
-  }
+  margin-right:30px;
+  min-width: 740px;
 }
 .fas {
   size: 7x;
@@ -50,12 +38,17 @@ main {
 .avatar {
   background: #fdfdfd;
   width: 30%;
-  height: 350px;
+  min-width: 251px;
+  max-height: 366px;
   margin: 30px 0 0 0;
   display: inline-flex;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: sticky;
+  top: 96.65px;
   main {
     width: 100%;
-    margin: 10px;
+    margin: 14px;
   }
   h2 {
     line-height: 40px;
@@ -64,18 +57,5 @@ main {
     background: var(--main-color);
     height: 2px;
     border: 0px;
-  }
-  button {
-    background: var(--main-color-hover);
-    border: 0;
-    height: 40px;
-    width: 150px;
-    margin-top: 5px;
-    border-radius: 10px;
-    h5 {
-      color: #f3f3f1;
-      margin: 0;
-      font-weight: 400;
-    }
   }
 }

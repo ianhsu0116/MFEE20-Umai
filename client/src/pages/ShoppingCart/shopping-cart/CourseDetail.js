@@ -3,13 +3,13 @@ function CourseDetail(props){
     return(
     <>
         <div>
-            <h2>消費明細</h2>
+            <h2>訂單明細</h2>
             <hr/>
         </div>
         <table className="CourseDetail-Consumer-details">
             <tr>
-                <td><h4>應付金額</h4></td>
-                <td><h4>9900</h4></td>
+                <td><h4>訂單小計</h4></td>
+                <td><h4>NT$ 9900</h4></td>
             </tr>
             <tr>
                 <td><h4>優惠券</h4></td>
@@ -20,17 +20,17 @@ function CourseDetail(props){
                 </td>
             </tr>
             <tr>
-                <td><h4>折扣</h4></td>
-                <td><h4>500</h4></td>
+                <td><h4>優惠折扣</h4></td>
+                <td><h4>NT$ 500</h4></td>
             </tr>
             <tr>
-                <td><h4>實付金額</h4></td>
-                <td><h4>9400</h4></td>
+                <td><h3>總金額</h3></td>
+                <td><h3>NT$ 9400</h3></td>
             </tr>
         </table>
         <hr/>
         <Link to="/ShoppingList">
-            <div><button><h5>選擇付款方式</h5></button></div>
+            <div className="ToShoppingList"><button><h4>選擇付款方式</h4></button></div>
         </Link>
     </>     
     )
