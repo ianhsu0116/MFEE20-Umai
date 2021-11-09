@@ -1,49 +1,99 @@
 .Calender {
-  border-radius: 10px;
-  padding: 0.5rem;
-  border: 1px solid $themeColor;
-  max-width: 255px;
-  @include flex(column);
-  justify-content: center;
-  align-items: center;
   position: relative;
-
-  .Calender-header {
-    width: 100%;
+  .Calender-selector {
+    max-width: 200px;
+    padding: 0.25rem 0.35rem;
+    border: 1px solid $fontColor;
+    border-radius: 5px;
     @include flex(row);
     justify-content: center;
     align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    .Calender-selector-text {
+      margin: 0 0.5rem;
+    }
+    & svg {
+      width: 12%;
+      height: 12%;
+    }
   }
 
-  .Calender-table {
-    .Calender-table-head {
-      .Calender-table-tr {
-        border-bottom: 1px solid $fontColor;
-        .Calender-table-th {
-          padding: 0.35rem;
-          text-align: center;
-        }
+  .Calender-container {
+    position: absolute;
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 2px solid $themeColor;
+    //width: 20vw;
+    max-width: 275px;
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 0.8rem;
+
+    .Calender-header {
+      width: 100%;
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
+
+      .year-selector,
+      .month-selector {
+        border: none;
+        margin: 0 0.35rem 0.15rem;
+        background: white;
+        border-bottom: 1px solid $themeColorBlue;
+        border-radius: 0;
       }
     }
-    .Calender-table-body {
-      .Calender-table-tr {
-        border-bottom: 1px solid $fontColor;
-        .Calender-table-td {
-          cursor: pointer;
-          padding: 0.35rem;
-          text-align: center;
 
-          &:hover {
-            background: #006394;
-            color: white;
+    .Calender-table {
+      .Calender-table-head {
+        .Calender-table-tr {
+          border-bottom: 1px solid $fontColor;
+          .Calender-table-th {
+            padding: 0.35rem;
+            //margin: 0.15rem;
+            text-align: center;
+            font-weight: 900;
           }
         }
       }
-    }
+      .Calender-table-body {
+        .Calender-table-tr {
+          //border-bottom: 1px solid $fontColor;
+          .Calender-table-td {
+            cursor: pointer;
+            padding: 0.35rem;
+            //margin: 0.15rem;
+            width: 8%;
+            height: 8%;
+            text-align: center;
+            //border-radius: 50px;
+            border: 1px solid transparent;
 
-    .today {
-      background: $themeColorBlue;
-      color: white;
+            &:hover {
+              background: #006394;
+              color: white;
+            }
+          }
+
+          .today {
+            background: $themeColorBlue;
+            color: white;
+            border: 2px solid $highLevelColor;
+            //border-radius: 50px;
+          }
+          .active {
+            background: $themeColorBlue;
+            color: white;
+            border: 2px solid $fontColor;
+            //border-radius: 50px;
+          }
+        }
+      }
     }
   }
 }

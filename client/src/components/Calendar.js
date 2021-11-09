@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { FcCalendar } from "react-icons/fc";
 
 const Calendar = () => {
   let today = new Date(); // 獲取當前日期
@@ -15,6 +17,8 @@ const Calendar = () => {
   let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
   let [currentMonth, setCurrentMonth] = useState(todayMonth);
+  // 預設的日期
+  let [currentDay, setCurrentDay] = useState(todayDay);
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -49,73 +53,125 @@ const Calendar = () => {
   // 將行數轉換成等長的Array，使下方能用使用map將其展開
   str_nums = new Array(str_nums).fill(1);
 
+  // 日期窗開關
+  let [calenderOpen, setCalenderOpen] = useState(false);
+  // 控制日期窗開關
+  const handleCalenderOpen = () => {
+    calenderOpen ? setCalenderOpen(false) : setCalenderOpen(true);
+  };
+
+  // 選取日期
+  const handleDaySelect = (e) => {
+    setCurrentDay(e.target.innerText);
+    //e.target.classList.add("active");
+  };
+
   return (
     <div className="Calender">
-      <div className="Calender-header">
-        <select
-          name=""
-          id=""
-          className="year-selector"
-          value={currentYear}
-          onChange={(e) => {
-            setCurrentYear(e.target.value);
-          }}
-        >
-          {years &&
-            years.map((year, index) => (
-              <option key={index} value={year}>
-                {year}
-              </option>
-            ))}
-        </select>
-        <select
-          name=""
-          id=""
-          className="month-selector"
-          value={currentMonth + 1}
-          onChange={(e) => {
-            setCurrentMonth(e.target.value - 1);
-          }}
-        >
-          {month &&
-            month.map((month, index) => (
-              <option key={index} value={month}>
-                {month}
-              </option>
-            ))}
-        </select>
+      <div className="Calender-selector" onClick={handleCalenderOpen}>
+        <FcCalendar />
+        <span className="Calender-selector-text">
+          {currentYear} - {currentMonth + 1} - {currentDay}
+        </span>
+        <MdKeyboardArrowDown />
       </div>
-      <table className="Calender-table">
-        <thead className="Calender-table-head">
-          <tr className="Calender-table-tr">
-            {weekdays.map((i) => (
-              <th className="Calender-table-th">{i}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="Calender-table-body">
-          {str_nums.map((days, i) => (
-            <tr className="Calender-table-tr">
-              {weekdays.map((day, k) => {
-                let idx = 7 * i + k; //為每個表格建立索引,從0開始
-                let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
-                date <= 0 || date > days_per_month[currentMonth]
-                  ? (date = " ") //索引小於等於0或者大於月份最大值就用空表格代替
-                  : (date = idx - dayOfWeek + 1);
-                if (
-                  currentYear === todayYear &&
-                  currentMonth === todayMonth &&
-                  date === todayDay
-                ) {
-                  return <td className="Calender-table-td today">{date}</td>;
-                } else {
-                  return <td className="Calender-table-td">{date}</td>;
-                }
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {calenderOpen && (
+        <div className="Calender-container">
+          <div className="Calender-header">
+            <select
+              name=""
+              id=""
+              className="year-selector"
+              value={currentYear}
+              onChange={(e) => {
+                setCurrentYear(Number(e.target.value));
+              }}
+            >
+              {years &&
+                years.map((year, index) => (
+                  <option key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
+            </select>
+            -
+            <select
+              name=""
+              id=""
+              className="month-selector"
+              value={currentMonth + 1}
+              onChange={(e) => {
+                setCurrentMonth(e.target.value - 1);
+              }}
+            >
+              {month &&
+                month.map((month, index) => (
+                  <option key={index} value={month}>
+                    {month}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <table className="Calender-table">
+            <thead className="Calender-table-head">
+              <tr className="Calender-table-tr">
+                {weekdays.map((i) => (
+                  <th className="Calender-table-th">{i}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="Calender-table-body">
+              {str_nums.map((days, i) => (
+                <tr className="Calender-table-tr">
+                  {weekdays.map((day, k) => {
+                    let idx = 7 * i + k; //為每個表格建立索引,從0開始
+                    let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
+                    date <= 0 || date > days_per_month[currentMonth]
+                      ? (date = " ") //索引小於等於0或者大於月份最大值就用空表格代替
+                      : (date = idx - dayOfWeek + 1);
+                    if (
+                      currentYear === todayYear &&
+                      currentMonth === todayMonth &&
+                      date === todayDay
+                    ) {
+                      return (
+                        <td
+                          className="Calender-table-td today"
+                          onClick={handleDaySelect}
+                        >
+                          {date}
+                        </td>
+                      );
+                    } else if (
+                      currentYear === todayYear &&
+                      currentMonth === todayMonth &&
+                      date == currentDay
+                    ) {
+                      return (
+                        <td
+                          className="Calender-table-td active"
+                          onClick={handleDaySelect}
+                        >
+                          {date}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td
+                          className="Calender-table-td"
+                          onClick={handleDaySelect}
+                        >
+                          {date}
+                        </td>
+                      );
+                    }
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

@@ -99,7 +99,8 @@ input[type="reset"] {
 }
 
 input,
-textarea {
+textarea,
+select {
   color: $fontColor;
   outline: none;
   border: 1px solid $fontColor;
