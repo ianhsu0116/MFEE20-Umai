@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -6,21 +5,35 @@
           box-sizing: border-box;
 }
 
-*::-webkit-scrollbar {
-  display: none;
-}
-
 html {
-  overflow: -moz-hidden-unscrollable;
-  /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
   height: 100%;
 }
 
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: #666666;
-  -ms-overflow-style: none;
-  overflow: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  opacity: 0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb257;
+  opacity: 1;
 }
 
 h1,
@@ -60,7 +73,8 @@ input[type="reset"] {
 }
 
 input,
-textarea {
+textarea,
+select {
   color: #666666;
   outline: none;
   border: 1px solid #666666;
@@ -959,6 +973,135 @@ a:hover {
   }
 }
 
+.Calender {
+  position: relative;
+  width: 100%;
+  max-width: 255px;
+  max-height: 34px;
+}
+
+.Calender .Calender-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.Calender .Calender-selector .Calender-selector-text {
+  margin: 0 0.5rem;
+}
+
+.Calender .Calender-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.Calender .Calender-container {
+  position: absolute;
+  z-index: 5;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 255px;
+  max-width: 180%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+}
+
+.Calender .Calender-container .Calender-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Calender .Calender-container .Calender-header .year-selector,
+.Calender .Calender-container .Calender-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr .Calender-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+  background: #b3cedb;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
 .Login {
   position: absolute;
   top: 0;
@@ -1432,9 +1575,12 @@ a:hover {
   font-size: 1.15rem;
 }
 
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-label {
+  margin-bottom: 0.25rem;
+}
+
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
   border-radius: 5px;
-  margin-top: 0.25rem;
   width: 100%;
 }
 

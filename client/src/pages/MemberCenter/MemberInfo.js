@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsXDiamond } from "react-icons/bs";
 import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
+import Calendar from "../../components/Calendar";
 
 const MemberInfo = (props) => {
   const [memberInfo, setMemberInfo] = useState({
@@ -30,6 +31,10 @@ const MemberInfo = (props) => {
   const handleInfoEdit = () => {
     console.log("handleInfoEdit");
     console.log(memberInfo);
+  };
+  // 生日修改
+  const handleBirthdayChange = (day) => {
+    setMemberInfo({ ...memberInfo, birthday: day });
   };
 
   // 付款資訊修改
@@ -120,13 +125,14 @@ const MemberInfo = (props) => {
               >
                 出生日期
               </label>
-              <input
+              {/* <input
                 type="date"
                 name="birthday"
                 id="birth"
                 className="MemberInfo-container-inputCon-input"
                 onChange={handleMemberInfoChange}
-              />
+              /> */}
+              <Calendar onChange={handleBirthdayChange} />
             </div>
           </div>
           <div className="MemberInfo-container-row">
