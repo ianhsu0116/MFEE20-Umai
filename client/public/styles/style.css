@@ -975,10 +975,14 @@ a:hover {
 
 .Calender {
   position: relative;
+  width: 100%;
+  max-width: 255px;
+  max-height: 34px;
 }
 
 .Calender .Calender-selector {
-  max-width: 200px;
+  width: 100%;
+  max-height: 34px;
   padding: 0.25rem 0.35rem;
   border: 1px solid #666666;
   border-radius: 5px;
@@ -1004,16 +1008,19 @@ a:hover {
 }
 
 .Calender .Calender-selector svg {
-  width: 12%;
-  height: 12%;
+  width: 20px;
+  height: 20px;
 }
 
 .Calender .Calender-container {
   position: absolute;
+  z-index: 5;
+  background: white;
   border-radius: 10px;
   padding: 0.5rem;
   border: 2px solid #d8a466;
-  max-width: 275px;
+  width: 255px;
+  max-width: 180%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1027,7 +1034,6 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
   font-size: 0.8rem;
 }
 
@@ -1077,14 +1083,17 @@ a:hover {
 }
 
 .Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
-  background: #006394;
-  color: white;
+  background: #e0e0e0;
+  color: black;
 }
 
 .Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
-  background: #0078b3;
-  color: white;
+  background: #e0e0e0;
   border: 2px solid #eb6b6a;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+  background: #b3cedb;
 }
 
 .Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
@@ -1566,9 +1575,12 @@ a:hover {
   font-size: 1.15rem;
 }
 
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-label {
+  margin-bottom: 0.25rem;
+}
+
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
   border-radius: 5px;
-  margin-top: 0.25rem;
   width: 100%;
 }
 

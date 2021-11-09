@@ -25,6 +25,10 @@ function App() {
     });
   }, []);
 
+  const onChange = (e) => {
+    console.log(e);
+  };
+
   return (
     <Router>
       <Navbar handleLoginClick={handleLoginClick} />
@@ -34,7 +38,7 @@ function App() {
           <h1>home Test</h1>
           <DefaultStudentCard />
           <StarGroup percent={96} allScore={50} />
-          <Calendar />
+          <Calendar onChange={onChange} />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter />

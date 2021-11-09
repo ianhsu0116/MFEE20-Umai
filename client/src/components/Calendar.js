@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FcCalendar } from "react-icons/fc";
 
-const Calendar = () => {
-  let today = new Date(); // 獲取當前日期
-  let todayYear = today.getFullYear(); // 獲取當前的年份
-  let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始計算，獲取的值比正常月份的值少1)
-  let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
+// 想顯示的所有年份 / 月份 / 星期幾
+let years = [];
+for (let i = 1990; i <= 2025; i++) {
+  years.push(i);
+}
+let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+let today = new Date(); // 獲取當前日期
+let todayYear = today.getFullYear(); // 獲取當前的年份
+let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始計算，獲取的值比正常月份的值少1)
+let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
-  // 想顯示所有年 / 月份 / 星期幾
-  let [years, setYears] = useState([2018, 2019, 2020, 2021, 2022, 2023]);
-  let [month, setMonth] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-  let weekdays = ["日", "一", "二", "三", "四", "五", "六"];
+// 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
+const Calendar = (props) => {
+  let { onChange } = props;
 
   // 預設的年份
   let [currentYear, setCurrentYear] = useState(todayYear);
@@ -19,6 +24,8 @@ const Calendar = () => {
   let [currentMonth, setCurrentMonth] = useState(todayMonth);
   // 預設的日期
   let [currentDay, setCurrentDay] = useState(todayDay);
+  // 正確格式的日期
+  let selectedDay = `${currentYear}-${currentMonth + 1}-${currentDay}`;
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -31,8 +38,11 @@ const Calendar = () => {
       : 0;
   }
 
-  let firstday = new Date(currentYear, currentMonth, 1); //獲取當月的第一天
-  let dayOfWeek = firstday.getDay(); //判斷第一天是星期幾([0-6]中的一個，0代表星期天，1代表星期一)
+  //獲取當月的第一天
+  let firstday = new Date(currentYear, currentMonth, 1);
+  //判斷第一天是星期幾([0-6]中的一個，0代表星期天，1代表星期一)
+  let dayOfWeek = firstday.getDay();
+  //建立月份陣列
   let days_per_month = [
     31,
     28 + isLeap(currentYear),
@@ -46,7 +56,7 @@ const Calendar = () => {
     31,
     30,
     31,
-  ]; //建立月份陣列
+  ];
 
   //確定日期表格所需的行數
   let str_nums = Math.ceil((dayOfWeek + days_per_month[currentMonth]) / 7);
@@ -62,9 +72,25 @@ const Calendar = () => {
 
   // 選取日期
   const handleDaySelect = (e) => {
-    setCurrentDay(e.target.innerText);
-    //e.target.classList.add("active");
+    //先判斷此次點擊的是否為有效日期
+    if (Number(e.target.innerText) > 0) {
+      setCurrentDay(e.target.innerText);
+
+      // 關閉日期窗
+      setCalenderOpen(false);
+    }
   };
+
+  // 將選定的日期送出
+  useEffect(() => {
+    onChange(selectedDay);
+  }, [currentYear]);
+  useEffect(() => {
+    onChange(selectedDay);
+  }, [currentMonth]);
+  useEffect(() => {
+    onChange(selectedDay);
+  }, [currentDay]);
 
   return (
     <div className="Calender">
@@ -101,7 +127,7 @@ const Calendar = () => {
               className="month-selector"
               value={currentMonth + 1}
               onChange={(e) => {
-                setCurrentMonth(e.target.value - 1);
+                setCurrentMonth(Number(e.target.value) - 1);
               }}
             >
               {month &&
@@ -115,14 +141,16 @@ const Calendar = () => {
           <table className="Calender-table">
             <thead className="Calender-table-head">
               <tr className="Calender-table-tr">
-                {weekdays.map((i) => (
-                  <th className="Calender-table-th">{i}</th>
+                {weekdays.map((i, index) => (
+                  <th key={index} className="Calender-table-th">
+                    {i}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody className="Calender-table-body">
               {str_nums.map((days, i) => (
-                <tr className="Calender-table-tr">
+                <tr key={i} className="Calender-table-tr">
                   {weekdays.map((day, k) => {
                     let idx = 7 * i + k; //為每個表格建立索引,從0開始
                     let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
@@ -136,19 +164,17 @@ const Calendar = () => {
                     ) {
                       return (
                         <td
+                          key={k}
                           className="Calender-table-td today"
                           onClick={handleDaySelect}
                         >
                           {date}
                         </td>
                       );
-                    } else if (
-                      currentYear === todayYear &&
-                      currentMonth === todayMonth &&
-                      date == currentDay
-                    ) {
+                    } else if (date == currentDay) {
                       return (
                         <td
+                          key={k}
                           className="Calender-table-td active"
                           onClick={handleDaySelect}
                         >
@@ -158,6 +184,7 @@ const Calendar = () => {
                     } else {
                       return (
                         <td
+                          key={k}
                           className="Calender-table-td"
                           onClick={handleDaySelect}
                         >
