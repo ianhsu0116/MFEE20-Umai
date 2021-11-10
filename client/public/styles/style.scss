@@ -177,6 +177,10 @@ a {
 @import "./shoppingCart/shoppingList/ShoppingList";
 @import "./shoppingCart/shoppingList/ShoppingBill";
 
+//PamentWayMethod
+@import "./shoppingCart/pamentMethod/PamentMethod";
+@import "./shoppingCart/pamentMethod/PamentWay";
+@import "./shoppingCart/pamentMethod/Receipt";
 // RWD
 @media screen and (max-width: 1200px) {
   .Navbar {

@@ -5,7 +5,8 @@ import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
 import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
-
+import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
+ 
 // 測試元件區
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path="/ShoppingList" exact>
           <ShoppingList />
+        </Route>
+        <Route path="/PaymentMethod" exact>
+          <PaymentMethod />
         </Route>
       </Switch>
     </Router>

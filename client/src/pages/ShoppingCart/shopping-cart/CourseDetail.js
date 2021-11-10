@@ -1,5 +1,24 @@
+/* eslint-disable default-case */
 import { Link } from "react-router-dom";
+
+import React, { useState, useEffect } from "react";
+
 function CourseDetail(props){
+    let [pathname, setPathname] = useState("/");
+    let [nextpage, setNextpage] = useState("/");
+
+    useEffect(() => {
+        setPathname(props.location);
+        switch(pathname){
+            case "/ShoppingCart":
+                setNextpage("/PaymentMethod");
+                break;
+            case "/PaymentMethod":
+                setNextpage("/ShoppingList");
+                break;
+        };
+      },);
+    
     return(
     <>
         <div>
@@ -29,8 +48,11 @@ function CourseDetail(props){
             </tr>
         </table>
         <hr/>
-        <Link to="/ShoppingList">
-            <div className="ToShoppingList"><button><h4>選擇付款方式</h4></button></div>
+        <Link to={nextpage}>
+            <div className="ToShoppingList"><button><h4>
+            {pathname === "/ShoppingCart" && ("選擇付款方式")}
+            {pathname === "/PaymentMethod" && ("結帳")}
+            </h4></button></div>
         </Link>
     </>     
     )

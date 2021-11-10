@@ -2,7 +2,8 @@
 import Course_list from './CourseList';
 import Course_detail from './CourseDetail';
 
-function shopping_cart() {
+function shopping_cart(props) {
+  let pathname="/ShoppingCart";
   return (
     <>
       <div className="main-block wrapper">
@@ -10,9 +11,10 @@ function shopping_cart() {
               <Course_list/>
           </main>
           <aside className="avatar">
-              <main>
-                  <Course_detail/>
-              </main>
+            <main>
+              <Course_detail location={pathname}
+              />
+            </main>
           </aside>
       </div>
     </>

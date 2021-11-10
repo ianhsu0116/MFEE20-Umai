@@ -1989,7 +1989,7 @@ a:hover {
   background: #fdfdfd;
   width: 30%;
   min-width: 251px;
-  max-height: 366px;
+  height: 366px;
   margin: 30px 0 0 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -2307,6 +2307,115 @@ a:hover {
 
 .ShoppingBill-list .ShoppingBill-list-count h3 {
   margin: 15px 0;
+}
+
+.PamentWay-box {
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+
+.Receipt-box {
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+
+.PamentWay-title {
+  margin: 20px 0;
+}
+
+.PamentWay-head {
+  background: #eeeeee;
+  border-radius: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  color: var(--main-color);
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.PamentWay-head svg {
+  width: 30px;
+  height: 30px;
+}
+
+.PamentWay-head h4 {
+  display: inline;
+  margin: auto 0;
+}
+
+.PamentWay-body {
+  width: 90%;
+  margin: 0 auto;
+  max-height: 0px;
+  overflow: hidden;
+  -webkit-transition: .3s linear;
+  transition: .3s linear;
+}
+
+.PamentWay-body li {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.PamentWay-body-open {
+  max-height: 303px;
+}
+
+.Receipt-head {
+  background: #eeeeee;
+  border-radius: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  color: var(--main-color);
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Receipt-head svg {
+  width: 30px;
+  height: 30px;
+}
+
+.Receipt-head h4 {
+  display: inline;
+  margin: auto 0;
+}
+
+.Receipt-body {
+  width: 90%;
+  margin: 0 auto;
+  height: 100px;
+  max-height: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+
+.Receipt-body li {
+  margin: 10px auto;
+  margin-left: 5px;
+}
+
+.Receipt-body-open {
+  max-height: 100px;
 }
 
 @media screen and (max-width: 1200px) {
