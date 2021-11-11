@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
@@ -12,12 +13,15 @@ import avatar from "../images/avatar.jpg";
 
 const MemberSidebar = (props) => {
   let { currentBoard, setCurrentBoard } = props;
+
   const [currentAvatar, setCurrentAvatar] = useState(""); // 存avatar的二元編碼
 
   // 切換sidebar內容
+
   const handleChangeBoard = (e) => {
     setCurrentBoard(e.target.innerText);
   };
+
 
   // 即時顯示上傳的avatar
   const handleAvatarChange = (e) => {
@@ -43,10 +47,12 @@ const MemberSidebar = (props) => {
     }
   };
 
+
   return (
     <div className="MemberSidebar">
       <div className="MemberSidebar-container">
         <div className="MemberSidebar-container-avatar">
+
           <input
             type="file"
             id="avatar"
