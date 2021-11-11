@@ -1,62 +1,62 @@
 import React, { useState } from "react";
 import ReviewButton from "../../components/member/ReviewButton";
 import Calendar from "../../components/Calendar";
+import Button from "../../components/Button";
+import { FaPen } from "react-icons/fa";
+
+// 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
+let sixDishesArray = [11, 22, 33, 44, 55, 66];
+let sliderArray = [111, 222, 333];
 
 const CourseInsert = (props) => {
   const { isReview, setIsReview } = props;
   const [courseDetail, setCourseDetail] = useState({
-    slider_image1: "slider_image1",
-    slider_image2: "slider_image2",
-    slider_image3: "slider_image3",
-    slider_images: [
-      "slider_image_name",
-      "slider_image_name",
-      "slider_image_name",
-    ],
-    course_name: "課程名稱",
-    company_name: "餐廳名稱",
-    company_address: "餐廳地址", // 供google地圖搜尋
-    time_of_course: "平日上午10:30 ~ 下午04:00",
+    slider_images: ["", "", ""],
+    course_name: "", // 課程名稱
+    company_name: "", // 餐廳名稱
+    company_address: "", // 餐廳地址, 供google地圖搜尋
+    time_of_course: "", // 平日上午10:30 ~ 下午04:00
     course_ig: "https://www.instagram.com/",
     course_fb: "https://www.facebook.com/",
-    title1_1: "標題1-1號",
-    title1_2: "標題1-2號",
-    content1: "介紹內容一",
-    title2: "標題2號(六道菜部分)",
+    title1_1: "", // 標題1-1號
+    title1_2: "", // 標題1-2號
+    content1: "", // 介紹內容1
+    title2: "", // 標題2號(六道菜部分)
     six_dishes: [
       // 課程六道菜的圖+文
       {
-        dishes_image: "image_name0",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "image_name1",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "image_name2",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "image_name3",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "image_name4",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "image_name5",
-        dishes_title: "菜色標題",
-        dishes_content: "菜色介紹",
+        dishes_image: "", // 圖片file檔案
+        dishes_title: "", // 菜色標題
+        dishes_content: "", // 菜色介紹
       },
     ],
-    content2: "費用包含內容＋注意事項",
+    content2: "", // 費用包含內容
+    content3: "", // 注意事項說明
 
     // 下方是table內的獨立欄位，不是存在json內
     member_limit: 0,
@@ -66,10 +66,10 @@ const CourseInsert = (props) => {
     course_category: 1, // 1 ~ 6 代表course_category的id
   });
 
-  // 即時顯示slider上傳的圖片(二元編碼)
+  // 儲存slider上傳的圖片(二元編碼 即時顯示使用)
   const [sliderImage, setSliderImage] = useState(["", "", ""]);
 
-  // 即時顯示課程教材(six_dishes)上傳的圖片(二元編碼)
+  // 儲存課程教材(six_dishes)上傳的圖片(二元編碼 即時顯示用)
   const [sixDishesImage, setSixDishesImage] = useState([
     "",
     "",
@@ -97,8 +97,7 @@ const CourseInsert = (props) => {
 
   // 即時顯示上傳的Slider image
   const handleSliderChange = (e) => {
-    let inputId = e.target.id;
-    let inputName = e.target.name;
+    let inputIndex = e.target.dataset.index;
 
     let readFile = new FileReader(); //constructor 建構子(函數); 功能: 給初值
     let file = e.target.files[0];
@@ -109,7 +108,7 @@ const CourseInsert = (props) => {
       if (file.type.match(imageType) && file.size < 4000000) {
         // 將圖裝入，等待送到後端
         let newCourseDetail = { ...courseDetail };
-        newCourseDetail["slider_images"][inputId] = file;
+        newCourseDetail["slider_images"][inputIndex] = file;
         setCourseDetail(newCourseDetail);
 
         // 抓到二元編碼，即時顯示
@@ -118,7 +117,7 @@ const CourseInsert = (props) => {
           // 將二元編碼丟入state，即時顯示
 
           let newSliderImage = [...sliderImage];
-          newSliderImage[inputId] = readFile.result;
+          newSliderImage[inputIndex] = readFile.result;
           setSliderImage(newSliderImage);
         });
       } else {
@@ -129,8 +128,7 @@ const CourseInsert = (props) => {
 
   // 即時顯示six_dishes圖片上傳
   const handleSixDishesImageChange = (e) => {
-    let inputId = e.target.id;
-    console.log(inputId);
+    let inputIndex = e.target.dataset.index;
 
     let readFile = new FileReader(); //constructor 建構子(函數); 功能: 給初值
     let file = e.target.files[0];
@@ -141,7 +139,7 @@ const CourseInsert = (props) => {
       if (file.type.match(imageType) && file.size < 2500000) {
         // 將圖裝入courseDetail，等待送到後端
         let newCourseDetail = { ...courseDetail };
-        newCourseDetail["six_dishes"][inputId]["dishes_image"] = file;
+        newCourseDetail["six_dishes"][inputIndex]["dishes_image"] = file;
         setCourseDetail(newCourseDetail);
 
         // 抓到二元編碼，即時顯示
@@ -149,7 +147,7 @@ const CourseInsert = (props) => {
         readFile.addEventListener("load", function () {
           // 將二元編碼丟入state，即時顯示
           let newSixImage = [...sixDishesImage];
-          newSixImage[inputId] = readFile.result;
+          newSixImage[inputIndex] = readFile.result;
           setSixDishesImage(newSixImage);
         });
       } else {
@@ -162,6 +160,12 @@ const CourseInsert = (props) => {
   const [courseBatch, setCourseBatch] = useState([""]); // 梯次複選問題沒有解決！！！！！！！！！
   const handleBatchChange = (batch) => {
     console.log(batch);
+    console.log("梯次多選問題尚未解決！");
+  };
+
+  // 送出課程資料
+  const handleCourseInsert = (e) => {
+    console.log(courseDetail);
   };
 
   return (
@@ -187,6 +191,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="最精緻的三星級牛排課程..."
             />
           </div>
         </div>
@@ -206,6 +211,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="XX米其林餐廳..."
             />
           </div>
           <div className="CourseInsert-container-row-inputCon">
@@ -223,6 +229,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="70"
+              placeholder="台北市中山區..."
             />
           </div>
         </div>
@@ -232,17 +239,22 @@ const CourseInsert = (props) => {
               Slider圖片
             </label>
             <div className="CourseInsert-container-row-inputCon-sliderImage">
-              {new Array(3).fill(1).map((item, index) => (
+              {sliderArray.map((item, index) => (
                 <>
                   <label
                     key={index}
-                    htmlFor={index}
+                    htmlFor={item}
                     className="CourseInsert-container-row-inputCon-sliderImage-label"
                   >
-                    <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                    {sliderImage[index] ? (
+                      <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                    ) : (
+                      <FaPen />
+                    )}
                   </label>
                   <input
-                    id={index}
+                    id={item}
+                    data-index={index}
                     name="slider_image"
                     onChange={handleSliderChange}
                     className="CourseInsert-container-row-inputCon-sliderImage-input"
@@ -269,6 +281,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="上午10:00 ~ 下午04:00..."
             />
           </div>
           <div className="CourseInsert-container-row-inputCon">
@@ -345,7 +358,7 @@ const CourseInsert = (props) => {
               htmlFor="member_limit"
               className="CourseInsert-container-row-inputCon-label"
             >
-              學員上限
+              學員上限(Max:99)
             </label>
             <input
               id="member_limit"
@@ -362,7 +375,7 @@ const CourseInsert = (props) => {
               htmlFor="course_price"
               className="CourseInsert-container-row-inputCon-label"
             >
-              課程價位
+              課程價位(Max:9999)
             </label>
             <input
               id="course_price"
@@ -391,6 +404,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="100"
+              placeholder="https://www.instagram.com/"
             />
           </div>
           <div className="CourseInsert-container-row-inputCon">
@@ -408,6 +422,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="100"
+              placeholder="https://www.facebook.com/"
             />
           </div>
         </div>
@@ -431,6 +446,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="信じられない！とても美味しい！..."
             />
           </div>
         </div>
@@ -450,6 +466,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="最驚艷的日式料理，入口彷如人就在日本北海道..."
             />
           </div>
         </div>
@@ -469,6 +486,7 @@ const CourseInsert = (props) => {
               value={courseDetail.content1}
               onChange={handleCourseChange}
               maxLength="340"
+              placeholder="信じられない！とても美味しい！..."
             ></textarea>
           </div>
         </div>
@@ -488,28 +506,33 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="50"
+              placeholder="精選六道最經典的日式傳統料理..."
             />
           </div>
         </div>
-
         <div className="CourseInsert-container-row">
           <div className="CourseInsert-container-row-inputCon">
             <label className="CourseInsert-container-row-inputCon-label">
               課程教材圖文內容
             </label>
-            {courseDetail.six_dishes.map((item, index) => (
+            {sixDishesArray.map((item, index) => (
               <div
                 key={index}
                 className="CourseInsert-container-row-inputCon-sixDishes"
               >
                 <label
-                  htmlFor={index}
+                  htmlFor={item}
                   className="CourseInsert-container-row-inputCon-sixDishes-label"
                 >
-                  <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
+                  {sixDishesImage[index] ? (
+                    <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
+                  ) : (
+                    <FaPen />
+                  )}
                 </label>
                 <input
-                  id={index}
+                  id={item}
+                  data-index={index}
                   name="dishes_image"
                   onChange={handleSixDishesImageChange}
                   className="CourseInsert-container-row-inputCon-sixDishes-input"
@@ -519,11 +542,12 @@ const CourseInsert = (props) => {
                 <div className="CourseInsert-container-row-inputCon-sixDishes-right">
                   <input
                     type="text"
-                    placeholder="教材名稱"
                     name="dishes_title"
                     id={index}
                     onChange={handleCourseChange}
                     value={courseDetail.six_dishes[index].dishes_title}
+                    placeholder="課程教材名稱..."
+                    maxLength="30"
                   />
                   <textarea
                     name="dishes_content"
@@ -532,11 +556,61 @@ const CourseInsert = (props) => {
                     rows="7"
                     onChange={handleCourseChange}
                     value={courseDetail.six_dishes[index].dishes_content}
+                    placeholder="課程教材詳細介紹..."
+                    maxLength="250"
                   ></textarea>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        <div className="CourseInsert-container-row">
+          <div className="CourseInsert-container-row-inputCon">
+            <label
+              htmlFor="content1"
+              className="CourseInsert-container-row-inputCon-label"
+            >
+              費用包含介紹
+            </label>
+            <textarea
+              name="content2"
+              id="content2"
+              cols="30"
+              rows="7"
+              value={courseDetail.content2}
+              onChange={handleCourseChange}
+              maxLength="340"
+              placeholder="請條列式述敘..."
+            ></textarea>
+          </div>
+        </div>
+        <div className="CourseInsert-container-row">
+          <div className="CourseInsert-container-row-inputCon">
+            <label
+              htmlFor="content3"
+              className="CourseInsert-container-row-inputCon-label"
+            >
+              注意事項說明
+            </label>
+            <textarea
+              name="content3"
+              id="content3"
+              cols="30"
+              rows="7"
+              value={courseDetail.content3}
+              onChange={handleCourseChange}
+              maxLength="340"
+              placeholder="請條著名此課程需要注意的事宜..."
+            ></textarea>
+          </div>
+        </div>
+
+        <div className="CourseInsert-container-inputCon">
+          <Button
+            value={"新增課程"}
+            className={"button-themeColor"}
+            onClick={handleCourseInsert}
+          />
         </div>
       </div>
     </div>
