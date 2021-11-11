@@ -12,9 +12,13 @@ import CourseInsert from "./CourseInsert";
 const MemberCenter = (props) => {
   const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
 
+  // 是否為預覽狀態 (給CourseInsert專用)
+  const [isReview, setIsReview] = useState(false);
+
   return (
     <div className="MemberCenter">
       <div className="MemberCenter-container">
+        {/* {isReview && <CollectionCoupons />} */}
         <MemberSidebar
           currentBoard={currentBoard}
           setCurrentBoard={setCurrentBoard}
@@ -25,7 +29,9 @@ const MemberCenter = (props) => {
         {currentBoard === "收藏課程" && <CollectionCourse />}
         {currentBoard === "收藏文章" && <CollectionArticle />}
         {currentBoard === "優惠券" && <CollectionCoupons />}
-        {currentBoard === "新增課程" && <CourseInsert />}
+        {currentBoard === "新增課程" && (
+          <CourseInsert isReview={isReview} setIsReview={setIsReview} />
+        )}
       </div>
     </div>
   );
