@@ -7,7 +7,7 @@
   .CourseInsert-container {
     height: 95%;
     width: 100%;
-    //overflow: scroll;
+    overflow: scroll;
     padding: 1rem 2rem;
     margin-left: 1rem;
     border-radius: 10px;
@@ -42,6 +42,43 @@
 
         .CourseInsert-container-row-inputCon-input {
           width: 100%;
+        }
+
+        // slider images
+        .CourseInsert-container-row-inputCon-sliderImage {
+          @include flex(row);
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          flex-wrap: wrap;
+
+          .CourseInsert-container-row-inputCon-sliderImage-label {
+            @include flex(row);
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 150px;
+            height: 10vw;
+            max-height: 200px;
+            border: 2px solid $fontColor;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 0.25rem;
+            position: relative;
+            overflow: hidden;
+
+            & img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          // 將inputbox隱藏 用label代替
+          .CourseInsert-container-row-inputCon-sliderImage-input {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            display: none;
+          }
         }
       }
     }
