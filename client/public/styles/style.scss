@@ -1,0 +1,193 @@
+$themeColor: #d8a466;
+//$themeColorBlue: #3f7289;
+$themeColorBlue: #0078b3;
+$activeColor: #ffb257;
+$fontColor: #666666;
+
+// courseCard1用的變數
+$cardDarkColor: #5d5548;
+$highLevelColor: #eb6b6a;
+$midLevelColor: #5f9e72;
+$lowLevelColor: #5eb2eb;
+
+// DefaultStudentCard 用
+$titleBackgroundColor: #eeeeee;
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  color: $fontColor;
+}
+
+// 覆蓋bootstrap樣式
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+// h1 {
+//   font-size: calc(1.3rem + 1.2vw);
+// }
+// h2 {
+//   font-size: calc(1.25rem + 1vw);
+// }
+// h3 {
+//   font-size: calc(1.1rem + 0.8vw);
+// }
+// h4 {
+//   font-size: calc(1rem + 0.4vw);
+// }
+// h5 {
+//   font-size: calc(1rem + 0.3vw);
+// }
+// h6 {
+//   font-size: calc(1rem + 0.1vw);
+// }
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+svg {
+  vertical-align: baseline;
+}
+
+// 移除所有button樣式
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: $fontColor;
+  &:hover {
+    color: $activeColor;
+  }
+}
+
+// 各個按鍵component的樣式
+.button-themeColor {
+  padding: 0.35rem 0.75rem;
+  background: $themeColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $activeColor;
+  }
+}
+.button-themeColorBlue {
+  padding: 0.35rem 0.75rem;
+  background: $themeColorBlue;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #006ca1;
+  }
+}
+.button-highLeveColor {
+  padding: 0.35rem 0.75rem;
+  background: $highLevelColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #cc5a5a;
+  }
+}
+.button-activeColor {
+  padding: 0.35rem 0.75rem;
+  background: $activeColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $activeColor;
+  }
+}
+.button-darkColor {
+  padding: 0.35rem 0.75rem;
+  background: $fontColor;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #424242;
+  }
+}
+
+// 共用元件
+@import "./Navber";
+@import "./OptionBar";
+@import "./CourseCard1";
+@import "./Coupons";
+@import "./DefaultStudentCard";
+@import "./StarGroup";
+@import "./ShareCard";
+@import "./CourseMiniCard";
+@import "./ChefCard";
+@import "./Breadcrumb";
+
+// member相關
+@import "./member/Login";
+@import "./member/MemberCenter";
+@import "./member/MemberSidebar";
+@import "./member/MemberInfo";
+@import "./member/DefaultStudent";
+@import "./member/OrderInfo";
+@import "./member/OrderCard";
+@import "./member/CollectionCourse";
+@import "./member/CollectionCoupons";
+@import "./member/DefaultStudentCard2";
+@import "./member/CollectionArticle";
+
+@import "./course/Course";
+@import "./course/CourseCard_Course";
+@import "./course/StarGroup_Course";
+
+@import "./CourseDetail/_CourseDetailed";
+
+// RWD
+@media screen and (max-width: 1200px) {
+  .Navbar {
+    .Navbar-container {
+      width: 90%;
+    }
+  }
+
+  .MemberCenter {
+    .MemberCenter-container {
+      width: 90%;
+    }
+  }
+}

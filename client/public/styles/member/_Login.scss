@@ -1,0 +1,31 @@
+.Login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.2);
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+
+  .Login-container {
+    top: -100%;
+    width: 50%;
+    height: 500px;
+    background: white;
+    border-radius: 15px;
+    animation: Login-scaleUp 0.35s ease-in;
+  }
+}
+
+@keyframes Login-scaleUp {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,49 @@
+.OrderInfo {
+  height: calc(100vh - 50px);
+  //position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  .OrderInfo-container {
+    height: 95%;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    @include flex(column);
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+    .OrderInfo-container-header {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid $activeColor;
+      width: 100%;
+
+      & h1 {
+        font-weight: 100;
+      }
+    }
+
+    .OrderInfo-container-tableHead {
+      width: 100%;
+      max-width: 900px;
+      @include flex(row);
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      margin: 0.75rem 0;
+      font-weight: 900;
+
+      .OrderInfo-container-tableHead-item1 {
+        width: 48%;
+      }
+    }
+
+    .OrderInfo-container-tableBody {
+      //max-height: 70%;
+      margin: 0 0 1rem 0;
+      overflow: scroll;
+    }
+  }
+}

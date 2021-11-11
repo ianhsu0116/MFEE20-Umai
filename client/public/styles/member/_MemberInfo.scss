@@ -1,0 +1,116 @@
+.MemberInfo {
+  height: calc(100vh - 50px);
+  //position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  .MemberInfo-container {
+    height: 95%;
+    width: 100%;
+    //overflow: scroll;
+    padding: 1rem 2rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    @include flex(column);
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+
+    .MemberInfo-container-header {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid $activeColor;
+      width: 100%;
+
+      & h1 {
+        font-weight: 100;
+      }
+    }
+
+    .MemberInfo-container-cards {
+      width: 100%;
+      position: relative;
+      margin: 0 0 1rem 0;
+      @include flex(column);
+      //flex-wrap: wrap;
+      overflow: scroll;
+      .MemberInfo-container-row {
+        width: 70%;
+        @include flex(row);
+        align-items: flex-end;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+
+        .MemberInfo-container-inputCon {
+          flex: 1 1 200px;
+          @include flex(column);
+          margin-right: 1rem;
+          font-size: 1.15rem;
+
+          // 一般的input box
+          .MemberInfo-container-inputCon-input {
+            border-radius: 5px;
+            border: 1px solid $fontColor;
+            padding: 0.15rem 0.35rem;
+            margin-top: 0.25rem;
+            font-size: 1.1rem;
+            width: 100%;
+          }
+
+          // 信用卡輸入區塊
+          .MemberInfo-container-inputCon-ccardCon {
+            @include flex(row);
+
+            .MemberInfo-container-inputCon-input {
+              margin-right: 0.25rem;
+            }
+          }
+        }
+
+        .MemberInfo-container-passwordCon {
+          max-width: 0px;
+          max-height: 0;
+          transition: 0.5s ease;
+          font-size: 90%;
+          overflow: hidden;
+        }
+        .MemberInfo-container-passwordCon-active {
+          max-width: calc(50% - 1rem);
+          max-height: 95px;
+        }
+        // 密碼修改按鈕
+        .MemberInfo-container-inputCon-passwordEditBtn,
+        .MemberInfo-container-inputCon-passwordSubmitBtn {
+          border-radius: 5px;
+          padding: 0.15rem 0.35rem;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid $fontColor;
+          margin-left: -10px;
+          margin-right: 20px;
+          font-size: 90%;
+
+          &:hover {
+            color: black;
+            border: 1px solid black;
+          }
+        }
+
+        .MemberInfo-container-inputCon-passwordSubmitBtn {
+          display: none;
+          color: $highLevelColor;
+          border: 1px solid $highLevelColor;
+        }
+        .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+          display: block;
+        }
+      }
+    }
+
+    .MemberInfo-container-buttonCon {
+      width: 100%;
+      @include flex(row);
+      justify-content: flex-end;
+      margin: 1rem 0;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.CollectionArticle {
+  height: calc(100vh - 50px);
+  //position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  .CollectionArticle-container {
+    height: 95%;
+    width: 100%;
+    //overflow: scroll;
+    padding: 1rem 2rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    @include flex(column);
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    .CollectionArticle-container-header {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid $activeColor;
+      width: 100%;
+
+      & h1 {
+        font-weight: 100;
+      }
+    }
+    .CollectionArticle-container-cards {
+      width: 100%;
+      position: relative;
+      margin: 0 0 1rem 0;
+      @include flex(column);
+      overflow: scroll;
+    }
+  }
+}
