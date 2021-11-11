@@ -40,11 +40,15 @@
         width: 100%;
         margin: 0 1rem;
 
+        .CourseInsert-container-row-inputCon-label {
+          font-weight: 900;
+        }
+
         .CourseInsert-container-row-inputCon-input {
           width: 100%;
         }
 
-        // slider images
+        // slider images相關的
         .CourseInsert-container-row-inputCon-sliderImage {
           @include flex(row);
           align-items: center;
@@ -61,8 +65,9 @@
             max-height: 200px;
             border: 2px solid $fontColor;
             border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            margin-right: 0.25rem;
+            margin: 0.25rem;
             position: relative;
             overflow: hidden;
 
@@ -74,9 +79,55 @@
 
           // 將inputbox隱藏 用label代替
           .CourseInsert-container-row-inputCon-sliderImage-input {
-            width: 0;
-            height: 0;
-            opacity: 0;
+            display: none;
+          }
+        }
+
+        // six_dishes 課程教材相關
+        .CourseInsert-container-row-inputCon-sixDishes {
+          @include flex(row);
+          justify-content: space-between;
+          position: relative;
+          width: 100%;
+          margin: 0.25rem 0;
+
+          .CourseInsert-container-row-inputCon-sixDishes-label {
+            width: 35%;
+            height: 26vh;
+            max-width: 40%;
+            max-height: 250px;
+            border: 2px solid $fontColor;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            @include flex(row);
+            justify-content: center;
+            align-items: center;
+
+            & img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .CourseInsert-container-row-inputCon-sixDishes-right {
+            width: 60%;
+            position: relative;
+            @include flex(column);
+            justify-content: space-between;
+
+            & input {
+              border-radius: 5px 5px 0 0;
+            }
+
+            & textarea {
+              border-radius: 0 0 5px 5px;
+            }
+          }
+
+          .CourseInsert-container-row-inputCon-sixDishes-input {
             display: none;
           }
         }
