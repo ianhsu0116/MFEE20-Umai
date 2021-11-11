@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "./Button";
+import Calendar from "./Calendar";
 
 const DefaultStudentCard = (props) => {
   let { index } = props;
@@ -37,6 +38,10 @@ const DefaultStudentCard = (props) => {
         [e.target.name]: e.target.checked,
       });
     }
+  };
+  // 即時抓取生日修改
+  const handleBirthdayChange = (day) => {
+    setNewStudentData({ ...newStudentData, birthday: day });
   };
 
   // 送出編輯學生data
@@ -162,16 +167,17 @@ const DefaultStudentCard = (props) => {
               htmlFor="birthday"
               className="DefaultStudentCard-main-row-item-label"
             >
-              生日
+              出生日期
             </label>
-            <input
+            {/* <input
               type="date"
               id="birthday"
               name="birthday"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
-            />
+            /> */}
+            <Calendar onChange={handleBirthdayChange} />
           </div>
         </div>
         <div className="DefaultStudentCard-main-row">
@@ -195,12 +201,12 @@ const DefaultStudentCard = (props) => {
         {/* 會員中心內不顯示此欄位 */}
         {pathname !== "/memberCenter" && (
           <div className="DefaultStudentCard-main-row">
-            <div className="">
+            <div className="DefaultStudentCard-main-row-selectCon">
               <input
                 type="checkbox"
                 id="addIntoStudent"
                 name="addIntoStudent"
-                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                className="DefaultStudentCard-main-row-item-input .DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;
@@ -211,12 +217,12 @@ const DefaultStudentCard = (props) => {
                 新增至預設學員資料
               </label>
             </div>
-            <div className="">
+            <div className="DefaultStudentCard-main-row-selectCon">
               <input
                 type="checkbox"
                 id="autoUpdateMember"
                 name="autoUpdateMember"
-                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                className="DefaultStudentCard-main-row-item-input .DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;
