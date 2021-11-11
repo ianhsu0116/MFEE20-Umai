@@ -81,6 +81,7 @@ select {
   border: 1px solid #666666;
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
+  border-radius: 5px;
 }
 
 a {
@@ -2368,6 +2369,38 @@ a:hover {
 
 .CourseInsert .CourseInsert-container .CourseInsert-container-header h1 {
   font-weight: 100;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-input {
+  width: 100%;
 }
 
 .ReviewButton {

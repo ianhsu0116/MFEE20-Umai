@@ -27,5 +27,23 @@
         font-weight: 100;
       }
     }
+
+    .CourseInsert-container-row {
+      width: 100%;
+      @include flex(row);
+      margin-bottom: 1rem;
+
+      .CourseInsert-container-row-inputCon {
+        @include flex(column);
+        align-items: flex-start;
+        position: relative;
+        width: 100%;
+        margin: 0 1rem;
+
+        .CourseInsert-container-row-inputCon-input {
+          width: 100%;
+        }
+      }
+    }
   }
 }
