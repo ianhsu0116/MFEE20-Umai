@@ -18,12 +18,14 @@ let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期�
 const Calendar = (props) => {
   let { onChange } = props;
 
+  // 日期窗開關
+  let [calenderOpen, setCalenderOpen] = useState(false);
   // 預設的年份
-  let [currentYear, setCurrentYear] = useState(todayYear);
+  let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
   // 預設的月份
-  let [currentMonth, setCurrentMonth] = useState(todayMonth);
+  let [currentMonth, setCurrentMonth] = useState(todayMonth); //todayMonth);
   // 預設的日期
-  let [currentDay, setCurrentDay] = useState(todayDay);
+  let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
   // 正確格式的日期
   let selectedDay = `${currentYear}-${currentMonth + 1}-${currentDay}`;
 
@@ -63,12 +65,15 @@ const Calendar = (props) => {
   // 將行數轉換成等長的Array，使下方能用使用map將其展開
   str_nums = new Array(str_nums).fill(1);
 
-  // 日期窗開關
-  let [calenderOpen, setCalenderOpen] = useState(false);
   // 控制日期窗開關
-  const handleCalenderOpen = () => {
+  const handleCalenderOpen = (e) => {
+    e.stopPropagation();
     calenderOpen ? setCalenderOpen(false) : setCalenderOpen(true);
   };
+  // 點擊空白處關閉日期窗
+  window.addEventListener("click", (e) => {
+    setCalenderOpen(false);
+  });
 
   // 選取日期
   const handleDaySelect = (e) => {
@@ -102,7 +107,12 @@ const Calendar = (props) => {
         <MdKeyboardArrowDown />
       </div>
       {calenderOpen && (
-        <div className="Calender-container">
+        <div
+          className="Calender-container"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <div className="Calender-header">
             <select
               name=""

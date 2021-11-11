@@ -67,25 +67,41 @@
           transition: 0.5s ease;
           font-size: 90%;
           overflow: hidden;
+          margin-right: 0;
+          position: relative;
+
+          .MemberInfo-container-passwordCon-topInput {
+            border-radius: 5px 5px 0 0;
+          }
+          .MemberInfo-container-passwordCon-bottomInput {
+            border-radius: 0 0 5px 5px;
+            position: relative;
+            top: -1px;
+          }
         }
         .MemberInfo-container-passwordCon-active {
           max-width: calc(50% - 1rem);
           max-height: 105px;
+          margin-right: 1rem;
         }
         // 密碼修改按鈕
-        .MemberInfo-container-inputCon-passwordEditBtn,
-        .MemberInfo-container-inputCon-passwordSubmitBtn {
-          border-radius: 5px;
-          padding: 0.15rem 0.35rem;
-          background: rgba(0, 0, 0, 0.2);
-          border: 1px solid $fontColor;
-          margin-left: -10px;
-          margin-right: 20px;
-          font-size: 90%;
+        .MemberInfo-container-inputCon-buttonCon {
+          //height: 100%;
+          .MemberInfo-container-inputCon-passwordEditBtn,
+          .MemberInfo-container-inputCon-passwordSubmitBtn {
+            border-radius: 5px;
+            padding: 0.15rem 0.35rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid $fontColor;
+            // margin-left: -10px;
+            // margin-right: 20px;
+            font-size: 90%;
+            margin-top: 0.25rem;
 
-          &:hover {
-            color: black;
-            border: 1px solid black;
+            &:hover {
+              color: black;
+              border: 1px solid black;
+            }
           }
         }
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BsXDiamond } from "react-icons/bs";
 import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
@@ -147,7 +146,7 @@ const MemberInfo = (props) => {
                 className="MemberInfo-container-inputCon-label"
                 htmlFor="password"
               >
-                密碼
+                密碼修改
               </label>
               <input
                 type="password"
@@ -155,7 +154,7 @@ const MemberInfo = (props) => {
                 id="passwordConfirm"
                 value={passwordInfo.passwordConfirm}
                 placeholder="舊密碼確認"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-topInput"
                 onChange={handlePasswordChange}
               />
               <input
@@ -164,25 +163,27 @@ const MemberInfo = (props) => {
                 id="password"
                 value={passwordInfo.newPassword}
                 placeholder="輸入新密碼"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-bottomInput"
                 onChange={handlePasswordChange}
               />
             </div>
-            <button
-              className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
-                passwordConOpen &&
-                "MemberInfo-container-inputCon-passwordSubmitBtn-active"
-              }`}
-              onClick={handlePasswordEdit}
-            >
-              確認修改
-            </button>
-            <button
-              className="MemberInfo-container-inputCon-passwordEditBtn"
-              onClick={handlePasswordConOpen}
-            >
-              {passwordConOpen ? "取消修改" : "修改密碼"}
-            </button>
+            <div className="MemberInfo-container-inputCon-buttonCon">
+              <button
+                className="MemberInfo-container-inputCon-passwordEditBtn"
+                onClick={handlePasswordConOpen}
+              >
+                {passwordConOpen ? "取消修改" : "修改密碼"}
+              </button>
+              <button
+                className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
+                  passwordConOpen &&
+                  "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+                }`}
+                onClick={handlePasswordEdit}
+              >
+                確認修改
+              </button>
+            </div>
           </div>
           <div className="MemberInfo-container-buttonCon">
             <Button

@@ -8,6 +8,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
+import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.jpg";
 
 const MemberSidebar = (props) => {
@@ -155,6 +156,20 @@ const MemberSidebar = (props) => {
               onClick={handleChangeBoard}
             >
               優惠券
+            </span>
+          </li>
+          <li
+            className={`MemberSidebar-container-ul-li ${
+              currentBoard === "新增課程" &&
+              "MemberSidebar-container-ul-li-active"
+            }`}
+          >
+            <GiCook />
+            <span
+              className="MemberSidebar-container-ul-li-text"
+              onClick={handleChangeBoard}
+            >
+              新增課程
             </span>
           </li>
           <li className="MemberSidebar-container-ul-li">

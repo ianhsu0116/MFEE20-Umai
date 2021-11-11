@@ -7,6 +7,7 @@ import OrderInfo from "./OrderInfo";
 import CollectionCourse from "./CollectionCourse";
 import CollectionCoupons from "./CollectionCoupons";
 import CollectionArticle from "./CollectionArticle";
+import CourseInsert from "./CourseInsert";
 
 const MemberCenter = (props) => {
   const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
@@ -24,6 +25,7 @@ const MemberCenter = (props) => {
         {currentBoard === "收藏課程" && <CollectionCourse />}
         {currentBoard === "收藏文章" && <CollectionArticle />}
         {currentBoard === "優惠券" && <CollectionCoupons />}
+        {currentBoard === "新增課程" && <CourseInsert />}
       </div>
     </div>
   );

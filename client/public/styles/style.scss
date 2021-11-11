@@ -46,7 +46,8 @@ body {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
+  opacity: 0;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -194,12 +195,18 @@ a {
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
 @import "./member/CollectionArticle";
+@import "./member/CourseInsert";
+@import "./member/ReviewButton";
 
+
+// 課程分類
 @import "./course/Course";
 @import "./course/CourseCard_Course";
 @import "./course/StarGroup_Course";
 
+// 課程詳細
 @import "./CourseDetail/_CourseDetailed";
+
 
 
 // RWD
