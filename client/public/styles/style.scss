@@ -107,6 +107,12 @@ select {
   border: 1px solid $fontColor;
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 a {

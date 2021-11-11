@@ -7,7 +7,7 @@
   .CourseInsert-container {
     height: 95%;
     width: 100%;
-    //overflow: scroll;
+    overflow: scroll;
     padding: 1rem 2rem;
     margin-left: 1rem;
     border-radius: 10px;
@@ -25,6 +25,112 @@
 
       & h1 {
         font-weight: 100;
+      }
+    }
+
+    .CourseInsert-container-row {
+      width: 100%;
+      @include flex(row);
+      margin-bottom: 1rem;
+
+      .CourseInsert-container-row-inputCon {
+        @include flex(column);
+        align-items: flex-start;
+        position: relative;
+        width: 100%;
+        margin: 0 1rem;
+
+        .CourseInsert-container-row-inputCon-label {
+          font-weight: 900;
+        }
+
+        .CourseInsert-container-row-inputCon-input {
+          width: 100%;
+        }
+
+        // slider images相關的
+        .CourseInsert-container-row-inputCon-sliderImage {
+          @include flex(row);
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          flex-wrap: wrap;
+
+          .CourseInsert-container-row-inputCon-sliderImage-label {
+            @include flex(row);
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 150px;
+            height: 10vw;
+            max-height: 200px;
+            border: 2px solid $fontColor;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            margin: 0.25rem;
+            position: relative;
+            overflow: hidden;
+
+            & img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          // 將inputbox隱藏 用label代替
+          .CourseInsert-container-row-inputCon-sliderImage-input {
+            display: none;
+          }
+        }
+
+        // six_dishes 課程教材相關
+        .CourseInsert-container-row-inputCon-sixDishes {
+          @include flex(row);
+          justify-content: space-between;
+          position: relative;
+          width: 100%;
+          margin: 0.25rem 0;
+
+          .CourseInsert-container-row-inputCon-sixDishes-label {
+            width: 35%;
+            height: 26vh;
+            max-width: 40%;
+            max-height: 250px;
+            border: 2px solid $fontColor;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            @include flex(row);
+            justify-content: center;
+            align-items: center;
+
+            & img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .CourseInsert-container-row-inputCon-sixDishes-right {
+            width: 60%;
+            position: relative;
+            @include flex(column);
+            justify-content: space-between;
+
+            & input {
+              border-radius: 5px 5px 0 0;
+            }
+
+            & textarea {
+              border-radius: 0 0 5px 5px;
+            }
+          }
+
+          .CourseInsert-container-row-inputCon-sixDishes-input {
+            display: none;
+          }
+        }
       }
     }
   }

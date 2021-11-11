@@ -82,6 +82,12 @@ select {
   border: 1px solid #666666;
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
+  border-radius: 5px;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 a {
@@ -1820,6 +1826,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .MemberSidebar {
@@ -2794,6 +2801,7 @@ a:hover {
 .CourseInsert .CourseInsert-container {
   height: 95%;
   width: 100%;
+  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -2824,6 +2832,172 @@ a:hover {
 
 .CourseInsert .CourseInsert-container .CourseInsert-container-header h1 {
   font-weight: 100;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-label {
+  font-weight: 900;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-input {
+  width: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 150px;
+          flex: 1 1 150px;
+  height: 10vw;
+  max-height: 200px;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin: 0.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label img {
+  width: 100%;
+  height: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-input {
+  display: none;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin: 0.25rem 0;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label {
+  width: 35%;
+  height: 26vh;
+  max-width: 40%;
+  max-height: 250px;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label img {
+  width: 100%;
+  height: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right {
+  width: 60%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right input {
+  border-radius: 5px 5px 0 0;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right textarea {
+  border-radius: 0 0 5px 5px;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-input {
+  display: none;
 }
 
 .ReviewButton {
