@@ -100,10 +100,11 @@
           margin: 0.25rem 0;
 
           .CourseInsert-container-row-inputCon-sixDishes-label {
-            width: 35%;
-            height: 26vh;
-            max-width: 40%;
-            max-height: 250px;
+            width: 20vw;
+            height: 20vw;
+            max-width: 270px;
+            max-height: 270px;
+            margin-right: 0.75rem;
             border: 2px solid $fontColor;
             border-radius: 5px;
             cursor: pointer;
@@ -128,7 +129,7 @@
           }
 
           .CourseInsert-container-row-inputCon-sixDishes-right {
-            width: 60%;
+            width: 65%;
             position: relative;
             @include flex(column);
             justify-content: space-between;
