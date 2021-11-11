@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReviewButton from "../../components/member/ReviewButton";
 import Calendar from "../../components/Calendar";
 import Button from "../../components/Button";
+import { FaPen } from "react-icons/fa";
 
 // 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
 let sixDishesArray = [11, 22, 33, 44, 55, 66];
@@ -245,7 +246,11 @@ const CourseInsert = (props) => {
                     htmlFor={item}
                     className="CourseInsert-container-row-inputCon-sliderImage-label"
                   >
-                    <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                    {sliderImage[index] ? (
+                      <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                    ) : (
+                      <FaPen />
+                    )}
                   </label>
                   <input
                     id={item}
@@ -519,7 +524,11 @@ const CourseInsert = (props) => {
                   htmlFor={item}
                   className="CourseInsert-container-row-inputCon-sixDishes-label"
                 >
-                  <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
+                  {sixDishesImage[index] ? (
+                    <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
+                  ) : (
+                    <FaPen />
+                  )}
                 </label>
                 <input
                   id={item}

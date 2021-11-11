@@ -18,6 +18,8 @@ let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期�
 const Calendar = (props) => {
   let { onChange } = props;
 
+  let availableDays = ["2021-11-15", "2021-11-20", "2021-11-29"];
+
   // 日期窗開關
   let [calenderOpen, setCalenderOpen] = useState(false);
   // 預設的年份
@@ -27,7 +29,9 @@ const Calendar = (props) => {
   // 預設的日期
   let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
   // 正確格式的日期
-  let selectedDay = `${currentYear}-${currentMonth + 1}-${currentDay}`;
+  let selectedDay = `${currentYear}-${currentMonth <= 9 ? "0" : ""}${
+    currentMonth + 1
+  }-${currentDay <= 9 ? "0" : ""}${currentDay}`;
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -102,7 +106,9 @@ const Calendar = (props) => {
       <div className="Calender-selector" onClick={handleCalenderOpen}>
         <FcCalendar />
         <span className="Calender-selector-text">
-          {currentYear} - {currentMonth + 1} - {currentDay}
+          {currentYear} - {currentMonth <= 9 ? "0" : ""}
+          {currentMonth + 1} - {currentDay <= 9 ? "0" : ""}
+          {currentDay}
         </span>
         <MdKeyboardArrowDown />
       </div>
