@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, link } from "react-router-dom";
+<<<<<<< HEAD
 // import moment from "moment";
+=======
+import moment from "moment";
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
 import image from "./images/sushi-unsplash.jpg";
 
 const Coupons = (props) => {

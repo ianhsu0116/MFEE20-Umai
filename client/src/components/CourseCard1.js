@@ -9,7 +9,11 @@ import StarGroup from "./StarGroup";
 
 const CourseCard1 = (props) => {
   let [memberLimit, member] = [25, 15];
+<<<<<<< HEAD
   let [scoreSum, allScore] = [140, 40];
+=======
+  let [scoreSum, allScore] = [135, 40];
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
   let percent = (scoreSum / allScore) * 20;
 
   // 模擬即時顯示進度條

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { GiXylophone } from "react-icons/gi";
+import { BsXDiamond } from "react-icons/bs";
 import Button from "../../components/Button";
+import CreditCards from "../../components/CreditCards";
+import Calendar from "../../components/Calendar";
 
-// 給創造信用卡卡號的四個input使用
-let cCardArray = [1, 2, 3, 4];
 const MemberInfo = (props) => {
   const [memberInfo, setMemberInfo] = useState({
     lastName: "",
@@ -11,50 +11,37 @@ const MemberInfo = (props) => {
     telephone: "",
     birthday: "",
   });
-  const [cardInfo, setCardInfo] = useState({
-    cardNumber: ["0", "1", "2", "3"],
-    cardDate: "",
-    cardSafety: "",
-  });
   const [passwordInfo, setPasswordInfo] = useState({
     passwordConfirm: "",
     newPassword: "",
   });
+  const [creditCardsInfo, setCreditCardsInfo] = useState({
+    cvc: "",
+    expiry: "",
+    name: "",
+    number: "4477000000000000",
+  });
 
-  // 給信用卡16碼 => 分四個input box
-  const cCardInputRefs = cCardArray.map((i) => React.createRef());
 
   // 即時抓取基本資料填寫
   const handleMemberInfoChange = (e) => {
     setMemberInfo({ ...memberInfo, [e.target.name]: e.target.value });
   };
 
-  // 即時抓取信用卡號填寫
-  const handleCCardChange = (index) => (e) => {
-    // 自動換到下一欄位
-    if (e.target.value.length >= 4 && cCardInputRefs[index + 1]) {
-      cCardInputRefs[index + 1].current.focus();
-    }
-
-    // 判斷此次是否為卡號
-    if (e.target.name === "cardNumber") {
-      let newCardInfo = { ...cardInfo };
-      newCardInfo[e.target.name][index] = e.target.value;
-      setCardInfo(newCardInfo);
-    } else {
-      console.log("f");
-      setCardInfo({ ...cardInfo, [e.target.name]: e.target.value });
-    }
-  };
-
   // 個資修改
   const handleInfoEdit = () => {
     console.log("handleInfoEdit");
+    console.log(memberInfo);
+  };
+  // 生日修改
+  const handleBirthdayChange = (day) => {
+    setMemberInfo({ ...memberInfo, birthday: day });
   };
 
   // 付款資訊修改
   const handlePaymentEdit = () => {
     console.log("handlePatmentEdit");
+    console.log(creditCardsInfo);
   };
 
   // 密碼修改容器開關
@@ -139,13 +126,15 @@ const MemberInfo = (props) => {
               >
                 出生日期
               </label>
-              <input
+
+              {/* <input
                 type="date"
                 name="birthday"
                 id="birth"
                 className="MemberInfo-container-inputCon-input"
                 onChange={handleMemberInfoChange}
-              />
+              /> */}
+              <Calendar onChange={handleBirthdayChange} />
             </div>
           </div>
           <div className="MemberInfo-container-row">
@@ -205,66 +194,10 @@ const MemberInfo = (props) => {
           <header className="MemberInfo-container-header">
             <h2>付款資訊</h2>
           </header>
-          <div className="MemberInfo-container-row">
-            <div className="MemberInfo-container-inputCon">
-              <label
-                className="MemberInfo-container-inputCon-label"
-                htmlFor="creditCard-number"
-              >
-                信用卡卡號
-              </label>
-              <div className="MemberInfo-container-inputCon-ccardCon">
-                {/* 直接生成四個CCard input */}
-                {cCardArray.map((i, index) => (
-                  <input
-                    key={index}
-                    ref={cCardInputRefs[index]}
-                    onChange={handleCCardChange(index)}
-                    name="cardNumber"
-                    type="text"
-                    maxLength="4"
-                    id={index === 0 && "creditCard-number"}
-                    className="MemberInfo-container-inputCon-input"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="MemberInfo-container-row">
-            <div className="MemberInfo-container-inputCon">
-              <label
-                className="MemberInfo-container-inputCon-label"
-                htmlFor="CCard-date"
-              >
-                到期日(MM/DD)
-              </label>
-              <input
-                type="text"
-                name="cardDate"
-                id="CCard-date"
-                maxLength="5"
-                className="MemberInfo-container-inputCon-input 
-              "
-                onChange={handleCCardChange()}
-              />
-            </div>
-            <div className="MemberInfo-container-inputCon">
-              <label
-                className="MemberInfo-container-inputCon-label"
-                htmlFor="CCard-safety"
-              >
-                末三碼
-              </label>
-              <input
-                type="text"
-                name="cardSafety"
-                maxLength="3"
-                id="CCard-safety"
-                className="MemberInfo-container-inputCon-input "
-                onChange={handleCCardChange()}
-              />
-            </div>
-          </div>
+          <CreditCards
+            creditCardsInfo={creditCardsInfo}
+            setCreditCardsInfo={setCreditCardsInfo}
+          />
 
           <div className="MemberInfo-container-buttonCon">
             <Button

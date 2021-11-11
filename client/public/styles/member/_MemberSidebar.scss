@@ -21,15 +21,29 @@ $avatar-size: 130px;
       width: $avatar-size;
       height: $avatar-size;
       border-radius: 50%;
-      //overflow: hidden;
+      overflow: hidden;
       margin: 0.5rem 0;
       position: relative;
       cursor: pointer;
-      .MemberSidebar-container-avatar-img {
+
+      .MemberSidebar-container-avatar-input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+      .MemberSidebar-container-avatar-label {
         width: $avatar-size;
         height: $avatar-size;
         border-radius: 50%;
+        cursor: pointer;
+        .MemberSidebar-container-avatar-img {
+          width: $avatar-size;
+          height: $avatar-size;
+          border-radius: 50%;
+        }
       }
+
       .MemberSidebar-container-avatar-pen {
         position: absolute;
         top: calc(50% - 10px);

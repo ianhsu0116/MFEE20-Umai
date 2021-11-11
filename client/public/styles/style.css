@@ -6,9 +6,35 @@
           box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: #666666;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  opacity: 0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb257;
+  opacity: 1;
 }
 
 h1,
@@ -45,6 +71,16 @@ input[type="reset"] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+input,
+textarea,
+select {
+  color: #666666;
+  outline: none;
+  border: 1px solid #666666;
+  padding: 0.25rem 0.45rem;
+  font-size: 1rem;
 }
 
 a {
@@ -1316,15 +1352,221 @@ a:hover {
   color: #FFB257;
 }
 
+.CreditCards {
+  width: 70%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+.CreditCards .CreditCards-left {
+  margin: 0 1rem 0 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 1 180px;
+          flex: 2 1 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row {
+  padding: 0.5rem 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-input {
+  width: 100%;
+  margin: 0 1rem 0 0;
+  border-radius: 5px;
+  border: 1px solid #666666;
+}
+
+.rccs {
+  width: 275px !important;
+  position: relative;
+}
+
+.rccs .rccs__card {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 1500px) {
+  .CreditCards {
+    width: 80%;
+  }
+}
+
+.Calender {
+  position: relative;
+  width: 100%;
+  max-width: 255px;
+  max-height: 34px;
+}
+
+.Calender .Calender-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.Calender .Calender-selector .Calender-selector-text {
+  margin: 0 0.5rem;
+}
+
+.Calender .Calender-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.Calender .Calender-container {
+  position: absolute;
+  z-index: 5;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 255px;
+  max-width: 180%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+}
+
+.Calender .Calender-container .Calender-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Calender .Calender-container .Calender-header .year-selector,
+.Calender .Calender-container .Calender-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr .Calender-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+  background: #b3cedb;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
 .Login {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  max-width: 1440px;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1342,12 +1584,190 @@ a:hover {
 
 .Login .Login-container {
   top: -100%;
-  width: 50%;
+  width: 750px;
   height: 500px;
   background: white;
   border-radius: 15px;
+  overflow: hidden;
   -webkit-animation: Login-scaleUp 0.35s ease-in;
           animation: Login-scaleUp 0.35s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Login .Login-container .Login-container-left {
+  width: 50%;
+  background: url(../../images/loginPageBackground.jpg) center center no-repeat;
+  background-size: cover;
+}
+
+.Login .Login-container .Login-container-right {
+  width: 50%;
+  padding: 20px 50px;
+  position: relative;
+  background: #d8a466;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn,
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn img,
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn img {
+  width: 25px;
+  height: 25px;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+  background: #4267b2;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  margin: 1rem 0;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-text {
+  background: #d8a466;
+  padding: 0.35rem 0.75rem;
+  z-index: 1;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-line {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon label {
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon input {
+  border-radius: 5px;
+  padding: 0.35rem 0.6rem 0.35rem 2.2rem;
+  margin-top: 0.25rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon svg {
+  position: absolute;
+  top: 37px;
+  left: 8px;
+  width: 22px;
+  height: 22px;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con button {
+  width: 50%;
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  background: #0078b3;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con .login-submit-btn {
+  margin-right: 0.1;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con .register-submit-btn {
+  margin-left: 0.1rem;
+  background: #ffb257;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @-webkit-keyframes Login-scaleUp {
@@ -1438,12 +1858,27 @@ a:hover {
   width: 130px;
   height: 130px;
   border-radius: 50%;
+  overflow: hidden;
   margin: 0.5rem 0;
   position: relative;
   cursor: pointer;
 }
 
-.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-img {
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label .MemberSidebar-container-avatar-img {
   width: 130px;
   height: 130px;
   border-radius: 50%;
@@ -1597,27 +2032,13 @@ a:hover {
   font-size: 1.15rem;
 }
 
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-label {
+  margin-bottom: 0.25rem;
+}
+
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
   border-radius: 5px;
-  border: 1px solid #666666;
-  padding: 0.15rem 0.35rem;
-  margin-top: 0.25rem;
-  font-size: 1.1rem;
   width: 100%;
-}
-
-.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-ccardCon .MemberInfo-container-inputCon-input {
-  margin-right: 0.25rem;
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon {
@@ -1631,7 +2052,7 @@ a:hover {
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon-active {
   max-width: calc(50% - 1rem);
-  max-height: 95px;
+  max-height: 105px;
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordEditBtn,
@@ -1770,6 +2191,7 @@ a:hover {
           justify-content: flex-start;
   -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
 .OrderInfo .OrderInfo-container .OrderInfo-container-header {
@@ -1808,6 +2230,7 @@ a:hover {
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
   margin: 0 0 1rem 0;
   overflow: scroll;
+  width: 100%;
 }
 
 .OrderCard .OrderCard-container {
@@ -1937,7 +2360,6 @@ a:hover {
 .OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea {
   resize: none;
   width: 100%;
-  font-size: 1rem;
 }
 
 .OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right,
@@ -2013,7 +2435,6 @@ a:hover {
   background: #f3f3f3;
   border-bottom: 1px solid #d8a466;
   max-height: 450px;
-  padding: 0.5rem;
   -webkit-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 }

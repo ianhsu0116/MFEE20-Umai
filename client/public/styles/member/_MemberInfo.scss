@@ -46,24 +46,18 @@
           @include flex(column);
           margin-right: 1rem;
           font-size: 1.15rem;
+          .MemberInfo-container-inputCon-label {
+            margin-bottom: 0.25rem;
+          }
 
           // 一般的input box
           .MemberInfo-container-inputCon-input {
             border-radius: 5px;
-            border: 1px solid $fontColor;
-            padding: 0.15rem 0.35rem;
-            margin-top: 0.25rem;
-            font-size: 1.1rem;
+            // border: 1px solid $fontColor;
+            //padding: 0.15rem 0.35rem;
+            //margin-top: 0.25rem;
+            // font-size: 1.1rem;
             width: 100%;
-          }
-
-          // 信用卡輸入區塊
-          .MemberInfo-container-inputCon-ccardCon {
-            @include flex(row);
-
-            .MemberInfo-container-inputCon-input {
-              margin-right: 0.25rem;
-            }
           }
         }
 
@@ -76,7 +70,7 @@
         }
         .MemberInfo-container-passwordCon-active {
           max-width: calc(50% - 1rem);
-          max-height: 95px;
+          max-height: 105px;
         }
         // 密碼修改按鈕
         .MemberInfo-container-inputCon-passwordEditBtn,

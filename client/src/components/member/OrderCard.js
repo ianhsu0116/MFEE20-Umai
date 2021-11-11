@@ -5,16 +5,22 @@ import { AiOutlineStar } from "react-icons/ai";
 import foodImg from "../images/sushi-unsplash.jpg";
 
 const OrderCard = (props) => {
+<<<<<<< HEAD
   // 此訂單詳細資訊
   let { orderDetail } = props;
   // 下拉視窗開關的值
   const [orderDetailOpen, setOrderDetailOpen] = useState(false);
+=======
+  let { index, toggle, orderDetailOpen, orderDetail } = props;
+
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
   // 課程評論輸入值 + 星星數量
   const [commentAndStar, setCommentAndStar] = useState({
     star: 1,
     comment: "",
   });
 
+<<<<<<< HEAD
   // 測試中 ==== 感應區問題
   useEffect(() => {
     console.log("didmount");
@@ -23,6 +29,11 @@ const OrderCard = (props) => {
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
     orderDetailOpen ? setOrderDetailOpen(false) : setOrderDetailOpen(true);
+=======
+  // 控制下拉視窗開關
+  const handleOrderDetailOpen = () => {
+    toggle(index);
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
   };
 
   // 星星動態增減
@@ -53,9 +64,13 @@ const OrderCard = (props) => {
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
           <h5>
+<<<<<<< HEAD
             <Link to="/course/category?id=course_id">
               {orderDetail.courseName}
             </Link>
+=======
+            <Link to="/courses/course_id">{orderDetail.courseName}</Link>
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
           </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">
@@ -86,7 +101,11 @@ const OrderCard = (props) => {
 
       <div
         className={`OrderCard-detail ${
+<<<<<<< HEAD
           orderDetailOpen && "OrderCard-detail-active"
+=======
+          orderDetailOpen === index && "OrderCard-detail-active"
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
         }`}
       >
         <header className="OrderCard-detail-title">
@@ -134,9 +153,15 @@ const OrderCard = (props) => {
                   className="OrderCard-detail-container2-left-textarea"
                   onChange={handleCommentChange}
                   cols="30"
+<<<<<<< HEAD
                   rows="7"
                   maxLength="30"
                   placeholder="課程評論(字數限制: 30)"
+=======
+                  rows="5"
+                  maxLength="50"
+                  placeholder="課程評論(字數限制: 50)"
+>>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
                   value={commentAndStar.comment}
                 ></textarea>
               </div>

@@ -16,6 +16,7 @@ import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture"
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
 
+import Calendar from "./components/Calendar";
 
 function App() {
   let [showLogin, setShowLogin] = useState(false);
@@ -23,7 +24,6 @@ function App() {
   // 開啟Login Container
   const handleLoginClick = (e) => {
     e.stopPropagation();
-    console.log("loginOpen");
     setShowLogin(true);
   };
 
@@ -31,9 +31,12 @@ function App() {
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);
-      console.log("window");
     });
   }, []);
+
+  const onChange = (e) => {
+    console.log(e);
+  };
 
   return (
     <Router>
@@ -47,6 +50,7 @@ function App() {
           <ShareCard />
           <CourseMiniCard />
           <StarGroup percent={96} allScore={50} />
+          <Calendar onChange={onChange} />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter />

@@ -1,8 +1,8 @@
 $themeColor: #d8a466;
-//$themeColorBlue: #3f7289;
 $themeColorBlue: #0078b3;
 $activeColor: #ffb257;
 $fontColor: #666666;
+$facebookBlue: rgb(66, 103, 178);
 
 // courseCard1用的變數
 $cardDarkColor: #5d5548;
@@ -24,9 +24,40 @@ $titleBackgroundColor: #eeeeee;
   box-sizing: border-box;
 }
 
+html {
+  //overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  height: 100%;
+}
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: $fontColor;
+
+  // //將scrollbar移除
+  // -ms-overflow-style: none;
+  // //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+  // overflow: auto;
+}
+
+// 設定scrollbar樣式
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  //display: none;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  //background: $themeColor;
+  border-radius: 3px;
+  opacity: 0;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $activeColor;
+  opacity: 1;
 }
 
 // 覆蓋bootstrap樣式
@@ -43,25 +74,6 @@ ol {
   padding: 0;
   margin: 0;
 }
-
-// h1 {
-//   font-size: calc(1.3rem + 1.2vw);
-// }
-// h2 {
-//   font-size: calc(1.25rem + 1vw);
-// }
-// h3 {
-//   font-size: calc(1.1rem + 0.8vw);
-// }
-// h4 {
-//   font-size: calc(1rem + 0.4vw);
-// }
-// h5 {
-//   font-size: calc(1rem + 0.3vw);
-// }
-// h6 {
-//   font-size: calc(1rem + 0.1vw);
-// }
 
 ul,
 ol {
@@ -84,6 +96,16 @@ input[type="reset"] {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+input,
+textarea,
+select {
+  color: $fontColor;
+  outline: none;
+  border: 1px solid $fontColor;
+  padding: 0.25rem 0.45rem;
+  font-size: 1rem;
 }
 
 a {
@@ -157,6 +179,8 @@ a {
 @import "./CourseMiniCard";
 @import "./ChefCard";
 @import "./Breadcrumb";
+@import "./CreditCards";
+@import "./Calendar";
 
 // member相關
 @import "./member/Login";
@@ -176,6 +200,7 @@ a {
 @import "./course/StarGroup_Course";
 
 @import "./CourseDetail/_CourseDetailed";
+
 
 // RWD
 @media screen and (max-width: 1200px) {
