@@ -46,7 +46,8 @@ body {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
+  opacity: 0;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -189,7 +190,9 @@ a {
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
-@import "./member/CollectionArticle.scss";
+@import "./member/CollectionArticle";
+@import "./member/CourseInsert";
+@import "./member/ReviewButton";
 
 // RWD
 @media screen and (max-width: 1200px) {

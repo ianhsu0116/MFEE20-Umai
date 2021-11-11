@@ -1,0 +1,43 @@
+.ReviewButton {
+  height: 42px;
+  width: 80px;
+  padding: 2px;
+  background: $themeColor;
+  border-radius: 50px;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  @include flex(row);
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  z-index: 10;
+
+  .ReviewButton-btn {
+    position: relative;
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: $themeColorBlue;
+    border-radius: 50px;
+    left: 0px;
+    transition: all 0.3s ease;
+
+    .ReviewButton-btn-imgCon {
+      width: 25px;
+      height: 25px;
+      background: url(../../icons/pencil.svg) no-repeat;
+    }
+  }
+
+  .ReviewButton-btn-active {
+    background: $themeColorBlue;
+    left: 38px;
+
+    .ReviewButton-btn-imgCon {
+      background: url(../../icons/id-card.svg) no-repeat;
+    }
+  }
+}
