@@ -35,6 +35,9 @@
 
     .DefaultStudentCard-title-right {
       font-size: 1rem;
+      @include flex(row);
+      max-height: 34px;
+
       .DefaultStudentCard-title-right-select {
         padding: 0.25rem 0.25rem;
         font-size: 1rem;
@@ -123,6 +126,7 @@
           border: 1px solid gray;
           color: #444;
           user-select: none;
+          width: auto;
 
           &:checked {
             color: yellow;

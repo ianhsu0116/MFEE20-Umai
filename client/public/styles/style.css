@@ -83,6 +83,10 @@ select {
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
   border-radius: 5px;
+}
+
+input,
+textarea {
   width: 100%;
 }
 
@@ -716,6 +720,14 @@ a:hover {
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
   font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  max-height: 34px;
 }
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-select {
@@ -837,6 +849,7 @@ a:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  width: auto;
 }
 
 .DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox:checked {
@@ -2952,10 +2965,11 @@ a:hover {
 }
 
 .CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label {
-  width: 35%;
-  height: 26vh;
-  max-width: 40%;
-  max-height: 250px;
+  width: 20vw;
+  height: 20vw;
+  max-width: 270px;
+  max-height: 270px;
+  margin-right: 0.75rem;
   border: 2px solid #666666;
   border-radius: 5px;
   cursor: pointer;
@@ -2991,7 +3005,7 @@ a:hover {
 }
 
 .CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right {
-  width: 60%;
+  width: 65%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;

@@ -206,7 +206,7 @@ const DefaultStudentCard = (props) => {
                 type="checkbox"
                 id="addIntoStudent"
                 name="addIntoStudent"
-                className="DefaultStudentCard-main-row-item-input .DefaultStudentCard-main-row-selectCon-checkbox"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;
@@ -222,7 +222,7 @@ const DefaultStudentCard = (props) => {
                 type="checkbox"
                 id="autoUpdateMember"
                 name="autoUpdateMember"
-                className="DefaultStudentCard-main-row-item-input .DefaultStudentCard-main-row-selectCon-checkbox"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;

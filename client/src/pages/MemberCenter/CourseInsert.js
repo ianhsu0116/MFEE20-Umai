@@ -323,6 +323,7 @@ const CourseInsert = (props) => {
             <select
               name="course_level"
               id="course_level"
+              className="CourseInsert-container-row-inputCon-input"
               onChange={handleCourseChange}
             >
               <option value="1">高階</option>
@@ -342,6 +343,7 @@ const CourseInsert = (props) => {
             <select
               name="course_category"
               id="course_category"
+              className="CourseInsert-container-row-inputCon-input"
               onChange={handleCourseChange}
               value={courseDetail.course_category}
             >
