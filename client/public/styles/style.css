@@ -1,0 +1,4108 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  color: #666666;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  opacity: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  opacity: 0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb257;
+  opacity: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+svg {
+  vertical-align: baseline;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+input,
+textarea,
+select {
+  color: #666666;
+  outline: none;
+  border: 1px solid #666666;
+  padding: 0.25rem 0.45rem;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #666666;
+}
+
+a:hover {
+  color: #ffb257;
+}
+
+.button-themeColor {
+  padding: 0.35rem 0.75rem;
+  background: #d8a466;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-themeColor:hover {
+  background-color: #ffb257;
+}
+
+.button-themeColorBlue {
+  padding: 0.35rem 0.75rem;
+  background: #0078b3;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-themeColorBlue:hover {
+  background-color: #006ca1;
+}
+
+.button-highLeveColor {
+  padding: 0.35rem 0.75rem;
+  background: #eb6b6a;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-highLeveColor:hover {
+  background-color: #cc5a5a;
+}
+
+.button-activeColor {
+  padding: 0.35rem 0.75rem;
+  background: #ffb257;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-activeColor:hover {
+  background-color: #ffb257;
+}
+
+.button-darkColor {
+  padding: 0.35rem 0.75rem;
+  background: #666666;
+  color: white;
+  border-radius: 5px;
+}
+
+.button-darkColor:hover {
+  background-color: #424242;
+}
+
+.Navbar {
+  background: #d8a466;
+  color: white;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 100%;
+}
+
+.Navbar .Navbar-container {
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item a .UmaiLogo {
+  width: 85px;
+  padding: 0.25rem 0;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  background: white;
+  margin: 0 0.15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
+  fill: #d8a466;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.OptionBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  margin: 0.5rem;
+}
+
+.OptionBar .OptionBar-ul {
+  width: 65%;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 100px;
+  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.OptionBar .OptionBar-ul .OptionBar-ul-li {
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  color: #0078b3;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: 900;
+}
+
+.OptionBar .OptionBar-ul .OptionBar-ul-li-active {
+  background: linear-gradient(45deg, #ffb257, #d8a466);
+  color: white;
+}
+
+.CourseCard1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 900px;
+  min-height: 200px;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 1rem 0;
+}
+
+.CourseCard1 .CourseCard1-imageCon {
+  height: 100%;
+  width: 38%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.CourseCard1 .CourseCard1-imageCon img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.CourseCard1 .CourseCard1-imageCon .CourseCard1-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.CourseCard1 .CourseCard1-detailCon {
+  padding: 1rem;
+  font-size: 95%;
+  width: 60%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  border-top-right-radius: 60px 130px;
+  border-bottom-right-radius: 60px 130px;
+  z-index: 3;
+  background: white;
+  position: relative;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-h4 {
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-company svg {
+  fill: #ffb257;
+  font-size: 1.15rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-courseTime {
+  margin-top: 0.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount {
+  font-size: 80%;
+  margin-top: 0.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon {
+  width: 130px;
+  height: 6px;
+  border-radius: 5px;
+  border: 1px solid #ffb257;
+  position: relative;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon .CourseCard1-detailCon-MemberCount-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #ffb257;
+  border: 1px solid #ffb257;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-courseLevel {
+  display: block;
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .highLevel {
+  background: #eb6b6a;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .midLevel {
+  background: #5f9e72;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .lowLevel {
+  background: #5eb2eb;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard1-detailCon-bottom-coursePrice-origin {
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: line-through;
+  margin-bottom: -8px;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard1-detailCon-bottom-coursePrice-discount {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn {
+  position: absolute;
+  z-index: 6;
+  right: -7px;
+  top: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
+  fill: #eb6b6a;
+  width: 75%;
+  height: 75%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard1 .CourseCard1-buttonCon {
+  width: 30%;
+  height: 100%;
+  background: #5d5548;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-buttonCon .CourseCard1-buttonCon-btn {
+  margin: 0.5rem 1.3rem;
+  position: relative;
+  width: 88px;
+  text-align: center;
+  font-size: 80%;
+}
+
+.CourseCard1:hover .CourseCard1-imageCon {
+  width: 34%;
+}
+
+.CourseCard1:hover .CourseCard1-detailCon {
+  width: 47%;
+}
+
+.Coupons {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  margin: 1rem;
+}
+
+.Coupons:hover {
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.Coupons .Coupons-imageCon {
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+  position: relative;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-img {
+  height: 100%;
+  width: 100%;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner:hover {
+  -webkit-transform: scale(1.1) rotate(45deg);
+          transform: scale(1.1) rotate(45deg);
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner a {
+  color: white;
+}
+
+.Coupons .Coupons-textCon {
+  height: 60%;
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-title {
+  font-size: 1.15rem;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom {
+  font-size: 85%;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-title {
+  font-weight: 900;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-expireDate {
+  color: #d8a466;
+}
+
+.Coupons-disabled {
+  cursor: not-allowed;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.DefaultStudentCard {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 0.5rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px;
+  background: #eeeeee;
+  padding: 0.75rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
+  -webkit-box-shadow: 2px 2px 5px rgba(32, 26, 26, 0.3);
+          box-shadow: 2px 2px 5px rgba(32, 26, 26, 0.3);
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left {
+  font-weight: 900;
+  font-size: 110%;
+  color: #d8a466;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  width: 30px;
+  height: 30px;
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
+  font-size: 1rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-select {
+  padding: 0.25rem 0.25rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #666666;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 90%;
+  margin-left: 0.5rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main {
+  max-height: 0;
+  -webkit-transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
+  opacity: 0;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  display: none;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title {
+  border-radius: 15px 15px 0 0;
+  -webkit-box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+          box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main {
+  border-radius: 0 0 15px 15px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 1rem 2rem;
+  max-height: 500px;
+  -webkit-transition: 0.4s ease-in;
+  transition: 0.4s ease-in;
+  opacity: 1;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  margin: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-label {
+  cursor: pointer;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  padding: 0.15rem 0.35rem;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-itemEmail {
+  width: 100%;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon {
+  margin: 0 1rem;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox {
+  display: inline-block;
+  background-color: #aaa;
+  padding: 3px 6px;
+  border: 1px solid gray;
+  color: #444;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox:checked {
+  color: yellow;
+  background-color: #0078b3;
+}
+
+@-webkit-keyframes DefaultStudentCard-scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes DefaultStudentCard-scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+.StarGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.StarGroup p {
+  font-size: 0.7rem;
+}
+
+.StarGroup .StarGroup-container {
+  max-width: 80px;
+  position: relative;
+  height: 17px;
+  overflow: hidden;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-star {
+  z-index: 2;
+  width: 101%;
+  height: 100%;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-background {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.ShareCard {
+  margin: 20px 0;
+  height: 470px;
+  width: 320px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ShareCardPictureBox {
+  position: relative;
+  margin-top: 10px;
+  height: 145px;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ShareCardPictureBox .ShareCardPicture {
+  position: relative;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  margin: 35px 105px;
+}
+
+.ShareCardPictureBox .ShareCardPicture img {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ShareCardPictureName {
+  color: #707070;
+  size: 20px;
+  font-weight: 700px;
+  text-align: center;
+  padding: 5px;
+}
+
+.ShareCardCourseName {
+  height: 50px;
+  width: 75%;
+  margin: auto;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #000000;
+}
+
+.st-boxPos {
+  position: relative;
+  height: 32px;
+  width: 100px;
+  margin: auto;
+}
+
+.st-boxStar {
+  color: #999999;
+  /*背景星星顏色*/
+  overflow: hidden;
+  /*調整寬度可變更星等*/
+  font-size: 24px;
+}
+
+/* 填滿星星 width設在外面 */
+.st-fullStar {
+  /*調整寬度可變更星等 須跟上面一樣*/
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffa231;
+  /*前景星星顏色*/
+}
+
+.ShareCardText {
+  padding-top: 20px;
+  height: 200px;
+  width: 80%;
+  margin: auto;
+}
+
+.ShareCardTextTop {
+  height: 20px;
+  float: left;
+  font-size: 30px;
+  font-weight: bold;
+  font-weight: 900;
+  width: 100%;
+}
+
+.ShareCardComment {
+  margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  width: 80%;
+  font-weight: bold;
+  font-weight: 900;
+}
+
+.ShareCardComment p {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  color: #000000;
+}
+
+.ShareCardTextDown {
+  height: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  font-weight: 900;
+  width: 100%;
+  margin-left: 230px;
+}
+
+.st-courseMiniCard {
+  position: relative;
+  width: 250px;
+  height: 450px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.st-courseMiniCardPicture img {
+  height: 200px;
+  width: 250px;
+  border-radius: 10px 10px 0px 0px;
+  background-color: black;
+}
+
+.st-courseMiniCardBar {
+  position: absolute;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.st-courseMiniCardBarActiveDeadline {
+  background: #ffb257;
+}
+
+.st-courseMiniCardBarActiveFull {
+  background: #0078b3;
+}
+
+.st-courseMiniCardName {
+  width: 250px;
+  height: 115px;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+  color: #505050;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  line-height: 23px;
+}
+
+.st-courseMiniCardChefName {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #909090;
+}
+
+.st-startWidth {
+  width: 120px;
+  max-height: 34.5px;
+}
+
+/* 星星盒子(外框) */
+.st-courseMiniCardBoxStar {
+  color: #999999;
+  /*背景星星顏色*/
+  overflow: hidden;
+  font-size: 24px;
+}
+
+/* 填滿星星 width設在外面 */
+.st-startWidth .st-courseMiniCardFullStar {
+  font-size: 24px;
+  top: -24.5px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  color: #ffa231;
+  /*前景星星顏色*/
+}
+
+.st-courseMiniCardStarCount {
+  position: relative;
+  top: -48px;
+  left: 125px;
+  color: #909090;
+  font-size: 14px;
+}
+
+.st-courseMiniCardBatch {
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  margin-left: 20px;
+  font-family: 'Noto Sans TC', Bold;
+  font-size: 14px;
+}
+
+.st-courseMineCardTime {
+  margin-top: 5px;
+}
+
+.st-courseMineCardTime {
+  margin-top: 5px;
+}
+
+.st-courseMiniCardProgressBox {
+  position: relative;
+  top: 45px;
+  width: 200px;
+  margin-left: 20px;
+  height: 6px;
+}
+
+.st-courseMiniCardProgress {
+  width: 200px;
+  height: 6px;
+  border: 1px solid #ffb257;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.st-courseMiniCardFullProgress {
+  height: 5px;
+  background-color: #ffb257;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  top: -19px;
+}
+
+.st-courseMiniCardCount {
+  top: -20px;
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  color: #909090;
+}
+
+.st-courseMiniCardLevel {
+  position: relative;
+  width: 47px;
+  height: 25px;
+  top: 75px;
+  margin-left: 20px;
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+  background: #5eb2eb;
+  padding: 0.15rem 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.st-courseMiniCardSpecialPrice {
+  top: 5px;
+  left: 83px;
+  position: relative;
+  text-align: center;
+  font-family: 'Noto Sans TC', Bold;
+  color: #909090;
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+.st-courseMiniCardPrice {
+  top: 48px;
+  left: -10px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.st-courseMiniCardPriceBox {
+  width: 100%;
+  height: 80px;
+}
+
+.st-chefCard {
+  width: 750px;
+  height: 500px;
+  background-color: #d8a566;
+  border-radius: 20px;
+  margin-top: 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.st-chefCardPicture {
+  height: 100%;
+  border-radius: 20px 0px 0px 20px;
+  float: left;
+  width: 50%;
+  background-color: aqua;
+}
+
+.st-chefCardTop {
+  height: 300px;
+  float: right;
+  border-radius: 0px 20px 0px 0px;
+  width: 50%;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 30px;
+  text-align: left;
+}
+
+.st-chefCardLine {
+  height: 3px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin: 30px 0;
+}
+
+.st-chefCardTopChefName {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.st-chefCardDown {
+  height: 200px;
+  float: right;
+  border-radius: 0px 0px 20px 0px;
+  width: 50%;
+  background-color: #5e5548;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 20px 0px 0px 35px;
+  text-align: left;
+  letter-spacing: 2px;
+}
+
+.st-chefCardDown ul {
+  padding: 20px 0px 15px 20px;
+  list-style: disc;
+}
+
+.st-chefCardDown ul li {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.st-breadcrumb-item-end::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+  content: var(--bs-breadcrumb-divider, ">");
+}
+
+.st-breadcrumb-item-end span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFB257;
+}
+
+.st-breadcrumb-item::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+  content: var(--bs-breadcrumb-divider, ">");
+}
+
+.st-breadcrumb-item span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.st-breadcrumb-item span:hover {
+  color: #FFB257;
+}
+
+.st-breadcrumb-homepage::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.st-breadcrumb-homepage span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.st-breadcrumb-homepage span:hover {
+  color: #FFB257;
+}
+
+.CreditCards {
+  width: 70%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+.CreditCards .CreditCards-left {
+  margin: 0 1rem 0 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 1 180px;
+          flex: 2 1 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row {
+  padding: 0.5rem 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-input {
+  width: 100%;
+  margin: 0 1rem 0 0;
+  border-radius: 5px;
+  border: 1px solid #666666;
+}
+
+.rccs {
+  width: 275px !important;
+  position: relative;
+}
+
+.rccs .rccs__card {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 1500px) {
+  .CreditCards {
+    width: 80%;
+  }
+}
+
+.Calender {
+  position: relative;
+  width: 100%;
+  max-width: 255px;
+  max-height: 34px;
+}
+
+.Calender .Calender-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.Calender .Calender-selector .Calender-selector-text {
+  margin: 0 0.5rem;
+}
+
+.Calender .Calender-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.Calender .Calender-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 255px;
+  max-width: 180%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+}
+
+.Calender .Calender-container .Calender-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Calender .Calender-container .Calender-header .year-selector,
+.Calender .Calender-container .Calender-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr .Calender-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+  background: #b3cedb;
+}
+
+.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.Login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Login .Login-container {
+  top: -100%;
+  width: 750px;
+  height: 500px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  -webkit-animation: Login-scaleUp 0.35s ease-in;
+          animation: Login-scaleUp 0.35s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Login .Login-container .Login-container-left {
+  width: 50%;
+  background: url(../../images/loginPageBackground.jpg) center center no-repeat;
+  background-size: cover;
+}
+
+.Login .Login-container .Login-container-right {
+  width: 50%;
+  padding: 20px 50px;
+  position: relative;
+  background: #d8a466;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn,
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn img,
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn img {
+  width: 25px;
+  height: 25px;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+  background: #4267b2;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  margin: 1rem 0;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-text {
+  background: #d8a466;
+  padding: 0.35rem 0.75rem;
+  z-index: 1;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-line {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon label {
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon input {
+  border-radius: 5px;
+  padding: 0.35rem 0.6rem 0.35rem 2.2rem;
+  margin-top: 0.25rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-inputCon svg {
+  position: absolute;
+  top: 37px;
+  left: 8px;
+  width: 22px;
+  height: 22px;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con button {
+  width: 50%;
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  background: #0078b3;
+  color: white;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con .login-submit-btn {
+  margin-right: 0.1;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-button-con .register-submit-btn {
+  margin-left: 0.1rem;
+  background: #ffb257;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@-webkit-keyframes Login-scaleUp {
+  from {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes Login-scaleUp {
+  from {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+.MemberCenter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.MemberCenter .MemberCenter-container {
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.MemberSidebar {
+  height: calc(100vh - 50px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+}
+
+.MemberSidebar .MemberSidebar-container {
+  height: 95%;
+  width: 100%;
+  overflow: scroll;
+  padding: 1rem 0;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label .MemberSidebar-container-avatar-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-pen {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  fill: white;
+  opacity: 0;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar:hover .MemberSidebar-container-avatar-img {
+  opacity: 0.5;
+  -webkit-filter: brightness(0.5);
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar:hover .MemberSidebar-container-avatar-pen {
+  opacity: 1;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-mamberName {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul {
+  list-style: none;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li {
+  padding: 0.5rem 0;
+  font-size: 1.35rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li .MemberSidebar-container-ul-li-text {
+  margin-left: 0.25rem;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li:hover {
+  color: #ffb257;
+}
+
+.MemberSidebar .MemberSidebar-container .MemberSidebar-container-ul .MemberSidebar-container-ul-li-active {
+  color: #ffb257;
+}
+
+.MemberInfo {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.MemberInfo .MemberInfo-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-header h1 {
+  font-weight: 100;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 1rem;
+  font-size: 1.15rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-label {
+  margin-bottom: 0.25rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-container-inputCon-input {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon {
+  max-width: 0px;
+  max-height: 0;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  font-size: 90%;
+  overflow: hidden;
+  margin-right: 0;
+  position: relative;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon .MemberInfo-container-passwordCon-topInput {
+  border-radius: 5px 5px 0 0;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon .MemberInfo-container-passwordCon-bottomInput {
+  border-radius: 0 0 5px 5px;
+  position: relative;
+  top: -1px;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-passwordCon-active {
+  max-width: calc(50% - 1rem);
+  max-height: 105px;
+  margin-right: 1rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-buttonCon .MemberInfo-container-inputCon-passwordEditBtn,
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-buttonCon .MemberInfo-container-inputCon-passwordSubmitBtn {
+  border-radius: 5px;
+  padding: 0.15rem 0.35rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #666666;
+  font-size: 90%;
+  margin-top: 0.25rem;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-buttonCon .MemberInfo-container-inputCon-passwordEditBtn:hover,
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-buttonCon .MemberInfo-container-inputCon-passwordSubmitBtn:hover {
+  color: black;
+  border: 1px solid black;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn {
+  display: none;
+  color: #eb6b6a;
+  border: 1px solid #eb6b6a;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+  display: block;
+}
+
+.MemberInfo .MemberInfo-container .MemberInfo-container-buttonCon {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 1rem 0;
+}
+
+.DefaultStudent {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.DefaultStudent .DefaultStudent-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-header h1 {
+  font-weight: 100;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: scroll;
+}
+
+.OrderInfo {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.OrderInfo .OrderInfo-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-header h1 {
+  font-weight: 100;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-tableHead {
+  width: 100%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.25rem 0;
+  margin: 0.75rem 0;
+  font-weight: 900;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-tableHead .OrderInfo-container-tableHead-item1 {
+  width: 48%;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
+  margin: 0 0 1rem 0;
+  overflow: scroll;
+  width: 100%;
+}
+
+.OrderCard .OrderCard-container {
+  max-width: 900px;
+  border-bottom: 1px solid #d8a466;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+  font-size: 90%;
+  padding: 0.5rem 0;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.OrderCard .OrderCard-container:hover {
+  background: #eee;
+}
+
+.OrderCard .OrderCard-container .OrderCard-image-con {
+  width: 18%;
+  max-height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.OrderCard .OrderCard-container .OrderCard-image-con .OrderCard-image {
+  width: 100%;
+}
+
+.OrderCard .OrderCard-container .OrderCard-courseTitle {
+  width: 30%;
+}
+
+.OrderCard .OrderCard-container .OrderCard-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.OrderCard .OrderCard-container .OrderCard-mamberCount {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.OrderCard .OrderCard-detail {
+  width: 100%;
+  max-width: 900px;
+  max-height: 0px;
+  overflow: hidden;
+  padding: 0 0.5rem;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  border-bottom: 1px solid transparent;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-title {
+  border-bottom: 1px solid #666666;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-title .hrderCard-detail-title-h3 {
+  padding: 0.5rem 0;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 {
+  padding: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 300px;
+          flex: 1 1 300px;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-title,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-title {
+  margin-bottom: 0.25rem;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container-item .OrderCard-detail-container-item-content,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container-item .OrderCard-detail-container-item-content {
+  font-size: 90%;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 250px;
+          flex: 1 1 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-left .OrderCard-detail-container2-left-textarea {
+  resize: none;
+  width: 100%;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 5;
+      -ms-flex: 5 1 250px;
+          flex: 5 1 250px;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-left: 1rem;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star:hover {
+  background: url(../icons/star-solid.svg) no-repeat;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-star svg {
+  width: 100%;
+  height: 100%;
+  fill: #ffb257;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-stars .OrderCard-detail-container2-right-starActive {
+  background: url(../icons/star-solid.svg) no-repeat;
+}
+
+.OrderCard .OrderCard-detail .OrderCard-detail-container .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon,
+.OrderCard .OrderCard-detail .OrderCard-detail-container2 .OrderCard-detail-container2-right .OrderCard-detail-container2-right-buttonCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.OrderCard .OrderCard-detail-active {
+  width: 100%;
+  max-width: 900px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #d8a466;
+  max-height: 450px;
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+.CollectionCourse {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.CollectionCourse .CollectionCourse-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CollectionCourse .CollectionCourse-container .CollectionCourse-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CollectionCourse .CollectionCourse-container .CollectionCourse-container-header h1 {
+  font-weight: 100;
+}
+
+.CollectionCourse .CollectionCourse-container .CollectionCourse-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
+}
+
+.CollectionCoupons {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.CollectionCoupons .CollectionCoupons-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-header h1 {
+  font-weight: 100;
+}
+
+.CollectionCoupons .CollectionCoupons-container .CollectionCoupons-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: scroll;
+}
+
+.DefaultStudentCard2 {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 0.5rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px 15px 0 0;
+  background: #d8a466;
+  padding: 0.75rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
+  -webkit-box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+          box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-left {
+  font-weight: 900;
+  font-size: 110%;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-left svg {
+  width: 30px;
+  height: 30px;
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right {
+  font-size: 1rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right .DefaultStudentCard2-title-right-select {
+  padding: 0.25rem 0.25rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #666666;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-title .DefaultStudentCard2-title-right .DefaultStudentCard2-title-right-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 90%;
+  margin-left: 0.5rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main {
+  border-radius: 0 0 15px 15px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 1rem 2rem;
+  max-height: 500px;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  margin: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-label {
+  cursor: pointer;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  padding: 0.15rem 0.35rem;
+  font-size: 1.1rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.DefaultStudentCard2 .DefaultStudentCard2-main .DefaultStudentCard2-main-row .DefaultStudentCard2-main-row-item .DefaultStudentCard2-main-row-item-email {
+  width: 100%;
+}
+
+.CollectionArticle {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.CollectionArticle .CollectionArticle-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-header h1 {
+  font-weight: 100;
+}
+
+.CollectionArticle .CollectionArticle-container .CollectionArticle-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 0 0 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: scroll;
+}
+
+.CourseInsert {
+  height: calc(100vh - 50px);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.CourseInsert .CourseInsert-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-header h1 {
+  font-weight: 100;
+}
+
+.ReviewButton {
+  height: 42px;
+  width: 80px;
+  padding: 2px;
+  background: #d8a466;
+  border-radius: 50px;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  z-index: 10;
+}
+
+.ReviewButton .ReviewButton-btn {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 38px;
+  height: 38px;
+  background-color: #0078b3;
+  border-radius: 50px;
+  left: 0px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.ReviewButton .ReviewButton-btn .ReviewButton-btn-imgCon {
+  width: 25px;
+  height: 25px;
+  background: url(../../icons/pencil.svg) no-repeat;
+}
+
+.ReviewButton .ReviewButton-btn-active {
+  background: #0078b3;
+  left: 38px;
+}
+
+.ReviewButton .ReviewButton-btn-active .ReviewButton-btn-imgCon {
+  background: url(../../icons/id-card.svg) no-repeat;
+}
+
+.Course {
+  margin: auto;
+  width: 70%;
+  max-width: 1440px;
+}
+
+.CourseBreadbox {
+  height: 100px;
+  padding: 45px 0px;
+}
+
+.CourseCategroy {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin-left: 30px;
+  color: #d8a466;
+}
+
+.st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+  background-color: #d8a466;
+}
+
+.CourseRecommendTitle {
+  width: 300px;
+  height: 55px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin: auto;
+  padding: 40px 0;
+  color: #1f4557;
+}
+
+.CourseVideo {
+  width: 80%;
+  height: 600px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.CourseSixBox {
+  margin: 40px 0;
+  width: 100%;
+  height: 360px;
+  background-color: #afafaf;
+  position: relative;
+}
+
+.CourseSelect {
+  padding: 20px 0;
+}
+
+.CourseSelect select {
+  width: 135px;
+  border-radius: 20px;
+  margin-right: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  font-weight: 700;
+  color: #1F4557;
+}
+
+.CourseCard {
+  width: 100%;
+  margin: auto;
+}
+
+.CourseCard-course {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border-radius: 15px;
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 1rem 0;
+  height: 335px;
+}
+
+.CourseCard-course .CourseCard-course-imageCon {
+  height: 100%;
+  width: 40%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.CourseCard-course .CourseCard-course-imageCon img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.CourseCard-course .CourseCard-course-imageCon .CourseCard-course-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 200px;
+  top: 30px;
+  right: -50px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.CourseCard-course .CourseCard-course-detailCon {
+  padding: 1rem;
+  font-size: 210%;
+  width: 59%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  border-top-right-radius: 60px 130px;
+  border-bottom-right-radius: 60px 130px;
+  z-index: 3;
+  background: white;
+  position: relative;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard-course-detailCon-h4 {
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard-course-detailCon-company svg {
+  fill: #ffb257;
+  font-size: rem;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-courseTime {
+  margin-top: 0.25rem;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-MemberCount {
+  font-size: 80%;
+  margin-top: 0.25rem;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon {
+  width: 130px;
+  height: 6px;
+  border-radius: 5px;
+  border: 1px solid #ffb257;
+  position: relative;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon .CourseCard1-detailCon-MemberCount-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #ffb257;
+  border: 1px solid #ffb257;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-courseLevel {
+  display: block;
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .highLevel {
+  background: #eb6b6a;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .midLevel {
+  background: #5f9e72;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .lowLevel {
+  background: #5eb2eb;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard1-detailCon-bottom-coursePrice-origin {
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: line-through;
+  margin-bottom: -8px;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard-course-detailCon-bottom-coursePrice-discount {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-likeBtn {
+  position: absolute;
+  z-index: 6;
+  right: -7px;
+  top: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-likeBtn svg {
+  fill: #eb6b6a;
+  width: 75%;
+  height: 75%;
+}
+
+.CourseCard-course .CourseCard-course-detailCon .CourseCard1-detailCon-likeBtn-active svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard-course .CourseCard1-buttonCon {
+  width: 30%;
+  height: 100%;
+  background: #5d5548;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard-course .CourseCard1-buttonCon .CourseCard-course-buttonCon-btn {
+  margin: 0.7rem 1.3rem;
+  position: relative;
+  width: 188px;
+  text-align: center;
+  font-size: 80%;
+}
+
+.CourseCard-course:hover .CourseCard-course-imageCon {
+  width: 34%;
+}
+
+.CourseCard-course:hover .CourseCard-course-detailCon {
+  width: 47%;
+}
+
+.StarGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.StarGroup p {
+  font-size: 0.7rem;
+}
+
+.StarGroup .StarGroup-container {
+  max-width: 80px;
+  position: relative;
+  height: 17px;
+  overflow: hidden;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-star {
+  z-index: 2;
+  width: 101%;
+  height: 100%;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-background {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.Coursedetail-set {
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.Coursedetail-set .Coursedetail-container {
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* 大容器div */
+.Coursedetail {
+  width: 100%;
+}
+
+/* 三圖片大框 */
+.Coursedetail-header {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 2040px;
+  height: 470px;
+  overflow: hidden;
+  margin: auto;
+}
+
+/* 大框圖片設置 */
+.Coursedetail-header img {
+  margin: auto;
+  position: absolute;
+  width: 70vw;
+  max-width: 1440px;
+  height: 470px;
+}
+
+/* 左圖片 */
+.Coursedetail-headerLeft {
+  -webkit-transform: translate(-21.2%, 0px);
+          transform: translate(-21.2%, 0px);
+  opacity: 0.3;
+  -webkit-transition: transform 1s;
+  z-index: 1;
+}
+
+/* 左圖片h */
+.Coursedetail-headerLeft:hover {
+  opacity: 0.7;
+}
+
+/* 中圖片 */
+.Coursedetail-headerMid {
+  -webkit-transform: translate(20.85%, 0px);
+          transform: translate(20.85%, 0px);
+  -webkit-transition: transform 1s;
+  z-index: 3;
+}
+
+/* 右圖片 */
+.Coursedetail-headerRight {
+  -webkit-transform: translate(63.6%, 0px);
+          transform: translate(63.6%, 0px);
+  opacity: 0.3;
+  -webkit-transition: transform 1s;
+  z-index: 2;
+}
+
+/* 右圖片H */
+.Coursedetail-headerRight:hover {
+  opacity: 0.7;
+}
+
+/* 資訊欄 */
+.Coursedetail-info {
+  width: 100%;
+  height: 500px;
+}
+
+/* 資訊(右欄) */
+.Coursedetail-infoRight {
+  position: relative;
+  float: right;
+  right: 0px;
+  width: 550px;
+  height: 0;
+  border-top: 360px solid #d8a466;
+  border-left: 200px solid transparent;
+}
+
+/* 資訊(右欄)div */
+.Coursedetail-infoRight div {
+  position: relative;
+  float: right;
+  margin-right: 20px;
+  top: -330px;
+  font-weight: 700;
+}
+
+/* 早鳥預購價 */
+.Coursedetail-infoRightPrice {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+/* 原價 */
+.Coursedetail-originalPrice {
+  font-size: 22px;
+  color: #d4d4d4;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+/* 特價 */
+.Coursedetail-specialPrice {
+  color: #ffffff;
+  font-size: 60px;
+  font-family: 'Noto Sans TC', Medium;
+  font-weight: 700;
+}
+
+/* 名額margin */
+.Coursedetail-quota {
+  margin-top: 30px;
+}
+
+.Coursedetail-quota span {
+  color: #444444;
+  font-size: 20px;
+}
+
+/* 星數/評論人數 */
+.Coursedetail-count {
+  position: relative;
+  top: 15px;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+/* 星星盒子(外框) */
+.Coursedetail-boxStar {
+  color: #ffffff;
+  /*背景星星顏色*/
+  overflow: hidden;
+  /*調整寬度可變更星等*/
+  font-size: 30px;
+}
+
+/* 填滿星星 width設在外面 */
+.Coursedetail-fullStar {
+  /*調整寬度可變更星等 須跟上面一樣*/
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffcf71;
+  /*前景星星顏色*/
+}
+
+.Coursedetail-allTime span {
+  color: #444444;
+  font-size: 20px;
+}
+
+.Coursedetail-iconSvg svg {
+  font-size: 48px;
+  color: #ffffff;
+  margin: 10px 0px 0 40px;
+}
+
+/* 資訊(左欄) */
+.Coursedetail-infoLeft {
+  position: absolute;
+  float: left;
+  max-width: 50%;
+  font-family: 'Noto Sans TC', Medium;
+  font-weight: 700;
+  padding-top: 20px;
+  width: 800px;
+}
+
+.Coursedetail-infoLeft ul {
+  display: inline;
+  padding: 0;
+}
+
+.Coursedetail-infoLeft ul li {
+  font-size: 24px;
+  display: inline-block;
+  padding: 0;
+}
+
+/*偽裝麵包屑*/
+.Coursedetail-infoLeft-breadcrumb ul li {
+  color: #666666;
+  font-size: 18px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.Coursedetail-infoLeft-breadcrumb .Coursedetail-infoLeft-breadcrumb-name {
+  color: #f7921e;
+}
+
+/* 左邊資訊標題 */
+.Coursedetail-infoLeftTitle {
+  margin-top: 5px;
+  font-family: 'Noto Sans TC', Bold;
+  font-weight: bold;
+  font-size: 60px;
+  color: #444444;
+}
+
+.Coursedetail-placeWithChef {
+  margin: 20px 0 20px 0;
+}
+
+.Coursedetail-placeWithChef ul li {
+  margin-right: 40px;
+  font-size: 1.6em;
+}
+
+.Coursedetail-placeWithChef ul li svg {
+  top: 3px;
+  position: relative;
+  color: #f7921e;
+  font-size: 1.2em;
+}
+
+.Coursedetail-infoLeftPlace {
+  /* 地圖hover標註用 */
+  padding: 0;
+  height: 50px;
+  cursor: pointer;
+}
+
+/* 地圖 */
+.Coursedetail-infoLeftPlace iframe {
+  width: 200px;
+  height: 100px;
+  border: 0;
+  display: none;
+}
+
+.Coursedetail-infoLeftPlace:hover iframe {
+  top: 200px;
+  left: 0px;
+  position: absolute;
+  width: 80%;
+  height: 200px;
+  display: inline;
+}
+
+/* 梯次按鈕 */
+.Coursedetail-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Coursedetail-data button {
+  width: 30%;
+  height: 59px;
+  background: #FFFFFF;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 34px;
+  cursor: pointer;
+  color: #d8a466;
+  font-size: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  min-width: 237px;
+}
+
+.Coursedetail-data button svg {
+  color: #d8a466;
+  font-size: 32px;
+  margin: 0px 24% 0 10px;
+}
+
+.Coursedetail-data div {
+  height: 59px;
+  display: inline-block;
+}
+
+.Coursedetail-data .CT svg {
+  color: initial;
+  font-size: initial;
+  font-size: 59px;
+  margin: 2px 0 0 20px;
+}
+
+.Coursedetail-data .CT svg:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.Coursedetail-data p {
+  color: #444444;
+  margin-left: 40px;
+  font-weight: 700;
+}
+
+.Coursedetail-infoLeftJoin {
+  margin-top: 20px;
+}
+
+.Coursedetail-infoLeftJoin ul li {
+  cursor: pointer;
+  color: #d8a466;
+  font-size: 36px;
+  margin-right: 15px;
+}
+
+.Coursedetail-shortLine {
+  position: relative;
+  top: -50px;
+  height: 5px;
+  width: 10%;
+  margin: auto;
+  border-radius: 100px;
+  background-color: #d8a466;
+}
+
+/* 資訊盒子(上) */
+.Coursedetail-infoBox {
+  width: 100%;
+  height: 100%;
+  background-color: #d8a466;
+  margin-bottom: 100px;
+  border-radius: 5px;
+}
+
+/* 標題能用 */
+.Coursedetail-outsideTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  margin: 20px auto 20px auto;
+  color: #d8a466;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+}
+
+.Coursedetail-well {
+  height: 20px;
+}
+
+/* 內標 */
+.Coursedetail-insideTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+  padding-top: 20px;
+}
+
+.Coursedetail-whiteLine {
+  height: 3px;
+  width: 90%;
+  margin: auto;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin: 10px auto 40px auto;
+}
+
+/* 內文 */
+.Coursedetail-insideText {
+  /* word-break: keep-all; */
+  text-indent: 2em;
+  width: 90%;
+  text-align: left;
+  margin: 0 auto 20px auto;
+  line-height: 40px;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Regular;
+  padding-bottom: 40px;
+}
+
+.Coursedetail-titleLine {
+  height: 5px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #d8a466;
+}
+
+.Coursedetail-chefCardMargin {
+  position: relative;
+  padding: 50px 0px 60px 0px;
+  width: 55%;
+  margin: auto;
+  min-width: 750px;
+}
+
+.Coursedetail-infoBox2 {
+  width: 100%;
+  height: 100%;
+  background-color: #d8a466;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.Coursedetail-foodInfo {
+  padding: 20px;
+}
+
+.Coursedetail-sixPicture {
+  padding: 10px;
+  position: relative;
+  width: 780px;
+  height: 550px;
+}
+
+.Coursedetail-sixPicture img {
+  padding: 5px;
+}
+
+.Coursedetail-sixPictureTitlePosition {
+  position: absolute;
+}
+
+.Coursedetail-sixPictureTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  height: 50px;
+  top: -4px;
+  background-color: rgba(223, 223, 223, 0.6);
+  z-index: 3;
+  opacity: 0;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Regular;
+  font-size: 24px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.Coursedetail-sixPictureTitle:hover {
+  opacity: 1;
+  -webkit-transform: translate(0px, -50px);
+          transform: translate(0px, -50px);
+  -webkit-transition: transform 0.5s;
+}
+
+.Coursedetail-sixPictureTitleTopBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px;
+  width: 780px;
+  height: 250px;
+}
+
+.Coursedetail-sixPictureTitleDownBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 264px;
+  width: 780px;
+  height: 250px;
+}
+
+.Coursedetail-active {
+  opacity: 1;
+  background-color: rgba(223, 223, 223, 0.8);
+  -webkit-transform: translate(0px, -50px);
+          transform: translate(0px, -50px);
+  -webkit-transition: transform 0.5s;
+  border-radius: 0 0 5px 5px;
+}
+
+.Coursedetail-sixPictureTextBox_1 {
+  width: 60%;
+  position: relative;
+  height: 100%;
+  padding-bottom: 5px;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul {
+  overflow: hidden;
+  height: 200px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li {
+  display: inline-block;
+  padding: 0;
+  min-height: 150px;
+  width: 28%;
+  height: 100%;
+  margin: auto auto auto 0;
+  cursor: pointer;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li img {
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
+  opacity: 1;
+  -webkit-transform: translate(0px, -50px);
+          transform: translate(0px, -50px);
+  -webkit-transition: transform 0.5s;
+}
+
+.Coursedetail-pictureBox {
+  width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Coursedetail-chepBoxTextWidth {
+  position: relative;
+  width: 40%;
+  min-width: 200px;
+  height: 100%;
+}
+
+.Coursedetail-chepBox {
+  margin: auto;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 36px;
+}
+
+.Coursedetail-chepBoxTitle {
+  margin: auto;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 48px;
+}
+
+.Coursedetail-chepBoxTitle :hover .testActive {
+  opacity: 1;
+}
+
+.Coursedetail-chepBoxInfomation {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  text-indent: 2em;
+  color: rgba(255, 255, 255, 0);
+}
+
+.Coursedetail-colorActive {
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  color: white;
+}
+
+.Coursedetail-cost {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  background-color: #ffffff;
+  margin: 80px 0;
+  font-size: 100%;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.Coursedetail-cost span {
+  position: relative;
+  float: left;
+  width: 65%;
+  height: 100%;
+  border-bottom: 850px solid #d8a466;
+  border-right: 200px solid transparent;
+  z-index: 2;
+}
+
+.Coursedetail-cost img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.Coursedetail-cost p {
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+  padding-top: 40px;
+}
+
+.Coursedetail-cost .Coursedetail-costLine {
+  width: 90%;
+  border: 1px solid #fff;
+  margin: 10px auto 0 auto;
+  position: relative;
+  left: 10px;
+}
+
+.Coursedetail-cost .Coursedetail-costArea {
+  width: 90%;
+  height: 60%;
+  margin: auto;
+  min-height: 500px;
+  position: relative;
+  left: 10px;
+  top: 20px;
+}
+
+.Coursedetail-cost ul {
+  color: #fff;
+  width: 40%;
+  position: relative;
+  left: 10px;
+  padding: 20px 0 20px 5%;
+  height: 100px;
+  font-size: 24px;
+  list-style: disc;
+  font-weight: 500;
+  font-family: "Noto Sans TC", Medium;
+}
+
+.Coursedetail-attention {
+  width: 110%;
+  height: 100px;
+  margin-left: 35px;
+  position: relative;
+  left: 10px;
+  padding-top: 20px;
+}
+
+.Coursedetail-attention p {
+  color: #fff;
+  font-size: 24px;
+  padding: 0;
+  text-align: left;
+}
+
+.Coursedetail-attention div {
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+}
+
+.Coursedetail-recommend {
+  margin: 60px 0;
+  height: 700px;
+  width: 100%;
+}
+
+.Coursedetail-recommendLeft {
+  height: 100%;
+  float: left;
+  width: 45%;
+  border-radius: 5px;
+  border: 2px solid #666666;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendLeft img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendLeft span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 200%;
+  position: relative;
+  top: -700px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft span:hover {
+  top: -1100px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.Coursedetail-recommendText {
+  color: #ffffff;
+}
+
+.Coursedetail-recommendTitle {
+  text-align: center;
+  font-size: 48px;
+  position: relative;
+  top: 540px;
+}
+
+.Coursedetail-recommendLine {
+  width: 80%;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  position: relative;
+  top: 540px;
+  margin: auto;
+}
+
+.Coursedetail-recommendName {
+  text-align: center;
+  font-size: 60px;
+  position: relative;
+  top: 540px;
+}
+
+.Coursedetail-recommendInfo {
+  text-align: left;
+  font-size: 24px;
+  position: relative;
+  top: 540px;
+  text-indent: 2em;
+  width: 80%;
+  margin: auto;
+}
+
+.Coursedetail-recommendRight {
+  height: 100%;
+  float: right;
+  width: 45%;
+  border-radius: 5px;
+  border: 2px solid #666666;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendRight img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendRight span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 200%;
+  position: relative;
+  top: -700px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendRight span:hover {
+  top: -1100px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.Coursedetail-join {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  background-color: #ffffff;
+  margin: 80px 0;
+  font-size: 100%;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.Coursedetail-join span {
+  position: relative;
+  float: right;
+  width: 65%;
+  height: 100%;
+  border-bottom: 850px solid #d8a466;
+  border-left: 200px solid transparent;
+  z-index: 2;
+}
+
+.Coursedetail-join .Coursedetail-joinLine {
+  width: 90%;
+  border: 1px solid #fff;
+  margin: 10px auto 0 auto;
+  position: relative;
+  right: 10px;
+}
+
+.Coursedetail-join img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.Coursedetail-join p {
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+  padding-top: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .Navbar .Navbar-container {
+    width: 90%;
+  }
+  .MemberCenter .MemberCenter-container {
+    width: 90%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

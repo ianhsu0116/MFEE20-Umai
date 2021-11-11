@@ -198,7 +198,6 @@ a {
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
 
-
 // 課程分類
 @import "./course/Course";
 @import "./course/CourseCard_Course";
@@ -206,8 +205,6 @@ a {
 
 // 課程詳細
 @import "./CourseDetail/_CourseDetailed";
-
-
 
 // RWD
 @media screen and (max-width: 1200px) {
