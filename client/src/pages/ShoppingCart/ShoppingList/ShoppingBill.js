@@ -3,35 +3,61 @@ function ShoppingBill(){
         <>
         <div className="ShoppingBill-padding">
             <table className="ShoppingBill-list">
-                <tr className="ShoppingBill-list-title">
+                <tr>
                     <th><h2>課程資訊</h2></th>
                     <th><h2>課程費用</h2></th>
                     <th><h2>人數</h2></th>
                     <th><h2>小計</h2></th>
                 </tr>
-                <tr className="ShoppingBill-list-tool">
-                    <td><h4>築地創意壽司</h4></td>
-                    <td><h4>3300</h4></td>
-                    <td><h4>3人</h4></td>
-                    <td><h4>9900元</h4></td>
-                </tr>
-                <tr className="ShoppingBill-list-total">
-                    <td><h4>應付金額</h4></td>
-                    <td></td>
-                    <td></td>
-                    <td><h4>9900元</h4></td>
+                <tr>
+                    <td colspan="5"><hr/></td>
                 </tr> 
-                <tr className="ShoppingBill-list-Discount">
-                    <td><h4>折扣費用</h4></td>
-                    <td></td>
-                    <td></td>
-                    <td><h4>500元</h4></td>
+                <tr className="ShoppingBill-list-item">
+                    <td>
+                        <h3>築地創意壽司</h3>
+                        <h5>報名人數剩餘5人</h5>
+                    </td>
+                    <td><h4>NT$ 3300</h4></td>
+                    <td><h4>*3位</h4></td>  
+                    <td><h4>NT$ 9900</h4></td>
                 </tr>
-                <tr className="ShoppingBill-list-count">
-                    <td><h3>實付金額</h3></td>
-                    <td></td>
-                    <td></td>
-                    <td><h4>9400元</h4></td>
+            </table>
+            <table className="ShoppingBill-student ShoppingBill-table-style">
+                <tr>
+                    <th><h2>學員資訊</h2></th>
+                    <th><h2>姓名</h2></th>
+                    <th><h2>連絡電話</h2></th>
+                    <th><h2>出生日期</h2></th>
+                    <th><h2>Email</h2></th>
+                </tr>
+                <tr>
+                    <td colspan="5"><hr/></td>
+                </tr>
+                <tr className="ShoppingBill-student-info">
+                    <td>學員-1</td>
+                    <td>鍾禮鴻</td>
+                    <td>0912345678</td>
+                    <td>1997/01/01</td>
+                    <td>test.gmail.com</td>
+                </tr>
+            </table>
+            <table className="ShoppingBill-orderer ShoppingBill-table-style">
+                <tr>
+                    <th><h2>訂購人資訊</h2></th>
+                    <th><h2>姓名</h2></th>
+                    <th><h2>連絡電話</h2></th>
+                    <th><h2>出生日期</h2></th>
+                    <th><h2>Email</h2></th>
+                </tr>
+                <tr>
+                    <td colspan="5"><hr/></td>
+                </tr>
+                <tr className="ShoppingBill-orderer-info">
+                    <td>學員-1</td>
+                    <td>鍾禮鴻</td>
+                    <td>0912345678</td>
+                    <td>1997/01/01</td>
+                    <td>test.gmail.com</td>
                 </tr>
             </table>
         </div>

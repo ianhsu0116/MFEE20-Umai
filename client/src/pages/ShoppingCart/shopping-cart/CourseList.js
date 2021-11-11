@@ -35,15 +35,46 @@ function CourseList(props){
                 <td><h4>NT$ 9900</h4></td>
             </tr>
             <tr className="CourseList-list-tool">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button>收藏</button> / <button>刪除</button></td>
+                <td colSpan="5"><button>收藏</button><button>刪除</button></td>
             </tr>
             <tr>
                 <td className={`Insert-area ${card && "Showarea"}`} colspan="5">
                     <div className="Cardarea">
+                        <div className="Insert-area-title">
+                            <h4>訂購人資訊</h4>
+                        </div>
+                        <table className="Orderer-info">
+                            <tr>
+                                <td>
+                                    <label>名字</label>
+                                    <input type="text"></input>
+                                </td>
+                                <td>
+                                    <label>姓氏</label>
+                                    <input type="text"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>連絡電話</label>
+                                    <input type="text"></input>
+                                </td>
+                                <td>
+                                    <label>生日</label>
+                                    <input type="date"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2">
+                                    <label>Email</label>
+                                    <input type="text"></input>
+                                </td>
+                            </tr>
+                        </table>
+                        <div className="Insert-area-title">
+                            <h4>學員資料</h4>
+                            <button>新增學員</button>
+                        </div>
                         <DefaultStudentCard />
                         <DefaultStudentCard />
                     </div>

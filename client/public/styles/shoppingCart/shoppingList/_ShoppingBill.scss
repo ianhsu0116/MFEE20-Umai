@@ -1,48 +1,46 @@
-.ShoppingBill-padding{
-  background: #ffffff;
-  padding: 10px;
-}
-.ShoppingBill-list {
+.ShoppingBill-padding {
   width: 100%;
-  border-spacing: 0;
-  background: #ffffff;
-  h4 {
-    margin: 15px 0;
-  }
-  tr {
-    td,th {
-      &:nth-child(2),
-      &:nth-child(3) {
-        text-align: center;
-      }
-      &:last-child{
-        text-align: right;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  .ShoppingBill-list {
+    width: 100%;
+    text-align: center;
+    th {
+      &:nth-child(1) {
+        text-align: left;
+        width: 60%;
       }
     }
-  }
-  .ShoppingBill-list-title {
-    background: #ffffff;
-    border-bottom: 3px solid var(--main-color-hover);
-    td:first-child {
-      text-align: left;
-    }
-    h2 {
-      height: auto;
-      font-weight: 500;
-      margin: 15px 0;
+    .ShoppingBill-list-item {
+      height: 100px;
+      td {
+        &:nth-child(1) {
+          text-align: left;
+        }
+      }
     }
   }
-  .ShoppingBill-list-total {
-    border-top: 3px solid var(--main-color-hover);
-  }
-  .ShoppingBill-list-Discount{
-    h4{
-      margin: 10px 0;
+  .ShoppingBill-table-style {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    border-collapse: separate;
+    padding-top: 30px;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    th {
+      &:nth-child(1) {
+        width: 30%;
+        text-align: left;
+      }
     }
-  }
-  .ShoppingBill-list-count{
-    h3{
-      margin: 15px 0;
+    td {
+      &:nth-child(1) {
+        width: 30%;
+        text-align: left;
+        height: 50px;
+      }
     }
   }
 }

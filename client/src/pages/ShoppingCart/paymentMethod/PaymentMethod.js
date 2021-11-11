@@ -10,7 +10,7 @@ function PaymentMethod(props){
         <div className="main-block wrapper">
             <main className="mainblock">
                 <div className="CourseList-title">
-                    <h1>訂單結帳</h1>
+                    <h1>確認付款</h1>
                     <h5>總計4堂課</h5>
                 </div>
                 <hr/>
