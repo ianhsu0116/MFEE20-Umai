@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import React from "react";
-=======
+
 import React, { useState } from "react";
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
@@ -15,18 +12,16 @@ import avatar from "../images/avatar.jpg";
 
 const MemberSidebar = (props) => {
   let { currentBoard, setCurrentBoard } = props;
-<<<<<<< HEAD
-=======
+
   const [currentAvatar, setCurrentAvatar] = useState(""); // 存avatar的二元編碼
 
   // 切換sidebar內容
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
+
   const handleChangeBoard = (e) => {
     setCurrentBoard(e.target.innerText);
   };
 
-<<<<<<< HEAD
-=======
+
   // 即時顯示上傳的avatar
   const handleAvatarChange = (e) => {
     let readFile = new FileReader(); //constructor 建構子(函數); 功能: 給初值
@@ -51,18 +46,12 @@ const MemberSidebar = (props) => {
     }
   };
 
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
+
   return (
     <div className="MemberSidebar">
       <div className="MemberSidebar-container">
         <div className="MemberSidebar-container-avatar">
-<<<<<<< HEAD
-          <img
-            src={avatar}
-            alt="使用者頭貼"
-            className="MemberSidebar-container-avatar-img"
-          />
-=======
+
           <input
             type="file"
             id="avatar"
@@ -80,7 +69,6 @@ const MemberSidebar = (props) => {
               className="MemberSidebar-container-avatar-img"
             />
           </label>
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
           <FaPen className="MemberSidebar-container-avatar-pen" />
         </div>
         <div className="MemberSidebar-container-mamberName">Ian Hsu</div>

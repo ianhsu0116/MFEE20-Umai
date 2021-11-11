@@ -1,23 +1,15 @@
 import React from "react";
-<<<<<<< HEAD
-=======
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
 
 const Login = (props) => {
   const preventLoginClose = (e) => {
     e.stopPropagation();
     console.log("preventLoginClose");
   };
-<<<<<<< HEAD
-  return (
-    <div className="Login">
-      <div className="Login-container" onClick={preventLoginClose}></div>
-=======
 
   const responseGoogle = (response) => {
     console.log(response);
@@ -97,7 +89,6 @@ const Login = (props) => {
           </div>
         </div>
       </div>
->>>>>>> 2483756afd0ecd21bda2781479d0581427d71eaa
     </div>
   );
 };
