@@ -1,9 +1,9 @@
-.Calendar {
+.CalendarMulti {
   position: relative;
   width: 100%;
   max-width: 600px;
   max-height: 34px;
-  .Calendar-selector {
+  .CalendarMulti-selector {
     width: 100%;
     max-height: 34px;
     padding: 0.25rem 0.35rem;
@@ -15,7 +15,7 @@
     position: relative;
     cursor: pointer;
 
-    .Calendar-selector-text {
+    .CalendarMulti-selector-text {
       margin: 0 0.5rem;
     }
     & svg {
@@ -24,7 +24,7 @@
     }
   }
 
-  .Calendar-container {
+  .CalendarMulti-container {
     position: absolute;
     z-index: 10;
     background: white;
@@ -40,7 +40,7 @@
     font-size: 0.8rem;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 
-    .Calendar-header {
+    .CalendarMulti-header {
       width: 100%;
       @include flex(row);
       justify-content: center;
@@ -56,11 +56,11 @@
       }
     }
 
-    .Calendar-table {
-      .Calendar-table-head {
-        .Calendar-table-tr {
+    .CalendarMulti-table {
+      .CalendarMulti-table-head {
+        .CalendarMulti-table-tr {
           border-bottom: 1px solid $fontColor;
-          .Calendar-table-th {
+          .CalendarMulti-table-th {
             padding: 0.35rem;
             //margin: 0.15rem;
             text-align: center;
@@ -68,18 +68,18 @@
           }
         }
       }
-      .Calendar-table-body {
-        .Calendar-table-tr {
+      .CalendarMulti-table-body {
+        .CalendarMulti-table-tr {
           //border-bottom: 1px solid $fontColor;
-          .Calendar-table-td {
+          .CalendarMulti-table-td {
             cursor: pointer;
             padding: 0.35rem;
-            //margin: 0.15rem;
+            margin: 0.15rem;
             width: 8%;
             height: 8%;
             text-align: center;
             //border-radius: 50px;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
 
             &:hover {
               background: #e0e0e0;
