@@ -20,7 +20,7 @@ function CourseDetail(props){
                 setDisabled("disabled");
                 break;
         };
-      },);
+      });
     
     return(
     <>

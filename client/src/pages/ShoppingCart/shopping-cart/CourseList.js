@@ -1,24 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FiChevronRight } from "react-icons/fi";
-import DefaultStudentCard from "../../../components/DefaultStudentCard";
-import React, { useState, useEffect } from "react";
+import DefaultStudentCard from "./DefaultStudentCard";
+import React, { useState } from "react";
 
 function CourseList(props){
     const [ card, setCard] = useState(false);
-    
-    // let studentnumbers=(()=>{
-    //     for (let i = 0; i < node.length; i++) {
-    //       console.log(node);
-    //     }
-    //   });
-
-      useEffect(() => {
-        let node=document.querySelector(".Student-card");
-        console.log(node);
-          for(let i = 1; i <= props.coursedata.studentnumber; i++){
-        }
-      },);
-      
+    let stcard=[];
+    for(let i = 1; i <= props.coursedata.studentnumber; i++){
+        stcard.push(<DefaultStudentCard key={i} index={i} changestudentnumber={(e)=>{props.changestudentnumber(e)}}/>)
+    }
     return(
     <>
         <div className="CourseList-title">
@@ -86,10 +76,10 @@ function CourseList(props){
                         </table>
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
-                            <button>新增學員</button>
+                            <button onClick={()=>{props.changestudentnumber(1)}}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                            <DefaultStudentCard/>
+                            {stcard}
                         </div>
                     </div>
                 </td>
