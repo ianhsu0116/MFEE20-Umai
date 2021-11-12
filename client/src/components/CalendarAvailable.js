@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { FcCalendar } from "react-icons/fc";
+import { HiClock } from "react-icons/hi";
 
 // 想顯示的所有年份 / 月份 / 星期幾
 let years = [];
-for (let i = 1990; i <= 2025; i++) {
+for (let i = 2020; i <= 2022; i++) {
   years.push(i);
 }
 let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -15,8 +15,8 @@ let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始�
 let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
-const Calendar = (props) => {
-  let { onChange } = props;
+const CalendarAvailable = (props) => {
+  let { onChange, availableDays } = props;
 
   // 日期窗開關
   let [calenderOpen, setCalendarOpen] = useState(false);
@@ -88,6 +88,11 @@ const Calendar = (props) => {
     }
   };
 
+  // 點擊disabled的日期時
+  const handleDisabled = (e) => {
+    console.log("不能選取歐歐歐歐歐！");
+  };
+
   // 將選定的日期送出
   useEffect(() => {
     onChange(selectedDay);
@@ -100,24 +105,20 @@ const Calendar = (props) => {
   }, [currentDay]);
 
   return (
-    <div className="Calendar">
-      <div className="Calendar-selector" onClick={handleCalendarOpen}>
-        <FcCalendar />
-        <span className="Calendar-selector-text">
-          {currentYear} - {currentMonth <= 8 ? "0" : ""}
-          {currentMonth + 1} - {currentDay <= 9 ? "0" : ""}
-          {currentDay}
-        </span>
+    <div className="CalendarAvailable">
+      <div className="CalendarAvailable-selector" onClick={handleCalendarOpen}>
+        <HiClock />
+        <span className="CalendarAvailable-selector-text">日期</span>
         <MdKeyboardArrowDown />
       </div>
       {calenderOpen && (
         <div
-          className="Calendar-container"
+          className="CalendarAvailable-container"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <div className="Calendar-header">
+          <div className="CalendarAvailable-header">
             <select
               name=""
               id=""
@@ -152,20 +153,22 @@ const Calendar = (props) => {
                 ))}
             </select>
           </div>
-          <table className="Calendar-table">
-            <thead className="Calendar-table-head">
-              <tr className="Calendar-table-tr">
+          <table className="CalendarAvailable-table">
+            <thead className="CalendarAvailable-table-head">
+              <tr className="CalendarAvailable-table-tr">
                 {weekdays.map((i, index) => (
-                  <th key={index} className="Calendar-table-th">
+                  <th key={index} className="CalendarAvailable-table-th">
                     {i}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="Calendar-table-body">
+            <tbody className="CalendarAvailable-table-body">
               {str_nums.map((days, i) => (
-                <tr key={i} className="Calendar-table-tr">
+                <tr key={i} className="CalendarAvailable-table-tr">
                   {weekdays.map((day, k) => {
+                    let disabled = true; // 判斷是否要disabled
+
                     let idx = 7 * i + k; //為每個表格建立索引,從0開始
                     let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
                     date <= 0 || date > days_per_month[currentMonth]
@@ -179,28 +182,44 @@ const Calendar = (props) => {
                       return (
                         <td
                           key={k}
-                          className="Calendar-table-td today"
-                          onClick={handleDaySelect}
+                          className="CalendarAvailable-table-td today disabled"
+                          onClick={handleDisabled}
                         >
                           {date}
                         </td>
                       );
-                    } else if (date == currentDay) {
+                    } else if (
+                      date == currentDay &&
+                      (currentMonth === todayMonth ||
+                        currentMonth === todayMonth + 1)
+                    ) {
                       return (
                         <td
                           key={k}
-                          className="Calendar-table-td active"
+                          className="CalendarAvailable-table-td active"
                           onClick={handleDaySelect}
                         >
                           {date}
                         </td>
                       );
                     } else {
+                      // 這裡判斷的是 如果日期 == available(可預訂)的話就亮起來, 其餘的話disabled
                       return (
                         <td
                           key={k}
-                          className="Calendar-table-td"
-                          onClick={handleDaySelect}
+                          className={`CalendarAvailable-table-td ${availableDays.map(
+                            (item, index) => {
+                              if (
+                                item.slice(0, 4) == currentYear &&
+                                item.slice(5, 7) == Number(currentMonth) + 1 &&
+                                item.slice(8, 10) == date
+                              ) {
+                                disabled = "";
+                                return ` available `;
+                              }
+                            }
+                          )} ${disabled && " disabled "}`}
+                          onClick={disabled ? handleDisabled : handleDaySelect}
                         >
                           {date}
                         </td>
@@ -217,4 +236,4 @@ const Calendar = (props) => {
   );
 };
 
-export default Calendar;
+export default CalendarAvailable;

@@ -1456,14 +1456,14 @@ a:hover {
   }
 }
 
-.Calender {
+.Calendar {
   position: relative;
   width: 100%;
-  max-width: 255px;
+  max-width: 600px;
   max-height: 34px;
 }
 
-.Calender .Calender-selector {
+.Calendar .Calendar-selector {
   width: 100%;
   max-height: 34px;
   padding: 0.25rem 0.35rem;
@@ -1486,24 +1486,24 @@ a:hover {
   cursor: pointer;
 }
 
-.Calender .Calender-selector .Calender-selector-text {
+.Calendar .Calendar-selector .Calendar-selector-text {
   margin: 0 0.5rem;
 }
 
-.Calender .Calender-selector svg {
+.Calendar .Calendar-selector svg {
   width: 20px;
   height: 20px;
 }
 
-.Calender .Calender-container {
+.Calendar .Calendar-container {
   position: absolute;
   z-index: 10;
   background: white;
   border-radius: 10px;
   padding: 0.5rem;
   border: 2px solid #d8a466;
-  width: 255px;
-  max-width: 180%;
+  width: 100%;
+  max-width: 600px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1518,9 +1518,11 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-.Calender .Calender-container .Calender-header {
+.Calendar .Calendar-container .Calendar-header {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1537,8 +1539,8 @@ a:hover {
           align-items: center;
 }
 
-.Calender .Calender-container .Calender-header .year-selector,
-.Calender .Calender-container .Calender-header .month-selector {
+.Calendar .Calendar-container .Calendar-header .year-selector,
+.Calendar .Calendar-container .Calendar-header .month-selector {
   border: none;
   margin: 0 0.35rem 0.15rem;
   background: white;
@@ -1546,17 +1548,17 @@ a:hover {
   border-radius: 0;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr {
   border-bottom: 1px solid #666666;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr .Calender-table-th {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr .Calendar-table-th {
   padding: 0.35rem;
   text-align: center;
   font-weight: 900;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td {
   cursor: pointer;
   padding: 0.35rem;
   width: 8%;
@@ -1565,21 +1567,296 @@ a:hover {
   border: 1px solid transparent;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td:hover {
   background: #e0e0e0;
   color: black;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .today {
   background: #e0e0e0;
   border: 2px solid #eb6b6a;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .available {
   background: #b3cedb;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.CalendarAvailable {
+  position: relative;
+  width: 100%;
+  max-width: 140px;
+  max-height: 45px;
+}
+
+.CalendarAvailable .CalendarAvailable-selector {
+  width: 100%;
+  max-height: 45px;
+  padding: 0.45rem;
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  font-weight: 900;
+  color: #d8a466;
+}
+
+.CalendarAvailable .CalendarAvailable-selector .CalendarAvailable-selector-text {
+  margin: 0 0.5rem;
+}
+
+.CalendarAvailable .CalendarAvailable-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.CalendarAvailable .CalendarAvailable-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 200%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .year-selector,
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr .CalendarAvailable-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .available {
+  background: #b3cedb;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled {
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled:hover {
+  background: none;
+}
+
+.CalendarMulti {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 34px;
+}
+
+.CalendarMulti .CalendarMulti-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.CalendarMulti .CalendarMulti-selector .CalendarMulti-selector-text {
+  margin: 0 0.5rem;
+}
+
+.CalendarMulti .CalendarMulti-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.CalendarMulti .CalendarMulti-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .year-selector,
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr .CalendarMulti-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  margin: 0.15rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .available {
+  background: #b3cedb;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .active {
   background: #0078b3;
   color: white;
   border: 2px solid #666666;

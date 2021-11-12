@@ -15,21 +15,25 @@ let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始�
 let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
-const Calendar = (props) => {
+const CalendarMulti = (props) => {
   let { onChange } = props;
 
   // 日期窗開關
   let [calenderOpen, setCalendarOpen] = useState(false);
   // 預設的年份
-  let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
+  let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
-  let [currentMonth, setCurrentMonth] = useState(todayMonth); //todayMonth);
+  let [currentMonth, setCurrentMonth] = useState(todayMonth);
   // 預設的日期
-  let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
-  // 正確格式的日期（單數前面補零）
-  let selectedDay = `${currentYear}-${currentMonth <= 8 ? "0" : ""}${
-    currentMonth + 1
-  }-${currentDay <= 9 ? "0" : ""}${currentDay}`;
+  let [currentDay, setCurrentDay] = useState(todayDay);
+
+  // 當前正在選取的日期
+  let [selectedDay, setSelectedDay] = useState("");
+  // 存取所有已被選定的日期
+  let [selectedDays, setSelectedDays] = useState([]);
+
+  // 判斷此次是否為第一次 render / 以及幫助 currentDay 達到即時更新
+  let [didUpdate, setDidUpdate] = useState(1);
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -77,47 +81,78 @@ const Calendar = (props) => {
     setCalendarOpen(false);
   });
 
-  // 選取日期
+  // 按下選取日期
   const handleDaySelect = (e) => {
     //先判斷此次點擊的是否為有效日期
     if (Number(e.target.innerText) > 0) {
       setCurrentDay(e.target.innerText);
-
-      // 關閉日期窗
-      setCalendarOpen(false);
     }
   };
 
   // 將選定的日期送出
   useEffect(() => {
-    onChange(selectedDay);
+    setSelectedDay(
+      `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+        currentDay <= 9 ? "0" : ""
+      }${currentDay}`
+    );
   }, [currentYear]);
   useEffect(() => {
-    onChange(selectedDay);
+    setSelectedDay(
+      `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+        currentDay <= 9 ? "0" : ""
+      }${currentDay}`
+    );
   }, [currentMonth]);
   useEffect(() => {
-    onChange(selectedDay);
+    setSelectedDay(
+      `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+        currentDay <= 9 ? "0" : ""
+      }${currentDay}`
+    );
+    setDidUpdate(didUpdate + 1);
   }, [currentDay]);
 
+  // 當 selectedDay 改變時，即時編輯 selectedDays 內的data
+  useEffect(() => {
+    if (didUpdate > 2) {
+      let newSelectedDays = [...selectedDays];
+      // 判斷此日是否已經選取，是的話移除 不是的話新增
+      if (newSelectedDays.includes(selectedDay)) {
+        newSelectedDays = newSelectedDays.filter((day) => {
+          return day != selectedDay;
+        });
+      } else {
+        newSelectedDays.push(selectedDay);
+      }
+
+      setSelectedDays(newSelectedDays);
+    }
+  }, [didUpdate]);
+
+  // 當已選定日期改變時
+  useEffect(() => {
+    onChange(selectedDays);
+  }, [selectedDays]);
+
   return (
-    <div className="Calendar">
-      <div className="Calendar-selector" onClick={handleCalendarOpen}>
+    <div className="CalendarMulti">
+      <div className="CalendarMulti-selector" onClick={handleCalendarOpen}>
         <FcCalendar />
-        <span className="Calendar-selector-text">
-          {currentYear} - {currentMonth <= 8 ? "0" : ""}
-          {currentMonth + 1} - {currentDay <= 9 ? "0" : ""}
-          {currentDay}
+        <span className="CalendarMulti-selector-text">
+          {selectedDays.length > 0 && "已選擇"}
+          {selectedDays.length < 1 && "請選擇開課日期"}
         </span>
         <MdKeyboardArrowDown />
       </div>
       {calenderOpen && (
         <div
-          className="Calendar-container"
+          className="CalendarMulti-container"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <div className="Calendar-header">
+          <div className="CalendarMulti-header">
             <select
               name=""
               id=""
@@ -152,54 +187,41 @@ const Calendar = (props) => {
                 ))}
             </select>
           </div>
-          <table className="Calendar-table">
-            <thead className="Calendar-table-head">
-              <tr className="Calendar-table-tr">
+          <table className="CalendarMulti-table">
+            <thead className="CalendarMulti-table-head">
+              <tr className="CalendarMulti-table-tr">
                 {weekdays.map((i, index) => (
-                  <th key={index} className="Calendar-table-th">
+                  <th key={index} className="CalendarMulti-table-th">
                     {i}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="Calendar-table-body">
+            <tbody className="CalendarMulti-table-body">
               {str_nums.map((days, i) => (
-                <tr key={i} className="Calendar-table-tr">
+                <tr key={i} className="CalendarMulti-table-tr">
                   {weekdays.map((day, k) => {
                     let idx = 7 * i + k; //為每個表格建立索引,從0開始
                     let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
                     date <= 0 || date > days_per_month[currentMonth]
                       ? (date = " ") //索引小於等於0或者大於月份最大值就用空表格代替
                       : (date = idx - dayOfWeek + 1);
-                    if (
-                      currentYear === todayYear &&
-                      currentMonth === todayMonth &&
-                      date === todayDay
-                    ) {
+                    if (true) {
+                      // 這裡判斷的是 如果日期 == available(可預訂)的話就亮起來, 其餘的話disabled
                       return (
                         <td
                           key={k}
-                          className="Calendar-table-td today"
-                          onClick={handleDaySelect}
-                        >
-                          {date}
-                        </td>
-                      );
-                    } else if (date == currentDay) {
-                      return (
-                        <td
-                          key={k}
-                          className="Calendar-table-td active"
-                          onClick={handleDaySelect}
-                        >
-                          {date}
-                        </td>
-                      );
-                    } else {
-                      return (
-                        <td
-                          key={k}
-                          className="Calendar-table-td"
+                          className={`CalendarMulti-table-td ${selectedDays.map(
+                            (item, index) => {
+                              if (
+                                item.slice(0, 4) == currentYear &&
+                                item.slice(5, 7) == Number(currentMonth) + 1 &&
+                                item.slice(8, 10) == date
+                              ) {
+                                return ` active `;
+                              }
+                            }
+                          )}`}
                           onClick={handleDaySelect}
                         >
                           {date}
@@ -217,4 +239,13 @@ const Calendar = (props) => {
   );
 };
 
-export default Calendar;
+export default CalendarMulti;
+// return (
+//   <td
+//     key={k}
+//     className="CalendarMulti-table-td"
+//     onClick={handleDaySelect}
+//   >
+//     {date}
+//   </td>
+// );
