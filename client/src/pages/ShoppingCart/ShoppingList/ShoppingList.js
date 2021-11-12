@@ -8,7 +8,6 @@ function ShoppingList(){
             <div className="ShoppingBill-wrapper">
                 <div className="ShoppingBill-title">
                     <h1>完成訂購</h1>
-                    <h5>總計4堂課</h5>
                 </div>
                 <hr/>
                 <h3>消費帳單</h3>

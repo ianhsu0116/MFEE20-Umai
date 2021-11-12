@@ -6,15 +6,18 @@ import React, { useState, useEffect } from "react";
 function CourseDetail(props){
     let [pathname, setPathname] = useState("/");
     let [nextpage, setNextpage] = useState("/");
+    let [disabled, setDisabled] = useState("")
 
     useEffect(() => {
         setPathname(props.location);
         switch(pathname){
             case "/ShoppingCart":
                 setNextpage("/PaymentMethod");
+                setDisabled("");
                 break;
             case "/PaymentMethod":
                 setNextpage("/ShoppingList");
+                setDisabled("disabled");
                 break;
         };
       },);
@@ -28,23 +31,23 @@ function CourseDetail(props){
         <table className="CourseDetail-Consumer-details">
             <tr>
                 <td><h4>訂單小計</h4></td>
-                <td><h4>NT$ 9900</h4></td>
+                <td><h4>NT$ {props.coursedata.value*props.coursedata.studentnumber}</h4></td>
             </tr>
             <tr>
                 <td><h4>優惠券</h4></td>
                 <td>
-                    <select>
-                        <option>滿 5000 折 500</option>
+                    <select disabled={disabled}>
+                        <option>{props.coupon.coupon1.name}</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td><h4>優惠折扣</h4></td>
-                <td><h4>NT$ 500</h4></td>
+                <td><h4>NT$ {props.coupon.coupon1.count}</h4></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
-                <td><h3>NT$ 9400</h3></td>
+                <td><h3>NT$ {props.coursedata.value*props.coursedata.studentnumber-props.coupon.coupon1.count}</h3></td>
             </tr>
         </table>
         <hr/>

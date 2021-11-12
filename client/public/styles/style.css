@@ -2025,12 +2025,6 @@ a:hover {
   color: var(--main-color);
 }
 
-.CourseList-title h5 {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
 .CourseList-list {
   width: 100%;
   border-spacing: 0;

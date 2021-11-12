@@ -1,15 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FiChevronRight } from "react-icons/fi";
 import DefaultStudentCard from "../../../components/DefaultStudentCard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function CourseList(props){
     const [ card, setCard] = useState(false);
+    
+    // let studentnumbers=(()=>{
+    //     for (let i = 0; i < node.length; i++) {
+    //       console.log(node);
+    //     }
+    //   });
 
+      useEffect(() => {
+        let node=document.querySelector(".Student-card");
+        console.log(node);
+          for(let i = 1; i <= props.coursedata.studentnumber; i++){
+        }
+      },);
+      
     return(
     <>
         <div className="CourseList-title">
             <h1>訂單結帳</h1>
-            <h5>總計4堂課</h5>
         </div>
         <hr/>
         <table className="CourseList-list-title">
@@ -27,12 +40,12 @@ function CourseList(props){
     card ? setCard(false) : setCard(true);
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
-                    <h3>築地創意壽司</h3>
+                    <h3>{props.coursedata.name}</h3>
                     <h5>報名人數剩餘5人</h5>
                 </td>
-                <td><h4>NT$ 3300</h4></td>
-                <td><h4>*3位</h4></td>  
-                <td><h4>NT$ 9900</h4></td>
+                <td><h4>NT$ {props.coursedata.value}</h4></td>
+                <td><h4>*{props.coursedata.studentnumber}位</h4></td>  
+                <td><h4>NT$ {props.coursedata.value*props.coursedata.studentnumber}</h4></td>
             </tr>
             <tr className="CourseList-list-tool">
                 <td colSpan="5"><button>收藏</button><button>刪除</button></td>
@@ -75,8 +88,9 @@ function CourseList(props){
                             <h4>學員資料</h4>
                             <button>新增學員</button>
                         </div>
-                        <DefaultStudentCard />
-                        <DefaultStudentCard />
+                        <div className="Student-card">
+                            <DefaultStudentCard/>
+                        </div>
                     </div>
                 </td>
             </tr>
