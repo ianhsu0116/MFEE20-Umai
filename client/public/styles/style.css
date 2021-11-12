@@ -2129,6 +2129,963 @@ a:hover {
   overflow: scroll;
 }
 
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry {
+  max-width: 70%;
+  -webkit-column-count: 5;
+          column-count: 5;
+}
+
+.wrapper .masonry .item {
+  overflow: hidden;
+  background: white;
+  margin-bottom: 10px;
+  -webkit-column-break-inside: auto;
+  /* Chrome, Safari, Opera */
+  /* Firefox */
+  break-inside: auto;
+  /* IE 10+ */
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper .masonry .item img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.wrapper .masonry .item .opacity {
+  position: absolute;
+  top: 0;
+  border-radius: 20px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry .item .opacity:hover {
+  opacity: 0.5;
+}
+
+.Massonry-modal {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-header {
+  font-size: 30px;
+  background: white;
+}
+
+.Massonry-modal .Massonry-modal-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border {
+  width: 70%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border .Massonry-modal-body-image {
+  width: 100%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop {
+  width: 30%;
+  height: 100%;
+  background: burlywood;
+  padding: 1rem 2rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-orner-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-owner-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-text {
+  min-height: 40vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .Massonry-modal-body-orner-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .Massonry-modal-body-critic-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .Massonry-modal-body-commet-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Forum-modal-body-commet-p {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  min-height: 5vh;
+  max-height: 10vh;
+}
+
+* {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrapper {
+  width: 70vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .sidebar {
+  color: #5a4c3a;
+  width: 100%;
+  height: 100vh;
+  padding-top: 15px;
+  margin: 0 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .sidebar h3 {
+  text-align: center;
+}
+
+.wrapper .sidebar ul {
+  margin-top: 30px;
+  padding-left: 0;
+  text-align: center;
+}
+
+.wrapper .sidebar ul li {
+  padding: 2.5px 0;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.wrapper .sidebar ul li:hover {
+  color: orange;
+}
+
+.wrapper .forum {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .forum .main {
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper .forum .main .Forum-main-h3 {
+  margin: 10px;
+}
+
+.wrapper .forum .main .Forum-main-h2 {
+  margin: 10px;
+  color: #9b8a8a;
+}
+
+.wrapper .forum .main .Forum-main-out {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-photo {
+  width: 125px;
+  height: 125px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle {
+  padding: 0px 15px;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  position: relative;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-date {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-theme {
+  padding: 0;
+  margin: 0px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-p {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 8px;
+  padding-left: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineHeart {
+  color: #eb6b6a;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-love {
+  padding: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineMessage {
+  color: #5eb2eb;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small p {
+  padding: 0 0.5rem;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small a {
+  display: none;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover .BsFillTriangleFill {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  color: orange;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover p {
+  display: none;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover a {
+  display: block;
+  color: orange;
+  padding: 0% 0.25rem;
+  margin: 0%;
+  text-decoration: none;
+}
+
+.wrapper .publish {
+  background: white;
+  width: 15%;
+  height: 100vh;
+  -webkit-box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+          box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+  padding-top: 15px;
+  padding-left: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .publish .Forum-publish-form-select {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-select .option:after {
+  position: absolute;
+  right: 20px;
+  top: 41%;
+}
+
+.wrapper .publish .Forum-publish-form-select select {
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper .publish .Forum-publish-form-select select option {
+  border: none;
+  outline: none;
+  width: 70%;
+  background-color: black;
+  color: white;
+}
+
+.wrapper .publish .Forum-publish-label-small {
+  margin-left: 5%;
+  margin-right: 10%;
+  text-align: left;
+}
+
+.wrapper .publish .Forum-publish-label-illustrator {
+  margin-left: 5%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: left;
+  display: block;
+}
+
+.wrapper .publish .Forum-publish-form-big {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 30px;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-file {
+  display: none;
+}
+
+.wrapper .publish .Forum-publish-textarea {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 500px;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 15px;
+  resize: none;
+}
+
+.wrapper .publish .Forum-publish-button-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .publish .Forum-publish-button-div .Forum-publish-button {
+  margin: 15px 5px;
+  font-weight: bolder;
+}
+
+.Forum-modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-header {
+  font-size: 30px;
+}
+
+.Forum-modal .Forum-modal-body {
+  padding: 1rem 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border {
+  margin: 0 auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-commet {
+  height: 80vh;
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-image {
+  max-width: 80%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-p {
+  font-size: 1.25rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-fb {
+  position: absolute;
+  padding-right: 5px;
+  right: 0;
+  color: #4267b2;
+}
+
+.Forum-modal .modal-footer {
+  padding: 1rem 2rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .Forum-modal-body-icon-p {
+  font-size: 1.5rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet .Forum-modal-footer-write-commet-textarea {
+  width: 1055.55px;
+  max-width: 1440px;
+  min-width: 900px;
+  resize: none;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  color: #ebebeb;
+  padding: 15px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttondelete {
+  margin: 0 5px;
+  background: #eb6b6a;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttonsave {
+  margin: 0 5px;
+  background: #d8a466;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+  max-width: 1440px;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .discussion {
+  width: 70%;
+  max-width: 1440px;
+  padding: 1rem;
+  background-color: white;
+}
+
+.wrapper .discussion .Discussion-main-theme {
+  text-align: center;
+}
+
+.wrapper .discussion .Discussion-main-brad {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet-textarea {
+  width: 90%;
+  margin: 0 1rem;
+  resize: none;
+  padding: 1rem;
+  border: olivedrab 1px dashed;
+}
+
+.wrapper .discussion .Discussion-main-account {
+  margin: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-p {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-image {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-commet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineHeart {
+  color: pink;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineMessage {
+  color: #00ffff;
+}
+
+.wrapper .discussion .Discussion-main-commet .Discussion-main-commet-social {
+  position: absolute;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .discussion .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
 @media screen and (max-width: 1200px) {
   .Navbar .Navbar-container {
     width: 90%;

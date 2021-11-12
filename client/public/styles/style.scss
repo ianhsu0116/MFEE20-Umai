@@ -155,7 +155,14 @@ a {
 @import "./member/CollectionCourse";
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
-@import "./member/CollectionArticle.scss";
+@import "./member/CollectionArticle";
+
+// masonry相關
+@import "./masonry/massonry";
+
+// forum 相關
+@import "./forum/forum";
+@import "./forum/discussion";
 
 // RWD
 @media screen and (max-width: 1200px) {
