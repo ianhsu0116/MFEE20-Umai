@@ -17,10 +17,8 @@ const coures_info_json = {
   title1_1: "標題1-1號",
   title1_2: "標題1-2號",
   content1: "介紹內容一",
-  title2_1: "標題2-1號(主廚標題)",
-  title2_2: "標題2-2號(主廚標題)",
-  title3: "標題3號(六道菜部分)",
-  food_image: [
+  title2: "標題3號(六道菜部分)",
+  six_dishes: [
     // 課程六道菜的圖+文
     {
       image_name: "image_name",

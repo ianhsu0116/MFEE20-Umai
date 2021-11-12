@@ -24,9 +24,41 @@ $titleBackgroundColor: #eeeeee;
   box-sizing: border-box;
 }
 
+html {
+  //overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  height: 100%;
+}
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: $fontColor;
+
+  // //將scrollbar移除
+  // -ms-overflow-style: none;
+  // //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+  // overflow: auto;
+}
+
+// 設定scrollbar樣式
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  //display: none;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  opacity: 0;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  //background: $themeColor;
+  border-radius: 3px;
+  opacity: 0;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $activeColor;
+  opacity: 1;
 }
 
 // 覆蓋bootstrap樣式
@@ -67,12 +99,23 @@ input[type="reset"] {
   outline: inherit;
 }
 
-input {
+input,
+textarea,
+select {
   color: $fontColor;
   outline: none;
   border: 1px solid $fontColor;
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
+  border-radius: 5px;
+}
+input,
+textarea {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 a {
@@ -140,9 +183,14 @@ a {
 @import "./OptionBar";
 @import "./CourseCard1";
 @import "./Coupons";
-@import "./DefaultStudentCard.scss";
+@import "./DefaultStudentCard";
 @import "./StarGroup";
+@import "./ShareCard";
+@import "./CourseMiniCard";
+@import "./ChefCard";
+@import "./Breadcrumb";
 @import "./CreditCards";
+@import "./Calendar";
 
 // member相關
 @import "./member/Login";
@@ -156,13 +204,22 @@ a {
 @import "./member/CollectionCoupons";
 @import "./member/DefaultStudentCard2";
 @import "./member/CollectionArticle";
+@import "./member/CourseInsert";
+@import "./member/ReviewButton";
 
 // masonry相關
-@import "./masonry/massonry";
-
+@import "./forum/massonry";
 // forum 相關
 @import "./forum/forum";
 @import "./forum/discussion";
+
+// 課程分類
+@import "./course/Course";
+@import "./course/CourseCard_Course";
+@import "./course/StarGroup_Course";
+
+// 課程詳細
+@import "./CourseDetail/_CourseDetailed";
 
 // RWD
 @media screen and (max-width: 1200px) {
