@@ -11,10 +11,7 @@ let sliderArray = [111, 222, 333];
 const CourseInsert = (props) => {
   const { isReview, setIsReview } = props;
   const [courseDetail, setCourseDetail] = useState({
-    slider_images: [],
-    course_name: "", // 課程名稱
-    company_name: "", // 餐廳名稱
-    company_address: "", // 餐廳地址, 供google地圖搜尋
+    slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
     time_of_course: "", // 平日上午10:30 ~ 下午04:00
     course_ig: "https://www.instagram.com/",
     course_fb: "https://www.facebook.com/",
@@ -25,32 +22,32 @@ const CourseInsert = (props) => {
     six_dishes: [
       // 課程六道菜的圖+文
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
       {
-        dishes_image: "", // 圖片file檔案
+        dishes_image: "img_name", // 圖片名稱
         dishes_title: "", // 菜色標題
         dishes_content: "", // 菜色介紹
       },
@@ -59,12 +56,20 @@ const CourseInsert = (props) => {
     content3: "", // 注意事項說明
 
     // 下方是table內的獨立欄位，不是存在json內
-    member_limit: 0,
+    course_name: "", // 課程名稱
     course_price: 0,
     course_hour: 0,
-    course_level: "1", // 1, 2, 3
-    course_category: "1", // 1 ~ 6 代表course_category的id
-    course_batch: [],
+    course_level: "1", // 1, 2, 3 (高階 中階 初階)
+    member_limit: 0,
+    company_name: "", // 餐廳名稱
+    company_address: "", // 餐廳地址, 供google地圖搜尋
+
+    // 下方為需要join的資料
+    category_id: "1", // 1 ~ 6 代表category table的id
+    member_id: "0001",
+
+    // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
+    course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
   });
 
   // 儲存slider上傳的圖片(二元編碼 即時顯示使用)
@@ -335,17 +340,17 @@ const CourseInsert = (props) => {
         <div className="CourseInsert-container-row">
           <div className="CourseInsert-container-row-inputCon">
             <label
-              htmlFor="course_category"
+              htmlFor="category_id"
               className="CourseInsert-container-row-inputCon-label"
             >
               課程分類
             </label>
             <select
-              name="course_category"
-              id="course_category"
+              name="category_id"
+              id="category_id"
               className="CourseInsert-container-row-inputCon-input"
               onChange={handleCourseChange}
-              value={courseDetail.course_category}
+              value={courseDetail.category_id}
             >
               <option value="1">日式料理</option>
               <option value="2">韓式料理</option>

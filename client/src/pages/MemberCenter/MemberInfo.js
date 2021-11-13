@@ -21,6 +21,7 @@ const MemberInfo = (props) => {
     number: "4477000000000000",
   });
 
+
   // 即時抓取基本資料填寫
   const handleMemberInfoChange = (e) => {
     setMemberInfo({ ...memberInfo, [e.target.name]: e.target.value });
@@ -124,6 +125,7 @@ const MemberInfo = (props) => {
               >
                 出生日期
               </label>
+
               {/* <input
                 type="date"
                 name="birthday"
@@ -193,7 +195,6 @@ const MemberInfo = (props) => {
           <header className="MemberInfo-container-header">
             <h2>付款資訊</h2>
           </header>
-
           <CreditCards
             creditCardsInfo={creditCardsInfo}
             setCreditCardsInfo={setCreditCardsInfo}

@@ -183,8 +183,12 @@ a {
 @import "./OptionBar";
 @import "./CourseCard1";
 @import "./Coupons";
-@import "./DefaultStudentCard.scss";
+@import "./DefaultStudentCard";
 @import "./StarGroup";
+@import "./ShareCard";
+@import "./CourseMiniCard";
+@import "./ChefCard";
+@import "./Breadcrumb";
 @import "./CreditCards";
 
 // 三種不一樣的萬年曆
@@ -206,6 +210,14 @@ a {
 @import "./member/CollectionArticle";
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
+
+// 課程分類
+@import "./course/Course";
+@import "./course/CourseCard_Course";
+@import "./course/StarGroup_Course";
+
+// 課程詳細
+@import "./CourseDetail/_CourseDetailed";
 
 // RWD
 @media screen and (max-width: 1200px) {
