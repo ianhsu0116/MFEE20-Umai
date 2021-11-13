@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 import MemberSidebar from "../../components/member/MemberSidebar";
 import MemberInfo from "./MemberInfo";
 import DefaultStudent from "./DefaultStudent";
@@ -10,6 +11,17 @@ import CollectionArticle from "./CollectionArticle";
 import CourseInsert from "./CourseInsert";
 
 const MemberCenter = (props) => {
+  let { currentUser, setCurrentUser } = props;
+
+  // 確認當前登入狀態
+  const history = useHistory();
+  useEffect(async () => {
+    // 如果當前沒有使用者的話，直接導回首頁
+    if (!currentUser) {
+      return history.push("/");
+    }
+  }, []);
+
   const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
 
   // 是否為預覽狀態 (給CourseInsert專用)
@@ -22,6 +34,7 @@ const MemberCenter = (props) => {
         <MemberSidebar
           currentBoard={currentBoard}
           setCurrentBoard={setCurrentBoard}
+          setCurrentUser={setCurrentUser}
         />
         {currentBoard === "會員資訊" && <MemberInfo />}
         {currentBoard === "預設學員" && <DefaultStudent />}
