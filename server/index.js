@@ -19,6 +19,17 @@ app.use(
     credentials: true,
   })
 );
+let FileStore = require("session-file-store")(session);
+const path = require("path");
+app.use(
+  session({
+    // store: 指定要把 session 存在哪裡，預設是 memory
+    store: new FileStore({ path: path.join(__dirname, "..", "sessions") }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

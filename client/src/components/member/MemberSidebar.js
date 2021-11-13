@@ -1,6 +1,6 @@
-
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { ImGift } from "react-icons/im";
@@ -12,16 +12,15 @@ import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.jpg";
 
 const MemberSidebar = (props) => {
-  let { currentBoard, setCurrentBoard } = props;
+  let { currentBoard, setCurrentBoard, setCurrentUser } = props;
 
-  const [currentAvatar, setCurrentAvatar] = useState(""); // 存avatar的二元編碼
+  // 存avatar的二元編碼
+  const [currentAvatar, setCurrentAvatar] = useState("");
 
   // 切換sidebar內容
-
   const handleChangeBoard = (e) => {
     setCurrentBoard(e.target.innerText);
   };
-
 
   // 即時顯示上傳的avatar
   const handleAvatarChange = (e) => {
@@ -47,12 +46,24 @@ const MemberSidebar = (props) => {
     }
   };
 
+  // 登出
+  const history = useHistory();
+  const handleLogout = async () => {
+    try {
+      let result = await AuthService.logout();
+      //console.log(result);
+      setCurrentUser(null);
+      window.alert("登出成功！");
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="MemberSidebar">
       <div className="MemberSidebar-container">
         <div className="MemberSidebar-container-avatar">
-
           <input
             type="file"
             id="avatar"
@@ -172,7 +183,7 @@ const MemberSidebar = (props) => {
               新增課程
             </span>
           </li>
-          <li className="MemberSidebar-container-ul-li">
+          <li className="MemberSidebar-container-ul-li" onClick={handleLogout}>
             <HiOutlineLogout />
             <span className="MemberSidebar-container-ul-li-text">登出</span>
           </li>

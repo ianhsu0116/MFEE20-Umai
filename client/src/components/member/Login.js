@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import getValidMessage from "../../validMessage/validMessage";
+import AuthService from "../../services/auth.service";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../config/config";
@@ -6,16 +8,58 @@ import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 
 const Login = (props) => {
+  const { setShowLogin, setCurrentUser } = props;
+  const [accountData, setAccountData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // 防止點擊到登入的Container時就關閉視窗
   const preventLoginClose = (e) => {
     e.stopPropagation();
-    console.log("preventLoginClose");
   };
 
+  // Google Login
   const responseGoogle = (response) => {
     console.log(response);
   };
+
+  // Facebook Login
   const responseFacebook = (response) => {
     console.log(response);
+  };
+
+  // 即時抓取input data
+  const handleInputChange = (e) => {
+    setAccountData({ ...accountData, [e.target.name]: e.target.value });
+  };
+
+  // 按下登入
+  const handleLogin = async () => {
+    let { email, password } = accountData;
+    try {
+      let result = await AuthService.login(email, password);
+
+      // 將使用者資料裝入state
+      setCurrentUser(result.data);
+      window.alert("登入成功！");
+
+      // 關閉登入的視窗
+      setShowLogin(false);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  // 按下註冊
+  const handleRegistration = async () => {
+    let { email, password } = accountData;
+    try {
+      let result = await AuthService.registration(email, password);
+      window.alert("註冊成功 可以直接登入囉！");
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
@@ -26,7 +70,7 @@ const Login = (props) => {
           <div className="Login-container-right-thirdPartyCon">
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
-              buttonText="Google 註冊 / 登入"
+              buttonText="使用 Google 帳戶繼續"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={"single_host_origin"}
@@ -37,7 +81,7 @@ const Login = (props) => {
                   className="Login-container-right-googleBtn"
                 >
                   <img src={require("../images/googleLogin.svg").default} />
-                  <div>Google 註冊 / 登入</div>
+                  <div>使用 Google 帳戶繼續</div>
                   <div></div>
                 </button>
               )}
@@ -52,7 +96,7 @@ const Login = (props) => {
                   className="Login-container-right-fbBtn"
                 >
                   <img src={require("../images/facebookLogin.svg").default} />
-                  <div>Facebook 註冊 / 登入</div>
+                  <div>使用 Facebook 帳戶繼續</div>
                   <div></div>
                 </button>
               )}
@@ -68,18 +112,35 @@ const Login = (props) => {
 
           <div className="Login-container-right-inputCon">
             <label htmlFor="email">常用Email</label>
-            <input type="text" name="email" id="email" />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={handleInputChange}
+            />
             <BsPersonFill />
           </div>
           <div className="Login-container-right-inputCon">
             <label htmlFor="password">密碼</label>
-            <input type="password" name="password" id="password" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleInputChange}
+            />
             <HiLockClosed />
           </div>
 
           <div className="Login-container-right-button-con">
-            <button className="login-submit-btn">登入</button>
-            <button className="register-submit-btn">註冊</button>
+            <button className="login-submit-btn" onClick={handleLogin}>
+              登入
+            </button>
+            <button
+              className="register-submit-btn"
+              onClick={handleRegistration}
+            >
+              註冊
+            </button>
           </div>
 
           <div className="Login-container-right-bottom">

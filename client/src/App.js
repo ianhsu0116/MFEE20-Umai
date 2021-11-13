@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import ChefCard from "./components/ChefCard";
-import CourseMiniCard from "./components/CourseMiniCard";
-import ShareCard from "./components/ShareCard";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 
 import About from "./pages/About/About";
-
 import Course from "./pages/Course/Course";
 
-import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture"
-
+import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
-
+import ChefCard from "./components/ChefCard";
+import CourseMiniCard from "./components/CourseMiniCard";
+import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
 
 function App() {
+  // 存取當前使用者資料
+  const [currentUser, setCurrentUser] = useState(null);
+  // 登入視窗開關
   let [showLogin, setShowLogin] = useState(false);
 
   // 開啟Login Container
@@ -62,8 +62,10 @@ function App() {
 
   return (
     <Router>
-      <Navbar handleLoginClick={handleLoginClick} />
-      {showLogin && <Login />}
+      <Navbar handleLoginClick={handleLoginClick} currentUser={currentUser} />
+      {showLogin && (
+        <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
+      )}
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
@@ -83,7 +85,10 @@ function App() {
           <CalendarMulti onChange={onChange} />
         </Route>
         <Route path="/memberCenter" exact>
-          <MemberCenter />
+          <MemberCenter
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
         </Route>
         <Route path="/course/category" exact>
           <Course />
