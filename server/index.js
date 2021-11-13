@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // 登入認證相關的路由
-const authRoute = require("./routes/auth");
+const authRoute = require("./routes").auth;
 app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
