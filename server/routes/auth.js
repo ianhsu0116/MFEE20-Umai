@@ -19,39 +19,38 @@ router.get("/testAPI", (req, res) => {
 router.post("/login", (req, res) => {
   // 先判斷有無格式錯誤
   let { error } = loginValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(403).json({ success: false, code: "A001" });
 
   // 確認是否已被註冊
 
   // 確認資料是否正確
 
   req.session.member = req.body;
-  res.send(req.body);
+  res.json({ success: true, member: req.body });
 });
 
 // 註冊路由
 router.post("/registration", (req, res) => {
   // 先判斷有無格式錯誤
   let { error } = registerValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(403).json({ success: false, code: "B001" });
 
   // 確認是否已被註冊
 
   // 將資料新增至資料庫
 
-  req.session.member = req.body;
-  res.send(req.body);
+  res.json({ success: true });
 });
 
 // 拿到使用者資料
 router.get("/info", (req, res) => {
-  res.json(req.session.member);
+  res.json({ success: true, member: req.session.member });
 });
 
 // 登出路由
 router.get("/logout", (req, res) => {
   req.session.member = null;
-  res.status(200).json({ code: 200, message: "登出成功" });
+  res.status(200).json({ success: true, message: "登出成功" });
 });
 
 module.exports = router;

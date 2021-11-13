@@ -178,6 +178,11 @@ a {
   }
 }
 
+.ErrorMessage {
+  font-size: 90%;
+  color: red;
+}
+
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
