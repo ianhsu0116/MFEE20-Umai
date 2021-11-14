@@ -1,18 +1,23 @@
 import React, { useState } from "react";
+import ErrorMessage from "../ErrorMessage";
 import getValidMessage from "../../validMessage/validMessage";
 import AuthService from "../../services/auth.service";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../config/config";
+import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 
 const Login = (props) => {
+  // 存放當前使用者資料
   const { setShowLogin, setCurrentUser } = props;
+  // 帳號密碼
   const [accountData, setAccountData] = useState({
     email: "",
     password: "",
   });
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState("");
 
   // 防止點擊到登入的Container時就關閉視窗
   const preventLoginClose = (e) => {
@@ -41,13 +46,15 @@ const Login = (props) => {
       let result = await AuthService.login(email, password);
 
       // 將使用者資料裝入state
-      setCurrentUser(result.data);
+      setCurrentUser(result.data.member);
       window.alert("登入成功！");
 
       // 關閉登入的視窗
       setShowLogin(false);
     } catch (error) {
-      console.log(error.response);
+      //console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("login", code));
     }
   };
 
@@ -58,7 +65,9 @@ const Login = (props) => {
       let result = await AuthService.registration(email, password);
       window.alert("註冊成功 可以直接登入囉！");
     } catch (error) {
-      console.log(error.response);
+      //console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("registration", code));
     }
   };
 
@@ -116,6 +125,7 @@ const Login = (props) => {
               type="text"
               name="email"
               id="email"
+              value={accountData.email}
               onChange={handleInputChange}
             />
             <BsPersonFill />
@@ -126,10 +136,14 @@ const Login = (props) => {
               type="password"
               name="password"
               id="password"
+              value={accountData.password}
               onChange={handleInputChange}
             />
             <HiLockClosed />
           </div>
+
+          {/* 錯誤訊息提示 */}
+          {errorMsg && <ErrorMessage value={errorMsg} />}
 
           <div className="Login-container-right-button-con">
             <button className="login-submit-btn" onClick={handleLogin}>

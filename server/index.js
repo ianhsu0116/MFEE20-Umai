@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const connection = require("./utils/database");
 const cors = require("cors");
 const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 
 app.use((req, res, next) => {
   let current = new Date();
@@ -19,7 +21,7 @@ app.use(
     credentials: true,
   })
 );
-let FileStore = require("session-file-store")(session);
+
 const path = require("path");
 app.use(
   session({
@@ -30,11 +32,12 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // 登入認證相關的路由
-const authRoute = require("./routes/auth");
+const authRoute = require("./routes").auth;
 app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
@@ -42,5 +45,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(8080, () => {
+  connection.connect();
   console.log("server is running on port 8080");
 });
