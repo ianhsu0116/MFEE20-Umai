@@ -47,11 +47,14 @@ const Navbar = (props) => {
 
         {!currentUser && (
           <div className="Navbar-container-item">
+            <button className="Navbar-container-item-btn2">
+              <MdShoppingCart className="Navbar-container-item-btn2-cart" />
+            </button>{" "}
             <button
               onClick={handleLoginClick}
               className="Navbar-container-item-btn"
             >
-              登入/註冊{" "}
+              登入
             </button>
           </div>
         )}

@@ -4,7 +4,7 @@ import getValidMessage from "../../validMessage/validMessage";
 import AuthService from "../../services/auth.service";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../config/config";
+import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 
