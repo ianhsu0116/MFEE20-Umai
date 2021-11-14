@@ -127,57 +127,54 @@ a {
 }
 
 // 各個按鍵component的樣式
-.button-themeColor {
+%button-basic {
   padding: 0.35rem 0.75rem;
-  background: $themeColor;
   color: white;
   border-radius: 5px;
+}
+
+.button-themeColor {
+  @extend %button-basic;
+  background: $themeColor;
 
   &:hover {
     background-color: $activeColor;
   }
 }
 .button-themeColorBlue {
-  padding: 0.35rem 0.75rem;
+  @extend %button-basic;
   background: $themeColorBlue;
-  color: white;
-  border-radius: 5px;
 
   &:hover {
     background-color: #006ca1;
   }
 }
 .button-highLeveColor {
-  padding: 0.35rem 0.75rem;
+  @extend %button-basic;
   background: $highLevelColor;
-  color: white;
-  border-radius: 5px;
 
   &:hover {
     background-color: #cc5a5a;
   }
 }
 .button-activeColor {
-  padding: 0.35rem 0.75rem;
+  @extend %button-basic;
   background: $activeColor;
-  color: white;
-  border-radius: 5px;
 
   &:hover {
     background-color: $activeColor;
   }
 }
 .button-darkColor {
-  padding: 0.35rem 0.75rem;
+  @extend %button-basic;
   background: $fontColor;
-  color: white;
-  border-radius: 5px;
 
   &:hover {
     background-color: #424242;
   }
 }
 
+// 錯誤碼元件
 .ErrorMessage {
   font-size: 90%;
   color: red;

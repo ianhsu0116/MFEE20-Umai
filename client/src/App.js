@@ -18,18 +18,18 @@ import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
 
 function App() {
-  // 存取當前使用者資料
+  // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(null);
   // 登入視窗開關
   let [showLogin, setShowLogin] = useState(false);
 
-  // 開啟Login Container
+  // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
     e.stopPropagation();
     setShowLogin(true);
   };
 
-  // 點擊任意處關閉login container
+  // 點擊任意處關閉login container(登入視窗)
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);

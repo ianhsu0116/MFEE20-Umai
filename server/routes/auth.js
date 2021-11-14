@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const registerValidation = require("../validation").registerValidation;
 const loginValidation = require("../validation").loginValidation;
@@ -8,7 +9,11 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/testAPI", (req, res) => {
+router.get("/testAPI", async (req, res) => {
+  // 測試一下連不連得上
+  let testConnect = await connection.queryAsync("SELECT * FROM member");
+  return res.send(testConnect);
+
   const msgObj = {
     message: "Test API is working",
   };

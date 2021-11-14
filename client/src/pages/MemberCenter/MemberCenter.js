@@ -22,7 +22,8 @@ const MemberCenter = (props) => {
     }
   }, []);
 
-  const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
+  // 紀錄當前正在瀏覽的看板
+  const [currentBoard, setCurrentBoard] = useState("會員資訊");
 
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
