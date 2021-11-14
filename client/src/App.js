@@ -8,6 +8,7 @@ import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 
 import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture";
+import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
 import ChefCard from "./components/ChefCard";
@@ -69,6 +70,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
+          <CourseStar />
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />
