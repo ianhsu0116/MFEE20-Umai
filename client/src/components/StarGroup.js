@@ -4,6 +4,9 @@ import starGroupBackground from "./images/starGroupBackground.png";
 
 const StarGroup = (props) => {
   let { percent, allScore } = props;
+  percent = 80;
+  allScore = 4;
+
   return (
     <div className="StarGroup">
       <div className="StarGroup-container">
@@ -19,7 +22,7 @@ const StarGroup = (props) => {
           style={{ width: percent + "%" }}
         />
       </div>
-      <p>({allScore})</p>
+      <p>({" " + allScore + " "})</p>
     </div>
   );
 };

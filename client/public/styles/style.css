@@ -976,10 +976,30 @@ a:hover {
 }
 
 .StarGroup p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 0.7rem;
+  color: #909090;
+  margin-left: 5px;
 }
 
 .StarGroup .StarGroup-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   max-width: 80px;
   position: relative;
   height: 17px;
@@ -998,7 +1018,7 @@ a:hover {
   left: 0;
   width: 20%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
 }
 
 .ShareCard {
@@ -1156,10 +1176,12 @@ a:hover {
 }
 
 .st-courseMiniCard {
+  font-family: "Noto Sans TC", sans-serif;
   position: relative;
   width: 250px;
   height: 450px;
   border-radius: 10px 10px 10px 10px;
+  background: white;
   -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -1168,148 +1190,140 @@ a:hover {
   display: flex;
 }
 
-.st-courseMiniCardPicture img {
+.st-courseMiniCard .st-courseMiniCardBarActiveDeadline {
+  background: #ffb257;
+}
+
+.st-courseMiniCard .st-courseMiniCardBarActiveFull {
+  background: #0078b3;
+}
+
+.st-courseMiniCard .st-courseMiniCardWrapper {
+  position: relative;
+}
+
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper {
+  position: relative;
   height: 200px;
   width: 250px;
   border-radius: 10px 10px 0px 0px;
-  background-color: black;
+  background: black;
+  overflow: hidden;
 }
 
-.st-courseMiniCardBar {
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper .courseMiniCardPicture {
+  width: 100%;
+}
+
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper .st-courseMiniCardTag {
   position: absolute;
-  color: white;
-  padding: 0.25rem 1rem;
-  z-index: 3;
-  width: 150px;
   top: 15px;
   right: -45px;
+  width: 150px;
   text-align: center;
   font-weight: 700;
   font-size: 90%;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.st-courseMiniCardBarActiveDeadline {
-  background: #ffb257;
-}
-
-.st-courseMiniCardBarActiveFull {
-  background: #0078b3;
-}
-
-.st-courseMiniCardName {
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName {
   width: 250px;
   height: 115px;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
   color: #505050;
   font-size: 20px;
+  font-weight: 700;
   padding: 10px 20px 10px 20px;
   line-height: 23px;
 }
 
-.st-courseMiniCardChefName {
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName .st-courseMiniCardChefName {
   margin-top: 5px;
   font-size: 14px;
   font-weight: 400;
   color: #909090;
 }
 
-.st-startWidth {
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName .st-startWidth {
   width: 120px;
   max-height: 34.5px;
 }
 
-/* 星星盒子(外框) */
-.st-courseMiniCardBoxStar {
-  color: #999999;
-  /*背景星星顏色*/
-  overflow: hidden;
-  font-size: 24px;
-}
-
-/* 填滿星星 width設在外面 */
-.st-startWidth .st-courseMiniCardFullStar {
-  font-size: 24px;
-  top: -24.5px;
-  position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-  color: #ffa231;
-  /*前景星星顏色*/
-}
-
-.st-courseMiniCardStarCount {
-  position: relative;
-  top: -48px;
-  left: 125px;
-  color: #909090;
-  font-size: 14px;
-}
-
-.st-courseMiniCardBatch {
+.st-courseMiniCard .courseMiniCardTextDown {
   position: absolute;
+  width: 100%;
+}
+
+.st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardBatch {
+  position: relative;
   width: 100%;
   height: 45px;
   margin-left: 20px;
-  font-family: 'Noto Sans TC', Bold;
   font-size: 14px;
+  font-weight: 500;
 }
 
-.st-courseMineCardTime {
-  margin-top: 5px;
-}
-
-.st-courseMineCardTime {
-  margin-top: 5px;
-}
-
-.st-courseMiniCardProgressBox {
+.st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox {
   position: relative;
-  top: 45px;
   width: 200px;
   margin-left: 20px;
   height: 6px;
 }
 
-.st-courseMiniCardProgress {
-  width: 200px;
-  height: 6px;
-  border: 1px solid #ffb257;
+.st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox .st-courseMiniCardProgress {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ffb257;
   border-radius: 5px;
   overflow: hidden;
 }
 
-.st-courseMiniCardFullProgress {
-  height: 5px;
-  background-color: #ffb257;
+.st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox .st-courseMiniCardFullProgress {
+  position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  height: 5px;
+  background-color: #ffb257;
   border-radius: 5px;
   overflow: hidden;
-  position: relative;
   display: inline-block;
   top: -19px;
 }
 
-.st-courseMiniCardCount {
-  top: -20px;
+.st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox .st-courseMiniCardCount {
   position: relative;
+  top: -20px;
   font-size: 14px;
-  font-weight: normal;
-  color: #909090;
+  font-weight: 500;
 }
 
-.st-courseMiniCardLevel {
-  position: relative;
+.st-courseMiniCard .courseMiniCardContentDown {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardLevel {
   width: 47px;
   height: 25px;
-  top: 75px;
   margin-left: 20px;
+  margin-bottom: 0.15rem;
   border-radius: 5px 5px 5px 5px;
   color: white;
   background: #5eb2eb;
@@ -1321,38 +1335,22 @@ a:hover {
   font-size: 80%;
 }
 
-.st-courseMiniCardSpecialPrice {
-  top: 5px;
-  left: 83px;
-  position: relative;
-  text-align: center;
-  font-family: 'Noto Sans TC', Bold;
+.st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardPriceBox {
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardPriceBox .st-courseMiniCardPrice {
+  text-align: right;
   color: #909090;
   font-size: 14px;
   text-decoration: line-through;
 }
 
-.st-courseMiniCardPrice {
-  top: 48px;
-  left: -10px;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+.st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardPriceBox .st-courseMiniCardSpecialPrice {
   font-size: 1.3rem;
   font-weight: 700;
-}
-
-.st-courseMiniCardPriceBox {
-  width: 100%;
-  height: 80px;
 }
 
 .st-chefCard {
@@ -1841,6 +1839,7 @@ a:hover {
   position: relative;
   height: 97vh;
   width: 100vw;
+  max-height: 900px;
   -webkit-filter: drop-shadow(0px 15px 50px #ab8b79);
           filter: drop-shadow(0px 15px 50px #ab8b79);
   z-index: 1;
@@ -2496,8 +2495,6 @@ a:hover {
   width: 100vw;
   height: 80vw;
   background: white;
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
-          clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
 }
 
 .HomePageBox .RecommandCourseCardBox .Background {
@@ -2536,6 +2533,29 @@ a:hover {
   right: -40%;
   height: 100%;
   width: 100%;
+}
+
+.HomePageBox .RecommandCourseCardBox .RecommandCourseCardContentWrapper {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.HomePageBox .RecommandCourseCardBox .RecommandCourseCardContentWrapper .RecommandCourseCardSliderWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70%;
+  padding: 20% 15%;
 }
 
 .Login {

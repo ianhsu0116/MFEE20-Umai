@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ChefCard from "./components/ChefCard";
 import CourseMiniCard from "./components/CourseMiniCard";
+// import CourseMiniCardSlider from "./components/CourseMiniCardSlider";
 import ShareCard from "./components/ShareCard";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
