@@ -28,12 +28,14 @@ function App() {
   const handleLoginClick = (e) => {
     e.stopPropagation();
     setShowLogin(true);
+    document.querySelector("body").classList.add("stopScroll");
   };
 
   // 點擊任意處關閉login container(登入視窗)
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);
+      document.querySelector("body").classList.remove("stopScroll");
     });
   }, []);
 
