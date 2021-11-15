@@ -20,7 +20,7 @@ function CourseHeaderPicture(props) {
         setImage3("Coursedetail-headerLeft")
       }}
       src={background1} alt="" className={image1}></img>
-      <img onClick={()=> {
+      {/* <img onClick={()=> {
         setImage1("Coursedetail-headerLeft")
         setImage2("Coursedetail-headerMid")
         setImage3("Coursedetail-headerRight")
@@ -29,7 +29,7 @@ function CourseHeaderPicture(props) {
         setImage1("Coursedetail-headerRight")
         setImage2("Coursedetail-headerLeft")
         setImage3("Coursedetail-headerMid")
-      }}src={background3} alt="" className={image3}></img>
+      }}src={background3} alt="" className={image3}></img> */}
       </div>
     </div>
     <CourBody />
