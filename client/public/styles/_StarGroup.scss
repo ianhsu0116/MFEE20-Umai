@@ -4,10 +4,18 @@
   align-items: center;
   margin-bottom: 0.15rem;
   & p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 0.7rem;
+    color: #909090;
+    margin-left: 5px;
   }
 
   .StarGroup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 80px;
     position: relative;
     height: 17px;
@@ -23,7 +31,7 @@
       left: 0;
       width: 20%;
       height: 100%;
-      z-index: -1;
+      z-index: 1;
     }
   }
 }

@@ -15,6 +15,7 @@ import CourseCard1 from "./CourseCard1";
 import Button from "./Button";
 import ShareCard from "./ShareCard";
 import CourseMiniCard from "./CourseMiniCard";
+// import CourseMiniCardSlider from "./CourseMiniCardSlider";
 import ChefCard from "./ChefCard";
 
 const HomePage = () => {
@@ -192,9 +193,29 @@ const HomePage = () => {
           <div className="imageA">
             <img className="plate" src={plate} alt="" />
           </div>
+          <div className="RecommandCourseCardContentWrapper">
+            <div className="RecommandCourseCardSliderWrapper">
+              <CourseMiniCard />
+            </div>
+          </div>
+          {/* <div
+              id="carouselExampleControls"
+              className="carousel slide"
+              data-ride="carousel"
+            >
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <div className="d-block w-100 BGRED"></div>
+                </div>
+                <div className="carousel-item">
+                  <div className="d-block w-100 bg-red"></div>
+                </div>
+                <div className="carousel-item">
+                  <div className="d-block w-100 bg-red"></div>
+                </div>
+              </div>
+            </div> */}
         </div>
-
-        <CourseMiniCard />
       </div>
     </>
   );
