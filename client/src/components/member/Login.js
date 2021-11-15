@@ -63,6 +63,11 @@ const Login = (props) => {
     let { email, password } = accountData;
     try {
       let result = await AuthService.registration(email, password);
+
+      // 註冊成功，將錯誤訊息清除
+      setErrorMsg("");
+
+      // 通知使用者可以登入了
       window.alert("註冊成功 可以直接登入囉！");
     } catch (error) {
       //console.log(error.response);
