@@ -5,7 +5,7 @@ const registerValidation = (data) => {
   const schema = Joi.object({
     email: Joi.string()
       .min(6)
-      .max(80)
+      .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
     password: Joi.string().min(8).max(255).required(),
@@ -19,10 +19,21 @@ const loginValidation = (data) => {
   const schema = Joi.object({
     email: Joi.string()
       .min(6)
-      .max(80)
+      .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
     password: Joi.string().min(8).max(255).required(),
+  });
+  return schema.validate(data);
+};
+
+// UserInfo 相關格式
+const userInfoValidation = (data) => {
+  const schema = Joi.object({
+    first_name: Joi.string().min(1).max(50).required(),
+    last_name: Joi.string().min(1).max(50).required(),
+    telephone: Joi.string().length(10).required(),
+    birthday: Joi.date().less("now").required(),
   });
   return schema.validate(data);
 };
@@ -79,6 +90,4 @@ const loginValidation = (data) => {
 
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
-// module.exports.articleValidation = articleValidation;
-// module.exports.commentValidation = commentValidation;
-// module.exports.userEditValidation = userEditValidation;
+module.exports.userInfoValidation = userInfoValidation;
