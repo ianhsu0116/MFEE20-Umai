@@ -45,7 +45,7 @@ const Login = (props) => {
       setShowLogin(false);
       window.alert("登入成功！");
     } catch (error) {
-      console.log(error.response);
+      //console.log(error.response);
       let { code } = error.response.data;
       setErrorMsg(getValidMessage("login", code));
     }
@@ -84,7 +84,9 @@ const Login = (props) => {
       setShowLogin(false);
       window.alert("登入成功！");
     } catch (error) {
-      console.log(error);
+      // console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("registration", code));
     }
   };
 
@@ -103,7 +105,9 @@ const Login = (props) => {
       setShowLogin(false);
       window.alert("登入成功！");
     } catch (error) {
-      console.log(error);
+      // console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("registration", code));
     }
   };
 

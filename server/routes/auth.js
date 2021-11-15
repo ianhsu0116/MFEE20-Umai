@@ -23,7 +23,7 @@ router.get("/testAPI", async (req, res) => {
   return res.json(msgObj);
 });
 
-// 登入路由
+// 本地登入路由
 router.post("/login", async (req, res) => {
   // 先判斷有無格式錯誤
   let { error } = loginValidation(req.body);
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
       email
     );
 
-    // 已還未註冊，直接回覆錯誤
+    // 帳號未註冊，直接回覆錯誤
     if (member.length === 0)
       return res.status(401).json({ success: false, code: "A002" });
 
@@ -83,7 +83,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// 註冊路由
+// 本地註冊路由
 router.post("/registration", async (req, res) => {
   // 先判斷有無格式錯誤
   let { error } = registerValidation(req.body);
@@ -131,11 +131,15 @@ router.post(
   "/google",
   passport.authenticate("google-token"),
   function (req, res) {
-    //console.log(req.user);
-
     // 登入成功 存入session
-    req.session.member = req.user;
-    res.status(200).json(req.user);
+    if (req.user.success) {
+      req.session.member = req.user;
+      res.status(200).json(req.user);
+    }
+    // 登入失敗
+    else {
+      res.status(401).json({ success: false, code: "B005" });
+    }
   }
 );
 
@@ -144,11 +148,15 @@ router.post(
   "/facebook",
   passport.authenticate("facebook-token"),
   function (req, res) {
-    //console.log(req.user);
-
     // 登入成功 存入session
-    req.session.member = req.user;
-    res.status(200).json(req.user);
+    if (req.user.success) {
+      req.session.member = req.user;
+      res.status(200).json(req.user);
+    }
+    // 登入失敗
+    else {
+      res.status(401).json({ success: false, code: "B005" });
+    }
   }
 );
 
