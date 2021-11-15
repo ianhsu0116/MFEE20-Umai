@@ -53,7 +53,7 @@ const MemberSidebar = (props) => {
       let result = await AuthService.logout();
       //console.log(result);
       setCurrentUser(null);
-      window.alert("登出成功！");
+      window.alert("登出成功，現在導回首頁！");
       history.push("/");
     } catch (error) {
       console.log(error);

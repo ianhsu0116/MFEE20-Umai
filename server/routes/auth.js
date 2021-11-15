@@ -2,6 +2,8 @@ const router = require("express").Router();
 const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const momnet = require("moment");
+const passport = require("passport");
+//require("../config/passport")(passport);
 const registerValidation = require("../validation").registerValidation;
 const loginValidation = require("../validation").loginValidation;
 
@@ -27,9 +29,9 @@ router.post("/login", async (req, res) => {
   let { error } = loginValidation(req.body);
   if (error) {
     if (error.details[0].context.key === "email") {
-      return res.status(403).json({ success: false, code: "A003" });
+      return res.status(401).json({ success: false, code: "A003" });
     } else if (error.details[0].context.key === "password") {
-      return res.status(403).json({ success: false, code: "A004" });
+      return res.status(401).json({ success: false, code: "A004" });
     }
   }
 
@@ -47,7 +49,7 @@ router.post("/login", async (req, res) => {
 
     // 已還未註冊，直接回覆錯誤
     if (member.length === 0)
-      return res.status(403).json({ success: false, code: "A002" });
+      return res.status(401).json({ success: false, code: "A002" });
 
     // 取出member資料
     member = member[0];
@@ -56,7 +58,7 @@ router.post("/login", async (req, res) => {
     let result = await bcrypt.compare(password, member.password);
 
     // 密碼不正確，直接回覆錯誤
-    if (!result) return res.status(403).json({ success: false, code: "A001" });
+    if (!result) return res.status(401).json({ success: false, code: "A001" });
 
     // 比對資料成功，寫入 session
     let returnMember = {
@@ -87,9 +89,9 @@ router.post("/registration", async (req, res) => {
   let { error } = registerValidation(req.body);
   if (error) {
     if (error.details[0].context.key === "email") {
-      return res.status(403).json({ success: false, code: "B001" });
+      return res.status(401).json({ success: false, code: "B001" });
     } else if (error.details[0].context.key === "password") {
-      return res.status(403).json({ success: false, code: "B002" });
+      return res.status(401).json({ success: false, code: "B002" });
     }
   }
 
@@ -107,7 +109,7 @@ router.post("/registration", async (req, res) => {
 
     // 已被註冊，直接回覆錯誤
     if (member.length !== 0)
-      return res.status(403).json({ success: false, code: "B003" });
+      return res.status(401).json({ success: false, code: "B003" });
 
     // 將密碼加密
     let hashPassword = await bcrypt.hash(password, 10);
@@ -123,6 +125,32 @@ router.post("/registration", async (req, res) => {
     res.status(500).json({ success: false, code: "B999", message: error });
   }
 });
+
+// google登入 註冊
+router.post(
+  "/google",
+  passport.authenticate("google-token"),
+  function (req, res) {
+    //console.log(req.user);
+
+    // 登入成功 存入session
+    req.session.member = req.user;
+    res.status(200).json(req.user);
+  }
+);
+
+// Facebook登入 註冊
+router.post(
+  "/facebook",
+  passport.authenticate("facebook-token"),
+  function (req, res) {
+    //console.log(req.user);
+
+    // 登入成功 存入session
+    req.session.member = req.user;
+    res.status(200).json(req.user);
+  }
+);
 
 // 拿到使用者資料
 router.get("/info", (req, res) => {

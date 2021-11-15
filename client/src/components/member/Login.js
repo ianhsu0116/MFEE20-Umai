@@ -24,41 +24,34 @@ const Login = (props) => {
     e.stopPropagation();
   };
 
-  // Google Login
-  const responseGoogle = (response) => {
-    console.log(response);
-  };
-
-  // Facebook Login
-  const responseFacebook = (response) => {
-    console.log(response);
-  };
-
   // 即時抓取input data
   const handleInputChange = (e) => {
     setAccountData({ ...accountData, [e.target.name]: e.target.value });
   };
 
-  // 按下登入
+  // 本地登入
   const handleLogin = async () => {
     let { email, password } = accountData;
     try {
       let result = await AuthService.login(email, password);
 
+      // 當前登入使用者存入local
+      localStorage.setItem("user", JSON.stringify(result.data.member));
+
       // 將使用者資料裝入state
-      setCurrentUser(result.data.member);
-      window.alert("登入成功！");
+      setCurrentUser(AuthService.getCurrentUser());
 
       // 關閉登入的視窗
       setShowLogin(false);
+      window.alert("登入成功！");
     } catch (error) {
-      //console.log(error.response);
+      console.log(error.response);
       let { code } = error.response.data;
       setErrorMsg(getValidMessage("login", code));
     }
   };
 
-  // 按下註冊
+  // 本地註冊
   const handleRegistration = async () => {
     let { email, password } = accountData;
     try {
@@ -73,6 +66,44 @@ const Login = (props) => {
       //console.log(error.response);
       let { code } = error.response.data;
       setErrorMsg(getValidMessage("registration", code));
+    }
+  };
+
+  // Google 登入
+  const responseGoogle = async (response) => {
+    try {
+      let result = await AuthService.googleLogin(response.accessToken);
+
+      // 當前登入使用者存入local
+      localStorage.setItem("user", JSON.stringify(result.data.member));
+
+      // 將使用者資料裝入state
+      setCurrentUser(AuthService.getCurrentUser());
+
+      // 關閉登入的視窗
+      setShowLogin(false);
+      window.alert("登入成功！");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Facebook 登入
+  const responseFacebook = async (response) => {
+    try {
+      let result = await AuthService.facebookLogin(response.accessToken);
+
+      // 當前登入使用者存入local
+      localStorage.setItem("user", JSON.stringify(result.data.member));
+
+      // 將使用者資料裝入state
+      setCurrentUser(AuthService.getCurrentUser());
+
+      // 關閉登入的視窗
+      setShowLogin(false);
+      window.alert("登入成功！");
+    } catch (error) {
+      console.log(error);
     }
   };
 
