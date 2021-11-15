@@ -1,21 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../../components/Button";
 
 const DefaultStudentCard = (props) => {
-  let { index, changestudentnumber } = props;
+  let { index, changestudentnumber, changecarddata, deletecarddata } = props.data;
   let [cardOpen, setCardOpen] = useState(false);
   let [newStudentData, setNewStudentData] = useState({
-    firstName: "",
-    lastName: "",
-    telephone: "",
-    birthday: "",
-    email: "",
+    firstName: props.data.firstName,
+    lastName: props.data.lastName,
+    telephone: props.data.telephone,
+    birthday: props.data.birthday,
+    email: props.data.email, 
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-  let studentCardRefs = useRef();
+  useEffect(()=>{
+    changecarddata(index,newStudentData)
+  },[newStudentData])
 
   // 即時抓取 input value
   const handleInputChange = (e) => {
@@ -31,17 +33,14 @@ const DefaultStudentCard = (props) => {
         [e.target.name]: e.target.checked,
       });
     }
+    
   };
 
   // 刪除學生(動畫)
   const handleDeleteStudent = (index) => (e) => {
-    studentCardRefs.current.style.animation ="DefaultStudentCard-scaleDown 0.3s forwards";
-  };
-  // 等動畫跑完在真正刪除 (onAnimationEnd)
-   const  handleSlowDelete = (e) => {
     console.log("刪除學員");
-    //studentCardRefs.current.remove();
     changestudentnumber(-1);
+    deletecarddata(index);
   };
 
   // 啓閉學員詳細內容
@@ -51,8 +50,7 @@ const DefaultStudentCard = (props) => {
 
   return (
     <div
-      ref={studentCardRefs}
-      onAnimationEnd={handleSlowDelete}
+      id={index}
       className={`DefaultStudentCard ${
         cardOpen && "DefaultStudentCard-active"
       }`}
@@ -95,6 +93,7 @@ const DefaultStudentCard = (props) => {
               type="text"
               id="firstName"
               name="firstName"
+              value={newStudentData.firstName}
               placeholder="請輸入真實名字"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -111,6 +110,7 @@ const DefaultStudentCard = (props) => {
               type="text"
               id="lastName"
               name="lastName"
+              value={newStudentData.lastName}
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -129,6 +129,7 @@ const DefaultStudentCard = (props) => {
               type="text"
               id="telephone"
               name="telephone"
+              value={newStudentData.telephone}
               placeholder="請輸入手機號碼"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -145,6 +146,7 @@ const DefaultStudentCard = (props) => {
               type="date"
               id="birthday"
               name="birthday"
+              value={newStudentData.birthday}
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -163,6 +165,7 @@ const DefaultStudentCard = (props) => {
               type="email"
               id="email"
               name="email"
+              value={newStudentData.email}
               placeholder="請輸入Email"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}

@@ -9,7 +9,7 @@ function shopping_cart(props) {
   let [coursedata, setcoursedata] = useState({
     name:"築地創意壽司",
     value:3300,
-    studentnumber:2
+    studentnumber:3
   });
 
 

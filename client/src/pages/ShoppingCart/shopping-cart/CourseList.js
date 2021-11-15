@@ -5,10 +5,37 @@ import React, { useState } from "react";
 
 function CourseList(props){
     const [ card, setCard] = useState(false);
-    let stcard=[];
-    for(let i = 1; i <= props.coursedata.studentnumber; i++){
-        stcard.push(<DefaultStudentCard key={i} index={i} changestudentnumber={(e)=>{props.changestudentnumber(e)}}/>)
+    let carddata=[];
+    let defaultcarddata={
+        firstName: "",
+        lastName: "",
+        telephone: "",
+        birthday: "",
+        email: "",
+    };
+    function changecarddata(i,newdata){
+        carddata[i-1]= Object.assign(carddata[i-1],newdata)
+        console.log("changecarddata",carddata);
     }
+    function deletecarddata(i){
+        carddata.splice(i-1,1)
+        console.log("delete",carddata);
+    }
+    function newcarddata(){
+        carddata.push(defaultcarddata);
+    }
+    
+    for(let i = 1; i <= props.coursedata.studentnumber; i++){
+        carddata.push(defaultcarddata);
+        carddata[i-1]={...carddata[i-1],
+            index:i,
+            changestudentnumber:(e)=>{props.changestudentnumber(e)},
+            changecarddata:changecarddata,
+            deletecarddata:deletecarddata
+        }
+    }
+    
+
     return(
     <>
         <div className="CourseList-title">
@@ -76,10 +103,12 @@ function CourseList(props){
                         </table>
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
-                            <button onClick={()=>{props.changestudentnumber(1)}}>新增學員</button>
+                            <button onClick={()=>{
+                                props.changestudentnumber(1);
+                                newcarddata()}}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                            {stcard}
+                        {carddata.map((data) => <DefaultStudentCard data={data}/>)}
                         </div>
                     </div>
                 </td>
