@@ -25,7 +25,7 @@ $titleBackgroundColor: #eeeeee;
 }
 
 html {
-  //overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+  overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
   height: 100%;
 }
 body {
@@ -33,16 +33,16 @@ body {
   color: $fontColor;
 
   // //將scrollbar移除
-  // -ms-overflow-style: none;
-  // //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
-  // overflow: auto;
+  -ms-overflow-style: none;
+  //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+  overflow: auto;
 }
 
 // 設定scrollbar樣式
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
-  //display: none;
+  //width: 5px;
+  display: none;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -56,10 +56,10 @@ body {
   opacity: 0;
 }
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $activeColor;
-  opacity: 1;
-}
+// ::-webkit-scrollbar-thumb:hover {
+//   background: $activeColor;
+//   opacity: 1;
+// }
 
 // 覆蓋bootstrap樣式
 h1,
@@ -180,6 +180,11 @@ a {
   color: red;
 }
 
+// 開啟彈出視窗時，防止後方頁面滾動
+.stopScroll {
+  overflow: hidden;
+}
+
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
@@ -220,6 +225,7 @@ a {
 
 // 課程詳細
 @import "./CourseDetail/_CourseDetailed";
+@import "./CourseDetail/CourseStar";
 
 // RWD
 @media screen and (max-width: 1200px) {

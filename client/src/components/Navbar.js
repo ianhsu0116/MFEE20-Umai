@@ -49,7 +49,8 @@ const Navbar = (props) => {
           <div className="Navbar-container-item">
             <button className="Navbar-container-item-btn2">
               <MdShoppingCart className="Navbar-container-item-btn2-cart" />
-            </button>{" "}
+            </button>
+            &thinsp;
             <button
               onClick={handleLoginClick}
               className="Navbar-container-item-btn"

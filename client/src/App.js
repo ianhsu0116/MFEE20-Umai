@@ -8,6 +8,7 @@ import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 
 import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture";
+import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
 import ChefCard from "./components/ChefCard";
@@ -27,12 +28,14 @@ function App() {
   const handleLoginClick = (e) => {
     e.stopPropagation();
     setShowLogin(true);
+    document.querySelector("body").classList.add("stopScroll");
   };
 
   // 點擊任意處關閉login container(登入視窗)
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);
+      document.querySelector("body").classList.remove("stopScroll");
     });
   }, []);
 
@@ -69,6 +72,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
+          <CourseStar />
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />
