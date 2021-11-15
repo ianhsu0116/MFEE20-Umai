@@ -1,0 +1,90 @@
+.DefaultStudentCard2 {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 0.5rem;
+  transition: 0.5s ease;
+
+  .DefaultStudentCard2-title {
+    @include flex(row);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+    background: $themeColor;
+    padding: 0.75rem;
+    transition: 0.5s ease;
+    z-index: 2;
+    box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+
+    .DefaultStudentCard2-title-left {
+      font-weight: 900;
+      font-size: 110%;
+      color: white;
+      @include flex(row);
+      justify-content: space-between;
+      align-items: center;
+
+      & svg {
+        width: 30px;
+        height: 30px;
+        transition: 0.35s ease;
+      }
+    }
+
+    .DefaultStudentCard2-title-right {
+      font-size: 1rem;
+      .DefaultStudentCard2-title-right-select {
+        padding: 0.25rem 0.25rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        color: $fontColor;
+      }
+      .DefaultStudentCard2-title-right-btn {
+        padding: 0.25rem 0.75rem;
+        font-size: 90%;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .DefaultStudentCard2-main {
+    border-radius: 0 0 15px 15px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 1rem 2rem;
+    max-height: 500px;
+
+    .DefaultStudentCard2-main-row {
+      display: flex;
+      width: 100%;
+      margin-bottom: 1rem;
+      @include flex(row);
+      //justify-content: space-between;
+      align-items: center;
+
+      .DefaultStudentCard2-main-row-item {
+        flex: 1 1 200px;
+        margin: 0 1rem;
+        @include flex(column);
+        justify-content: center;
+        align-items: flex-start;
+
+        .DefaultStudentCard2-main-row-item-label {
+          cursor: pointer;
+        }
+
+        .DefaultStudentCard2-main-row-item-input {
+          border-radius: 5px;
+          border: 1px solid $fontColor;
+          padding: 0.15rem 0.35rem;
+          font-size: 1.1rem;
+          width: 100%;
+          margin-top: 0.25rem;
+        }
+        .DefaultStudentCard2-main-row-item-email {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

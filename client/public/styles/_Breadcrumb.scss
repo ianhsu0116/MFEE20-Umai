@@ -1,0 +1,47 @@
+.st-breadcrumb-item-end::before{
+    float: left;
+    padding: 0em .5rem;
+    font-weight: bold;
+    color: #6c757d;
+    content: var(--bs-breadcrumb-divider, ">");
+  }
+  .st-breadcrumb-item-end span{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color:  #FFB257;
+  }
+  .st-breadcrumb-item::before{
+    float: left;
+    padding: 0em .5rem;
+    font-weight: bold;
+    color: #6c757d;
+    content: var(--bs-breadcrumb-divider, ">");
+  }
+  .st-breadcrumb-item span{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color:  #666666;
+  }
+  .st-breadcrumb-item span:hover{
+    color:#FFB257;
+}
+  .st-breadcrumb-homepage::before{
+    float: left;
+    padding: 0em .5rem;
+    font-weight: bold;
+    color: #6c757d;
+  }
+  .st-breadcrumb-homepage span{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color:  #666666;
+  }
+  .st-breadcrumb-homepage span:hover{
+      color:#FFB257;
+  }
+
+
+  //用來取代Bootstrap的麵包屑

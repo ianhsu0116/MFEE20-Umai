@@ -1,0 +1,29 @@
+.StarGroup {
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.15rem;
+  & p {
+    font-size: 0.7rem;
+  }
+
+  .StarGroup-container {
+    max-width: 80px;
+    position: relative;
+    height: 17px;
+    overflow: hidden;
+    .StarGroup-container-star {
+      z-index: 2;
+      width: 101%;
+      height: 100%;
+    }
+    .StarGroup-container-background {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      z-index: -1;
+    }
+  }
+}

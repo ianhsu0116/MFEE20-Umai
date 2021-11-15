@@ -1,0 +1,110 @@
+$chefTextColor: #ffffff;
+$chefFontWeightText: "Noto Sans TC", sans-serif;
+$chefTextSize: calc(0.25rem + 1vw);
+$chefTextSizeDown: calc(0.25rem + 1vw);
+$chefTextSize-ul: 1.25vw;
+$chefTextSize-li: 1vw;
+// $chefTextSize-ul: calc(6px + 0.75vw);
+// $chefTextSize-li: calc(6px + 0.25vw);
+
+// 主廚卡片大小
+.st-chefCard {
+  width: 60vw;
+  height: 35vw;
+  min-width: 450px;
+  min-height: 300px;
+  max-width: 900px;
+  max-height: 600px;
+  background-color: #d8a566;
+  border-radius: 1.5vw;
+  margin: 1vw 0;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+// 主廚照片容器(左)
+.st-chefCardPictureWrapper {
+  height: 100%;
+  border-radius: 1.5vw 0 0 1.5vw;
+  float: left;
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  // 確認圖片範圍用
+  background-color: aqua;
+  img {
+    height: 100%;
+  }
+}
+
+// 主廚文字容器(右)
+.st-chefCardTextWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+
+  // 主廚上資訊欄
+  .st-chefCardTop {
+    height: 20vw;
+    float: right;
+    border-radius: 0 1.5vw 0 0;
+    width: 100%;
+    font-family: $chefFontWeightText;
+    font-size: $chefTextSize;
+    color: $chefTextColor;
+    padding: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    .st-chefCardTopQuotation {
+      font-weight: 500;
+    }
+    // 分隔線
+    .st-chefCardLine {
+      height: 3px;
+      width: 100%;
+      border-radius: 100px;
+      background-color: $chefTextColor;
+      margin-top: calc(0.25rem + 0.75vw);
+    }
+    // 主廚上資訊欄名字
+    .st-chefCardTopChefName {
+      width: 100%;
+      margin-top: calc(0.25rem + 0.75vw);
+    }
+  }
+  // 主廚下資訊欄
+  .st-chefCardDown {
+    height: 15vw;
+    float: right;
+    border-radius: 0 0 1.5vw 0;
+    background-color: #5e5548;
+    width: 100%;
+    font-family: $chefFontWeightText;
+    color: $chefTextColor;
+    padding: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    letter-spacing: 2px;
+    div {
+      width: 100%;
+      font-size: $chefTextSize-ul;
+    }
+    ul {
+      width: 100%;
+      padding-top: 0.5vw;
+      list-style: disc;
+      list-style-position: inside;
+      li {
+        font-size: $chefTextSize-li;
+      }
+    }
+  }
+}

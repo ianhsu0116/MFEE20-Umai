@@ -1,0 +1,29 @@
+.OptionBar {
+  @include flex(row);
+  justify-content: center;
+  width: 100%;
+  margin: 0.5rem;
+
+  .OptionBar-ul {
+    width: 65%;
+    list-style: none;
+    @include flex(row);
+    justify-content: space-between;
+    border-radius: 100px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+
+    .OptionBar-ul-li {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      color: $themeColorBlue;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-weight: 900;
+    }
+
+    .OptionBar-ul-li-active {
+      background: linear-gradient(45deg, $activeColor, $themeColor);
+      color: white;
+    }
+  }
+}

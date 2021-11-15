@@ -1,0 +1,83 @@
+:root {
+  --footerTriangleBG-height: 10vw;
+  --footerTitle-height: 35px;
+}
+.main {
+  padding-bottom: var(--footerTriangleBG-height);
+  z-index: 0;
+}
+
+.customFooter {
+  // position: absolute;
+  // bottom: 0;
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+
+  .footerTriangleBG {
+    height: 0;
+    width: 0;
+    border-right: 100vw solid #eee;
+    border-top: var(--footerTriangleBG-height) solid transparent;
+    margin-top: calc(-1 * var(--footerTriangleBG-height));
+    z-index: 1;
+  }
+
+  .footerContent {
+    padding: 0.5rem 0rem 0rem;
+    background-color: #eee;
+    text-align: center;
+    z-index: 2;
+    .footerLink {
+      .row {
+        margin-right: 0;
+        margin-left: 0;
+        .col-2 {
+          height: var(--footerTitle-height);
+          .footerTitle {
+            margin: 0;
+            .footerTitleText {
+              min-width: 80px;
+              text-align: left;
+              font-size: 1rem;
+              color: #d8a466;
+              list-style-type: none;
+              text-align: left;
+              text-decoration: none;
+              &:hover {
+                color: #f7c485;
+              }
+            }
+          }
+          .footerIcon {
+            .FaFacebookSquare {
+              margin: 0 3%;
+              color: #d8a466;
+              &:hover {
+                color: #f7c485;
+              }
+            }
+            .RiInstagramFill {
+              margin: 0 3%;
+              color: #d8a466;
+              &:hover {
+                color: #f7c485;
+              }
+            }
+          }
+        }
+        .footerCopyright {
+          p {
+            color: #1f4557;
+            font-size: 0.5rem;
+            font-weight: 700;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+}
