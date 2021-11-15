@@ -11,6 +11,11 @@ class AuthService {
     return axios.get(AUTH_API_URL + "/info", { withCredentials: true });
   }
 
+  // 從local拿到當前使用者資料
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem("user"));
+  }
+
   // 登入
   login(email, password) {
     return axios.post(
@@ -25,7 +30,8 @@ class AuthService {
 
   // 登出
   logout() {
-    //localStorage.removeItem("user");
+    // 先把local的member資料移除
+    localStorage.removeItem("user");
     return axios.get(AUTH_API_URL + "/logout", { withCredentials: true });
   }
 
@@ -41,20 +47,24 @@ class AuthService {
     );
   }
 
-  // getCurrentUser() {
-  //   return JSON.parse(localStorage.getItem("user"));
-  // }
-
   googleLogin(access_token) {
-    return axios.post(AUTH_API_URL + "/google/token", {
-      access_token,
-    });
+    return axios.post(
+      AUTH_API_URL + "/google",
+      {
+        access_token,
+      },
+      { withCredentials: true }
+    );
   }
 
   facebookLogin(access_token) {
-    return axios.post(AUTH_API_URL + "/facebook/token", {
-      access_token,
-    });
+    return axios.post(
+      AUTH_API_URL + "/facebook",
+      {
+        access_token,
+      },
+      { withCredentials: true }
+    );
   }
 }
 

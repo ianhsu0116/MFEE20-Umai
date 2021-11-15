@@ -5,6 +5,8 @@ const connection = require("./utils/database");
 const cors = require("cors");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
+const passport = require("passport");
+require("./config/passport")(passport);
 
 app.use((req, res, next) => {
   let current = new Date();
@@ -35,6 +37,7 @@ app.use(
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(passport.initialize());
 
 // 登入認證相關的路由
 const authRoute = require("./routes").auth;
