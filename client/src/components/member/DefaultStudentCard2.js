@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import Button from "../Button";
+import Calendar from "../Calendar";
 
 const DefaultStudentCard2 = (props) => {
   let studentCardRefs = useRef();
@@ -15,6 +16,10 @@ const DefaultStudentCard2 = (props) => {
   // 即時抓取input value
   const handleInputChange = (e) => {
     setNewStudentData({ ...newStudentData, [e.target.name]: e.target.value });
+  };
+  // 即時抓取生日修改
+  const handleBirthdayChange = (day) => {
+    setNewStudentData({ ...newStudentData, birthday: day });
   };
 
   // 新增學員
@@ -98,16 +103,17 @@ const DefaultStudentCard2 = (props) => {
               htmlFor="birthday"
               className="DefaultStudentCard2-main-row-item-label"
             >
-              生日
+              出生日期
             </label>
-            <input
+            {/* <input
               type="date"
               id="birthday"
               name="birthday"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
-            />
+            /> */}
+            <Calendar onChange={handleBirthdayChange} />
           </div>
         </div>
         <div className="DefaultStudentCard2-main-row">

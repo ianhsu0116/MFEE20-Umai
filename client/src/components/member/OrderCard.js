@@ -5,24 +5,20 @@ import { AiOutlineStar } from "react-icons/ai";
 import foodImg from "../images/sushi-unsplash.jpg";
 
 const OrderCard = (props) => {
-  // 此訂單詳細資訊
-  let { orderDetail } = props;
-  // 下拉視窗開關的值
-  const [orderDetailOpen, setOrderDetailOpen] = useState(false);
+
+  let { index, toggle, orderDetailOpen, orderDetail } = props;
+
   // 課程評論輸入值 + 星星數量
   const [commentAndStar, setCommentAndStar] = useState({
     star: 1,
     comment: "",
   });
 
-  // 測試中 ==== 感應區問題
-  useEffect(() => {
-    console.log("didmount");
-  }, []);
 
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
-    orderDetailOpen ? setOrderDetailOpen(false) : setOrderDetailOpen(true);
+    toggle(index);
+
   };
 
   // 星星動態增減
@@ -53,9 +49,9 @@ const OrderCard = (props) => {
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
           <h5>
-            <Link to="/course/category?id=course_id">
-              {orderDetail.courseName}
-            </Link>
+
+            <Link to="/courses/course_id">{orderDetail.courseName}</Link>
+
           </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">
@@ -86,7 +82,9 @@ const OrderCard = (props) => {
 
       <div
         className={`OrderCard-detail ${
-          orderDetailOpen && "OrderCard-detail-active"
+
+          orderDetailOpen === index && "OrderCard-detail-active"
+
         }`}
       >
         <header className="OrderCard-detail-title">
@@ -134,9 +132,11 @@ const OrderCard = (props) => {
                   className="OrderCard-detail-container2-left-textarea"
                   onChange={handleCommentChange}
                   cols="30"
-                  rows="7"
-                  maxLength="30"
-                  placeholder="課程評論(字數限制: 30)"
+
+                  rows="5"
+                  maxLength="50"
+                  placeholder="課程評論(字數限制: 50)"
+
                   value={commentAndStar.comment}
                 ></textarea>
               </div>

@@ -142,6 +142,17 @@ const OrderInfo = () => {
     }
   }, [orderStatus]);
 
+  // 手風琴效果
+  const [orderDetailOpen, setOrderDetailOpen] = useState(-1);
+  const toggle = (index) => {
+    // 如果點擊已開啟的card就關閉，點及其他卡片的話則啟動手風琴效果
+    if (orderDetailOpen === index) {
+      setOrderDetailOpen(-1);
+    } else {
+      setOrderDetailOpen(index);
+    }
+  };
+
   return (
     <div className="OrderInfo">
       <div className="OrderInfo-container">
@@ -171,8 +182,9 @@ const OrderInfo = () => {
               <OrderCard
                 key={index}
                 index={index}
+                toggle={toggle}
+                orderDetailOpen={orderDetailOpen}
                 orderDetail={orderDetail}
-                //allOrderStatus={allOrderStatus}
               />
             ))}
         </div>

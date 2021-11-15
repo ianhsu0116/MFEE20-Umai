@@ -1,0 +1,106 @@
+.Calendar {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 34px;
+  .Calendar-selector {
+    width: 100%;
+    max-height: 34px;
+    padding: 0.25rem 0.35rem;
+    border: 1px solid $fontColor;
+    border-radius: 5px;
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    .Calendar-selector-text {
+      margin: 0 0.5rem;
+    }
+    & svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .Calendar-container {
+    position: absolute;
+    z-index: 10;
+    background: white;
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 2px solid $themeColor;
+    width: 100%;
+    max-width: 600px;
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+    //position: relative;
+    font-size: 0.8rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+
+    .Calendar-header {
+      width: 100%;
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
+
+      .year-selector,
+      .month-selector {
+        border: none;
+        margin: 0 0.35rem 0.15rem;
+        background: white;
+        border-bottom: 1px solid $themeColorBlue;
+        border-radius: 0;
+      }
+    }
+
+    .Calendar-table {
+      .Calendar-table-head {
+        .Calendar-table-tr {
+          border-bottom: 1px solid $fontColor;
+          .Calendar-table-th {
+            padding: 0.35rem;
+            //margin: 0.15rem;
+            text-align: center;
+            font-weight: 900;
+          }
+        }
+      }
+      .Calendar-table-body {
+        .Calendar-table-tr {
+          //border-bottom: 1px solid $fontColor;
+          .Calendar-table-td {
+            cursor: pointer;
+            padding: 0.35rem;
+            //margin: 0.15rem;
+            width: 8%;
+            height: 8%;
+            text-align: center;
+            //border-radius: 50px;
+            border: 1px solid transparent;
+
+            &:hover {
+              background: #e0e0e0;
+              color: rgb(0, 0, 0);
+            }
+          }
+
+          .today {
+            background: #e0e0e0;
+            border: 2px solid $highLevelColor;
+          }
+          .available {
+            background: #b3cedb;
+          }
+          .active {
+            background: $themeColorBlue;
+            color: white;
+            border: 2px solid $fontColor;
+          }
+        }
+      }
+    }
+  }
+}

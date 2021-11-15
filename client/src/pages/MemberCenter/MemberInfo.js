@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
+import Calendar from "../../components/Calendar";
 
-// 給創造信用卡卡號的四個input使用
-let cCardArray = [1, 2, 3, 4];
 const MemberInfo = (props) => {
   const [memberInfo, setMemberInfo] = useState({
     lastName: "",
@@ -19,8 +18,9 @@ const MemberInfo = (props) => {
     cvc: "",
     expiry: "",
     name: "",
-    number: "",
+    number: "4477000000000000",
   });
+
 
   // 即時抓取基本資料填寫
   const handleMemberInfoChange = (e) => {
@@ -30,11 +30,17 @@ const MemberInfo = (props) => {
   // 個資修改
   const handleInfoEdit = () => {
     console.log("handleInfoEdit");
+    console.log(memberInfo);
+  };
+  // 生日修改
+  const handleBirthdayChange = (day) => {
+    setMemberInfo({ ...memberInfo, birthday: day });
   };
 
   // 付款資訊修改
   const handlePaymentEdit = () => {
     console.log("handlePatmentEdit");
+    console.log(creditCardsInfo);
   };
 
   // 密碼修改容器開關
@@ -119,13 +125,15 @@ const MemberInfo = (props) => {
               >
                 出生日期
               </label>
-              <input
+
+              {/* <input
                 type="date"
                 name="birthday"
                 id="birth"
                 className="MemberInfo-container-inputCon-input"
                 onChange={handleMemberInfoChange}
-              />
+              /> */}
+              <Calendar onChange={handleBirthdayChange} />
             </div>
           </div>
           <div className="MemberInfo-container-row">
@@ -138,7 +146,7 @@ const MemberInfo = (props) => {
                 className="MemberInfo-container-inputCon-label"
                 htmlFor="password"
               >
-                密碼
+                密碼修改
               </label>
               <input
                 type="password"
@@ -146,7 +154,7 @@ const MemberInfo = (props) => {
                 id="passwordConfirm"
                 value={passwordInfo.passwordConfirm}
                 placeholder="舊密碼確認"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-topInput"
                 onChange={handlePasswordChange}
               />
               <input
@@ -155,25 +163,27 @@ const MemberInfo = (props) => {
                 id="password"
                 value={passwordInfo.newPassword}
                 placeholder="輸入新密碼"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-bottomInput"
                 onChange={handlePasswordChange}
               />
             </div>
-            <button
-              className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
-                passwordConOpen &&
-                "MemberInfo-container-inputCon-passwordSubmitBtn-active"
-              }`}
-              onClick={handlePasswordEdit}
-            >
-              確認修改
-            </button>
-            <button
-              className="MemberInfo-container-inputCon-passwordEditBtn"
-              onClick={handlePasswordConOpen}
-            >
-              {passwordConOpen ? "取消修改" : "修改密碼"}
-            </button>
+            <div className="MemberInfo-container-inputCon-buttonCon">
+              <button
+                className="MemberInfo-container-inputCon-passwordEditBtn"
+                onClick={handlePasswordConOpen}
+              >
+                {passwordConOpen ? "取消修改" : "修改密碼"}
+              </button>
+              <button
+                className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
+                  passwordConOpen &&
+                  "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+                }`}
+                onClick={handlePasswordEdit}
+              >
+                確認修改
+              </button>
+            </div>
           </div>
           <div className="MemberInfo-container-buttonCon">
             <Button
@@ -185,7 +195,6 @@ const MemberInfo = (props) => {
           <header className="MemberInfo-container-header">
             <h2>付款資訊</h2>
           </header>
-
           <CreditCards
             creditCardsInfo={creditCardsInfo}
             setCreditCardsInfo={setCreditCardsInfo}
