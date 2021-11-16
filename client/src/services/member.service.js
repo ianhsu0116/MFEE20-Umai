@@ -52,6 +52,14 @@ class MemberService {
       }
     );
   }
+
+  // 新增學生資訊
+  studentInsert(studentInfo) {
+    // 送出
+    return axios.post(AUTH_API_URL + "/student", studentInfo, {
+      withCredentials: true,
+    });
+  }
 }
 
 export default new MemberService();

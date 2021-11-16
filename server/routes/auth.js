@@ -3,8 +3,7 @@ const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const momnet = require("moment");
 const passport = require("passport");
-const registerValidation = require("../validation").registerValidation;
-const loginValidation = require("../validation").loginValidation;
+const { registerValidation, loginValidation } = require("../validation");
 
 router.use((req, res, next) => {
   console.log("有一請求進入authRoute");
