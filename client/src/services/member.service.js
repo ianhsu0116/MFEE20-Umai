@@ -19,6 +19,39 @@ class MemberService {
       { withCredentials: true }
     );
   }
+
+  // 修改使用者基本資料
+  passwordEdit({ newPassword, passwordConfirm }) {
+    return axios.post(
+      AUTH_API_URL + "/password",
+      { newPassword, passwordConfirm },
+      { withCredentials: true }
+    );
+  }
+
+  // 修改使用者頭貼
+  avatarEdit(avatar) {
+    // 先將圖檔包成formData
+    let formData = new FormData();
+    formData.append("avatar", avatar);
+
+    // 送出
+    return axios.post(AUTH_API_URL + "/avatar", formData, {
+      withCredentials: true,
+    });
+  }
+
+  // 修改信用卡資訊
+  creditCardEdit(number, name) {
+    // 送出
+    return axios.post(
+      AUTH_API_URL + "/creditCard",
+      { number, name },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export default new MemberService();

@@ -65,7 +65,7 @@ router.post("/login", async (req, res) => {
       last_name: member.last_name,
       birthday: member.birthday,
       telephone: member.telephone,
-      avatar_image: member.avatar_image,
+      avatar: member.avatar,
       credit_card_number: member.credit_card_number,
       credit_card_name: member.credit_card_name,
       chef_introduction: member.chef_introduction,
@@ -129,7 +129,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
@@ -146,7 +146,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
@@ -177,7 +177,7 @@ router.get("/memberInfo/:id", async (req, res) => {
       last_name: member.last_name,
       birthday: member.birthday,
       telephone: member.telephone,
-      avatar_image: member.avatar_image,
+      avatar: member.avatar,
       credit_card_number: member.credit_card_number,
       credit_card_name: member.credit_card_name,
       chef_introduction: member.chef_introduction,

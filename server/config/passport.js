@@ -7,7 +7,13 @@ module.exports = (passport) => {
   // passport serialize
   passport.serializeUser(function (user, done) {
     console.log("Serializing User");
-    done(null, user.member.id);
+
+    // 判斷這是有沒有收到member資料
+    if (user.member) {
+      done(null, user.member.id);
+    } else {
+      done(null, user);
+    }
   });
   // passport deserialize
   passport.deserializeUser(async function (id, done) {
@@ -51,7 +57,7 @@ module.exports = (passport) => {
                 last_name: findMember[0].last_name,
                 birthday: findMember[0].birthday,
                 telephone: findMember[0].telephone,
-                avatar_image: findMember[0].avatar_image,
+                avatar: findMember[0].avatar,
                 credit_card_number: findMember[0].credit_card_number,
                 credit_card_name: findMember[0].credit_card_name,
                 chef_introduction: findMember[0].chef_introduction,
@@ -93,7 +99,7 @@ module.exports = (passport) => {
             last_name: family_name,
             birthday: null,
             telephone: null,
-            avatar_image: null,
+            avatar: null,
             credit_card_number: null,
             credit_card_name: null,
             chef_introduction: null,
@@ -149,7 +155,7 @@ module.exports = (passport) => {
                 last_name: findMember[0].last_name,
                 birthday: findMember[0].birthday,
                 telephone: findMember[0].telephone,
-                avatar_image: findMember[0].avatar_image,
+                avatar: findMember[0].avatar,
                 credit_card_number: findMember[0].credit_card_number,
                 credit_card_name: findMember[0].credit_card_name,
                 chef_introduction: findMember[0].chef_introduction,
@@ -191,7 +197,7 @@ module.exports = (passport) => {
             last_name: familyName,
             birthday: null,
             telephone: null,
-            avatar_image: null,
+            avatar: null,
             credit_card_number: null,
             credit_card_name: null,
             chef_introduction: null,

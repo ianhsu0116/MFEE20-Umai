@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../services/auth.service";
+import MemberService from "../../services/member.service";
+import { PUBLIC_URL } from "../../config/config";
 import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { ImGift } from "react-icons/im";
@@ -23,7 +25,7 @@ const MemberSidebar = (props) => {
   };
 
   // 即時顯示上傳的avatar
-  const handleAvatarChange = (e) => {
+  const handleAvatarChange = async (e) => {
     let readFile = new FileReader(); //constructor 建構子(函數); 功能: 給初值
     let file = e.target.files[0];
     let imageType = /image.*/;
@@ -31,8 +33,23 @@ const MemberSidebar = (props) => {
     // 格式符合就顯示，否則提醒
     if (file) {
       if (file.type.match(imageType) && file.size < 4000000) {
-        // 將圖裝入，等待送到後端
-        //setAwsFile(file);
+        // 將圖送到後端
+        try {
+          let result = await MemberService.avatarEdit(file);
+
+          // 更新成功後，更新當前使用者資料
+          let newUser = await AuthService.memberInfo(currentUser.id);
+
+          // 存入local
+          localStorage.setItem("user", JSON.stringify(newUser.data.member));
+
+          // 裝入state
+          setCurrentUser(AuthService.getCurrentUser());
+          console.log(result);
+          console.log("good");
+        } catch (error) {
+          console.log(error);
+        }
 
         // 抓到二元編碼，即時顯示
         readFile.readAsDataURL(file);
@@ -75,16 +92,28 @@ const MemberSidebar = (props) => {
             htmlFor="avatar"
             className="MemberSidebar-container-avatar-label"
           >
-            <img
-              src={currentAvatar || avatar}
-              alt="使用者頭貼"
-              className="MemberSidebar-container-avatar-img"
-            />
+            {currentUser && currentUser.avatar && (
+              <img
+                src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
+                alt="使用者頭貼"
+                className="MemberSidebar-container-avatar-img"
+              />
+            )}
+            {currentUser && !currentUser.avatar && (
+              <img
+                src={avatar}
+                alt="使用者頭貼"
+                className="MemberSidebar-container-avatar-img"
+              />
+            )}
           </label>
           <FaPen className="MemberSidebar-container-avatar-pen" />
         </div>
         <div className="MemberSidebar-container-mamberName">
-          {currentUser && `${currentUser.first_name} ${currentUser.last_name}`}
+          {currentUser &&
+            currentUser.first_name &&
+            `${currentUser.first_name} ${currentUser.last_name}`}
+          {currentUser && !currentUser.first_name && `哈囉！`}
         </div>
         <ul className="MemberSidebar-container-ul">
           <li
