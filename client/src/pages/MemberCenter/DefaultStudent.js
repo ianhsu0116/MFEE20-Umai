@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MemberService from "../../services/member.service";
 import getValidMessage from "../../validMessage/validMessage";
 import DefaultStudentCard from "../../components/DefaultStudentCard";
@@ -16,6 +16,26 @@ const DefaultStudent = (props) => {
     birthday: "",
     email: "",
   });
+  // 所有此會員的預設學員
+  const [allStudents, setAllStudents] = useState([]);
+
+  // 拿取學生資料的function
+  async function refieshStudent() {
+    let result = await MemberService.student();
+    let { students } = result.data;
+    //console.log(students);
+    if (students.length > 0) setAllStudents(students);
+  }
+
+  // 初次渲染時，拿取當前使用者的預設學員
+  useEffect(async () => {
+    try {
+      // 拿取所有學員料
+      refieshStudent();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   // 按下新增學員
   const handleAddStudent = async (e) => {
@@ -33,6 +53,9 @@ const DefaultStudent = (props) => {
       });
       // 清空錯誤訊息
       setErrorMsg("");
+
+      // 重新拿取學員資料
+      refieshStudent();
 
       window.alert("新增成功！");
     } catch (error) {
@@ -55,8 +78,8 @@ const DefaultStudent = (props) => {
             handleAddStudent={handleAddStudent}
             errorMsg={errorMsg}
           />
-          {new Array(5).fill(1).map((data, index) => (
-            <DefaultStudentCard key={index} index={index} />
+          {allStudents.map((data, index) => (
+            <DefaultStudentCard key={index} index={index} data={data} />
           ))}
         </div>
       </div>

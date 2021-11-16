@@ -5,12 +5,13 @@ import Button from "./Button";
 import Calendar from "./Calendar";
 
 const DefaultStudentCard = (props) => {
-  let { index } = props;
+  let { index, data } = props;
   let [pathname, setPathname] = useState("/");
   let [cardOpen, setCardOpen] = useState(false);
   let [newStudentData, setNewStudentData] = useState({
-    firstName: "",
-    lastName: "",
+    id: "",
+    first_name: "",
+    last_name: "",
     telephone: "",
     birthday: "",
     email: "",
@@ -22,6 +23,25 @@ const DefaultStudentCard = (props) => {
   useEffect(() => {
     // 抓到當前網址去判斷卡片要呈現的樣式
     setPathname(props.location.pathname);
+
+    // 將拿到的資料放入input
+    if (data) {
+      // 先將日期格式轉換成 YYYY-MM-DD
+      let parseBirth = new Date(data.birthday)
+        .toLocaleDateString()
+        .split("/")
+        .join("-");
+      //setDefaultDate(parseBirth);
+
+      setNewStudentData({
+        id: data.id,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        telephone: data.telephone,
+        birthday: parseBirth,
+        email: data.email,
+      });
+    }
   }, []);
 
   // 即時抓取 input value
@@ -122,9 +142,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="text"
               id="firstName"
-              name="firstName"
+              name="first_name"
               placeholder="請輸入真實名字"
               className="DefaultStudentCard-main-row-item-input"
+              value={newStudentData.first_name}
               onChange={handleInputChange}
             />
           </div>
@@ -138,9 +159,10 @@ const DefaultStudentCard = (props) => {
             <input
               type="text"
               id="lastName"
-              name="lastName"
+              name="last_name"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
+              value={newStudentData.last_name}
               onChange={handleInputChange}
             />
           </div>
@@ -159,6 +181,7 @@ const DefaultStudentCard = (props) => {
               name="telephone"
               placeholder="請輸入手機號碼"
               className="DefaultStudentCard-main-row-item-input"
+              value={newStudentData.telephone}
               onChange={handleInputChange}
             />
           </div>
@@ -177,7 +200,10 @@ const DefaultStudentCard = (props) => {
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
             /> */}
-            <Calendar onChange={handleBirthdayChange} />
+            <Calendar
+              onChange={handleBirthdayChange}
+              value={newStudentData.birthday}
+            />
           </div>
         </div>
         <div className="DefaultStudentCard-main-row">
@@ -194,6 +220,7 @@ const DefaultStudentCard = (props) => {
               name="email"
               placeholder="請輸入Email"
               className="DefaultStudentCard-main-row-item-input"
+              value={newStudentData.email}
               onChange={handleInputChange}
             />
           </div>
