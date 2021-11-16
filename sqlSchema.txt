@@ -164,7 +164,7 @@ CREATE TABLE `member` (
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `telephone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credit_card_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credit_card_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chef_introduction` text COLLATE utf8mb4_unicode_ci,
