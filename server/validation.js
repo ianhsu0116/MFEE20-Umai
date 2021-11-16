@@ -32,7 +32,10 @@ const userInfoValidation = (data) => {
   const schema = Joi.object({
     first_name: Joi.string().min(1).max(50).required(),
     last_name: Joi.string().min(1).max(50).required(),
-    telephone: Joi.string().length(10).required(),
+    telephone: Joi.string()
+      .length(10)
+      .pattern(new RegExp("^[0, 9]{2}[0-9]{8}$"))
+      .required(),
     birthday: Joi.date().less("now").required(),
   });
   return schema.validate(data);

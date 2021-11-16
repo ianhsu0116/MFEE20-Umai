@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
+import moment from "moment";
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
@@ -36,13 +37,22 @@ const MemberInfo = (props) => {
   });
 
   // 當currentUser的值存在後，更新資料
+  let [defaultDate, setDefaultDate] = useState("");
   useEffect(() => {
     if (currentUser) {
+      // 先將日期格式轉換成 YYYY-MM-DD
+      let parseBirth = new Date(currentUser.birthday)
+        .toLocaleDateString()
+        .split("/")
+        .join("-");
+      setDefaultDate(parseBirth);
+
+      // 更新state
       setMemberInfo({
         last_name: currentUser.last_name || "",
         first_name: currentUser.first_name || "",
         telephone: currentUser.telephone || "",
-        birthday: currentUser.birthday || "",
+        birthday: parseBirth || "",
       });
 
       setCreditCardsInfo({
@@ -186,7 +196,7 @@ const MemberInfo = (props) => {
                 value={memberInfo.birthday}
                 onChange={handleMemberInfoChange}
               /> */}
-              <Calendar onChange={handleBirthdayChange} />
+              <Calendar onChange={handleBirthdayChange} value={defaultDate} />
             </div>
           </div>
           {errorMsg && <ErrorMessage value={errorMsg} />}
