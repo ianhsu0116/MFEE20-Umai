@@ -4,9 +4,44 @@ const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const momnet = require("moment");
-const userInfoValidation = require("../validation").userInfoValidation;
-const passwordValidation = require("../validation").passwordValidation;
-const creditCardValidation = require("../validation").creditCardValidation;
+const {
+  userInfoValidation,
+  passwordValidation,
+  creditCardValidation,
+  studentValidation,
+} = require("../validation");
+
+// multer
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "..", "public", "upload-images"));
+  },
+  filename: function (req, file, cb) {
+    //console.log("filename", file);
+    // 取出副檔名
+    const ext = file.originalname.split(".").pop();
+    cb(null, `avatar-${uuidv4()}.${ext}`);
+  },
+});
+const uploader = multer({
+  storage: storage,
+  // 可以用來過濾檔案
+  fileFilter: function (req, file, cb) {
+    if (
+      file.mimetype !== "image/jpeg" &&
+      file.mimetype !== "image/jpg" &&
+      file.mimetype !== "image/png"
+    ) {
+      cb(new Error("不允許的檔案類型 "), false);
+    }
+    cb(null, true);
+  },
+  // 限定檔案大小 4M
+  limits: {
+    fileSize: 1024 * 1024 * 4,
+  },
+});
 
 router.use((req, res, next) => {
   console.log("有一請求進入memberRoute");
@@ -30,8 +65,8 @@ router.get("/testAPI", async (req, res) => {
 });
 
 // 修改使用者基本資料
-router.post("/info", async (req, res) => {
-  // 目前少一步揍 => validation check
+router.put("/info", async (req, res) => {
+  // 先判斷格式是否正確
   let { error } = userInfoValidation(req.body);
   if (error) {
     let { key } = error.details[0].context;
@@ -67,13 +102,13 @@ router.post("/info", async (req, res) => {
     );
     res.status(200).json({ success: true });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
 
 // 修改使用者密碼
-router.post("/password", async (req, res) => {
+router.put("/password", async (req, res) => {
   let { id } = req.session.member;
   let { newPassword, passwordConfirm } = req.body;
 
@@ -112,39 +147,8 @@ router.post("/password", async (req, res) => {
   }
 });
 
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "..", "public", "upload-images"));
-  },
-  filename: function (req, file, cb) {
-    //console.log("filename", file);
-    // 取出副檔名
-    const ext = file.originalname.split(".").pop();
-    cb(null, `avatar-${uuidv4()}.${ext}`);
-  },
-});
-const uploader = multer({
-  storage: storage,
-  // 可以用來過濾檔案
-  fileFilter: function (req, file, cb) {
-    if (
-      file.mimetype !== "image/jpeg" &&
-      file.mimetype !== "image/jpg" &&
-      file.mimetype !== "image/png"
-    ) {
-      cb(new Error("不允許的檔案類型 "), false);
-    }
-    cb(null, true);
-  },
-  // 限定檔案大小 4M
-  limits: {
-    fileSize: 1024 * 1024 * 4,
-  },
-});
-
 // 修改使用者頭像
-router.post("/avatar", uploader.single("avatar"), async (req, res) => {
+router.put("/avatar", uploader.single("avatar"), async (req, res) => {
   let { id } = req.session.member;
   let { filename } = req.file;
   // console.log(filename);
@@ -162,7 +166,7 @@ router.post("/avatar", uploader.single("avatar"), async (req, res) => {
 });
 
 // 修改信用卡資訊
-router.post("/creditCard", async (req, res) => {
+router.put("/creditCard", async (req, res) => {
   let { id } = req.session.member;
   let { number, name } = req.body;
 
@@ -184,6 +188,117 @@ router.post("/creditCard", async (req, res) => {
     res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 新增預設學員資料
+router.post("/student", async (req, res) => {
+  // 先判斷格式是否正確
+  let { error } = studentValidation(req.body);
+  if (error) {
+    let { key } = error.details[0].context;
+    let code;
+    switch (key) {
+      case "first_name":
+        code = "G001";
+        break;
+      case "last_name":
+        code = "G002";
+        break;
+      case "telephone":
+        code = "G003";
+        break;
+      case "birthday":
+        code = "G004";
+        break;
+      case "email":
+        code = "G007";
+        break;
+      default:
+        code = "G999";
+        break;
+    }
+
+    return res.status(403).json({ success: false, code });
+  }
+
+  let { id } = req.session.member;
+  let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  let { first_name, last_name, birthday, email, telephone } = req.body;
+
+  try {
+    let result = await connection.queryAsync(
+      "INSERT INTO student (member_id, first_name, last_name, birthday, email, telephone, created_time, valid) VALUES (?)",
+      [[id, first_name, last_name, birthday, email, telephone, now, 1]]
+    );
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 拿取所有學員資料
+router.get("/student", async (req, res) => {
+  let { id } = req.session.member;
+
+  try {
+    let result = await connection.queryAsync(
+      "SELECT * FROM student WHERE member_id = ? AND valid = ?",
+      [id, 1]
+    );
+    res.status(200).json({ success: true, students: result });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 編輯預設學員資料
+router.put("/student", async (req, res) => {
+  // 先判斷格式是否正確
+  let { error } = studentValidation(req.body);
+  if (error) {
+    let { key } = error.details[0].context;
+    let code;
+    switch (key) {
+      case "first_name":
+        code = "G001";
+        break;
+      case "last_name":
+        code = "G002";
+        break;
+      case "telephone":
+        code = "G003";
+        break;
+      case "birthday":
+        code = "G004";
+        break;
+      case "email":
+        code = "G007";
+        break;
+      default:
+        code = "G999";
+        break;
+    }
+
+    return res.status(403).json({ success: false, code });
+  }
+
+  let { id } = req.session.member;
+  let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  let { first_name, last_name, birthday, email, telephone } = req.body;
+
+  try {
+    // let result = await connection.queryAsync(
+    //   "INSERT INTO student (member_id, first_name, last_name, birthday, email, telephone, created_time, valid) VALUES (?)",
+    //   [[id, first_name, last_name, birthday, email, telephone, now, 1]]
+    // );
+    // res.status(200).json({ success: true });
+  } catch (error) {
+    //console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });

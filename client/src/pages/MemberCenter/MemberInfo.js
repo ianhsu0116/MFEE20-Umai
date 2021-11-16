@@ -8,16 +8,6 @@ import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
 import moment from "moment";
 
-// 即時更新當前使用者資料的function
-async function refreshUser(currentUser, setCurrentUser) {
-  // 更新成功後，更新當前使用者資料
-  let newUser = await AuthService.memberInfo(currentUser.id);
-  // 存入local
-  localStorage.setItem("user", JSON.stringify(newUser.data.member));
-  // 裝入state
-  setCurrentUser(AuthService.getCurrentUser());
-}
-
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
 
@@ -48,6 +38,16 @@ const MemberInfo = (props) => {
   const [defaultDate, setDefaultDate] = useState("");
   // 密碼修改容器開關
   const [passwordConOpen, setPasswordConOpen] = useState(false);
+
+  // 即時更新當前使用者資料的function
+  async function refreshUser() {
+    // 更新成功後，更新當前使用者資料
+    let newUser = await AuthService.memberInfo(currentUser.id);
+    // 存入local
+    localStorage.setItem("user", JSON.stringify(newUser.data.member));
+    // 裝入state
+    setCurrentUser(AuthService.getCurrentUser());
+  }
 
   // 當currentUser的值存在後，更新資料
   useEffect(() => {
@@ -122,7 +122,7 @@ const MemberInfo = (props) => {
       let result = await MemberService.infoEdit(memberInfo);
 
       // 更新成功後，更新當前使用者資料
-      refreshUser(currentUser, setCurrentUser);
+      refreshUser();
 
       // 清空錯誤訊息
       setErrorMsg("");
@@ -177,7 +177,7 @@ const MemberInfo = (props) => {
       let result = await MemberService.creditCardEdit(number, name);
 
       // 更新成功後，更新當前使用者資料
-      refreshUser(currentUser, setCurrentUser);
+      refreshUser();
 
       // 清空錯誤訊息
       setErrorMsgCard("");

@@ -8,7 +8,7 @@ const AUTH_API_URL = API_URL + "/member";
 class MemberService {
   // 修改使用者基本資料
   infoEdit({ first_name, last_name, telephone, birthday }) {
-    return axios.post(
+    return axios.put(
       AUTH_API_URL + "/info",
       {
         first_name,
@@ -20,9 +20,9 @@ class MemberService {
     );
   }
 
-  // 修改使用者基本資料
+  // 修改使用者密碼
   passwordEdit({ newPassword, passwordConfirm }) {
-    return axios.post(
+    return axios.put(
       AUTH_API_URL + "/password",
       { newPassword, passwordConfirm },
       { withCredentials: true }
@@ -36,7 +36,7 @@ class MemberService {
     formData.append("avatar", avatar);
 
     // 送出
-    return axios.post(AUTH_API_URL + "/avatar", formData, {
+    return axios.put(AUTH_API_URL + "/avatar", formData, {
       withCredentials: true,
     });
   }
@@ -44,13 +44,37 @@ class MemberService {
   // 修改信用卡資訊
   creditCardEdit(number, name) {
     // 送出
-    return axios.post(
+    return axios.put(
       AUTH_API_URL + "/creditCard",
       { number, name },
       {
         withCredentials: true,
       }
     );
+  }
+
+  // 新增學生資訊
+  studentInsert(studentInfo) {
+    // 送出
+    return axios.post(AUTH_API_URL + "/student", studentInfo, {
+      withCredentials: true,
+    });
+  }
+
+  // 拿取所有學員資訊
+  student() {
+    // 送出
+    return axios.get(AUTH_API_URL + "/student", {
+      withCredentials: true,
+    });
+  }
+
+  // 編輯學生資訊
+  studentEdit(studentInfo) {
+    // 送出
+    return axios.put(AUTH_API_URL + "/student", studentInfo, {
+      withCredentials: true,
+    });
   }
 }
 
