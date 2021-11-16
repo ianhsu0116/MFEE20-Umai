@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../../components/Button";
 
 const DefaultStudentCard = (props) => {
-  let { index, changestudentnumber, changecarddata, deletecarddata } = props.data;
+  let { deletecarddata, changecarddata } = props.data;
+  let index = props.index;
   let [cardOpen, setCardOpen] = useState(false);
   let [newStudentData, setNewStudentData] = useState({
     firstName: props.data.firstName,
@@ -15,9 +16,9 @@ const DefaultStudentCard = (props) => {
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-  useEffect(()=>{
-    changecarddata(index,newStudentData)
-  },[newStudentData])
+  // useEffect(()=>{
+  //   changecarddata(index,newStudentData)
+  // },[newStudentData])
 
   // 即時抓取 input value
   const handleInputChange = (e) => {
@@ -39,7 +40,6 @@ const DefaultStudentCard = (props) => {
   // 刪除學生(動畫)
   const handleDeleteStudent = (index) => (e) => {
     console.log("刪除學員");
-    changestudentnumber(-1);
     deletecarddata(index);
   };
 

@@ -31,7 +31,7 @@ function CourseDetail(props){
         <table className="CourseDetail-Consumer-details">
             <tr>
                 <td><h4>訂單小計</h4></td>
-                <td><h4>NT$ {props.coursedata.value*props.coursedata.studentnumber}</h4></td>
+                <td><h4>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h4></td>
             </tr>
             <tr>
                 <td><h4>優惠券</h4></td>
@@ -47,7 +47,7 @@ function CourseDetail(props){
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
-                <td><h3>NT$ {props.coursedata.value*props.coursedata.studentnumber-props.coupon.coupon1.count}</h3></td>
+                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-props.coupon.coupon1.count}</h3></td>
             </tr>
         </table>
         <hr/>

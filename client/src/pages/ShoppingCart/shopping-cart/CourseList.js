@@ -5,37 +5,7 @@ import React, { useState } from "react";
 
 function CourseList(props){
     const [ card, setCard] = useState(false);
-    let carddata=[];
-    let defaultcarddata={
-        firstName: "",
-        lastName: "",
-        telephone: "",
-        birthday: "",
-        email: "",
-    };
-    function changecarddata(i,newdata){
-        carddata[i-1]= Object.assign(carddata[i-1],newdata)
-        console.log("changecarddata",carddata);
-    }
-    function deletecarddata(i){
-        carddata.splice(i-1,1)
-        console.log("delete",carddata);
-    }
-    function newcarddata(){
-        carddata.push(defaultcarddata);
-    }
-    
-    for(let i = 1; i <= props.coursedata.studentnumber; i++){
-        carddata.push(defaultcarddata);
-        carddata[i-1]={...carddata[i-1],
-            index:i,
-            changestudentnumber:(e)=>{props.changestudentnumber(e)},
-            changecarddata:changecarddata,
-            deletecarddata:deletecarddata
-        }
-    }
-    
-
+    let index=1;
     return(
     <>
         <div className="CourseList-title">
@@ -57,12 +27,12 @@ function CourseList(props){
     card ? setCard(false) : setCard(true);
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
-                    <h3>{props.coursedata.name}</h3>
+                    <h3>{props.coursetitle.name}</h3>
                     <h5>報名人數剩餘5人</h5>
                 </td>
-                <td><h4>NT$ {props.coursedata.value}</h4></td>
-                <td><h4>*{props.coursedata.studentnumber}位</h4></td>  
-                <td><h4>NT$ {props.coursedata.value*props.coursedata.studentnumber}</h4></td>
+                <td><h4>NT$ {props.coursetitle.value}</h4></td>
+                <td><h4>*{props.carddata.length}位</h4></td>  
+                <td><h4>NT$ {props.coursetitle.value*props.carddata.length}</h4></td>
             </tr>
             <tr className="CourseList-list-tool">
                 <td colSpan="5"><button>收藏</button><button>刪除</button></td>
@@ -104,11 +74,11 @@ function CourseList(props){
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
                             <button onClick={()=>{
-                                props.changestudentnumber(1);
-                                newcarddata()}}>新增學員</button>
+                               props.newcarddata()
+                                }}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                        {carddata.map((data) => <DefaultStudentCard data={data}/>)}
+                        {props.carddata.map((data) => <DefaultStudentCard data={data} index={index++}/>)}
                         </div>
                     </div>
                 </td>
