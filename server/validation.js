@@ -41,6 +41,15 @@ const userInfoValidation = (data) => {
   return schema.validate(data);
 };
 
+// password 修改相關格式
+const passwordValidation = (data) => {
+  const schema = Joi.object({
+    newPassword: Joi.string().min(8).max(255).required(),
+  });
+
+  return schema.validate(data);
+};
+
 // 修改基本資料(性別)
 // const userEditValidation = (data) => {
 //   const schema = Joi.object({
@@ -94,3 +103,4 @@ const userInfoValidation = (data) => {
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.userInfoValidation = userInfoValidation;
+module.exports.passwordValidation = passwordValidation;

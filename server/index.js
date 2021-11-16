@@ -51,6 +51,12 @@ app.get("/", (req, res) => {
   res.send("home");
 });
 
+// 錯誤處理
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ success: false, code: "不知名錯誤！", message: err });
+});
+
 app.listen(8080, () => {
   connection.connect();
   console.log("server is running on port 8080");

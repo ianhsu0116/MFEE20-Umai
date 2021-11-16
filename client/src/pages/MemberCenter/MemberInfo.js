@@ -13,6 +13,7 @@ const MemberInfo = (props) => {
 
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsgPassword, setErrorMsgPassword] = useState("");
 
   // 使用者基本資料
   const [memberInfo, setMemberInfo] = useState({
@@ -37,7 +38,7 @@ const MemberInfo = (props) => {
   });
 
   // 當currentUser的值存在後，更新資料
-  let [defaultDate, setDefaultDate] = useState("");
+  const [defaultDate, setDefaultDate] = useState("");
   useEffect(() => {
     if (currentUser) {
       // 先將日期格式轉換成 YYYY-MM-DD
@@ -64,13 +65,44 @@ const MemberInfo = (props) => {
     }
   }, [currentUser]);
 
+  // 密碼修改容器開關
+  const [passwordConOpen, setPasswordConOpen] = useState(false);
+  const handlePasswordConOpen = () => {
+    passwordConOpen ? setPasswordConOpen(false) : setPasswordConOpen(true);
+
+    // 清空當前輸入的value
+    setPasswordInfo({
+      passwordConfirm: "",
+      newPassword: "",
+    });
+
+    // 清空錯誤訊息
+    setErrorMsgPassword("");
+  };
+
   // 即時抓取基本資料填寫
   const handleMemberInfoChange = (e) => {
     setMemberInfo({ ...memberInfo, [e.target.name]: e.target.value });
   };
 
-  // 個資修改
+  // 即時抓取生日修改
+  const handleBirthdayChange = (day) => {
+    setMemberInfo({ ...memberInfo, birthday: day });
+  };
+
+  // 即時抓取密碼填寫
+  const handlePasswordChange = (e) => {
+    setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value });
+  };
+
+  // 送出個資修改
   const handleInfoEdit = async () => {
+    // 先確認資料是否都有填寫
+    let { last_name, first_name, telephone, birthday } = memberInfo;
+    if (!last_name || !first_name || !telephone || !birthday) {
+      return setErrorMsg("請確實填寫每個欄位再送出！");
+    }
+
     try {
       let result = await MemberService.infoEdit(memberInfo);
 
@@ -91,35 +123,41 @@ const MemberInfo = (props) => {
       setErrorMsg(getValidMessage("member", code));
     }
   };
-  // 生日修改
-  const handleBirthdayChange = (day) => {
-    setMemberInfo({ ...memberInfo, birthday: day });
+
+  // 送出密碼修改
+  const handlePasswordEdit = async () => {
+    // 先確認資料是否都有填寫
+    let { passwordConfirm, newPassword } = passwordInfo;
+    if (!passwordConfirm || !newPassword) {
+      return setErrorMsgPassword("請確實填寫兩個密碼欄位再送出！");
+    }
+    try {
+      let result = await MemberService.passwordEdit(passwordInfo);
+
+      // 關閉密碼修改容器
+      setPasswordConOpen(false);
+
+      // 清空當前輸入的value
+      setPasswordInfo({
+        passwordConfirm: "",
+        newPassword: "",
+      });
+
+      // 清空錯誤訊息
+      setErrorMsgPassword("");
+
+      window.alert("密碼修改成功！");
+    } catch (error) {
+      //console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsgPassword(getValidMessage("member", code));
+    }
   };
 
-  // 付款資訊修改
+  // 送出付款資訊修改
   const handlePaymentEdit = () => {
     console.log("handlePatmentEdit");
     console.log(creditCardsInfo);
-  };
-
-  // 密碼修改容器開關
-  const [passwordConOpen, setPasswordConOpen] = useState(false);
-  const handlePasswordConOpen = () => {
-    passwordConOpen ? setPasswordConOpen(false) : setPasswordConOpen(true);
-    setPasswordInfo({
-      passwordConfirm: "",
-      newPassword: "",
-    });
-  };
-
-  // 即時抓取密碼填寫
-  const handlePasswordChange = (e) => {
-    setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value });
-  };
-
-  // 送出密碼修改
-  const handlePasswordEdit = () => {
-    console.log(passwordInfo);
   };
 
   return (
@@ -249,6 +287,7 @@ const MemberInfo = (props) => {
               </button>
             </div>
           </div>
+          {errorMsgPassword && <ErrorMessage value={errorMsgPassword} />}
           <div className="MemberInfo-container-buttonCon">
             <Button
               value={"確認修改"}
