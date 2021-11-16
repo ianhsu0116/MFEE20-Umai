@@ -3,7 +3,7 @@ import React from "react";
 const ForumSidebar = () => {
   return (
     <div className="sidebar">
-      <h3><u>討論主題</u></h3>
+      <h3>討論主題</h3>
       <ul>
         <li>日式料理</li>
         <li>韓式料理</li>

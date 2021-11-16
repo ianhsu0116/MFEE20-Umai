@@ -12,7 +12,7 @@ $width: 5px;
   padding: 0;
   .sidebar {
     // background: white；
-    color: hsl(34, 22%, 29%);
+    color: #d8a466;
     width: 100%;
     height: 100vh;
     padding-top: 15px;
@@ -29,8 +29,9 @@ $width: 5px;
       li {
         padding: 2.5px 0;
         list-style: none;
-        font-size: 1rem;
+        font-size: 1.25rem;
         font-weight: bold;
+        color: black;
         &:hover {
           color: orange;
         }
@@ -51,15 +52,17 @@ $width: 5px;
       }
       .Forum-main-h2 {
         margin: 10px;
-        color: rgb(155, 138, 138);
+        color: #d8a466;
       }
       .Forum-main-out {
         display: flex;
         padding: 10px;
         justify-content: center;
         align-items: center;
+        border-bottom: rgb(104, 104, 104) 0.1px dashed;
         .Forum-main-photo {
           width: 125px;
+          min-width: 125px;
           height: 125px;
           border-radius: 30px;
           display: inline-block;
@@ -68,15 +71,75 @@ $width: 5px;
           padding: 0px 15px;
           justify-content: left;
           position: relative;
-          .Forum-main-date {
+          .Forum-main-DateAndDropdown {
             position: absolute;
             top: 0px;
-            right: 5px;
+            right: 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 100;
+
+            .Forum-main-dropdown {
+              padding: 0 3rem;
+              box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+              border-radius: 5px;
+              display: inline-block;
+              // background-color: pink;
+              color: black;
+              width: 50px;
+              background: white;
+              .FiMoreHorizontal {
+                color: black;
+              }
+              .Forum-main-dropdown-content {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 0;
+                p {
+                  margin: 0.125rem 0;
+                  a {
+                    text-decoration: none;
+                    color: black;
+                    display: inline-block;
+                    width: 2rem;
+                  }
+                }
+              }
+              &:hover {
+                padding: 0 3rem;
+                box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+                border-radius: 5px;
+                .Forum-main-dropdown-content {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 2px 0;
+                  p {
+                    margin: 0.125rem 0;
+                    a {
+                      text-decoration: none;
+                      color: black;
+                      display: inline-block;
+                      width: 2rem;
+                    }
+                  }
+                }
+              }
+            }
           }
-          .Forum-main-theme {
-            padding: 0;
-            margin: 0px;
+          .Forum-main-dateAndTheme {
+            display: flex;
+
+            .Forum-main-theme {
+              padding: 0;
+              margin: 0px;
+            }
           }
+
           .Forum-main-p {
             padding: 5px;
             font-size: 1rem;
@@ -135,13 +198,15 @@ $width: 5px;
   .publish {
     background: white;
     width: 15%;
-    height: 100vh;
+    height: 90vh;
     box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
     padding-top: 15px;
     padding-left: 15px;
-
     position: sticky;
     top: 46.953px;
+    h2 {
+      color: #d8a466;
+    }
     .Forum-publish-form-select {
       margin-left: 5%;
       width: 90%;
@@ -171,16 +236,42 @@ $width: 5px;
         }
       }
     }
-    .Forum-publish-label-small {
-      margin-left: 5%;
-      margin-right: 10%;
-      text-align: left;
+    .Forum-publish-label-small-block {
+      display: flex;
+
+      .Forum-publish-label-small {
+        margin-right: 5%;
+        text-align: left;
+        // position: relative;
+      }
+      .Forum-publish-label-question-block {
+        // position: absolute;
+        // left: 30px;
+        // top: 0px;
+        // right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .situation {
+          display: none;
+        }
+        .AiFillQuestionCircle {
+          color: #f8ac1e;
+        }
+        &:hover {
+          .situation {
+            display: block;
+            font-size: 8px;
+          }
+        }
+      }
     }
+
     .Forum-publish-label-illustrator {
       margin-left: 5%;
       margin-right: 10%;
       margin-top: 5%;
-      margin-bottom: 5%;
+      margin-bottom: 10%;
       text-align: left;
       display: block;
     }
@@ -203,7 +294,8 @@ $width: 5px;
       margin-left: 5%;
       width: 90%;
       max-width: 100%;
-      height: 500px;
+      height: 400px;
+      min-height: 350px;
       display: inline-block;
       outline: none;
       border-bottom: 1px solid #f8ac1e;
@@ -245,6 +337,66 @@ $width: 5px;
           height: 50px;
           border-radius: 50%;
         }
+        .Forum-main-DateAndDropdown {
+          position: absolute;
+          top: 0px;
+          right: 15px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          z-index: 100;
+
+          .Forum-main-dropdown {
+            padding: 0 3rem;
+            box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+            border-radius: 5px;
+            display: inline-block;
+            // background-color: pink;
+            color: black;
+            width: 50px;
+            background: white;
+            .FiMoreHorizontal {
+              color: black;
+            }
+            .Forum-main-dropdown-content {
+              display: none;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 2px 0;
+              p {
+                margin: 0.125rem 0;
+                a {
+                  text-decoration: none;
+                  color: black;
+                  display: inline-block;
+                  width: 2rem;
+                }
+              }
+            }
+            &:hover {
+              padding: 0 3rem;
+              box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+              border-radius: 5px;
+              .Forum-main-dropdown-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 0;
+                p {
+                  margin: 0.125rem 0;
+                  a {
+                    text-decoration: none;
+                    color: black;
+                    display: inline-block;
+                    width: 2rem;
+                  }
+                }
+              }
+            }
+          }
+        }
         .Forum-modal-body-account-name {
           padding: 3px;
         }
@@ -253,12 +405,28 @@ $width: 5px;
         }
       }
       .Forum-modal-body-commet {
-        height: 80vh;
+        max-height: 50vh;
         margin: 15px auto;
         font-size: 1.25rem;
+        overflow-y: scroll;
+        .Forum-modal-body-image {
+          max-width: 80%;
+        }
       }
-      .Forum-modal-body-image {
-        max-width: 80%;
+      #Forum-modal-scrollbar::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f5f5f5;
+      }
+
+      #Forum-modal-scrollbar::-webkit-scrollbar {
+        width: 12px;
+        background-color: #f5f5f5;
+      }
+
+      #Forum-modal-scrollbar::-webkit-scrollbar-thumb {
+        // border-radius: 10px;
+        // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #d8a466;
       }
       .Forum-modal-body-icon {
         display: flex;
@@ -293,11 +461,72 @@ $width: 5px;
         display: flex;
         align-items: center;
         margin: 15px auto;
+        .Forum-main-DateAndDropdown {
+          position: absolute;
+          top: 0px;
+          right: 15px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          z-index: 100;
+
+          .Forum-main-dropdown {
+            padding: 0 3rem;
+            box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+            border-radius: 5px;
+            display: inline-block;
+            // background-color: pink;
+            color: black;
+            width: 50px;
+            background: white;
+            .FiMoreHorizontal {
+              color: black;
+            }
+            .Forum-main-dropdown-content {
+              display: none;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 2px 0;
+              p {
+                margin: 0.125rem 0;
+                a {
+                  text-decoration: none;
+                  color: black;
+                  display: inline-block;
+                  width: 2rem;
+                }
+              }
+            }
+            &:hover {
+              padding: 0 3rem;
+              box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+              border-radius: 5px;
+              .Forum-main-dropdown-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 0;
+                p {
+                  margin: 0.125rem 0;
+                  a {
+                    text-decoration: none;
+                    color: black;
+                    display: inline-block;
+                    width: 2rem;
+                  }
+                }
+              }
+            }
+          }
+        }
         .Forum-modal-footer-account-image {
           width: 50px;
           height: 50px;
           border-radius: 50%;
         }
+
         .Forum-modal-footer-account-name {
           padding: 3px;
         }
@@ -317,10 +546,10 @@ $width: 5px;
           color: #eb6b6a;
           padding-right: $width;
         }
-        .AiOutlineMessage {
-          color: #5eb2eb;
-          padding-right: $width;
-        }
+        // .AiOutlineMessage {
+        //   color: #5eb2eb;
+        //   padding-right: $width;
+        // }
         .Forum-modal-body-icon-p {
           font-size: 1.5rem;
           padding-right: $width;
@@ -360,7 +589,7 @@ $width: 5px;
           border-top: 0px;
           border-left: 0px;
           border-right: 0px;
-          color: #ebebeb;
+          color: #000000;
           padding: 15px;
         }
       }

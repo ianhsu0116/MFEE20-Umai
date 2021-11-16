@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReviewButton from "../../components/member/ReviewButton";
-import Calendar from "../../components/Calendar";
+import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
 import { FaPen } from "react-icons/fa";
 
@@ -11,7 +11,7 @@ let sliderArray = [111, 222, 333];
 const CourseInsert = (props) => {
   const { isReview, setIsReview } = props;
   const [courseDetail, setCourseDetail] = useState({
-    slider_images: ["", "", ""],
+    slider_images: [],
     course_name: "", // 課程名稱
     company_name: "", // 餐廳名稱
     company_address: "", // 餐廳地址, 供google地圖搜尋
@@ -62,8 +62,9 @@ const CourseInsert = (props) => {
     member_limit: 0,
     course_price: 0,
     course_hour: 0,
-    course_level: 1, // 1, 2, 3
-    course_category: 1, // 1 ~ 6 代表course_category的id
+    course_level: "1", // 1, 2, 3
+    course_category: "1", // 1 ~ 6 代表course_category的id
+    course_batch: [],
   });
 
   // 儲存slider上傳的圖片(二元編碼 即時顯示使用)
@@ -157,10 +158,9 @@ const CourseInsert = (props) => {
   };
 
   // 課程梯次
-  const [courseBatch, setCourseBatch] = useState([""]); // 梯次複選問題沒有解決！！！！！！！！！
   const handleBatchChange = (batch) => {
     console.log(batch);
-    console.log("梯次多選問題尚未解決！");
+    setCourseDetail({ ...courseDetail, course_batch: batch });
   };
 
   // 送出課程資料
@@ -311,7 +311,7 @@ const CourseInsert = (props) => {
             >
               開課梯次
             </label>
-            <Calendar onChange={handleBatchChange} />
+            <CalendarMulti onChange={handleBatchChange} />
           </div>
           <div className="CourseInsert-container-row-inputCon">
             <label

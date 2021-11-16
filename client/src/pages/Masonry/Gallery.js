@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiOutlineMessage } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillFacebook,
+  AiOutlineMessage,
+  AiOutlineInstagram,
+} from "react-icons/ai";
 import { BsFillTriangleFill } from "react-icons/bs";
-import { AiFillFacebook } from "react-icons/ai";
-import { AiOutlineInstagram } from "react-icons/ai";
-
+import { FiMoreHorizontal } from "react-icons/fi";
 // import img from "../images/img1.jpg";
 // console.log(img);
 
@@ -91,16 +93,17 @@ const Gallery = () => {
       </section>
       <Modal
         className="Massonry-modal"
-        size="xl"
+        size="fullscreen"
         show={show}
         onHide={handleClose}
       >
-        {/* <Modal.Header
-          closeButton
-          className="Massonry-modal-header"
-        ></Modal.Header> */}
-        <Modal.Body className="Massonry-modal-body" closeButton>
+        <Modal.Body className="Massonry-modal-body">
           <div className="Massonry-modal-body-image-border">
+          
+            <Modal.Header
+              closeButton
+              className="Massonry-modal-header"
+            ></Modal.Header>
             <img
               className="Massonry-modal-body-image"
               src={require(`./../../components/images/img1.jpg`).default}

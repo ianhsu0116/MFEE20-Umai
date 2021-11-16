@@ -15,12 +15,14 @@ import About from "./pages/About/About";
 
 import Course from "./pages/Course/Course";
 
-import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture"
+import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture";
 
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
 
 import Calendar from "./components/Calendar";
+import CalendarAvailable from "./components/CalendarAvailable";
+import CalendarMulti from "./components/CalendarMulti";
 
 function App() {
   let [showLogin, setShowLogin] = useState(false);
@@ -38,9 +40,29 @@ function App() {
     });
   }, []);
 
+  // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     console.log(e);
   };
+  // 給顯示可預訂日期的萬年曆用的
+  let availableDays = [
+    "2021-11-12",
+    "2021-11-13",
+    "2021-11-15",
+    "2021-11-16",
+    "2021-11-20",
+    "2021-11-23",
+    "2021-11-24",
+    "2021-11-25",
+    "2021-11-26",
+    "2021-11-27",
+    "2021-11-29",
+    "2021-12-01",
+    "2021-12-02",
+    "2021-12-03",
+    "2021-12-04",
+    "2021-12-05",
+  ];
 
   return (
     <Router>
@@ -54,7 +76,15 @@ function App() {
           <ShareCard />
           <CourseMiniCard />
           <StarGroup percent={96} allScore={50} />
+          <h4>一般萬年曆</h4>
           <Calendar onChange={onChange} />
+          <h4>顯示可預訂日期的萬年曆</h4>
+          <CalendarAvailable
+            onChange={onChange}
+            availableDays={availableDays}
+          />
+          <h4>可多選萬年曆</h4>
+          <CalendarMulti onChange={onChange} />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter />
@@ -71,7 +101,7 @@ function App() {
         </Route>
         <Route path="/Try" exact>
           <Try />
-
+        </Route>
         <Route path="/course/category" exact>
           <Course />
         </Route>

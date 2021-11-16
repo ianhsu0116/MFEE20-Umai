@@ -88,17 +88,26 @@ $width: 5px;
 
     .Massonry-modal-body-image-border {
       // background: black;
-      width: 70%;
+      width: 75%;
       height: 100%;
       display: flex;
       align-items: center;
-
+      position: relative;
+      .Massonry-modal-header {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 100;
+        display: inline-block;
+        border: none;
+        outline: none;
+      }
       .Massonry-modal-body-image {
         width: 100%;
       }
     }
     .Massonry-modal-body-textgrop {
-      width: 30%;
+      width: 25%;
       height: 100%;
       background: burlywood;
       padding: 1rem 2rem;
