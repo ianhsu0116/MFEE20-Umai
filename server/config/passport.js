@@ -53,6 +53,7 @@ module.exports = (passport) => {
                 telephone: findMember[0].telephone,
                 avatar_image: findMember[0].avatar_image,
                 credit_card_number: findMember[0].credit_card_number,
+                credit_card_name: findMember[0].credit_card_name,
                 chef_introduction: findMember[0].chef_introduction,
                 member_category: findMember[0].member_category,
               };
@@ -94,6 +95,7 @@ module.exports = (passport) => {
             telephone: null,
             avatar_image: null,
             credit_card_number: null,
+            credit_card_name: null,
             chef_introduction: null,
             member_category: 1,
           };
@@ -149,6 +151,7 @@ module.exports = (passport) => {
                 telephone: findMember[0].telephone,
                 avatar_image: findMember[0].avatar_image,
                 credit_card_number: findMember[0].credit_card_number,
+                credit_card_name: findMember[0].credit_card_name,
                 chef_introduction: findMember[0].chef_introduction,
                 member_category: findMember[0].member_category,
               };
@@ -190,6 +193,7 @@ module.exports = (passport) => {
             telephone: null,
             avatar_image: null,
             credit_card_number: null,
+            credit_card_name: null,
             chef_introduction: null,
             member_category: 1,
           };
@@ -207,45 +211,4 @@ module.exports = (passport) => {
       }
     )
   );
-};
-
-const e = {
-  cookie: { originalMaxAge: null, expires: null, httpOnly: true, path: "/" },
-  passport: {
-    user: {
-      success: true,
-      member: {
-        id: 37,
-        email: "ianhsu0116@gmail.com",
-        googleId: "103273704943821784507",
-        facebookId: null,
-        first_name: "Ian",
-        last_name: "Hsu",
-        birthday: null,
-        telephone: null,
-        avatar_image: null,
-        credit_card_number: null,
-        chef_introduction: null,
-        member_category: 1,
-      },
-    },
-  },
-  member: {
-    success: true,
-    member: {
-      id: 37,
-      email: "ianhsu0116@gmail.com",
-      googleId: "103273704943821784507",
-      facebookId: null,
-      first_name: "Ian",
-      last_name: "Hsu",
-      birthday: null,
-      telephone: null,
-      avatar_image: null,
-      credit_card_number: null,
-      chef_introduction: null,
-      member_category: 1,
-    },
-  },
-  __lastAccess: 1636969637113,
 };

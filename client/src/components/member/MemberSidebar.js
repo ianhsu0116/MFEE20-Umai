@@ -12,7 +12,7 @@ import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.jpg";
 
 const MemberSidebar = (props) => {
-  let { currentBoard, setCurrentBoard, setCurrentUser } = props;
+  let { currentBoard, setCurrentBoard, currentUser, setCurrentUser } = props;
 
   // 存avatar的二元編碼
   const [currentAvatar, setCurrentAvatar] = useState("");
@@ -83,7 +83,9 @@ const MemberSidebar = (props) => {
           </label>
           <FaPen className="MemberSidebar-container-avatar-pen" />
         </div>
-        <div className="MemberSidebar-container-mamberName">Ian Hsu</div>
+        <div className="MemberSidebar-container-mamberName">
+          {currentUser && `${currentUser.first_name} ${currentUser.last_name}`}
+        </div>
         <ul className="MemberSidebar-container-ul">
           <li
             className={`MemberSidebar-container-ul-li ${
@@ -169,20 +171,23 @@ const MemberSidebar = (props) => {
               優惠券
             </span>
           </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "新增課程" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <GiCook />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
+          {/* 當前登入者是廚師時，才能新增課程 */}
+          {currentUser && currentUser.member_category === 2 && (
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "新增課程" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
             >
-              新增課程
-            </span>
-          </li>
+              <GiCook />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                新增課程
+              </span>
+            </li>
+          )}
           <li className="MemberSidebar-container-ul-li" onClick={handleLogout}>
             <HiOutlineLogout />
             <span className="MemberSidebar-container-ul-li-text">登出</span>

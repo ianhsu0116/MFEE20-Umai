@@ -7,8 +7,10 @@ const AUTH_API_URL = API_URL + "/auth";
 
 class AuthService {
   // 拿到當前使用者資料
-  info() {
-    return axios.get(AUTH_API_URL + "/info", { withCredentials: true });
+  memberInfo(id) {
+    return axios.get(AUTH_API_URL + "/memberInfo/" + id, {
+      withCredentials: true,
+    });
   }
 
   // 從local拿到當前使用者資料
