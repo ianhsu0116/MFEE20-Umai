@@ -7,7 +7,13 @@ module.exports = (passport) => {
   // passport serialize
   passport.serializeUser(function (user, done) {
     console.log("Serializing User");
-    done(null, user.member.id);
+
+    // 判斷這是有沒有收到member資料
+    if (user.member) {
+      done(null, user.member.id);
+    } else {
+      done(null, user);
+    }
   });
   // passport deserialize
   passport.deserializeUser(async function (id, done) {

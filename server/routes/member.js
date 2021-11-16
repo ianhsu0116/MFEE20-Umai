@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const momnet = require("moment");
 const userInfoValidation = require("../validation").userInfoValidation;
 const passwordValidation = require("../validation").passwordValidation;
+const creditCardValidation = require("../validation").creditCardValidation;
 
 router.use((req, res, next) => {
   console.log("有一請求進入memberRoute");
@@ -117,13 +118,7 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "..", "public", "upload-images"));
   },
   filename: function (req, file, cb) {
-    console.log("filename", file);
-    // {
-    //   fieldname: 'avatar',
-    //   originalname: 'mustread2.jpg', jpeg
-    //   encoding: '7bit',
-    //   mimetype: 'image/jpeg'
-    // }
+    //console.log("filename", file);
     // 取出副檔名
     const ext = file.originalname.split(".").pop();
     cb(null, `avatar-${uuidv4()}.${ext}`);
@@ -152,12 +147,39 @@ const uploader = multer({
 router.post("/avatar", uploader.single("avatar"), async (req, res) => {
   let { id } = req.session.member;
   let { filename } = req.file;
-  console.log(filename);
+  // console.log(filename);
 
   try {
     let result = await connection.queryAsync(
       "UPDATE member SET avatar = ? WHERE id = ?",
       [filename, id]
+    );
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 修改信用卡資訊
+router.post("/creditCard", async (req, res) => {
+  let { id } = req.session.member;
+  let { number, name } = req.body;
+
+  // 判斷新格式是否正確
+  let { error } = creditCardValidation({ number, name });
+  if (error) {
+    if (error.details[0].context.key === "number") {
+      return res.status(403).json({ success: false, code: "F001" });
+    } else if (error.details[0].context.key === "name") {
+      return res.status(403).json({ success: false, code: "F002" });
+    }
+  }
+
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE member SET credit_card_number = ?, credit_card_name = ? WHERE id = ?",
+      [number, name, id]
     );
     res.status(200).json({ success: true });
   } catch (error) {

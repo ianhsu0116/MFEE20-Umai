@@ -40,6 +40,18 @@ class MemberService {
       withCredentials: true,
     });
   }
+
+  // 修改信用卡資訊
+  creditCardEdit(number, name) {
+    // 送出
+    return axios.post(
+      AUTH_API_URL + "/creditCard",
+      { number, name },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export default new MemberService();

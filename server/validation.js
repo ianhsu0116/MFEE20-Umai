@@ -50,6 +50,16 @@ const passwordValidation = (data) => {
   return schema.validate(data);
 };
 
+// creditCard 修改相關格式
+const creditCardValidation = (data) => {
+  const schema = Joi.object({
+    number: Joi.string().length(16).required(),
+    name: Joi.string().min(1).max(30).required(),
+  });
+
+  return schema.validate(data);
+};
+
 // 修改基本資料(性別)
 // const userEditValidation = (data) => {
 //   const schema = Joi.object({
@@ -100,7 +110,9 @@ const passwordValidation = (data) => {
 //   return schema.validate(data);
 // };
 
+// memberCenter + 註冊相關
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.userInfoValidation = userInfoValidation;
 module.exports.passwordValidation = passwordValidation;
+module.exports.creditCardValidation = creditCardValidation;

@@ -45,6 +45,8 @@ const MemberSidebar = (props) => {
 
           // 裝入state
           setCurrentUser(AuthService.getCurrentUser());
+          console.log(result);
+          console.log("good");
         } catch (error) {
           console.log(error);
         }
@@ -108,7 +110,10 @@ const MemberSidebar = (props) => {
           <FaPen className="MemberSidebar-container-avatar-pen" />
         </div>
         <div className="MemberSidebar-container-mamberName">
-          {currentUser && `${currentUser.first_name} ${currentUser.last_name}`}
+          {currentUser &&
+            currentUser.first_name &&
+            `${currentUser.first_name} ${currentUser.last_name}`}
+          {currentUser && !currentUser.first_name && `哈囉！`}
         </div>
         <ul className="MemberSidebar-container-ul">
           <li

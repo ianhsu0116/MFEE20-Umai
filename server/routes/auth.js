@@ -129,7 +129,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
@@ -146,7 +146,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
