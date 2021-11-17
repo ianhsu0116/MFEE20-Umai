@@ -48,14 +48,14 @@ router.use((req, res, next) => {
   next();
 });
 
-// 確認當前是否為登入狀態;
-// router.use((req, res, next) => {
-//   //console.log(req.session);
-//   if (!req.session.member) {
-//     return res.status(403).send({ success: false, code: "A005" });
-//   }
-//   next();
-// });
+// 阻擋未登入的請求
+router.use((req, res, next) => {
+  //console.log(req.session);
+  if (!req.session.member) {
+    return res.status(403).send({ success: false, code: "A005" });
+  }
+  next();
+});
 
 // 測試路由
 router.get("/testAPI", async (req, res) => {
