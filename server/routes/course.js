@@ -65,23 +65,77 @@ router.post("/course", uploader.array("images"), async (req, res) => {
   // if (error) {
   //   return res.status(403).json({ success: false, code });
   // }
+
   let { id } = req.session.member;
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
-  console.log(req.body);
-  req.files.forEach((file) => {
-    console.log(file.filename);
+  let {
+    category_id,
+    course_name,
+    course_price,
+    course_hour,
+    course_level,
+    member_limit,
+    company_name,
+    company_address,
+    course_batch,
+    course_detail,
+  } = req.body;
+
+  // 將JSON解析回原本的data type
+  course_batch = JSON.parse(course_batch);
+  course_detail = JSON.parse(course_detail);
+
+  // 處理每張相片的名稱
+  req.files.forEach((file, index) => {
+    if (index <= 5) {
+      course_detail.six_dishes[index].dishes_image = file.filename;
+    } else {
+      course_detail.slider_images.push(file.filename);
+    }
   });
 
-  // try {
-  //   let result = await connection.queryAsync(
-  //     "INSERT INTO student (member_id, first_name, last_name, birthday, email, telephone, created_time, valid) VALUES (?)",
-  //     [[id, first_name, last_name, birthday, email, telephone, now, 1]]
-  //   );
-  //   res.status(200).json({ success: true });
-  // } catch (error) {
-  //   //console.log(error);
-  //   res.status(500).json({ success: false, code: "G999", message: error });
-  // }
+  // JSON打包好後，再stringify，才能存入DB
+  course_detail = JSON.stringify(course_detail);
+
+  // 存入資料庫
+  try {
+    // 存入資料庫（課程）
+    let result = await connection.queryAsync(
+      "INSERT INTO course (member_id,category_id,course_detail,course_name,course_price,course_hour,course_level,member_limit,company_name,company_address, created_time, valid) VALUES (?)",
+      [
+        [
+          id,
+          category_id,
+          course_detail,
+          course_name,
+          course_price,
+          course_hour,
+          course_level,
+          member_limit,
+          company_name,
+          company_address,
+          now,
+          1,
+        ],
+      ]
+    );
+
+    // 拿到當下新增的course_id
+    let { insertId } = result;
+
+    // 存入資料庫（梯次 批次存入）
+    course_batch.forEach(async (batch) => {
+      await connection.queryAsync(
+        "INSERT INTO course_batch (course_id, batch_date, member_count, created_time, valid) VALUES (?)",
+        [[insertId, batch, 0, now, 1]]
+      );
+    });
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G101", message: error });
+  }
 });
 
 // 拿取所有學員資料
