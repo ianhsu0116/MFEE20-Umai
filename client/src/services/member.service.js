@@ -76,6 +76,18 @@ class MemberService {
       withCredentials: true,
     });
   }
+
+  // 刪除學生資訊
+  studentDelete(id) {
+    // 送出
+    return axios.put(
+      AUTH_API_URL + "/studentDelete",
+      { id },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export default new MemberService();

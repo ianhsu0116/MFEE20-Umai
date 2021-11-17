@@ -49,12 +49,13 @@ router.use((req, res, next) => {
 });
 
 // 確認當前是否為登入狀態;
-router.use((req, res, next) => {
-  if (!req.session.member) {
-    return res.status(403).send({ success: false, code: "A005" });
-  }
-  next();
-});
+// router.use((req, res, next) => {
+//   //console.log(req.session);
+//   if (!req.session.member) {
+//     return res.status(403).send({ success: false, code: "A005" });
+//   }
+//   next();
+// });
 
 // 測試路由
 router.get("/testAPI", async (req, res) => {
@@ -287,18 +288,33 @@ router.put("/student", async (req, res) => {
     return res.status(403).json({ success: false, code });
   }
 
-  let { id } = req.session.member;
-  let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
-  let { first_name, last_name, birthday, email, telephone } = req.body;
+  //let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  let { id, first_name, last_name, birthday, email, telephone } = req.body;
 
   try {
-    // let result = await connection.queryAsync(
-    //   "INSERT INTO student (member_id, first_name, last_name, birthday, email, telephone, created_time, valid) VALUES (?)",
-    //   [[id, first_name, last_name, birthday, email, telephone, now, 1]]
-    // );
-    // res.status(200).json({ success: true });
+    let result = await connection.queryAsync(
+      "UPDATE student SET first_name = ?, last_name = ?, birthday = ?, email = ?, telephone = ? WHERE id = ?",
+      [first_name, last_name, birthday, email, telephone, id]
+    );
+    res.status(200).json({ success: true });
   } catch (error) {
-    //console.log(error);
+    // console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 刪除預設學員資料
+router.put("/studentDelete", async (req, res) => {
+  //let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  let { id } = req.body;
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE student SET valid = ? WHERE id = ?",
+      [0, id]
+    );
+    res.status(200).json({ success: true });
+  } catch (error) {
+    // console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
