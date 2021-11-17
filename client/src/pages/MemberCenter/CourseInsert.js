@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CourseService from "../../services/course.service";
+import getValidMessage from "../../validMessage/validMessage";
+import BsModalAlert from "../../components/BsModalAlert";
 import ReviewButton from "../../components/member/ReviewButton";
 import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
@@ -169,8 +172,19 @@ const CourseInsert = (props) => {
   };
 
   // 送出課程資料
-  const handleCourseInsert = (e) => {
+  const handleCourseInsert = async (e) => {
     console.log(courseDetail);
+    try {
+      let result = await CourseService.courseInsert(courseDetail);
+      console.log(result);
+    } catch (error) {
+      console.log(error.response);
+      //let { code } = error.response.data;
+      // setErrorMsgEdit({
+      //   ...errorMsgEdit,
+      //   [index]: getValidMessage("member", code),
+      // });
+    }
   };
 
   return (
