@@ -35,16 +35,34 @@ const MemberCenter = (props) => {
         <MemberSidebar
           currentBoard={currentBoard}
           setCurrentBoard={setCurrentBoard}
+          currentUser={currentUser}
           setCurrentUser={setCurrentUser}
         />
-        {currentBoard === "會員資訊" && <MemberInfo />}
-        {currentBoard === "預設學員" && <DefaultStudent />}
-        {currentBoard === "訂單資訊" && <OrderInfo />}
-        {currentBoard === "收藏課程" && <CollectionCourse />}
-        {currentBoard === "收藏文章" && <CollectionArticle />}
-        {currentBoard === "優惠券" && <CollectionCoupons />}
+        {currentBoard === "會員資訊" && (
+          <MemberInfo
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
+        {currentBoard === "預設學員" && (
+          <DefaultStudent currentUser={currentUser} />
+        )}
+        {currentBoard === "訂單資訊" && <OrderInfo currentUser={currentUser} />}
+        {currentBoard === "收藏課程" && (
+          <CollectionCourse currentUser={currentUser} />
+        )}
+        {currentBoard === "收藏文章" && (
+          <CollectionArticle currentUser={currentUser} />
+        )}
+        {currentBoard === "優惠券" && (
+          <CollectionCoupons currentUser={currentUser} />
+        )}
         {currentBoard === "新增課程" && (
-          <CourseInsert isReview={isReview} setIsReview={setIsReview} />
+          <CourseInsert
+            isReview={isReview}
+            setIsReview={setIsReview}
+            currentUser={currentUser}
+          />
         )}
       </div>
     </div>

@@ -226,6 +226,7 @@ a {
 // 課程詳細
 @import "./CourseDetail/_CourseDetailed";
 @import "./CourseDetail/CourseStar";
+@import "./CourseDetail/CourseHeaderPicture";
 
 // RWD
 @media screen and (max-width: 1200px) {
@@ -240,4 +241,22 @@ a {
       width: 90%;
     }
   }
+  .CourseDetail-headerPicture {
+		width: 90%;
+		img {
+			height: 35vw;
+		}
+	}
+	.Coursedetail {
+		/* 三圖片大框 */
+		.Coursedetail-header {
+			width: 90%;
+			height: 35vw;
+		}
+	}
+	.Coursedetail-set {
+		.Coursedetail-container {
+			width: 90%;
+		}
+	}
 }

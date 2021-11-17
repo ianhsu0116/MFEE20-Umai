@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
@@ -20,7 +21,7 @@ import CalendarMulti from "./components/CalendarMulti";
 
 function App() {
   // 存取當前登入中的使用者資料
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   // 登入視窗開關
   let [showLogin, setShowLogin] = useState(false);
 

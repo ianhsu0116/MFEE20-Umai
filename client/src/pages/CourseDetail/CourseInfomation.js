@@ -87,10 +87,73 @@ function CourseInfomation (props){
             courseFoodImage:[Food1,Food2,Food3,Food4,Food5,Food6],
             courseFoodName:["泡菜","紫菜包飯","辣海鮮","拌飯","炸醬麵","石鍋拌飯"],
             courseFoodInfo:["辛奇，又稱韓式泡菜、韓國泡菜或朝鮮泡菜，是朝鮮族的一種傳統發酵食品，通常作為飯饌和米飯一起食用。因為通常使用大白菜製作，中國東北稱其為辣白菜。\n 換行測試辛奇，又稱韓式泡菜、韓國泡菜或朝鮮泡菜，是朝鮮族的一種傳統發酵食品，通常作為飯饌和米飯一起食用。因為通常使用大白菜製作，中國東北稱其為辣白菜。","紫菜卷是一種流行的朝鮮食品，是將蒸熟的白米飯和各種其他材料卷進紫菜中，再切成一塊塊供應。海苔飯捲通常在野餐或戶外活動時吃，或作為簡便的午餐，佐以蘿蔔乾或泡菜。 朝鮮日治時期，日本的卷壽司傳入朝鮮半島。朝鮮人在日本壽司的基礎上發展出海苔飯捲。","「料理料理」「料理料理」「料理料理」","「料理料理」「料理料理」「料理料理」「料理料理」","「料理料理」「料理料理」「料理料理」「料理料理」「料理料理」","「料理料理」「料理料理」「料理料理」「料理料理」「料理料理」「料理料理」"],
-            courseCostInfo:"最好限制10個字 \n 最好不要打符號 \n 香蕉 \n 拔辣 \n 荔枝 \n 火龍果 \n 葡萄\n 草莓\n 蘋果 \n 西瓜 \n 香蕉 \n 拔辣 \n 荔枝 \n 火龍果 \n 葡萄\n 草莓",
+            courseCostInfo:"最好設定10個字上限 \n 最好不要打符號 \n 香蕉 \n 拔辣 \n 荔枝 \n 火龍果 \n 葡萄\n 草莓\n 蘋果 \n 西瓜 \n 拔辣 \n 拔辣 \n 荔枝 \n 火龍果 \n 葡萄\n 草莓",
             courseAttentionInfo:"最少上課人數5人，當參加人數未達上述規定的最少上課人數時，將取消課程形成，於課前5天前發出取消課程簡訊"
         }
     ]
+
+    // const newCourseJSON = {
+    //     slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+    //     time_of_course: "平日上午10:30 ~ 下午04:00", // 平日上午10:30 ~ 下午04:00
+    //     course_ig: "https://www.instagram.com/",
+    //     course_fb: "https://www.facebook.com/",
+    //     title1_1: "信じられない！とても美味しい", // 標題1-1號
+    //     title1_2: "最想念的日式料理！每口都是懷念", // 標題1-2號
+    //     content1: "「日本料理」在日語解作「日本式烹飪」，但是此詞語也在部分地區的現代漢語中用以代表日本菜。一般來說，日本料理和和食在日本本土是同義詞。不過，由於日本也有自己的「洋食」，左翼在除了日本以外的地區，日式蛋包飯、日式咖喱、日式炸豬排、日本拉麵等日本人在其它國家的料理的基礎上改造出來的菜品也能被稱為「日本料理」，但不能被稱為純粹的和食。\n 「日本料理」在日語解作「日本式烹飪」，但是此詞語也在部分地區的現代漢語中用以代表日本菜。一般來說，日本料理和和食在日本本土是同義詞。不過，由於日本也有自己的「洋食」，左翼在除了日本以外的地區，日式蛋包飯、日式咖喱、日式炸豬排、日本拉麵等日本人在其它國家的料理的基礎上改造出來的菜品也能被稱為「日本料理」，但不能被稱為純粹的和食。\n「日本料理」在日語解作「日本式烹飪」，但是此詞語也在部分地區的現代漢語中用以代表日本菜。一般來說，日本料理和和食在日本本土是同義詞。不過，由於日本也有自己的「洋食」，左翼在除了日本以外的地區，日式蛋包飯、日式咖喱、日式炸豬排、日本拉麵等日本人在其它國家的料理的基礎上改造出來的菜品也能被稱為「日本料理」，但不能被稱為純粹的和食。", // 介紹內容1
+    //     title2: "美味料理，色香味俱全", // 標題2號(六道菜部分)
+    //     six_dishes: [
+    //       // 課程六道菜的圖+文
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+    //         dishes_title: "泡菜", // 菜色標題
+    //         dishes_content: "辛奇，又稱韓式泡菜、韓國泡菜或朝鮮泡菜，是朝鮮族的一種傳統發酵食品，通常作為飯饌和米飯一起食用。因為通常使用大白菜製作，中國東北稱其為辣白菜。\n 換行測試辛奇，又稱韓式泡菜、韓國泡菜或朝鮮泡菜，是朝鮮族的一種傳統發酵食品，通常作為飯饌和米飯一起食用。因為通常使用大白菜製作，中國東北稱其為辣白菜。", // 菜色介紹
+    //       },
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱
+    //         dishes_title: "紫菜包飯", // 菜色標題
+    //         dishes_content: "紫菜卷是一種流行的朝鮮食品，是將蒸熟的白米飯和各種其他材料卷進紫菜中，再切成一塊塊供應。海苔飯捲通常在野餐或戶外活動時吃，或作為簡便的午餐，佐以蘿蔔乾或泡菜。 朝鮮日治時期，日本的卷壽司傳入朝鮮半島。朝鮮人在日本壽司的基礎上發展出海苔飯捲。", // 菜色介紹
+    //       },
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱
+    //         dishes_title: "辣海鮮", // 菜色標題
+    //         dishes_content: "", // 菜色介紹
+    //       },
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱
+    //         dishes_title: "拌飯", // 菜色標題
+    //         dishes_content: "", // 菜色介紹
+    //       },
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱
+    //         dishes_title: "炸醬麵", // 菜色標題
+    //         dishes_content: "", // 菜色介紹
+    //       },
+    //       {
+    //         dishes_image: "img_name", // 圖片名稱
+    //         dishes_title: "石鍋拌飯", // 菜色標題
+    //         dishes_content: "", // 菜色介紹
+    //       },
+    //     ],
+    //     content2: "", // 費用包含內容
+    //     content3: "", // 注意事項說明
+      
+    //     // 下方是table內的獨立欄位，不是存在json內
+    //     course_name: "", // 課程名稱
+    //     course_price: 0,
+    //     course_hour: 0,
+    //     course_level: "1", // 1, 2, 3 (高階 中階 初階)
+    //     member_limit: 0,
+    //     company_name: "", // 餐廳名稱
+    //     company_address: "", // 餐廳地址, 供google地圖搜尋
+      
+    //     // 下方為需要join的資料
+    //     category_id: "1", // 1 ~ 6 代表category table的id
+    //     member_id: "0001",
+      
+    //     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
+    //     course_batch: availableDays, // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
+    //   };
+      
     
     return(
         <>
@@ -128,7 +191,7 @@ function CourseInfomation (props){
                 <div className="Coursedetail-data"> 
                     <CalendarAvailable 
                          onChange={onChange}
-                         availableDays={availableDays}
+                         availableDays={ availableDays}
                     />
                     <div><p>{Course[0].courseBatch}</p><p>{Course[0].courseBatchTime}</p></div>
                 </div>
@@ -185,22 +248,25 @@ function CourseInfomation (props){
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(0)
                         setCourseFoodTitle(Course[0].courseFoodName[0])
-                        }}><img src={Course[0].courseFoodImage[0]} alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[0]} alt="" className={course === 0 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 0 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[0]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                         <li onClick={()=> {
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(1)
                         setCourseFoodTitle(Course[0].courseFoodName[1])
-                        }}><img src={Course[0].courseFoodImage[1]} width="200px" height="200px" alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[1]} alt="" className={course === 1 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 1 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[1]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                         <li onClick={()=> {
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(2)
                         setCourseFoodTitle(Course[0].courseFoodName[2])
-                        }}><img src={Course[0].courseFoodImage[2]}width="200px" height="200px" alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[2]} alt="" className={course === 2 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 2 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[2]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                     </ul> 
                     <ul>
@@ -208,22 +274,25 @@ function CourseInfomation (props){
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(3)
                         setCourseFoodTitle(Course[0].courseFoodName[3])
-                        }}><img src={Course[0].courseFoodImage[3]}width="200px" height="200px" alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[3]} alt="" className={course === 3 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 3 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[3]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                         <li onClick={()=> {
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(4)
                         setCourseFoodTitle(Course[0].courseFoodName[4])
-                        }}><img src={Course[0].courseFoodImage[4]}width="200px" height="200px" alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[4]} alt="" className={course === 4 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 4 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[4]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                         <li onClick={()=> {
                         setColor("Coursedetail-chepBoxInfomation")    
                         setCourse(5)
                         setCourseFoodTitle(Course[0].courseFoodName[5])
-                        }}><img src={Course[0].courseFoodImage[5]}width="200px" height="200px" alt=""></img>
+                        }}><img src={Course[0].courseFoodImage[5]} alt="" className={course === 5 ? "Coursedetail-ImageActive" : "Coursedetail-ImageBorderbottom"}></img>
                         <span className={course === 5 ? 'Coursedetail-sixPictureTitle Coursedetail-active ':'Coursedetail-sixPictureTitle'}>{Course[0].courseFoodName[5]}</span>
+                        <span className="Coursedetail-sixPictureTitleMask"></span>
                         </li>
                     </ul>
                 </div>
