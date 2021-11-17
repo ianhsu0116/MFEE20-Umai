@@ -16,9 +16,23 @@ const DefaultStudentCard = (props) => {
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-  // useEffect(()=>{
-  //   changecarddata(index,newStudentData)
-  // },[newStudentData])
+  useEffect(()=>{
+    setNewStudentData(
+      {
+        firstName: props.data.firstName,
+        lastName: props.data.lastName,
+        telephone: props.data.telephone,
+        birthday: props.data.birthday,
+        email: props.data.email, 
+        addIntoStudent: false,
+        autoUpdateMember: false,
+      }
+    )
+  },[props.data])
+
+  useEffect(()=>{
+    changecarddata(index,newStudentData,props.carddata)
+  },[newStudentData])
 
   // 即時抓取 input value
   const handleInputChange = (e) => {
@@ -40,7 +54,7 @@ const DefaultStudentCard = (props) => {
   // 刪除學生(動畫)
   const handleDeleteStudent = (index) => (e) => {
     console.log("刪除學員");
-    deletecarddata(index);
+    deletecarddata(index,props.carddata);
   };
 
   // 啓閉學員詳細內容
