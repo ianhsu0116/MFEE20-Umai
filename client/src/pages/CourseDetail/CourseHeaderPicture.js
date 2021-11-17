@@ -7,9 +7,7 @@ import background2 from '../../components/images/test/istock韓風課程.jpg';
 import background3 from '../../components/images/test/istock舒食拌飯課程.jpg';
 
 function CourseHeaderPicture(props) {
-    const [image1, setImage1] = useState("Coursedetail-headerLeft") //左邊照片
-    const [image2, setImage2] = useState("Coursedetail-headerMid") //中間照片
-    const [image3, setImage3] = useState("Coursedetail-headerRight") //
+    let {image1 , image2 , image3} = props;
   return (
     <>
     <div className="Coursedetail">
@@ -21,13 +19,13 @@ function CourseHeaderPicture(props) {
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src={background1} class="d-block w-100" alt="..."></img>
+      <img src={image1} class="d-block w-100" alt="..."></img>
     </div>
     <div class="carousel-item">
-      <img src={background2} class="d-block w-100" alt="..."></img>
+      <img src={image2} class="d-block w-100" alt="..."></img>
     </div>
     <div class="carousel-item">
-      <img src={background3} class="d-block w-100" alt="..."></img>
+      <img src={image3} class="d-block w-100" alt="..."></img>
     </div>
   </div>
   <button class="carousel-control-prev Course-headerPictureButton" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -40,8 +38,6 @@ function CourseHeaderPicture(props) {
   </button>
 </div>
     </div>
-    
-    <CourBody />
     </>
   )
 }

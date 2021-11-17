@@ -19,7 +19,7 @@ const CalendarAvailable = (props) => {
   let { onChange, availableDays } = props;
 
   // 日期窗開關
-  let [calenderOpen, setCalendarOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
   let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
   // 預設的月份
@@ -70,7 +70,7 @@ const CalendarAvailable = (props) => {
   // 控制日期窗開關
   const handleCalendarOpen = (e) => {
     e.stopPropagation();
-    calenderOpen ? setCalendarOpen(false) : setCalendarOpen(true);
+    calendarOpen ? setCalendarOpen(false) : setCalendarOpen(true);
   };
   // 點擊空白處關閉日期窗
   window.addEventListener("click", (e) => {
@@ -103,6 +103,10 @@ const CalendarAvailable = (props) => {
   useEffect(() => {
     onChange(selectedDay);
   }, [currentDay]);
+  useEffect(() => {
+    props.setBool(calendarOpen)
+  }, [calendarOpen]);
+
 
   return (
     <div className="CalendarAvailable">
@@ -111,7 +115,7 @@ const CalendarAvailable = (props) => {
         <span className="CalendarAvailable-selector-text">日期</span>
         <MdKeyboardArrowDown />
       </div>
-      {calenderOpen && (
+      {calendarOpen && (
         <div
           className="CalendarAvailable-container"
           onClick={(e) => {

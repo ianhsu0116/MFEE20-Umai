@@ -235,13 +235,16 @@
 	border: 0;
 	display: none;
 }
+.Coursedetail-mapClose{
+	pointer-events: none;
+}
 
 .Coursedetail-infoLeftPlace:hover iframe {
 	top: 12vw;
 	left: 0px;
 	position: absolute;
 	width: 80%;
-	height: 200px;
+	height: 10vw;
 	display: inline;
 	z-index: 5;
 }
@@ -314,7 +317,7 @@
 /* 內文 */
 .Coursedetail-insideText {
 	/* word-break: keep-all; */
-	text-indent: 2em;
+	text-indent: 1em;
 	width: 90%;
 	text-align: left;
 	margin: auto;
@@ -374,6 +377,7 @@
 	cursor: pointer;
 	width: 100%;
 	color: #ffffff;
+	
 }
 .Coursedetail-sixPictureTitleMask {
 	display: flex;
@@ -406,18 +410,16 @@
 	transition: transform 0.5s;
 	// border-radius: 0 0 5px 5px;
 }
-.Coursedetail-ImageBorderbottom {
-	border-bottom: RGBA(255, 255, 255, 0) solid 5px;
+.Coursedetail-activeBottom{
+	width: 10vw;
+	height: 10vw;
+	position: absolute;
+	top:0;
+	margin-top: 1.2vw;
+	border-bottom: 5px solid $highLevelColor;
+	overflow: hidden;
+	border-radius: 5px;
 }
-.Coursedetail-ImageActive {
-	border-bottom: RGBA(255, 68, 30, 1) solid 5px;
-}
-// .Coursedetail-sixPictureTextBox {
-// 	position: absolute;
-// 	display: flex;
-// 	width: 780px;
-// 	height: 200px;
-// }
 .Coursedetail-sixPictureTextBox_1 {
 	width: 60%;
 	position: relative;
@@ -495,7 +497,7 @@
 	// color: #ffffff;
 	font-size: 1.2vw;
 	font-weight: 700;
-	text-indent: 2em;
+	text-indent: 1em;
 	color: rgba(255, 255, 255, 0);
 }
 
@@ -591,96 +593,6 @@
 		color: #fff;
 		font-weight: bold;
 		font-family: 'Noto Sans TC', Bold;
-	}
-}
-
-.Coursedetail-recommend {
-	margin: 60px 0;
-	height: 35vw;
-	width: 100%;
-}
-.Coursedetail-recommendLeft {
-	height: 100%;
-	float: left;
-	width: 45%;
-	border-radius: 5px;
-	border: 2px solid #666666;
-	overflow: hidden;
-	img {
-		width: 100%;
-		height: 100%;
-	}
-	span {
-		width: 100%;
-		background-color: RGBA(50, 50, 50, 0.5);
-		display: inline-block;
-		height: 200%;
-		position: relative;
-		top: -700px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	span:hover {
-		top: -1100px;
-		transition: top 0.5s;
-	}
-}
-.Coursedetail-recommendText {
-	color: #ffffff;
-}
-.Coursedetail-recommendTitle {
-	text-align: center;
-	font-size: 48px;
-	position: relative;
-	top: 540px;
-}
-.Coursedetail-recommendLine {
-	width: 80%;
-	border-radius: 5px;
-	border: 2px solid #ffffff;
-	position: relative;
-	top: 540px;
-	margin: auto;
-}
-.Coursedetail-recommendName {
-	text-align: center;
-	font-size: 60px;
-	position: relative;
-	top: 540px;
-}
-.Coursedetail-recommendInfo {
-	text-align: left;
-	font-size: 24px;
-	position: relative;
-	top: 540px;
-	text-indent: 2em;
-	width: 80%;
-	margin: auto;
-}
-.Coursedetail-recommendRight {
-	height: 100%;
-	float: right;
-	width: 45%;
-	border-radius: 5px;
-	border: 2px solid #666666;
-	overflow: hidden;
-	img {
-		width: 100%;
-		height: 100%;
-	}
-	span {
-		width: 100%;
-		background-color: RGBA(50, 50, 50, 0.5);
-		display: inline-block;
-		height: 200%;
-		position: relative;
-		top: -700px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	span:hover {
-		top: -1100px;
-		transition: top 0.5s;
 	}
 }
 .Coursedetail-join {
