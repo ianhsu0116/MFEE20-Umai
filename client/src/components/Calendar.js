@@ -30,7 +30,7 @@ const Calendar = (props) => {
   }, [value]);
 
   // 日期窗開關
-  let [calenderOpen, setCalendarOpen] = useState(false);
+  let [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
   let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
@@ -81,7 +81,7 @@ const Calendar = (props) => {
   // 控制日期窗開關
   const handleCalendarOpen = (e) => {
     e.stopPropagation();
-    calenderOpen ? setCalendarOpen(false) : setCalendarOpen(true);
+    calendarOpen ? setCalendarOpen(false) : setCalendarOpen(true);
   };
   // 點擊空白處關閉日期窗
   window.addEventListener("click", (e) => {
@@ -121,7 +121,7 @@ const Calendar = (props) => {
         </span>
         <MdKeyboardArrowDown />
       </div>
-      {calenderOpen && (
+      {calendarOpen && (
         <div
           className="Calendar-container"
           onClick={(e) => {

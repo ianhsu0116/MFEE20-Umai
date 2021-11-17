@@ -63,6 +63,7 @@ const creditCardValidation = (data) => {
 // student 格式
 const studentValidation = (data) => {
   const schema = Joi.object({
+    id: Joi.number(),
     first_name: Joi.string().min(1).max(50).required(),
     last_name: Joi.string().min(1).max(50).required(),
     telephone: Joi.string()

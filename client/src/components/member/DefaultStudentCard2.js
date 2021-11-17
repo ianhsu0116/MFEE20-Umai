@@ -39,7 +39,6 @@ const DefaultStudentCard2 = (props) => {
         </div>
       </div>
       <div className="DefaultStudentCard2-main">
-        {/* {errorMsg && <ErrorMessage value={errorMsg} />} */}
         <div className="DefaultStudentCard2-main-row">
           <div className="DefaultStudentCard2-main-row-item">
             <label
