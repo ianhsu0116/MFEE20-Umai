@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CourseService from "../../services/course.service";
+import getValidMessage from "../../validMessage/validMessage";
+import BsModalAlert from "../../components/BsModalAlert";
 import ReviewButton from "../../components/member/ReviewButton";
 import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
@@ -10,7 +13,7 @@ let sliderArray = [111, 222, 333];
 
 const CourseInsert = (props) => {
   const { isReview, setIsReview } = props;
-  const [courseDetail, setCourseDetail] = useState({
+  const [courseDetailCopy, setCourseDetailCopy] = useState({
     slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
     time_of_course: "", // 平日上午10:30 ~ 下午04:00
     course_ig: "https://www.instagram.com/",
@@ -70,6 +73,63 @@ const CourseInsert = (props) => {
 
     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
     course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
+  });
+
+  const [courseDetail, setCourseDetail] = useState({
+    slider_images: ["img_name", "img_name", "img_name"],
+    time_of_course: "平日上午10:30 ~ 下午04:00",
+    course_ig: "https://www.instagram.com/",
+    course_fb: "https://www.facebook.com/",
+    title1_1: "課程標題一",
+    title1_2: "課程標題ㄧ二",
+    content1: "介紹內容1介紹內容1",
+    title2: "標題2號(六道菜部分)標題2號(六道菜部分)",
+    six_dishes: [
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+      {
+        dishes_image: "img_name",
+        dishes_title: "菜色標題",
+        dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
+      },
+    ],
+    content2: "費用包含內容",
+    content3: "注意事項說明",
+
+    // 下方是table內的獨立欄位，不是存在json內
+    course_name: "這是高級牛排課",
+    course_price: 1000,
+    course_hour: 8,
+    course_level: "1", // 1, 2, 3 (高階 中階 初階)
+    member_limit: 30,
+    company_name: "超棒餐廳",
+    company_address: "餐廳地址, 供google地圖搜尋",
+    category_id: "1",
+    member_id: "1",
+    course_batch: ["2021-11-11", "2021-12-5"],
   });
 
   // 儲存slider上傳的圖片(二元編碼 即時顯示使用)
@@ -169,8 +229,25 @@ const CourseInsert = (props) => {
   };
 
   // 送出課程資料
-  const handleCourseInsert = (e) => {
-    console.log(courseDetail);
+  const handleCourseInsert = async (e) => {
+    try {
+      let result = await CourseService.courseInsert(courseDetail);
+
+      // 清空當前所有input
+      setCourseDetail(courseDetailCopy);
+      setSliderImage(["", "", ""]);
+      setSixDishesImage(["", "", "", "", "", ""]);
+
+      window.alert("課程新增成功！");
+    } catch (error) {
+      console.log(error.response);
+      window.alert("發生錯誤！");
+      //let { code } = error.response.data;
+      // setErrorMsgEdit({
+      //   ...errorMsgEdit,
+      //   [index]: getValidMessage("member", code),
+      // });
+    }
   };
 
   return (
