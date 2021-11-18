@@ -6,7 +6,6 @@ import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
-import moment from "moment";
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;

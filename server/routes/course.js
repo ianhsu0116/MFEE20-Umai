@@ -5,7 +5,7 @@ const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const momnet = require("moment");
-const { studentValidation } = require("../validation");
+const { studentValidation, courseValidation } = require("../validation");
 
 // ================routes=====================
 
@@ -14,8 +14,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// 阻擋未登入的請求
-router.use(authCheck);
+// 阻擋未登入的請求 => 改成在個別路由中增加，因為在首頁不需登入也可以顯示課程資訊
 
 // multer
 const multer = require("multer");
@@ -58,13 +57,67 @@ router.get("/testAPI", async (req, res) => {
   return res.json(msgObj);
 });
 
+// 依照使用者id拿取課程資料
+router.get("/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+
+  try {
+    let result = await connection.queryAsync(
+      "SELECT * FROM course WHERE member_id = ? AND valid = ?",
+      [member_id, 1]
+    );
+    res.status(200).json({ success: true, course: result });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
 // 新增課程
-router.post("/course", uploader.array("images"), async (req, res) => {
+router.post("/", authCheck, uploader.array("images"), async (req, res) => {
   // 先判斷格式是否正確
-  // let { error } = studentValidation(req.body);
-  // if (error) {
-  //   return res.status(403).json({ success: false, code });
-  // }
+  let { error } = courseValidation(req.body);
+  if (error) {
+    let { key } = error.details[0].context;
+    let code;
+    switch (key) {
+      case "category_id":
+        code = "E101";
+        break;
+      case "course_name":
+        code = "E102";
+        break;
+      case "course_price":
+        code = "E103";
+        break;
+      case "course_hour":
+        code = "E104";
+        break;
+      case "course_level":
+        code = "E105";
+        break;
+      case "member_limit":
+        code = "E106";
+        break;
+      case "company_name":
+        code = "E107";
+        break;
+      case "company_address":
+        code = "E108";
+        break;
+      case "course_batch":
+        code = "E109";
+        break;
+      case "course_detail":
+        code = "E110";
+        break;
+      default:
+        code = "E999";
+        break;
+    }
+
+    return res.status(403).json({ success: false, code });
+  }
 
   let { id } = req.session.member;
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
@@ -134,23 +187,7 @@ router.post("/course", uploader.array("images"), async (req, res) => {
     res.status(200).json({ success: true });
   } catch (error) {
     //console.log(error);
-    res.status(500).json({ success: false, code: "G101", message: error });
-  }
-});
-
-// 拿取所有學員資料
-router.get("/student", async (req, res) => {
-  let { id } = req.session.member;
-
-  try {
-    let result = await connection.queryAsync(
-      "SELECT * FROM student WHERE member_id = ? AND valid = ?",
-      [id, 1]
-    );
-    res.status(200).json({ success: true, students: result });
-  } catch (error) {
-    //console.log(error);
-    res.status(500).json({ success: false, code: "G999", message: error });
+    res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
 

@@ -1,18 +1,48 @@
 import React, { useState, useEffect } from "react";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
-import BsModalAlert from "../../components/BsModalAlert";
 import ReviewButton from "../../components/member/ReviewButton";
 import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
+import ErrorMessage from "../../components/ErrorMessage";
 import { FaPen } from "react-icons/fa";
+import { IoServer } from "react-icons/io5";
 
 // 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
 let sixDishesArray = [11, 22, 33, 44, 55, 66];
 let sliderArray = [111, 222, 333];
 
+// 送出資料前 "錯誤判斷時"，需判斷的欄位
+let validCheckArray = [
+  "slider_images",
+  "time_of_course",
+  "course_ig",
+  "course_fb",
+  "title1_1",
+  "title1_2",
+  "content1",
+  "title2",
+  "six_dishes",
+  "content2",
+  "content3",
+  "course_name",
+  "course_price",
+  "course_hour",
+  "course_level",
+  "member_limit",
+  "company_name",
+  "company_address",
+  "category_id",
+  "course_batch",
+];
+
 const CourseInsert = (props) => {
   const { isReview, setIsReview } = props;
+
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // 課程的詳細資料 以及 JSON格式
   const [courseDetailCopy, setCourseDetailCopy] = useState({
     slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
     time_of_course: "", // 平日上午10:30 ~ 下午04:00
@@ -74,7 +104,6 @@ const CourseInsert = (props) => {
     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
     course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
   });
-
   const [courseDetail, setCourseDetail] = useState({
     slider_images: ["img_name", "img_name", "img_name"],
     time_of_course: "平日上午10:30 ~ 下午04:00",
@@ -230,6 +259,30 @@ const CourseInsert = (props) => {
 
   // 送出課程資料
   const handleCourseInsert = async (e) => {
+    // 錯誤判斷 (非圖片類別的所有欄位)
+    let isError = false;
+    validCheckArray.forEach((item) => {
+      if (!courseDetail[item]) {
+        isError = true;
+      } else if (courseDetail.course_batch.length === 0) {
+        isError = true;
+      }
+    });
+
+    // 圖片部分錯誤判斷
+    sliderImage.forEach((item) => {
+      if (!item) {
+        isError = true;
+      }
+    });
+    sixDishesImage.forEach((item) => {
+      if (!item) {
+        isError = true;
+      }
+    });
+    if (isError) return setErrorMsg("請確認每個欄位都填寫完畢再提交！");
+
+    // 沒有valid，送出資料至後端
     try {
       let result = await CourseService.courseInsert(courseDetail);
 
@@ -238,15 +291,14 @@ const CourseInsert = (props) => {
       setSliderImage(["", "", ""]);
       setSixDishesImage(["", "", "", "", "", ""]);
 
+      // 清空錯誤訊息
+      setErrorMsg("");
+
       window.alert("課程新增成功！");
     } catch (error) {
-      console.log(error.response);
-      window.alert("發生錯誤！");
-      //let { code } = error.response.data;
-      // setErrorMsgEdit({
-      //   ...errorMsgEdit,
-      //   [index]: getValidMessage("member", code),
-      // });
+      // console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("course", code));
     }
   };
 
@@ -380,8 +432,8 @@ const CourseInsert = (props) => {
               onChange={handleCourseChange}
               className="CourseInsert-container-row-inputCon-input"
               type="number"
-              max="48"
-              min="0"
+              max="24"
+              min="1"
             />
           </div>
         </div>
@@ -488,7 +540,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="100"
-              placeholder="https://www.instagram.com/"
+              placeholder="https://www....."
             />
           </div>
           <div className="CourseInsert-container-row-inputCon">
@@ -506,7 +558,7 @@ const CourseInsert = (props) => {
               className="CourseInsert-container-row-inputCon-input"
               type="text"
               maxLength="100"
-              placeholder="https://www.facebook.com/"
+              placeholder="https://www....."
             />
           </div>
         </div>
@@ -689,7 +741,9 @@ const CourseInsert = (props) => {
           </div>
         </div>
 
-        <div className="CourseInsert-container-inputCon">
+        {/* 錯誤訊息提示 */}
+        {errorMsg && <ErrorMessage value={errorMsg} />}
+        <div className="CourseInsert-container-btnCon">
           <Button
             value={"新增課程"}
             className={"button-themeColor"}

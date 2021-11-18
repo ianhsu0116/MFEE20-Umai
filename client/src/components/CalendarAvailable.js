@@ -15,21 +15,22 @@ let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始�
 let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
+// 需傳入 setIsCalendarOpen 函式，會自動回傳當前日曆的啟閉狀態
 const CalendarAvailable = (props) => {
-  let { onChange, availableDays } = props;
+  const { onChange, availableDays, setIsCalendarOpen } = props;
 
+  // 判斷是否為初次渲染
+  const [firstRender, setFirstRender] = useState(true);
   // 日期窗開關
-  let [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
-  let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
+  const [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
-  let [currentMonth, setCurrentMonth] = useState(todayMonth); //todayMonth);
+  const [currentMonth, setCurrentMonth] = useState(todayMonth);
   // 預設的日期
-  let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
-  // 正確格式的日期（單數前面補零）
-  let selectedDay = `${currentYear}-${currentMonth <= 8 ? "0" : ""}${
-    currentMonth + 1
-  }-${currentDay <= 9 ? "0" : ""}${currentDay}`;
+  const [currentDay, setCurrentDay] = useState(todayDay);
+  // 已選定的日期
+  const [selectedDay, setSelectedDay] = useState("");
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -93,22 +94,62 @@ const CalendarAvailable = (props) => {
     console.log("不能選取歐歐歐歐歐！");
   };
 
-  // 將選定的日期送出
+  // 將選定的日期裝入selectedDay
   useEffect(() => {
-    onChange(selectedDay);
+    if (!firstRender) {
+      setSelectedDay(
+        `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+          currentDay <= 9 ? "0" : ""
+        }${currentDay}`
+      );
+    }
   }, [currentYear]);
   useEffect(() => {
-    onChange(selectedDay);
+    if (!firstRender) {
+      setSelectedDay(
+        `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+          currentDay <= 9 ? "0" : ""
+        }${currentDay}`
+      );
+    }
   }, [currentMonth]);
   useEffect(() => {
-    onChange(selectedDay);
+    if (!firstRender) {
+      setSelectedDay(
+        `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
+          currentDay <= 9 ? "0" : ""
+        }${currentDay}`
+      );
+    }
   }, [currentDay]);
+
+  // 將選定的日期送出
+  useEffect(() => {
+    // 初次渲染時，將其設定成false
+    setFirstRender(false);
+
+    // 送出已選定的日期
+    if (!firstRender) {
+      onChange(selectedDay);
+    }
+  }, [selectedDay]);
+
+  // 回傳當前日曆的開啟關閉狀態
+  useEffect(() => {
+    setIsCalendarOpen(calendarOpen);
+  }, [calendarOpen]);
 
   return (
     <div className="CalendarAvailable">
       <div className="CalendarAvailable-selector" onClick={handleCalendarOpen}>
         <HiClock />
-        <span className="CalendarAvailable-selector-text">日期</span>
+        {selectedDay && (
+          <span className="CalendarAvailable-selector-text">已選擇</span>
+        )}
+        {!selectedDay && (
+          <span className="CalendarAvailable-selector-text">日期</span>
+        )}
+
         <MdKeyboardArrowDown />
       </div>
       {calendarOpen && (
