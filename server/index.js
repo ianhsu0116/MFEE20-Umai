@@ -47,6 +47,10 @@ app.use("/api/auth", authRoute);
 const memberRoute = require("./routes").member;
 app.use("/api/member", memberRoute);
 
+// 課程相關的路由
+const courseRoute = require("./routes").course;
+app.use("/api/course", courseRoute);
+
 app.get("/", (req, res) => {
   res.send("home");
 });

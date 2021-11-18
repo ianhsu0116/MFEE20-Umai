@@ -178,6 +178,7 @@ a {
 .ErrorMessage {
   font-size: 90%;
   color: red;
+  font-weight: 800;
 }
 
 // 開啟彈出視窗時，防止後方頁面滾動
@@ -227,6 +228,7 @@ a {
 @import "./CourseDetail/_CourseDetailed";
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
+@import "./CourseDetail/CourseRecommend";
 
 // RWD
 @media screen and (max-width: 1200px) {

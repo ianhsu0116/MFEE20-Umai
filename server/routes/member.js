@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const authCheck = require("./middleware");
 const path = require("path");
 const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
@@ -10,6 +11,16 @@ const {
   creditCardValidation,
   studentValidation,
 } = require("../validation");
+
+// ================routes=====================
+
+router.use((req, res, next) => {
+  console.log("有一請求進入memberRoute");
+  next();
+});
+
+// 阻擋未登入的請求
+router.use(authCheck);
 
 // multer
 const multer = require("multer");
@@ -41,20 +52,6 @@ const uploader = multer({
   limits: {
     fileSize: 1024 * 1024 * 4,
   },
-});
-
-router.use((req, res, next) => {
-  console.log("有一請求進入memberRoute");
-  next();
-});
-
-// 阻擋未登入的請求
-router.use((req, res, next) => {
-  //console.log(req.session);
-  if (!req.session.member) {
-    return res.status(403).send({ success: false, code: "A005" });
-  }
-  next();
 });
 
 // 測試路由
