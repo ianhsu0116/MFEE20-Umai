@@ -21,8 +21,8 @@ import CalendarMulti from "./components/CalendarMulti";
 function App() {
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
-  // 登入視窗開關
-  let [showLogin, setShowLogin] = useState(false);
+  // 登入視窗開關狀態
+  const [showLogin, setShowLogin] = useState(false);
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -39,6 +39,8 @@ function App() {
     });
   }, []);
 
+  // ==================== 共用元件展示用ㄉ東西 ======================
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     console.log(e);
@@ -78,14 +80,15 @@ function App() {
           <CourseMiniCard />
           <StarGroup percent={96} allScore={50} />
           <h4>一般萬年曆</h4>
-          <Calendar onChange={onChange} />
+          {/* <Calendar onChange={onChange} /> */}
           <h4>顯示可預訂日期的萬年曆</h4>
           <CalendarAvailable
             onChange={onChange}
             availableDays={availableDays}
+            setIsCalendarOpen={setIsCalendarOpen}
           />
           <h4>可多選萬年曆</h4>
-          <CalendarMulti onChange={onChange} />
+          {/* <CalendarMulti onChange={onChange} /> */}
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter

@@ -81,6 +81,24 @@ const studentValidation = (data) => {
   return schema.validate(data);
 };
 
+// course 格式
+const courseValidation = (data) => {
+  const schema = Joi.object({
+    category_id: Joi.number(),
+    course_name: Joi.string().min(1).max(50).required(),
+    course_price: Joi.number().min(1).max(9999).required(),
+    course_hour: Joi.number().min(1).max(24).required(),
+    course_level: Joi.number().min(1).max(6).required(),
+    member_limit: Joi.number().min(1).max(99).required(),
+    company_name: Joi.string().min(1).max(100).required(),
+    company_address: Joi.string().min(1).max(100).required(),
+    course_batch: Joi.string().required(),
+    course_detail: Joi.string().required(),
+  });
+
+  return schema.validate(data);
+};
+
 // 修改基本資料(性別)
 // const userEditValidation = (data) => {
 //   const schema = Joi.object({
@@ -131,16 +149,6 @@ const studentValidation = (data) => {
 //   return schema.validate(data);
 // };
 
-// // memberCenter + 註冊相關
-// module.exports.registerValidation = registerValidation;
-// module.exports.loginValidation = loginValidation;
-// module.exports.userInfoValidation = userInfoValidation;
-// module.exports.passwordValidation = passwordValidation;
-
-// // 可能會共用的
-// module.exports.creditCardValidation = creditCardValidation;
-// module.exports.studentValidation = studentValidation;
-
 module.exports = {
   // memberCenter + 註冊相關
   registerValidation,
@@ -150,4 +158,7 @@ module.exports = {
   // 可能會共用的
   creditCardValidation,
   studentValidation,
+
+  // 課程相關
+  courseValidation,
 };

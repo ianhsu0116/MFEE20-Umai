@@ -6,6 +6,17 @@ dotenv.config();
 const AUTH_API_URL = API_URL + "/course";
 
 class CourseService {
+  // 拿到所有課程資料
+
+  // 依照course_id拿到課程資料
+
+  // 依照member_id拿到課程
+  course_memeberId(member_id) {
+    return axios.post(AUTH_API_URL + `/${member_id}`, {
+      withCredentials: true,
+    });
+  }
+
   // 新增課程
   courseInsert(courseData) {
     //console.log(courseData);
@@ -58,6 +69,7 @@ class CourseService {
     };
 
     let {
+      category_id,
       course_name,
       course_price,
       course_hour,
@@ -65,11 +77,11 @@ class CourseService {
       member_limit,
       company_name,
       company_address,
-      category_id,
       course_batch,
     } = courseData;
 
     let formData = new FormData();
+    formData.append("category_id", category_id);
     formData.append("course_name", course_name);
     formData.append("course_price", course_price);
     formData.append("course_hour", course_hour);
@@ -77,7 +89,6 @@ class CourseService {
     formData.append("member_limit", member_limit);
     formData.append("company_name", company_name);
     formData.append("company_address", company_address);
-    formData.append("category_id", category_id);
     formData.append("course_batch", JSON.stringify(course_batch));
     formData.append("course_detail", JSON.stringify(course_detail));
 
@@ -91,7 +102,7 @@ class CourseService {
       formData.append("images", file);
     });
 
-    return axios.post(AUTH_API_URL + "/course", formData, {
+    return axios.post(AUTH_API_URL + "/", formData, {
       withCredentials: true,
     });
   }
