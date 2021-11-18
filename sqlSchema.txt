@@ -1,0 +1,244 @@
+-- Adminer 4.8.1 MySQL 5.7.32 dump
+
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+DROP TABLE IF EXISTS `article_like`;
+CREATE TABLE `article_like` (
+  `member_id` int(10) unsigned NOT NULL,
+  `article_id` int(11) NOT NULL,
+  KEY `member_id` (`member_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `article_like_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `article_like_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `cart_and_collection`;
+CREATE TABLE `cart_and_collection` (
+  `member_id` int(10) unsigned NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `inCart` int(1) NOT NULL,
+  `inCollection` int(1) NOT NULL,
+  KEY `member_id` (`member_id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `cart_and_collection_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `cart_and_collection_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `comment_like`;
+CREATE TABLE `comment_like` (
+  `member_id` int(10) unsigned NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  KEY `member_id` (`member_id`),
+  KEY `comment_id` (`comment_id`),
+  CONSTRAINT `comment_like_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `comment_like_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `forum_comment` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `coupons`;
+CREATE TABLE `coupons` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `minimum_order` int(10) unsigned DEFAULT NULL,
+  `discount_percent` int(2) NOT NULL,
+  `valid` int(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `course_detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `course_price` int(6) unsigned NOT NULL,
+  `course_hour` int(2) unsigned NOT NULL,
+  `course_level` int(1) unsigned NOT NULL,
+  `member_limit` int(2) unsigned NOT NULL,
+  `company_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_time` datetime NOT NULL,
+  `valid` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `course_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `course_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `course_batch`;
+CREATE TABLE `course_batch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `batch_date` date NOT NULL,
+  `member_count` int(3) unsigned NOT NULL,
+  `created_time` datetime NOT NULL,
+  `valid` int(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  CONSTRAINT `course_batch_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `course_category`;
+CREATE TABLE `course_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_detail` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `valid` int(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `course_comment`;
+CREATE TABLE `course_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` int(11) NOT NULL,
+  `member_id` int(10) unsigned NOT NULL,
+  `score` int(2) unsigned NOT NULL,
+  `comment_text` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_time` datetime NOT NULL,
+  `valid` int(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `course_id` (`course_id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `course_comment_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+  CONSTRAINT `course_comment_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `forum_article`;
+CREATE TABLE `forum_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `article_title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `article_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `article_tag` text COLLATE utf8mb4_unicode_ci,
+  `image_name` text COLLATE utf8mb4_unicode_ci,
+  `created_time` datetime NOT NULL,
+  `valid` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `forum_article_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `forum_article_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `forum_comment`;
+CREATE TABLE `forum_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `article_id` int(11) NOT NULL,
+  `comment_text` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_name` text COLLATE utf8mb4_unicode_ci,
+  `created_time` datetime NOT NULL,
+  `valid` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `forum_comment_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `forum_comment_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `googleId` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebookId` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `telephone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `credit_card_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `credit_card_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chef_introduction` text COLLATE utf8mb4_unicode_ci,
+  `member_category` int(1) NOT NULL DEFAULT '1',
+  `created_time` datetime NOT NULL,
+  `valid` int(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `member` (`id`, `email`, `password`, `googleId`, `facebookId`, `first_name`, `last_name`, `birthday`, `telephone`, `avatar`, `credit_card_number`, `credit_card_name`, `chef_introduction`, `member_category`, `created_time`, `valid`) VALUES
+(1,	'ian@fake.com',	'$2b$10$nO8Euy9F/Or1mBTmzCW/GegeL8KajrUuIS93WPaNiskirJJ8mVgfu',	NULL,	NULL,	'Tony',	'Stark1',	'1991-02-03',	'0933888333',	NULL,	'5377888899991111',	'Ian Hsu',	NULL,	2,	'2021-11-15 11:23:28',	1);
+
+DROP TABLE IF EXISTS `member_coupons`;
+CREATE TABLE `member_coupons` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `coupons_id` int(10) unsigned NOT NULL,
+  `expire_date` date NOT NULL,
+  `status` int(1) unsigned NOT NULL DEFAULT '1',
+  `valid` int(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `coupons_id` (`coupons_id`),
+  CONSTRAINT `member_coupons_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `member_coupons_ibfk_2` FOREIGN KEY (`coupons_id`) REFERENCES `coupons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `batch_id` int(11) NOT NULL,
+  `payment_type` int(11) NOT NULL,
+  `receipt_type` int(11) NOT NULL,
+  `created_time` datetime NOT NULL,
+  `valid` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `course_id` (`course_id`),
+  KEY `batch_id` (`batch_id`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+  CONSTRAINT `order_ibfk_3` FOREIGN KEY (`batch_id`) REFERENCES `course_batch` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `order_student`;
+CREATE TABLE `order_student` (
+  `order_id` int(11) NOT NULL,
+  `student_id` int(10) unsigned NOT NULL,
+  KEY `order_id` (`order_id`),
+  KEY `student_id` (`student_id`),
+  CONSTRAINT `order_student_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
+  CONSTRAINT `order_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE `student` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned DEFAULT NULL,
+  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birthday` date NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_time` datetime NOT NULL,
+  `valid` int(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- 2021-11-16 04:59:52

@@ -2,16 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import Button from "../Button";
 import Calendar from "../Calendar";
+import ErrorMessage from "../ErrorMessage";
 
 const DefaultStudentCard2 = (props) => {
+  const { newStudentData, setNewStudentData, handleAddStudent, errorMsg } =
+    props;
   let studentCardRefs = useRef();
-  let [newStudentData, setNewStudentData] = useState({
-    firstName: "",
-    lastName: "",
-    telephone: "",
-    birthday: "",
-    email: "",
-  });
 
   // 即時抓取input value
   const handleInputChange = (e) => {
@@ -22,12 +18,6 @@ const DefaultStudentCard2 = (props) => {
     setNewStudentData({ ...newStudentData, birthday: day });
   };
 
-  // 新增學員
-  const handleAddStudent = (e) => {
-    console.log("新增學員");
-    console.log(newStudentData);
-  };
-
   return (
     <div ref={studentCardRefs} className="DefaultStudentCard2">
       <div className="DefaultStudentCard2-title">
@@ -35,6 +25,8 @@ const DefaultStudentCard2 = (props) => {
           <AiOutlineUsergroupAdd />
           &ensp;
           <span>新增學員</span>
+          &ensp;
+          {errorMsg && <ErrorMessage value={errorMsg} />}
         </div>
         <div className="DefaultStudentCard2-title-right">
           <Button
@@ -50,32 +42,34 @@ const DefaultStudentCard2 = (props) => {
         <div className="DefaultStudentCard2-main-row">
           <div className="DefaultStudentCard2-main-row-item">
             <label
-              htmlFor="firstName"
+              htmlFor="first_name"
               className="DefaultStudentCard2-main-row-item-label"
             >
               名字
             </label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
+              id="first_name"
+              name="first_name"
               placeholder="請輸入真實名字"
+              value={newStudentData.first_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
             />
           </div>
           <div className="DefaultStudentCard2-main-row-item">
             <label
-              htmlFor="lastName"
+              htmlFor="last_name"
               className="DefaultStudentCard2-main-row-item-label"
             >
               姓氏
             </label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
+              id="last_name"
+              name="last_name"
               placeholder="請輸入真實姓氏"
+              value={newStudentData.last_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
             />
@@ -94,6 +88,7 @@ const DefaultStudentCard2 = (props) => {
               id="telephone"
               name="telephone"
               placeholder="請輸入手機號碼"
+              value={newStudentData.telephone}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
             />
@@ -113,7 +108,10 @@ const DefaultStudentCard2 = (props) => {
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
             /> */}
-            <Calendar onChange={handleBirthdayChange} />
+            <Calendar
+              onChange={handleBirthdayChange}
+              value={newStudentData.birthday}
+            />
           </div>
         </div>
         <div className="DefaultStudentCard2-main-row">
@@ -129,6 +127,7 @@ const DefaultStudentCard2 = (props) => {
               id="email"
               name="email"
               placeholder="請輸入Email"
+              value={newStudentData.email}
               className="DefaultStudentCard2-main-row-item-input DefaultStudentCard2-main-row-item-email"
               onChange={handleInputChange}
             />
