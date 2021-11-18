@@ -7,17 +7,21 @@
 }
 
 html {
+  overflow: -moz-hidden-unscrollable;
+  /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
   height: 100%;
 }
 
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: #666666;
+  -ms-overflow-style: none;
+  overflow: auto;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 
 /* Track */
@@ -33,11 +37,6 @@ body {
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #ffb257;
-  opacity: 1;
-}
-
 h1,
 h2,
 h3,
@@ -103,11 +102,14 @@ a:hover {
   color: #ffb257;
 }
 
-.button-themeColor {
+.button-themeColor, .button-themeColorBlue, .button-highLeveColor, .button-activeColor, .button-darkColor {
   padding: 0.35rem 0.75rem;
-  background: #d8a466;
   color: white;
   border-radius: 5px;
+}
+
+.button-themeColor {
+  background: #d8a466;
 }
 
 .button-themeColor:hover {
@@ -115,10 +117,7 @@ a:hover {
 }
 
 .button-themeColorBlue {
-  padding: 0.35rem 0.75rem;
   background: #0078b3;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-themeColorBlue:hover {
@@ -126,10 +125,7 @@ a:hover {
 }
 
 .button-highLeveColor {
-  padding: 0.35rem 0.75rem;
   background: #eb6b6a;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-highLeveColor:hover {
@@ -137,10 +133,7 @@ a:hover {
 }
 
 .button-activeColor {
-  padding: 0.35rem 0.75rem;
   background: #ffb257;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-activeColor:hover {
@@ -148,14 +141,21 @@ a:hover {
 }
 
 .button-darkColor {
-  padding: 0.35rem 0.75rem;
   background: #666666;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-darkColor:hover {
   background-color: #424242;
+}
+
+.ErrorMessage {
+  font-size: 90%;
+  color: red;
+  font-weight: 800;
+}
+
+.stopScroll {
+  overflow: hidden;
 }
 
 .Navbar {
@@ -2473,6 +2473,9 @@ a:hover {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards-bottom {
   overflow: scroll;
 }
 
@@ -2547,7 +2550,6 @@ a:hover {
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
   margin: 0 0 1rem 0;
   overflow: scroll;
-  width: 100%;
 }
 
 .OrderCard .OrderCard-container {
@@ -3309,6 +3311,20 @@ a:hover {
   display: none;
 }
 
+.CourseInsert .CourseInsert-container .CourseInsert-container-btnCon {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .ReviewButton {
   height: 42px;
   width: 80px;
@@ -3371,6 +3387,18 @@ a:hover {
 
 .ReviewButton .ReviewButton-btn-active .ReviewButton-btn-imgCon {
   background: url(../../icons/id-card.svg) no-repeat;
+}
+
+.CourseReview {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 2;
+  -webkit-box-shadow: 50px 50px 50px white, -50px 50px 50px white;
+          box-shadow: 50px 50px 50px white, -50px 50px 50px white;
 }
 
 .massonry-title {
@@ -5061,138 +5089,103 @@ a:hover {
 /* 三圖片大框 */
 .Coursedetail-header {
   position: relative;
-  display: block;
-  width: 100%;
-  max-width: 2040px;
-  height: 470px;
+  width: 70vw;
+  max-width: 1440px;
+  height: 25vw;
   overflow: hidden;
   margin: auto;
 }
 
-/* 大框圖片設置 */
 .Coursedetail-header img {
-  margin: auto;
-  position: absolute;
-  width: 70vw;
-  max-width: 1440px;
-  height: 470px;
-}
-
-/* 左圖片 */
-.Coursedetail-headerLeft {
-  -webkit-transform: translate(-21.2%, 0px);
-          transform: translate(-21.2%, 0px);
-  opacity: 0.3;
-  -webkit-transition: transform 1s;
-  z-index: 1;
-}
-
-/* 左圖片h */
-.Coursedetail-headerLeft:hover {
-  opacity: 0.7;
-}
-
-/* 中圖片 */
-.Coursedetail-headerMid {
-  -webkit-transform: translate(20.85%, 0px);
-          transform: translate(20.85%, 0px);
-  -webkit-transition: transform 1s;
-  z-index: 3;
-}
-
-/* 右圖片 */
-.Coursedetail-headerRight {
-  -webkit-transform: translate(63.6%, 0px);
-          transform: translate(63.6%, 0px);
-  opacity: 0.3;
-  -webkit-transition: transform 1s;
-  z-index: 2;
-}
-
-/* 右圖片H */
-.Coursedetail-headerRight:hover {
-  opacity: 0.7;
+  height: 100%;
+  width: 100%;
 }
 
 /* 資訊欄 */
 .Coursedetail-info {
   width: 100%;
-  height: 500px;
+  height: 25vw;
+  min-height: 250px;
 }
 
 /* 資訊(右欄) */
 .Coursedetail-infoRight {
   position: relative;
+  -webkit-clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
+          clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
+  background-color: #d8a466;
+  height: 19vw;
+  width: 30vw;
   float: right;
-  right: 0px;
-  width: 550px;
-  height: 0;
-  border-top: 360px solid #d8a466;
-  border-left: 200px solid transparent;
+  max-height: 30vw;
 }
 
 /* 資訊(右欄)div */
 .Coursedetail-infoRight div {
   position: relative;
   float: right;
-  margin-right: 20px;
-  top: -330px;
   font-weight: 700;
+  right: 2vw;
+  top: 1vw;
 }
 
 /* 早鳥預購價 */
 .Coursedetail-infoRightPrice {
   color: #ffffff;
-  font-size: 24px;
+  font-size: 1.6vw;
 }
 
 /* 原價 */
 .Coursedetail-originalPrice {
-  font-size: 22px;
+  font-size: 1.3vw;
   color: #d4d4d4;
   text-decoration: line-through;
-  margin-right: 10px;
+  margin-right: 1vw;
 }
 
 /* 特價 */
 .Coursedetail-specialPrice {
   color: #ffffff;
-  font-size: 60px;
-  font-family: 'Noto Sans TC', Medium;
+  font-size: 3vw;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
 }
 
 /* 名額margin */
 .Coursedetail-quota {
-  margin-top: 30px;
+  margin-top: 0.5vw;
 }
 
 .Coursedetail-quota span {
   color: #444444;
-  font-size: 20px;
+  font-size: 1.1vw;
+  margin-left: 10vw;
 }
 
 /* 星數/評論人數 */
 .Coursedetail-count {
-  position: relative;
-  top: 15px;
-  font-size: 15px;
+  position: absolute;
+  top: 1vw;
+  font-size: 1.1vw;
   color: #ffffff;
 }
 
-/* 星星盒子(外框) */
+.Coursedetail-pos {
+  margin: 0 2.75vw 0 10vw;
+}
+
 .Coursedetail-boxStar {
-  color: #ffffff;
+  color: #cecdcd;
   /*背景星星顏色*/
   overflow: hidden;
   /*調整寬度可變更星等*/
-  font-size: 30px;
+  font-size: 2vw;
 }
 
 /* 填滿星星 width設在外面 */
 .Coursedetail-fullStar {
   /*調整寬度可變更星等 須跟上面一樣*/
-  font-size: 30px;
+  font-size: 2vw;
   position: absolute;
   left: 0;
   top: 0;
@@ -5204,13 +5197,14 @@ a:hover {
 
 .Coursedetail-allTime span {
   color: #444444;
-  font-size: 20px;
+  font-size: 1vw;
+  margin-left: 20vw;
 }
 
 .Coursedetail-iconSvg svg {
-  font-size: 48px;
+  font-size: 2vw;
   color: #ffffff;
-  margin: 10px 0px 0 40px;
+  margin: 0.5vw 0px 0 1vw;
 }
 
 /* 資訊(左欄) */
@@ -5218,10 +5212,10 @@ a:hover {
   position: absolute;
   float: left;
   max-width: 50%;
-  font-family: 'Noto Sans TC', Medium;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
-  padding-top: 20px;
-  width: 800px;
+  padding-top: 1vw;
+  width: 42vw;
 }
 
 .Coursedetail-infoLeft ul {
@@ -5238,8 +5232,8 @@ a:hover {
 /*偽裝麵包屑*/
 .Coursedetail-infoLeft-breadcrumb ul li {
   color: #666666;
-  font-size: 18px;
-  margin-right: 5px;
+  font-size: 1vw;
+  margin-right: 0.5vw;
   cursor: pointer;
 }
 
@@ -5250,50 +5244,50 @@ a:hover {
 /* 左邊資訊標題 */
 .Coursedetail-infoLeftTitle {
   margin-top: 5px;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   font-weight: bold;
-  font-size: 60px;
+  font-size: 3vw;
   color: #444444;
 }
 
-.Coursedetail-placeWithChef {
-  margin: 20px 0 20px 0;
-}
-
 .Coursedetail-placeWithChef ul li {
-  margin-right: 40px;
-  font-size: 1.6em;
+  margin-right: 1.25vw;
+  font-size: 1.5vw;
 }
 
 .Coursedetail-placeWithChef ul li svg {
   top: 3px;
   position: relative;
   color: #f7921e;
-  font-size: 1.2em;
+  font-size: 2vw;
 }
 
 .Coursedetail-infoLeftPlace {
   /* 地圖hover標註用 */
   padding: 0;
-  height: 50px;
+  height: 3.2vw;
   cursor: pointer;
 }
 
 /* 地圖 */
 .Coursedetail-infoLeftPlace iframe {
-  width: 200px;
-  height: 100px;
+  height: 4vw;
   border: 0;
   display: none;
 }
 
+.Coursedetail-mapClose {
+  pointer-events: none;
+}
+
 .Coursedetail-infoLeftPlace:hover iframe {
-  top: 200px;
+  top: 12vw;
   left: 0px;
   position: absolute;
   width: 80%;
-  height: 200px;
+  height: 10vw;
   display: inline;
+  z-index: 5;
 }
 
 /* 梯次按鈕 */
@@ -5303,73 +5297,26 @@ a:hover {
   display: flex;
 }
 
-.Coursedetail-data button {
-  width: 30%;
-  height: 59px;
-  background: #FFFFFF;
-  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 34px;
-  cursor: pointer;
-  color: #d8a466;
-  font-size: 28px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: left;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  min-width: 237px;
-}
-
-.Coursedetail-data button svg {
-  color: #d8a466;
-  font-size: 32px;
-  margin: 0px 24% 0 10px;
-}
-
-.Coursedetail-data div {
-  height: 59px;
-  display: inline-block;
-}
-
-.Coursedetail-data .CT svg {
-  color: initial;
-  font-size: initial;
-  font-size: 59px;
-  margin: 2px 0 0 20px;
-}
-
-.Coursedetail-data .CT svg:hover {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
 .Coursedetail-data p {
   color: #444444;
-  margin-left: 40px;
+  margin-left: 2vw;
   font-weight: 700;
+  font-size: 1vw;
 }
 
 .Coursedetail-infoLeftJoin {
-  margin-top: 20px;
+  margin-top: 1.5vw;
 }
 
 .Coursedetail-infoLeftJoin ul li {
   cursor: pointer;
   color: #d8a466;
-  font-size: 36px;
-  margin-right: 15px;
+  font-size: 1.5vw;
+  margin-right: 1vw;
 }
 
 .Coursedetail-shortLine {
-  position: relative;
-  top: -50px;
-  height: 5px;
+  height: 0.5vh;
   width: 10%;
   margin: auto;
   border-radius: 100px;
@@ -5380,8 +5327,9 @@ a:hover {
 .Coursedetail-infoBox {
   width: 100%;
   height: 100%;
+  min-height: 350px;
   background-color: #d8a466;
-  margin-bottom: 100px;
+  margin-bottom: 5vw;
   border-radius: 5px;
 }
 
@@ -5389,54 +5337,49 @@ a:hover {
 .Coursedetail-outsideTitle {
   width: 100%;
   text-align: center;
-  font-size: 48px;
-  margin: 20px auto 20px auto;
+  font-size: 2.5vw;
+  margin: 1vw auto 1vw auto;
   color: #d8a466;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-}
-
-.Coursedetail-well {
-  height: 20px;
+  font-family: "Noto Sans TC", Bold;
 }
 
 /* 內標 */
 .Coursedetail-insideTitle {
   width: 100%;
   text-align: center;
-  font-size: 48px;
+  font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-  padding-top: 20px;
+  font-family: "Noto Sans TC", Bold;
+  padding-top: 1vw;
 }
 
 .Coursedetail-whiteLine {
-  height: 3px;
+  height: 0.5vh;
   width: 90%;
-  margin: auto;
   border-radius: 100px;
   background-color: #ffffff;
-  margin: 10px auto 40px auto;
+  margin: 0.5vw auto 2vw auto;
 }
 
 /* 內文 */
 .Coursedetail-insideText {
   /* word-break: keep-all; */
-  text-indent: 2em;
+  text-indent: 1em;
   width: 90%;
   text-align: left;
-  margin: 0 auto 20px auto;
-  line-height: 40px;
-  font-size: 24px;
+  margin: auto;
+  line-height: 3vw;
+  font-size: 1.4vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
-  padding-bottom: 40px;
+  font-family: "Noto Sans TC", Regular;
+  padding-bottom: 2vw;
 }
 
 .Coursedetail-titleLine {
-  height: 5px;
+  height: 0.5vh;
   width: 100%;
   border-radius: 100px;
   background-color: #d8a466;
@@ -5454,27 +5397,12 @@ a:hover {
   width: 100%;
   height: 100%;
   background-color: #d8a466;
-  margin-top: 20px;
+  margin-top: 1vw;
   border-radius: 5px;
 }
 
 .Coursedetail-foodInfo {
-  padding: 20px;
-}
-
-.Coursedetail-sixPicture {
-  padding: 10px;
-  position: relative;
-  width: 780px;
-  height: 550px;
-}
-
-.Coursedetail-sixPicture img {
-  padding: 5px;
-}
-
-.Coursedetail-sixPictureTitlePosition {
-  position: absolute;
+  padding: 1vw;
 }
 
 .Coursedetail-sixPictureTitle {
@@ -5488,23 +5416,27 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  height: 50px;
+  height: 2.5vw;
   top: -4px;
-  background-color: rgba(223, 223, 223, 0.6);
   z-index: 3;
-  opacity: 0;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
-  font-size: 24px;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 1.5vw;
   cursor: pointer;
   width: 100%;
+  color: #ffffff;
 }
 
-.Coursedetail-sixPictureTitle:hover {
-  opacity: 1;
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
-  -webkit-transition: transform 0.5s;
+.Coursedetail-sixPictureTitleMask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 15vw;
+  position: relative;
+  top: -15vw;
+  background-color: black;
+  opacity: 0;
 }
 
 .Coursedetail-sixPictureTitleTopBox {
@@ -5526,39 +5458,51 @@ a:hover {
 }
 
 .Coursedetail-active {
-  opacity: 1;
-  background-color: rgba(223, 223, 223, 0.8);
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
-  -webkit-transition: transform 0.5s;
-  border-radius: 0 0 5px 5px;
+  -webkit-transform: translate(0px, -6vw);
+          transform: translate(0px, -6vw);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+.Coursedetail-activeBottom {
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  top: 0;
+  margin-top: 1.2vw;
+  border-bottom: 5px solid #eb6b6a;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 {
   width: 60%;
   position: relative;
-  height: 100%;
-  padding-bottom: 5px;
+  height: 25vw;
+  padding-bottom: 0.5vw;
+  max-height: 520px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul {
   overflow: hidden;
-  height: 200px;
+  height: 50%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 40px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li {
   display: inline-block;
   padding: 0;
-  min-height: 150px;
-  width: 28%;
-  height: 100%;
+  height: 10vw;
+  width: 10vw;
   margin: auto auto auto 0;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li img {
@@ -5571,9 +5515,18 @@ a:hover {
 
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
   opacity: 1;
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
+  color: #ffffff;
+  -webkit-transform: translate(0px, -6vw);
+          transform: translate(0px, -6vw);
   -webkit-transition: transform 0.5s;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
+  opacity: 0.4;
+}
+
+.Coursedetail-sixPictureTitleMask:hover {
+  opacity: 0.4;
 }
 
 .Coursedetail-pictureBox {
@@ -5587,7 +5540,6 @@ a:hover {
 .Coursedetail-chepBoxTextWidth {
   position: relative;
   width: 40%;
-  min-width: 200px;
   height: 100%;
 }
 
@@ -5596,7 +5548,7 @@ a:hover {
   text-align: center;
   font-weight: 700;
   color: #ffffff;
-  font-size: 36px;
+  font-size: 1.8vw;
 }
 
 .Coursedetail-chepBoxTitle {
@@ -5604,7 +5556,7 @@ a:hover {
   text-align: center;
   font-weight: 700;
   color: #ffffff;
-  font-size: 48px;
+  font-size: 2vw;
 }
 
 .Coursedetail-chepBoxTitle :hover .testActive {
@@ -5613,9 +5565,10 @@ a:hover {
 
 .Coursedetail-chepBoxInfomation {
   text-align: left;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 700;
-  text-indent: 2em;
+  text-indent: 1em;
+  margin-top: 0.5rem;
   color: rgba(255, 255, 255, 0);
 }
 
@@ -5625,14 +5578,18 @@ a:hover {
   color: white;
 }
 
+.Coursedetail-costBox {
+  width: 80%;
+  height: 100%;
+}
+
 .Coursedetail-cost {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 40vw;
   background-color: #ffffff;
   margin: 80px 0;
   font-size: 100%;
-  border: 2px solid #666666;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -5640,10 +5597,11 @@ a:hover {
 .Coursedetail-cost span {
   position: relative;
   float: left;
-  width: 65%;
+  width: 60%;
   height: 100%;
-  border-bottom: 850px solid #d8a466;
-  border-right: 200px solid transparent;
+  -webkit-clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+          clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+  background-color: #d8a466;
   z-index: 2;
 }
 
@@ -5658,170 +5616,68 @@ a:hover {
 .Coursedetail-cost p {
   width: 100%;
   text-align: center;
-  font-size: 48px;
+  font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-  padding-top: 40px;
+  font-family: "Noto Sans TC", Bold;
+  padding: 2vw 0 1vw 0;
 }
 
 .Coursedetail-cost .Coursedetail-costLine {
-  width: 90%;
+  width: 80%;
   border: 1px solid #fff;
-  margin: 10px auto 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 0.5vh;
   position: relative;
-  left: 10px;
+  margin: auto;
 }
 
 .Coursedetail-cost .Coursedetail-costArea {
   width: 90%;
-  height: 60%;
   margin: auto;
-  min-height: 500px;
+  min-height: 23vw;
   position: relative;
   left: 10px;
   top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .Coursedetail-cost ul {
   color: #fff;
-  width: 40%;
+  width: 50%;
   position: relative;
   left: 10px;
   padding: 20px 0 20px 5%;
   height: 100px;
-  font-size: 24px;
+  font-size: 1.2vw;
   list-style: disc;
   font-weight: 500;
   font-family: "Noto Sans TC", Medium;
 }
 
 .Coursedetail-attention {
-  width: 110%;
-  height: 100px;
+  width: 80%;
+  height: 5vw;
   margin-left: 35px;
   position: relative;
-  left: 10px;
   padding-top: 20px;
 }
 
 .Coursedetail-attention p {
   color: #fff;
-  font-size: 24px;
+  font-size: 1.2vw;
   padding: 0;
   text-align: left;
 }
 
 .Coursedetail-attention div {
-  font-size: 24px;
+  font-size: 1.2vw;
   color: #fff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-}
-
-.Coursedetail-recommend {
-  margin: 60px 0;
-  height: 700px;
-  width: 100%;
-}
-
-.Coursedetail-recommendLeft {
-  height: 100%;
-  float: left;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendLeft img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendLeft span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendLeft span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
-}
-
-.Coursedetail-recommendText {
-  color: #ffffff;
-}
-
-.Coursedetail-recommendTitle {
-  text-align: center;
-  font-size: 48px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendLine {
-  width: 80%;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-  position: relative;
-  top: 540px;
-  margin: auto;
-}
-
-.Coursedetail-recommendName {
-  text-align: center;
-  font-size: 60px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendInfo {
-  text-align: left;
-  font-size: 24px;
-  position: relative;
-  top: 540px;
-  text-indent: 2em;
-  width: 80%;
-  margin: auto;
-}
-
-.Coursedetail-recommendRight {
-  height: 100%;
-  float: right;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendRight img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendRight span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendRight span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
+  font-family: "Noto Sans TC", Bold;
 }
 
 .Coursedetail-join {
@@ -5868,8 +5724,226 @@ a:hover {
   font-size: 48px;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   padding-top: 40px;
+}
+
+.Coursedetail-clip {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+  background-color: aquamarine;
+  height: 40vw;
+  width: 30vw;
+}
+
+.Course-starGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.Course-starGroup p {
+  font-size: 0.9vw;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+.Course-starGroup .Course-starGroup-container {
+  width: 1.5vw;
+  position: relative;
+  height: 1.5vw;
+  overflow: hidden;
+  margin-right: 0.5vw;
+  top: initial;
+  right: initial;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+.Course-starGroup .Course-starGroup-container .Course-starGroup-container-star {
+  z-index: 2;
+  width: 101%;
+  height: 100%;
+}
+
+.Course-starGroup .Course-starGroup-container .Course-starGroup-container-background {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.CourseDetail-headerPicture {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.CourseDetail-headerPicture img {
+  height: 25vw;
+}
+
+.CourseDetail-headerPicture .Course-headerPictureButton {
+  background-color: RGBA(0, 0, 0, 0.5);
+  width: 5%;
+}
+
+.Coursedetail-recommend {
+  margin: 60px 0;
+  height: 30vw;
+  width: 103.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Coursedetail-recommendLeft {
+  height: 100%;
+  width: 30%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto auto 0;
+  max-height: 570px;
+}
+
+.Coursedetail-recommendLeft img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendLeft span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 220%;
+  position: relative;
+  top: -570px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft span:hover {
+  top: -1030px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.Coursedetail-recommendLeft .t1:hover {
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft .t1:hover .Coursedetail-recommendInfo {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendText {
+  color: #ffffff;
+}
+
+.Coursedetail-recommendTitle {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+  padding-top: 5vw;
+}
+
+.Coursedetail-recommendLine {
+  width: 80%;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  position: relative;
+  margin: auto;
+}
+
+.Coursedetail-recommendName {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+}
+
+.Coursedetail-recommendInfo {
+  text-align: left;
+  font-size: 1vw;
+  text-indent: 1em;
+  width: 80%;
+  margin: auto;
+  color: white;
+  padding-top: 2vw;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendClick {
+  font-size: 1.8vw;
+  width: 100%;
+  text-align: center;
+  text-indent: initial;
+  padding-top: 5vw;
+  position: absolute;
+  top: 65%;
+}
+
+.Coursedetail-recommendRight {
+  height: 100%;
+  float: right;
+  width: 45%;
+  border-radius: 5px;
+  border: 2px solid #666666;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendRight img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendRight span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 200%;
+  position: relative;
+  top: -700px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendRight span:hover {
+  top: -1100px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.t1 {
+  position: relative;
+  height: 105%;
+  width: 100%;
+  top: -102%;
+  background-color: RGBA(50, 50, 50, 0.5);
 }
 
 @media screen and (max-width: 1200px) {
@@ -5877,6 +5951,22 @@ a:hover {
     width: 90%;
   }
   .MemberCenter .MemberCenter-container {
+    width: 90%;
+  }
+  .CourseDetail-headerPicture {
+    width: 90%;
+  }
+  .CourseDetail-headerPicture img {
+    height: 35vw;
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+  }
+  .Coursedetail .Coursedetail-header {
+    width: 90%;
+    height: 35vw;
+  }
+  .Coursedetail-set .Coursedetail-container {
     width: 90%;
   }
 }

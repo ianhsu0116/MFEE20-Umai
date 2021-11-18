@@ -48,7 +48,7 @@ const CourseCard1 = (props) => {
           廚師名稱
         </div>
         <div className="CourseCard1-detailCon-courseTime">
-          平日上午10:30 ~ 下午04:00
+          最近可上課日期：2021/12/24
         </div>
         <div className="CourseCard1-detailCon-MemberCount">
           <div className="CourseCard1-detailCon-MemberCount-progressCon">
