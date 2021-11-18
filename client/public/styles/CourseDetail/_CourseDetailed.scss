@@ -1,42 +1,42 @@
 .Coursedetail-set {
-	font-weight: 100;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 .Coursedetail-set .Coursedetail-container {
-	width: 70vw;
-	max-width: 1440px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
+  width: 70vw;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 /* 大容器div */
 .Coursedetail {
-	width: 100%;
+  width: 100%;
 }
 /* 三圖片大框 */
 .Coursedetail-header {
-	position: relative;
-	width: 70vw;
-	max-width: 1440px;
-	height: 25vw;
-	overflow: hidden;
-	margin: auto;
+  position: relative;
+  width: 70vw;
+  max-width: 1440px;
+  height: 25vw;
+  overflow: hidden;
+  margin: auto;
 }
 .Coursedetail-header img {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
 }
 // /* 大框圖片設置 */
 // .Coursedetail-header img {
@@ -77,220 +77,220 @@
 // }
 /* 資訊欄 */
 .Coursedetail-info {
-	width: 100%;
-	height: 25vw;
-	min-height: 250px;
+  width: 100%;
+  height: 25vw;
+  min-height: 250px;
 }
 /* 資訊(右欄) */
 .Coursedetail-infoRight {
-	position: relative;
-	clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
-	background-color: $themeColor;
-	height: 19vw;
-	width: 30vw;
-	float: right;
-	max-height: 30vw;
+  position: relative;
+  clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
+  background-color: $themeColor;
+  height: 19vw;
+  width: 30vw;
+  float: right;
+  max-height: 30vw;
 }
 /* 資訊(右欄)div */
 .Coursedetail-infoRight div {
-	position: relative;
-	float: right;
-	font-weight: 700;
-	right: 2vw;
-	top: 1vw;
+  position: relative;
+  float: right;
+  font-weight: 700;
+  right: 2vw;
+  top: 1vw;
 }
 /* 早鳥預購價 */
 .Coursedetail-infoRightPrice {
-	color: #ffffff;
-	font-size: 1.6vw;
+  color: #ffffff;
+  font-size: 1.6vw;
 }
 /* 原價 */
 .Coursedetail-originalPrice {
-	font-size: 1.5vw;
-	color: #d4d4d4;
-	text-decoration: line-through;
-	margin-right: 1vw;
+  font-size: 1.3vw;
+  color: #d4d4d4;
+  text-decoration: line-through;
+  margin-right: 1vw;
 }
 /* 特價 */
 .Coursedetail-specialPrice {
-	color: #ffffff;
-	font-size: 3vw;
-	font-family: 'Noto Sans TC', Medium;
-	font-weight: 700;
+  color: #ffffff;
+  font-size: 3vw;
+  font-family: "Noto Sans TC", Medium;
+  font-weight: 700;
 }
 /* 名額margin */
 .Coursedetail-quota {
-	margin-top: 0.5vw;
-	span {
-		color: #444444;
-		font-size: 1.1vw;
-		margin-left: 10vw;
-	}
+  margin-top: 0.5vw;
+  span {
+    color: #444444;
+    font-size: 1.1vw;
+    margin-left: 10vw;
+  }
 }
 /* 星數/評論人數 */
 .Coursedetail-count {
-	position: absolute;
-	top: 1vw;
-	font-size: 1.1vw;
-	color: #ffffff;
+  position: absolute;
+  top: 1vw;
+  font-size: 1.1vw;
+  color: #ffffff;
 }
 .Coursedetail-pos {
-	margin: 0 2.75vw 0 10vw;
+  margin: 0 2.75vw 0 10vw;
 }
 .Coursedetail-boxStar {
-	color: #cecdcd; /*背景星星顏色*/
-	overflow: hidden;
-	/*調整寬度可變更星等*/
-	font-size: 2vw;
+  color: #cecdcd; /*背景星星顏色*/
+  overflow: hidden;
+  /*調整寬度可變更星等*/
+  font-size: 2vw;
 }
 /* 填滿星星 width設在外面 */
 .Coursedetail-fullStar {
-	/*調整寬度可變更星等 須跟上面一樣*/
-	font-size: 2vw;
-	position: absolute;
-	left: 0;
-	top: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	color: #ffcf71; /*前景星星顏色*/
+  /*調整寬度可變更星等 須跟上面一樣*/
+  font-size: 2vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffcf71; /*前景星星顏色*/
 }
 .Coursedetail-allTime {
-	span {
-		color: #444444;
-		font-size: 1vw;
-		margin-left: 20vw;
-	}
+  span {
+    color: #444444;
+    font-size: 1vw;
+    margin-left: 20vw;
+  }
 }
 .Coursedetail-iconSvg {
-	svg {
-		font-size: 2vw;
-		color: #ffffff;
-		margin: 0.5vw 0px 0 1vw;
-	}
+  svg {
+    font-size: 2vw;
+    color: #ffffff;
+    margin: 0.5vw 0px 0 1vw;
+  }
 }
 /* 資訊(左欄) */
 .Coursedetail-infoLeft {
-	position: absolute;
-	float: left;
-	max-width: 50%;
-	font-family: 'Noto Sans TC', Medium;
-	font-weight: 700;
-	padding-top: 1vw;
-	width: 42vw;
+  position: absolute;
+  float: left;
+  max-width: 50%;
+  font-family: "Noto Sans TC", Medium;
+  font-weight: 700;
+  padding-top: 1vw;
+  width: 42vw;
 
-	ul {
-		display: inline;
-		padding: 0;
-	}
-	ul li {
-		font-size: 24px;
-		display: inline-block;
-		padding: 0;
-		// margin-right: 40px;
-	}
+  ul {
+    display: inline;
+    padding: 0;
+  }
+  ul li {
+    font-size: 24px;
+    display: inline-block;
+    padding: 0;
+    // margin-right: 40px;
+  }
 }
 /*偽裝麵包屑*/
 .Coursedetail-infoLeft-breadcrumb {
-	ul li {
-		color: #666666;
-		font-size: 1vw;
-		margin-right: 0.5vw;
-		cursor: pointer;
-	}
-	.Coursedetail-infoLeft-breadcrumb-name {
-		color: #f7921e;
-	}
+  ul li {
+    color: #666666;
+    font-size: 1vw;
+    margin-right: 0.5vw;
+    cursor: pointer;
+  }
+  .Coursedetail-infoLeft-breadcrumb-name {
+    color: #f7921e;
+  }
 }
 /* 左邊資訊標題 */
 .Coursedetail-infoLeftTitle {
-	margin-top: 5px;
-	font-family: 'Noto Sans TC', Bold;
-	font-weight: bold;
-	font-size: 4vw;
-	color: #444444;
+  margin-top: 5px;
+  font-family: "Noto Sans TC", Bold;
+  font-weight: bold;
+  font-size: 3vw;
+  color: #444444;
 }
 .Coursedetail-placeWithChef {
-	ul li {
-		margin-right: 2vw;
-		font-size: 1.6vw;
-	}
-	ul li svg {
-		top: 3px;
-		position: relative;
-		color: #f7921e;
-		font-size: 2vw;
-	}
+  ul li {
+    margin-right: 1.25vw;
+    font-size: 1.5vw;
+  }
+  ul li svg {
+    top: 3px;
+    position: relative;
+    color: #f7921e;
+    font-size: 2vw;
+  }
 }
 
 .Coursedetail-infoLeftPlace {
-	/* 地圖hover標註用 */
-	padding: 0;
-	height: 3.2vw;
-	cursor: pointer;
+  /* 地圖hover標註用 */
+  padding: 0;
+  height: 3.2vw;
+  cursor: pointer;
 }
 /* 地圖 */
 .Coursedetail-infoLeftPlace iframe {
-	// width: 200px;
-	height: 4vw;
-	border: 0;
-	display: none;
+  // width: 200px;
+  height: 4vw;
+  border: 0;
+  display: none;
 }
-.Coursedetail-mapClose{
-	pointer-events: none;
+.Coursedetail-mapClose {
+  pointer-events: none;
 }
 
 .Coursedetail-infoLeftPlace:hover iframe {
-	top: 12vw;
-	left: 0px;
-	position: absolute;
-	width: 80%;
-	height: 10vw;
-	display: inline;
-	z-index: 5;
+  top: 12vw;
+  left: 0px;
+  position: absolute;
+  width: 80%;
+  height: 10vw;
+  display: inline;
+  z-index: 5;
 }
 /* 梯次按鈕 */
 .Coursedetail-data {
-	display: flex;
-	p {
-		color: #444444;
-		margin-left: 2vw;
-		font-weight: 700;
-		font-size: 1vw;
-	}
+  display: flex;
+  p {
+    color: #444444;
+    margin-left: 2vw;
+    font-weight: 700;
+    font-size: 1vw;
+  }
 }
 .Coursedetail-infoLeftJoin {
-	margin-top: 1.5vw;
+  margin-top: 1.5vw;
 }
 .Coursedetail-infoLeftJoin ul li {
-	cursor: pointer;
-	color: $themeColor;
-	font-size: 1.5vw;
-	margin-right: 1vw;
+  cursor: pointer;
+  color: $themeColor;
+  font-size: 1.5vw;
+  margin-right: 1vw;
 }
 .Coursedetail-shortLine {
-	height: 0.5vh;
-	width: 10%;
-	margin: auto;
-	border-radius: 100px;
-	background-color: $themeColor;
+  height: 0.5vh;
+  width: 10%;
+  margin: auto;
+  border-radius: 100px;
+  background-color: $themeColor;
 }
 /* 資訊盒子(上) */
 .Coursedetail-infoBox {
-	width: 100%;
-	height: 100%;
-	background-color: $themeColor;
-	margin-bottom: 5vw;
-	border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  background-color: $themeColor;
+  margin-bottom: 5vw;
+  border-radius: 5px;
 }
 /* 標題能用 */
 .Coursedetail-outsideTitle {
-	width: 100%;
-	text-align: center;
-	font-size: 2.5vw;
-	margin: 1vw auto 1vw auto;
-	color: $themeColor;
-	font-weight: bold;
-	font-family: 'Noto Sans TC', Bold;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5vw;
+  margin: 1vw auto 1vw auto;
+  color: $themeColor;
+  font-weight: bold;
+  font-family: "Noto Sans TC", Bold;
 }
 // 內標距離用
 // .Coursedetail-well {
@@ -299,57 +299,57 @@
 
 /* 內標 */
 .Coursedetail-insideTitle {
-	width: 100%;
-	text-align: center;
-	font-size: 2.5vw;
-	color: #ffffff;
-	font-weight: bold;
-	font-family: 'Noto Sans TC', Bold;
-	padding-top: 1vw;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5vw;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: "Noto Sans TC", Bold;
+  padding-top: 1vw;
 }
 .Coursedetail-whiteLine {
-	height: 0.5vh;
-	width: 90%;
-	border-radius: 100px;
-	background-color: #ffffff;
-	margin: 0.5vw auto 2vw auto;
+  height: 0.5vh;
+  width: 90%;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin: 0.5vw auto 2vw auto;
 }
 /* 內文 */
 .Coursedetail-insideText {
-	/* word-break: keep-all; */
-	text-indent: 1em;
-	width: 90%;
-	text-align: left;
-	margin: auto;
-	line-height: 3vw;
-	font-size: 1.4vw;
-	color: #ffffff;
-	font-weight: bold;
-	font-family: 'Noto Sans TC', Regular;
-	padding-bottom: 2vw;
+  /* word-break: keep-all; */
+  text-indent: 1em;
+  width: 90%;
+  text-align: left;
+  margin: auto;
+  line-height: 3vw;
+  font-size: 1.4vw;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: "Noto Sans TC", Regular;
+  padding-bottom: 2vw;
 }
 .Coursedetail-titleLine {
-	height: 0.5vh;
-	width: 100%;
-	border-radius: 100px;
-	background-color: $themeColor;
+  height: 0.5vh;
+  width: 100%;
+  border-radius: 100px;
+  background-color: $themeColor;
 }
 .Coursedetail-chefCardMargin {
-	position: relative;
-	padding: 50px 0px 60px 0px;
-	width: 55%;
-	margin: auto;
-	min-width: 750px;
+  position: relative;
+  padding: 50px 0px 60px 0px;
+  width: 55%;
+  margin: auto;
+  min-width: 750px;
 }
 .Coursedetail-infoBox2 {
-	width: 100%;
-	height: 100%;
-	background-color: $themeColor;
-	margin-top: 1vw;
-	border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  background-color: $themeColor;
+  margin-top: 1vw;
+  border-radius: 5px;
 }
 .Coursedetail-foodInfo {
-	padding: 1vw;
+  padding: 1vw;
 }
 // .Coursedetail-sixPicture {
 // 	padding: 10px;
@@ -364,29 +364,28 @@
 // 	position: absolute;
 // }
 .Coursedetail-sixPictureTitle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	height: 2.5vw;
-	top: -4px;
-	z-index: 3;
-	font-weight: bold;
-	font-family: 'Noto Sans TC', Regular;
-	font-size: 1.5vw;
-	cursor: pointer;
-	width: 100%;
-	color: #ffffff;
-	
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 2.5vw;
+  top: -4px;
+  z-index: 3;
+  font-weight: bold;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 1.5vw;
+  cursor: pointer;
+  width: 100%;
+  color: #ffffff;
 }
 .Coursedetail-sixPictureTitleMask {
-	display: flex;
-	width: 100%;
-	height: 15vw;
-	position: relative;
-	top: -15vw;
-	background-color: black;
-	opacity: 0;
+  display: flex;
+  width: 100%;
+  height: 15vw;
+  position: relative;
+  top: -15vw;
+  background-color: black;
+  opacity: 0;
 }
 // .Coursedetail-sixPictureTitle:hover {
 // 	opacity: 1;
@@ -394,256 +393,258 @@
 // 	-webkit-transition: transform 0.5s;
 // }
 .Coursedetail-sixPictureTitleTopBox {
-	display: flex;
-	margin-top: 50px;
-	width: 780px;
-	height: 250px;
+  display: flex;
+  margin-top: 50px;
+  width: 780px;
+  height: 250px;
 }
 .Coursedetail-sixPictureTitleDownBox {
-	display: flex;
-	margin-top: 264px;
-	width: 780px;
-	height: 250px;
+  display: flex;
+  margin-top: 264px;
+  width: 780px;
+  height: 250px;
 }
 .Coursedetail-active {
-	transform: translate(0px, -6vw);
-	transition: transform 0.5s;
-	// border-radius: 0 0 5px 5px;
+  transform: translate(0px, -6vw);
+  transition: transform 0.5s;
+  // border-radius: 0 0 5px 5px;
 }
-.Coursedetail-activeBottom{
-	width: 10vw;
-	height: 10vw;
-	position: absolute;
-	top:0;
-	margin-top: 1.2vw;
-	border-bottom: 5px solid $highLevelColor;
-	overflow: hidden;
-	border-radius: 5px;
+.Coursedetail-activeBottom {
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  top: 0;
+  margin-top: 1.2vw;
+  border-bottom: 5px solid $highLevelColor;
+  overflow: hidden;
+  border-radius: 5px;
 }
 .Coursedetail-sixPictureTextBox_1 {
-	width: 60%;
-	position: relative;
-	height: 25vw;
-	padding-bottom: 0.5vw;
-	max-height: 520px;
+  width: 60%;
+  position: relative;
+  height: 25vw;
+  padding-bottom: 0.5vw;
+  max-height: 520px;
 }
 .Coursedetail-sixPictureTextBox_1 ul {
-	overflow: hidden;
-	height: 50%;
-	position: relative;
-	display: flex;
+  overflow: hidden;
+  height: 50%;
+  position: relative;
+  display: flex;
 }
 .Coursedetail-sixPictureTextBox_1 ul li {
-	display: inline-block;
-	padding: 0;
-	height: 10vw;
-	width: 10vw;
-	margin: auto auto auto 0;
-	cursor: pointer;
-	overflow: hidden;
-	border-radius: 5px;
+  display: inline-block;
+  padding: 0;
+  height: 10vw;
+  width: 10vw;
+  margin: auto auto auto 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
 }
 .Coursedetail-sixPictureTextBox_1 ul li img {
-	width: 100%;
-	height: 100%;
-	min-width: 100px;
-	border-radius: 5px;
-	cursor: pointer;
+  width: 100%;
+  height: 100%;
+  min-width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
-	opacity: 1;
-	color: #ffffff;
-	transform: translate(0px, -6vw);
-	-webkit-transition: transform 0.5s;
+  opacity: 1;
+  color: #ffffff;
+  transform: translate(0px, -6vw);
+  -webkit-transition: transform 0.5s;
 }
-.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
-	opacity: 0.4;
+.Coursedetail-sixPictureTextBox_1
+  ul
+  li:hover
+  .Coursedetail-sixPictureTitleMask {
+  opacity: 0.4;
 }
 .Coursedetail-sixPictureTitleMask:hover {
-	opacity: 0.4;
+  opacity: 0.4;
 }
 .Coursedetail-pictureBox {
-	width: 90%;
-	margin: auto;
-	display: flex;
+  width: 90%;
+  margin: auto;
+  display: flex;
 }
 .Coursedetail-chepBoxTextWidth {
-	position: relative;
-	width: 40%;
-	// min-width: 200px;
-	height: 100%;
+  position: relative;
+  width: 40%;
+  // min-width: 200px;
+  height: 100%;
 }
 .Coursedetail-chepBox {
-	margin: auto;
-	//   padding-top: 30px;
-	text-align: center;
-	font-weight: 700;
-	color: #ffffff;
-	font-size: 1.8vw;
+  margin: auto;
+  //   padding-top: 30px;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.8vw;
 }
 .Coursedetail-chepBoxTitle {
-	margin: auto;
-	// padding-top: 10px;
-	text-align: center;
-	font-weight: 700;
-	color: #ffffff;
-	font-size: 2vw;
-	:hover .testActive {
-		opacity: 1;
-	}
+  margin: auto;
+  // padding-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 2vw;
+  :hover .testActive {
+    opacity: 1;
+  }
 }
 .Coursedetail-chepBoxInfomation {
-	text-align: left;
-	// color: #ffffff;
-	font-size: 1.2vw;
-	font-weight: 700;
-	text-indent: 1em;
-	color: rgba(255, 255, 255, 0);
+  text-align: left;
+  // color: #ffffff;
+  font-size: 1.2vw;
+  font-weight: 700;
+  text-indent: 1em;
+  color: rgba(255, 255, 255, 0);
 }
 
 .Coursedetail-colorActive {
-	transition: color 0.5s;
-	color: rgba(255, 255, 255, 1);
+  transition: color 0.5s;
+  color: rgba(255, 255, 255, 1);
 }
-.Coursedetail-costBox{
-	width: 80%;
-	height: 100%;
+.Coursedetail-costBox {
+  width: 80%;
+  height: 100%;
 }
 .Coursedetail-cost {
-	position: relative;
-	width: 100%;
-	height: 40vw;
-	background-color: #ffffff;
-	margin: 80px 0;
-	font-size: 100%;
-	border-radius: 5px;
-	overflow: hidden;
-	span {
-		position: relative;
-		float: left;
-		width: 60%;
-		height: 100%;
-		clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
-		background-color: $themeColor;
-		// min-width: 550px;
-		z-index: 2;
-	}
-	img {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		left: 0;
-		z-index: 1;
-	}
-	p {
-		width: 100%;
-		text-align: center;
-		font-size: 2.5vw;
-		color: #ffffff;
-		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
-		padding: 2vw 0 1vw 0;
-	}
-	.Coursedetail-costLine {
-		width: 80%;
-		border: 1px solid #fff;
-		background-color: #fff;
-		border-radius: 5px;
-		height: 0.5vh;
-		position: relative;
-		margin: auto;
-		
-	}
-	.Coursedetail-costArea {
-		width: 90%;
-		margin: auto;
-		min-height: 23vw;
-		position: relative;
-		left: 10px;
-		top: 20px;
-		display: flex;
-	}
-	ul {
-		color: #fff;
-		width: 50%;
-		position: relative;
-		left: 10px;
-		padding: 20px 0 20px 5%;
-		height: 100px;
-		font-size: 1.2vw;
-		list-style: disc;
-		font-weight: 500;
-		font-family: "Noto Sans TC", Medium;
-	}
+  position: relative;
+  width: 100%;
+  height: 40vw;
+  background-color: #ffffff;
+  margin: 80px 0;
+  font-size: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  span {
+    position: relative;
+    float: left;
+    width: 60%;
+    height: 100%;
+    clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+    background-color: $themeColor;
+    // min-width: 550px;
+    z-index: 2;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+  p {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5vw;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: "Noto Sans TC", Bold;
+    padding: 2vw 0 1vw 0;
+  }
+  .Coursedetail-costLine {
+    width: 80%;
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 0.5vh;
+    position: relative;
+    margin: auto;
+  }
+  .Coursedetail-costArea {
+    width: 90%;
+    margin: auto;
+    min-height: 23vw;
+    position: relative;
+    left: 10px;
+    top: 20px;
+    display: flex;
+  }
+  ul {
+    color: #fff;
+    width: 50%;
+    position: relative;
+    left: 10px;
+    padding: 20px 0 20px 5%;
+    height: 100px;
+    font-size: 1.2vw;
+    list-style: disc;
+    font-weight: 500;
+    font-family: "Noto Sans TC", Medium;
+  }
 }
 .Coursedetail-attention {
-    width: 80%;
-	height: 5vw;
-	margin-left: 35px;
-	position: relative;
-	padding-top: 20px;
-	p {
-		color: #fff;
-		font-size: 1.2vw;
-		padding: 0;
-		text-align: left;
-	}
-	div {
-		font-size: 1.2vw;
-		color: #fff;
-		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
-	}
+  width: 80%;
+  height: 5vw;
+  margin-left: 35px;
+  position: relative;
+  padding-top: 20px;
+  p {
+    color: #fff;
+    font-size: 1.2vw;
+    padding: 0;
+    text-align: left;
+  }
+  div {
+    font-size: 1.2vw;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Noto Sans TC", Bold;
+  }
 }
 .Coursedetail-join {
-	position: relative;
-	width: 100%;
-	height: 800px;
-	background-color: #ffffff;
-	margin: 80px 0;
-	font-size: 100%;
-	border: 2px solid #666666;
-	border-radius: 5px;
-	overflow: hidden;
-	span {
-		position: relative;
-		float: right;
-		width: 65%;
-		height: 100%;
-		border-bottom: 850px solid #d8a466;
-		border-left: 200px solid transparent;
-		// min-width: 550px;
-		z-index: 2;
-	}
-	.Coursedetail-joinLine {
-		width: 90%;
-		border: 1px solid #fff;
-		margin: 10px auto 0 auto;
-		position: relative;
-		right: 10px;
-	}
-	img {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		left: 0;
-		z-index: 1;
-	}
-	p {
-		width: 100%;
-		text-align: center;
-		font-size: 48px;
-		color: #ffffff;
-		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
-		padding-top: 40px;
-	}
+  position: relative;
+  width: 100%;
+  height: 800px;
+  background-color: #ffffff;
+  margin: 80px 0;
+  font-size: 100%;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  overflow: hidden;
+  span {
+    position: relative;
+    float: right;
+    width: 65%;
+    height: 100%;
+    border-bottom: 850px solid #d8a466;
+    border-left: 200px solid transparent;
+    // min-width: 550px;
+    z-index: 2;
+  }
+  .Coursedetail-joinLine {
+    width: 90%;
+    border: 1px solid #fff;
+    margin: 10px auto 0 auto;
+    position: relative;
+    right: 10px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+  p {
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: "Noto Sans TC", Bold;
+    padding-top: 40px;
+  }
 }
 
 .Coursedetail-clip {
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-	background-color: aquamarine;
-	// margin-bottom: 100px;
-	height: 40vw;
-	width: 30vw;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+  background-color: aquamarine;
+  // margin-bottom: 100px;
+  height: 40vw;
+  width: 30vw;
 }
