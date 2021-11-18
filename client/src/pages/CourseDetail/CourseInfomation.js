@@ -98,12 +98,13 @@ function CourseInfomation (props){
       
         course_price: 5000,
         member_limit: 50,
-        member_count: 12, //人數
-        course_score: 4.3,//分數
-        course_percent:200,//評論人數
+        member_count: 12, //現在人數　　原本沒有我新增的
+        course_score: 4.3,//分數　　　　原本沒有我新增的
+        course_percent:200,//評論人數　 原本沒有我新增的
         course_hour: 8,
         course_level: "1", // 1, 2, 3 (高階 中階 初階)
         company_name: "日本東京築地名店", // 餐廳名稱
+        // https://dotblogs.com.tw/shadow/2011/02/18/21442　之後google map我應該會照這網站弄去試試看
         company_address: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1520.754417225542!2d121.19166239369804!3d24.96666082528404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468236c3548196b%3A0x596f83296c212a97!2z5ZyL56uL5Lit5aSu5aSn5a245bel56iL5LqM6aSo!5e0!3m2!1szh-TW!2stw!4v1635685487815!5m2!1szh-TW!2stw", // 餐廳地址, 供google地圖搜尋
         course_name: "築地創意壽司", // 課程名稱
         course_chef: "佐藤真一",
