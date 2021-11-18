@@ -20,8 +20,6 @@ import CalendarAvailable from "../../components/CalendarAvailable";
 
 import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
-import { HiClock } from "react-icons/hi";
-import { MdArrowDropUp } from "react-icons/md"
 import { ImFacebook2 } from "react-icons/im"
 import { GrInstagram } from "react-icons/gr"
 
@@ -48,6 +46,7 @@ function CourseInfomation (props){
   const onChange = (e) => {
     console.log(e);
     setBatch(e)
+    //之後我會加個判斷，現在會預設是今天的日期
   };
 
     const newCourseJSON = {
@@ -115,10 +114,6 @@ function CourseInfomation (props){
       
         // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
         course_batch: [
-            "2021-11-12",
-            "2021-11-13",
-            "2021-11-15",
-            "2021-11-16",
             "2021-11-20",
             "2021-11-23",
             "2021-11-24",
@@ -141,10 +136,11 @@ function CourseInfomation (props){
     return(
         <>
         <CourseHeaderPicture 
-            image1 = {Food1}
+            image1 = {Food1}　
             image2 = {Food2}
             image3 = {Food3}
         />
+
     <div className="Coursedetail-set">
       <div className="Coursedetail-container">
         <div className="Coursedetail">
@@ -155,7 +151,7 @@ function CourseInfomation (props){
                 <div className="Coursedetail-quota"><span>本梯次總名額&nbsp;{newCourseJSON.member_limit}&nbsp;位&nbsp;/&nbsp;剩餘名額&nbsp;{newCourseJSON.member_limit-newCourseJSON.member_count}&nbsp;位</span></div>
                 <StarGroup Score={newCourseJSON.course_score} percent={newCourseJSON.course_percent}/>
                 <div className="Coursedetail-allTime"><span>課程時數&nbsp;:&nbsp;{newCourseJSON.course_hour}&nbsp;小時</span></div>  
-                <div className="Coursedetail-iconSvg"><a href={newCourseJSON.course_fb} target="_blank" alt=""><ImFacebook2 /></a><a href={newCourseJSON.course_ig} target="_blank" alt=""><GrInstagram /></a></div>
+                <div className="Coursedetail-iconSvg"><a href={newCourseJSON.course_fb}　alt=""><ImFacebook2 /></a><a href={newCourseJSON.course_ig}  alt=""><GrInstagram /></a></div>
             </div>
 
             <div className="Coursedetail-infoLeft">
@@ -180,7 +176,7 @@ function CourseInfomation (props){
                   <CalendarAvailable 
                          onChange={onChange}
                          availableDays={newCourseJSON.course_batch}
-                         setBool = {setMap}
+                         setIsCalendarOpen = {setMap}
                     /> 
                    {console.log(onChange)}
                     <div><p>選擇梯次日期：{batch}</p><p>{newCourseJSON.time_of_course}</p></div>
