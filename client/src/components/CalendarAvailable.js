@@ -17,6 +17,7 @@ let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期�
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
 // 需傳入 setIsCalendarOpen 函式，會自動回傳當前日曆的啟閉狀態
 const CalendarAvailable = (props) => {
+
   const { onChange, availableDays, setIsCalendarOpen } = props;
 
   // 判斷是否為初次渲染
@@ -122,6 +123,11 @@ const CalendarAvailable = (props) => {
       );
     }
   }, [currentDay]);
+  //給詳細頁面Map抓開關
+  useEffect(() => {
+    setIsCalendarOpen(calendarOpen)
+  }, [calendarOpen]);
+
 
   // 將選定的日期送出
   useEffect(() => {

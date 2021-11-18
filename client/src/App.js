@@ -8,7 +8,7 @@ import Login from "./components/member/Login";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 
-import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture";
+import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
