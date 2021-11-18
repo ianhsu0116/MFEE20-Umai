@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 
 import sliderBasic from "../../components/images/sliderBasic.png";
+import imageBasic from "../../components/images/imageBasic.png";
 import ChefCard from "../../components/ChefCard";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
@@ -331,7 +332,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[0]}
+                        src={sixDishesImage[0] || imageBasic}
                         alt=""
                         className={
                           course === 0
@@ -359,7 +360,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[1]}
+                        src={sixDishesImage[1] || imageBasic}
                         alt=""
                         className={
                           course === 1
@@ -387,7 +388,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[2]}
+                        src={sixDishesImage[2] || imageBasic}
                         alt=""
                         className={
                           course === 2
@@ -417,7 +418,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[3]}
+                        src={sixDishesImage[3] || imageBasic}
                         alt=""
                         className={
                           course === 3
@@ -445,7 +446,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[4]}
+                        src={sixDishesImage[4] || imageBasic}
                         alt=""
                         className={
                           course === 4
@@ -473,7 +474,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={sixDishesImage[5]}
+                        src={sixDishesImage[5] || imageBasic}
                         alt=""
                         className={
                           course === 5

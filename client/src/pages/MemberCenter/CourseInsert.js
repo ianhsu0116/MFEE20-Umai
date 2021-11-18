@@ -115,81 +115,6 @@ const CourseInsert = (props) => {
     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
     course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
   });
-  // const [courseDetail, setCourseDetail] = useState({
-  //   slider_images: ["img_name", "img_name", "img_name"],
-  //   time_of_course: "平日上午10:30 ~ 下午04:00",
-  //   course_ig: "https://www.instagram.com/",
-  //   course_fb: "https://www.facebook.com/",
-  //   title1_1: "課程標題一",
-  //   title1_2: "課程標題ㄧ二",
-  //   content1: "介紹內容1介紹內容1",
-  //   title2: "標題2號(六道菜部分)標題2號(六道菜部分)",
-  //   six_dishes: [
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "菜色標題",
-  //       dishes_content: "菜色介紹\n菜色介紹\n菜色介紹\n",
-  //     },
-  //   ],
-  //   content2: "費用包含內容",
-  //   content3: "注意事項說明",
-
-  //   // 下方是table內的獨立欄位，不是存在json內
-  //   course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
-  //   course_name: "這是高級牛排課",
-  //   course_price: 1000,
-  //   course_hour: 8,
-  //   course_level: "1", // 1, 2, 3 (高階 中階 初階)
-  //   member_limit: 30,
-  //   company_name: "超棒餐廳",
-  //   company_address: "台北車站",
-  //   category_id: "1",
-  //   member_id: "1",
-  //   course_batch: [""],
-
-  //   member_count: 0, //現在人數　　原本沒有我新增的
-  //   course_score: 5, //分數　　　　原本沒有我新增的
-  //   course_percent: 0, //評論人數　 原本沒有我新增的
-  //   course_chef: `${currentUser.first_name} ${currentUser.last_name}`, //主廚名稱　 原本沒有我新增的
-  // });
-
-  // 儲存slider上傳的圖片(二元編碼 即時顯示使用)
-  // const [sliderImage, setSliderImage] = useState(["", "", ""]);
-
-  // 儲存課程教材(six_dishes)上傳的圖片(二元編碼 即時顯示用)
-  // const [sixDishesImage, setSixDishesImage] = useState([
-  //   "",
-  //   "",
-  //   "",
-  //   "",
-  //   "",
-  //   "",
-  // ]);
 
   // 即時抓取input輸入的內容
   const handleCourseChange = (e) => {
@@ -388,7 +313,7 @@ const CourseInsert = (props) => {
         <div className="CourseInsert-container-row">
           <div className="CourseInsert-container-row-inputCon">
             <label className="CourseInsert-container-row-inputCon-label">
-              Slider圖片
+              幻燈片圖片(Slider)
             </label>
             <div className="CourseInsert-container-row-inputCon-sliderImage">
               {sliderArray.map((item, index) => (
