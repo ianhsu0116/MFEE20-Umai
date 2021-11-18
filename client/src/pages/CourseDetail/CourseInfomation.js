@@ -28,7 +28,7 @@ function CourseInfomation (props){
     const [courseFoodTitle, setCourseFoodTitle] = useState("") //六標題
     const [color , setColor] = useState("Coursedetail-chepBoxInfomation Coursedetail-colorActive")
     const [map , setMap] = useState(false)
-    const [batch , setBatch] = useState()
+    const [batch , setBatch] = useState("尚未選擇")
 
     window.addEventListener("click", (e) => {
         setMap(false);
@@ -104,8 +104,8 @@ function CourseInfomation (props){
         course_hour: 8,
         course_level: "1", // 1, 2, 3 (高階 中階 初階)
         company_name: "日本東京築地名店", // 餐廳名稱
-        // https://dotblogs.com.tw/shadow/2011/02/18/21442　之後google map我應該會照這網站弄去試試看
-        company_address: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1520.754417225542!2d121.19166239369804!3d24.96666082528404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468236c3548196b%3A0x596f83296c212a97!2z5ZyL56uL5Lit5aSu5aSn5a245bel56iL5LqM6aSo!5e0!3m2!1szh-TW!2stw!4v1635685487815!5m2!1szh-TW!2stw", // 餐廳地址, 供google地圖搜尋
+        // https://dotblogs.com.tw/shadow/2011/02/18/21442　之後google 我應該會照這網站弄
+        company_address: "國立中央大學依仁堂", // 餐廳地址, 供google地圖搜尋 地址或名稱都行，建議地址比較準確，除非確定地圖名稱沒有重複
         course_name: "築地創意壽司", // 課程名稱
         course_chef: "佐藤真一",
 
@@ -115,6 +115,7 @@ function CourseInfomation (props){
       
         // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
         course_batch: [
+            "2021-11-18",
             "2021-11-20",
             "2021-11-23",
             "2021-11-24",
@@ -128,11 +129,10 @@ function CourseInfomation (props){
             "2021-12-04",
             "2021-12-05",
           ], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
-
-
-
       };
-      
+
+
+      let googleMap = "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q="+(newCourseJSON.company_address)+"&z=16&output=embed&t="; 
     
     return(
         <>
@@ -168,7 +168,7 @@ function CourseInfomation (props){
                 <div className="Coursedetail-infoLeftTitle">{newCourseJSON.course_name}</div>
                 <div className="Coursedetail-placeWithChef">
                     <ul>
-                        <li className={map === true ? 'Coursedetail-infoLeftPlace Coursedetail-mapClose':'Coursedetail-infoLeftPlace'}><IoLocationSharp />{newCourseJSON.company_name}<iframe src={newCourseJSON.company_address} alt="" title="這是地圖">地圖</iframe></li>
+                        <li className={map === true ? 'Coursedetail-infoLeftPlace Coursedetail-mapClose':'Coursedetail-infoLeftPlace'}><IoLocationSharp />{newCourseJSON.company_name}<iframe src={googleMap} alt="" title="這是地圖">地圖</iframe></li>
                         <li><a href="#chef" alt="" target="_parent"><GiCook />{newCourseJSON.course_chef}</a></li>
                     </ul> 
                 </div>
