@@ -79,7 +79,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
-          <CourseStar />
+
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />

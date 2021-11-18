@@ -218,6 +218,7 @@ a {
 @import "./member/CollectionArticle";
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
+@import "./member/CourseReview";
 
 // masonry相關
 @import "./forum/massonry";
@@ -250,21 +251,21 @@ a {
     }
   }
   .CourseDetail-headerPicture {
-		width: 90%;
-		img {
-			height: 35vw;
-		}
-	}
-	.Coursedetail {
-		/* 三圖片大框 */
-		.Coursedetail-header {
-			width: 90%;
-			height: 35vw;
-		}
-	}
-	.Coursedetail-set {
-		.Coursedetail-container {
-			width: 90%;
-		}
-	}
+    width: 90%;
+    img {
+      height: 35vw;
+    }
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+    .Coursedetail-header {
+      width: 90%;
+      height: 35vw;
+    }
+  }
+  .Coursedetail-set {
+    .Coursedetail-container {
+      width: 90%;
+    }
+  }
 }
