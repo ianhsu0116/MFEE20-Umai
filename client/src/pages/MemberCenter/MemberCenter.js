@@ -39,7 +39,7 @@ const MemberCenter = (props) => {
     title1_1: "課程標題一",
     title1_2: "課程標題ㄧ二",
     content1: "介紹內容1介紹內容1",
-    title2: "標題2號(六道菜部分)標題2號(六道菜部分)",
+    title2: "標題2號(六道菜部分)",
     six_dishes: [
       {
         dishes_image: "img_name",
