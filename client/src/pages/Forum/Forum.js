@@ -34,7 +34,7 @@ const Forum = () => {
     "確認付款.jpg",
     "avatar.jpg",
   ]);
-  
+
   return (
     <>
       <div className="wrapper">
@@ -52,7 +52,7 @@ const Forum = () => {
                   className="Forum-main-photo"
                   onClick={handleShow}
                   src={require(`./../../components/images/${image}`).default}
-                  alt="cake"
+                  alt="drink"
                 ></img>
                 <div className="Forum-main-middle">
                   <div className="Forum-main-DateAndDropdown">
