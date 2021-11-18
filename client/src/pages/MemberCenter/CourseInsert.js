@@ -89,6 +89,7 @@ const CourseInsert = (props) => {
     content3: "", // 注意事項說明
 
     // 下方是table內的獨立欄位，不是存在json內
+    course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
     course_name: "", // 課程名稱
     course_price: 0,
     course_hour: 0,
@@ -149,6 +150,7 @@ const CourseInsert = (props) => {
     content3: "注意事項說明",
 
     // 下方是table內的獨立欄位，不是存在json內
+    course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
     course_name: "這是高級牛排課",
     course_price: 1000,
     course_hour: 8,
