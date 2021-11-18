@@ -139,7 +139,7 @@ const DefaultStudent = (props) => {
           />
         </div>
         <header className="DefaultStudent-container-header">
-          <h2>已存儲</h2>
+          <h2>已儲存</h2>
         </header>
         <div className="DefaultStudent-container-cards DefaultStudent-container-cards-bottom">
           {allStudents.map((data, index) => (

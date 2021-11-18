@@ -10,7 +10,7 @@ import CollectionCoupons from "./CollectionCoupons";
 import CollectionArticle from "./CollectionArticle";
 import CourseInsert from "./CourseInsert";
 
-import CourseInfomation from "./CourseReview";
+import CourseReview from "./CourseReview";
 
 const MemberCenter = (props) => {
   let { currentUser, setCurrentUser } = props;
@@ -91,7 +91,9 @@ const MemberCenter = (props) => {
     member_count: 0, //現在人數　　原本沒有我新增的
     course_score: 5, //分數　　　　原本沒有我新增的
     course_percent: 0, //評論人數　 原本沒有我新增的
-    course_chef: `${currentUser.first_name} ${currentUser.last_name}`, //主廚名稱　 原本沒有我新增的
+    course_chef: currentUser
+      ? `${currentUser.first_name} ${currentUser.last_name}`
+      : "主廚名稱", //主廚名稱　 原本沒有我新增的
   });
 
   // 課程新增頁面 => 儲存slider上傳的圖片(二元編碼 即時顯示使用)
@@ -151,7 +153,7 @@ const MemberCenter = (props) => {
 
         {/* 課程新增頁面的即時預覽頁面 */}
         {isReview && (
-          <CourseInfomation
+          <CourseReview
             courseDetail={courseDetail}
             sliderImage={sliderImage}
             sixDishesImage={sixDishesImage}
