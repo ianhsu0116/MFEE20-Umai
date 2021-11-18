@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 import MemberSidebar from "../../components/member/MemberSidebar";
 import MemberInfo from "./MemberInfo";
 import DefaultStudent from "./DefaultStudent";
@@ -10,7 +11,19 @@ import CollectionArticle from "./CollectionArticle";
 import CourseInsert from "./CourseInsert";
 
 const MemberCenter = (props) => {
-  const [currentBoard, setCurrentBoard] = useState("會員資訊"); // 各個看板active狀態
+  let { currentUser, setCurrentUser } = props;
+
+  // 確認當前登入狀態
+  const history = useHistory();
+  useEffect(async () => {
+    // 如果當前沒有使用者的話，直接導回首頁
+    if (!currentUser) {
+      return history.push("/");
+    }
+  }, []);
+
+  // 紀錄當前正在瀏覽的看板
+  const [currentBoard, setCurrentBoard] = useState("會員資訊");
 
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
@@ -22,15 +35,34 @@ const MemberCenter = (props) => {
         <MemberSidebar
           currentBoard={currentBoard}
           setCurrentBoard={setCurrentBoard}
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
         />
-        {currentBoard === "會員資訊" && <MemberInfo />}
-        {currentBoard === "預設學員" && <DefaultStudent />}
-        {currentBoard === "訂單資訊" && <OrderInfo />}
-        {currentBoard === "收藏課程" && <CollectionCourse />}
-        {currentBoard === "收藏文章" && <CollectionArticle />}
-        {currentBoard === "優惠券" && <CollectionCoupons />}
+        {currentBoard === "會員資訊" && (
+          <MemberInfo
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
+        {currentBoard === "預設學員" && (
+          <DefaultStudent currentUser={currentUser} />
+        )}
+        {currentBoard === "訂單資訊" && <OrderInfo currentUser={currentUser} />}
+        {currentBoard === "收藏課程" && (
+          <CollectionCourse currentUser={currentUser} />
+        )}
+        {currentBoard === "收藏文章" && (
+          <CollectionArticle currentUser={currentUser} />
+        )}
+        {currentBoard === "優惠券" && (
+          <CollectionCoupons currentUser={currentUser} />
+        )}
         {currentBoard === "新增課程" && (
-          <CourseInsert isReview={isReview} setIsReview={setIsReview} />
+          <CourseInsert
+            isReview={isReview}
+            setIsReview={setIsReview}
+            currentUser={currentUser}
+          />
         )}
       </div>
     </div>

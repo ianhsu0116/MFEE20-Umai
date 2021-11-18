@@ -150,5 +150,11 @@
         }
       }
     }
+
+    .CourseInsert-container-btnCon {
+      width: 100%;
+      @include flex(row);
+      justify-content: flex-end;
+    }
   }
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
-import ChefCard from "./components/ChefCard";
-import CourseMiniCard from "./components/CourseMiniCard";
-import ShareCard from "./components/ShareCard";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 import Masonry from "./pages/Masonry/Masonry";
@@ -12,34 +10,42 @@ import Discussion from "./pages/Forum/Discussion";
 import Try from "./pages/Try";
 
 import About from "./pages/About/About";
-
 import Course from "./pages/Course/Course";
 
-import CourseDetail from "./pages/CourseDetail/CourseHeaderPicture"
-
+import CourseDetail from "./pages/CourseDetail/CourseInfomation";
+import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
-
+import ChefCard from "./components/ChefCard";
+import CourseMiniCard from "./components/CourseMiniCard";
+import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
 
 function App() {
-  let [showLogin, setShowLogin] = useState(false);
+  // 存取當前登入中的使用者資料
+  const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
+  // 登入視窗開關狀態
+  const [showLogin, setShowLogin] = useState(false);
 
-  // 開啟Login Container
+  // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
     e.stopPropagation();
     setShowLogin(true);
+    document.querySelector("body").classList.add("stopScroll");
   };
 
-  // 點擊任意處關閉login container
+  // 點擊任意處關閉login container(登入視窗)
   useEffect(() => {
     window.addEventListener("click", (e) => {
       setShowLogin(false);
+      document.querySelector("body").classList.remove("stopScroll");
     });
   }, []);
 
+  // ==================== 共用元件展示用ㄉ東西 ======================
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     console.log(e);
@@ -66,28 +72,35 @@ function App() {
 
   return (
     <Router>
-      <Navbar handleLoginClick={handleLoginClick} />
-      {showLogin && <Login />}
+      <Navbar handleLoginClick={handleLoginClick} currentUser={currentUser} />
+      {showLogin && (
+        <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
+      )}
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
+          <CourseStar />
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />
           <CourseMiniCard />
           <StarGroup percent={96} allScore={50} />
           <h4>一般萬年曆</h4>
-          <Calendar onChange={onChange} />
+          {/* <Calendar onChange={onChange} /> */}
           <h4>顯示可預訂日期的萬年曆</h4>
           <CalendarAvailable
             onChange={onChange}
             availableDays={availableDays}
+            setIsCalendarOpen={setIsCalendarOpen}
           />
           <h4>可多選萬年曆</h4>
-          <CalendarMulti onChange={onChange} />
+          {/* <CalendarMulti onChange={onChange} /> */}
         </Route>
         <Route path="/memberCenter" exact>
-          <MemberCenter />
+          <MemberCenter
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
         </Route>
 
         <Route path="/masonry" exact>
