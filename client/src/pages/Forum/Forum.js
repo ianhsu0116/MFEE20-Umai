@@ -26,7 +26,7 @@ const array = [
   "確認付款.jpg",
   "avatar.jpg",
 ];
-
+console.log("test");
 const Forum = () => {
   const [show, setShow] = useState(false);
 
