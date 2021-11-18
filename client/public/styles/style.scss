@@ -219,6 +219,12 @@ a {
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
 
+// masonry相關
+@import "./forum/massonry";
+// forum 相關
+@import "./forum/forum";
+@import "./forum/discussion";
+
 // 課程分類
 @import "./course/Course";
 @import "./course/CourseCard_Course";
