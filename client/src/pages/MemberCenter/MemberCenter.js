@@ -36,10 +36,10 @@ const MemberCenter = (props) => {
     time_of_course: "範例：平日上午10:30 ~ 下午04:00",
     course_ig: "https://www.instagram.com/",
     course_fb: "https://www.facebook.com/",
-    title1_1: "課程標題一",
-    title1_2: "課程標題ㄧ二",
+    title1_1: "課程標題 1-1",
+    title1_2: "課程標題 1-2",
     content1: "介紹內容1介紹內容1",
-    title2: "標題2號(六道菜部分)",
+    title2: "標題 - 2(六種課程教材部分)",
     six_dishes: [
       {
         dishes_image: "img_name",
@@ -151,7 +151,7 @@ const MemberCenter = (props) => {
           />
         )}
 
-        {/* 課程新增頁面的即時預覽頁面 */}
+        {/* 課程新增頁內的即時預覽頁面 */}
         {isReview && (
           <CourseReview
             courseDetail={courseDetail}
