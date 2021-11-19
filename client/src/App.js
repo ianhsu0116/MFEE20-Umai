@@ -7,7 +7,6 @@ import Login from "./components/member/Login";
 import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
-import Try from "./pages/Try";
 
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
@@ -112,9 +111,6 @@ function App() {
         <Route path="/Discussion" exact>
           <Discussion />
         </Route>
-        <Route path="/Try" exact>
-          <Try />
-
         <Route path="/course/category" exact>
           <Course />
         </Route>
