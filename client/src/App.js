@@ -115,7 +115,7 @@ function App() {
         </Route>
         <Route path="/Try" exact>
           <Try />
-
+        </Route>
         <Route path="/course/category" exact>
           <Course />
         </Route>
