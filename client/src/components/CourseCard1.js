@@ -72,11 +72,12 @@ const CourseCard1 = (props) => {
         <StarGroup scorePercent={scorePercent} allScore={allScore} />
         <div className="CourseCard1-detailCon-company">
           <IoLocationSharp />
-          {courseDetail.company_name} <GiCook />
-          廚師名稱
+          {courseDetail.company_name}
+          <GiCook />
+          {courseDetail.first_name + " " + courseDetail.last_name}
         </div>
         <div className="CourseCard1-detailCon-courseTime">
-          最近可上課日期：{parseDate}
+          最近可報名梯次：{parseDate}
         </div>
         <div className="CourseCard1-detailCon-MemberCount">
           <div className="CourseCard1-detailCon-MemberCount-progressCon">

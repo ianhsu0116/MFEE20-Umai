@@ -12,7 +12,7 @@ const CollectionCourse = (props) => {
   // 拿到此會員的收藏課程
   useEffect(async () => {
     try {
-      let result = await CourseService.course_memeberId(currentUser.id);
+      let result = await CourseService.course_collection(currentUser.id);
       setCurrentCourses(result.data.course);
     } catch (error) {
       console.log(error.response);
