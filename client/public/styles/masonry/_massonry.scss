@@ -1,0 +1,223 @@
+$width: 5px;
+.massonry-title {
+  margin: 0 auto;
+  // max-width: 1920px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .massonry-title-inside {
+    width: 70%;
+    .massonry-title-inside-bread {
+      margin-top: 1rem;
+    }
+    .massonry-title-inside-header {
+      text-align: left;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      color: #d8a466;
+    }
+    .st-line {
+      border: 3px solid #d8a466;
+      border-radius: 10px;
+      margin: 15px 0px;
+    }
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
+  // max-width: 1920px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  .masonry {
+    max-width: 70%;
+    column-count: 5;
+
+    .item {
+      overflow: hidden;
+      background: white;
+      // border-radius: 10px;
+      margin-bottom: 10px;
+      -webkit-column-break-inside: auto; /* Chrome, Safari, Opera */
+      page-break-inside: avoid; /* Firefox */
+      break-inside: auto; /* IE 10+ */
+      position: relative;
+      display: inline-block;
+      img {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+      .opacity {
+        position: absolute;
+        top: 0;
+        border-radius: 20px;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+.Massonry-modal {
+  align-items: center;
+  // width: 100vw;
+  .Massonry-modal-header {
+    font-size: 30px;
+
+    background: white;
+  }
+  .Massonry-modal-body {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    padding: 0;
+
+    .Massonry-modal-body-image-border {
+      // background: black;
+      width: 70%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .Massonry-modal-body-image {
+        width: 100%;
+      }
+    }
+    .Massonry-modal-body-textgrop {
+      width: 30%;
+      height: 100%;
+      background: burlywood;
+      padding: 1rem 2rem;
+      .Massonry-modal-body-owner {
+        border-bottom: white 1px solid;
+        .Massonry-modal-body-owner-account-block {
+          display: flex;
+          align-items: center;
+          .Massonry-modal-body-orner-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+          .Massonry-modal-body-owner-account {
+            padding: 1rem;
+          }
+        }
+        .Massonry-modal-body-orner-text {
+          min-height: 40vh;
+          color: white;
+        }
+        .Massonry-modal-body-orner-logo {
+          display: flex;
+          align-items: center;
+          .AiOutlineHeart {
+            color: #eb6b6a;
+            padding-right: $width;
+          }
+          .AiOutlineMessage {
+            color: #5eb2eb;
+            padding-right: $width;
+          }
+          .Massonry-modal-body-orner-icon-p {
+            // font-size: 1.5rem;
+            padding-right: $width;
+            color: white;
+          }
+        }
+      }
+      .Massonry-modal-body-critic {
+        border-bottom: white 1px solid;
+        .Massonry-modal-body-critic-account-block {
+          display: flex;
+          align-items: center;
+          .Massonry-modal-body-critic-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+          .Massonry-modal-body-critic-account {
+            padding: 1rem;
+          }
+        }
+        .Massonry-modal-body-critic-text {
+          min-height: 10vh;
+          color: white;
+        }
+        .Massonry-modal-body-critic-logo {
+          display: flex;
+          align-items: center;
+          .AiOutlineHeart {
+            color: #eb6b6a;
+            padding-right: $width;
+          }
+          .AiOutlineMessage {
+            color: #5eb2eb;
+            padding-right: $width;
+          }
+          .Massonry-modal-body-critic-icon-p {
+            // font-size: 1.5rem;
+            padding-right: $width;
+            color: white;
+          }
+        }
+      }
+      .Massonry-modal-body-commet {
+        border-bottom: white 1px solid;
+        .Massonry-modal-body-commet-account-block {
+          display: flex;
+          align-items: center;
+          .Massonry-modal-body-commet-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+          .Massonry-modal-body-commet-account {
+            padding: 1rem;
+          }
+        }
+        .Massonry-modal-body-commet-text {
+          min-height: 10vh;
+          color: white;
+        }
+        .Massonry-modal-body-commet-logo {
+          display: flex;
+          align-items: center;
+          .AiOutlineHeart {
+            color: #eb6b6a;
+            padding-right: $width;
+          }
+          .AiOutlineMessage {
+            color: #5eb2eb;
+            padding-right: $width;
+          }
+          .Massonry-modal-body-commet-icon-p {
+            // font-size: 1.5rem;
+            padding-right: $width;
+            color: white;
+          }
+        }
+        .Forum-modal-body-commet-p {
+          width: 100%;
+          border: none;
+          outline: none;
+          border-radius: 5%;
+          min-height: 5vh;
+          max-height: 10vh;
+        }
+      }
+    }
+  }
+}

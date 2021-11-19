@@ -57,16 +57,44 @@ router.get("/testAPI", async (req, res) => {
   return res.json(msgObj);
 });
 
-// 依照使用者id拿取課程資料
-router.get("/:member_id", async (req, res) => {
+// 依照使用者id拿取課程資料 (有join category )
+router.get("/member/:member_id", async (req, res) => {
   let { member_id } = req.params;
 
   try {
     let result = await connection.queryAsync(
-      "SELECT * FROM course WHERE member_id = ? AND valid = ?",
+      "SELECT course.*, course_category.category_name FROM course, course_category WHERE course.category_id = course_category.id AND course.member_id = ? AND course.valid = ?",
       [member_id, 1]
     );
+
     res.status(200).json({ success: true, course: result });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
+// 依照課程id拿到課程詳細資料 (包含課程詳細，所有梯次，主廚是誰)
+router.get("/:course_id", async (req, res) => {
+  let { course_id } = req.params;
+
+  try {
+    // 拿到課程詳細資料(有join category, member)
+    let course = await connection.queryAsync(
+      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
+      [course_id, 1]
+    );
+
+    // 課程的所有梯次
+    let course_batch = [];
+    if (course.length !== 0) {
+      course_batch = await connection.queryAsync(
+        "SELECT * FROM course_batch WHERE course_id = ? AND valid = ?",
+        [course_id, 1]
+      );
+    }
+
+    res.status(200).json({ success: true, course, course_batch });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
@@ -134,6 +162,9 @@ router.post("/", authCheck, uploader.array("images"), async (req, res) => {
     course_detail,
   } = req.body;
 
+  // 課程卡片首圖預設值
+  let course_image;
+
   // 將JSON解析回原本的data type
   course_batch = JSON.parse(course_batch);
   course_detail = JSON.parse(course_detail);
@@ -145,6 +176,11 @@ router.post("/", authCheck, uploader.array("images"), async (req, res) => {
     } else {
       course_detail.slider_images.push(file.filename);
     }
+
+    // 課程卡片的首圖 (拿slider的第一張圖來用)
+    if (index === 6) {
+      course_image = file.filename;
+    }
   });
 
   // JSON打包好後，再stringify，才能存入DB
@@ -154,12 +190,13 @@ router.post("/", authCheck, uploader.array("images"), async (req, res) => {
   try {
     // 存入資料庫（課程）
     let result = await connection.queryAsync(
-      "INSERT INTO course (member_id,category_id,course_detail,course_name,course_price,course_hour,course_level,member_limit,company_name,company_address, created_time, valid) VALUES (?)",
+      "INSERT INTO course (member_id,category_id,course_detail,course_image,course_name,course_price,course_hour,course_level,member_limit,company_name,company_address, created_time, valid) VALUES (?)",
       [
         [
           id,
           category_id,
           course_detail,
+          course_image,
           course_name,
           course_price,
           course_hour,

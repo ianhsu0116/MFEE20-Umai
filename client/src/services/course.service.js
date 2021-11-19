@@ -9,10 +9,15 @@ class CourseService {
   // 拿到所有課程資料
 
   // 依照course_id拿到課程資料
+  course_courseId(course_id) {
+    return axios.post(AUTH_API_URL + `/${course_id}`, {
+      withCredentials: true,
+    });
+  }
 
   // 依照member_id拿到課程
   course_memeberId(member_id) {
-    return axios.post(AUTH_API_URL + `/${member_id}`, {
+    return axios.post(AUTH_API_URL + `/member/${member_id}`, {
       withCredentials: true,
     });
   }
@@ -92,7 +97,7 @@ class CourseService {
     formData.append("course_batch", JSON.stringify(course_batch));
     formData.append("course_detail", JSON.stringify(course_detail));
 
-    // 六張圖 + slider圖片
+    // 六張圖 + slider圖片 （一定要先放六張圖再放slider）
     // 六張圖
     courseData.six_dishes.forEach((file) => {
       formData.append("images", file.dishes_image);
