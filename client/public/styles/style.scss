@@ -230,6 +230,9 @@ a {
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
 
+// 主廚
+@import "./chef/chef";
+
 // RWD
 @media screen and (max-width: 1200px) {
   .Navbar {
@@ -261,4 +264,7 @@ a {
 			width: 90%;
 		}
 	}
+  .chef-set{
+    width: 90%;
+  }
 }

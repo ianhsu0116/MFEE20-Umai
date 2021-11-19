@@ -7,6 +7,7 @@ import Login from "./components/member/Login";
 
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
+import Chef from "./pages/Chef/Chef"
 
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
@@ -80,15 +81,15 @@ function App() {
           <ChefCard />
           <ShareCard />
           <CourseMiniCard />
-          <StarGroup percent={96} allScore={50} />
+          {/* <StarGroup percent={96} allScore={50} /> */}
           <h4>一般萬年曆</h4>
           {/* <Calendar onChange={onChange} /> */}
-          <h4>顯示可預訂日期的萬年曆</h4>
+          {/* <h4>顯示可預訂日期的萬年曆</h4>
           <CalendarAvailable
             onChange={onChange}
             availableDays={availableDays}
             setIsCalendarOpen={setIsCalendarOpen}
-          />
+          /> */}
           <h4>可多選萬年曆</h4>
           {/* <CalendarMulti onChange={onChange} /> */}
         </Route>
@@ -106,6 +107,9 @@ function App() {
         </Route>
         <Route path="/course/:course_id" exact>
           <CourseDetail />
+        </Route>
+        <Route path="/chef" exact>
+          <Chef />
         </Route>
       </Switch>
     </Router>
