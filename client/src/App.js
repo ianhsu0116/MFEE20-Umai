@@ -9,7 +9,7 @@ import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
 import Try from "./pages/Try";
 
-import About from "./pages/About/About";
+import About from "./pages/About/About"
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef"
 

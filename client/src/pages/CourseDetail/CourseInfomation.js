@@ -209,7 +209,7 @@ function CourseInfomation(props) {
                       <Link to="/course">課程探索</Link>
                     </li>
                     <li>{">"}</li>
-                    <li className="Coursedetail-infoLeft-breadcrumb-name">
+                    <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
                       {newCourseJSON.course_name}
                     </li>
                   </ul>
@@ -226,8 +226,10 @@ function CourseInfomation(props) {
                           : "Coursedetail-infoLeftPlace"
                       }
                     >
+                     <a href={googleMap} alt="" target="_parent">
                       <IoLocationSharp />
                       {newCourseJSON.company_name}
+                      </a>
                       <iframe src={googleMap} alt="" title="這是地圖">
                         地圖
                       </iframe>
