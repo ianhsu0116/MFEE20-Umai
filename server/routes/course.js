@@ -18,6 +18,7 @@ router.use((req, res, next) => {
 
 // multer
 const multer = require("multer");
+const { connect } = require("../utils/database");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "..", "public", "upload-images"));
@@ -57,15 +58,74 @@ router.get("/testAPI", async (req, res) => {
   return res.json(msgObj);
 });
 
-// 依照使用者id拿取課程資料 (有join category )
+// 依照member_id (一般會員) 拿到此會員收藏的課程
+router.get("/collection/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+
+  try {
+    // 先從collection table找到所有收藏的課程id
+    let course_ids = await connection.queryAsync(
+      "SELECT course_id FROM cart_and_collection WHERE member_id = ? AND inCollection = ?",
+      [member_id, 1]
+    );
+
+    // 沒找到任何課程的話
+    if (course_ids.length === 0)
+      return res.status(200).json({ success: true, course: [] });
+
+    // 有找到的話
+    let course_data = [];
+    // course_ids.forEach(async (item) => {
+    //   let { course_id } = item;
+    //   let result = await connection.queryAsync(`SELECT `)
+    // })
+
+    res.send(course_ids);
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
+// 依照member_id (主廚) 拿取課程資料
+// (有join category, comment => 抓評分, batch的最近一批梯次)
 router.get("/member/:member_id", async (req, res) => {
   let { member_id } = req.params;
 
   try {
+    // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name FROM course, course_category WHERE course.category_id = course_category.id AND course.member_id = ? AND course.valid = ?",
+      "SELECT course.*, course_category.category_name, SUM(course_comment.score) AS csore_sum, COUNT(course_comment.score) AS csore_count FROM course, course_category, course_comment WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = ? AND course.valid = ? GROUP BY course.id ",
       [member_id, 1]
     );
+
+    // 每個課程的id
+    let id_array = result.map((item) => item.id);
+    // 裝所有個別課程的最近一筆梯次的Array
+    let closest_batchs = [];
+    // 現在時間
+    let now = new Date();
+
+    // 抓到每筆課程的每個梯次(今日以後的所有梯次)
+    let batchs = await connection.queryAsync(
+      `SELECT course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
+      [id_array, 1, now]
+    );
+
+    // 根據每個course_id 抓出此課程的最近一比梯次
+    id_array.forEach((course_id) => {
+      for (let i = 0; i < batchs.length; i++) {
+        if (course_id == batchs[i].course_id) {
+          closest_batchs.push(batchs[i]);
+          break;
+        }
+      }
+    });
+
+    // 把梯次依序裝入course的json中
+    closest_batchs.forEach((item, index) => {
+      result[index].closest_batchs = item;
+    });
 
     res.status(200).json({ success: true, course: result });
   } catch (error) {

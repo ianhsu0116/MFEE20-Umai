@@ -10,14 +10,14 @@ class CourseService {
 
   // 依照course_id拿到課程資料
   course_courseId(course_id) {
-    return axios.post(AUTH_API_URL + `/${course_id}`, {
+    return axios.get(AUTH_API_URL + `/${course_id}`, {
       withCredentials: true,
     });
   }
 
   // 依照member_id拿到課程
   course_memeberId(member_id) {
-    return axios.post(AUTH_API_URL + `/member/${member_id}`, {
+    return axios.get(AUTH_API_URL + `/member/${member_id}`, {
       withCredentials: true,
     });
   }

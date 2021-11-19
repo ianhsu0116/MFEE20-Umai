@@ -19,7 +19,7 @@ const StarGroup = (props) => {
           style={{ width: percent + "%" }}
         />
       </div>
-      <p>({allScore})</p>
+      <p>({allScore || 0})</p>
     </div>
   );
 };
