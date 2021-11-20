@@ -4,6 +4,9 @@ import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
+import Masonry from "./pages/Masonry/Masonry";
+import Forum from "./pages/Forum/Forum";
+import Discussion from "./pages/Forum/Discussion";
 
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
@@ -97,6 +100,16 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
           />
+        </Route>
+
+        <Route path="/masonry" exact>
+          <Masonry />
+        </Route>
+        <Route path="/Forum" exact>
+          <Forum />
+        </Route>
+        <Route path="/Discussion" exact>
+          <Discussion />
         </Route>
         <Route path="/course/category" exact>
           <Course />

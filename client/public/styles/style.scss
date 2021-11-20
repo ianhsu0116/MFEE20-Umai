@@ -220,6 +220,12 @@ a {
 @import "./member/ReviewButton";
 @import "./member/CourseReview";
 
+// masonry相關
+@import "./massonry/massonry";
+// forum 相關
+@import "./forum/forum";
+@import "./forum/discussion";
+
 // 課程分類
 @import "./course/Course";
 @import "./course/CourseCard_Course";
