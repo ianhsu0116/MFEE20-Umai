@@ -3,6 +3,8 @@
 package-lock.json
 /public/styles/style.css
 /public/styles/style.css.map
+
+
 # dependencies
 /node_modules
 /.pnp
@@ -25,8 +27,4 @@ package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-
-
-
 
