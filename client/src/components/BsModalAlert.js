@@ -5,37 +5,37 @@ const BsModalAlert = (props) => {
   let { id, handleDelete } = props;
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id={id}
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
               確定刪除？
             </h5>
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">刪除後無法恢復資料！</div>
-          <div class="modal-footer">
+          <div className="modal-body">刪除後無法恢復資料！</div>
+          <div className="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               data-bs-dismiss="modal"
             >
               取消
             </button>
             <button
               type="button"
-              class="btn btn-danger"
+              className="btn btn-danger"
               data-bs-dismiss="modal"
               onClick={handleDelete}
             >

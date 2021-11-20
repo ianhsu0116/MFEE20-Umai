@@ -10,38 +10,43 @@ import { PUBLIC_URL } from "../config/config";
 let leverArray = ["", "高階", "中階", "初階"];
 
 // 一定需要傳 courseDetail(課程詳細資料) 進來！
+// collectionIds = 當前登入的使用者收藏的所有課程ID array, 有登入的時候再傳進來即可
+// handleAddIntoCollection => 按下愛心 會回傳當前課程id
 const CourseCard1 = (props) => {
-  let { courseDetail } = props;
+  let { courseDetail, collectionIds, handleAddIntoCollection } = props;
 
-  // 存解析過的date
-  const [parseDate, setParseDate] = useState("");
   // 當前課程人數限制
   const [memberLimit, setMemberLimit] = useState("0");
   // 當前最近梯次的報名人數
   const [member, setMember] = useState("0");
+  // 當前課程是否被當前登入的使用者加入收藏
+  const [isCollection, setIsCollection] = useState("");
 
   // 評分
   let [scoreSum, allScore] = [courseDetail.score_sum, courseDetail.score_count];
-
   // 評分趴數
   let scorePercent = (scoreSum / allScore) * 20;
-
   // 報名趴數
   let assignPersent = (member / memberLimit) * 100;
-  // 將拿過來的梯次日期解析成人看得懂的樣子;
-  useEffect(() => {
-    // 日期格式轉換成 YYYY-MM-DD
-    setParseDate(
-      new Date(courseDetail.closest_batchs.batch_date)
-        .toLocaleDateString()
-        .split("/")
-        .join("-")
-    );
 
+  // 初次render做的事情
+  useEffect(() => {
     // 將member及memberLimit裝入
     setMemberLimit(courseDetail.member_limit);
     setMember(courseDetail.closest_batchs.member_count);
-  }, []);
+
+    // 此課程是否被當前使用者收藏
+    if (collectionIds) {
+      let result = "";
+      for (let i = 0; i < collectionIds.length; i++) {
+        if (collectionIds[i] == courseDetail.id) {
+          result = true;
+          break;
+        }
+      }
+      setIsCollection(result);
+    }
+  }, [collectionIds]);
 
   // 加入購物車
   const handleAddIntoCart = (e) => {
@@ -77,7 +82,7 @@ const CourseCard1 = (props) => {
           {courseDetail.first_name + " " + courseDetail.last_name}
         </div>
         <div className="CourseCard1-detailCon-courseTime">
-          最近可報名梯次：{parseDate}
+          最近可報名梯次：{courseDetail.closest_batchs.batch_date}
         </div>
         <div className="CourseCard1-detailCon-MemberCount">
           <div className="CourseCard1-detailCon-MemberCount-progressCon">
@@ -112,7 +117,14 @@ const CourseCard1 = (props) => {
             </span>
           </div>
         </div>
-        <div className="CourseCard1-detailCon-likeBtn">
+        <div
+          className={`CourseCard1-detailCon-likeBtn ${
+            isCollection && " CourseCard1-detailCon-likeBtn-active"
+          }`}
+          onClick={() => {
+            handleAddIntoCollection(courseDetail.id);
+          }}
+        >
           <AiOutlineHeart />
         </div>
       </div>

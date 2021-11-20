@@ -28,19 +28,12 @@ const DefaultStudentCard = (props) => {
 
     // 將拿到的資料放入input
     if (data) {
-      // 先將日期格式轉換成 YYYY-MM-DD
-      let parseBirth = new Date(data.birthday)
-        .toLocaleDateString()
-        .split("/")
-        .join("-");
-      //setDefaultDate(parseBirth);
-
       setNewStudentData({
         id: data.id,
         first_name: data.first_name,
         last_name: data.last_name,
         telephone: data.telephone,
-        birthday: parseBirth,
+        birthday: data.birthday,
         email: data.email,
       });
     }

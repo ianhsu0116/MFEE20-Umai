@@ -51,24 +51,23 @@ const MemberInfo = (props) => {
   // 當currentUser的值存在後，更新資料
   useEffect(() => {
     if (currentUser) {
-      let parseBirth;
-
       // 如果資料有包含生日 （生日預設是Null）
-      if (currentUser.birthday) {
-        // 先將日期格式轉換成 YYYY-MM-DD
-        parseBirth = new Date(currentUser.birthday)
-          .toLocaleDateString()
-          .split("/")
-          .join("-");
-        setDefaultDate(parseBirth);
-      }
+      // let parseBirth;
+      // if (currentUser.birthday) {
+      //   // 先將日期格式轉換成 YYYY-MM-DD
+      //   parseBirth = new Date(currentUser.birthday)
+      //     .toLocaleDateString()
+      //     .split("/")
+      //     .join("-");
+      //   setDefaultDate(parseBirth);
+      // }
 
       // 更新state
       setMemberInfo({
         last_name: currentUser.last_name || "",
         first_name: currentUser.first_name || "",
         telephone: currentUser.telephone || "",
-        birthday: parseBirth || "",
+        birthday: currentUser.birthday || "",
       });
       // 更新state
       setCreditCardsInfo({

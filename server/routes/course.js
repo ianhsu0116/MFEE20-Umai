@@ -313,4 +313,37 @@ router.post("/", authCheck, uploader.array("images"), async (req, res) => {
   }
 });
 
+// 移除或新增收藏課程
+router.post("/collection/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+  let { course_id, type } = req.body;
+
+  // type => true: 移除收藏; false: 加入收藏
+  if (type) {
+    try {
+      let result = await connection.queryAsync(
+        "UPDATE cart_and_collection SET inCollection = ? WHERE member_id = ? AND course_id = ?",
+        [0, member_id, course_id]
+      );
+
+      res.status(200).json({ success: true });
+    } catch (error) {
+      //console.log(error);
+      res.status(500).json({ success: false, code: "E999", message: error });
+    }
+  } else {
+    try {
+      let result = await connection.queryAsync(
+        "INSERT INTO cart_and_collection (member_id, course_id, inCollection) VALUES (?)",
+        [[member_id, course_id, 1]]
+      );
+
+      res.status(200).json({ success: true });
+    } catch (error) {
+      //console.log(error);
+      res.status(500).json({ success: false, code: "E999", message: error });
+    }
+  }
+});
+
 module.exports = router;

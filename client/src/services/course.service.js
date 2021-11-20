@@ -22,11 +22,22 @@ class CourseService {
     });
   }
 
-  // 依照member_id(主廚)拿到所有此會員發布的課程(卡片)
+  // 依照member_id 拿到所有此會員收藏的課程(卡片)
   course_collection(member_id) {
     return axios.get(AUTH_API_URL + `/collection/${member_id}`, {
       withCredentials: true,
     });
+  }
+
+  // 新增或移除課程收藏
+  course_collection_edit(member_id, course_id, type) {
+    return axios.post(
+      AUTH_API_URL + `/collection/${member_id}`,
+      { course_id, type },
+      {
+        withCredentials: true,
+      }
+    );
   }
 
   // 新增課程

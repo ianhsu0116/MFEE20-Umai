@@ -11,7 +11,7 @@ function CourseCost(props) {
 
   for (let i = 0; i < contentCount.length; i++) {
     if (i <= 9) {
-      console.log(i);
+      //console.log(i);
       item1.push(<li>{contentCount[i]}</li>);
     } else item2.push(<li>{contentCount[i]}</li>);
   }
