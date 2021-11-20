@@ -4,7 +4,7 @@ import { FcCalendar } from "react-icons/fc";
 
 // 想顯示的所有年份 / 月份 / 星期幾
 let years = [];
-for (let i = 1990; i <= 2025; i++) {
+for (let i = 2020; i <= 2022; i++) {
   years.push(i);
 }
 let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

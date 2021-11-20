@@ -6,7 +6,6 @@ import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
 import ErrorMessage from "../../components/ErrorMessage";
 import { FaPen } from "react-icons/fa";
-import { IoServer } from "react-icons/io5";
 
 // 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
 let sixDishesArray = [11, 22, 33, 44, 55, 66];
@@ -195,9 +194,8 @@ const CourseInsert = (props) => {
 
   // 課程梯次
   const handleBatchChange = (batch) => {
-    console.log(batch);
+    // console.log(batch);
     setCourseDetail({ ...courseDetail, course_batch: batch });
-    console.log(currentUser);
   };
 
   // 送出課程資料
@@ -319,7 +317,6 @@ const CourseInsert = (props) => {
               {sliderArray.map((item, index) => (
                 <>
                   <label
-                    key={index}
                     htmlFor={item}
                     className="CourseInsert-container-row-inputCon-sliderImage-label"
                   >
