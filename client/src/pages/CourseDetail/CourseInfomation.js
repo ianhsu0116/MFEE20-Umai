@@ -22,6 +22,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
+import { Alert } from "react-bootstrap";
 
 function CourseInfomation(props) {
   const [course, setCourse] = useState(0); //課程六圖片
@@ -209,7 +210,7 @@ function CourseInfomation(props) {
                       <Link to="/course">課程探索</Link>
                     </li>
                     <li>{">"}</li>
-                    <li className="Coursedetail-infoLeft-breadcrumb-name">
+                    <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
                       {newCourseJSON.course_name}
                     </li>
                   </ul>
@@ -257,7 +258,9 @@ function CourseInfomation(props) {
                   <ul>
                     <li
                       onClick={() => {
-                        console.log("加入購物車");
+                        if(batch === "尚未選擇"){
+                          alert('請先選擇梯次日期後再點擊');
+                        }
                       }}
                     >
                       加入購物車
@@ -265,7 +268,9 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        console.log("現在報名");
+                        if(batch === "尚未選擇"){
+                          alert('請先選擇梯次日期後再點擊');
+                        }
                       }}
                     >
                       現在報名
@@ -273,7 +278,7 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        console.log("現在報名");
+                     
                       }}
                     >
                       評論區
