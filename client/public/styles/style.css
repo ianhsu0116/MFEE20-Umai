@@ -331,7 +331,7 @@ a:hover {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  min-height: 200px;
+  height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -343,6 +343,7 @@ a:hover {
 
 .CourseCard1 .CourseCard1-imageCon {
   height: 100%;
+  max-height: 200px;
   width: 38%;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
@@ -516,12 +517,6 @@ a:hover {
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
   background: url(../icons/heart-solid.svg) center center no-repeat;
-}
-
-.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
-  fill: #eb6b6a;
-  width: 75%;
-  height: 75%;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
