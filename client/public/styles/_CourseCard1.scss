@@ -155,12 +155,6 @@
       &:hover svg {
         background: url(../icons/heart-solid.svg) center center no-repeat;
       }
-
-      & svg {
-        fill: $highLevelColor;
-        width: 75%;
-        height: 75%;
-      }
     }
     .CourseCard1-detailCon-likeBtn-active {
       & svg {

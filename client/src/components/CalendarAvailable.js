@@ -17,7 +17,6 @@ let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期�
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
 // 需傳入 setIsCalendarOpen 函式，會自動回傳當前日曆的啟閉狀態
 const CalendarAvailable = (props) => {
-
   const { onChange, availableDays, setIsCalendarOpen } = props;
 
   // 判斷是否為初次渲染
@@ -104,30 +103,11 @@ const CalendarAvailable = (props) => {
         }${currentDay}`
       );
     }
-  }, [currentYear]);
-  useEffect(() => {
-    if (!firstRender) {
-      setSelectedDay(
-        `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
-          currentDay <= 9 ? "0" : ""
-        }${currentDay}`
-      );
-    }
-  }, [currentMonth]);
-  useEffect(() => {
-    if (!firstRender) {
-      setSelectedDay(
-        `${currentYear}-${currentMonth <= 8 ? "0" : ""}${currentMonth + 1}-${
-          currentDay <= 9 ? "0" : ""
-        }${currentDay}`
-      );
-    }
   }, [currentDay]);
   //給詳細頁面Map抓開關
   useEffect(() => {
-    setIsCalendarOpen(calendarOpen)
+    setIsCalendarOpen(calendarOpen);
   }, [calendarOpen]);
-
 
   // 將選定的日期送出
   useEffect(() => {
@@ -237,8 +217,8 @@ const CalendarAvailable = (props) => {
                       );
                     } else if (
                       date == currentDay &&
-                      (currentMonth === todayMonth ||
-                        currentMonth === todayMonth + 1)
+                      currentMonth === Number(selectedDay.slice(5, 7)) - 1 &&
+                      currentYear == selectedDay.slice(0, 4)
                     ) {
                       return (
                         <td
