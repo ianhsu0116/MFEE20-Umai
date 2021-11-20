@@ -22,6 +22,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
+import { Alert } from "react-bootstrap";
 
 function CourseInfomation(props) {
   const [course, setCourse] = useState(0); //課程六圖片
@@ -226,10 +227,8 @@ function CourseInfomation(props) {
                           : "Coursedetail-infoLeftPlace"
                       }
                     >
-                     <a href={googleMap} alt="" target="_parent">
                       <IoLocationSharp />
                       {newCourseJSON.company_name}
-                      </a>
                       <iframe src={googleMap} alt="" title="這是地圖">
                         地圖
                       </iframe>
@@ -259,7 +258,9 @@ function CourseInfomation(props) {
                   <ul>
                     <li
                       onClick={() => {
-                        console.log("加入購物車");
+                        if(batch === "尚未選擇"){
+                          alert('請先選擇梯次日期後再點擊');
+                        }
                       }}
                     >
                       加入購物車
@@ -267,7 +268,9 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        console.log("現在報名");
+                        if(batch === "尚未選擇"){
+                          alert('請先選擇梯次日期後再點擊');
+                        }
                       }}
                     >
                       現在報名
@@ -275,7 +278,7 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        console.log("現在報名");
+                     
                       }}
                     >
                       評論區

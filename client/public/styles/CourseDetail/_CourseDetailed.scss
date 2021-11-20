@@ -240,13 +240,15 @@
 }
 
 .Coursedetail-infoLeftPlace:hover iframe {
-	top: 12vw;
+	top: 2.5vw;
 	left: 0px;
 	position: absolute;
-	width: 80%;
+	width: 25vw;
 	height: 10vw;
 	display: inline;
 	z-index: 5;
+	border: $fontColor 2px solid;
+	border-radius: 5px;
 }
 /* 梯次按鈕 */
 .Coursedetail-data {

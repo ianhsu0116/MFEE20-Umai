@@ -331,7 +331,7 @@ a:hover {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  min-height: 200px;
+  height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -343,6 +343,7 @@ a:hover {
 
 .CourseCard1 .CourseCard1-imageCon {
   height: 100%;
+  max-height: 200px;
   width: 38%;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
@@ -5281,13 +5282,15 @@ a:hover {
 }
 
 .Coursedetail-infoLeftPlace:hover iframe {
-  top: 12vw;
+  top: 2.5vw;
   left: 0px;
   position: absolute;
-  width: 80%;
+  width: 25vw;
   height: 10vw;
   display: inline;
   z-index: 5;
+  border: #666666 2px solid;
+  border-radius: 5px;
 }
 
 /* 梯次按鈕 */
@@ -5946,6 +5949,96 @@ a:hover {
   background-color: RGBA(50, 50, 50, 0.5);
 }
 
+.chef-set {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.chef-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin-left: 30px;
+  color: #d8a466;
+}
+
+.chef-infomationBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chef-ul {
+  width: 220px;
+  border: black 1px solid;
+  padding: 10px 0;
+}
+
+.chef-li {
+  background: #ffffff;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: darkgray 1px solid;
+}
+
+.chef-li:hover {
+  background-color: #ffb257;
+  width: 90%;
+  margin: auto;
+  font-size: 20px;
+}
+
+.chef-liActive {
+  width: 100%;
+  background-color: #ffb257;
+  border: none;
+}
+
+.chef-liActive:hover {
+  width: 100%;
+  background-color: #ffb257;
+}
+
+.chef-liLine {
+  background-color: darkgray;
+  height: 1px;
+  width: 90%;
+  margin: auto;
+}
+
+.chef-cardAndCourseCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chef-margin {
+  margin: auto;
+}
+
+.chef-courseCardMargin {
+  margin-left: 90px;
+}
+
 @media screen and (max-width: 1200px) {
   .Navbar .Navbar-container {
     width: 90%;
@@ -5967,6 +6060,9 @@ a:hover {
     height: 35vw;
   }
   .Coursedetail-set .Coursedetail-container {
+    width: 90%;
+  }
+  .chef-set {
     width: 90%;
   }
 }

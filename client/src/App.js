@@ -112,16 +112,13 @@ function App() {
         <Route path="/Discussion" exact>
           <Discussion />
         </Route>
-        <Route path="/Try" exact>
-          <Try />
-        </Route>
-        <Route path="/course/category" exact>
+        <Route path="/courses/category" exact>
           <Course />
         </Route>
         <Route path="/about" exact>
           <About />
         </Route>
-        <Route path="/course/:course_id" exact>
+        <Route path="/courses/:course_id" exact>
           <CourseDetail />
         </Route>
         <Route path="/chef" exact>
