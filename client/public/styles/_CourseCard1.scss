@@ -151,6 +151,9 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      & svg {
+        fill: $highLevelColor;
+      }
 
       &:hover svg {
         background: url(../icons/heart-solid.svg) center center no-repeat;

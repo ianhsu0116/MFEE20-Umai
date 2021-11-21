@@ -2,18 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
-import { AiOutlineHeart } from "react-icons/ai";
+import { FaRegHeart } from "react-icons/fa";
 import Button from "./Button";
 import StarGroup from "./StarGroup";
 import { PUBLIC_URL } from "../config/config";
+import { numDotFormat } from "../config/fomula";
 
 let leverArray = ["", "高階", "中階", "初階"];
 
-// 一定需要傳 courseDetail(課程詳細資料) 進來！
-// collectionIds = 當前登入的使用者收藏的所有課程ID array, 有登入的時候再傳進來即可
+// 以下為必要props
+// courseDetail(課程詳細資料)
 // handleAddIntoCollection => 按下愛心 會回傳當前課程id
+// handleAddIntoCart => 加入購物車 回傳當前課程id
+// handlePurchase => 立即購買 回傳當前課程id
+
+// 下面為非必要props
+// collectionIds = 當前登入的使用者收藏的所有課程ID array, 有登入的時候再傳進來即可
 const CourseCard1 = (props) => {
-  let { courseDetail, collectionIds, handleAddIntoCollection } = props;
+  let {
+    courseDetail,
+    collectionIds,
+    handleAddIntoCollection,
+    handleAddIntoCart,
+    handlePurchase,
+  } = props;
 
   // 當前課程人數限制
   const [memberLimit, setMemberLimit] = useState("0");
@@ -21,11 +33,8 @@ const CourseCard1 = (props) => {
   const [member, setMember] = useState("0");
   // 當前課程是否被當前登入的使用者加入收藏
   const [isCollection, setIsCollection] = useState("");
-
-  // 評分
-  let [scoreSum, allScore] = [courseDetail.score_sum, courseDetail.score_count];
   // 評分趴數
-  let scorePercent = (scoreSum / allScore) * 20;
+  const [scorePercent, setScorePercent] = useState(20);
   // 報名趴數
   let assignPersent = (member / memberLimit) * 100;
 
@@ -34,6 +43,9 @@ const CourseCard1 = (props) => {
     // 將member及memberLimit裝入
     setMemberLimit(courseDetail.member_limit);
     setMember(courseDetail.closest_batchs.member_count);
+
+    // 計算評分平均值
+    setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
 
     // 此課程是否被當前使用者收藏
     if (collectionIds) {
@@ -47,16 +59,6 @@ const CourseCard1 = (props) => {
       setIsCollection(result);
     }
   }, [collectionIds]);
-
-  // 加入購物車
-  const handleAddIntoCart = (e) => {
-    console.log("加入購物車");
-  };
-
-  // 立即購買
-  const handlePurchase = (e) => {
-    console.log("立即訂購");
-  };
 
   return (
     <div className="CourseCard1">
@@ -74,7 +76,7 @@ const CourseCard1 = (props) => {
         <h4 className="CourseCard1-detailCon-h4">
           <Link to="/courses/course_id">{courseDetail.course_name}</Link>
         </h4>
-        <StarGroup scorePercent={scorePercent} allScore={allScore} />
+        <StarGroup percent={scorePercent} allScore={courseDetail.score_count} />
         <div className="CourseCard1-detailCon-company">
           <IoLocationSharp />
           {courseDetail.company_name}
@@ -110,10 +112,10 @@ const CourseCard1 = (props) => {
           </div>
           <div className="CourseCard1-detailCon-bottom-coursePrice">
             <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
-              NT${courseDetail.course_price}
+              NT${numDotFormat(courseDetail.course_price)}
             </span>
             <span className="CourseCard1-detailCon-bottom-coursePrice-discount">
-              NT${courseDetail.course_price * 0.9}
+              NT${numDotFormat(courseDetail.course_price * 0.9)}
             </span>
           </div>
         </div>
@@ -125,19 +127,23 @@ const CourseCard1 = (props) => {
             handleAddIntoCollection(courseDetail.id);
           }}
         >
-          <AiOutlineHeart />
+          <FaRegHeart />
         </div>
       </div>
       <div className="CourseCard1-buttonCon">
         <Button
           value={"加入購物車"}
           className={"button-themeColor CourseCard1-buttonCon-btn"}
-          onClick={handleAddIntoCart}
+          onClick={() => {
+            handleAddIntoCart(courseDetail.id);
+          }}
         />
         <Button
           value={"立即訂購"}
           className={"button-activeColor CourseCard1-buttonCon-btn"}
-          onClick={handlePurchase}
+          onClick={() => {
+            handlePurchase(courseDetail.id);
+          }}
         />
       </div>
     </div>

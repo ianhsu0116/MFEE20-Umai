@@ -9,7 +9,7 @@ const CollectionArticle = (props) => {
         </header>
 
         <div className="CollectionArticle-container-cards">
-          等文章卡片出來我再放
+          目前您還沒有任何收藏文章喔！快去討論區逛逛吧！
         </div>
       </div>
     </div>

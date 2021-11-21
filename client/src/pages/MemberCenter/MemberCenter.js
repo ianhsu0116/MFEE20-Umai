@@ -36,10 +36,10 @@ const MemberCenter = (props) => {
     time_of_course: "範例：平日上午10:30 ~ 下午04:00",
     course_ig: "https://www.instagram.com/",
     course_fb: "https://www.facebook.com/",
-    title1_1: "課程標題 1-1",
-    title1_2: "課程標題 1-2",
-    content1: "介紹內容1介紹內容1",
-    title2: "標題 - 2(六種課程教材部分)",
+    title1_1: "請填寫課程介紹區的上標題",
+    title1_2: "請填寫課程介紹區的下標題",
+    content1: "請填寫課程介紹區的詳細內容",
+    title2: "請填寫六種課程教材展示區的標題",
     six_dishes: [
       {
         dishes_image: "img_name",
@@ -72,8 +72,8 @@ const MemberCenter = (props) => {
         dishes_content: "請填寫課程教材介紹",
       },
     ],
-    content2: "費用包含內容",
-    content3: "注意事項說明",
+    content2: "費用包含詳細內容\n請條列式敘述",
+    content3: "請填寫課程所需的注意事項說明",
 
     // 下方是table內的獨立欄位，不是存在json內
     course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
