@@ -6,7 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import Button from "./Button";
 import StarGroup from "./StarGroup";
 import { PUBLIC_URL } from "../config/config";
-import { numDotFormat } from "../config/fomula";
+import { numDotFormat } from "../config/formula";
 
 let leverArray = ["", "高階", "中階", "初階"];
 
