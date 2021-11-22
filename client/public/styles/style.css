@@ -519,12 +519,6 @@ a:hover {
   background: url(../icons/heart-solid.svg) center center no-repeat;
 }
 
-.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
-  fill: #eb6b6a;
-  width: 75%;
-  height: 75%;
-}
-
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
   background: url(../icons/heart-solid.svg) center center no-repeat;
 }
@@ -1887,7 +1881,6 @@ a:hover {
 }
 
 .Login .Login-container {
-  top: -100%;
   width: 750px;
   height: 500px;
   background: white;

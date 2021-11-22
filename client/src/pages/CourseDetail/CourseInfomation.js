@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
-// import '../../components/CourseDetailed.css'
-import Chef from "../../components/images/test/pexels-chef1.jpg";
 import Food1 from "../../components/images/test/istock泡菜課程.jpg";
 import Food2 from "../../components/images/test/istock紫菜包飯.jpg";
 import Food3 from "../../components/images/test/istock辣海鮮.jpg";
@@ -22,9 +20,94 @@ import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
-import { Alert } from "react-bootstrap";
+
+import CourseService from "../../services/course.service";
+import getValidMessage from "../../validMessage/validMessage";
+
+
+
+  
 
 function CourseInfomation(props) {
+
+
+  // 抓取課程Json
+  const [catchcourseJson, setCatchcourseJson] = useState([{
+  slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+  time_of_course: "", // 平日上午10:30 ~ 下午04:00
+  course_ig: "https://www.instagram.com/",
+  course_fb: "https://www.facebook.com/",
+  title1_1: "", // 標題1-1號
+  title1_2: "", // 標題1-2號
+  content1: "", // 介紹內容1
+  title2: "", // 標題2號(六道菜部分)
+  six_dishes: [
+    // 課程六道菜的圖+文
+    {
+      dishes_image: "img_name", // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+    {
+      dishes_image: "img_name", // 圖片名稱
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+    {
+      dishes_image: "img_name", // 圖片名稱
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+    {
+      dishes_image: "img_name", // 圖片名稱
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+    {
+      dishes_image: "img_name", // 圖片名稱
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+    {
+      dishes_image: "img_name", // 圖片名稱
+      dishes_title: "", // 菜色標題
+      dishes_content: "", // 菜色介紹
+    },
+  ],
+  content2: "", // 費用包含內容
+  content3: "", // 注意事項說明
+
+  // 下方是table內的獨立欄位，不是存在json內
+  course_name: "", // 課程名稱
+  course_price: 0,
+  course_hour: 0,
+  course_level: "1", // 1, 2, 3 (高階 中階 初階)
+  member_limit: 0,
+  company_name: "", // 餐廳名稱
+  company_address: "", // 餐廳地址, 供google地圖搜尋
+
+  // 下方為需要join的資料
+  category_id: "1", // 1 ~ 6 代表category table的id
+  member_id: "0001",
+
+  // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
+  course_batch: ["batch_id"], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
+  }]);
+  
+  useEffect(async () => {
+    try {
+      let result = await CourseService.course_courseId(9);
+      let t1 = JSON.parse(result.data.course[0].course_detail)
+      let t2 = result.data.course[0]
+      setCatchcourseJson(result.data.course);
+      console.log(t1)
+      console.log(t2)
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
   const [color, setColor] = useState(
@@ -47,9 +130,7 @@ function CourseInfomation(props) {
 
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
-    console.log(e);
     setBatch(e);
-    //之後我會加個判斷，現在會預設是今天的日期
   };
 
   const newCourseJSON = {
@@ -147,7 +228,7 @@ function CourseInfomation(props) {
   return (
     <>
       <CourseHeaderPicture image1={Food1} image2={Food2} image3={Food3} />
-
+      {console.log(catchcourseJson)}
       <div className="Coursedetail-set">
         <div className="Coursedetail-container">
           <div className="Coursedetail">
@@ -211,7 +292,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
-                      {newCourseJSON.course_name}
+                      {catchcourseJson[0].course_name}
                     </li>
                   </ul>
                 </div>
@@ -248,7 +329,6 @@ function CourseInfomation(props) {
                     availableDays={newCourseJSON.course_batch}
                     setIsCalendarOpen={setMap}
                   />
-                  {console.log(onChange)}
                   <div>
                     <p>選擇梯次日期：{batch}</p>
                     <p>{newCourseJSON.time_of_course}</p>

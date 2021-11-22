@@ -23,6 +23,7 @@ import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
 
+
 function App() {
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -79,7 +80,6 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
-
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />

@@ -51,6 +51,8 @@ app.use("/api/member", memberRoute);
 const courseRoute = require("./routes").course;
 app.use("/api/course", courseRoute);
 
+
+
 app.get("/", (req, res) => {
   res.send("home");
 });
