@@ -86,7 +86,7 @@ const OrderCard = (props) => {
   //   receipt_type: 1,
   //   score: 5,
   //   valid: 1,
-  // };
+  // }
 
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
