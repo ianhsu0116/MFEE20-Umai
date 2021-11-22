@@ -515,6 +515,10 @@ a:hover {
   cursor: pointer;
 }
 
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
+  fill: #eb6b6a;
+}
+
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
   background: url(../icons/heart-solid.svg) center center no-repeat;
 }
@@ -1883,6 +1887,7 @@ a:hover {
 .Login .Login-container {
   width: 750px;
   height: 500px;
+  z-index: 11;
   background: white;
   border-radius: 15px;
   overflow: hidden;
@@ -3391,8 +3396,8 @@ a:hover {
   left: 0;
   background: white;
   z-index: 2;
-  -webkit-box-shadow: 50px 50px 50px white, -50px 50px 50px white;
-          box-shadow: 50px 50px 50px white, -50px 50px 50px white;
+  -webkit-box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+          box-shadow: 50px 0px 0px white, -50px 0px 0px white;
 }
 
 .massonry-title {
@@ -3830,7 +3835,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 100;
+  z-index: 2;
 }
 
 .wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown {
@@ -4186,7 +4191,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 100;
+  z-index: 2;
 }
 
 .Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
@@ -4360,7 +4365,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 100;
+  z-index: 2;
 }
 
 .Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
@@ -5467,7 +5472,6 @@ a:hover {
   height: 10vw;
   position: absolute;
   top: 0;
-  margin-top: 1.2vw;
   border-bottom: 5px solid #eb6b6a;
   overflow: hidden;
   border-radius: 5px;
