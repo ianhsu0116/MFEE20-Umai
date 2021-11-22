@@ -98,10 +98,11 @@ function CourseInfomation(props) {
     try {
       let result = await CourseService.course_courseId(9);
       let t1 = JSON.parse(result.data.course[0].course_detail)
+      result.data.course[0].course_detail = JSON.parse(result.data.course[0].course_detail)
       let t2 = result.data.course[0]
       setCatchcourseJson(result.data.course);
-      console.log(t1)
       console.log(t2)
+      console.log(result.data.course[0].course_detail)
     } catch (error) {
       console.log(error);
     }
