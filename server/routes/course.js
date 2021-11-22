@@ -68,12 +68,16 @@ router.get("/collection/:member_id", async (req, res) => {
       [member_id]
     );
 
+    // 如果沒有任何收藏的話
+    if (collections.length === 0)
+      return res.status(204).json({ success: true, course: [] });
+
     // 將其變成單純的 ARRAY OF ID
     collections = collections.map((item) => item.course_id);
 
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS csore_sum, COUNT(course_comment.score) AS csore_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.id IN (?) AND course.valid = ? GROUP BY course.id ",
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.id IN (?) AND course.valid = ? GROUP BY course.id ",
       [collections, 1]
     );
 
@@ -120,9 +124,13 @@ router.get("/member/:member_id", async (req, res) => {
   try {
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS csore_sum, COUNT(course_comment.score) AS csore_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.member_id = ? AND course.valid = ? GROUP BY course.id ",
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.member_id = ? AND course.valid = ? GROUP BY course.id ",
       [member_id, 1]
     );
+
+    // 如果沒有任何收藏的話
+    if (result.length === 0)
+      return res.status(204).json({ success: true, course: [] });
 
     // 每個課程的id
     let id_array = result.map((item) => item.id);

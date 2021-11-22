@@ -17,6 +17,14 @@ const CollectionCourse = (props) => {
   let refreshCollection = async () => {
     let result = await CourseService.course_collection(currentUser.id);
 
+    // 如果這次沒回傳任何course
+    if (!result.data.course) {
+      console.log("good");
+      setCurrentCourses([]);
+      setCollectionIds([]);
+      return;
+    }
+
     // 設定當前課程的資料Array
     setCurrentCourses(result.data.course);
 
@@ -25,7 +33,7 @@ const CollectionCourse = (props) => {
   };
 
   // 拿到此會員的收藏課程
-  useEffect(async () => {
+  useEffect(() => {
     try {
       refreshCollection();
     } catch (error) {
@@ -46,7 +54,6 @@ const CollectionCourse = (props) => {
         course_id,
         type
       );
-      console.log(result);
 
       // 拿到更新後的課程收藏
       refreshCollection();
@@ -55,6 +62,18 @@ const CollectionCourse = (props) => {
       // let { code } = error.response.data;
       // setErrorMsg(getValidMessage("course", code));
     }
+  };
+
+  // 加入購物車
+  const handleAddIntoCart = (course_id) => {
+    console.log("加入購物車");
+    console.log(course_id);
+  };
+
+  // 立即購買
+  const handlePurchase = (course_id) => {
+    console.log("立即訂購");
+    console.log(course_id);
   };
   return (
     <div className="CollectionCourse">
@@ -71,9 +90,11 @@ const CollectionCourse = (props) => {
                 courseDetail={data}
                 collectionIds={collectionIds}
                 handleAddIntoCollection={handleAddIntoCollection}
+                handleAddIntoCart={handleAddIntoCart}
+                handlePurchase={handlePurchase}
               />
             ))}
-          {currentCourses && currentCourses.length === 0 && (
+          {currentCourses.length === 0 && (
             <p>目前您還沒有任何收藏呦，趕緊去課程探索逛逛吧！</p>
           )}
         </div>
