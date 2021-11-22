@@ -6,9 +6,13 @@ dotenv.config();
 const AUTH_API_URL = API_URL + "/order";
 
 class OrderService {
-  // 修改使用者基本資料
-  getAllOrder() {
-    return axios.get(AUTH_API_URL + "/order", { withCredentials: true });
+  // 根據member_id拿到所有order
+  getByMemberId(member_id, type) {
+    return axios.post(
+      AUTH_API_URL + "/member/" + member_id,
+      { type },
+      { withCredentials: true }
+    );
   }
 }
 

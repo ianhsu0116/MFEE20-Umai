@@ -77,7 +77,7 @@ router.get("/collection/:member_id", async (req, res) => {
 
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.id IN (?) AND course.valid = ? GROUP BY course.id ",
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.id IN (?) AND course.valid = ? GROUP BY course.id",
       [collections, 1]
     );
 
@@ -111,7 +111,7 @@ router.get("/collection/:member_id", async (req, res) => {
 
     res.status(200).json({ success: true, course: result });
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
@@ -124,7 +124,7 @@ router.get("/member/:member_id", async (req, res) => {
   try {
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course, course_category, course_comment, member WHERE course.category_id = course_category.id AND course.id = course_comment.course_id AND course.member_id = member.id AND course.member_id = ? AND course.valid = ? GROUP BY course.id ",
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.member_id = ? AND course.valid = ? GROUP BY course.id",
       [member_id, 1]
     );
 
