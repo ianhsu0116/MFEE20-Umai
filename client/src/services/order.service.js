@@ -14,6 +14,15 @@ class OrderService {
       { withCredentials: true }
     );
   }
+
+  // 編輯course_comment (因為有order才有comment，故歸類為orderRoute)
+  commentEdit({ orders_id, course_id, comment, star }) {
+    return axios.post(
+      AUTH_API_URL + "/comment/" + orders_id,
+      { comment, star, course_id },
+      { withCredentials: true }
+    );
+  }
 }
 
 export default new OrderService();

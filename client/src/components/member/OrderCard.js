@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import { AiOutlineStar } from "react-icons/ai";
 import { PUBLIC_URL } from "../../config/config";
+import ErrorMessage from "../ErrorMessage";
 
 const OrderCard = (props) => {
   let {
@@ -12,11 +13,13 @@ const OrderCard = (props) => {
     orderDetail,
     orderStatus,
     handleCommentSubmit,
+    errorMsg,
   } = props;
 
   // 課程評論輸入值 + 星星數量
   const [commentAndStar, setCommentAndStar] = useState({
-    order_id: "",
+    orders_id: "",
+    course_id: "",
     star: 1,
     comment: "",
   });
@@ -57,8 +60,9 @@ const OrderCard = (props) => {
 
       // 設定預設評論 / 星星
       setCommentAndStar({
-        order_id: orderDetail.id,
-        comment: orderDetail.comment_text || " ",
+        orders_id: orderDetail.id,
+        course_id: orderDetail.course_id,
+        comment: orderDetail.comment_text || "",
         star: orderDetail.score || 1,
       });
     }
@@ -206,6 +210,7 @@ const OrderCard = (props) => {
                   placeholder="課程評論(字數限制: 50)"
                   value={commentAndStar.comment}
                 ></textarea>
+                <ErrorMessage value={errorMsg[index]} />
               </div>
 
               <div className="OrderCard-detail-container2-right">
@@ -230,7 +235,7 @@ const OrderCard = (props) => {
                     value={"送出評論"}
                     className={"button-themeColor"}
                     onClick={() => {
-                      handleCommentSubmit(commentAndStar);
+                      handleCommentSubmit(commentAndStar, index);
                     }}
                   />
                 </div>
