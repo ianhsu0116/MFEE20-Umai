@@ -36,6 +36,12 @@
 
     .OrderCard-mamberCount {
       align-items: flex-end;
+
+      // 訂單價錢顯示
+      .OrderCard-mamberCount-price {
+        padding-top: 0.9rem;
+        font-weight: 800;
+      }
     }
   }
 

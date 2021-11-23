@@ -32,7 +32,7 @@ const Coupons = (props) => {
         </div>
         <div className="Coupons-textCon-bottom">
           <div className="Coupons-textCon-bottom-title">優惠券代碼</div>
-          <div>{data.id}</div>
+          <div>000000000000{data.id}</div>
           <div className="Coupons-textCon-bottom-title">使用期限</div>
           <div className="Coupons-textCon-bottom-expireDate">
             即日起 ~ {data.expire_date}

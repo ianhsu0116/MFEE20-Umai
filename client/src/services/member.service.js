@@ -88,6 +88,14 @@ class MemberService {
       }
     );
   }
+
+  // 拿會員擁有的優惠券
+  // type => 1:未使用; 2:已使用; 3:已過期(未使用)
+  coupons(member_id, type) {
+    return axios.get(`${AUTH_API_URL}/coupons/${member_id}?type=${type}`, {
+      withCredentials: true,
+    });
+  }
 }
 
 export default new MemberService();
