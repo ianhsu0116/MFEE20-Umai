@@ -8,9 +8,9 @@ import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
 
-import About from "./pages/About/About"
+import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
-import Chef from "./pages/Chef/Chef"
+import Chef from "./pages/Chef/Chef";
 
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
@@ -86,15 +86,15 @@ function App() {
           <CourseMiniCard />
           {/* <StarGroup percent={96} allScore={50} /> */}
           <h4>一般萬年曆</h4>
-          {/* <Calendar onChange={onChange} /> */}
-          {/* <h4>顯示可預訂日期的萬年曆</h4>
+          <Calendar onChange={onChange} />
+          <h4>顯示可預訂日期的萬年曆</h4>
           <CalendarAvailable
             onChange={onChange}
             availableDays={availableDays}
             setIsCalendarOpen={setIsCalendarOpen}
-          /> */}
+          />
           <h4>可多選萬年曆</h4>
-          {/* <CalendarMulti onChange={onChange} /> */}
+          <CalendarMulti onChange={onChange} />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter

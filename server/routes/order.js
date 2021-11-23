@@ -41,17 +41,17 @@ router.post("/member/:member_id", async (req, res) => {
     // 未完成
     case 1:
       sqlCode =
-        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date > ?";
+        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date > ? ORDER BY orders.created_time DESC";
       break;
     // 已完成
     case 2:
       sqlCode =
-        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date < ? AND course_batch.batch_date > ?";
+        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date < ? AND course_batch.batch_date > ? ORDER BY orders.created_time DESC";
       break;
     // 歷史訂單(已完成後一天)
     case 3:
       sqlCode =
-        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date < ? AND course_batch.batch_date < ?";
+        "SELECT orders.*, course.course_name, course.course_image, course.member_limit, course_batch.member_count, course_batch.batch_date, course_comment.score, course_comment.comment_text FROM orders JOIN course ON orders.course_id = course.id JOIN course_batch ON orders.batch_id = course_batch.id LEFT JOIN course_comment ON orders.id = course_comment.orders_id WHERE orders.member_id = ? AND course_batch.batch_date < ? AND course_batch.batch_date < ? ORDER BY orders.created_time DESC";
       break;
     default:
       return res.status(404).json({ success: false, code: "G101" });
@@ -84,6 +84,43 @@ router.post("/member/:member_id", async (req, res) => {
     });
 
     res.status(200).json({ success: true, order: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, code: "G199", message: error });
+  }
+});
+
+// 編輯訂單評論
+router.post("/comment/:orders_id", async (req, res) => {
+  let { orders_id } = req.params;
+  let { comment, star, course_id } = req.body;
+
+  try {
+    // 先確認此訂單為初次評論還是編輯
+    let foundComment = await connection.queryAsync(
+      "SELECT * FROM course_comment WHERE orders_id = ? AND valid = ?",
+      [orders_id, 1]
+    );
+
+    // 現在時間
+    let now = new Date();
+
+    // 沒找到評論(新增)
+    if (foundComment.length === 0) {
+      let result = await connection.queryAsync(
+        "INSERT INTO course_comment (course_id, orders_id, score, comment_text, created_time, valid) VALUES(?)",
+        [[course_id, orders_id, star, comment, now, 1]]
+      );
+    }
+    // 有找到評論(編輯)
+    else {
+      let result = await connection.queryAsync(
+        "UPDATE course_comment SET score = ?, comment_text = ? WHERE orders_id = ?",
+        [star, comment, orders_id]
+      );
+    }
+
+    res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, code: "G199", message: error });

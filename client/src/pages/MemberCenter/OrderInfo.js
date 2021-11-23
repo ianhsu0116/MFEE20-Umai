@@ -3,6 +3,7 @@ import OptionBar from "../../components/OptionBar";
 import OrderCard from "../../components/member/OrderCard";
 import OrderService from "../../services/order.service";
 import getValidMessage from "../../validMessage/validMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 
 // 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未完成訂單", "已完成訂單", "歷史訂單"];
@@ -12,10 +13,13 @@ const OrderInfo = (props) => {
   const [orderStatus, setOrderStatus] = useState("未完成訂單");
   // 當前拿到的所有訂單
   const [currentData, setCurrentData] = useState([]);
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState({});
 
   useEffect(async () => {
-    // 按下切換 就把所有已打開的下拉視窗關閉
+    // 按下切換 關閉已打開的下拉視窗 / 清空錯誤訊息
     setOrderDetailOpen(-1);
+    setErrorMsg({});
 
     // 依照切換的訂單狀態去拿資料
     let type = 1;
@@ -37,8 +41,9 @@ const OrderInfo = (props) => {
       // 依照訂單狀態拿到茲料
       let result = await OrderService.getByMemberId(currentUser.id, type);
       setCurrentData(result.data.order);
+      //console.log(result.data.order);
     } catch (error) {
-      //console.log(error.response);
+      console.log(error.response);
       let { code } = error.response.data;
       window.alert(getValidMessage("member", code));
     }
@@ -57,8 +62,21 @@ const OrderInfo = (props) => {
 
   // 送出評論
   // 評論送出
-  const handleCommentSubmit = (commentAndStar) => {
-    console.log(commentAndStar);
+  const handleCommentSubmit = async (commentAndStar, index) => {
+    // 先判斷是否留言是空白的
+    if (commentAndStar.comment.length === 0) {
+      //window.alert("不可空白");
+      setErrorMsg({ ...ErrorMessage, [index]: "評論不可為空白！" });
+      return;
+    }
+
+    // 沒錯誤後才送後端
+    try {
+      let result = await OrderService.commentEdit(commentAndStar);
+      window.alert("評論新增成功！");
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
@@ -95,6 +113,7 @@ const OrderInfo = (props) => {
                 orderDetail={orderDetail}
                 orderStatus={orderStatus}
                 handleCommentSubmit={handleCommentSubmit}
+                errorMsg={errorMsg}
               />
             ))}
         </div>
