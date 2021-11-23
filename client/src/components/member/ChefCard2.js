@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import Chef from "./images/test/pexels-chef1.jpg";
+import Chef from "../images/avatar.jpg";
 
-function ChefCard(props) {
+function ChefCard2(props) {
   const ChefInfomation = [
     {
       chefIntroduce1:
@@ -33,12 +33,12 @@ function ChefCard(props) {
 
   return (
     <>
-      <div className="st-chefCard">
-        <img className="st-chefCardPicture" src={Chef} alt=""></img>
-        <div className="st-chefCardTop">
+      <div className="st-chefCard2">
+        <img className="st-chefCard2Picture" src={Chef} alt=""></img>
+        <div className="st-chefCard2Top">
           「{ChefInfomation[0].chefIntroduce1}」
-          <div className="st-chefCardLine"></div>
-          <div className="st-chefCardTopChefName">
+          <div className="st-chefCard2Line"></div>
+          <div className="st-chefCard2TopChefName">
             <div
               dangerouslySetInnerHTML={{
                 __html:
@@ -50,7 +50,7 @@ function ChefCard(props) {
             ></div>
           </div>
         </div>
-        <div className="st-chefCardDown">
+        <div className="st-chefCard2Down">
           <div
             dangerouslySetInnerHTML={{
               __html: ChefInfomation[0].chefInfoTiele,
@@ -68,4 +68,4 @@ function ChefCard(props) {
   );
 }
 
-export default ChefCard;
+export default ChefCard2;

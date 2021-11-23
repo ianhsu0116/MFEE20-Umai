@@ -4,6 +4,7 @@ import Button from "../Button";
 import { AiOutlineStar } from "react-icons/ai";
 import { PUBLIC_URL } from "../../config/config";
 import ErrorMessage from "../ErrorMessage";
+import { numDotFormat } from "../../config/formula";
 
 const OrderCard = (props) => {
   let {
@@ -145,6 +146,9 @@ const OrderCard = (props) => {
             </span>{" "}
             人
           </p>
+          <h5 className="OrderCard-mamberCount-price">
+            NTD${numDotFormat(orderDetail.orders_price)}
+          </h5>
         </div>
       </div>
 

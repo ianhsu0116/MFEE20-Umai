@@ -9,7 +9,7 @@ import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
 import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
-import { FaPen } from "react-icons/fa";
+import { FaPen, FaIdCard } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.jpg";
 
@@ -202,20 +202,36 @@ const MemberSidebar = (props) => {
           </li>
           {/* 當前登入者是廚師時，才能新增課程 */}
           {currentUser && currentUser.member_category === 2 && (
-            <li
-              className={`MemberSidebar-container-ul-li ${
-                currentBoard === "新增課程" &&
-                "MemberSidebar-container-ul-li-active"
-              }`}
-            >
-              <GiCook />
-              <span
-                className="MemberSidebar-container-ul-li-text"
-                onClick={handleChangeBoard}
+            <>
+              <li
+                className={`MemberSidebar-container-ul-li ${
+                  currentBoard === "主廚卡片" &&
+                  "MemberSidebar-container-ul-li-active"
+                }`}
               >
-                新增課程
-              </span>
-            </li>
+                <FaIdCard />
+                <span
+                  className="MemberSidebar-container-ul-li-text"
+                  onClick={handleChangeBoard}
+                >
+                  主廚卡片
+                </span>
+              </li>
+              <li
+                className={`MemberSidebar-container-ul-li ${
+                  currentBoard === "新增課程" &&
+                  "MemberSidebar-container-ul-li-active"
+                }`}
+              >
+                <GiCook />
+                <span
+                  className="MemberSidebar-container-ul-li-text"
+                  onClick={handleChangeBoard}
+                >
+                  新增課程
+                </span>
+              </li>
+            </>
           )}
           <li className="MemberSidebar-container-ul-li" onClick={handleLogout}>
             <HiOutlineLogout />
