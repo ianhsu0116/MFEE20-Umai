@@ -54,28 +54,31 @@ CREATE TABLE `coupons` (
 
 
 DROP TABLE IF EXISTS `course`;
-CREATE TABLE `course` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` int(10) unsigned NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `course_detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course_image` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course_price` int(6) unsigned NOT NULL,
-  `course_hour` int(2) unsigned NOT NULL,
-  `course_level` int(1) unsigned NOT NULL,
-  `member_limit` int(2) unsigned NOT NULL,
-  `company_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_time` datetime NOT NULL,
-  `valid` int(10) unsigned NOT NULL DEFAULT '1',
+CREATE TABLE course (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  member_id int(10) unsigned NOT NULL,
+  category_id int(11) NOT NULL,
+  course_detail text COLLATE utf8mb4_unicode_ci NOT NULL,
+  course_image text COLLATE utf8mb4_unicode_ci NOT NULL,
+  course_name varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  course_price int(6) unsigned NOT NULL,
+  course_hour int(2) unsigned NOT NULL,
+  course_level int(1) unsigned NOT NULL,
+  member_limit int(2) unsigned NOT NULL,
+  company_name varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  company_address varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  created_time datetime NOT NULL,
+  valid int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
-  KEY `member_id` (`member_id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `course_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-  CONSTRAINT `course_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`id`)
+  KEY member_id (`member_id`),
+  KEY category_id (`category_id`),
+  CONSTRAINT course_ibfk_1 FOREIGN KEY (`member_id`) REFERENCES member (`id`),
+  CONSTRAINT course_ibfk_2 FOREIGN KEY (`category_id`) REFERENCES course_category (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO course (`id`, `member_id`, `category_id`, `course_detail`, `course_image`, `course_name`, `course_price`, `course_hour`, `course_level`, `member_limit`, `company_name`, `company_address`, `created_time`, `valid`) VALUES
+(9, 1, 1, '{\"slider_images\":[\"course-44d67cba-78ee-419a-a853-907974d112aa.jpg\",\"course-fe588e93-d4f9-42cc-ba5d-9553c8f4048b.jpg\",\"course-456b2296-e191-4fc2-a9ca-1dcfe3b6a617.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-3eb96d6b-995e-42de-b921-a3577aaa0854.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-060ff847-dae0-4afc-bd91-614f91e59ea7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-55e35397-4314-4d3d-8ac9-4c5967d556d6.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-249191f0-97ff-44c7-a365-021f42fe5f9f.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-a1800b76-e82e-44e1-9e17-cb64f42cffb2.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-8f695601-66e9-43f6-97a1-949b530b49f7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}', 'course-44d67cba-78ee-419a-a853-907974d112aa.jpg', '這是高級牛排課', 5400, 8, 1, 30, '台北超棒西餐廳', '台北車站', '2021-11-18 16:14:08', 1),
+(10, 1, 1, '{\"slider_images\":[\"course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg\",\"course-feaff491-0e9c-4a28-9d0c-f5063a516f04.jpg\",\"course-a986a6d5-505e-47ed-8052-8534c3ef19a6.jpg\"],\"time_of_course\":\"範例：平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-1b93997b-9ed3-46ba-8e70-0aeb110ed38c.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-b33d2ef1-fbe5-412b-a0d2-ab0b3a268acf.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-41d395b4-6a78-4c6f-9587-00c4586182f7.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-4723c372-9c82-4aa4-8a95-2e43ad2cd248.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-f06256e5-73d3-4070-a5b5-39c9daeb008a.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-0904fa6c-6f30-4f39-8653-ad830522bf12.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}', 'course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg', '極度美味中式饗宴', 2800, 8, 2, 30, '超棒中餐廳', '東方文華酒店', '2021-11-19 14:05:15', 1);
 
 DROP TABLE IF EXISTS `course_batch`;
 CREATE TABLE `course_batch` (

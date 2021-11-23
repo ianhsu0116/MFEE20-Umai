@@ -151,9 +151,21 @@ function CourseInfomation(props) {
     newCourseJSON[0].company_address +
     "&z=16&output=embed&t=";
 
+    // const [ ht , setHt]=useState(100)
+    // let documentHeight = document.body.scrollHeight;
+    // let windowHeight = window.innerHeight;
+    // window.addEventListener("scroll", function(){
+    //  let scorllPercent = this.scrollY / (documentHeight - windowHeight)
+    //  console.log(scorllPercent);
+    //  if(scorllPercent >= 0.27 && ht <= 100){
+    //    console.log("到一半了")
+    //    setHt(200);
+    //  }
+    // });
+
   return (
     <>
-      {console.log(newCourseJSON)}
+    {/* <div id="test1" className="Coursedetail-testSc" style={{height:ht+"vw"}}>  */}
       <CourseHeaderPicture image1={newCourseJSON[0].course_detail.slider_images[0]} image2={newCourseJSON[0].course_detail.slider_images[1]} image3={newCourseJSON[0].course_detail.slider_images[2]} />
       <div className="Coursedetail-set">
         <div className="Coursedetail-container">
@@ -552,6 +564,7 @@ function CourseInfomation(props) {
           </div>
         </div>
       </div>
+    {/* </div>   */}
     </>
   );
 }

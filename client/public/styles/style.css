@@ -5736,6 +5736,10 @@ a:hover {
   width: 30vw;
 }
 
+.Coursedetail-testSc {
+  overflow: hidden;
+}
+
 .Course-starGroup {
   display: -webkit-box;
   display: -ms-flexbox;
