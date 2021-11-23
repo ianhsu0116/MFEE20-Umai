@@ -8,7 +8,7 @@ function ChefCard2(props) {
       chefIntroduce1:
         "做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。",
       chefIntroduce2: "Kin",
-      chefInfoTiele: "LONGTAL restaurant & bar<br />主廚與經營者 林明健(Kin)",
+      chefInfoTitle: "LONGTAL restaurant & bar<br />主廚與經營者 林明健(Kin)",
       chefInfo: [
         "超過20年專業廚師經歷",
         "創立四間餐飲品牌",
@@ -21,7 +21,7 @@ function ChefCard2(props) {
       chefIntroduce1:
         "做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。",
       chefIntroduce2: "我是Kin,<br />我想與你一起開心地做料理。",
-      chefInfoTiele: "LONGTAL restaurant & bar<br />主廚與經營者 林明健(Kin)",
+      chefInfoTitle: "LONGTAL restaurant & bar<br />主廚與經營者 林明健(Kin)",
       chefInfo: [
         "超過20年專業廚師經歷",
         "創立四間餐飲品牌",
@@ -36,10 +36,13 @@ function ChefCard2(props) {
       <div className="st-chefCard2">
         <img className="st-chefCard2Picture" src={Chef} alt=""></img>
         <div className="st-chefCard2Top">
-          「{ChefInfomation[0].chefIntroduce1}」
+          <p className="chefCard2Top-introduce1">
+            「{ChefInfomation[0].chefIntroduce1}」
+          </p>
           <div className="st-chefCard2Line"></div>
           <div className="st-chefCard2TopChefName">
             <div
+              className="st-chefCard2TopChefName-chefIntroduce2"
               dangerouslySetInnerHTML={{
                 __html:
                   "我是" +
@@ -52,8 +55,9 @@ function ChefCard2(props) {
         </div>
         <div className="st-chefCard2Down">
           <div
+            className="st-chefCard2Down-chefInfoTitle"
             dangerouslySetInnerHTML={{
-              __html: ChefInfomation[0].chefInfoTiele,
+              __html: ChefInfomation[0].chefInfoTitle,
             }}
           ></div>
           <ul>
