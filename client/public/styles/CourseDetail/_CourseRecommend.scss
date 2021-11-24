@@ -2,15 +2,15 @@
 	margin: 60px 0;
 	height: 30vw;
 	width: 103.5%;
-    display: flex;
+	display: flex;
 }
 .Coursedetail-recommendLeft {
 	height: 100%;
 	width: 30%;
 	border-radius: 5px;
 	overflow: hidden;
-    margin: 0 auto auto 0;
-    max-height: 570px;
+	margin: 0 auto auto 0;
+	max-height: 570px;
 	img {
 		width: 100%;
 		height: 100%;
@@ -29,16 +29,16 @@
 		top: -1030px;
 		transition: top 0.5s;
 	}
-    .t1:hover {
-        cursor: pointer;
-    .Coursedetail-recommendInfo{
-        opacity: 1;
-        transition: opacity 0.5s;
-        cursor: pointer;
-         }
-    }
+	.Coursedetail-recommendMask:hover {
+		cursor: pointer;
+		background-color: RGBA(50, 50, 50, 0.7);
+		.Coursedetail-recommendInfo {
+			opacity: 1;
+			transition: opacity 0.5s;
+			cursor: pointer;
+		}
+	}
 }
-
 
 .Coursedetail-recommendText {
 	color: #ffffff;
@@ -47,15 +47,15 @@
 	text-align: center;
 	font-size: 1.5vw;
 	position: relative;
-    color: white;
-    padding-top: 5vw;
-    // font-size: 48px;
+	color: white;
+	padding-top: 5vw;
+	// font-size: 48px;
 }
 .Coursedetail-recommendLine {
 	width: 80%;
 	border-radius: 5px;
 	border: 2px solid #ffffff;
-    background-color: #ffffff;
+	background-color: #ffffff;
 	position: relative;
 	margin: auto;
 }
@@ -63,8 +63,8 @@
 	text-align: center;
 	font-size: 1.5vw;
 	position: relative;
-    color: white;
-    // font-size: 60px;
+	color: white;
+	// font-size: 60px;
 }
 .Coursedetail-recommendInfo {
 	text-align: left;
@@ -72,24 +72,24 @@
 	text-indent: 1em;
 	width: 80%;
 	margin: auto;
-    color: white;
-    padding-top: 2vw;
-    opacity: 0;
-    transition: opacity 0.5s;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
-    overflow: hidden;
-    // font-size: 24px;
+	color: white;
+	padding-top: 2vw;
+	opacity: 0;
+	transition: opacity 0.5s;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 6;
+	overflow: hidden;
+	// font-size: 24px;
 }
-.Coursedetail-recommendClick{
-    font-size: 1.8vw;
-    width: 100%;
-    text-align: center;
-    text-indent: initial;
-    padding-top: 5vw;
-    position: absolute;
-    top: 65%;
+.Coursedetail-recommendClick {
+	font-size: 1.8vw;
+	width: 100%;
+	text-align: center;
+	text-indent: initial;
+	padding-top: 5vw;
+	position: absolute;
+	top: 65%;
 }
 .Coursedetail-recommendRight {
 	height: 100%;
@@ -117,11 +117,26 @@
 		transition: top 0.5s;
 	}
 }
-.t1{
-    position: relative;
-    height: 105%;
-    width: 100%;
-    top: -102%;
-    background-color: RGBA(50, 50, 50, 0.5);
+.Coursedetail-recommendMask {
+	position: relative;
+	height: 105%;
+	width: 100%;
+	top: -102%;
+	// background-color: RGBA(50, 50, 50, 0.5);
 }
-
+.Coursedetail-recommendFlag {
+	clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);
+	background-color: $activeColor;
+	height: 6vw;
+	width: 3vw;
+	position: absolute;
+	right: 2vw;
+	p {
+		font-size: 1.1vw;
+		text-align: center;
+		height: 100%;
+		display: flex;
+		top: 0.5vw;
+		color: white;
+	}
+}

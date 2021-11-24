@@ -4,7 +4,6 @@ import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
-import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
 
@@ -22,6 +21,7 @@ import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
+
 
 function App() {
   // 存取當前登入中的使用者資料
@@ -79,7 +79,6 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
-
           <DefaultStudentCard />
           <ChefCard />
           <ShareCard />
@@ -101,10 +100,6 @@ function App() {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
           />
-        </Route>
-
-        <Route path="/masonry" exact>
-          <Masonry />
         </Route>
         <Route path="/Forum" exact>
           <Forum />
