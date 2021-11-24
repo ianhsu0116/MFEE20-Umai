@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chef from "../images/avatar.jpg";
 import { PUBLIC_URL } from "../../config/config";
+import { FaPen } from "react-icons/fa";
 
 function ChefCard2(props) {
   const { image, name, chefInfomation, setChefInfomation } = props;
@@ -74,8 +75,9 @@ function ChefCard2(props) {
             >
               「
               {chefInfomation.chefIntroduce1 ||
-                "請點擊輸入主廚卡片開頭介紹......"}
+                "請點擊輸入主廚卡片開頭介紹，建議可簡單介紹主廚的特色及專長(50字以內)..."}
               」
+              <FaPen className="chefCard2Top-introduce1-pen" />
             </p>
           )}
           {inputMode[0] && (
@@ -96,7 +98,6 @@ function ChefCard2(props) {
               }}
             ></textarea>
           )}
-
           <div className="st-chefCard2Line"></div>
           <div className="st-chefCard2TopChefName">
             <div
@@ -110,16 +111,20 @@ function ChefCard2(props) {
         </div>
         <div className="st-chefCard2Down">
           {!inputMode[2] && (
-            <div
-              className="st-chefCard2Down-chefInfoTitle"
-              onClick={(e) => {
-                handleModeChange(e, 2);
-              }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  newchefInfoTitle || "請點擊輸入開課餐廳名稱及主廚頭銜......",
-              }}
-            ></div>
+            <div className="st-chefCard2Down-chefInfoTitle">
+              <div
+                className="st-chefCard2Down-chefInfoTitle"
+                onClick={(e) => {
+                  handleModeChange(e, 2);
+                }}
+                dangerouslySetInnerHTML={{
+                  __html:
+                    newchefInfoTitle ||
+                    "請點擊輸入開課餐廳名稱及主廚頭銜(40字以內)...",
+                }}
+              ></div>
+              <FaPen className="st-chefCard2Down-chefInfoTitle-pen" />
+            </div>
           )}
           {inputMode[2] && (
             <textarea
@@ -145,10 +150,11 @@ function ChefCard2(props) {
                 handleModeChange(e, 3);
               }}
             >
-              <li>{chefInfomation.chefInfo[0] || "請點擊輸入......"}</li>
-              <li>{chefInfomation.chefInfo[1] || "請點擊輸入......"}</li>
-              <li>{chefInfomation.chefInfo[2] || "請點擊輸入......"}</li>
-              <li>{chefInfomation.chefInfo[3] || "請點擊輸入......"}</li>
+              <li>{chefInfomation.chefInfo[0] || "請點擊輸入..."}</li>
+              <li>{chefInfomation.chefInfo[1] || "請點擊輸入..."}</li>
+              <li>{chefInfomation.chefInfo[2] || "請點擊輸入..."}</li>
+              <li>{chefInfomation.chefInfo[3] || "請點擊輸入..."}</li>
+              <FaPen className="st-chefCard2Down-ul-pen" />
             </ul>
           )}
           {inputMode[3] && (
