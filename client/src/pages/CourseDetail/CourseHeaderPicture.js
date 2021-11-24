@@ -10,7 +10,7 @@ function CourseHeaderPicture(props) {
     let {image1 , image2 , image3} = props;
   return (
     <>
-    <div className="Coursedetail">
+    <div className="Coursedetail CourseDetail-headerColor">
     <div id="carouselExampleIndicators" className="carousel slide CourseDetail-headerPicture" data-bs-ride="carousel">
   <div className="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

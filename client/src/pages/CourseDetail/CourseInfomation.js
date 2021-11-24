@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { PUBLIC_URL } from "../../config/config";
 import ChefCard from "../../components/ChefCard";
 
+
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";
 import CourseCost from "./CourseCost";

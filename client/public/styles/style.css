@@ -5928,6 +5928,10 @@ a:hover {
   width: 5%;
 }
 
+.CourseDetail-headerColor {
+  background-color: papayawhip;
+}
+
 .Coursedetail-recommend {
   margin: 60px 0;
   height: 30vw;
@@ -5970,7 +5974,7 @@ a:hover {
 
 .Coursedetail-recommendLeft .Coursedetail-recommendMask:hover {
   cursor: pointer;
-  background-color: RGBA(50, 50, 50, 0.5);
+  background-color: RGBA(50, 50, 50, 0.7);
 }
 
 .Coursedetail-recommendLeft .Coursedetail-recommendMask:hover .Coursedetail-recommendInfo {
