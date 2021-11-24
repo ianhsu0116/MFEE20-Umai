@@ -4900,11 +4900,11 @@ a:hover {
 .ShoppingBill-padding .ShoppingBill-list {
   width: 100%;
   text-align: center;
+  table-layout: fixed;
 }
 
 .ShoppingBill-padding .ShoppingBill-list th:nth-child(1) {
   text-align: left;
-  width: 60%;
 }
 
 .ShoppingBill-padding .ShoppingBill-list .ShoppingBill-list-item {
@@ -4922,15 +4922,14 @@ a:hover {
   border-collapse: separate;
   padding-top: 30px;
   border-top: 1px solid rgba(128, 128, 128, 0.2);
+  table-layout: fixed;
 }
 
 .ShoppingBill-padding .ShoppingBill-table-style th:nth-child(1) {
-  width: 30%;
   text-align: left;
 }
 
 .ShoppingBill-padding .ShoppingBill-table-style td:nth-child(1) {
-  width: 30%;
   text-align: left;
   height: 50px;
 }

@@ -1,4 +1,5 @@
-function PaymentDetails(){
+function PaymentDetails(props){
+    let OrderData = props.OrderData;
     return(
         <>
             <div className="ShoppingBill-padding">
@@ -28,10 +29,10 @@ function PaymentDetails(){
                 </tr>
                 <tr className="ShoppingBill-student-info">
                     <td>發票聯絡人</td>
-                    <td>愛心捐贈</td>
-                    <td>鍾禮鴻</td>
-                    <td>0912345678</td>
-                    <td>test.gmail.com</td>
+                    <td>Email寄送</td>
+                    <td>{OrderData.lastName+OrderData.firstName}</td>
+                    <td>{OrderData.telephone}</td>
+                    <td>{OrderData.email}</td>
                 </tr>
             </table>
         </div>

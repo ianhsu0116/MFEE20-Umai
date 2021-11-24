@@ -187,12 +187,12 @@ const DefaultStudentCard = (props) => {
           </div>
         </div>
           <div className="DefaultStudentCard-main-row">
-            <div className="">
+            <div className="DefaultStudentCard-main-row-selectCon">
               <input
                 type="checkbox"
                 id="addIntoStudent"
                 name="addIntoStudent"
-                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;
@@ -203,12 +203,12 @@ const DefaultStudentCard = (props) => {
                 新增至預設學員資料
               </label>
             </div>
-            <div className="">
+            <div className="DefaultStudentCard-main-row-selectCon">
               <input
                 type="checkbox"
                 id="autoUpdateMember"
                 name="autoUpdateMember"
-                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-item-checkbox"
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
               &ensp;

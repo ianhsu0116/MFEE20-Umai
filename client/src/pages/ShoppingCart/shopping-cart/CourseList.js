@@ -2,9 +2,10 @@
 import { FiChevronRight } from "react-icons/fi";
 import DefaultStudentCard from "./DefaultStudentCard";
 import React, { useState } from "react";
+import Orderinfo from "./orderinfo";
 
 function CourseList(props){
-    const [ card, setCard] = useState(false);
+    const [ card, setCard] = useState(true);
     const [ carddata, setCarddata] = useState(props.carddata);
 
     let index=1;    
@@ -46,34 +47,7 @@ function CourseList(props){
                         <div className="Insert-area-title">
                             <h4>訂購人資訊</h4>
                         </div>
-                        <table className="Orderer-info">
-                            <tr>
-                                <td>
-                                    <label>名字</label>
-                                    <input type="text"></input>
-                                </td>
-                                <td>
-                                    <label>姓氏</label>
-                                    <input type="text"></input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>連絡電話</label>
-                                    <input type="text"></input>
-                                </td>
-                                <td>
-                                    <label>生日</label>
-                                    <input type="date"></input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan="2">
-                                    <label>Email</label>
-                                    <input type="text"></input>
-                                </td>
-                            </tr>
-                        </table>
+                        <Orderinfo changeorderdata={(data)=>{props.changeorderdata(data)}}/>
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
                             <button onClick={()=>{

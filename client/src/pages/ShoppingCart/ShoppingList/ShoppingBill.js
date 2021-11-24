@@ -1,4 +1,10 @@
-function ShoppingBill(){
+function ShoppingBill(props){
+    let coursetitle = props.coursetitle;
+    let coupon = props.coupon;
+    let carddata = props.carddata;
+    let OrderData = props.OrderData;
+    let index = 1;
+    console.log(carddata);
     return(
         <>
         <div className="ShoppingBill-padding">
@@ -7,6 +13,7 @@ function ShoppingBill(){
                     <th><h2>課程資訊</h2></th>
                     <th><h2>課程費用</h2></th>
                     <th><h2>人數</h2></th>
+                    <th><h2>優惠折扣</h2></th>
                     <th><h2>小計</h2></th>
                 </tr>
                 <tr>
@@ -14,12 +21,13 @@ function ShoppingBill(){
                 </tr> 
                 <tr className="ShoppingBill-list-item">
                     <td>
-                        <h3>築地創意壽司</h3>
+                        <h3>{coursetitle.name}</h3>
                         <h5>報名人數剩餘5人</h5>
                     </td>
-                    <td><h4>NT$ 3300</h4></td>
-                    <td><h4>*3位</h4></td>  
-                    <td><h4>NT$ 9900</h4></td>
+                    <td><h4>NT$ {coursetitle.value}</h4></td>
+                    <td><h4>*{coursetitle.studentnumber}位</h4></td> 
+                    <td><h4>NT$ {coupon.count}</h4></td>
+                    <td><h4>NT$ {coursetitle.value*coursetitle.studentnumber-coupon.count}</h4></td>
                 </tr>
             </table>
             <table className="ShoppingBill-student ShoppingBill-table-style">
@@ -33,13 +41,15 @@ function ShoppingBill(){
                 <tr>
                     <td colspan="5"><hr/></td>
                 </tr>
-                <tr className="ShoppingBill-student-info">
-                    <td>學員-1</td>
-                    <td>鍾禮鴻</td>
-                    <td>0912345678</td>
-                    <td>1997/01/01</td>
-                    <td>test.gmail.com</td>
-                </tr>
+                {carddata.map((data)=>{
+                    return(<tr className="ShoppingBill-student-info">
+                            <td>學員-{index++}</td>
+                            <td>{data.lastName+data.firstName}</td>
+                            <td>{data.telephone}</td>
+                            <td>{data.birthday}</td>
+                            <td>{data.email}</td>
+                        </tr>)
+                    })}
             </table>
             <table className="ShoppingBill-orderer ShoppingBill-table-style">
                 <tr>
@@ -53,11 +63,11 @@ function ShoppingBill(){
                     <td colspan="5"><hr/></td>
                 </tr>
                 <tr className="ShoppingBill-orderer-info">
-                    <td>學員-1</td>
-                    <td>鍾禮鴻</td>
-                    <td>0912345678</td>
-                    <td>1997/01/01</td>
-                    <td>test.gmail.com</td>
+                    <td></td>
+                    <td>{OrderData.lastName+OrderData.firstName}</td>
+                    <td>{OrderData.telephone}</td>
+                    <td>{OrderData.birthday}</td>
+                    <td>{OrderData.email}</td>
                 </tr>
             </table>
         </div>

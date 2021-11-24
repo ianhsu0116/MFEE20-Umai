@@ -2,6 +2,12 @@
 import { Link } from "react-router-dom";
 
 function CourseDetail(props){
+    let coursetitle = props.coursetitle;
+    let coupon = props.coupon;
+    let carddata = props.carddata;
+    let OrderData = props.OrderData;
+    let creditCards = props.creditCards;
+    let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData,creditCards:creditCards});
     return(
     <>
         <div>
@@ -17,24 +23,29 @@ function CourseDetail(props){
                 <td><h4>優惠券</h4></td>
                 <td>
                     <select disabled="disabled">
-                        <option>{props.coupon.coupon1.name}</option>
+                        <option>{props.coupon.name}</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td><h4>優惠折扣</h4></td>
-                <td><h4>NT$ {props.coupon.coupon1.count}</h4></td>
+                <td><h4>NT$ {props.coupon.count}</h4></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
-                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-props.coupon.coupon1.count}</h3></td>
+                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-props.coupon.count}</h3></td>
             </tr>
         </table>
         <hr/>
-        <Link to="/ShoppingList" >
+        <Link 
+        to={{
+            pathname:"/ShoppingList",
+            state:{data: data}
+        }}
+        >
             <div className="ToShoppingList">
                 <button>
-                    <h4>"結帳"</h4>
+                    <h4>結帳</h4>
                 </button>
             </div>
         </Link>

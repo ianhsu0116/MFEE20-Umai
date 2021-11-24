@@ -3,10 +3,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function CourseDetail(props){
-    const [discount,setdiscount]=useState(0)
-    let coursetitle = JSON.stringify(props.coursetitle)
-    let coupon = JSON.stringify(props.coupon)
-    let carddata = JSON.stringify(props.carddata)
+    const [discount,setdiscount]=useState(0);
+    const [selectedIndex,setselectedIndex]=useState(0);
+    let coursetitle = props.coursetitle;
+    let coupon={};
+    if(props.coupon[selectedIndex]!==undefined){
+        coupon = props.coupon[selectedIndex];
+    }
+    let carddata = props.carddata;
+    let OrderData = props.OrderData;
+    let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData});
     return(
     <>
         <div>
@@ -21,8 +27,7 @@ function CourseDetail(props){
             <tr>
                 <td><h4>優惠券</h4></td>
                 <td>
-                    <select onChange={(e)=>{setdiscount(e.target.value)}}>
-                        <option value = "0">請選擇優惠券</option>
+                    <select onChange={(e)=>{setdiscount(e.target.value); setselectedIndex(e.target.options.selectedIndex)}}>
                         {props.coupon.map((data) => <option value={data.count}>{data.name}</option>)}
                     </select>
                 </td>
@@ -40,12 +45,12 @@ function CourseDetail(props){
         <Link 
         to={{
             pathname:"/PaymentMethod",
-            state:{coursetitle: coursetitle, coupon1:coupon}
+            state:{data: data}
         }}
         >
             <div className="ToShoppingList">
                 <button>
-                    <h4>"選擇付款方式"</h4>
+                    <h4>選擇付款方式</h4>
                 </button>
             </div>
         </Link>

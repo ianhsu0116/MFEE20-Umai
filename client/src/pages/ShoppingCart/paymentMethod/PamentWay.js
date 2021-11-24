@@ -1,8 +1,8 @@
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import CreditCards from "../../../components/CreditCards";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
-function PamentWay(){
+function PamentWay(props){
     const [creditCardsInfo, setCreditCardsInfo] = useState({
         cvc: "",
         expiry: "",
@@ -10,7 +10,9 @@ function PamentWay(){
         number: "",
       });
      const [ card, setCard] = useState(false);
-
+      useEffect(()=>{
+        props.getcreditCards(creditCardsInfo)
+      },[creditCardsInfo])
     return(
         <>
         <div className="PamentWay-title">
@@ -23,9 +25,9 @@ function PamentWay(){
             </div>
             <div className={`PamentWay-body ${card && "PamentWay-body-open"}`}>
             <ul>
-                <li><input class="form-check-input" type="radio" name="PamentWay" id="PamentWay1"/>
-                <label class="form-check-label" for="PamentWay1">LINE Pay</label></li>
-                <li><input class="form-check-input" type="radio" name="PamentWay" id="PamentWay2" />
+                {/* <li><input class="form-check-input" type="radio" name="PamentWay" id="PamentWay1"/>
+                <label class="form-check-label" for="PamentWay1">LINE Pay</label></li> */}
+                <li><input class="form-check-input" type="radio" checked="checked" name="PamentWay" id="PamentWay2" />
                 <label class="form-check-label" for="PamentWay2">信用卡</label></li>
             </ul>
             <CreditCards

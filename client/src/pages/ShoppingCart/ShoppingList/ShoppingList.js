@@ -1,7 +1,16 @@
 /* eslint-disable react/jsx-pascal-case */
 import PaymentDetails from './PaymentDetails';
 import Shopping_bill from './ShoppingBill';
-function ShoppingList(){
+import { useLocation } from 'react-router-dom'
+function ShoppingList(props){
+    const location = useLocation();
+    let { data} = location.state;
+    let coursetitle = JSON.parse(data).coursetitle;
+    let coupon = JSON.parse(data).coupon;
+    let carddata = JSON.parse(data).carddata;
+    let OrderData = JSON.parse(data).OrderData;
+    let creditCards = JSON.parse(data).creditCards;
+    
     return(
         <>
         <div className="ShoppingBill-background">
@@ -11,10 +20,17 @@ function ShoppingList(){
                 </div>
                 <hr/>
                 <h3>消費帳單</h3>
-                <Shopping_bill/>
+                <Shopping_bill
+                    coursetitle={coursetitle}
+                    coupon={coupon}
+                    carddata={carddata}
+                    OrderData={OrderData}
+                />
                 <div className="ShoppingBill-payment-details">
                     <h3>付款明細</h3>
-                    <PaymentDetails/>
+                    <PaymentDetails
+                    OrderData={OrderData}
+                    />
                 </div>
             </div>
         </div>
