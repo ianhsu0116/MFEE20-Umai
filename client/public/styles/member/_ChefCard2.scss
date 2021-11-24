@@ -1,13 +1,17 @@
 $chefTextColor: #ffffff;
 $chefFontWeightText: "Noto Sans TC", Regular;
-$chefTextSize: 24px;
+$chefTextSize: 1.25rem;
 $chefTextSizeDown: 18px;
 $chefTextSize-li: 0.75rem;
 
 // 主廚卡片大小
 .st-chefCard2 {
-  width: 600px;
-  height: 400px;
+  width: 40vw;
+  height: 26vw;
+  max-width: 800px;
+  max-height: 500px;
+  min-width: 600px;
+  min-height: 400px;
   background-color: #d8a566;
   border-radius: 20px;
   margin-top: 10px;
@@ -20,12 +24,21 @@ $chefTextSize-li: 0.75rem;
   border-radius: 20px 0px 0px 20px;
   float: left;
   width: 50%;
-  // 確認圖片範圍用
-  background-color: aqua;
+  position: relative;
+
+  // 圖片水平置中
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  & img {
+    height: 100%;
+  }
 }
 // 主廚上資訊欄
 .st-chefCard2Top {
-  height: 230px;
+  height: 60%;
   float: right;
   border-radius: 0px 20px 0px 0px;
   width: 50%;
@@ -35,8 +48,21 @@ $chefTextSize-li: 0.75rem;
   font-weight: bold;
   padding: 1.15rem;
   text-align: left;
+  position: relative;
+  overflow: scroll;
   .chefCard2Top-introduce1 {
-    font-size: 1.15rem;
+    font-size: calc(1rem + 0.3vw);
+    min-height: 60%;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+    }
+  }
+
+  .st-chefCard2Top-chefIntroduce1 {
+    height: 60%;
   }
 }
 // 分隔線
@@ -59,7 +85,7 @@ $chefTextSize-li: 0.75rem;
 }
 // 主廚下資訊欄
 .st-chefCard2Down {
-  height: 170px;
+  height: 40%;
   float: right;
   border-radius: 0px 0px 20px 0px;
   width: 50%;
@@ -71,14 +97,49 @@ $chefTextSize-li: 0.75rem;
   padding: 1rem;
   text-align: left;
   letter-spacing: 2px;
+  overflow: scroll;
 
   .st-chefCard2Down-chefInfoTitle {
-    font-size: 1rem;
+    font-size: calc(1.04rem + 0.1vw);
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+    }
+  }
+
+  .st-chefCard2Down-ul {
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+    }
+  }
+
+  // input
+  .st-chefCard2Down-inputCon {
+    padding: 0.5rem 0 0.5rem 1rem;
+    position: relative;
+    @include flex(column);
+    justify-content: space-between;
+    height: 60%;
+    overflow: scroll;
+
+    .st-chefCard2Down-chefInfo {
+      font-size: 0.9rem;
+      padding: 0.15rem;
+      width: 100%;
+      height: 35%;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
   }
 }
 // 下資訊欄Padding設定
 .st-chefCard2Down ul {
-  padding: 20px 0px 15px 20px;
+  padding: 0.5rem 0 0.5rem 1rem;
   list-style: disc;
 }
 // 下資訊欄li設定

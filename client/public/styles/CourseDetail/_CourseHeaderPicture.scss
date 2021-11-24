@@ -1,12 +1,33 @@
 .CourseDetail-headerPicture {
-	width: 70vw;
-	max-width: 1440px;
-	margin: auto;
-	img {
-		height: 25vw;
-	}
-    .Course-headerPictureButton{
-        background-color:RGBA( 0 , 0 , 0 , 0.5);
-        width:5%
-    }
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+  // ian新增 為了讓圖片不被壓縮
+  position: relative;
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+  height: 30vw;
+  overflow: hidden;
+  transition: 0.2s ease;
+  // img {
+  //   height: 25vw;
+
+  //   //height: 100%;
+  // }
+  .Course-headerPictureButton {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 5%;
+  }
+}
+
+// ian新增 為了讓圖片不被壓縮 且 版型不會跑掉
+.carousel-inner {
+  @include flex(row);
+  align-items: center;
+}
+
+.CourseDetail-headerPicture-img {
+  transition: 0.2s ease;
+  height: 100%;
 }

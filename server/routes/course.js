@@ -90,7 +90,7 @@ router.get("/collection/:member_id", async (req, res) => {
 
     // 抓到每筆課程的每個梯次(今日以後的所有梯次)
     let batchs = await connection.queryAsync(
-      `SELECT course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
+      `SELECT id AS batch_id, course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
       [id_array, 1, now]
     );
 
@@ -141,7 +141,7 @@ router.get("/member/:member_id", async (req, res) => {
 
     // 抓到每筆課程的每個梯次(今日以後的所有梯次)
     let batchs = await connection.queryAsync(
-      `SELECT course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
+      `SELECT id AS batch_id, course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
       [id_array, 1, now]
     );
 

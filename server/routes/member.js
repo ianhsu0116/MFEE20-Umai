@@ -354,4 +354,22 @@ router.get("/coupons/:member_id", async (req, res) => {
   }
 });
 
+// 編輯主廚卡片資料
+router.post("/chefIntro/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+  let { info_text } = req.body;
+
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE member SET chef_introduction = ? WHERE id =? AND member_category= ?",
+      [info_text, member_id, 2]
+    );
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
 module.exports = router;

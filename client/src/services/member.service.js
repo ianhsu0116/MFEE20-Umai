@@ -96,6 +96,17 @@ class MemberService {
       withCredentials: true,
     });
   }
+
+  // 主廚卡片資料編輯
+  chefIntroEdit(member_id, info_text) {
+    return axios.post(
+      `${AUTH_API_URL}/chefIntro/${member_id}`,
+      { info_text },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export default new MemberService();
