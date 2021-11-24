@@ -1,5 +1,5 @@
 .ChefIntro {
-  height: calc(100vh - 50px);
+  height: $MemberCenterHeight;
   //position: relative;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
     .ChefIntro-container-cards {
       width: 100%;
       position: relative;
-      margin: 1rem 0;
+      //margin: 1rem 0;
       @include flex(column);
       align-items: center;
       justify-content: center;

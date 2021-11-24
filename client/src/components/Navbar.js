@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
 import { GoSearch } from "react-icons/go";
@@ -8,8 +8,20 @@ import avatar from "./images/avatar.jpg";
 
 const Navbar = (props) => {
   let { handleLoginClick, currentUser } = props;
+
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY !== 0) {
+        setActive(true);
+      } else {
+        setActive("");
+      }
+    });
+  }, []);
+
   return (
-    <div className="Navbar">
+    <div className={`Navbar ${active ? " Navbar-active " : ""}`}>
       <div className="Navbar-container">
         <div className="Navbar-container-item">
           <button className="Navbar-container-item-btn">
