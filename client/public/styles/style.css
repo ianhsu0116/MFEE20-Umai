@@ -331,7 +331,7 @@ a:hover {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  height: 200px;
+  max-height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -420,7 +420,7 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 25%;
+  width: 0;
   height: 100%;
   border-radius: 5px;
   background-color: #ffb257;
@@ -2610,6 +2610,11 @@ a:hover {
           align-items: flex-end;
 }
 
+.OrderCard .OrderCard-container .OrderCard-mamberCount .OrderCard-mamberCount-price {
+  padding-top: 0.9rem;
+  font-weight: 800;
+}
+
 .OrderCard .OrderCard-detail {
   width: 100%;
   max-width: 900px;
@@ -3398,6 +3403,123 @@ a:hover {
   z-index: 2;
   -webkit-box-shadow: 50px 0px 0px white, -50px 0px 0px white;
           box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+}
+
+.ChefIntro {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.ChefIntro .ChefIntro-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-header h1 {
+  font-weight: 100;
+}
+
+.st-chefCard2 {
+  width: 600px;
+  height: 400px;
+  background-color: #d8a566;
+  border-radius: 20px;
+  margin-top: 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.st-chefCard2Picture {
+  height: 100%;
+  border-radius: 20px 0px 0px 20px;
+  float: left;
+  width: 50%;
+  background-color: aqua;
+}
+
+.st-chefCard2Top {
+  height: 240px;
+  float: right;
+  border-radius: 0px 20px 0px 0px;
+  width: 50%;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 30px;
+  text-align: left;
+}
+
+.st-chefCard2Line {
+  height: 3px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin: 30px 0;
+}
+
+.st-chefCard2TopChefName {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.st-chefCard2Down {
+  height: 160px;
+  float: right;
+  border-radius: 0px 0px 20px 0px;
+  width: 50%;
+  background-color: #5e5548;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 20px 0px 0px 35px;
+  text-align: left;
+  letter-spacing: 2px;
+}
+
+.st-chefCard2Down ul {
+  padding: 20px 0px 15px 20px;
+  list-style: disc;
+}
+
+.st-chefCard2Down ul li {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .massonry-title {
@@ -5100,7 +5222,6 @@ a:hover {
   width: 100%;
 }
 
-/* 資訊欄 */
 .Coursedetail-info {
   width: 100%;
   height: 25vw;
@@ -5210,7 +5331,7 @@ a:hover {
 .Coursedetail-infoLeft {
   position: absolute;
   float: left;
-  max-width: 50%;
+  max-width: 60%;
   font-family: "Noto Sans TC", Medium;
   font-weight: 700;
   padding-top: 1vw;
@@ -5296,6 +5417,9 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .Coursedetail-data p {
@@ -5506,11 +5630,12 @@ a:hover {
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li img {
-  width: 100%;
   height: 100%;
-  min-width: 100px;
+  min-width: 10vw;
+  max-width: 16vw;
   border-radius: 5px;
   cursor: pointer;
+  right: calc(25%);
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
@@ -5586,7 +5711,6 @@ a:hover {
 .Coursedetail-cost {
   position: relative;
   width: 100%;
-  height: 40vw;
   background-color: #ffffff;
   margin: 80px 0;
   font-size: 100%;
@@ -5660,7 +5784,6 @@ a:hover {
 
 .Coursedetail-attention {
   width: 80%;
-  height: 5vw;
   margin-left: 35px;
   position: relative;
   padding-top: 20px;
@@ -5845,11 +5968,12 @@ a:hover {
   transition: top 0.5s;
 }
 
-.Coursedetail-recommendLeft .t1:hover {
+.Coursedetail-recommendLeft .Coursedetail-recommendMask:hover {
   cursor: pointer;
+  background-color: RGBA(50, 50, 50, 0.5);
 }
 
-.Coursedetail-recommendLeft .t1:hover .Coursedetail-recommendInfo {
+.Coursedetail-recommendLeft .Coursedetail-recommendMask:hover .Coursedetail-recommendInfo {
   opacity: 1;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
@@ -5942,12 +6066,32 @@ a:hover {
   transition: top 0.5s;
 }
 
-.t1 {
+.Coursedetail-recommendMask {
   position: relative;
   height: 105%;
   width: 100%;
   top: -102%;
-  background-color: RGBA(50, 50, 50, 0.5);
+}
+
+.Coursedetail-recommendFlag {
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);
+  background-color: #ffb257;
+  height: 6vw;
+  width: 3vw;
+  position: absolute;
+  right: 2vw;
+}
+
+.Coursedetail-recommendFlag p {
+  font-size: 1.1vw;
+  text-align: center;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 0.5vw;
+  color: white;
 }
 
 .chef-set {

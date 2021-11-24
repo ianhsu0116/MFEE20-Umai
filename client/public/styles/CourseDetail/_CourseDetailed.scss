@@ -38,44 +38,6 @@
 	height: 100%;
 	width: 100%;
 }
-// /* 大框圖片設置 */
-// .Coursedetail-header img {
-// 	margin: auto;
-// 	position: absolute;
-// 	width: 70vw;
-// 	// width: 70%;
-// 	max-width: 1440px;
-// 	height: 470px;
-// }
-// /* 左圖片 */
-// .Coursedetail-headerLeft {
-// 	transform: translate(-21.2%, 0px);
-// 	opacity: 0.3;
-// 	-webkit-transition: transform 1s;
-// 	z-index: 1;
-// }
-// /* 左圖片h */
-// .Coursedetail-headerLeft:hover {
-// 	opacity: 0.7;
-// }
-// /* 中圖片 */
-// .Coursedetail-headerMid {
-// 	transform: translate(20.85%, 0px);
-// 	-webkit-transition: transform 1s;
-// 	z-index: 3;
-// }
-// /* 右圖片 */
-// .Coursedetail-headerRight {
-// 	transform: translate(63.6%, 0px);
-// 	opacity: 0.3;
-// 	-webkit-transition: transform 1s;
-// 	z-index: 2;
-// }
-// /* 右圖片H */
-// .Coursedetail-headerRight:hover {
-// 	opacity: 0.7;
-// }
-/* 資訊欄 */
 .Coursedetail-info {
 	width: 100%;
 	height: 25vw;
@@ -172,7 +134,7 @@
 .Coursedetail-infoLeft {
 	position: absolute;
 	float: left;
-	max-width: 50%;
+	max-width: 60%;
 	font-family: "Noto Sans TC", Medium;
 	font-weight: 700;
 	padding-top: 1vw;
@@ -253,6 +215,7 @@
 /* 梯次按鈕 */
 .Coursedetail-data {
 	display: flex;
+	align-items: center;
 	p {
 		color: #444444;
 		margin-left: 2vw;
@@ -445,11 +408,12 @@
 	border-radius: 5px;
 }
 .Coursedetail-sixPictureTextBox_1 ul li img {
-	width: 100%;
 	height: 100%;
-	min-width: 100px;
+	min-width: 10vw;
+	max-width: 16vw;
 	border-radius: 5px;
 	cursor: pointer;
+	right: calc(25%);
 }
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
 	opacity: 1;
@@ -514,7 +478,6 @@
 .Coursedetail-cost {
 	position: relative;
 	width: 100%;
-	height: 40vw;
 	background-color: #ffffff;
 	margin: 80px 0;
 	font-size: 100%;
@@ -579,7 +542,6 @@
 }
 .Coursedetail-attention {
 	width: 80%;
-	height: 5vw;
 	margin-left: 35px;
 	position: relative;
 	padding-top: 20px;
@@ -648,6 +610,6 @@
 	height: 40vw;
 	width: 30vw;
 }
-.Coursedetail-testSc{
+.Coursedetail-testSc {
 	overflow: hidden;
 }
