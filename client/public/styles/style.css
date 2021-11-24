@@ -2180,10 +2180,22 @@ a:hover {
   height: 130px;
   border-radius: 50%;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .MemberSidebar .MemberSidebar-container .MemberSidebar-container-avatar .MemberSidebar-container-avatar-label .MemberSidebar-container-avatar-img {
-  width: 130px;
   height: 130px;
   border-radius: 50%;
 }
@@ -2470,6 +2482,9 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -3451,9 +3466,49 @@ a:hover {
   font-weight: 100;
 }
 
+.ChefIntro .ChefIntro-container .ChefIntro-container-cards {
+  width: 100%;
+  position: relative;
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: scroll;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-cards .ChefIntro-container-buttomCon {
+  width: 100%;
+  text-align: end;
+  padding: 1rem 0;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-cards .ChefIntro-container-buttomCon button {
+  margin-left: 0.5rem;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-cards .ChefIntro-container-errorCon {
+  width: 100%;
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
 .st-chefCard2 {
-  width: 600px;
-  height: 400px;
+  width: 40vw;
+  height: 26vw;
+  max-width: 800px;
+  max-height: 500px;
+  min-width: 600px;
+  min-height: 400px;
   background-color: #d8a566;
   border-radius: 20px;
   margin-top: 10px;
@@ -3466,28 +3521,63 @@ a:hover {
   border-radius: 20px 0px 0px 20px;
   float: left;
   width: 50%;
-  background-color: aqua;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.st-chefCard2Picture img {
+  height: 100%;
 }
 
 .st-chefCard2Top {
-  height: 240px;
+  height: 60%;
   float: right;
   border-radius: 0px 20px 0px 0px;
   width: 50%;
   font-family: "Noto Sans TC", Regular;
-  font-size: 24px;
+  font-size: 1.25rem;
   color: #ffffff;
   font-weight: bold;
-  padding: 30px;
+  padding: 1.15rem;
   text-align: left;
+  position: relative;
+  overflow: scroll;
+}
+
+.st-chefCard2Top .chefCard2Top-introduce1 {
+  font-size: calc(1rem + 0.3vw);
+  min-height: 60%;
+  cursor: pointer;
+}
+
+.st-chefCard2Top .chefCard2Top-introduce1:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.st-chefCard2Top .st-chefCard2Top-chefIntroduce1 {
+  height: 60%;
 }
 
 .st-chefCard2Line {
-  height: 3px;
+  height: 1px;
   width: 100%;
   border-radius: 100px;
   background-color: #ffffff;
-  margin: 30px 0;
+  margin: 1rem 0;
 }
 
 .st-chefCard2TopChefName {
@@ -3496,8 +3586,12 @@ a:hover {
   color: #ffffff;
 }
 
+.st-chefCard2TopChefName .st-chefCard2TopChefName-chefIntroduce2 {
+  font-size: 1rem;
+}
+
 .st-chefCard2Down {
-  height: 160px;
+  height: 40%;
   float: right;
   border-radius: 0px 0px 20px 0px;
   width: 50%;
@@ -3506,19 +3600,65 @@ a:hover {
   font-size: 18px;
   color: #ffffff;
   font-weight: bold;
-  padding: 20px 0px 0px 35px;
+  padding: 1rem;
   text-align: left;
   letter-spacing: 2px;
+  overflow: scroll;
+}
+
+.st-chefCard2Down .st-chefCard2Down-chefInfoTitle {
+  font-size: calc(1.04rem + 0.1vw);
+  cursor: pointer;
+}
+
+.st-chefCard2Down .st-chefCard2Down-chefInfoTitle:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.st-chefCard2Down .st-chefCard2Down-ul {
+  cursor: pointer;
+}
+
+.st-chefCard2Down .st-chefCard2Down-ul:hover {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.st-chefCard2Down .st-chefCard2Down-inputCon {
+  padding: 0.5rem 0 0.5rem 1rem;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 60%;
+  overflow: scroll;
+}
+
+.st-chefCard2Down .st-chefCard2Down-inputCon .st-chefCard2Down-chefInfo {
+  font-size: 0.9rem;
+  padding: 0.15rem;
+  width: 100%;
+  height: 35%;
+  width: 100%;
+  margin-bottom: 0.2rem;
 }
 
 .st-chefCard2Down ul {
-  padding: 20px 0px 15px 20px;
+  padding: 0.5rem 0 0.5rem 1rem;
   list-style: disc;
 }
 
 .st-chefCard2Down ul li {
   font-family: "Noto Sans TC", Regular;
-  font-size: 14px;
+  font-size: 0.75rem;
   font-weight: bold;
 }
 
@@ -5224,7 +5364,7 @@ a:hover {
 
 .Coursedetail-info {
   width: 100%;
-  height: 25vw;
+  height: 23vw;
   min-height: 250px;
 }
 
@@ -5329,9 +5469,8 @@ a:hover {
 
 /* 資訊(左欄) */
 .Coursedetail-infoLeft {
-  position: absolute;
   float: left;
-  max-width: 60%;
+  max-width: 55%;
   font-family: "Noto Sans TC", Medium;
   font-weight: 700;
   padding-top: 1vw;
@@ -5706,6 +5845,7 @@ a:hover {
 .Coursedetail-costBox {
   width: 80%;
   height: 100%;
+  padding-bottom: 1vw;
 }
 
 .Coursedetail-cost {
@@ -5917,15 +6057,48 @@ a:hover {
   width: 70vw;
   max-width: 1440px;
   margin: auto;
-}
-
-.CourseDetail-headerPicture img {
-  height: 25vw;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30vw;
+  overflow: hidden;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .CourseDetail-headerPicture .Course-headerPictureButton {
-  background-color: RGBA(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 5%;
+}
+
+.carousel-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CourseDetail-headerPicture-img {
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  height: 100%;
 }
 
 .CourseDetail-headerColor {
@@ -6197,9 +6370,6 @@ a:hover {
   }
   .CourseDetail-headerPicture {
     width: 90%;
-  }
-  .CourseDetail-headerPicture img {
-    height: 35vw;
   }
   .Coursedetail {
     /* 三圖片大框 */

@@ -38,8 +38,11 @@ $avatar-size: 130px;
         height: $avatar-size;
         border-radius: 50%;
         cursor: pointer;
+
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
         .MemberSidebar-container-avatar-img {
-          width: $avatar-size;
           height: $avatar-size;
           border-radius: 50%;
         }

@@ -26,13 +26,30 @@
         font-weight: 100;
       }
     }
-    // .ChefIntro-container-cards {
-    //   width: 100%;
-    //   position: relative;
-    //   margin: 1rem 0;
-    //   @include flex(row);
-    //   flex-wrap: wrap;
-    //   overflow: scroll;
-    // }
+
+    .ChefIntro-container-cards {
+      width: 100%;
+      position: relative;
+      margin: 1rem 0;
+      @include flex(column);
+      align-items: center;
+      justify-content: center;
+      overflow: scroll;
+
+      .ChefIntro-container-buttomCon {
+        width: 100%;
+        text-align: end;
+        padding: 1rem 0;
+        & button {
+          margin-left: 0.5rem;
+        }
+      }
+
+      .ChefIntro-container-errorCon {
+        width: 100%;
+        text-align: center;
+        padding: 0.25rem 0;
+      }
+    }
   }
 }

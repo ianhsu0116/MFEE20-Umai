@@ -138,7 +138,12 @@ const MemberCenter = (props) => {
         {currentBoard === "優惠券" && (
           <CollectionCoupons currentUser={currentUser} />
         )}
-        {currentBoard === "主廚卡片" && <ChefIntro currentUser={currentUser} />}
+        {currentBoard === "主廚卡片" && (
+          <ChefIntro
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
         {currentBoard === "新增課程" && (
           <CourseInsert
             isReview={isReview}

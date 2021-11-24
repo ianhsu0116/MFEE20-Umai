@@ -40,7 +40,8 @@
 }
 .Coursedetail-info {
 	width: 100%;
-	height: 25vw;
+	//height: 25vw;
+	height: 23vw; // ian改的
 	min-height: 250px;
 }
 /* 資訊(右欄) */
@@ -132,14 +133,12 @@
 }
 /* 資訊(左欄) */
 .Coursedetail-infoLeft {
-	position: absolute;
 	float: left;
-	max-width: 60%;
+	max-width: 55%;
 	font-family: "Noto Sans TC", Medium;
 	font-weight: 700;
 	padding-top: 1vw;
 	width: 42vw;
-
 	ul {
 		display: inline;
 		padding: 0;
@@ -474,6 +473,7 @@
 .Coursedetail-costBox {
 	width: 80%;
 	height: 100%;
+	padding-bottom: 1vw;
 }
 .Coursedetail-cost {
 	position: relative;
