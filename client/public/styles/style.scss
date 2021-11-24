@@ -257,9 +257,11 @@ a {
   }
   .CourseDetail-headerPicture {
     width: 90%;
-    img {
-      height: 35vw;
-    }
+
+    // ian 移除（確保圖片不壓縮）
+    // img {
+    //   height: 35vw;
+    // }
   }
   .Coursedetail {
     /* 三圖片大框 */

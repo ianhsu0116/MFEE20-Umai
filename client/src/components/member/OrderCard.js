@@ -211,7 +211,7 @@ const OrderCard = (props) => {
                   cols="30"
                   rows="5"
                   maxLength="50"
-                  placeholder="課程評論(字數限制: 50)"
+                  placeholder="請輸入課程評論(字數限制: 50)"
                   value={commentAndStar.comment}
                 ></textarea>
                 <ErrorMessage value={errorMsg[index]} />

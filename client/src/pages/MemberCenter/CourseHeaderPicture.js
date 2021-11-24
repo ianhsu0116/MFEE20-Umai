@@ -40,13 +40,25 @@ function CourseHeaderPicture(props) {
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src={image1} class="d-block w-100" alt="..."></img>
+              <img
+                src={image1}
+                class="CourseDetail-headerPicture-img d-block w-100"
+                alt="..."
+              ></img>
             </div>
             <div class="carousel-item">
-              <img src={image2} class="d-block w-100" alt="..."></img>
+              <img
+                src={image2}
+                class="CourseDetail-headerPicture-img d-block w-100"
+                alt="..."
+              ></img>
             </div>
             <div class="carousel-item">
-              <img src={image3} class="d-block w-100" alt="..."></img>
+              <img
+                src={image3}
+                class="CourseDetail-headerPicture-img d-block w-100"
+                alt="..."
+              ></img>
             </div>
           </div>
           <button
