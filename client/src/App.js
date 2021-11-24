@@ -6,8 +6,7 @@ import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
-import Discussion from "./pages/Forum/Discussion";
-
+import Items from "./pages/Items";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 
@@ -108,9 +107,7 @@ function App() {
         <Route path="/Forum" exact>
           <Forum />
         </Route>
-        <Route path="/Discussion" exact>
-          <Discussion />
-        </Route>
+
         <Route path="/course/category" exact>
           <Course />
         </Route>
@@ -119,6 +116,9 @@ function App() {
         </Route>
         <Route path="/course/:course_id" exact>
           <CourseDetail />
+        </Route>
+        <Route path="/Items" exact>
+          <Items />
         </Route>
       </Switch>
     </Router>

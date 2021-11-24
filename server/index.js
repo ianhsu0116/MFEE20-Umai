@@ -51,6 +51,10 @@ app.use("/api/member", memberRoute);
 const courseRoute = require("./routes").course;
 app.use("/api/course", courseRoute);
 
+// 討論區資料相關的路由
+const forumRoute = require("./routes").forum;
+app.use("/api/forum", forumRoute);
+
 app.get("/", (req, res) => {
   res.send("home");
 });

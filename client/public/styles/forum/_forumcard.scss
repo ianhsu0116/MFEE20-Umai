@@ -1,0 +1,161 @@
+.wrapper {
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  .forum {
+    display: flex;
+    align-items: center;
+    .main {
+      background: white;
+      width: 80%;
+      margin: 0 auto;
+      .Forum-main-h3 {
+        margin: 10px;
+      }
+      .Forum-main-h2 {
+        margin: 10px;
+        color: #d8a466;
+      }
+      .Forum-main-out {
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: rgb(104, 104, 104) 0.1px dashed;
+        .Forum-main-photo {
+          width: 125px;
+          min-width: 125px;
+          height: 125px;
+          border-radius: 30px;
+          display: inline-block;
+        }
+        .Forum-main-middle {
+          padding: 0px 15px;
+          justify-content: left;
+          position: relative;
+          .Forum-main-DateAndDropdown {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 100;
+
+            .Forum-main-dropdown {
+              padding: 0 3rem;
+              box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+              border-radius: 5px;
+              display: inline-block;
+              // background-color: pink;
+              color: black;
+              width: 50px;
+              background: white;
+              .FiMoreHorizontal {
+                color: black;
+              }
+              .Forum-main-dropdown-content {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2px 0;
+                p {
+                  margin: 0.125rem 0;
+                  a {
+                    text-decoration: none;
+                    color: black;
+                    display: inline-block;
+                    width: 2rem;
+                  }
+                }
+              }
+              &:hover {
+                padding: 0 3rem;
+                box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+                border-radius: 5px;
+                .Forum-main-dropdown-content {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 2px 0;
+                  p {
+                    margin: 0.125rem 0;
+                    a {
+                      text-decoration: none;
+                      color: black;
+                      display: inline-block;
+                      width: 2rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .Forum-main-dateAndTheme {
+            display: flex;
+
+            .Forum-main-theme {
+              padding: 0;
+              margin: 0px;
+            }
+          }
+
+          .Forum-main-p {
+            padding: 5px;
+            font-size: 1rem;
+          }
+          .Forum-main-little {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-top: 8px;
+            padding-left: 5px;
+
+            .AiOutlineHeart {
+              color: #eb6b6a;
+            }
+            .Forum-main-love {
+              padding: 5px;
+            }
+            .AiOutlineMessage {
+              color: #5eb2eb;
+            }
+            .Forum-main-small {
+              display: flex;
+              align-items: center;
+              transition: 3s ease-in;
+              p {
+                padding: 0 0.5rem;
+                transition: 3s ease-in;
+              }
+              a {
+                display: none;
+                transition: 3s ease-in;
+              }
+              &:hover {
+                .BsFillTriangleFill {
+                  transform: rotate(90deg);
+                  color: orange;
+                }
+
+                p {
+                  display: none;
+                }
+                a {
+                  display: block;
+                  color: orange;
+                  padding: 0% 0.25rem;
+                  margin: 0%;
+                  text-decoration: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
