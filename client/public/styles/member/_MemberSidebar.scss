@@ -1,7 +1,7 @@
 $avatar-size: 130px;
 
 .MemberSidebar {
-  height: calc(100vh - 50px);
+  height: $MemberCenterHeight;
   position: relative;
   @include flex(row);
   align-items: center;

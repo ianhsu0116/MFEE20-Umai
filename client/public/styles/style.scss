@@ -13,6 +13,9 @@ $lowLevelColor: #5eb2eb;
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
 
+// MemberCenter定高
+$MemberCenterHeight: calc(100vh - 55px);
+
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
