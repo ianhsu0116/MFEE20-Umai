@@ -77,7 +77,7 @@ function CourseInfomation(props) {
                 <div>
                   <span className="Coursedetail-specialPrice">
                     NT$
-                    {(courseDetail.course_price * 0.9)
+                    {Math.floor(courseDetail.course_price * 0.9)
                       .toString()
                       .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
                   </span>

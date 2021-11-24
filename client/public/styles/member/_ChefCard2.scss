@@ -6,10 +6,10 @@ $chefTextSize-li: 0.75rem;
 
 // 主廚卡片大小
 .st-chefCard2 {
-  width: 40vw;
+  width: 45vw;
   height: 26vw;
-  max-width: 800px;
-  max-height: 500px;
+  max-width: 900px;
+  max-height: 560px;
   min-width: 600px;
   min-height: 400px;
   background-color: #d8a566;
@@ -54,10 +54,26 @@ $chefTextSize-li: 0.75rem;
     font-size: calc(1rem + 0.3vw);
     min-height: 60%;
     cursor: pointer;
+    position: relative;
+
+    .chefCard2Top-introduce1-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
 
     &:hover {
       background: rgba(0, 0, 0, 0.15);
       border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .chefCard2Top-introduce1-pen {
+        opacity: 1;
+      }
     }
   }
 
@@ -80,7 +96,7 @@ $chefTextSize-li: 0.75rem;
   color: $chefTextColor;
 
   .st-chefCard2TopChefName-chefIntroduce2 {
-    font-size: 1rem;
+    font-size: calc(0.9rem + 0.2vw);
   }
 }
 // 主廚下資訊欄
@@ -102,19 +118,48 @@ $chefTextSize-li: 0.75rem;
   .st-chefCard2Down-chefInfoTitle {
     font-size: calc(1.04rem + 0.1vw);
     cursor: pointer;
+    .st-chefCard2Down-chefInfoTitle-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
 
     &:hover {
       background: rgba(0, 0, 0, 0.15);
       border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .st-chefCard2Down-chefInfoTitle-pen {
+        opacity: 1;
+      }
     }
   }
 
   .st-chefCard2Down-ul {
     cursor: pointer;
 
+    .st-chefCard2Down-ul-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
+
     &:hover {
       background: rgba(0, 0, 0, 0.15);
       border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .st-chefCard2Down-ul-pen {
+        opacity: 1;
+      }
     }
   }
 
