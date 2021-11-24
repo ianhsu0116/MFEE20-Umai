@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
+import { PUBLIC_URL } from "../../config/config";
 import ChefCard from "../../components/ChefCard";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
@@ -166,7 +167,7 @@ function CourseInfomation(props) {
   return (
     <>
     {/* <div id="test1" className="Coursedetail-testSc" style={{height:ht+"vw"}}>  */}
-      <CourseHeaderPicture image1={newCourseJSON[0].course_detail.slider_images[0]} image2={newCourseJSON[0].course_detail.slider_images[1]} image3={newCourseJSON[0].course_detail.slider_images[2]} />
+      <CourseHeaderPicture image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`} image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`} image3={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[2]}`} />
       <div className="Coursedetail-set">
         <div className="Coursedetail-container">
           <div className="Coursedetail">
@@ -358,7 +359,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[0].dishes_image}
+                        src= {`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[0].dishes_image}`}
                         alt=""
                         className={
                           course === 0
@@ -386,7 +387,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[1].dishes_image}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[1].dishes_image}`}
                         alt=""
                         className={
                           course === 1
@@ -414,7 +415,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[2].dishes_image}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[2].dishes_image}`}
                         alt=""
                         className={
                           course === 2
@@ -444,7 +445,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[3].dishes_image}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[3].dishes_image}`}
                         alt=""
                         className={
                           course === 3
@@ -472,7 +473,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[4].dishes_image}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[4].dishes_image}`}
                         alt=""
                         className={
                           course === 4
@@ -500,7 +501,7 @@ function CourseInfomation(props) {
                       }}
                     >
                       <img
-                        src={newCourseJSON[0].course_detail.six_dishes[5].dishes_image}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[5].dishes_image}`}
                         alt=""
                         className={
                           course === 5

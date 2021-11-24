@@ -51,6 +51,9 @@ app.use("/api/member", memberRoute);
 const courseRoute = require("./routes").course;
 app.use("/api/course", courseRoute);
 
+// 訂單相關的路由
+const orderRoute = require("./routes").order;
+app.use("/api/order", orderRoute);
 
 
 app.get("/", (req, res) => {

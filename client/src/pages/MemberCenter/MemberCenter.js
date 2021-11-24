@@ -9,6 +9,7 @@ import CollectionCourse from "./CollectionCourse";
 import CollectionCoupons from "./CollectionCoupons";
 import CollectionArticle from "./CollectionArticle";
 import CourseInsert from "./CourseInsert";
+import ChefIntro from "./ChefIntro";
 
 import CourseReview from "./CourseReview";
 
@@ -30,7 +31,7 @@ const MemberCenter = (props) => {
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
 
-  // 課程新增頁面的課程詳細資料
+  // 課程新增頁面的課程詳細資料（預設）
   const [courseDetail, setCourseDetail] = useState({
     slider_images: ["img_name", "img_name", "img_name"],
     time_of_course: "範例：平日上午10:30 ~ 下午04:00",
@@ -137,6 +138,7 @@ const MemberCenter = (props) => {
         {currentBoard === "優惠券" && (
           <CollectionCoupons currentUser={currentUser} />
         )}
+        {currentBoard === "主廚卡片" && <ChefIntro currentUser={currentUser} />}
         {currentBoard === "新增課程" && (
           <CourseInsert
             isReview={isReview}

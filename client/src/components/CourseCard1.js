@@ -8,7 +8,10 @@ import StarGroup from "./StarGroup";
 import { PUBLIC_URL } from "../config/config";
 import { numDotFormat } from "../config/formula";
 
+// 判斷三個不同階級
 let leverArray = ["", "高階", "中階", "初階"];
+// 判斷當前課程是否為前一天以內新增的
+let newCourseCompare = new Date(Date.now() - 86400000);
 
 // 以下為必要props
 // courseDetail(課程詳細資料)
@@ -42,7 +45,9 @@ const CourseCard1 = (props) => {
   useEffect(() => {
     // 將member及memberLimit裝入
     setMemberLimit(courseDetail.member_limit);
-    setMember(courseDetail.closest_batchs.member_count);
+    setMember(
+      courseDetail.closest_batchs && courseDetail.closest_batchs.member_count
+    );
 
     // 計算評分平均值
     setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
@@ -70,13 +75,19 @@ const CourseCard1 = (props) => {
         {assignPersent > 80 && (
           <div className="CourseCard1-imageCon-banner">即將截止</div>
         )}
+        {new Date(courseDetail.created_time) > newCourseCompare && (
+          <div className="CourseCard1-imageCon-banner">最新課程</div>
+        )}
       </div>
 
       <div className="CourseCard1-detailCon">
         <h4 className="CourseCard1-detailCon-h4">
           <Link to="/courses/course_id">{courseDetail.course_name}</Link>
         </h4>
-        <StarGroup percent={scorePercent} allScore={courseDetail.score_count} />
+        <StarGroup
+          percent={scorePercent || 0}
+          allScore={courseDetail.score_count || 0}
+        />
         <div className="CourseCard1-detailCon-company">
           <IoLocationSharp />
           {courseDetail.company_name}
@@ -84,7 +95,10 @@ const CourseCard1 = (props) => {
           {courseDetail.first_name + " " + courseDetail.last_name}
         </div>
         <div className="CourseCard1-detailCon-courseTime">
-          最近可報名梯次：{courseDetail.closest_batchs.batch_date}
+          最近可報名梯次：
+          {courseDetail.closest_batchs
+            ? courseDetail.closest_batchs.batch_date
+            : "目前沒有開放"}
         </div>
         <div className="CourseCard1-detailCon-MemberCount">
           <div className="CourseCard1-detailCon-MemberCount-progressCon">
@@ -94,7 +108,7 @@ const CourseCard1 = (props) => {
             ></div>
           </div>
           <div>
-            報名人數 {member} / {memberLimit}
+            報名人數 {member || 0} / {memberLimit}
           </div>
         </div>
         <div className="CourseCard1-detailCon-bottom">

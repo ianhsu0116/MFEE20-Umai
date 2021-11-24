@@ -6,9 +6,22 @@ dotenv.config();
 const AUTH_API_URL = API_URL + "/order";
 
 class OrderService {
-  // 修改使用者基本資料
-  getAllOrder() {
-    return axios.get(AUTH_API_URL + "/order", { withCredentials: true });
+  // 根據member_id拿到所有order
+  getByMemberId(member_id, type) {
+    return axios.post(
+      AUTH_API_URL + "/member/" + member_id,
+      { type },
+      { withCredentials: true }
+    );
+  }
+
+  // 編輯course_comment (因為有order才有comment，故歸類為orderRoute)
+  commentEdit({ orders_id, course_id, comment, star }) {
+    return axios.post(
+      AUTH_API_URL + "/comment/" + orders_id,
+      { comment, star, course_id },
+      { withCredentials: true }
+    );
   }
 }
 
