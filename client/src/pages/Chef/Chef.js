@@ -66,11 +66,11 @@ const Chef = (props) => {
                   <ChefCard />
                 </div> 
                 <div className="chef-courseCardMargin">
+                  {/* <CourseCard />
                   <CourseCard />
                   <CourseCard />
                   <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
+                  <CourseCard /> */}
                 </div> 
               </div>   
           </div>
