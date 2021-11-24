@@ -4,7 +4,6 @@ import { withRouter, Link } from "react-router-dom";
 import { PUBLIC_URL } from "../../config/config";
 import ChefCard from "../../components/ChefCard";
 
-
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";
 import CourseCost from "./CourseCost";
@@ -20,92 +19,91 @@ import { GrInstagram } from "react-icons/gr";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
-
-
-  
-
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location } = props
+  const { location } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
-  let id_number = (location.pathname).slice(9)
-  
+  let id_number = location.pathname.slice(9);
+
   // 抓取課程Json
-  const [newCourseJSON, setNewCourseJSON] = useState([{
-  course_detail:{
-  slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
-  time_of_course: "", // 平日上午10:30 ~ 下午04:00
-  course_ig: "https://www.instagram.com/",
-  course_fb: "https://www.facebook.com/",
-  title1_1: "", // 標題1-1號
-  title1_2: "", // 標題1-2號
-  content1: "", // 介紹內容1
-  title2: "", // 標題2號(六道菜部分)
-  six_dishes: [
-    // 課程六道菜的圖+文
+  const [newCourseJSON, setNewCourseJSON] = useState([
     {
-      dishes_image: "img_name", // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-    {
-      dishes_image: "img_name", // 圖片名稱
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-    {
-      dishes_image: "img_name", // 圖片名稱
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-    {
-      dishes_image: "img_name", // 圖片名稱
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-    {
-      dishes_image: "img_name", // 圖片名稱
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-    {
-      dishes_image: "img_name", // 圖片名稱
-      dishes_title: "", // 菜色標題
-      dishes_content: "", // 菜色介紹
-    },
-  ],
-  content2: "", // 費用包含內容
-  content3: "" // 注意事項說明
-},
+      course_detail: {
+        slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+        time_of_course: "", // 平日上午10:30 ~ 下午04:00
+        course_ig: "https://www.instagram.com/",
+        course_fb: "https://www.facebook.com/",
+        title1_1: "", // 標題1-1號
+        title1_2: "", // 標題1-2號
+        content1: "", // 介紹內容1
+        title2: "", // 標題2號(六道菜部分)
+        six_dishes: [
+          // 課程六道菜的圖+文
+          {
+            dishes_image: "img_name", // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+          {
+            dishes_image: "img_name", // 圖片名稱
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+          {
+            dishes_image: "img_name", // 圖片名稱
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+          {
+            dishes_image: "img_name", // 圖片名稱
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+          {
+            dishes_image: "img_name", // 圖片名稱
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+          {
+            dishes_image: "img_name", // 圖片名稱
+            dishes_title: "", // 菜色標題
+            dishes_content: "", // 菜色介紹
+          },
+        ],
+        content2: "", // 費用包含內容
+        content3: "", // 注意事項說明
+      },
 
-  // 下方是table內的獨立欄位，不是存在json內
-  course_name: "", // 課程名稱
-  course_price: 0,
-  course_hour: 0,
-  course_level: "1", // 1, 2, 3 (高階 中階 初階)
-  member_limit: 0,
-  company_name: "", // 餐廳名稱
-  company_address: "", // 餐廳地址, 供google地圖搜尋
+      // 下方是table內的獨立欄位，不是存在json內
+      course_name: "", // 課程名稱
+      course_price: 0,
+      course_hour: 0,
+      course_level: "1", // 1, 2, 3 (高階 中階 初階)
+      member_limit: 0,
+      company_name: "", // 餐廳名稱
+      company_address: "", // 餐廳地址, 供google地圖搜尋
 
-  // 下方為需要join的資料
-  category_id: "1", // 1 ~ 6 代表category table的id
-  member_id: "0001",
-  }]);
+      // 下方為需要join的資料
+      category_id: "1", // 1 ~ 6 代表category table的id
+      member_id: "0001",
+    },
+  ]);
 
   // const [course_batch , setCourse_batch ] = useState([{
 
   // }])
-  
+
   useEffect(async () => {
     try {
       let result = await CourseService.course_courseId(id_number);
-      result.data.course[0].course_detail = JSON.parse(result.data.course[0].course_detail)
+      result.data.course[0].course_detail = JSON.parse(
+        result.data.course[0].course_detail
+      );
       setNewCourseJSON(result.data.course);
     } catch (error) {
       console.log(error);
     }
   }, []);
-
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
@@ -120,7 +118,9 @@ function CourseInfomation(props) {
   });
 
   useEffect(() => {
-    setCourseFoodTitle(newCourseJSON[0].course_detail.six_dishes[course].dishes_title);
+    setCourseFoodTitle(
+      newCourseJSON[0].course_detail.six_dishes[course].dishes_title
+    );
   }, [newCourseJSON]);
 
   useEffect(() => {
@@ -132,43 +132,47 @@ function CourseInfomation(props) {
     setBatch(e);
   };
 
-  let  course_batch = [
-         "2021-11-18",
-         "2021-11-20",
-         "2021-11-23",
-         "2021-11-24",
-         "2021-11-25",
-         "2021-11-26",
-         "2021-11-27",
-         "2021-11-29",
-         "2021-12-01",
-         "2021-12-02",
-         "2021-12-03",
-         "2021-12-04",
-         "2021-12-05",
-       ]
+  let course_batch = [
+    "2021-11-18",
+    "2021-11-20",
+    "2021-11-23",
+    "2021-11-24",
+    "2021-11-25",
+    "2021-11-26",
+    "2021-11-27",
+    "2021-11-29",
+    "2021-12-01",
+    "2021-12-02",
+    "2021-12-03",
+    "2021-12-04",
+    "2021-12-05",
+  ];
 
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
     newCourseJSON[0].company_address +
     "&z=16&output=embed&t=";
 
-    // const [ ht , setHt]=useState(100)
-    // let documentHeight = document.body.scrollHeight;
-    // let windowHeight = window.innerHeight;
-    // window.addEventListener("scroll", function(){
-    //  let scorllPercent = this.scrollY / (documentHeight - windowHeight)
-    //  console.log(scorllPercent);
-    //  if(scorllPercent >= 0.27 && ht <= 100){
-    //    console.log("到一半了")
-    //    setHt(200);
-    //  }
-    // });
+  // const [ ht , setHt]=useState(100)
+  // let documentHeight = document.body.scrollHeight;
+  // let windowHeight = window.innerHeight;
+  // window.addEventListener("scroll", function(){
+  //  let scorllPercent = this.scrollY / (documentHeight - windowHeight)
+  //  console.log(scorllPercent);
+  //  if(scorllPercent >= 0.27 && ht <= 100){
+  //    console.log("到一半了")
+  //    setHt(200);
+  //  }
+  // });
 
   return (
     <>
-    {/* <div id="test1" className="Coursedetail-testSc" style={{height:ht+"vw"}}>  */}
-      <CourseHeaderPicture image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`} image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`} image3={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[2]}`} />
+      {/* <div id="test1" className="Coursedetail-testSc" style={{height:ht+"vw"}}>  */}
+      <CourseHeaderPicture
+        image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
+        image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
+        image3={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[2]}`}
+      />
       <div className="Coursedetail-set">
         <div className="Coursedetail-container">
           <div className="Coursedetail">
@@ -197,17 +201,16 @@ function CourseInfomation(props) {
                   <span>
                     本梯次總名額&nbsp;{newCourseJSON[0].member_limit}
                     &nbsp;位&nbsp;/&nbsp;剩餘名額&nbsp;
-                    {newCourseJSON[0].member_limit - newCourseJSON[0].member_limit}
+                    {newCourseJSON[0].member_limit -
+                      newCourseJSON[0].member_limit}
                     &nbsp;位
                   </span>
                 </div>
-                <StarGroup
-                  Score={4.3}
-                  percent={200}
-                />
+                <StarGroup Score={4.3} percent={200} />
                 <div className="Coursedetail-allTime">
                   <span>
-                    課程時數&nbsp;:&nbsp;{newCourseJSON[0].course_hour}&nbsp;小時
+                    課程時數&nbsp;:&nbsp;{newCourseJSON[0].course_hour}
+                    &nbsp;小時
                   </span>
                 </div>
                 <div className="Coursedetail-iconSvg">
@@ -257,7 +260,9 @@ function CourseInfomation(props) {
                     <li>
                       <a href="#chef" alt="" target="_parent">
                         <GiCook />
-                        {123}
+                        {newCourseJSON[0].first_name +
+                          " " +
+                          newCourseJSON[0].last_name}
                       </a>
                     </li>
                   </ul>
@@ -278,8 +283,8 @@ function CourseInfomation(props) {
                   <ul>
                     <li
                       onClick={() => {
-                        if(batch === "尚未選擇"){
-                          alert('請先選擇梯次日期後再點擊');
+                        if (batch === "尚未選擇") {
+                          alert("請先選擇梯次日期後再點擊");
                         }
                       }}
                     >
@@ -288,21 +293,15 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        if(batch === "尚未選擇"){
-                          alert('請先選擇梯次日期後再點擊');
+                        if (batch === "尚未選擇") {
+                          alert("請先選擇梯次日期後再點擊");
                         }
                       }}
                     >
                       現在報名
                     </li>
                     <li>|</li>
-                    <li
-                      onClick={() => {
-                     
-                      }}
-                    >
-                      評論區
-                    </li>
+                    <li onClick={() => {}}>評論區</li>
                   </ul>
                 </div>
               </div>
@@ -319,14 +318,16 @@ function CourseInfomation(props) {
               </div>
               <div className="Coursedetail-whiteLine"></div>
               <div className="Coursedetail-insideText">
-                {newCourseJSON[0].course_detail.content1.split("\n").map(function (item) {
-                  return (
-                    <div>
-                      {item}
-                      <br />
-                    </div>
-                  );
-                })}
+                {newCourseJSON[0].course_detail.content1
+                  .split("\n")
+                  .map(function (item) {
+                    return (
+                      <div>
+                        {item}
+                        <br />
+                      </div>
+                    );
+                  })}
               </div>
             </div>
 
@@ -355,12 +356,13 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(0);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[0].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[0]
+                            .dishes_title
                         );
                       }}
                     >
                       <img
-                        src= {`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[0].dishes_image}`}
+                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[0].dishes_image}`}
                         alt=""
                         className={
                           course === 0
@@ -369,7 +371,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[0].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[0]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -383,7 +388,8 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(1);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[1].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[1]
+                            .dishes_title
                         );
                       }}
                     >
@@ -397,7 +403,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[1].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[1]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -411,7 +420,8 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(2);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[2].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[2]
+                            .dishes_title
                         );
                       }}
                     >
@@ -425,7 +435,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[2].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[2]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -441,7 +454,8 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(3);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[3].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[3]
+                            .dishes_title
                         );
                       }}
                     >
@@ -455,7 +469,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[3].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[3]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -469,7 +486,8 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(4);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[4].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[4]
+                            .dishes_title
                         );
                       }}
                     >
@@ -483,7 +501,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[4].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[4]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -497,7 +518,8 @@ function CourseInfomation(props) {
                         setColor("Coursedetail-chepBoxInfomation");
                         setCourse(5);
                         setCourseFoodTitle(
-                          newCourseJSON[0].course_detail.six_dishes[5].dishes_title
+                          newCourseJSON[0].course_detail.six_dishes[5]
+                            .dishes_title
                         );
                       }}
                     >
@@ -511,7 +533,10 @@ function CourseInfomation(props) {
                         }
                       ></img>
                       <span className="Coursedetail-sixPictureTitle">
-                        {newCourseJSON[0].course_detail.six_dishes[5].dishes_title}
+                        {
+                          newCourseJSON[0].course_detail.six_dishes[5]
+                            .dishes_title
+                        }
                       </span>
                       <span className="Coursedetail-sixPictureTitleMask"></span>
                       <sapn
@@ -530,7 +555,9 @@ function CourseInfomation(props) {
                   <div className="Coursedetail-chepBoxTitle">
                     {courseFoodTitle}
                     <div className={color}>
-                      {newCourseJSON[0].course_detail.six_dishes[course].dishes_content
+                      {newCourseJSON[0].course_detail.six_dishes[
+                        course
+                      ].dishes_content
                         .split("\n")
                         .map(function (item) {
                           return (
@@ -566,7 +593,7 @@ function CourseInfomation(props) {
           </div>
         </div>
       </div>
-    {/* </div>   */}
+      {/* </div>   */}
     </>
   );
 }
