@@ -44,6 +44,7 @@ const ChefIntro = (props) => {
   const [chefInfomation, setChefInfomation] = useState({
     chefIntroduce1: "",
     chefIntroduce2: "Name",
+    chefInfoTitle: "",
     chefInfo: ["", "", "", ""],
   });
 
@@ -114,7 +115,7 @@ const ChefIntro = (props) => {
           <ChefCard2
             image={currentUser && currentUser.avatar}
             name={
-              currentUser.first_name
+              currentUser && currentUser.first_name
                 ? currentUser.first_name + " " + currentUser.last_name
                 : "XXX"
             }

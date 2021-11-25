@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const [active, setActive] = useState("");
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      if (window.scrollY !== 0) {
+      if (window.scrollY >= 40) {
         setActive(true);
       } else {
         setActive("");
