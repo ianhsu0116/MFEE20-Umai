@@ -12,6 +12,7 @@ import { Modal, Button, Dropdown } from "react-bootstrap";
 import { useState } from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import ForumCard from "./ForumCard";
+import axios from "axios";
 
 // const array = [
 //   "img1.jpg",
@@ -34,9 +35,54 @@ import ForumCard from "./ForumCard";
 console.log("test");
 const Forum = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [article, setArticle] = useState({
+    image: "",
+    category: "",
+    coursename: "",
+    title: "",
+    quote: "",
+    comment: "",
+  });
+
+  function handleChange(e) {
+    let newArticle = { ...article };
+    newArticle[e.target.name] = e.target.value;
+    setArticle(newArticle);
+    // setArticle({ ...Article, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  }
+
+  function handleUpload(e) {
+    let newArticle = { ...article };
+    newArticle.photo = e.target.files[0];
+    setArticle(newArticle);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      // json 格式無法傳檔案
+      // 改成用 form data
+      let formData = new FormData();
+      formData.append("image", article.image);
+      formData.append("category", article.category);
+      formData.append("coursename", article.coursename);
+      formData.append("title", article.title);
+      formData.append("quote", article.quote);
+      formData.append("comment", article.comment);
+
+      let res = await axios.post(
+        "http://localhost:8080/api/forum/insertArticle",
+        formData
+      );
+    } catch (e) {
+      console.log("handleSubmit", e);
+    }
+    console.log(article);
+  }
 
   return (
     <>
@@ -44,7 +90,7 @@ const Forum = () => {
         <Forumsidebar />
         <ForumCard />
         <div className="publish">
-          <form action="post">
+          <form action="post" onSubmit={handleSubmit}>
             <h2>我要投稿</h2>
             <label HtmlFor="upload" className="Forum-publish-label-illustrator">
               上傳圖片
@@ -52,34 +98,58 @@ const Forum = () => {
                 id="upload"
                 className="Forum-publish-form-file"
                 type="file"
+                name="image"
+                value={article.image}
+                onChange={handleChange}
               />
             </label>
             <label htmlFor="category" className="Forum-publish-label-small">
               類別項目
             </label>
             <div className="Forum-publish-form-select">
-              <select id="category">
-                <option value="none" selected disabled hidden>
+              <select
+                id="category"
+                name="category"
+                selectedValue={article.category}
+                onChange={handleChange}
+              >
+                <option value="" selected>
                   請選擇選項
                 </option>
                 <option value="日式料理">日式料理</option>
+                <option value="美式料理">美式料理</option>
+                <option value="韓式料理">韓式料理</option>
               </select>
             </div>
             <label className="Forum-publish-label-small">課程名稱</label>
             <div className="Forum-publish-form-select">
-              <select id="">
-                <option value="none" selected disabled hidden>
+              <select
+                id=""
+                name="coursename"
+                defaultValue={article.coursename}
+                onChange={handleChange}
+              >
+                <option value="" selected>
                   請選擇選項
                 </option>
                 <option value="日式料理">日式料理</option>
+                <option value="美式料理">美式料理</option>
+                <option value="韓式料理">韓式料理</option>
               </select>
             </div>
-            <label htmlFor="theme" className="Forum-publish-label-small">
+            <label htmlFor="title" className="Forum-publish-label-small">
               發表標題
             </label>
-            <input id="theme" className="Forum-publish-form-big" type="text" />
+            <input
+              id="title"
+              className="Forum-publish-form-big"
+              type="text"
+              name="title"
+              value={article.title}
+              onChange={handleChange}
+            />
             <div className="Forum-publish-label-small-block">
-              <label htmlFor="connect" className="Forum-publish-label-small">
+              <label htmlFor="quote" className="Forum-publish-label-small">
                 引用連結
               </label>
               <div className="Forum-publish-label-question-block">
@@ -88,17 +158,22 @@ const Forum = () => {
               </div>
             </div>
             <input
-              id="connect"
+              id="quote"
               className="Forum-publish-form-big"
               type="text"
+              name="quote"
+              value={article.quote}
+              onChange={handleChange}
             />
             <label htmlFor="commet" className="Forum-publish-label-small">
               內容
             </label>
             <textarea
               className="Forum-publish-textarea"
-              name=""
+              name="comment"
               id="commet"
+              value={article.comment}
+              onChange={handleChange}
             ></textarea>
             <div className="Forum-publish-button-div">
               <button className="Forum-publish-button" type="submit">

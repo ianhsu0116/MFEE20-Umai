@@ -49,21 +49,11 @@ const ForumCard = () => {
     }
   }, []);
 
-  // useEffect(async () => {
-  //   try {
-  //     let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
-  //     console.log("detail", res.data);
-  //     setArticleDetail(res.data.forumdatadetail);
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // }, []);
-
   return (
     <>
       <div className="forum">
         <div className="main">
-          <h5 className="Forum-main-h3">首頁>討論區</h5>g
+          <h5 className="Forum-main-h3">首頁>討論區</h5>
           <h1 className="Forum-main-h2 ">日式料理</h1>
           <div className="st-line"></div>
           {forumcard &&
