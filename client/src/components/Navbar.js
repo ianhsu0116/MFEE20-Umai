@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const [active, setActive] = useState("");
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      if (window.scrollY >= 40) {
+      if (window.scrollY >= 200) {
         setActive(true);
       } else {
         setActive("");
@@ -42,7 +42,7 @@ const Navbar = (props) => {
         </div>
         {currentUser && (
           <div className="Navbar-container-item">
-            <button className="Navbar-container-item-btn2">
+            <button className="Navbar-container-item-btn2 ">
               <MdShoppingCart className="Navbar-container-item-btn2-cart" />
             </button>
             <Link

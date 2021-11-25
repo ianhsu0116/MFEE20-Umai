@@ -1,8 +1,8 @@
 $chefTextColor: #ffffff;
 $chefFontWeightText: "Noto Sans TC", Regular;
-$chefTextSize: 1.25rem;
+//$chefTextSize: 1.25rem;
 $chefTextSizeDown: 18px;
-$chefTextSize-li: 0.75rem;
+$chefTextSize-li: calc(0.4rem + 0.3vw);
 
 // 主廚卡片大小
 .st-chefCard2 {
@@ -25,7 +25,7 @@ $chefTextSize-li: 0.75rem;
   float: left;
   width: 50%;
   position: relative;
-
+  background: $titleBackgroundColor;
   // 圖片水平置中
   @include flex(row);
   justify-content: center;
@@ -42,8 +42,8 @@ $chefTextSize-li: 0.75rem;
   float: right;
   border-radius: 0px 20px 0px 0px;
   width: 50%;
-  font-family: $chefFontWeightText;
-  font-size: $chefTextSize;
+  // font-family: $chefFontWeightText;
+  // font-size: $chefTextSize;
   color: $chefTextColor;
   font-weight: bold;
   padding: 1.15rem;
@@ -51,8 +51,9 @@ $chefTextSize-li: 0.75rem;
   position: relative;
   overflow: scroll;
   .chefCard2Top-introduce1 {
+    //font-size: 1.5vw;
     font-size: calc(1rem + 0.3vw);
-    min-height: 60%;
+    min-height: 64%;
     cursor: pointer;
     position: relative;
 
@@ -96,7 +97,8 @@ $chefTextSize-li: 0.75rem;
   color: $chefTextColor;
 
   .st-chefCard2TopChefName-chefIntroduce2 {
-    font-size: calc(0.9rem + 0.2vw);
+    // font-size: 1.05vw;
+    font-size: calc(0.6rem + 0.3vw);
   }
 }
 // 主廚下資訊欄
@@ -106,18 +108,21 @@ $chefTextSize-li: 0.75rem;
   border-radius: 0px 0px 20px 0px;
   width: 50%;
   background-color: #5e5548;
-  font-family: $chefFontWeightText;
-  font-size: $chefTextSizeDown;
+  // font-family: $chefFontWeightText;
+  // font-size: $chefTextSizeDown;
   color: $chefTextColor;
   font-weight: bold;
   padding: 1rem;
   text-align: left;
   letter-spacing: 2px;
   overflow: scroll;
+  position: relative;
 
   .st-chefCard2Down-chefInfoTitle {
-    font-size: calc(1.04rem + 0.1vw);
+    // font-size: 1.05vw;
+    font-size: calc(0.7rem + 0.3vw);
     cursor: pointer;
+    min-height: 35%;
     .st-chefCard2Down-chefInfoTitle-pen {
       opacity: 0;
       fill: white;

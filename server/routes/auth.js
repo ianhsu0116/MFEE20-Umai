@@ -195,4 +195,30 @@ router.get("/logout", (req, res) => {
   res.status(200).json({ success: true, message: "登出成功" });
 });
 
+// mailgun 找回密碼功能
+var API_KEY = process.env.MAILGUN_API_KEY;
+var DOMAIN = process.env.MAILGUN_DOMAIN;
+var mailgun = require("mailgun-js")({ apiKey: API_KEY, domain: DOMAIN });
+// mailgun 找回密碼功能
+router.post("/findPassword", async (req, res) => {
+  //let { email } = req.body;
+
+  // 因為免費的只能測試用，只能寄信給固定的email帳號，故在忘記密碼demo時一定要使用 ianhsu0116@gmail.com
+  let email = "ianhsu0116@gmail.com";
+
+  const data = {
+    from: "IanHSu <ianhsu0116@gmail.com>",
+    to: email,
+    subject: "Hello!!!",
+    text: "Testing some Mailgun awesomeness!",
+  };
+
+  mailgun.messages().send(data, (error, body) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(body);
+    }
+  });
+});
 module.exports = router;

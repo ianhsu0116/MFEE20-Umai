@@ -14,7 +14,7 @@ $lowLevelColor: #5eb2eb;
 $titleBackgroundColor: #eeeeee;
 
 // MemberCenter定高
-$MemberCenterHeight: calc(100vh - 55px);
+$MemberCenterHeight: calc(100vh - 63px);
 
 @mixin flex($direction) {
   display: flex;

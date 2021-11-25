@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ErrorMessage from "../ErrorMessage";
 import getValidMessage from "../../validMessage/validMessage";
 import AuthService from "../../services/auth.service";
@@ -18,6 +18,10 @@ const Login = (props) => {
   });
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");
+  // 忘記密碼視窗開關
+  const [findPasswordOpen, setFindPasswordOpen] = useState(false);
+  // 忘記密碼的信箱輸入
+  const [findPasswordEmail, setFindPasswordEmail] = useState("");
 
   // 防止點擊到登入的Container時就關閉視窗
   const preventLoginClose = (e) => {
@@ -111,6 +115,23 @@ const Login = (props) => {
     }
   };
 
+  // 送出忘記密碼案件狀態
+  const [findPasswordActive, setFindPasswordActive] = useState("");
+
+  // 判斷email有無超過十個字
+  useEffect(() => {
+    if (findPasswordEmail.length > 10) {
+      setFindPasswordActive(true);
+    } else {
+      setFindPasswordActive("");
+    }
+  }, [findPasswordEmail]);
+
+  // 送出忘記密碼
+  const handleFindPassword = (e) => {
+    if (findPasswordEmail.length > 10) console.log(findPasswordEmail);
+  };
+
   return (
     <div className="Login">
       <div className="Login-container" onClick={preventLoginClose}>
@@ -198,12 +219,66 @@ const Login = (props) => {
           </div>
 
           <div className="Login-container-right-bottom">
-            <button className="Login-container-right-bottom-btn">
+            <button
+              className="Login-container-right-bottom-btn"
+              onClick={() => {
+                setFindPasswordOpen(true);
+              }}
+            >
               忘記密碼
             </button>
           </div>
         </div>
       </div>
+
+      {/* 忘記密碼modal */}
+      {findPasswordOpen && (
+        <div
+          className="Login-findPassword"
+          onClick={(e) => {
+            e.stopPropagation();
+            setFindPasswordOpen(false);
+          }}
+        >
+          <div
+            className="Login-findPassword-con"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <h3 className="Login-findPassword-con-title">
+              {<BsPersonFill />} 重設密碼
+            </h3>
+            <div className="Login-findPassword-con-line"></div>
+            <div className="Login-findPassword-con-info">
+              請填寫你的會員帳號
+            </div>
+            <div className="Login-findPassword-con-main">
+              <div className="Login-findPassword-con-main-inputCon">
+                <input
+                  type="email"
+                  name="email-findPassword"
+                  id="email-findPassword"
+                  value={findPasswordEmail}
+                  onChange={(e) => {
+                    setFindPasswordEmail(e.target.value);
+                  }}
+                  placeholder="信箱"
+                />
+                <BsPersonFill />
+              </div>
+              <button
+                className={`Login-findPassword-con-main-btn ${
+                  findPasswordActive && "Login-findPassword-con-main-btn-active"
+                }`}
+                onClick={handleFindPassword}
+              >
+                送出
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

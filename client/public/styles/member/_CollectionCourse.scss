@@ -13,7 +13,7 @@
     border-radius: 10px;
     @include flex(column);
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     position: relative;
 
@@ -32,6 +32,7 @@
       position: relative;
       margin: 0 0 1rem 0;
       @include flex(column);
+      align-items: center;
       overflow: scroll;
     }
   }
