@@ -1,21 +1,21 @@
 import React from "react";
 import Gallery from "./Gallery";
-import ReactReadMoreReadLess from "react-read-more-read-less";
+//import ReactReadMoreReadLess from "react-read-more-read-less";
 
 const longText = "read more";
-const Masonry = () => {
+const Massonry = () => {
   return (
     <div>
       <Gallery />
-      <ReactReadMoreReadLess
+      {/* <ReactReadMoreReadLess
         charLimit={100}
         readMoreText={"Read more ▼"}
         readLessText={"Read less ▲"}
       >
         {longText}
-      </ReactReadMoreReadLess>
+      </ReactReadMoreReadLess> */}
     </div>
   );
 };
 
-export default Masonry;
+export default Massonry;

@@ -54,6 +54,9 @@ app.use("/api/course", courseRoute);
 // 討論區資料相關的路由
 const forumRoute = require("./routes").forum;
 app.use("/api/forum", forumRoute);
+// 訂單相關的路由
+const orderRoute = require("./routes").order;
+app.use("/api/order", orderRoute);
 
 app.get("/", (req, res) => {
   res.send("home");

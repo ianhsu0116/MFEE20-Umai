@@ -20,10 +20,11 @@ router.use((req, res, next) => {
 });
 
 // 阻擋未登入的請求
-router.use(authCheck);
+//router.use(authCheck);
 
 // multer
 const multer = require("multer");
+const { resourceUsage } = require("process");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "..", "public", "upload-images"));
@@ -309,6 +310,61 @@ router.put("/studentDelete", async (req, res) => {
       "UPDATE student SET valid = ? WHERE id = ?",
       [0, id]
     );
+    res.status(200).json({ success: true });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 依照member_id拿取優惠券
+router.get("/coupons/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+  let { type } = req.query;
+
+  // 現在時間
+  let now = new Date();
+  let sqlCode;
+  switch (type) {
+    // 未使用(且未過期)
+    case "1":
+      sqlCode =
+        "SELECT member_coupons.*, coupons.title, coupons.discount_percent FROM member_coupons JOIN coupons ON member_coupons.coupons_id = coupons.id WHERE member_coupons.member_id = ? AND member_coupons.expire_date > ? AND member_coupons.status = 1 AND member_coupons.valid = 1";
+      break;
+    // 已使用(不管有無過期 status=2的就會在此分類)
+    case "2":
+      sqlCode =
+        "SELECT member_coupons.*, coupons.title, coupons.discount_percent FROM member_coupons JOIN coupons ON member_coupons.coupons_id = coupons.id WHERE member_coupons.member_id = ? AND member_coupons.status = 2 AND member_coupons.valid = 1";
+      break;
+    // 已過期(未曾使用且過期)
+    case "3":
+      sqlCode =
+        "SELECT member_coupons.*, coupons.title, coupons.discount_percent FROM member_coupons JOIN coupons ON member_coupons.coupons_id = coupons.id WHERE member_coupons.member_id = ? AND member_coupons.expire_date < ? AND member_coupons.status = 1 AND member_coupons.valid = 1";
+      break;
+    default:
+      return res.status(404).json({ success: false, code: "G999" });
+  }
+
+  try {
+    let result = await connection.queryAsync(sqlCode, [member_id, now]);
+    res.status(200).json({ success: true, coupons: result });
+  } catch (error) {
+    // console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 編輯主廚卡片資料
+router.post("/chefIntro/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+  let { info_text } = req.body;
+
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE member SET chef_introduction = ? WHERE id =? AND member_category= ?",
+      [info_text, member_id, 2]
+    );
+
     res.status(200).json({ success: true });
   } catch (error) {
     // console.log(error);

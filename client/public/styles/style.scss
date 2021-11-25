@@ -13,6 +13,9 @@ $lowLevelColor: #5eb2eb;
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
 
+// MemberCenter定高
+$MemberCenterHeight: calc(100vh - 55px);
+
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -219,6 +222,8 @@ a {
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
 @import "./member/CourseReview";
+@import "./member/ChefIntro";
+@import "./member/ChefCard2";
 
 // masonry相關
 @import "./massonry/massonry";
@@ -237,6 +242,9 @@ a {
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
 
+// 主廚
+@import "./chef/chef";
+
 // RWD
 @media screen and (max-width: 1200px) {
   .Navbar {
@@ -252,9 +260,11 @@ a {
   }
   .CourseDetail-headerPicture {
     width: 90%;
-    img {
-      height: 35vw;
-    }
+
+    // ian 移除（確保圖片不壓縮）
+    // img {
+    //   height: 35vw;
+    // }
   }
   .Coursedetail {
     /* 三圖片大框 */
@@ -267,5 +277,8 @@ a {
     .Coursedetail-container {
       width: 90%;
     }
+  }
+  .chef-set {
+    width: 90%;
   }
 }

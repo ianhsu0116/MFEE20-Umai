@@ -5,7 +5,7 @@ const ReviewButton = (props) => {
 
   // 控制按鈕左右切換
   const handleReviewClick = (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     isReview ? setIsReview(false) : setIsReview(true);
   };
   return (

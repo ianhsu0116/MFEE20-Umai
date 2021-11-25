@@ -3,4 +3,5 @@ module.exports = {
   member: require("./member"),
   course: require("./course"),
   forum: require("./forum"),
+  order: require("./order"),
 };

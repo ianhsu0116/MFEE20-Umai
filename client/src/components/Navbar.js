@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import UmaiLogo from "./images/Umai.png";
-import avatar from "./images/avatar.jpg";
+import avatar from "./images/avatar.svg";
 
 const Navbar = (props) => {
   let { handleLoginClick, currentUser } = props;
+
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY >= 40) {
+        setActive(true);
+      } else {
+        setActive("");
+      }
+    });
+  }, []);
+
   return (
-    <div className="Navbar">
+    <div className={`Navbar ${active ? " Navbar-active " : ""}`}>
       <div className="Navbar-container">
         <div className="Navbar-container-item">
           <button className="Navbar-container-item-btn">

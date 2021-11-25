@@ -14,7 +14,7 @@
     //top: -100%;
     width: 750px;
     height: 500px;
-    // max-width: 900px;
+    z-index: 11;
     background: white;
     border-radius: 15px;
     overflow: hidden;
@@ -112,9 +112,9 @@
 
       .Login-container-right-button-con {
         width: 100%;
-        border-radius: 10px;
+        //border-radius: 10px;
         overflow: hidden;
-        margin: 1rem 0;
+        padding: 1rem 0;
         display: flex;
         flex-direction: row;
         position: relative;
@@ -126,13 +126,16 @@
           text-align: center;
           background: $themeColorBlue;
           color: white;
+          text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
         }
         .login-submit-btn {
           margin-right: 0.1;
+          border-radius: 10px 0 0 10px;
         }
         .register-submit-btn {
           margin-left: 0.1rem;
           background: $activeColor;
+          border-radius: 0 10px 10px 0;
         }
       }
 

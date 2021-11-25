@@ -9,9 +9,9 @@ import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
 import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
-import { FaPen } from "react-icons/fa";
+import { FaPen, FaIdCard } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
-import avatar from "../images/avatar.jpg";
+import avatar from "../images/avatar.svg";
 
 const MemberSidebar = (props) => {
   let { currentBoard, setCurrentBoard, currentUser, setCurrentUser } = props;
@@ -92,6 +92,8 @@ const MemberSidebar = (props) => {
             htmlFor="avatar"
             className="MemberSidebar-container-avatar-label"
           >
+            {/* 遮罩效果 */}
+            <div className="MemberSidebar-container-avatar-mask"></div>
             {currentUser && currentUser.avatar && (
               <img
                 src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
@@ -202,20 +204,36 @@ const MemberSidebar = (props) => {
           </li>
           {/* 當前登入者是廚師時，才能新增課程 */}
           {currentUser && currentUser.member_category === 2 && (
-            <li
-              className={`MemberSidebar-container-ul-li ${
-                currentBoard === "新增課程" &&
-                "MemberSidebar-container-ul-li-active"
-              }`}
-            >
-              <GiCook />
-              <span
-                className="MemberSidebar-container-ul-li-text"
-                onClick={handleChangeBoard}
+            <>
+              <li
+                className={`MemberSidebar-container-ul-li MemberSidebar-container-ul-li2 ${
+                  currentBoard === "主廚卡片" &&
+                  "MemberSidebar-container-ul-li-active2"
+                }`}
               >
-                新增課程
-              </span>
-            </li>
+                <FaIdCard />
+                <span
+                  className="MemberSidebar-container-ul-li-text"
+                  onClick={handleChangeBoard}
+                >
+                  主廚卡片
+                </span>
+              </li>
+              <li
+                className={`MemberSidebar-container-ul-li MemberSidebar-container-ul-li2 ${
+                  currentBoard === "新增課程" &&
+                  "MemberSidebar-container-ul-li-active2"
+                }`}
+              >
+                <GiCook />
+                <span
+                  className="MemberSidebar-container-ul-li-text"
+                  onClick={handleChangeBoard}
+                >
+                  新增課程
+                </span>
+              </li>
+            </>
           )}
           <li className="MemberSidebar-container-ul-li" onClick={handleLogout}>
             <HiOutlineLogout />

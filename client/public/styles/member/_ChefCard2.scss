@@ -1,0 +1,195 @@
+$chefTextColor: #ffffff;
+$chefFontWeightText: "Noto Sans TC", Regular;
+$chefTextSize: 1.25rem;
+$chefTextSizeDown: 18px;
+$chefTextSize-li: 0.75rem;
+
+// 主廚卡片大小
+.st-chefCard2 {
+  width: 45vw;
+  height: 26vw;
+  max-width: 900px;
+  max-height: 560px;
+  min-width: 600px;
+  min-height: 400px;
+  background-color: #d8a566;
+  border-radius: 20px;
+  margin-top: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+// 主廚照片(左)
+.st-chefCard2Picture {
+  height: 100%;
+  border-radius: 20px 0px 0px 20px;
+  float: left;
+  width: 50%;
+  position: relative;
+
+  // 圖片水平置中
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  & img {
+    height: 100%;
+  }
+}
+// 主廚上資訊欄
+.st-chefCard2Top {
+  height: 60%;
+  float: right;
+  border-radius: 0px 20px 0px 0px;
+  width: 50%;
+  font-family: $chefFontWeightText;
+  font-size: $chefTextSize;
+  color: $chefTextColor;
+  font-weight: bold;
+  padding: 1.15rem;
+  text-align: left;
+  position: relative;
+  overflow: scroll;
+  .chefCard2Top-introduce1 {
+    font-size: calc(1rem + 0.3vw);
+    min-height: 60%;
+    cursor: pointer;
+    position: relative;
+
+    .chefCard2Top-introduce1-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .chefCard2Top-introduce1-pen {
+        opacity: 1;
+      }
+    }
+  }
+
+  .st-chefCard2Top-chefIntroduce1 {
+    height: 60%;
+  }
+}
+// 分隔線
+.st-chefCard2Line {
+  height: 1px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: $chefTextColor;
+  margin: 1rem 0;
+}
+// 主廚上資訊欄名字
+.st-chefCard2TopChefName {
+  font-family: $chefFontWeightText;
+  font-size: 20px;
+  color: $chefTextColor;
+
+  .st-chefCard2TopChefName-chefIntroduce2 {
+    font-size: calc(0.9rem + 0.2vw);
+  }
+}
+// 主廚下資訊欄
+.st-chefCard2Down {
+  height: 40%;
+  float: right;
+  border-radius: 0px 0px 20px 0px;
+  width: 50%;
+  background-color: #5e5548;
+  font-family: $chefFontWeightText;
+  font-size: $chefTextSizeDown;
+  color: $chefTextColor;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: left;
+  letter-spacing: 2px;
+  overflow: scroll;
+
+  .st-chefCard2Down-chefInfoTitle {
+    font-size: calc(1.04rem + 0.1vw);
+    cursor: pointer;
+    .st-chefCard2Down-chefInfoTitle-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .st-chefCard2Down-chefInfoTitle-pen {
+        opacity: 1;
+      }
+    }
+  }
+
+  .st-chefCard2Down-ul {
+    cursor: pointer;
+
+    .st-chefCard2Down-ul-pen {
+      opacity: 0;
+      fill: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(22px + 0.1vw);
+      height: calc(22px + 0.1vw);
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      color: rgba(0, 0, 0, 0.25);
+      .st-chefCard2Down-ul-pen {
+        opacity: 1;
+      }
+    }
+  }
+
+  // input
+  .st-chefCard2Down-inputCon {
+    padding: 0.5rem 0 0.5rem 1rem;
+    position: relative;
+    @include flex(column);
+    justify-content: space-between;
+    height: 60%;
+    overflow: scroll;
+
+    .st-chefCard2Down-chefInfo {
+      font-size: 0.9rem;
+      padding: 0.15rem;
+      width: 100%;
+      height: 35%;
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+// 下資訊欄Padding設定
+.st-chefCard2Down ul {
+  padding: 0.5rem 0 0.5rem 1rem;
+  list-style: disc;
+}
+// 下資訊欄li設定
+.st-chefCard2Down ul li {
+  font-family: $chefFontWeightText;
+  font-size: $chefTextSize-li;
+  font-weight: bold;
+}

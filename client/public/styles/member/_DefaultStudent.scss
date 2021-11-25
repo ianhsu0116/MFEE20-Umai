@@ -1,5 +1,5 @@
 .DefaultStudent {
-  height: calc(100vh - 50px);
+  height: $MemberCenterHeight;
   //position: relative;
   display: flex;
   align-items: center;
@@ -31,6 +31,7 @@
       position: relative;
       margin: 0 0 1rem 0;
       @include flex(row);
+      justify-content: center;
       flex-wrap: wrap;
     }
     .DefaultStudent-container-cards-bottom {

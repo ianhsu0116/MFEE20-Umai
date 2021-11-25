@@ -1,0 +1,55 @@
+.ChefIntro {
+  height: $MemberCenterHeight;
+  //position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  .ChefIntro-container {
+    height: 95%;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    @include flex(column);
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    .ChefIntro-container-header {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid $activeColor;
+      width: 100%;
+
+      & h1 {
+        font-weight: 100;
+      }
+    }
+
+    .ChefIntro-container-cards {
+      width: 100%;
+      position: relative;
+      //margin: 1rem 0;
+      @include flex(column);
+      align-items: center;
+      justify-content: center;
+      overflow: scroll;
+
+      .ChefIntro-container-buttomCon {
+        width: 100%;
+        text-align: end;
+        padding: 1rem 0;
+        & button {
+          margin-left: 0.5rem;
+        }
+      }
+
+      .ChefIntro-container-errorCon {
+        width: 100%;
+        text-align: center;
+        padding: 0.25rem 0;
+      }
+    }
+  }
+}

@@ -99,7 +99,6 @@ const Gallery = () => {
       >
         <Modal.Body className="Massonry-modal-body">
           <div className="Massonry-modal-body-image-border">
-          
             <Modal.Header
               closeButton
               className="Massonry-modal-header"
