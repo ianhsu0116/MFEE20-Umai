@@ -10,7 +10,7 @@ function CourseHeaderPicture(props) {
   let { image1, image2, image3 } = props;
   return (
     <>
-      <div className="Coursedetail">
+      <div className="Coursedetail CoursedetailMargin">
         <div
           id="carouselExampleIndicators"
           className="carousel slide CourseDetail-headerPicture"

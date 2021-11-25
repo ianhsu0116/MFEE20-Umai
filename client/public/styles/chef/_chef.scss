@@ -41,14 +41,14 @@
 	color: $activeColor;
 	width: 90%;
 	margin: auto;
-	font-size: 2em;
-	transition: font-size 0.2s;
+	font-size: 1.75em;
+	transition: font-size 0.05s;
 }
 .chef-liActive {
 	color: $activeColor;
 	width: 90%;
 	margin: auto;
-	font-size: 2em;
+	font-size: 1.75em;
 	border-radius: 10px;
 }
 .chef-liActive:hover {

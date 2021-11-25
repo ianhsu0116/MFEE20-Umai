@@ -24,6 +24,8 @@
 /* 大容器div */
 .Coursedetail {
 	width: 100%;
+}
+.CoursedetailMargin {
 	margin: 63px auto 0 auto;
 }
 /* 三圖片大框 */
@@ -258,10 +260,6 @@
 	font-weight: bold;
 	font-family: "Noto Sans TC", Bold;
 }
-// 內標距離用
-// .Coursedetail-well {
-// 	height: 20px;
-// }
 
 /* 內標 */
 .Coursedetail-insideTitle {
@@ -317,18 +315,6 @@
 .Coursedetail-foodInfo {
 	padding: 1vw;
 }
-// .Coursedetail-sixPicture {
-// 	padding: 10px;
-// 	position: relative;
-// 	width: 780px;
-// 	height: 550px;
-// }
-// .Coursedetail-sixPicture img {
-// 	padding: 5px;
-// }
-// .Coursedetail-sixPictureTitlePosition {
-// 	position: absolute;
-// }
 .Coursedetail-sixPictureTitle {
 	display: flex;
 	align-items: center;
@@ -352,11 +338,6 @@
 	background-color: black;
 	opacity: 0;
 }
-// .Coursedetail-sixPictureTitle:hover {
-// 	opacity: 1;
-// 	transform: translate(0px, -50px);
-// 	-webkit-transition: transform 0.5s;
-// }
 .Coursedetail-sixPictureTitleTopBox {
 	display: flex;
 	margin-top: 50px;
@@ -605,13 +586,6 @@
 	}
 }
 
-.Coursedetail-clip {
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-	background-color: aquamarine;
-	// margin-bottom: 100px;
-	height: 40vw;
-	width: 30vw;
-}
 .Coursedetail-testSc {
 	overflow: hidden;
 }
