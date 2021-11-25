@@ -103,15 +103,18 @@
               border: 1px solid black;
             }
           }
-        }
-
-        .MemberInfo-container-inputCon-passwordSubmitBtn {
-          display: none;
-          color: $highLevelColor;
-          border: 1px solid $highLevelColor;
-        }
-        .MemberInfo-container-inputCon-passwordSubmitBtn-active {
-          display: block;
+          .MemberInfo-container-inputCon-passwordSubmitBtn {
+            display: none;
+            color: $highLevelColor;
+            border: 1px solid $highLevelColor;
+            &:hover {
+              color: red;
+              border: 1px solid red;
+            }
+          }
+          .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+            display: block;
+          }
         }
       }
     }

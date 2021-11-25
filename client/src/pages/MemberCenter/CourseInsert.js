@@ -521,7 +521,7 @@ const CourseInsert = (props) => {
               onChange={handleCourseChange}
               className="CourseInsert-container-row-inputCon-input"
               type="text"
-              maxLength="50"
+              maxLength="ˇ30"
               placeholder="信じられない！とても美味しい！..."
             />
           </div>
@@ -541,7 +541,7 @@ const CourseInsert = (props) => {
               onChange={handleCourseChange}
               className="CourseInsert-container-row-inputCon-input"
               type="text"
-              maxLength="50"
+              maxLength="30"
               placeholder="最驚艷的日式料理，入口彷如人就在日本北海道..."
             />
           </div>

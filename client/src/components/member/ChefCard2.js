@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Chef from "../images/avatar.jpg";
+import Chef from "../images/avatar.svg";
 import { PUBLIC_URL } from "../../config/config";
 import { FaPen } from "react-icons/fa";
 
@@ -113,7 +113,7 @@ function ChefCard2(props) {
           {!inputMode[2] && (
             <div className="st-chefCard2Down-chefInfoTitle">
               <div
-                className="st-chefCard2Down-chefInfoTitle"
+                className="st-chefCard2Down-chefInfoTitle-textBox"
                 onClick={(e) => {
                   handleModeChange(e, 2);
                 }}
