@@ -37,7 +37,7 @@ const ForumCard = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [forumcard, setForumcard] = useState([""]);
-  const [articleDetail, setArticleDetail] = useState([""]);
+  const [articleDetail, setArticleDetail] = useState({});
 
   useEffect(async () => {
     try {
@@ -48,6 +48,16 @@ const ForumCard = () => {
       console.log(error.response);
     }
   }, []);
+
+  // useEffect(async () => {
+  //   try {
+  //     let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
+  //     console.log("detail", res.data);
+  //     setArticleDetail(res.data.forumdatadetail);
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -60,8 +70,15 @@ const ForumCard = () => {
             forumcard.map((forumdata) => (
               <div className="Forum-main-out">
                 <img
+                  data-forumId={forumdata.id}
                   className="Forum-main-photo"
-                  onClick={handleShow}
+                  onClick={async (e) => {
+                    console.log(e.target.dataset.forumid);
+                    let forumEach = await axios.get(
+                      `${API_URL}/forum/${e.target.dataset.forumid}`
+                    );
+                    setArticleDetail(forumEach.data.forumdatadetail);
+                  }}
                   // src={require(`./../../components/images/${image}`).default}
                   src=""
                   alt="drink"
@@ -108,7 +125,9 @@ const ForumCard = () => {
             ))}
         </div>
       </div>
-
+      {/* 把各自的ID綁再按鈕上面，e.target.id，抓到當筆資料的ID再去發ID，抓到的資料去取代MODAL的狀態。 */}
+      {/* [articleDetail.category_id article_title article_text article_tag
+      image_name created_time] */}
       <Modal
         className="Forum-modal"
         id="style-10"
@@ -118,7 +137,7 @@ const ForumCard = () => {
       >
         <Modal.Header className="Forum-modal-header" closeButton>
           <Modal.Title>
-            <h2>築地創意壽司 課程老師評價？</h2>
+            <h2>{articleDetail.article_title}</h2>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="Forum-modal-body">
@@ -133,7 +152,7 @@ const ForumCard = () => {
               <div>
                 <h6 className="Forum-modal-body-account-name">奇異的小玩偶</h6>
                 <h6 className="Forum-modal-body-account-id">
-                  @olsonlovesmakelove
+                  {articleDetail.member_id}
                 </h6>
               </div>
               <div className="Forum-main-DateAndDropdown">
@@ -151,32 +170,7 @@ const ForumCard = () => {
               </div>
             </div>
             <div className="Forum-modal-body-commet" id="Forum-modal-scrollbar">
-              <p className="">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam
-                ad voluptates ullam odio sed, nihil atque illo earum, neque
-                minus quasi aliquam quaerat quae error animi, provident
-                obcaecati aut debitis.
-              </p>
-              <img
-                className="Forum-modal-body-image"
-                src={require(`./../../components/images/img1.jpg`).default}
-                alt="cake"
-              ></img>
-              <img
-                className="Forum-modal-body-image"
-                src={require(`./../../components/images/img1.jpg`).default}
-                alt="cake"
-              ></img>
-              <img
-                className="Forum-modal-body-image"
-                src={require(`./../../components/images/img1.jpg`).default}
-                alt="cake"
-              ></img>
-              <img
-                className="Forum-modal-body-image"
-                src={require(`./../../components/images/img1.jpg`).default}
-                alt="cake"
-              ></img>
+              <p className="">{articleDetail.article_text}</p>
               <img
                 className="Forum-modal-body-image"
                 src={require(`./../../components/images/img1.jpg`).default}
