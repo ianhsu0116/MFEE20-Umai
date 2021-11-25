@@ -1,4 +1,6 @@
-$avatar-size: 130px;
+//$avatar-size: 130px;
+$avatar-size: 10vw;
+$avatar-size-max: 150px;
 
 .MemberSidebar {
   height: $MemberCenterHeight;
@@ -21,6 +23,8 @@ $avatar-size: 130px;
     .MemberSidebar-container-avatar {
       width: $avatar-size;
       height: $avatar-size;
+      max-width: $avatar-size-max;
+      max-height: $avatar-size-max;
       border-radius: 50%;
       overflow: hidden;
       margin: 0.5rem 0;
@@ -34,17 +38,31 @@ $avatar-size: 130px;
         opacity: 0;
       }
       .MemberSidebar-container-avatar-label {
-        width: $avatar-size;
-        height: $avatar-size;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
         cursor: pointer;
-
         @include flex(row);
         justify-content: center;
         align-items: center;
+        border: 1px solid transparent;
+        overflow: hidden;
+
         .MemberSidebar-container-avatar-img {
-          height: $avatar-size;
+          height: 100%;
           border-radius: 50%;
+        }
+
+        .MemberSidebar-container-avatar-mask {
+          position: absolute;
+          top: 100%;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          z-index: 2;
+          transition: all 0.5s ease;
         }
       }
 
@@ -53,13 +71,17 @@ $avatar-size: 130px;
         top: calc(50% - 10px);
         left: calc(50% - 10px);
         fill: white;
+        z-index: 2;
         opacity: 0;
       }
 
       &:hover {
-        .MemberSidebar-container-avatar-img {
-          opacity: 0.5;
-          -webkit-filter: brightness(0.5);
+        .MemberSidebar-container-avatar-label {
+          border: 1px solid $fontColor;
+          .MemberSidebar-container-avatar-mask {
+            opacity: 1;
+            top: 0;
+          }
         }
         .MemberSidebar-container-avatar-pen {
           opacity: 1;
@@ -68,15 +90,16 @@ $avatar-size: 130px;
     }
 
     .MemberSidebar-container-mamberName {
-      font-size: 1.75rem;
+      font-size: 1.75em;
       margin-bottom: 1rem;
+      text-align: center;
     }
 
     .MemberSidebar-container-ul {
       list-style: none;
       .MemberSidebar-container-ul-li {
         padding: 0.5rem 0;
-        font-size: 1.35rem;
+        font-size: 1.35em;
         @include flex(row);
         align-items: center;
         cursor: pointer;
@@ -90,8 +113,20 @@ $avatar-size: 130px;
         }
       }
 
+      // 主廚專屬功能
+      .MemberSidebar-container-ul-li2 {
+        &:hover {
+          color: $themeColorBlue;
+        }
+      }
+
       .MemberSidebar-container-ul-li-active {
         color: $activeColor;
+      }
+
+      // 主廚專屬功能
+      .MemberSidebar-container-ul-li-active2 {
+        color: $themeColorBlue;
       }
     }
   }

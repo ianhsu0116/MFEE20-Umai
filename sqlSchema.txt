@@ -22,12 +22,15 @@ DROP TABLE IF EXISTS `cart_and_collection`;
 CREATE TABLE `cart_and_collection` (
   `member_id` int(10) unsigned NOT NULL,
   `course_id` int(11) NOT NULL,
+  `batch_id` int(11) DEFAULT NULL,
   `inCart` int(1) NOT NULL DEFAULT '0',
   `inCollection` int(1) NOT NULL DEFAULT '0',
   KEY `member_id` (`member_id`),
   KEY `course_id` (`course_id`),
+  KEY `batch_id` (`batch_id`),
   CONSTRAINT `cart_and_collection_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-  CONSTRAINT `cart_and_collection_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
+  CONSTRAINT `cart_and_collection_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+  CONSTRAINT `cart_and_collection_ibfk_3` FOREIGN KEY (`batch_id`) REFERENCES `course_batch` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
