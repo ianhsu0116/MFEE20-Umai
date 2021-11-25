@@ -19,12 +19,12 @@ router.get("/", async (req, res) => {
 
 router.get("/:fourmId", async (req, res) => {
   try {
-    let forumdata = await connection.queryAsync(
+    let forumdatadetail = await connection.queryAsync(
       "SELECT * FROM forum_article WHERE id=?",
       [req.params.fourmId]
     );
-    console.log(forumdata);
-    res.json({ forumdata: forumdata });
+    console.log(forumdatadetail);
+    res.json({ forumdatadetail: forumdatadetail[0] });
   } catch (error) {
     console.log(error);
     res.json({ error: error });
