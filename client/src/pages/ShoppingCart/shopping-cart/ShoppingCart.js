@@ -1,17 +1,51 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/jsx-pascal-case */
 import Course_list from './CourseList';
 import Course_detail from './CourseDetail';
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function shopping_cart(props) {
+  //會員ID
+  const { currentUser } = props;
+
   //課程資訊
-  const [ coursetitle, setCoursetitle] = useState({
-    name:"築地創意壽司",
-    value:3300,
-    studentnumber:1
-  });
+  const [ coursetitle, setCoursetitle] = useState({});
+  useEffect(async () => {
+    try {
+      let result = await axios.get(`http://localhost:8080/api/course/9`, {
+        withCredentials: true,
+      });
+      console.log(result.data.course);
+      setCoursetitle({
+        name:result.data.course[0].course_name,
+        value:result.data.course[0].course_price,
+        studentnumber:1
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  //優惠券
+  const [ coupon, setcoupon] = useState([{
+    title:"請選擇優惠券",
+    discount_percent:100
+  }])
+  useEffect(async () => {
+    try {
+      let result = await axios.get(`http://localhost:8080/api/member/coupons/${currentUser.id}?type=1`, {
+        withCredentials: true,
+      });
+      let data=[...coupon]
+      data=data.concat(result.data.coupons)
+      setcoupon(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   //預設卡片資料格式
   let defaultcarddata={
     firstName: "",
@@ -20,31 +54,7 @@ function shopping_cart(props) {
     birthday: "",
     email: "",
   };
-  //優惠券
-  let coupon = [{
-    name:"請選擇優惠券",
-    count:0
-  },{
-      name:"滿 5000 折 500",
-      count:500,
-      condition:((e)=>{
-        if(e>=5000)
-        return true;
-        else 
-        return false;
-      })
-    },
-    {
-      name:"滿 5000 折 400",
-      count:400,
-      condition:((e)=>{
-        if(e>=5000)
-        return true;
-        else 
-        return false;
-      })
-    }
-  ];
+  
 
   const [ carddata, setCarddata] = useState([]);
   const [ OrderData, setOrderData] = useState({})
@@ -56,41 +66,39 @@ function shopping_cart(props) {
 
 //新增刪除卡片 修改卡片資料
   function changecarddata(i,newdata,carddata){
-    let data = [...carddata]
-    data[i-1]=Object.assign(carddata[i-1],newdata)
-    setCarddata(data);
+    carddata[i-1]=Object.assign(carddata[i-1],newdata)
+    setCarddata(carddata);
   }
 
   function deletecarddata(i,carddata){
-    const newcard =carddata;
-    newcard.splice(i-1,1)
-    setCoursetitle({...coursetitle,studentnumber:newcard.length})
+    if(carddata.length===1)
+      return;
+    carddata.splice(i-1,1)
+    setCarddata(carddata)
+    setCoursetitle({...coursetitle,studentnumber:carddata.length})
   }
 
   function newcarddata(carddata){
-    let newcard=carddata;
-    newcard.push({
+    carddata.push({
       ...defaultcarddata,
-      index:newcard.length+1,
+      index:carddata.length+1,
       changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
       deletecarddata:(index,newdata)=>{deletecarddata(index,newdata)}
       });
-    setCoursetitle({...coursetitle,studentnumber:newcard.length})
+    setCoursetitle({...coursetitle,studentnumber:carddata.length})
+  }
+  
+  //第一次進入頁面時生成學員資料卡片
+  if(carddata.length===0){
+    let defultcard=[];
+    defultcard.push({
+      ...defaultcarddata,
+      changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
+      deletecarddata:(index,newdata)=>{deletecarddata(index,newdata)}
+      })
+    setCarddata(defultcard)
   }
 
-//生成卡片資料陣列
-  let defultcard=[];
-    for(let i = 1; i <= coursetitle.studentnumber; i++){
-        if(carddata.length!==0)
-        break;
-        defultcard.push({
-        ...defaultcarddata,
-        changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
-        deletecarddata:(index,newdata)=>{deletecarddata(index,newdata)}
-        })
-        if(i===coursetitle.studentnumber)
-        setCarddata(defultcard)
-    }
   return (
     <>
       <div className="main-block wrapper">

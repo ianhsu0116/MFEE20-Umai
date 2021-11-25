@@ -102,7 +102,9 @@ function App() {
           <CalendarMulti onChange={onChange} />
         </Route>
         <Route path="/ShoppingCart" exact>
-          <ShoppingCart/>
+          <ShoppingCart
+            currentUser={currentUser}
+          />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter
@@ -130,10 +132,14 @@ function App() {
           <CourseDetail />
         </Route>
         <Route path="/ShoppingList" exact>
-          <ShoppingList />
+          <ShoppingList 
+            currentUser={currentUser}
+          />
         </Route>
         <Route path="/PaymentMethod" exact>
-          <PaymentMethod />
+          <PaymentMethod 
+            currentUser={currentUser}
+          />
         </Route>
         <Route path="/chef" exact>
           <Chef />

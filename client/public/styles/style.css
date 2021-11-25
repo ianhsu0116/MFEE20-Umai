@@ -6450,12 +6450,16 @@ a:hover {
   font-weight: 600;
 }
 
+.CourseDetail-Consumer-details tr:nth-child(4) td {
+  width: 50%;
+}
+
 .CourseDetail-Consumer-details tr:nth-child(4) td:last-child h3 {
   color: var(--main-color);
 }
 
 .CourseDetail-Consumer-details tr select {
-  width: 80%;
+  width: 100%;
   border: 1px solid #666666;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

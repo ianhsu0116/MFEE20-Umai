@@ -23,17 +23,17 @@ function CourseDetail(props){
                 <td><h4>優惠券</h4></td>
                 <td>
                     <select disabled="disabled">
-                        <option>{props.coupon.name}</option>
+                        <option>{props.coupon.title}</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td><h4>優惠折扣</h4></td>
-                <td><h4>NT$ {props.coupon.count}</h4></td>
+                <td><h4>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h4></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
-                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-props.coupon.count}</h3></td>
+                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h3></td>
             </tr>
         </table>
         <hr/>

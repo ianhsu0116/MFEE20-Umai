@@ -6,8 +6,6 @@ import Orderinfo from "./orderinfo";
 
 function CourseList(props){
     const [ card, setCard] = useState(true);
-    const [ carddata, setCarddata] = useState(props.carddata);
-
     let index=1;    
 
     return(
@@ -51,11 +49,11 @@ function CourseList(props){
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
                             <button onClick={()=>{
-                               props.newcarddata(carddata)
+                               props.newcarddata(props.carddata)
                                 }}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                        {carddata.map((data) => <DefaultStudentCard data={data} index={index++} carddata={carddata}/>)}
+                        {props.carddata.map((data) => <DefaultStudentCard data={data} index={index++} carddata={props.carddata}/>)}
                         </div>
                     </div>
                 </td>

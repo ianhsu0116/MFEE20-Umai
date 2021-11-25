@@ -4,7 +4,6 @@ function ShoppingBill(props){
     let carddata = props.carddata;
     let OrderData = props.OrderData;
     let index = 1;
-    console.log(carddata);
     return(
         <>
         <div className="ShoppingBill-padding">
@@ -26,8 +25,8 @@ function ShoppingBill(props){
                     </td>
                     <td><h4>NT$ {coursetitle.value}</h4></td>
                     <td><h4>*{coursetitle.studentnumber}位</h4></td> 
-                    <td><h4>NT$ {coupon.count}</h4></td>
-                    <td><h4>NT$ {coursetitle.value*coursetitle.studentnumber-coupon.count}</h4></td>
+                    <td><h4>NT$ {Math.floor(coursetitle.value*coursetitle.studentnumber*(1-coupon.discount_percent/100))}</h4></td>
+                    <td><h4>NT$ {coursetitle.value*coursetitle.studentnumber-Math.floor(coursetitle.value*coursetitle.studentnumber*(1-coupon.discount_percent/100))}</h4></td>
                 </tr>
             </table>
             <table className="ShoppingBill-student ShoppingBill-table-style">

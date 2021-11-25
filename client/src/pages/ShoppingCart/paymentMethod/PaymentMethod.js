@@ -7,15 +7,14 @@ import { useState } from 'react';
 function PaymentMethod(props){
     const location = useLocation();
     let { data} = location.state;
-    let creditCards = null;
+    const [creditCards,setcreditCards]=useState({})
     let coursetitle = JSON.parse(data).coursetitle;
     let coupon = JSON.parse(data).coupon;
     let carddata = JSON.parse(data).carddata;
     let OrderData = JSON.parse(data).OrderData;
     
-
     function getcreditCards(data){
-        creditCards = data;
+        setcreditCards(data)
     }
 
     return(

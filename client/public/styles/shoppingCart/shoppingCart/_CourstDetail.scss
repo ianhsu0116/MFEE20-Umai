@@ -13,6 +13,7 @@
         font-weight: 600;
       }
       td{
+        width: 50%;
         &:last-child{
           h3 {
             color: var(--main-color);
@@ -21,7 +22,7 @@
       }
     }
     select {
-      width: 80%;
+      width: 100%;
       border: 1px solid #666666;
       box-sizing: border-box;
       border-radius: 5px;

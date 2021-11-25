@@ -4,13 +4,12 @@ import Shopping_bill from './ShoppingBill';
 import { useLocation } from 'react-router-dom'
 function ShoppingList(props){
     const location = useLocation();
-    let { data} = location.state;
+    let {data} = location.state;
     let coursetitle = JSON.parse(data).coursetitle;
     let coupon = JSON.parse(data).coupon;
     let carddata = JSON.parse(data).carddata;
     let OrderData = JSON.parse(data).OrderData;
     let creditCards = JSON.parse(data).creditCards;
-    
     return(
         <>
         <div className="ShoppingBill-background">

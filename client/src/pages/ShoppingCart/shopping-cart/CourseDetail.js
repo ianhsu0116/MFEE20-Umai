@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function CourseDetail(props){
-    const [discount,setdiscount]=useState(0);
+    const [discount,setdiscount]=useState(100);
     const [selectedIndex,setselectedIndex]=useState(0);
     let coursetitle = props.coursetitle;
     let coupon={};
@@ -28,17 +28,17 @@ function CourseDetail(props){
                 <td><h4>優惠券</h4></td>
                 <td>
                     <select onChange={(e)=>{setdiscount(e.target.value); setselectedIndex(e.target.options.selectedIndex)}}>
-                        {props.coupon.map((data) => <option value={data.count}>{data.name}</option>)}
+                        {props.coupon.map((data) => <option value={data.discount_percent}>{data.title}</option>)}
                     </select>
                 </td>
             </tr>
             <tr>
                 <td><h4>優惠折扣</h4></td>
-                <td><h4>NT$ {discount}</h4></td>
+                <td><h4>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h4></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
-                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-discount}</h3></td>
+                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h3></td>
             </tr>
         </table>
         <hr/>

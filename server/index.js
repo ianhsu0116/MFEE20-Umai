@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, code: "不知名錯誤！", message: err });
 });
 
-app.listen(3001, () => {
+app.listen(8080, () => {
   connection.connect();
   console.log("server is running on port 8080");
 });
