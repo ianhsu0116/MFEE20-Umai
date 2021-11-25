@@ -371,5 +371,21 @@ router.post("/chefIntro/:member_id", async (req, res) => {
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
+// 抓member_category = 2(主廚)資料
+router.get("/member/chefName", async (req, res) => {
+  let { id } = req.session.member;
+
+  try {
+    let result = await connection.queryAsync(
+      "SELECT member.id , member.first_name , last_name , member.chef_introduction , member.member_category  FROM member WHERE member_category = 2 AND valid = ?",
+      [id, 1]
+    );
+    res.status(200).json({ success: true, chefs: result });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
 
 module.exports = router;
