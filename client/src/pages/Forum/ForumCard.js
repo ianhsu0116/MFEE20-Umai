@@ -42,7 +42,7 @@ const ForumCard = () => {
   useEffect(async () => {
     try {
       let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
-      console.log(res);
+      console.log(res.data.forumdata);
       setForumcard(res.data.forumdata);
     } catch (error) {
       console.log(error.response);
@@ -50,14 +50,14 @@ const ForumCard = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <div className="forum">
         <div className="main">
           <h5 className="Forum-main-h3">首頁>討論區</h5>
           <h1 className="Forum-main-h2 ">日式料理</h1>
           <div className="st-line"></div>
           {forumcard &&
-            forumcard.map((image) => (
+            forumcard.map((forumdata) => (
               <div className="Forum-main-out">
                 <img
                   className="Forum-main-photo"
@@ -68,7 +68,7 @@ const ForumCard = () => {
                 ></img>
                 <div className="Forum-main-middle">
                   <div className="Forum-main-DateAndDropdown">
-                    <p className="Forum-main-date">第五天</p>
+                    <p className="Forum-main-date">{forumdata.created_time}</p>
                     <div class="Forum-main-dropdown">
                       <FiMoreHorizontal className="FiMoreHorizontal" />
                       <div class="Forum-main-dropdown-content">
@@ -83,11 +83,11 @@ const ForumCard = () => {
                   </div>
                   <div className="Forum-main-dateAndTheme" onClick={handleShow}>
                     <h5 className="Forum-main-theme" onClick={handleShow}>
-                      《築地創意壽司》講師到底好不好？
+                      {forumdata.article_title}
                     </h5>
                   </div>
                   <p className="Forum-main-p" onClick={handleShow}>
-                    這幾天新開的一課程，不知道講師到底怎麼樣？課程費用有點小貴.....不曉得是否有大大可以解惑？覺得想知道.......
+                    {forumdata.article_text}
                   </p>
                   <div className="Forum-main-little">
                     <AiOutlineHeart className="AiOutlineHeart" />
@@ -108,6 +108,7 @@ const ForumCard = () => {
             ))}
         </div>
       </div>
+
       <Modal
         className="Forum-modal"
         id="style-10"
@@ -284,7 +285,7 @@ const ForumCard = () => {
           </div>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 

@@ -41,12 +41,8 @@ const Forum = () => {
   return (
     <>
       <div className="wrapper">
-        <div>
-          <Forumsidebar></Forumsidebar>
-        </div>
-        <div>
-          <ForumCard></ForumCard>
-        </div>
+        <Forumsidebar />
+        <ForumCard />
         <div className="publish">
           <form action="post">
             <h2>我要投稿</h2>

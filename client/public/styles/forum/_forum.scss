@@ -3,6 +3,7 @@ $width: 5px;
   // border: 1px black solid;
   position: relative;
   box-sizing: border-box;
+  // border: 1px solid black;
 }
 
 .wrapper {
@@ -10,10 +11,11 @@ $width: 5px;
   display: flex;
   justify-content: center;
   padding: 0;
+  margin: 0 auto;
   .sidebar {
     // background: white；
     color: #d8a466;
-    width: 100%;
+    width: 20%;
     height: 100vh;
     padding-top: 15px;
     margin: 0 15px;
@@ -41,7 +43,7 @@ $width: 5px;
 
   .publish {
     background: white;
-    width: 15%;
+    width: 20%;
     height: 90vh;
     box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
     padding-top: 15px;
