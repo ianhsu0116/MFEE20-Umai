@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PUBLIC_URL } from "../config/config";
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import UmaiLogo from "./images/Umai.png";
@@ -36,11 +37,20 @@ const Navbar = (props) => {
               to="/memberCenter"
               className="Navbar-container-item-btn Navbar-container-item-btn2"
             >
-              <img
-                src={avatar}
-                alt="avatar"
-                className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
-              />
+              {currentUser && currentUser.avatar && (
+                <img
+                  src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
+                  alt="使用者頭貼"
+                  className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
+                />
+              )}
+              {currentUser && !currentUser.avatar && (
+                <img
+                  src={avatar}
+                  alt="使用者頭貼"
+                  className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
+                />
+              )}
             </Link>
           </div>
         )}

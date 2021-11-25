@@ -3,9 +3,7 @@ const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const momnet = require("moment");
 const passport = require("passport");
-//require("../config/passport")(passport);
-const registerValidation = require("../validation").registerValidation;
-const loginValidation = require("../validation").loginValidation;
+const { registerValidation, loginValidation } = require("../validation");
 
 router.use((req, res, next) => {
   console.log("有一請求進入authRoute");
@@ -13,10 +11,6 @@ router.use((req, res, next) => {
 });
 
 router.get("/testAPI", async (req, res) => {
-  // 測試一下連不連得上
-  // let testConnect = await connection.queryAsync("SELECT * FROM member");
-  // return res.send(testConnect);
-
   const msgObj = {
     message: "Test API is working",
   };
@@ -70,8 +64,9 @@ router.post("/login", async (req, res) => {
       last_name: member.last_name,
       birthday: member.birthday,
       telephone: member.telephone,
-      avatar_image: member.avatar_image,
+      avatar: member.avatar,
       credit_card_number: member.credit_card_number,
+      credit_card_name: member.credit_card_name,
       chef_introduction: member.chef_introduction,
       member_category: member.member_category,
     };
@@ -133,7 +128,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
@@ -150,7 +145,7 @@ router.post(
   function (req, res) {
     // 登入成功 存入session
     if (req.user.success) {
-      req.session.member = req.user;
+      req.session.member = req.user.member;
       res.status(200).json(req.user);
     }
     // 登入失敗
@@ -161,8 +156,37 @@ router.post(
 );
 
 // 拿到使用者資料
-router.get("/info", (req, res) => {
-  res.json({ success: true, member: req.session.member });
+router.get("/memberInfo/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    let member = await connection.queryAsync(
+      "SELECT * FROM member WHERE id = ?",
+      id
+    );
+
+    // 取出member資料
+    member = member[0];
+
+    let returnMember = {
+      id: member.id,
+      email: member.email,
+      googleId: member.googleId,
+      facebookId: member.facebookId,
+      first_name: member.first_name,
+      last_name: member.last_name,
+      birthday: member.birthday,
+      telephone: member.telephone,
+      avatar: member.avatar,
+      credit_card_number: member.credit_card_number,
+      credit_card_name: member.credit_card_name,
+      chef_introduction: member.chef_introduction,
+      member_category: member.member_category,
+    };
+
+    res.status(200).json({ success: true, member: returnMember });
+  } catch (error) {
+    res.status(500).json({ success: false, code: "A999", message: error });
+  }
 });
 
 // 登出路由

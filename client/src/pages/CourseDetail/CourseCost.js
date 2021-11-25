@@ -30,6 +30,7 @@ function CourseCost(props){
   <div className="Coursedetail-cost">
             
             <span>
+            <div className="Coursedetail-costBox">
             <p>
             費用包含
             </p>
@@ -45,6 +46,7 @@ function CourseCost(props){
             <div className="Coursedetail-attention">
             <div>注意事項：</div>
                 <p>{attention }</p>
+            </div>
             </div>
             </span>
             <img src={Food4} alt="" width="800px"></img>

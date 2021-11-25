@@ -3,6 +3,8 @@
 package-lock.json
 /public/styles/style.css
 /public/styles/style.css.map
+
+
 # dependencies
 /node_modules
 /.pnp

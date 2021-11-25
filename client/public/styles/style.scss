@@ -178,6 +178,7 @@ a {
 .ErrorMessage {
   font-size: 90%;
   color: red;
+  font-weight: 800;
 }
 
 // 開啟彈出視窗時，防止後方頁面滾動
@@ -217,6 +218,15 @@ a {
 @import "./member/CollectionArticle";
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
+@import "./member/CourseReview";
+@import "./member/ChefIntro";
+@import "./member/ChefCard2";
+
+// masonry相關
+@import "./massonry/massonry";
+// forum 相關
+@import "./forum/forum";
+@import "./forum/discussion";
 
 // 課程分類
 @import "./course/Course";
@@ -226,6 +236,11 @@ a {
 // 課程詳細
 @import "./CourseDetail/_CourseDetailed";
 @import "./CourseDetail/CourseStar";
+@import "./CourseDetail/CourseHeaderPicture";
+@import "./CourseDetail/CourseRecommend";
+
+// 主廚
+@import "./chef/chef";
 
 // shoppingcart-shoppingcart
 @import "./shoppingCart/shoppingCart/ShoppingCart";
@@ -254,3 +269,24 @@ a {
     }
   }
 }
+  .CourseDetail-headerPicture {
+    width: 90%;
+    img {
+      height: 35vw;
+    }
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+    .Coursedetail-header {
+      width: 90%;
+      height: 35vw;
+    }
+  }
+  .Coursedetail-set {
+    .Coursedetail-container {
+      width: 90%;
+    }
+  }
+  .chef-set {
+    width: 90%;
+  }

@@ -14,18 +14,29 @@ let todayYear = today.getFullYear(); // 獲取當前的年份
 let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始計算，獲取的值比正常月份的值少1)
 let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
-// 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
+// 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期。
+// value = 預設的日期 (格式 YYYY-MM-DD)，沒有給的話 預設就是今日。
 const Calendar = (props) => {
-  let { onChange } = props;
+  let { onChange, value = "" } = props;
+
+  // 如果有預設的日期，就把預設改成此日期
+  useEffect(() => {
+    if (value) {
+      let parseDate = value.split("-");
+      setCurrentYear(Number(parseDate[0]));
+      setCurrentMonth(Number(parseDate[1] - 1));
+      setCurrentDay(Number(parseDate[2]));
+    }
+  }, [value]);
 
   // 日期窗開關
-  let [calenderOpen, setCalendarOpen] = useState(false);
+  let [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
-  let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
+  let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
-  let [currentMonth, setCurrentMonth] = useState(todayMonth); //todayMonth);
+  let [currentMonth, setCurrentMonth] = useState(todayMonth);
   // 預設的日期
-  let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
+  let [currentDay, setCurrentDay] = useState(todayDay);
   // 正確格式的日期（單數前面補零）
   let selectedDay = `${currentYear}-${currentMonth <= 8 ? "0" : ""}${
     currentMonth + 1
@@ -70,7 +81,7 @@ const Calendar = (props) => {
   // 控制日期窗開關
   const handleCalendarOpen = (e) => {
     e.stopPropagation();
-    calenderOpen ? setCalendarOpen(false) : setCalendarOpen(true);
+    calendarOpen ? setCalendarOpen(false) : setCalendarOpen(true);
   };
   // 點擊空白處關閉日期窗
   window.addEventListener("click", (e) => {
@@ -110,7 +121,7 @@ const Calendar = (props) => {
         </span>
         <MdKeyboardArrowDown />
       </div>
-      {calenderOpen && (
+      {calendarOpen && (
         <div
           className="Calendar-container"
           onClick={(e) => {

@@ -151,6 +151,7 @@ a:hover {
 .ErrorMessage {
   font-size: 90%;
   color: red;
+  font-weight: 800;
 }
 
 .stopScroll {
@@ -330,7 +331,7 @@ a:hover {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  min-height: 200px;
+  max-height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -342,6 +343,7 @@ a:hover {
 
 .CourseCard1 .CourseCard1-imageCon {
   height: 100%;
+  max-height: 200px;
   width: 38%;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
@@ -418,7 +420,7 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 25%;
+  width: 0;
   height: 100%;
   border-radius: 5px;
   background-color: #ffb257;
@@ -513,14 +515,12 @@ a:hover {
   cursor: pointer;
 }
 
-.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
-  background: url(../icons/heart-solid.svg) center center no-repeat;
-}
-
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
   fill: #eb6b6a;
-  width: 75%;
-  height: 75%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
@@ -1885,9 +1885,9 @@ a:hover {
 }
 
 .Login .Login-container {
-  top: -100%;
   width: 750px;
   height: 500px;
+  z-index: 11;
   background: white;
   border-radius: 15px;
   overflow: hidden;
@@ -2472,6 +2472,9 @@ a:hover {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards-bottom {
   overflow: scroll;
 }
 
@@ -2546,7 +2549,6 @@ a:hover {
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
   margin: 0 0 1rem 0;
   overflow: scroll;
-  width: 100%;
 }
 
 .OrderCard .OrderCard-container {
@@ -2606,6 +2608,11 @@ a:hover {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+}
+
+.OrderCard .OrderCard-container .OrderCard-mamberCount .OrderCard-mamberCount-price {
+  padding-top: 0.9rem;
+  font-weight: 800;
 }
 
 .OrderCard .OrderCard-detail {
@@ -3308,6 +3315,20 @@ a:hover {
   display: none;
 }
 
+.CourseInsert .CourseInsert-container .CourseInsert-container-btnCon {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .ReviewButton {
   height: 42px;
   width: 80px;
@@ -3370,6 +3391,1427 @@ a:hover {
 
 .ReviewButton .ReviewButton-btn-active .ReviewButton-btn-imgCon {
   background: url(../../icons/id-card.svg) no-repeat;
+}
+
+.CourseReview {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 2;
+  -webkit-box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+          box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+}
+
+.ChefIntro {
+  height: calc(100vh - 50px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.ChefIntro .ChefIntro-container {
+  height: 95%;
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #ffb257;
+  width: 100%;
+}
+
+.ChefIntro .ChefIntro-container .ChefIntro-container-header h1 {
+  font-weight: 100;
+}
+
+.st-chefCard2 {
+  width: 600px;
+  height: 400px;
+  background-color: #d8a566;
+  border-radius: 20px;
+  margin-top: 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.st-chefCard2Picture {
+  height: 100%;
+  border-radius: 20px 0px 0px 20px;
+  float: left;
+  width: 50%;
+  background-color: aqua;
+}
+
+.st-chefCard2Top {
+  height: 240px;
+  float: right;
+  border-radius: 0px 20px 0px 0px;
+  width: 50%;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 30px;
+  text-align: left;
+}
+
+.st-chefCard2Line {
+  height: 3px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin: 30px 0;
+}
+
+.st-chefCard2TopChefName {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.st-chefCard2Down {
+  height: 160px;
+  float: right;
+  border-radius: 0px 0px 20px 0px;
+  width: 50%;
+  background-color: #5e5548;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 20px 0px 0px 35px;
+  text-align: left;
+  letter-spacing: 2px;
+}
+
+.st-chefCard2Down ul {
+  padding: 20px 0px 15px 20px;
+  list-style: disc;
+}
+
+.st-chefCard2Down ul li {
+  font-family: "Noto Sans TC", Regular;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry {
+  max-width: 70%;
+  -webkit-column-count: 5;
+          column-count: 5;
+}
+
+.wrapper .masonry .item {
+  overflow: hidden;
+  background: white;
+  margin-bottom: 10px;
+  -webkit-column-break-inside: auto;
+  /* Chrome, Safari, Opera */
+  /* Firefox */
+  break-inside: auto;
+  /* IE 10+ */
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper .masonry .item img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.wrapper .masonry .item .opacity {
+  position: absolute;
+  top: 0;
+  border-radius: 20px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry .item .opacity:hover {
+  opacity: 0.5;
+}
+
+.Massonry-modal {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-header {
+  font-size: 30px;
+  background: white;
+}
+
+.Massonry-modal .Massonry-modal-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border {
+  width: 75%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border .Massonry-modal-header {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 100;
+  display: inline-block;
+  border: none;
+  outline: none;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border .Massonry-modal-body-image {
+  width: 100%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop {
+  width: 25%;
+  height: 100%;
+  background: burlywood;
+  padding: 1rem 2rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-orner-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-owner-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-text {
+  min-height: 40vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .Massonry-modal-body-orner-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .Massonry-modal-body-critic-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .Massonry-modal-body-commet-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Forum-modal-body-commet-p {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  min-height: 5vh;
+  max-height: 10vh;
+}
+
+* {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrapper {
+  width: 70vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .sidebar {
+  color: #d8a466;
+  width: 100%;
+  height: 100vh;
+  padding-top: 15px;
+  margin: 0 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .sidebar h3 {
+  text-align: center;
+}
+
+.wrapper .sidebar ul {
+  margin-top: 30px;
+  padding-left: 0;
+  text-align: center;
+}
+
+.wrapper .sidebar ul li {
+  padding: 2.5px 0;
+  list-style: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+}
+
+.wrapper .sidebar ul li:hover {
+  color: orange;
+}
+
+.wrapper .forum {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .forum .main {
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper .forum .main .Forum-main-h3 {
+  margin: 10px;
+}
+
+.wrapper .forum .main .Forum-main-h2 {
+  margin: 10px;
+  color: #d8a466;
+}
+
+.wrapper .forum .main .Forum-main-out {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: #686868 0.1px dashed;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-photo {
+  width: 125px;
+  min-width: 125px;
+  height: 125px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle {
+  padding: 0px 15px;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  position: relative;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-dateAndTheme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-dateAndTheme .Forum-main-theme {
+  padding: 0;
+  margin: 0px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-p {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 8px;
+  padding-left: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineHeart {
+  color: #eb6b6a;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-love {
+  padding: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineMessage {
+  color: #5eb2eb;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small p {
+  padding: 0 0.5rem;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small a {
+  display: none;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover .BsFillTriangleFill {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  color: orange;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover p {
+  display: none;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover a {
+  display: block;
+  color: orange;
+  padding: 0% 0.25rem;
+  margin: 0%;
+  text-decoration: none;
+}
+
+.wrapper .publish {
+  background: white;
+  width: 15%;
+  height: 90vh;
+  -webkit-box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+          box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+  padding-top: 15px;
+  padding-left: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .publish h2 {
+  color: #d8a466;
+}
+
+.wrapper .publish .Forum-publish-form-select {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-select .option:after {
+  position: absolute;
+  right: 20px;
+  top: 41%;
+}
+
+.wrapper .publish .Forum-publish-form-select select {
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper .publish .Forum-publish-form-select select option {
+  border: none;
+  outline: none;
+  width: 70%;
+  background-color: black;
+  color: white;
+}
+
+.wrapper .publish .Forum-publish-label-small-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-small {
+  margin-right: 5%;
+  text-align: left;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block .situation {
+  display: none;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block .AiFillQuestionCircle {
+  color: #f8ac1e;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block:hover .situation {
+  display: block;
+  font-size: 8px;
+}
+
+.wrapper .publish .Forum-publish-label-illustrator {
+  margin-left: 5%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  text-align: left;
+  display: block;
+}
+
+.wrapper .publish .Forum-publish-form-big {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 30px;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-file {
+  display: none;
+}
+
+.wrapper .publish .Forum-publish-textarea {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 400px;
+  min-height: 350px;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 15px;
+  resize: none;
+}
+
+.wrapper .publish .Forum-publish-button-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .publish .Forum-publish-button-div .Forum-publish-button {
+  margin: 15px 5px;
+  font-weight: bolder;
+}
+
+.Forum-modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-header {
+  font-size: 30px;
+}
+
+.Forum-modal .Forum-modal-body {
+  padding: 1rem 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border {
+  margin: 0 auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-commet {
+  max-height: 50vh;
+  margin: 15px auto;
+  font-size: 1.25rem;
+  overflow-y: scroll;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-commet .Forum-modal-body-image {
+  max-width: 80%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d8a466;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-p {
+  font-size: 1.25rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-fb {
+  position: absolute;
+  padding-right: 5px;
+  right: 0;
+  color: #4267b2;
+}
+
+.Forum-modal .modal-footer {
+  padding: 1rem 2rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .Forum-modal-body-icon-p {
+  font-size: 1.5rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet .Forum-modal-footer-write-commet-textarea {
+  width: 1055.55px;
+  max-width: 1440px;
+  min-width: 900px;
+  resize: none;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  color: #000000;
+  padding: 15px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttondelete {
+  margin: 0 5px;
+  background: #eb6b6a;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttonsave {
+  margin: 0 5px;
+  background: #d8a466;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+  max-width: 1440px;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .discussion {
+  width: 70%;
+  max-width: 1440px;
+  padding: 1rem;
+  background-color: white;
+}
+
+.wrapper .discussion .Discussion-main-theme {
+  text-align: center;
+}
+
+.wrapper .discussion .Discussion-main-brad {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet-textarea {
+  width: 90%;
+  margin: 0 1rem;
+  resize: none;
+  padding: 1rem;
+  border: olivedrab 1px dashed;
+}
+
+.wrapper .discussion .Discussion-main-account {
+  margin: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-p {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-image {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-commet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineHeart {
+  color: pink;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineMessage {
+  color: #00ffff;
+}
+
+.wrapper .discussion .Discussion-main-commet .Discussion-main-commet-social {
+  position: absolute;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .discussion .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
 }
 
 .Course {
@@ -3769,8 +5211,8 @@ a:hover {
 .Coursedetail-header {
   position: relative;
   width: 70vw;
-  max-width: 2040px;
-  height: 30vw;
+  max-width: 1440px;
+  height: 25vw;
   overflow: hidden;
   margin: auto;
 }
@@ -3816,7 +5258,7 @@ a:hover {
 
 /* 原價 */
 .Coursedetail-originalPrice {
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   color: #d4d4d4;
   text-decoration: line-through;
   margin-right: 1vw;
@@ -3826,7 +5268,7 @@ a:hover {
 .Coursedetail-specialPrice {
   color: #ffffff;
   font-size: 3vw;
-  font-family: 'Noto Sans TC', Medium;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
 }
 
@@ -3891,7 +5333,7 @@ a:hover {
   position: absolute;
   float: left;
   max-width: 50%;
-  font-family: 'Noto Sans TC', Medium;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
   padding-top: 1vw;
   width: 42vw;
@@ -3923,15 +5365,15 @@ a:hover {
 /* 左邊資訊標題 */
 .Coursedetail-infoLeftTitle {
   margin-top: 5px;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 3vw;
   color: #444444;
 }
 
 .Coursedetail-placeWithChef ul li {
-  margin-right: 2vw;
-  font-size: 1.6vw;
+  margin-right: 1.25vw;
+  font-size: 1.5vw;
 }
 
 .Coursedetail-placeWithChef ul li svg {
@@ -3955,14 +5397,20 @@ a:hover {
   display: none;
 }
 
+.Coursedetail-mapClose {
+  pointer-events: none;
+}
+
 .Coursedetail-infoLeftPlace:hover iframe {
-  top: 12vw;
+  top: 2.5vw;
   left: 0px;
   position: absolute;
-  width: 80%;
-  height: 200px;
+  width: 25vw;
+  height: 10vw;
   display: inline;
   z-index: 5;
+  border: #666666 2px solid;
+  border-radius: 5px;
 }
 
 /* 梯次按鈕 */
@@ -4002,6 +5450,7 @@ a:hover {
 .Coursedetail-infoBox {
   width: 100%;
   height: 100%;
+  min-height: 350px;
   background-color: #d8a466;
   margin-bottom: 5vw;
   border-radius: 5px;
@@ -4015,7 +5464,7 @@ a:hover {
   margin: 1vw auto 1vw auto;
   color: #d8a466;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
 }
 
 /* 內標 */
@@ -4025,7 +5474,7 @@ a:hover {
   font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   padding-top: 1vw;
 }
 
@@ -4040,7 +5489,7 @@ a:hover {
 /* 內文 */
 .Coursedetail-insideText {
   /* word-break: keep-all; */
-  text-indent: 2em;
+  text-indent: 1em;
   width: 90%;
   text-align: left;
   margin: auto;
@@ -4048,7 +5497,7 @@ a:hover {
   font-size: 1.4vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
+  font-family: "Noto Sans TC", Regular;
   padding-bottom: 2vw;
 }
 
@@ -4092,21 +5541,25 @@ a:hover {
   position: relative;
   height: 2.5vw;
   top: -4px;
-  background-color: rgba(223, 223, 223, 0.6);
   z-index: 3;
-  opacity: 0;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
+  font-family: "Noto Sans TC", Regular;
   font-size: 1.5vw;
   cursor: pointer;
   width: 100%;
+  color: #ffffff;
 }
 
-.Coursedetail-sixPictureTitle:hover {
-  opacity: 1;
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
-  -webkit-transition: transform 0.5s;
+.Coursedetail-sixPictureTitleMask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 15vw;
+  position: relative;
+  top: -15vw;
+  background-color: black;
+  opacity: 0;
 }
 
 .Coursedetail-sixPictureTitleTopBox {
@@ -4128,42 +5581,51 @@ a:hover {
 }
 
 .Coursedetail-active {
-  opacity: 1;
-  background-color: rgba(223, 223, 223, 0.8);
-  -webkit-transform: translate(0px, -2.5vw);
-          transform: translate(0px, -2.5vw);
+  -webkit-transform: translate(0px, -6vw);
+          transform: translate(0px, -6vw);
   -webkit-transition: -webkit-transform 0.5s;
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 0.5s;
-  border-radius: 0 0 5px 5px;
+}
+
+.Coursedetail-activeBottom {
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  top: 0;
+  margin-top: 1.2vw;
+  border-bottom: 5px solid #eb6b6a;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 {
   width: 60%;
   position: relative;
-  height: 100%;
+  height: 25vw;
   padding-bottom: 0.5vw;
+  max-height: 520px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul {
   overflow: hidden;
-  height: 10vw;
+  height: 50%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2vw;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li {
   display: inline-block;
   padding: 0;
-  min-height: 10vw;
+  height: 10vw;
   width: 10vw;
-  height: 100%;
   margin: auto auto auto 0;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li img {
@@ -4176,9 +5638,18 @@ a:hover {
 
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
   opacity: 1;
+  color: #ffffff;
   -webkit-transform: translate(0px, -6vw);
           transform: translate(0px, -6vw);
   -webkit-transition: transform 0.5s;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
+  opacity: 0.4;
+}
+
+.Coursedetail-sixPictureTitleMask:hover {
+  opacity: 0.4;
 }
 
 .Coursedetail-pictureBox {
@@ -4219,7 +5690,8 @@ a:hover {
   text-align: left;
   font-size: 1.2vw;
   font-weight: 700;
-  text-indent: 2em;
+  text-indent: 1em;
+  margin-top: 0.5rem;
   color: rgba(255, 255, 255, 0);
 }
 
@@ -4227,6 +5699,11 @@ a:hover {
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
   color: white;
+}
+
+.Coursedetail-costBox {
+  width: 80%;
+  height: 100%;
 }
 
 .Coursedetail-cost {
@@ -4243,10 +5720,11 @@ a:hover {
 .Coursedetail-cost span {
   position: relative;
   float: left;
-  width: 65%;
+  width: 60%;
   height: 100%;
-  border-bottom: 850px solid #d8a466;
-  border-right: 200px solid transparent;
+  -webkit-clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+          clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+  background-color: #d8a466;
   z-index: 2;
 }
 
@@ -4261,19 +5739,21 @@ a:hover {
 .Coursedetail-cost p {
   width: 100%;
   text-align: center;
-  font-size: 3vw;
+  font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-  padding-top: 40px;
+  font-family: "Noto Sans TC", Bold;
+  padding: 2vw 0 1vw 0;
 }
 
 .Coursedetail-cost .Coursedetail-costLine {
-  width: 90%;
+  width: 80%;
   border: 1px solid #fff;
-  margin: 10px auto 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 0.5vh;
   position: relative;
-  left: 10px;
+  margin: auto;
 }
 
 .Coursedetail-cost .Coursedetail-costArea {
@@ -4290,7 +5770,7 @@ a:hover {
 
 .Coursedetail-cost ul {
   color: #fff;
-  width: 60%;
+  width: 50%;
   position: relative;
   left: 10px;
   padding: 20px 0 20px 5%;
@@ -4302,7 +5782,7 @@ a:hover {
 }
 
 .Coursedetail-attention {
-  width: 110%;
+  width: 80%;
   height: 5vw;
   margin-left: 35px;
   position: relative;
@@ -4320,112 +5800,7 @@ a:hover {
   font-size: 1.2vw;
   color: #fff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-}
-
-.Coursedetail-recommend {
-  margin: 60px 0;
-  height: 35vw;
-  width: 100%;
-}
-
-.Coursedetail-recommendLeft {
-  height: 100%;
-  float: left;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendLeft img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendLeft span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendLeft span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
-}
-
-.Coursedetail-recommendText {
-  color: #ffffff;
-}
-
-.Coursedetail-recommendTitle {
-  text-align: center;
-  font-size: 48px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendLine {
-  width: 80%;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-  position: relative;
-  top: 540px;
-  margin: auto;
-}
-
-.Coursedetail-recommendName {
-  text-align: center;
-  font-size: 60px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendInfo {
-  text-align: left;
-  font-size: 24px;
-  position: relative;
-  top: 540px;
-  text-indent: 2em;
-  width: 80%;
-  margin: auto;
-}
-
-.Coursedetail-recommendRight {
-  height: 100%;
-  float: right;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendRight img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendRight span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendRight span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
+  font-family: "Noto Sans TC", Bold;
 }
 
 .Coursedetail-join {
@@ -4472,7 +5847,7 @@ a:hover {
   font-size: 48px;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   padding-top: 40px;
 }
 
@@ -4532,6 +5907,256 @@ a:hover {
   width: 20%;
   height: 100%;
   z-index: -1;
+}
+
+.CourseDetail-headerPicture {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.CourseDetail-headerPicture img {
+  height: 25vw;
+}
+
+.CourseDetail-headerPicture .Course-headerPictureButton {
+  background-color: RGBA(0, 0, 0, 0.5);
+  width: 5%;
+}
+
+.Coursedetail-recommend {
+  margin: 60px 0;
+  height: 30vw;
+  width: 103.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Coursedetail-recommendLeft {
+  height: 100%;
+  width: 30%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto auto 0;
+  max-height: 570px;
+}
+
+.Coursedetail-recommendLeft img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendLeft span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 220%;
+  position: relative;
+  top: -570px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft span:hover {
+  top: -1030px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.Coursedetail-recommendLeft .t1:hover {
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft .t1:hover .Coursedetail-recommendInfo {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendText {
+  color: #ffffff;
+}
+
+.Coursedetail-recommendTitle {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+  padding-top: 5vw;
+}
+
+.Coursedetail-recommendLine {
+  width: 80%;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  position: relative;
+  margin: auto;
+}
+
+.Coursedetail-recommendName {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+}
+
+.Coursedetail-recommendInfo {
+  text-align: left;
+  font-size: 1vw;
+  text-indent: 1em;
+  width: 80%;
+  margin: auto;
+  color: white;
+  padding-top: 2vw;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendClick {
+  font-size: 1.8vw;
+  width: 100%;
+  text-align: center;
+  text-indent: initial;
+  padding-top: 5vw;
+  position: absolute;
+  top: 65%;
+}
+
+.Coursedetail-recommendRight {
+  height: 100%;
+  float: right;
+  width: 45%;
+  border-radius: 5px;
+  border: 2px solid #666666;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendRight img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendRight span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 200%;
+  position: relative;
+  top: -700px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendRight span:hover {
+  top: -1100px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.t1 {
+  position: relative;
+  height: 105%;
+  width: 100%;
+  top: -102%;
+  background-color: RGBA(50, 50, 50, 0.5);
+}
+
+.chef-set {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.chef-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin-left: 30px;
+  color: #d8a466;
+}
+
+.chef-infomationBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chef-ul {
+  width: 220px;
+  border: black 1px solid;
+  padding: 10px 0;
+}
+
+.chef-li {
+  background: #ffffff;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: darkgray 1px solid;
+}
+
+.chef-li:hover {
+  background-color: #ffb257;
+  width: 90%;
+  margin: auto;
+  font-size: 20px;
+}
+
+.chef-liActive {
+  width: 100%;
+  background-color: #ffb257;
+  border: none;
+}
+
+.chef-liActive:hover {
+  width: 100%;
+  background-color: #ffb257;
+}
+
+.chef-liLine {
+  background-color: darkgray;
+  height: 1px;
+  width: 90%;
+  margin: auto;
+}
+
+.chef-cardAndCourseCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chef-margin {
+  margin: auto;
+}
+
+.chef-courseCardMargin {
+  margin-left: 90px;
 }
 
 :root {
@@ -5050,5 +6675,30 @@ a:hover {
   .MemberCenter .MemberCenter-container {
     width: 90%;
   }
+}
+
+.CourseDetail-headerPicture {
+  width: 90%;
+}
+
+.CourseDetail-headerPicture img {
+  height: 35vw;
+}
+
+.Coursedetail {
+  /* 三圖片大框 */
+}
+
+.Coursedetail .Coursedetail-header {
+  width: 90%;
+  height: 35vw;
+}
+
+.Coursedetail-set .Coursedetail-container {
+  width: 90%;
+}
+
+.chef-set {
+  width: 90%;
 }
 /*# sourceMappingURL=style.css.map */

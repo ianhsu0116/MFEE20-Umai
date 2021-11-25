@@ -4,7 +4,7 @@ import { FcCalendar } from "react-icons/fc";
 
 // 想顯示的所有年份 / 月份 / 星期幾
 let years = [];
-for (let i = 1990; i <= 2025; i++) {
+for (let i = 2020; i <= 2022; i++) {
   years.push(i);
 }
 let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -19,7 +19,7 @@ const CalendarMulti = (props) => {
   let { onChange } = props;
 
   // 日期窗開關
-  let [calenderOpen, setCalendarOpen] = useState(false);
+  let [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
   let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
@@ -74,7 +74,7 @@ const CalendarMulti = (props) => {
   // 控制日期窗開關
   const handleCalendarOpen = (e) => {
     e.stopPropagation();
-    calenderOpen ? setCalendarOpen(false) : setCalendarOpen(true);
+    calendarOpen ? setCalendarOpen(false) : setCalendarOpen(true);
   };
   // 點擊空白處關閉日期窗
   window.addEventListener("click", (e) => {
@@ -145,7 +145,7 @@ const CalendarMulti = (props) => {
         </span>
         <MdKeyboardArrowDown />
       </div>
-      {calenderOpen && (
+      {calendarOpen && (
         <div
           className="CalendarMulti-container"
           onClick={(e) => {

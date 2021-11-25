@@ -29,12 +29,12 @@
 .Coursedetail-header {
 	position: relative;
 	width: 70vw;
-	max-width: 2040px;
-	height: 30vw;
+	max-width: 1440px;
+	height: 25vw;
 	overflow: hidden;
 	margin: auto;
 }
-.Coursedetail-header img{
+.Coursedetail-header img {
 	height: 100%;
 	width: 100%;
 }
@@ -106,7 +106,7 @@
 }
 /* 原價 */
 .Coursedetail-originalPrice {
-	font-size: 1.5vw;
+	font-size: 1.3vw;
 	color: #d4d4d4;
 	text-decoration: line-through;
 	margin-right: 1vw;
@@ -115,7 +115,7 @@
 .Coursedetail-specialPrice {
 	color: #ffffff;
 	font-size: 3vw;
-	font-family: 'Noto Sans TC', Medium;
+	font-family: "Noto Sans TC", Medium;
 	font-weight: 700;
 }
 /* 名額margin */
@@ -173,7 +173,7 @@
 	position: absolute;
 	float: left;
 	max-width: 50%;
-	font-family: 'Noto Sans TC', Medium;
+	font-family: "Noto Sans TC", Medium;
 	font-weight: 700;
 	padding-top: 1vw;
 	width: 42vw;
@@ -204,15 +204,15 @@
 /* 左邊資訊標題 */
 .Coursedetail-infoLeftTitle {
 	margin-top: 5px;
-	font-family: 'Noto Sans TC', Bold;
+	font-family: "Noto Sans TC", Bold;
 	font-weight: bold;
-	font-size: 4vw;
+	font-size: 3vw;
 	color: #444444;
 }
 .Coursedetail-placeWithChef {
 	ul li {
-		margin-right: 2vw;
-		font-size: 1.6vw;
+		margin-right: 1.25vw;
+		font-size: 1.5vw;
 	}
 	ul li svg {
 		top: 3px;
@@ -235,15 +235,20 @@
 	border: 0;
 	display: none;
 }
+.Coursedetail-mapClose {
+	pointer-events: none;
+}
 
 .Coursedetail-infoLeftPlace:hover iframe {
-	top: 12vw;
+	top: 2.5vw;
 	left: 0px;
 	position: absolute;
-	width: 80%;
-	height: 200px;
+	width: 25vw;
+	height: 10vw;
 	display: inline;
 	z-index: 5;
+	border: $fontColor 2px solid;
+	border-radius: 5px;
 }
 /* 梯次按鈕 */
 .Coursedetail-data {
@@ -275,6 +280,7 @@
 .Coursedetail-infoBox {
 	width: 100%;
 	height: 100%;
+	min-height: 350px; // ian 新加的
 	background-color: $themeColor;
 	margin-bottom: 5vw;
 	border-radius: 5px;
@@ -287,7 +293,7 @@
 	margin: 1vw auto 1vw auto;
 	color: $themeColor;
 	font-weight: bold;
-	font-family: 'Noto Sans TC', Bold;
+	font-family: "Noto Sans TC", Bold;
 }
 // 內標距離用
 // .Coursedetail-well {
@@ -301,7 +307,7 @@
 	font-size: 2.5vw;
 	color: #ffffff;
 	font-weight: bold;
-	font-family: 'Noto Sans TC', Bold;
+	font-family: "Noto Sans TC", Bold;
 	padding-top: 1vw;
 }
 .Coursedetail-whiteLine {
@@ -314,7 +320,7 @@
 /* 內文 */
 .Coursedetail-insideText {
 	/* word-break: keep-all; */
-	text-indent: 2em;
+	text-indent: 1em;
 	width: 90%;
 	text-align: left;
 	margin: auto;
@@ -322,7 +328,7 @@
 	font-size: 1.4vw;
 	color: #ffffff;
 	font-weight: bold;
-	font-family: 'Noto Sans TC', Regular;
+	font-family: "Noto Sans TC", Regular;
 	padding-bottom: 2vw;
 }
 .Coursedetail-titleLine {
@@ -367,20 +373,28 @@
 	position: relative;
 	height: 2.5vw;
 	top: -4px;
-	background-color: rgba(223, 223, 223, 0.6);
 	z-index: 3;
-	opacity: 0;
 	font-weight: bold;
-	font-family: 'Noto Sans TC', Regular;
+	font-family: "Noto Sans TC", Regular;
 	font-size: 1.5vw;
 	cursor: pointer;
 	width: 100%;
+	color: #ffffff;
 }
-.Coursedetail-sixPictureTitle:hover {
-	opacity: 1;
-	transform: translate(0px, -50px);
-	-webkit-transition: transform 0.5s;
+.Coursedetail-sixPictureTitleMask {
+	display: flex;
+	width: 100%;
+	height: 15vw;
+	position: relative;
+	top: -15vw;
+	background-color: black;
+	opacity: 0;
 }
+// .Coursedetail-sixPictureTitle:hover {
+// 	opacity: 1;
+// 	transform: translate(0px, -50px);
+// 	-webkit-transition: transform 0.5s;
+// }
 .Coursedetail-sixPictureTitleTopBox {
 	display: flex;
 	margin-top: 50px;
@@ -394,39 +408,42 @@
 	height: 250px;
 }
 .Coursedetail-active {
-	opacity: 1;
-	background-color: rgba(223, 223, 223, 0.8);
-	transform: translate(0px, -2.5vw);
+	transform: translate(0px, -6vw);
 	transition: transform 0.5s;
-	border-radius: 0 0 5px 5px;
+	// border-radius: 0 0 5px 5px;
 }
-// .Coursedetail-sixPictureTextBox {
-// 	position: absolute;
-// 	display: flex;
-// 	width: 780px;
-// 	height: 200px;
-// }
+.Coursedetail-activeBottom {
+	width: 10vw;
+	height: 10vw;
+	position: absolute;
+	top: 0;
+	margin-top: 1.2vw;
+	border-bottom: 5px solid $highLevelColor;
+	overflow: hidden;
+	border-radius: 5px;
+}
 .Coursedetail-sixPictureTextBox_1 {
 	width: 60%;
 	position: relative;
-	height: 100%;
+	height: 25vw;
 	padding-bottom: 0.5vw;
+	max-height: 520px;
 }
 .Coursedetail-sixPictureTextBox_1 ul {
 	overflow: hidden;
-	height: 10vw;
+	height: 50%;
 	position: relative;
 	display: flex;
-	margin-bottom: 2vw;
 }
 .Coursedetail-sixPictureTextBox_1 ul li {
 	display: inline-block;
 	padding: 0;
-	min-height: 10vw;
+	height: 10vw;
 	width: 10vw;
-	height: 100%;
 	margin: auto auto auto 0;
 	cursor: pointer;
+	overflow: hidden;
+	border-radius: 5px;
 }
 .Coursedetail-sixPictureTextBox_1 ul li img {
 	width: 100%;
@@ -437,8 +454,15 @@
 }
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
 	opacity: 1;
+	color: #ffffff;
 	transform: translate(0px, -6vw);
 	-webkit-transition: transform 0.5s;
+}
+.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
+	opacity: 0.4;
+}
+.Coursedetail-sixPictureTitleMask:hover {
+	opacity: 0.4;
 }
 .Coursedetail-pictureBox {
 	width: 90%;
@@ -475,7 +499,8 @@
 	// color: #ffffff;
 	font-size: 1.2vw;
 	font-weight: 700;
-	text-indent: 2em;
+	text-indent: 1em;
+	margin-top: 0.5rem;
 	color: rgba(255, 255, 255, 0);
 }
 
@@ -483,7 +508,10 @@
 	transition: color 0.5s;
 	color: rgba(255, 255, 255, 1);
 }
-
+.Coursedetail-costBox {
+	width: 80%;
+	height: 100%;
+}
 .Coursedetail-cost {
 	position: relative;
 	width: 100%;
@@ -496,10 +524,10 @@
 	span {
 		position: relative;
 		float: left;
-		width: 65%;
+		width: 60%;
 		height: 100%;
-		border-bottom: 850px solid #d8a466;
-		border-right: 200px solid transparent;
+		clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+		background-color: $themeColor;
 		// min-width: 550px;
 		z-index: 2;
 	}
@@ -513,18 +541,20 @@
 	p {
 		width: 100%;
 		text-align: center;
-		font-size: 3vw;
+		font-size: 2.5vw;
 		color: #ffffff;
 		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
-		padding-top: 40px;
+		font-family: "Noto Sans TC", Bold;
+		padding: 2vw 0 1vw 0;
 	}
 	.Coursedetail-costLine {
-		width: 90%;
+		width: 80%;
 		border: 1px solid #fff;
-		margin: 10px auto 0 auto;
+		background-color: #fff;
+		border-radius: 5px;
+		height: 0.5vh;
 		position: relative;
-		left: 10px;
+		margin: auto;
 	}
 	.Coursedetail-costArea {
 		width: 90%;
@@ -537,7 +567,7 @@
 	}
 	ul {
 		color: #fff;
-		width: 60%;
+		width: 50%;
 		position: relative;
 		left: 10px;
 		padding: 20px 0 20px 5%;
@@ -549,7 +579,7 @@
 	}
 }
 .Coursedetail-attention {
-	width: 110%;
+	width: 80%;
 	height: 5vw;
 	margin-left: 35px;
 	position: relative;
@@ -564,97 +594,7 @@
 		font-size: 1.2vw;
 		color: #fff;
 		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
-	}
-}
-
-.Coursedetail-recommend {
-	margin: 60px 0;
-	height: 35vw;
-	width: 100%;
-}
-.Coursedetail-recommendLeft {
-	height: 100%;
-	float: left;
-	width: 45%;
-	border-radius: 5px;
-	border: 2px solid #666666;
-	overflow: hidden;
-	img {
-		width: 100%;
-		height: 100%;
-	}
-	span {
-		width: 100%;
-		background-color: RGBA(50, 50, 50, 0.5);
-		display: inline-block;
-		height: 200%;
-		position: relative;
-		top: -700px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	span:hover {
-		top: -1100px;
-		transition: top 0.5s;
-	}
-}
-.Coursedetail-recommendText {
-	color: #ffffff;
-}
-.Coursedetail-recommendTitle {
-	text-align: center;
-	font-size: 48px;
-	position: relative;
-	top: 540px;
-}
-.Coursedetail-recommendLine {
-	width: 80%;
-	border-radius: 5px;
-	border: 2px solid #ffffff;
-	position: relative;
-	top: 540px;
-	margin: auto;
-}
-.Coursedetail-recommendName {
-	text-align: center;
-	font-size: 60px;
-	position: relative;
-	top: 540px;
-}
-.Coursedetail-recommendInfo {
-	text-align: left;
-	font-size: 24px;
-	position: relative;
-	top: 540px;
-	text-indent: 2em;
-	width: 80%;
-	margin: auto;
-}
-.Coursedetail-recommendRight {
-	height: 100%;
-	float: right;
-	width: 45%;
-	border-radius: 5px;
-	border: 2px solid #666666;
-	overflow: hidden;
-	img {
-		width: 100%;
-		height: 100%;
-	}
-	span {
-		width: 100%;
-		background-color: RGBA(50, 50, 50, 0.5);
-		display: inline-block;
-		height: 200%;
-		position: relative;
-		top: -700px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	span:hover {
-		top: -1100px;
-		transition: top 0.5s;
+		font-family: "Noto Sans TC", Bold;
 	}
 }
 .Coursedetail-join {
@@ -697,7 +637,7 @@
 		font-size: 48px;
 		color: #ffffff;
 		font-weight: bold;
-		font-family: 'Noto Sans TC', Bold;
+		font-family: "Noto Sans TC", Bold;
 		padding-top: 40px;
 	}
 }

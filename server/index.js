@@ -39,15 +39,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
 
-// 登入認證相關的路由
+// 登入註冊相關的路由
 const authRoute = require("./routes").auth;
 app.use("/api/auth", authRoute);
+
+// 會員資料相關的路由
+const memberRoute = require("./routes").member;
+app.use("/api/member", memberRoute);
+
+// 課程相關的路由
+const courseRoute = require("./routes").course;
+app.use("/api/course", courseRoute);
+
+// 訂單相關的路由
+const orderRoute = require("./routes").order;
+app.use("/api/order", orderRoute);
 
 app.get("/", (req, res) => {
   res.send("home");
 });
 
-app.listen(8080, () => {
+// 錯誤處理
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ success: false, code: "不知名錯誤！", message: err });
+});
+
+app.listen(3001, () => {
   connection.connect();
   console.log("server is running on port 8080");
 });
