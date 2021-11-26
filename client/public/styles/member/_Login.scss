@@ -1,10 +1,10 @@
 .Login {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  // top: 0;
+  // left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
+  z-index: 12;
   background: rgba(0, 0, 0, 0.3);
   @include flex(row);
   justify-content: center;
@@ -14,7 +14,7 @@
     //top: -100%;
     width: 750px;
     height: 500px;
-    z-index: 11;
+    z-index: 13;
     background: white;
     border-radius: 15px;
     overflow: hidden;
@@ -143,6 +143,102 @@
         @include flex(row);
         justify-content: center;
         align-items: center;
+      }
+    }
+  }
+
+  .Login-findPassword {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 14;
+    background: rgba(0, 0, 0, 0.3);
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+
+    .Login-findPassword-con {
+      width: 20vw;
+      max-width: 400px;
+      min-width: 300px;
+      border-radius: 8px;
+      background: white;
+      position: relative;
+
+      .Login-findPassword-con-title {
+        text-align: center;
+        padding: 1.5rem;
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+
+        & svg {
+          margin-right: 0.5rem;
+          top: 1px;
+        }
+      }
+
+      .Login-findPassword-con-line {
+        width: 100%;
+        height: 2px;
+        background: $titleBackgroundColor;
+        margin: 0.25rem 0;
+      }
+
+      .Login-findPassword-con-info {
+        padding: 0.75rem 0;
+        text-align: center;
+        font-size: calc(0.9rem + 0.2vw);
+      }
+
+      .Login-findPassword-con-main {
+        width: 80%;
+        margin: 0 auto 1rem;
+
+        .Login-findPassword-con-main-inputCon {
+          @include flex(column);
+          align-items: flex-start;
+          position: relative;
+          & input {
+            border-radius: 5px;
+            padding: 0.35rem 0.6rem 0.35rem 2.2rem;
+            margin-top: 0.25rem;
+            font-size: 1.1rem;
+            width: 100%;
+          }
+
+          & svg {
+            position: absolute;
+            top: 15px;
+            left: 8px;
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        .Login-findPassword-con-main-btn {
+          border-radius: 5px;
+          padding: 0.35rem 0.6rem;
+          margin-top: 0.75rem;
+          font-size: 1.1rem;
+          width: 100%;
+          text-align: center;
+          background: rgb(196, 196, 196);
+          cursor: not-allowed;
+        }
+
+        .Login-findPassword-con-main-btn-active {
+          // background: $activeColor;
+          background: $themeColor;
+          cursor: pointer;
+          color: white;
+          &:hover {
+            // background: $themeColor;
+            background: $activeColor;
+          }
+        }
       }
     }
   }

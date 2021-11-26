@@ -3,6 +3,7 @@ const connection = require("../utils/database");
 const bcrypt = require("bcrypt");
 const momnet = require("moment");
 const passport = require("passport");
+const { v4: uuidv4 } = require("uuid");
 const { registerValidation, loginValidation } = require("../validation");
 
 router.use((req, res, next) => {
@@ -74,6 +75,7 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json({ success: true, member: returnMember });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, code: "A999", message: error });
   }
 });
@@ -160,8 +162,8 @@ router.get("/memberInfo/:id", async (req, res) => {
   let { id } = req.params;
   try {
     let member = await connection.queryAsync(
-      "SELECT * FROM member WHERE id = ?",
-      id
+      "SELECT * FROM member WHERE id = ? AND valid = ?",
+      [id, 1]
     );
 
     // 取出member資料
@@ -195,4 +197,64 @@ router.get("/logout", (req, res) => {
   res.status(200).json({ success: true, message: "登出成功" });
 });
 
+// mailgun 找回密碼功能
+var API_KEY = process.env.MAILGUN_API_KEY;
+var DOMAIN = process.env.MAILGUN_DOMAIN;
+var mailgun = require("mailgun-js")({ apiKey: API_KEY, domain: DOMAIN });
+// mailgun 找回密碼功能
+router.post("/findPassword", async (req, res) => {
+  let { email } = req.body;
+
+  // 因為免費的只能測試用，只能寄信給固定的email帳號，故在忘記密碼demo時一定要使用 ianhsu0116@gmail.com, or ianian880116@gmail.com
+  //let email = "ianhsu0116@gmail.com";
+
+  try {
+    // 先尋找有無此email
+    let foundMember = await connection.queryAsync(
+      "SELECT * FROM member WHERE email = ? AND valid = ?",
+      [email, 1]
+    );
+
+    // 若是沒註冊過
+    if (foundMember.length === 0)
+      return res.status(401).json({ success: false, code: "A002" });
+
+    // 判斷是否為第三方註冊
+    if (foundMember[0].googleId) {
+      return res.status(401).json({ success: false, code: "A006" });
+    } else if (foundMember[0].facebookId) {
+      return res.status(401).json({ success: false, code: "A007" });
+    }
+
+    // 修改使用者密碼
+    let newPassword = uuidv4();
+    newPassword = newPassword.substr(0, 18);
+    let hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // 將新密碼裝好並寄出email
+    const data = {
+      from: "IanHsu <ianhsu0116@gmail.com>",
+      to: email,
+      subject: "「 Umai 米其林廚藝課程學習平台 」忘記密碼，協助尋回密碼信件。",
+      text: `親愛的Umai使用者您好\n這是您的臨時密碼[ ${newPassword} ]， 請於24小時內登入並修改密碼，避免有安全上的疑慮，謝謝！`,
+    };
+    mailgun.messages().send(data, async (error, body) => {
+      if (error) {
+        res.status(500).json({ success: false, code: "A008", message: error });
+      } else {
+        //console.log(body);
+
+        // 將新密碼存入DB
+        let result = await connection.queryAsync(
+          "UPDATE member SET password = ? WHERE email = ? AND valid = ?",
+          [hashedPassword, email, 1]
+        );
+
+        res.status(200).json({ success: true });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, code: "A999", message: error });
+  }
+});
 module.exports = router;

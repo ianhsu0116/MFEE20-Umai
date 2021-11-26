@@ -68,6 +68,15 @@ class AuthService {
       { withCredentials: true }
     );
   }
+
+  // 忘記密碼
+  findPassword(email) {
+    return axios.post(
+      AUTH_API_URL + "/findPassword",
+      { email },
+      { withCredentials: true }
+    );
+  }
 }
 
 export default new AuthService();
