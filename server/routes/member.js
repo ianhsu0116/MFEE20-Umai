@@ -380,6 +380,8 @@ router.get("/member/chefName", async (req, res) => {
       "SELECT member.id , member.first_name , last_name , member.chef_introduction , member.member_category  FROM member WHERE member_category = 2 AND valid = ?",
       [id, 1]
     );
+    
+    
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     //console.log(error);

@@ -27,6 +27,7 @@ const Chef = (props) => {
       let result = await MemberService.chefName();
       setChefJSON(result.data.chefs);
       setChefCount(result.data.chefs.length)
+      console.log( result.data)
     } catch (error) {
       console.log(error);
     }

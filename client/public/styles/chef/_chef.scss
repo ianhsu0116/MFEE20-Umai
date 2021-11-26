@@ -33,6 +33,7 @@
 	font-size: 1.5em;
 	cursor: pointer;
 	border-bottom: #666 1px solid;
+	width: 80%;
 	svg {
 		color: $activeColor;
 	}
@@ -48,16 +49,17 @@
 	margin: auto;
 	font-size: 1.6em;
 }
-.chef-liActive:hover {
-	width: 100%;
-}
 .chef-arrow {
 	padding-top: 0.6vw;
 	opacity: 0;
+	position: absolute;
+	right: 0;
 }
 .chef-arrowActive {
 	padding-top: 0.6vw;
 	opacity: 1;
+	position: absolute;
+	right: 0;
 }
 .chef-cardAndCourseCard {
 	display: flex;
