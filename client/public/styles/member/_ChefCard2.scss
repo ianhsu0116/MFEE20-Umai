@@ -198,3 +198,8 @@ $chefTextSize-li: calc(0.4rem + 0.3vw);
   font-size: $chefTextSize-li;
   font-weight: bold;
 }
+
+// 錯誤時input顯示紅匡
+.st-input-error {
+  border: 3px solid red !important;
+}

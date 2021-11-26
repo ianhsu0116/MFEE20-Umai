@@ -561,7 +561,7 @@ const CourseInsert = (props) => {
               rows="10"
               value={courseDetail.content1}
               onChange={handleCourseChange}
-              maxLength="340"
+              maxLength="380"
               placeholder="信じられない！とても美味しい！..."
             ></textarea>
           </div>

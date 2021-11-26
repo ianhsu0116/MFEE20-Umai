@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <div className="Navbar-container-item">
           <button className="Navbar-container-item-btn">
             <GoSearch />
-            &ensp;尋找課程
+            &thinsp;尋找課程
           </button>
         </div>
         <div className="Navbar-container-item">
