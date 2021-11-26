@@ -18,12 +18,12 @@
 .chef-ul {
 	width: 15vw;
 	padding: 1em 0;
-	border-radius: 10px;
+	height: 100%;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
 }
 .chef-li {
 	background: #ffffff;
-	width: 90%;
 	text-align: center;
 	margin: auto;
 	height: 2.5vw;
@@ -32,33 +32,24 @@
 	align-items: center;
 	font-size: 1.5em;
 	cursor: pointer;
-	// border: darkgray 1px solid;
+	border-bottom: #666 1px solid;
 	svg {
 		color: $activeColor;
 	}
 }
 .chef-li:hover {
 	color: $activeColor;
-	width: 90%;
 	margin: auto;
-	font-size: 1.75em;
+	font-size: 1.6em;
 	transition: font-size 0.05s;
 }
 .chef-liActive {
 	color: $activeColor;
-	width: 90%;
 	margin: auto;
-	font-size: 1.75em;
-	border-radius: 10px;
+	font-size: 1.6em;
 }
 .chef-liActive:hover {
 	width: 100%;
-}
-.chef-liLine {
-	background-color: darkgray;
-	height: 1px;
-	width: 90%;
-	margin: auto;
 }
 .chef-arrow {
 	padding-top: 0.6vw;

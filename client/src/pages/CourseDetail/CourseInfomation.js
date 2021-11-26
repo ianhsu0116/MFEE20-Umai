@@ -97,9 +97,10 @@ function CourseInfomation(props) {
     try {
       let result = await CourseService.course_courseId(id_number);
       result.data.course[0].course_detail = JSON.parse(
-        result.data.course[0].course_detail
+      result.data.course[0].course_detail
       );
       setNewCourseJSON(result.data.course);
+      return
     } catch (error) {
       console.log(error);
     }
@@ -167,7 +168,6 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {/* <div id="test1" className="Coursedetail-testSc" style={{height:ht+"vw"}}>  */}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}

@@ -7,6 +7,7 @@ import Login from "./components/member/Login";
 import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
 
+import Contactus from "./pages/Contactus/Contactus";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
@@ -112,6 +113,9 @@ function App() {
         </Route>
         <Route path="/about" exact>
           <About />
+        </Route>
+        <Route path="/contactus" exact>
+          <Contactus />
         </Route>
         <Route path="/courses/:course_id" exact>
           <CourseDetail />

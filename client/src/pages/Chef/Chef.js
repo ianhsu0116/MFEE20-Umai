@@ -1,7 +1,6 @@
 import React, { useState , useEffect  } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import ChefCard from '../../components/ChefCard'
-import { GiCook } from "react-icons/gi"
 import { IoMdArrowDropleft } from "react-icons/io"
 import CourseCard from '../../components/CourseCard1'
 
@@ -50,13 +49,14 @@ const Chef = (props) => {
       <li className={active == i ? 'chef-li chef-liActive':"chef-li"} id={i} onClick={(e)=> {
         SetActive(e.target.id)
         console.log(chefJSON[i])
-        }}><GiCook />{chefJson[i]}<span className={active == i ? "chef-arrowActive":"chef-arrow"}><IoMdArrowDropleft /></span></li>
+        }}>{chefJson[i]}<span className={active == i ? "chef-arrowActive":"chef-arrow"}><IoMdArrowDropleft /></span></li>
     )
   }
 
 
   return (
     <>
+    {console.log(chefJSON)}
       <div className="chef-set">
       <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
         <div className="chef-title">主廚殿堂</div>
