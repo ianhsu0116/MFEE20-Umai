@@ -13,7 +13,7 @@
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: $MemberCenterShadow;
     position: relative;
 
     .DefaultStudent-container-header {
