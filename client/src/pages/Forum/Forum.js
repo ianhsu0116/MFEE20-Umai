@@ -73,11 +73,13 @@ const Forum = () => {
       formData.append("title", article.title);
       formData.append("quote", article.quote);
       formData.append("comment", article.comment);
-
-      let res = await axios.post(
-        "http://localhost:8080/api/forum/insertArticle",
-        formData
-      );
+      // console.log("formData", formData.getAll());
+      let res = await axios({
+        method: "post",
+        url: "http://localhost:8080/api/forum/insertArticle",
+        data: formData,
+        header: { "Content-Type": "multipart/form-data" },
+      });
     } catch (e) {
       console.log("handleSubmit", e);
     }

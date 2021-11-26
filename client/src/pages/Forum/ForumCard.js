@@ -58,17 +58,28 @@ const ForumCard = () => {
           <div className="st-line"></div>
           {forumcard &&
             forumcard.map((forumdata) => (
-              <div className="Forum-main-out">
+              <div
+                className="Forum-main-out"
+                data-forumId={forumdata.id}
+                onClick={async (e) => {
+                  console.log(forumdata);
+                  console.log(e.currentTarget.dataset.forumid);
+                  let forumEach = await axios.get(
+                    `${API_URL}/forum/${e.currentTarget.dataset.forumid}`
+                  );
+                  setArticleDetail(forumEach.data.forumdatadetail);
+                }}
+              >
                 <img
                   data-forumId={forumdata.id}
                   className="Forum-main-photo"
-                  onClick={async (e) => {
-                    console.log(e.target.dataset.forumid);
-                    let forumEach = await axios.get(
-                      `${API_URL}/forum/${e.target.dataset.forumid}`
-                    );
-                    setArticleDetail(forumEach.data.forumdatadetail);
-                  }}
+                  // onClick={async (e) => {
+                  //   console.log(e.target.dataset.forumid);
+                  //   let forumEach = await axios.get(
+                  //     `${API_URL}/forum/${e.target.dataset.forumid}`
+                  //   );
+                  //   setArticleDetail(forumEach.data.forumdatadetail);
+                  // }}
                   // src={require(`./../../components/images/${image}`).default}
                   src=""
                   alt="drink"
@@ -127,7 +138,7 @@ const ForumCard = () => {
       >
         <Modal.Header className="Forum-modal-header" closeButton>
           <Modal.Title>
-            <h2>{articleDetail.article_title}</h2>
+            <h2>{articleDetail && articleDetail.article_title}</h2>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="Forum-modal-body">
@@ -142,7 +153,7 @@ const ForumCard = () => {
               <div>
                 <h6 className="Forum-modal-body-account-name">奇異的小玩偶</h6>
                 <h6 className="Forum-modal-body-account-id">
-                  {articleDetail.member_id}
+                  {articleDetail && articleDetail.member_id}
                 </h6>
               </div>
               <div className="Forum-main-DateAndDropdown">
@@ -160,7 +171,7 @@ const ForumCard = () => {
               </div>
             </div>
             <div className="Forum-modal-body-commet" id="Forum-modal-scrollbar">
-              <p className="">{articleDetail.article_text}</p>
+              <p className="">{articleDetail && articleDetail.article_text}</p>
               <img
                 className="Forum-modal-body-image"
                 src={require(`./../../components/images/img1.jpg`).default}
