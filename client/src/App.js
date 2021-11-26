@@ -5,8 +5,7 @@ import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 import Forum from "./pages/Forum/Forum";
-import Discussion from "./pages/Forum/Discussion";
-
+// import Items from "./pages/Items";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
@@ -21,7 +20,6 @@ import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
-
 
 function App() {
   // 存取當前登入中的使用者資料
@@ -104,9 +102,6 @@ function App() {
         <Route path="/Forum" exact>
           <Forum />
         </Route>
-        <Route path="/Discussion" exact>
-          <Discussion />
-        </Route>
         <Route path="/courses/category" exact>
           <Course />
         </Route>
@@ -116,6 +111,9 @@ function App() {
         <Route path="/courses/:course_id" exact>
           <CourseDetail />
         </Route>
+        {/* <Route path="/Items" exact>
+          <Items />
+        </Route> */}
         <Route path="/chef" exact>
           <Chef />
         </Route>
