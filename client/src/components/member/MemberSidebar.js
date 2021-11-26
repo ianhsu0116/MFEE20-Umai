@@ -151,6 +151,21 @@ const MemberSidebar = (props) => {
               </div>
             </div>
           )}
+          {currentUser && currentUser.member_category === 2 && (
+            <div className="MemberSidebar-container-loginType-con">
+              <div className="MemberSidebar-container-loginType">
+                <div className="MemberSidebar-container-loginType-left">
+                  <GiCook />
+                  <p className="MemberSidebar-container-loginType-left-p">
+                    授課主廚帳戶
+                  </p>
+                </div>
+                <div className="MemberSidebar-container-loginType-right">
+                  <BsCheckCircle />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="MemberSidebar-container-bottom">

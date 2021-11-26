@@ -59,7 +59,8 @@ INSERT INTO `coupons` (`id`, `title`, `minimum_order`, `discount_percent`, `vali
 (1,	'聖誕節快閃！全站商品95折大放送！',	NULL,	95,	1),
 (2,	'中秋節快閃！全站商品85折大放送！',	NULL,	85,	1),
 (3,	'歡慶牛年！全站商品9折大放送！',	NULL,	90,	1),
-(4,	'購買三樣課程！95折優惠送給您！',	NULL,	95,	1);
+(4,	'購買三樣課程！95折優惠送給您！',	NULL,	95,	1),
+(5,	'新學員註冊禮，所有商品9折優惠！',	NULL,	90,	1);
 
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (

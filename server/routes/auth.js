@@ -117,6 +117,16 @@ router.post("/registration", async (req, res) => {
       [[email, hashPassword, now]]
     );
 
+    // 取出新的id
+    let { insertId } = result;
+    // 優惠券期限
+    let nowPlus30 = new Date(Date.now() + 2592000000);
+    // 送新用戶一張優惠券
+    let couponsResult = await connection.queryAsync(
+      "INSERT INTO member_coupons (member_id, coupons_id, expire_date, status, valid) VALUES (?)",
+      [[insertId, 5, nowPlus30, 1, 1]]
+    );
+
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "B999", message: error });

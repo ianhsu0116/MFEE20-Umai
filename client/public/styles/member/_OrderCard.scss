@@ -20,6 +20,9 @@
       max-height: 80px;
       position: relative;
       overflow: hidden;
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
       .OrderCard-image {
         width: 100%;
       }
