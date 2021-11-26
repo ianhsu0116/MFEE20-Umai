@@ -18,8 +18,12 @@ const Login = (props) => {
   });
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");
+  // 錯誤訊息
+  const [errorMsg2, setErrorMsg2] = useState("");
   // 忘記密碼視窗開關
   const [findPasswordOpen, setFindPasswordOpen] = useState(false);
+  // 送出忘記密碼button狀態
+  const [findPasswordActive, setFindPasswordActive] = useState("");
   // 忘記密碼的信箱輸入
   const [findPasswordEmail, setFindPasswordEmail] = useState("");
 
@@ -49,7 +53,7 @@ const Login = (props) => {
       setShowLogin(false);
       window.alert("登入成功！");
     } catch (error) {
-      //console.log(error.response);
+      // console.log(error);
       let { code } = error.response.data;
       setErrorMsg(getValidMessage("login", code));
     }
@@ -115,9 +119,6 @@ const Login = (props) => {
     }
   };
 
-  // 送出忘記密碼案件狀態
-  const [findPasswordActive, setFindPasswordActive] = useState("");
-
   // 判斷email有無超過十個字
   useEffect(() => {
     if (findPasswordEmail.length > 10) {
@@ -128,8 +129,26 @@ const Login = (props) => {
   }, [findPasswordEmail]);
 
   // 送出忘記密碼
-  const handleFindPassword = (e) => {
-    if (findPasswordEmail.length > 10) console.log(findPasswordEmail);
+  const handleFindPassword = async (e) => {
+    if (findPasswordEmail.length > 10) {
+      try {
+        let result = await AuthService.findPassword(findPasswordEmail);
+
+        window.alert(
+          `新密碼已寄送至${findPasswordEmail}, 請於24小時內查看並修改！`
+        );
+
+        // 清空錯誤訊息
+        setErrorMsg2("");
+
+        // 關閉密碼找回使窗
+        setFindPasswordOpen(false);
+      } catch (error) {
+        //console.log(error.response);
+        let { code } = error.response.data;
+        setErrorMsg2(getValidMessage("login", code));
+      }
+    }
   };
 
   return (
@@ -267,6 +286,8 @@ const Login = (props) => {
                 />
                 <BsPersonFill />
               </div>
+              {/* 錯誤訊息提示 */}
+              {errorMsg2 && <ErrorMessage value={errorMsg2} />}
               <button
                 className={`Login-findPassword-con-main-btn ${
                   findPasswordActive && "Login-findPassword-con-main-btn-active"

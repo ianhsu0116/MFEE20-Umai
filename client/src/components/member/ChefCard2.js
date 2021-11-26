@@ -23,7 +23,7 @@ function ChefCard2(props) {
     }
   }, [chefInfomation]);
 
-  // input 和 文字的切換
+  // input 和 文字展示的切換
   const handleModeChange = (e, index) => {
     e.stopPropagation();
 
@@ -47,6 +47,15 @@ function ChefCard2(props) {
       let newChefInfomation = { ...chefInfomation };
       newChefInfomation.chefInfo[index] = e.target.value;
       setChefInfomation(newChefInfomation);
+    }
+  };
+
+  // input為空時的錯誤判斷
+  const inputError = (e) => {
+    if (e.target.value.length === 0) {
+      e.target.classList.add("st-input-error");
+    } else {
+      e.target.classList.remove("st-input-error");
     }
   };
   return (
@@ -95,6 +104,7 @@ function ChefCard2(props) {
               }}
               onChange={(e) => {
                 handleInputChange(e);
+                inputError(e);
               }}
             ></textarea>
           )}
@@ -139,6 +149,7 @@ function ChefCard2(props) {
               }}
               onChange={(e) => {
                 handleInputChange(e);
+                inputError(e);
               }}
             ></textarea>
           )}
@@ -171,6 +182,7 @@ function ChefCard2(props) {
                 }}
                 onChange={(e) => {
                   handleInputChange(e, 0);
+                  inputError(e);
                 }}
               />
               <input
@@ -185,6 +197,7 @@ function ChefCard2(props) {
                 }}
                 onChange={(e) => {
                   handleInputChange(e, 1);
+                  inputError(e);
                 }}
               />
               <input
@@ -199,6 +212,7 @@ function ChefCard2(props) {
                 }}
                 onChange={(e) => {
                   handleInputChange(e, 2);
+                  inputError(e);
                 }}
               />
               <input
@@ -213,6 +227,7 @@ function ChefCard2(props) {
                 }}
                 onChange={(e) => {
                   handleInputChange(e, 3);
+                  inputError(e);
                 }}
               />
             </div>
