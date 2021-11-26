@@ -257,67 +257,62 @@ const MemberInfo = (props) => {
                 出生日期
               </label>
 
-              {/* <input
-                type="date"
-                name="birthday"
-                id="birth"
-                className="MemberInfo-container-inputCon-input"
-                value={memberInfo.birthday}
-                onChange={handleMemberInfoChange}
-              /> */}
               <Calendar onChange={handleBirthdayChange} value={defaultDate} />
             </div>
           </div>
           {errorMsg && <ErrorMessage value={errorMsg} />}
-          <div className="MemberInfo-container-row">
-            <div
-              className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
-                passwordConOpen && "MemberInfo-container-passwordCon-active"
-              }`}
-            >
-              <label
-                className="MemberInfo-container-inputCon-label"
-                htmlFor="password"
-              >
-                密碼修改
-              </label>
-              <input
-                type="password"
-                name="passwordConfirm"
-                id="passwordConfirm"
-                value={passwordInfo.passwordConfirm}
-                placeholder="舊密碼確認"
-                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-topInput"
-                onChange={handlePasswordChange}
-              />
-              <input
-                type="password"
-                name="newPassword"
-                id="password"
-                value={passwordInfo.newPassword}
-                placeholder="輸入新密碼"
-                className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-bottomInput"
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <div className="MemberInfo-container-inputCon-buttonCon">
-              <button
-                className="MemberInfo-container-inputCon-passwordEditBtn"
-                onClick={handlePasswordConOpen}
-              >
-                {passwordConOpen ? "取消修改" : "修改密碼"}
-              </button>
-              <button
-                className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
-                  passwordConOpen &&
-                  "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+          {currentUser && !currentUser.googleId && !currentUser.facebookId && (
+            <div className="MemberInfo-container-row">
+              <div
+                className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
+                  passwordConOpen && "MemberInfo-container-passwordCon-active"
                 }`}
-                onClick={handlePasswordEdit}
               >
-                確認修改
-              </button>
+                <label
+                  className="MemberInfo-container-inputCon-label"
+                  htmlFor="password"
+                >
+                  密碼修改
+                </label>
+                <input
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  value={passwordInfo.passwordConfirm}
+                  placeholder="舊密碼確認"
+                  className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-topInput"
+                  onChange={handlePasswordChange}
+                />
+                <input
+                  type="password"
+                  name="newPassword"
+                  id="password"
+                  value={passwordInfo.newPassword}
+                  placeholder="輸入新密碼"
+                  className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-bottomInput"
+                  onChange={handlePasswordChange}
+                />
+              </div>
+              <div className="MemberInfo-container-inputCon-buttonCon">
+                <button
+                  className="MemberInfo-container-inputCon-passwordEditBtn"
+                  onClick={handlePasswordConOpen}
+                >
+                  {passwordConOpen ? "取消修改" : "修改密碼"}
+                </button>
+                <button
+                  className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
+                    passwordConOpen &&
+                    "MemberInfo-container-inputCon-passwordSubmitBtn-active"
+                  }`}
+                  onClick={handlePasswordEdit}
+                >
+                  確認修改
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
           {errorMsgPassword && <ErrorMessage value={errorMsgPassword} />}
           <div className="MemberInfo-container-buttonCon">
             <Button

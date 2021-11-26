@@ -13,8 +13,8 @@
     border-radius: 10px;
     @include flex(column);
     align-items: center;
-    justify-content: flex-start;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    //justify-content: center;
+    box-shadow: $MemberCenterShadow;
     position: relative;
 
     .CollectionCourse-container-header {
@@ -31,7 +31,10 @@
       width: 100%;
       position: relative;
       margin: 0 0 1rem 0;
-      @include flex(column);
+      @include flex(row);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       overflow: scroll;
     }
   }

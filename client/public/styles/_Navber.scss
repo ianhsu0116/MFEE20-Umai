@@ -51,8 +51,8 @@
 
       .Navbar-container-item-btn2 {
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         overflow: hidden;
         background: white;
         margin: 0 0.15rem;
@@ -62,7 +62,7 @@
         &:hover {
           transform: scale(1.1);
           background: $themeColorBlue;
-          fill: white;
+          //fill: white;
         }
         &:hover svg {
           fill: white;
@@ -73,7 +73,7 @@
 
         .Navbar-container-item-btn2-avatar {
           position: relative;
-          width: 100%;
+          //width: 100%;
           height: 100%;
         }
       }

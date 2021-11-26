@@ -122,7 +122,9 @@ const OrderCard = (props) => {
         </figure>
         <div className="OrderCard-items OrderCard-courseTitle">
           <h5>
-            <Link to="/courses/course_id">{orderDetail.course_name}</Link>
+            <Link to={`/courses/${orderDetail.course_id}`}>
+              {orderDetail.course_name}
+            </Link>
           </h5>
         </div>
         <div className="OrderCard-items OrderCard-orderStatus">

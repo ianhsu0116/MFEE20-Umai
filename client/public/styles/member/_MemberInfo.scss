@@ -14,7 +14,7 @@
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: $MemberCenterShadow;
 
     .MemberInfo-container-header {
       margin-bottom: 1rem;
@@ -103,15 +103,18 @@
               border: 1px solid black;
             }
           }
-        }
-
-        .MemberInfo-container-inputCon-passwordSubmitBtn {
-          display: none;
-          color: $highLevelColor;
-          border: 1px solid $highLevelColor;
-        }
-        .MemberInfo-container-inputCon-passwordSubmitBtn-active {
-          display: block;
+          .MemberInfo-container-inputCon-passwordSubmitBtn {
+            display: none;
+            color: $highLevelColor;
+            border: 1px solid $highLevelColor;
+            &:hover {
+              color: red;
+              border: 1px solid red;
+            }
+          }
+          .MemberInfo-container-inputCon-passwordSubmitBtn-active {
+            display: block;
+          }
         }
       }
     }

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
 import { PUBLIC_URL } from "../../config/config";
-import { BsPersonCircle } from "react-icons/bs";
+import { BsPersonCircle, BsCheckCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -11,7 +11,7 @@ import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaPen, FaIdCard } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
-import avatar from "../images/avatar.jpg";
+import avatar from "../images/avatar.svg";
 
 const MemberSidebar = (props) => {
   let { currentBoard, setCurrentBoard, currentUser, setCurrentUser } = props;
@@ -80,164 +80,222 @@ const MemberSidebar = (props) => {
   return (
     <div className="MemberSidebar">
       <div className="MemberSidebar-container">
-        <div className="MemberSidebar-container-avatar">
-          <input
-            type="file"
-            id="avatar"
-            className="MemberSidebar-container-avatar-input"
-            onChange={handleAvatarChange}
-            multiple
-          />
-          <label
-            htmlFor="avatar"
-            className="MemberSidebar-container-avatar-label"
-          >
-            {currentUser && currentUser.avatar && (
-              <img
-                src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
-                alt="使用者頭貼"
-                className="MemberSidebar-container-avatar-img"
+        <div className="MemberSidebar-container-top">
+          <div className="MemberSidebar-container-top-avatarCon">
+            <div className="MemberSidebar-container-avatar">
+              <input
+                type="file"
+                id="avatar"
+                className="MemberSidebar-container-avatar-input"
+                onChange={handleAvatarChange}
+                multiple
               />
-            )}
-            {currentUser && !currentUser.avatar && (
-              <img
-                src={avatar}
-                alt="使用者頭貼"
-                className="MemberSidebar-container-avatar-img"
-              />
-            )}
-          </label>
-          <FaPen className="MemberSidebar-container-avatar-pen" />
-        </div>
-        <div className="MemberSidebar-container-mamberName">
-          {currentUser &&
-            currentUser.first_name &&
-            `${currentUser.first_name} ${currentUser.last_name}`}
-          {currentUser && !currentUser.first_name && `哈囉！`}
-        </div>
-        <ul className="MemberSidebar-container-ul">
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "會員資訊" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <BsPersonCircle />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              會員資訊
-            </span>
-          </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "預設學員" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <AiOutlineUsergroupAdd />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              預設學員
-            </span>
-          </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "訂單資訊" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <VscListUnordered />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              訂單資訊
-            </span>
-          </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "收藏課程" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <MdOutlineFavoriteBorder />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              收藏課程
-            </span>
-          </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "收藏文章" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <MdBookmarkBorder />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              收藏文章
-            </span>
-          </li>
-          <li
-            className={`MemberSidebar-container-ul-li ${
-              currentBoard === "優惠券" &&
-              "MemberSidebar-container-ul-li-active"
-            }`}
-          >
-            <ImGift />
-            <span
-              className="MemberSidebar-container-ul-li-text"
-              onClick={handleChangeBoard}
-            >
-              優惠券
-            </span>
-          </li>
-          {/* 當前登入者是廚師時，才能新增課程 */}
-          {currentUser && currentUser.member_category === 2 && (
-            <>
-              <li
-                className={`MemberSidebar-container-ul-li ${
-                  currentBoard === "主廚卡片" &&
-                  "MemberSidebar-container-ul-li-active"
-                }`}
+              <label
+                htmlFor="avatar"
+                className="MemberSidebar-container-avatar-label"
               >
-                <FaIdCard />
-                <span
-                  className="MemberSidebar-container-ul-li-text"
-                  onClick={handleChangeBoard}
-                >
-                  主廚卡片
-                </span>
-              </li>
-              <li
-                className={`MemberSidebar-container-ul-li ${
-                  currentBoard === "新增課程" &&
-                  "MemberSidebar-container-ul-li-active"
-                }`}
-              >
-                <GiCook />
-                <span
-                  className="MemberSidebar-container-ul-li-text"
-                  onClick={handleChangeBoard}
-                >
-                  新增課程
-                </span>
-              </li>
-            </>
+                {/* 遮罩效果 */}
+                <div className="MemberSidebar-container-avatar-mask"></div>
+                {currentUser && currentUser.avatar && (
+                  <img
+                    src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
+                    alt="使用者頭貼"
+                    className="MemberSidebar-container-avatar-img"
+                  />
+                )}
+                {currentUser && !currentUser.avatar && (
+                  <img
+                    src={avatar}
+                    alt="使用者頭貼"
+                    className="MemberSidebar-container-avatar-img"
+                  />
+                )}
+              </label>
+              <FaPen className="MemberSidebar-container-avatar-pen" />
+            </div>
+            <div className="MemberSidebar-container-mamberName">
+              {currentUser &&
+                currentUser.first_name &&
+                `${currentUser.first_name} ${currentUser.last_name}`}
+              {currentUser && !currentUser.first_name && `哈囉！`}
+            </div>
+          </div>
+
+          {currentUser && currentUser.googleId && (
+            <div className="MemberSidebar-container-loginType-con">
+              <div className="MemberSidebar-container-loginType">
+                <div className="MemberSidebar-container-loginType-left">
+                  <img src={require("../images/googleLogin.svg").default} />
+                  <p className="MemberSidebar-container-loginType-left-p">
+                    Google
+                  </p>
+                </div>
+                <div className="MemberSidebar-container-loginType-right">
+                  <BsCheckCircle />
+                </div>
+              </div>
+            </div>
           )}
-          <li className="MemberSidebar-container-ul-li" onClick={handleLogout}>
-            <HiOutlineLogout />
-            <span className="MemberSidebar-container-ul-li-text">登出</span>
-          </li>
-        </ul>
+          {currentUser && currentUser.facebookId && (
+            <div className="MemberSidebar-container-loginType-con">
+              <div className="MemberSidebar-container-loginType">
+                <div className="MemberSidebar-container-loginType-left">
+                  <img src={require("../images/facebookLogin.svg").default} />
+                  <p className="MemberSidebar-container-loginType-left-p">
+                    Facebook
+                  </p>
+                </div>
+                <div className="MemberSidebar-container-loginType-right">
+                  <BsCheckCircle />
+                </div>
+              </div>
+            </div>
+          )}
+          {currentUser && currentUser.member_category === 2 && (
+            <div className="MemberSidebar-container-loginType-con">
+              <div className="MemberSidebar-container-loginType">
+                <div className="MemberSidebar-container-loginType-left">
+                  <GiCook />
+                  <p className="MemberSidebar-container-loginType-left-p">
+                    授課主廚帳戶
+                  </p>
+                </div>
+                <div className="MemberSidebar-container-loginType-right">
+                  <BsCheckCircle />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="MemberSidebar-container-bottom">
+          <ul className="MemberSidebar-container-ul">
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "會員資訊" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <BsPersonCircle />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                會員資訊
+              </span>
+            </li>
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "預設學員" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <AiOutlineUsergroupAdd />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                預設學員
+              </span>
+            </li>
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "訂單資訊" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <VscListUnordered />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                訂單資訊
+              </span>
+            </li>
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "收藏課程" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <MdOutlineFavoriteBorder />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                收藏課程
+              </span>
+            </li>
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "收藏文章" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <MdBookmarkBorder />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                收藏文章
+              </span>
+            </li>
+            <li
+              className={`MemberSidebar-container-ul-li ${
+                currentBoard === "優惠券" &&
+                "MemberSidebar-container-ul-li-active"
+              }`}
+            >
+              <ImGift />
+              <span
+                className="MemberSidebar-container-ul-li-text"
+                onClick={handleChangeBoard}
+              >
+                優惠券
+              </span>
+            </li>
+            {/* 當前登入者是廚師時，才能新增課程 */}
+            {currentUser && currentUser.member_category === 2 && (
+              <>
+                <li
+                  className={`MemberSidebar-container-ul-li MemberSidebar-container-ul-li2 ${
+                    currentBoard === "主廚卡片" &&
+                    "MemberSidebar-container-ul-li-active2"
+                  }`}
+                >
+                  <FaIdCard />
+                  <span
+                    className="MemberSidebar-container-ul-li-text"
+                    onClick={handleChangeBoard}
+                  >
+                    主廚卡片
+                  </span>
+                </li>
+                <li
+                  className={`MemberSidebar-container-ul-li MemberSidebar-container-ul-li2 ${
+                    currentBoard === "新增課程" &&
+                    "MemberSidebar-container-ul-li-active2"
+                  }`}
+                >
+                  <GiCook />
+                  <span
+                    className="MemberSidebar-container-ul-li-text"
+                    onClick={handleChangeBoard}
+                  >
+                    新增課程
+                  </span>
+                </li>
+              </>
+            )}
+            <li
+              className="MemberSidebar-container-ul-li"
+              onClick={handleLogout}
+            >
+              <HiOutlineLogout />
+              <span className="MemberSidebar-container-ul-li-text">登出</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

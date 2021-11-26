@@ -112,6 +112,25 @@ const ChefIntro = (props) => {
         </header>
 
         <div className="ChefIntro-container-cards">
+          <div className="ChefIntro-container-cards-intro">
+            親愛的主廚您好，主廚卡片是用跟想報名課程的學員簡單介紹此課程的
+            <strong className="heighLight-text">主廚經歷</strong>
+            ，使學員可以更加了解是哪一位主廚將帶領課程的進行。請直接點擊欄位後即可編輯！
+          </div>
+          <ul className="ChefIntro-container-cards-ul">
+            <li>
+              <strong>欄位一：</strong>
+              建議可以簡單介紹一下授課主廚的經歷、人格特質、有名事蹟等等...
+            </li>
+            <li>
+              <strong>欄位二：</strong>
+              建議填寫課程負責的餐廳名稱，以及授課主廚的頭銜...
+            </li>
+            <li>
+              <strong>欄位三：</strong>
+              條列式展示授課主廚的職涯事蹟、獲獎事蹟、經歷...
+            </li>
+          </ul>
           <ChefCard2
             image={currentUser && currentUser.avatar}
             name={

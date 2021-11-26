@@ -4,7 +4,7 @@ import { PUBLIC_URL } from "../config/config";
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import UmaiLogo from "./images/Umai.png";
-import avatar from "./images/avatar.jpg";
+import avatar from "./images/avatar.svg";
 
 const Navbar = (props) => {
   let { handleLoginClick, currentUser } = props;
@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <div className="Navbar-container-item">
           <button className="Navbar-container-item-btn">
             <GoSearch />
-            &ensp;尋找課程
+            &thinsp;尋找課程
           </button>
         </div>
         <div className="Navbar-container-item">
@@ -42,7 +42,7 @@ const Navbar = (props) => {
         </div>
         {currentUser && (
           <div className="Navbar-container-item">
-            <button className="Navbar-container-item-btn2">
+            <button className="Navbar-container-item-btn2 ">
               <MdShoppingCart className="Navbar-container-item-btn2-cart" />
             </button>
             <Link

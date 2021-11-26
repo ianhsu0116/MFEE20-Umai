@@ -64,7 +64,7 @@ router.get("/collection/:member_id", async (req, res) => {
   try {
     // 抓到此會員的所有收藏課程
     let collections = await connection.queryAsync(
-      "SELECT course_id FROM cart_and_collection WHERE member_id = ? AND inCollection = 1",
+      "SELECT course_id FROM cart_and_collection WHERE member_id = ? AND inCollection = 1 ORDER BY id desc",
       [member_id]
     );
 
@@ -80,6 +80,18 @@ router.get("/collection/:member_id", async (req, res) => {
       "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.id IN (?) AND course.valid = ? GROUP BY course.id",
       [collections, 1]
     );
+
+    // 將找到的課程按照加入購物車的順序排好
+    let sortedResult = [];
+    collections.forEach((id, index) => {
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].id === id) {
+          sortedResult.push(result[i]);
+          break;
+        }
+      }
+    });
+    result = sortedResult;
 
     // 每個課程的id
     let id_array = result.map((item) => item.id);

@@ -13,8 +13,11 @@ $lowLevelColor: #5eb2eb;
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
 
-// MemberCenter定高
-$MemberCenterHeight: calc(100vh - 55px);
+// MemberCenter
+// 定高
+$MemberCenterHeight: calc(100vh - 63px);
+// 最外框框陰影
+$MemberCenterShadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
 @mixin flex($direction) {
 	display: flex;
@@ -189,6 +192,11 @@ a {
 	overflow: hidden;
 }
 
+// 重點字體 改變顏色
+.heighLight-text {
+  color: $activeColor;
+}
+
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
@@ -229,7 +237,7 @@ a {
 @import "./massonry/massonry";
 // forum 相關
 @import "./forum/forum";
-@import "./forum/discussion";
+@import "./forum/forumcard";
 
 // 課程分類
 @import "./course/Course";

@@ -1,14 +1,20 @@
+<<<<<<< HEAD
 import React, { useState , useEffect  } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import ChefCard from '../../components/ChefCard'
 import { IoMdArrowDropleft } from "react-icons/io"
 import CourseCard from '../../components/CourseCard1'
+=======
+import React, { useState } from "react";
+import MultiLevelBreadcrumb from "../../components/MultiLevelBreadcrumb";
+import ChefCard from "../../components/ChefCard";
+import CourseCard from "../../components/CourseCard1";
+>>>>>>> a85b8faaec7db313ce382a3740fce2dc1a38ceb9
 
 import MemberService from "../../services/member.service";
 
 const Chef = (props) => {
-
-  const [active , SetActive] = useState(-1);
+  const [active, SetActive] = useState(-1);
 
   //主廚JSON
   const [chefJSON , setChefJSON] = useState([{
@@ -59,7 +65,9 @@ const Chef = (props) => {
     <>
     {console.log(chefJSON)}
       <div className="chef-set">
-      <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
+        <div className="CourseBreadbox">
+          <MultiLevelBreadcrumb />
+        </div>
         <div className="chef-title">主廚殿堂</div>
         <div className="st-line"></div>
           <div className="chef-infomationBox">
@@ -79,9 +87,9 @@ const Chef = (props) => {
                 </div> 
               </div>   
           </div>
-      </div>  
+        </div>
     </>
   );
 };
 
-export default Chef
+export default Chef;

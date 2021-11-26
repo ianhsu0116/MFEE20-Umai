@@ -43,7 +43,8 @@ const OrderInfo = (props) => {
       setCurrentData(result.data.order);
       //console.log(result.data.order);
     } catch (error) {
-      console.log(error.response);
+      //console.log(error);
+      // console.log(error.response);
       let { code } = error.response.data;
       window.alert(getValidMessage("member", code));
     }
