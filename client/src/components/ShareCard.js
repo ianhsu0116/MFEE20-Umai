@@ -10,7 +10,7 @@ function ShareCard(props) {
   return (
     <>
       <div className="ShareCard">
-        <div className="ShareCardContentFrame">
+        <div className="ShareCardContentWrapper">
           <div className="ShareCardPictureBox">
             <img className="ShareCardPicture" src={avatar} alt=""></img>
           </div>

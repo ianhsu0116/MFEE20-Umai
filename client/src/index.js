@@ -10,13 +10,15 @@ export const prodUrl = 'http://www.abc.com'
 export const pathnameList = [
   '/course',
   '/about',
-  '/masonry'
+  '/masonry',
+  '/chef'
 ]
 
 export const pathnameTextList = [
   '/課程探索',
   '/關於我們',
   '/課程體驗',
+  '/主廚殿堂'
 ]
 
 ReactDOM.render(

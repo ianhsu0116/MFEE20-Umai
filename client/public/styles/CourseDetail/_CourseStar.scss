@@ -1,0 +1,36 @@
+.Course-starGroup {
+  @include flex(row);
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.15rem;
+  & p {
+    font-size: 0.9vw;
+    color: #ffffff;
+    margin-top: 5px;
+  }
+
+  .Course-starGroup-container {
+    width: 1.5vw;
+    position: relative;
+    height: 1.5vw;
+    overflow: hidden;
+    margin-right: 0.5vw;
+    top: initial;
+    right: initial;
+    min-width: 18px;
+    min-height: 18px;
+    .Course-starGroup-container-star {
+      z-index: 2;
+      width: 101%;
+      height: 100%;
+    }
+    .Course-starGroup-container-background {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      z-index: -1;
+    }
+  }
+}

@@ -34,10 +34,14 @@ function ChefCard(props) {
   return (
     <>
       <div className="st-chefCard">
+        {/* 主廚照片容器(左) */}
         <div className="st-chefCardPictureWrapper">
           <img className="st-chefCardPicture" src={Chef} alt=""></img>
         </div>
+
+        {/* 主廚文字容器(右) */}
         <div className="st-chefCardTextWrapper">
+          {/* 上半部 */}
           <div className="st-chefCardTop">
             <div className="st-chefCardTopQuotation">
               「{ChefInfomation[0].chefIntroduce1}」
@@ -55,6 +59,7 @@ function ChefCard(props) {
               ></div>
             </div>
           </div>
+          {/* 下半部 */}
           <div className="st-chefCardDown">
             <div
               dangerouslySetInnerHTML={{

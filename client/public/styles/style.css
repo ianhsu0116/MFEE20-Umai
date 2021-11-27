@@ -7,17 +7,21 @@
 }
 
 html {
+  overflow: -moz-hidden-unscrollable;
+  /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
   height: 100%;
 }
 
 body {
   font-family: "Noto Sans TC", sans-serif;
   color: #666666;
+  -ms-overflow-style: none;
+  overflow: auto;
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 
 /* Track */
@@ -33,11 +37,6 @@ body {
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #ffb257;
-  opacity: 1;
-}
-
 h1,
 h2,
 h3,
@@ -82,6 +81,16 @@ select {
   border: 1px solid #666666;
   padding: 0.25rem 0.45rem;
   font-size: 1rem;
+  border-radius: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
 }
 
 a {
@@ -93,11 +102,14 @@ a:hover {
   color: #ffb257;
 }
 
-.button-themeColor {
+.button-themeColor, .button-themeColorBlue, .button-highLeveColor, .button-activeColor, .button-darkColor {
   padding: 0.35rem 0.75rem;
-  background: #d8a466;
   color: white;
   border-radius: 5px;
+}
+
+.button-themeColor {
+  background: #d8a466;
 }
 
 .button-themeColor:hover {
@@ -105,10 +117,7 @@ a:hover {
 }
 
 .button-themeColorBlue {
-  padding: 0.35rem 0.75rem;
   background: #0078b3;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-themeColorBlue:hover {
@@ -116,10 +125,7 @@ a:hover {
 }
 
 .button-highLeveColor {
-  padding: 0.35rem 0.75rem;
   background: #eb6b6a;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-highLeveColor:hover {
@@ -127,10 +133,7 @@ a:hover {
 }
 
 .button-activeColor {
-  padding: 0.35rem 0.75rem;
   background: #ffb257;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-activeColor:hover {
@@ -138,14 +141,21 @@ a:hover {
 }
 
 .button-darkColor {
-  padding: 0.35rem 0.75rem;
   background: #666666;
-  color: white;
-  border-radius: 5px;
 }
 
 .button-darkColor:hover {
   background-color: #424242;
+}
+
+.ErrorMessage {
+  font-size: 90%;
+  color: red;
+  font-weight: 800;
+}
+
+.stopScroll {
+  overflow: hidden;
 }
 
 .Navbar {
@@ -166,6 +176,7 @@ a:hover {
 }
 
 .Navbar .Navbar-container {
+  height: 100%;
   width: 70vw;
   max-width: 1440px;
   display: -webkit-box;
@@ -193,6 +204,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 45px;
 }
 
 .Navbar .Navbar-container .Navbar-container-item a {
@@ -216,7 +228,29 @@ a:hover {
   padding: 0.25rem 0;
 }
 
-.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn {
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 45px;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-btn,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -226,16 +260,286 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 100%;
   color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: initial;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-btn:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-btn-login,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-btn-login {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseSearch,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseSearch {
+  cursor: pointer;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover:hover + .Navbar-container-item-CourseDiscover-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover:hover + .Navbar-container-item-CourseDiscover-dropdown {
+  visibility: visible;
+  opacity: 1;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare:hover + .Navbar-container-item-ExperienceShare-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare:hover + .Navbar-container-item-ExperienceShare-dropdown {
+  visibility: visible;
+  opacity: 1;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart {
+  cursor: initial;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart:hover + .Navbar-container-item-Cart-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart:hover + .Navbar-container-item-Cart-dropdown {
+  visibility: visible;
+  opacity: 1;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart:hover .Navbar-container-item-btn2-Cart,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart:hover .Navbar-container-item-btn2-Cart {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: #d8a466;
+  font-weight: 700;
+  background: white;
+  border-radius: 1vw;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown ul,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown ul,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown ul,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown ul {
+  text-align: left;
+  height: 100%;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown ul li,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown ul li,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown ul li,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown ul li {
+  font-size: 1rem;
+  line-height: 2rem;
+  list-style: disc inside;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown ul li:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown ul li:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown ul li:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown ul li:hover {
+  cursor: pointer;
+  color: #f7c485;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown {
+  position: absolute;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: #d8a466;
+  font-weight: 700;
+  background: white;
+  border-radius: 1vw;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown ul,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown ul {
+  text-align: left;
+  height: 100%;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown ul li,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown ul li {
+  font-size: 1rem;
+  line-height: 2rem;
+  list-style: disc inside;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown ul li:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown ul li:hover {
+  cursor: pointer;
+  color: #f7c485;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-CourseDiscover-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-CourseDiscover-dropdown {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(3 * 2rem + 2rem);
+  width: calc(15rem + 5vw);
+  top: calc(45px + 1rem);
+  padding: 1rem 2rem;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-ExperienceShare-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-ExperienceShare-dropdown {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(1 * 2rem + 2rem);
+  width: calc(15rem + 5vw);
+  top: calc(45px + 1rem);
+  padding: 1rem 2rem;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: calc(25rem + 5vw);
+  top: calc(45px + 1rem);
+  right: 0;
+  padding-top: 1.5rem;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom {
+  height: 7rem;
+  width: 100%;
+  background: #ffebd2;
+  border-radius: 0 0 1vw 1vw;
+  padding: 1rem 1.5rem 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-left .sumCourse p,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-left .sumCourse p {
+  font-size: initial;
+  color: #999;
+  font-weight: 500;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut {
+  width: calc(10rem + 4vw);
+  height: 4rem;
+  background: #d8a466;
+  border-radius: 0.5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut h5,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut h5 {
+  color: white;
+}
+
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut:hover,
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container2 .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom .Navbar-container-item-Cart-dropdown-info-bottom-right .goCheckOut:hover {
+  background: #f7c485;
 }
 
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 {
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  overflow: hidden;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   background: white;
   margin: 0 0.15rem;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -250,10 +554,14 @@ a:hover {
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
+.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-Cart {
   fill: #d8a466;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  cursor: initial;
 }
 
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-avatar {
@@ -262,102 +570,130 @@ a:hover {
   height: 100%;
 }
 
-:root {
-  --NavBar-height: 7vw;
-}
-
-.NavbarHomePage {
-  color: #555;
-  font-weight: 100;
+.Navbar-CourseSearch {
+  display: none !important;
+  position: absolute;
+  top: 1rem;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 110%;
-  height: var(--NavBar-height);
-  margin-bottom: calc(-1 * var(--NavBar-height));
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.NavbarHomePage .Navbar-container {
-  height: 100%;
+.Navbar-CourseSearch .Navbar-CourseSearch-container {
   width: 70vw;
-  max-height: 100px;
-  max-width: 1440px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  z-index: 3;
-}
-
-.NavbarHomePage .Navbar-container .Navbar-container-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: calc(0.85rem + 0.55vw);
-}
-
-.NavbarHomePage .Navbar-container .Navbar-container-item .UmaiLogo {
-  height: var(--NavBar-height);
-  min-height: 75px;
-  max-height: 120px;
-  max-width: 190px;
-  padding: 1.1rem 0;
-}
-
-.NavbarHomePage .Navbar-container .Navbar-container-item .Navbar-container-item-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.NavbarHomePage .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 {
-  border-radius: 50%;
-  width: calc(1.75rem + 0.7vw);
-  height: calc(1.75rem + 0.7vw);
-  overflow: hidden;
+  color: #d8a466;
+  padding: 2rem 2rem 0 2rem;
   background: white;
-  margin: 0 0.25rem;
+  border-radius: 1vw;
+  z-index: 20;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .Navbar-CourseSearch-dropdown-SearchBar {
+  border: 2px solid #d8a466;
+  border-radius: 0.5vw;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .Navbar-CourseSearch-dropdown-SearchBar:hover {
+  border: 2px solid #ffc57d;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .Navbar-CourseSearch-dropdown-SearchBar:focus {
+  border: 2px solid #ffc57d;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .SearchBar-cross-circle {
+  position: absolute;
+  top: calc(50% - 0.75rem);
+  right: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: white;
+  background: #999999;
+  border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.NavbarHomePage .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .SearchBar-cross-circle:hover {
+  background: #aaa;
 }
 
-.NavbarHomePage .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
-  fill: #d8a466;
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .SearchBar-cross-circle:active {
+  background: #999999;
 }
 
-.NavbarHomePage .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-avatar {
+.Navbar-CourseSearch .Navbar-CourseSearch-container .Navbar-CourseSearch-dropdown .SearchBar-cross-circle .SearchBar-cross-icon {
+  height: 40%;
+  width: 40%;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchKeywordTag {
   position: relative;
+  display: inline;
+  height: 1.5rem;
   width: 100%;
-  height: 100%;
+  margin-bottom: 1rem;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchKeywordTag span {
+  font-weight: 700;
+  color: #666;
+  margin-right: 0.75rem;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchKeywordTag .KeywordTag {
+  display: inline;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  background: #666;
+  border-radius: 10px;
+  padding: 0.25rem 0.5rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchKeywordTag .KeywordTag:hover {
+  cursor: pointer;
+  background: #777;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchCourseList {
+  margin-top: 0.5rem;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchCourseList .Course {
+  width: 100%;
+  text-align: left;
+  color: #999;
+  border-bottom: 2px solid #999;
+  padding: 0.5rem 0;
+}
+
+.Navbar-CourseSearch .Navbar-CourseSearch-container .SearchCourseList .Course:hover {
+  color: #666;
+  cursor: pointer;
+  background: #ffebd2;
 }
 
 .OptionBar {
@@ -419,7 +755,7 @@ a:hover {
   border-radius: 15px;
   width: 90%;
   max-width: 900px;
-  min-height: 200px;
+  height: 200px;
   background: white;
   overflow: hidden;
   position: relative;
@@ -431,6 +767,7 @@ a:hover {
 
 .CourseCard1 .CourseCard1-imageCon {
   height: 100%;
+  max-height: 200px;
   width: 38%;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
@@ -602,14 +939,12 @@ a:hover {
   cursor: pointer;
 }
 
-.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
-  background: url(../icons/heart-solid.svg) center center no-repeat;
-}
-
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
   fill: #eb6b6a;
-  width: 75%;
-  height: 75%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
@@ -808,6 +1143,14 @@ a:hover {
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
   font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  max-height: 34px;
 }
 
 .DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-select {
@@ -929,6 +1272,7 @@ a:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  width: auto;
 }
 
 .DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox:checked {
@@ -975,21 +1319,6 @@ a:hover {
   margin-bottom: 0.15rem;
 }
 
-.StarGroup p {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 0.7rem;
-  color: #909090;
-  margin-left: 5px;
-}
-
 .StarGroup .StarGroup-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1002,41 +1331,56 @@ a:hover {
           align-items: center;
   max-width: 80px;
   position: relative;
-  height: 17px;
+  height: 5vw;
+  max-height: 30px;
   overflow: hidden;
 }
 
 .StarGroup .StarGroup-container .StarGroup-container-star {
-  z-index: 2;
-  width: 101%;
+  width: 100%;
   height: 100%;
+  top: 1.5px;
+  z-index: 2;
 }
 
 .StarGroup .StarGroup-container .StarGroup-container-background {
   position: absolute;
-  top: 2px;
+  top: 3.5px;
   left: 0;
   width: 20%;
   height: 100%;
   z-index: 1;
 }
 
+.StarGroup p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+  color: #909090;
+  margin-left: 5px;
+}
+
 .ShareCard {
   font-family: "Noto Sans TC", sans-serif;
-  margin: 20px 0;
   height: 30vw;
   width: 20vw;
-  min-height: 360px;
-  min-width: 220px;
   max-height: 480px;
   max-width: 330px;
   border-radius: 1vw;
   -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   background: white;
+  overflow: hidden;
 }
 
-.ShareCard .ShareCardContentFrame {
+.ShareCard .ShareCardContentWrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1050,54 +1394,13 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 0 10%;
+  margin: 7% 0 !important;
+  height: 86%;
+  width: 100%;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardPictureBox {
-  position: relative;
-  margin: 2vw 0 0 0;
-  height: 7vw;
-  width: 80%;
-  background-color: white;
-  overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardPictureBox .ShareCardPicture {
-  position: relative;
-  border-radius: 50%;
-  width: 7vw;
-  height: 7vw;
-  overflow: hidden;
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardPictureBox .ShareCardPicture img {
-  border-radius: 10px 10px 10px 10px;
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardPictureName {
-  color: #707070;
-  font-size: calc(1rem + 0.1vw);
-  font-weight: 700px;
-  text-align: center;
-  padding: 5px;
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardCourseName {
-  height: 2vw;
-  max-height: 34px;
-  width: 80%;
-  color: #000000;
-  font-size: calc(1rem + 0.25vw);
-  line-height: calc(1.25rem + 0.25vw);
-  font-weight: 700;
-  text-align: center;
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardStar {
-  /* 填滿星星 width設在外面 */
-}
-
-.ShareCard .ShareCardContentFrame .ShareCardStar .st-boxPos {
+.ShareCard .ShareCardContentWrapper .ShareCardPictureBox {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1108,13 +1411,63 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 2vw;
+  height: 7.5vw;
+  width: 7.5vw;
+  max-height: 132px;
+  max-width: 132px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ShareCard .ShareCardContentWrapper .ShareCardPictureBox .ShareCardPicture {
+  width: 100%;
+  height: 100%;
+}
+
+.ShareCard .ShareCardContentWrapper .ShareCardPictureName {
+  width: 100%;
+  color: #707070;
+  font-size: calc(1rem + 0.1vw);
+  font-weight: 700px;
+  text-align: center;
+  padding: 5px;
+}
+
+.ShareCard .ShareCardContentWrapper .ShareCardCourseName {
+  height: 8%;
   max-height: 34px;
-  width: 7vw;
+  width: 100%;
+  color: #000000;
+  font-size: calc(1rem + 0.25vw);
+  line-height: calc(1.25rem + 0.25vw);
+  font-weight: 700;
+  text-align: center;
+}
+
+.ShareCard .ShareCardContentWrapper .ShareCardStar {
+  width: 100%;
+  height: 5%;
+  /* 填滿星星 width設在外面 */
+}
+
+.ShareCard .ShareCardContentWrapper .ShareCardStar .st-boxPos {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: auto;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardStar .st-boxStar {
+.ShareCard .ShareCardContentWrapper .ShareCardStar .st-boxStar {
   color: #999999;
   /*背景星星顏色*/
   overflow: hidden;
@@ -1122,7 +1475,7 @@ a:hover {
   font-size: calc(1rem + 0.1vw);
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardStar .st-fullStar {
+.ShareCard .ShareCardContentWrapper .ShareCardStar .st-fullStar {
   /*調整寬度可變更星等 須跟上面一樣*/
   font-size: calc(1rem + 0.1vw);
   position: absolute;
@@ -1134,23 +1487,33 @@ a:hover {
   /*前景星星顏色*/
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardText {
-  height: 10vw;
-  max-height: 170px;
-  width: 80%;
-  margin: auto;
+.ShareCard .ShareCardContentWrapper .ShareCardText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 40%;
+  width: 100%;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardText .ShareCardTextTop {
-  height: 1vw;
+.ShareCard .ShareCardContentWrapper .ShareCardText .ShareCardTextTop {
+  height: 15%;
   text-align: left;
   font-size: calc(2rem + 0.1vw);
   font-weight: 700;
   width: 100%;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardText .ShareCardComment {
-  margin-top: 1vw;
+.ShareCard .ShareCardContentWrapper .ShareCardText .ShareCardComment {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1159,16 +1522,18 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
   font-weight: 700;
+  margin-top: 1vw;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardText .ShareCardComment p {
+.ShareCard .ShareCardContentWrapper .ShareCardText .ShareCardComment p {
+  font-size: calc(10px + 0.4vw);
   text-align: left;
   padding: 0 1.5vw;
   color: #000000;
 }
 
-.ShareCard .ShareCardContentFrame .ShareCardText .ShareCardTextDown {
-  height: 1vw;
+.ShareCard .ShareCardContentWrapper .ShareCardText .ShareCardTextDown {
+  height: 15%;
   text-align: right;
   font-size: calc(2rem + 0.1vw);
   font-weight: 700;
@@ -1177,17 +1542,19 @@ a:hover {
 
 .st-courseMiniCard {
   font-family: "Noto Sans TC", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
-  width: 250px;
-  height: 450px;
-  border-radius: 10px 10px 10px 10px;
+  height: 36vw;
+  width: 20vw;
+  max-height: 450px;
+  max-width: 250px;
+  border-radius: 0.5vw;
   background: white;
   -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .st-courseMiniCard .st-courseMiniCardBarActiveDeadline {
@@ -1200,55 +1567,85 @@ a:hover {
 
 .st-courseMiniCard .st-courseMiniCardWrapper {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper {
-  position: relative;
-  height: 200px;
-  width: 250px;
-  border-radius: 10px 10px 0px 0px;
-  background: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40%;
+  width: 100%;
+  border-radius: 0.5vw 0.5vw 0 0;
+  background: #666;
   overflow: hidden;
 }
 
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper .courseMiniCardPicture {
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper .st-courseMiniCardTag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: absolute;
-  top: 15px;
-  right: -45px;
-  width: 150px;
-  text-align: center;
+  top: 9%;
+  right: -27%;
+  height: 15%;
+  width: 80%;
+  font-size: calc(6px + 0.5vw);
   font-weight: 700;
-  font-size: 90%;
+  text-align: center;
   color: white;
-  padding: 0.25rem 1rem;
   z-index: 3;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardPictureWrapper .st-courseMiniCardTag p {
+  padding: auto;
+}
+
+.st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper {
+  width: 100%;
+}
+
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName {
-  width: 250px;
-  height: 115px;
+  height: 5%;
+  width: 80%;
   font-weight: bold;
   color: #505050;
-  font-size: 20px;
+  font-size: calc(10px + 0.5vw);
   font-weight: 700;
-  padding: 10px 20px 10px 20px;
-  line-height: 23px;
+  margin: 10px 20px;
+  line-height: calc(16px + 0.5vw);
 }
 
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName .st-courseMiniCardChefName {
   margin-top: 5px;
-  font-size: 14px;
+  font-size: calc(10px + 0.25vw);
+  line-height: calc(10px + 0.25vw);
   font-weight: 400;
   color: #909090;
 }
 
 .st-courseMiniCard .st-courseMiniCardWrapper .courseMiniCardTextUpper .st-courseMiniCardName .st-startWidth {
+  left: -2px;
   width: 120px;
   max-height: 34.5px;
 }
@@ -1263,13 +1660,13 @@ a:hover {
   width: 100%;
   height: 45px;
   margin-left: 20px;
-  font-size: 14px;
+  font-size: calc(10px + 0.25vw);
   font-weight: 500;
 }
 
 .st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox {
   position: relative;
-  width: 200px;
+  width: 80%;
   margin-left: 20px;
   height: 6px;
 }
@@ -1299,13 +1696,13 @@ a:hover {
 .st-courseMiniCard .courseMiniCardTextDown .st-courseMiniCardProgressBox .st-courseMiniCardCount {
   position: relative;
   top: -20px;
-  font-size: 14px;
+  font-size: calc(10px + 0.25vw);
   font-weight: 500;
 }
 
 .st-courseMiniCard .courseMiniCardContentDown {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 0;
   width: 100%;
   display: -webkit-box;
@@ -1344,13 +1741,85 @@ a:hover {
 .st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardPriceBox .st-courseMiniCardPrice {
   text-align: right;
   color: #909090;
-  font-size: 14px;
+  font-size: calc(8px + 0.25vw);
   text-decoration: line-through;
 }
 
 .st-courseMiniCard .courseMiniCardContentDown .st-courseMiniCardPriceBox .st-courseMiniCardSpecialPrice {
-  font-size: 1.3rem;
+  font-size: calc(8px + 0.75vw);
   font-weight: 700;
+}
+
+.SliderTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2vw;
+}
+
+.SliderTitle .circle {
+  height: calc(24px + 1vw);
+  width: calc(24px + 1vw);
+  border-radius: 50%;
+  margin-left: 2vw;
+  background: #ebab5e;
+}
+
+.SliderTitle .TitleText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.SliderTitle .TitleText h1 {
+  font-family: "Noto Sans TC", sans-serif;
+  color: #1f4557;
+  font-weight: 700;
+  padding-left: 2vw;
+}
+
+.slick-slider {
+  margin-bottom: calc(100px + 0.5vw);
+}
+
+.slick-slider .slick-arrow {
+  height: calc(24px + 1vw);
+  width: calc(24px + 1vw);
+}
+
+.slick-slider .slick-next:before,
+.slick-slider .slick-prev:before {
+  font-size: calc(24px + 1vw);
+  color: #707070;
+}
+
+.slick-slider .slick-list .slick-track .slick-slide {
+  padding-bottom: 2vw;
+}
+
+.slick-slider .slick-list .slick-track .slick-slide .CourseMiniCardWrapper {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 120%;
 }
 
 .st-chefCard {
@@ -1365,6 +1834,7 @@ a:hover {
   margin: 1vw 0;
   -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
           box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .st-chefCardPictureWrapper {
@@ -1379,7 +1849,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: aqua;
+  background: #707070;
 }
 
 .st-chefCardPictureWrapper img {
@@ -1401,17 +1871,20 @@ a:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .st-chefCardTextWrapper .st-chefCardTop {
   height: 20vw;
+  max-height: 20vw;
   float: right;
   border-radius: 0 1.5vw 0 0;
   width: 100%;
   font-family: "Noto Sans TC", sans-serif;
-  font-size: calc(0.25rem + 1vw);
+  font-size: calc(10px + 0.5vw);
   color: #ffffff;
-  padding: 1.5vw;
+  padding: 0 calc((10px + 0.5vw) * 2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1425,7 +1898,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  text-align: left;
+  text-align: justify;
 }
 
 .st-chefCardTextWrapper .st-chefCardTop .st-chefCardTopQuotation {
@@ -1447,13 +1920,14 @@ a:hover {
 
 .st-chefCardTextWrapper .st-chefCardDown {
   height: 15vw;
+  max-height: 15vw;
   float: right;
   border-radius: 0 0 1.5vw 0;
   background-color: #5e5548;
   width: 100%;
   font-family: "Noto Sans TC", sans-serif;
   color: #ffffff;
-  padding: 1.5vw;
+  padding: 0 calc((10px + 0.5vw) * 2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1467,13 +1941,13 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  text-align: left;
+  text-align: justify;
   letter-spacing: 2px;
 }
 
 .st-chefCardTextWrapper .st-chefCardDown div {
   width: 100%;
-  font-size: 1.25vw;
+  font-size: calc(6px + 0.75vw);
 }
 
 .st-chefCardTextWrapper .st-chefCardDown ul {
@@ -1484,7 +1958,7 @@ a:hover {
 }
 
 .st-chefCardTextWrapper .st-chefCardDown ul li {
-  font-size: 1vw;
+  font-size: calc(6px + 0.5vw);
 }
 
 .st-breadcrumb-item-end::before {
@@ -1617,14 +2091,14 @@ a:hover {
   }
 }
 
-.Calender {
+.Calendar {
   position: relative;
   width: 100%;
-  max-width: 255px;
+  max-width: 600px;
   max-height: 34px;
 }
 
-.Calender .Calender-selector {
+.Calendar .Calendar-selector {
   width: 100%;
   max-height: 34px;
   padding: 0.25rem 0.35rem;
@@ -1647,24 +2121,24 @@ a:hover {
   cursor: pointer;
 }
 
-.Calender .Calender-selector .Calender-selector-text {
+.Calendar .Calendar-selector .Calendar-selector-text {
   margin: 0 0.5rem;
 }
 
-.Calender .Calender-selector svg {
+.Calendar .Calendar-selector svg {
   width: 20px;
   height: 20px;
 }
 
-.Calender .Calender-container {
+.Calendar .Calendar-container {
   position: absolute;
   z-index: 10;
   background: white;
   border-radius: 10px;
   padding: 0.5rem;
   border: 2px solid #d8a466;
-  width: 255px;
-  max-width: 180%;
+  width: 100%;
+  max-width: 600px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1679,9 +2153,11 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-.Calender .Calender-container .Calender-header {
+.Calendar .Calendar-container .Calendar-header {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1698,8 +2174,8 @@ a:hover {
           align-items: center;
 }
 
-.Calender .Calender-container .Calender-header .year-selector,
-.Calender .Calender-container .Calender-header .month-selector {
+.Calendar .Calendar-container .Calendar-header .year-selector,
+.Calendar .Calendar-container .Calendar-header .month-selector {
   border: none;
   margin: 0 0.35rem 0.15rem;
   background: white;
@@ -1707,17 +2183,17 @@ a:hover {
   border-radius: 0;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr {
   border-bottom: 1px solid #666666;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-head .Calender-table-tr .Calender-table-th {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr .Calendar-table-th {
   padding: 0.35rem;
   text-align: center;
   font-weight: 900;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td {
   cursor: pointer;
   padding: 0.35rem;
   width: 8%;
@@ -1726,108 +2202,471 @@ a:hover {
   border: 1px solid transparent;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .Calender-table-td:hover {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td:hover {
   background: #e0e0e0;
   color: black;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .today {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .today {
   background: #e0e0e0;
   border: 2px solid #eb6b6a;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .available {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .available {
   background: #b3cedb;
 }
 
-.Calender .Calender-container .Calender-table .Calender-table-body .Calender-table-tr .active {
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .active {
   background: #0078b3;
   color: white;
   border: 2px solid #666666;
 }
 
-:root {
-  --footerTriangleBG-height: 10vw;
-  --footerTitle-height: 35px;
+.CalendarAvailable {
+  position: relative;
+  width: 100%;
+  max-width: 140px;
+  max-height: 45px;
 }
 
-.main {
-  padding-bottom: var(--footerTriangleBG-height);
-  z-index: 0;
+.CalendarAvailable .CalendarAvailable-selector {
+  width: 100%;
+  max-height: 45px;
+  padding: 0.45rem;
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  font-weight: 900;
+  color: #d8a466;
 }
 
-.customFooter {
-  padding: 0;
-  margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
+.CalendarAvailable .CalendarAvailable-selector .CalendarAvailable-selector-text {
+  margin: 0 0.5rem;
 }
 
-.customFooter .footerTriangleBG {
-  height: 0;
-  width: 0;
-  border-right: 100vw solid #eee;
-  border-top: var(--footerTriangleBG-height) solid transparent;
-  margin-top: calc(-1 * var(--footerTriangleBG-height));
-  z-index: 1;
+.CalendarAvailable .CalendarAvailable-selector svg {
+  width: 20px;
+  height: 20px;
 }
 
-.customFooter .footerContent {
-  padding: 0.5rem 0rem 0rem;
-  background-color: #eee;
+.CalendarAvailable .CalendarAvailable-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 200%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .year-selector,
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr .CalendarAvailable-table-th {
+  padding: 0.35rem;
   text-align: center;
-  z-index: 2;
+  font-weight: 900;
 }
 
-.customFooter .footerContent .footerLink .row {
-  margin-right: 0;
-  margin-left: 0;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 {
-  height: var(--footerTitle-height);
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td:hover {
+  background: #e0e0e0;
+  color: black;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerTitle {
-  margin: 0;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerTitle .footerTitleText {
-  min-width: 80px;
-  text-align: left;
-  font-size: 1rem;
-  color: #d8a466;
-  list-style-type: none;
-  text-align: left;
-  text-decoration: none;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .available {
+  background: #b3cedb;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerTitle .footerTitleText:hover {
-  color: #f7c485;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerIcon .FaFacebookSquare {
-  margin: 0 3%;
-  color: #d8a466;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled {
+  cursor: not-allowed;
+  text-decoration: line-through;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerIcon .FaFacebookSquare:hover {
-  color: #f7c485;
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled:hover {
+  background: none;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerIcon .RiInstagramFill {
-  margin: 0 3%;
-  color: #d8a466;
+.CalendarMulti {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 34px;
 }
 
-.customFooter .footerContent .footerLink .row .col-2 .footerIcon .RiInstagramFill:hover {
-  color: #f7c485;
+.CalendarMulti .CalendarMulti-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
 }
 
-.customFooter .footerContent .footerLink .row .footerCopyright p {
-  color: #1f4557;
-  font-size: 0.5rem;
+.CalendarMulti .CalendarMulti-selector .CalendarMulti-selector-text {
+  margin: 0 0.5rem;
+}
+
+.CalendarMulti .CalendarMulti-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.CalendarMulti .CalendarMulti-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .year-selector,
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr .CalendarMulti-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  margin: 0.15rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .available {
+  background: #b3cedb;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.CartCourse-container {
+  width: calc(22rem + 5vw);
+  height: 8rem;
+  border-bottom: 2px solid #999;
+  background: white;
+  margin: 0 1.5rem 1rem 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.CartCourse-container .CartCourse-info-left {
+  width: 30%;
+  height: 75%;
+}
+
+.CartCourse-container .CartCourse-info-left .CartCourse-pic-container {
+  height: 100%;
+  border-radius: 0.5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.CartCourse-container .CartCourse-info-left .CartCourse-pic-container .CartCourse-pic {
+  height: 7rem;
+}
+
+.CartCourse-container .CartCourse-info-right {
+  width: 70%;
+  height: 87.5%;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-top {
+  height: 3rem;
+  text-align: justify;
+  padding: 0 1rem;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-top .CartCourse-name h6 {
+  color: #555;
   font-weight: 700;
-  margin: 0;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-top .CartCourse-batch p {
+  font-size: 0.75rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom {
+  height: 4.25rem;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1rem;
+  height: 1.5rem;
+  width: 7rem;
+  border: 2px solid #888;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-minus,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-plus {
+  width: 1.5rem;
+  color: #888;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-minus:hover,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-plus:hover {
+  color: #555;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-minus:active,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-plus:active {
+  color: #888;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-minus {
+  border-right: 2px solid #888;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count-plus {
+  border-left: 2px solid #888;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .count-container .count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding-bottom: 5px;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .price {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .price h5 {
+  line-height: calc(1.5rem + 4px);
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  padding-bottom: 0;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .addToCollection,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .seperationLine,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .DeleteThisCourse {
+  display: inline-block;
+  color: #1f4557;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .addToCollection button p,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .seperationLine button p,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .DeleteThisCourse button p {
+  font-size: 0.75vw;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .addToCollection button p:hover,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .seperationLine button p:hover,
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .DeleteThisCourse button p:hover {
+  color: #377491;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .addToCollection {
+  padding-right: 0.5vw;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .seperationLine {
+  height: 0.5vw;
+  width: 0;
+  border-right: 1px solid #1f4557;
+}
+
+.CartCourse-container .CartCourse-info-right .CartCourse-info-right-bottom .edit-Button .DeleteThisCourse {
+  padding-left: 0.5vw;
 }
 
 :root {
@@ -1839,7 +2678,7 @@ a:hover {
   position: relative;
   height: 97vh;
   width: 100vw;
-  max-height: 900px;
+  max-height: 1000px;
   -webkit-filter: drop-shadow(0px 15px 50px #ab8b79);
           filter: drop-shadow(0px 15px 50px #ab8b79);
   z-index: 1;
@@ -2125,7 +2964,7 @@ a:hover {
 .HomePageBox .platformIntroduction .platformIntroductionBox .platformIntroductionWrapper .platformIntroductionContentWrapper .platformIntroductionContent .platformIntroductionPictureWrapper {
   height: 14vw;
   width: 21vw;
-  background: red;
+  background: #ccc;
   border-radius: 1vw;
   overflow: hidden;
 }
@@ -2318,14 +3157,30 @@ a:hover {
   -webkit-clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
           clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
   z-index: 2;
+  background: #ccc;
 }
 
-.HomePageBox .ShareCardBox .BackgroundTexture {
+.HomePageBox .ShareCardBox .Background {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.HomePageBox .ShareCardBox .Background .BackgroundTexture {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 3;
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
 }
 
 .HomePageBox .ShareCardBox .circleWrapperA {
@@ -2492,30 +3347,33 @@ a:hover {
 .HomePageBox .RecommandCourseCardBox {
   font-family: "Noto Sans TC", sans-serif;
   position: relative;
-  width: 100vw;
   height: 80vw;
+  width: 100vw;
+  min-height: 1250px;
   background: white;
+  overflow: hidden;
 }
 
 .HomePageBox .RecommandCourseCardBox .Background {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
+  position: relative;
   height: 100%;
+  width: 100%;
+  min-height: 1250px;
 }
 
 .HomePageBox .RecommandCourseCardBox .Background .BackgroundTexture {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
+}
+
+.HomePageBox .RecommandCourseCardBox .Background .BackgroundTextureA {
+  z-index: 2;
+}
+
+.HomePageBox .RecommandCourseCardBox .Background .BackgroundTextureB {
+  top: -40vw;
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+  z-index: 1;
 }
 
 .HomePageBox .RecommandCourseCardBox .imageA {
@@ -2536,26 +3394,26 @@ a:hover {
 }
 
 .HomePageBox .RecommandCourseCardBox .RecommandCourseCardContentWrapper {
-  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 10;
 }
 
 .HomePageBox .RecommandCourseCardBox .RecommandCourseCardContentWrapper .RecommandCourseCardSliderWrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  top: calc(100px + 0.5vw);
   width: 70%;
-  padding: 20% 15%;
 }
 
 .Login {
@@ -2582,9 +3440,9 @@ a:hover {
 }
 
 .Login .Login-container {
-  top: -100%;
   width: 750px;
   height: 500px;
+  z-index: 11;
   background: white;
   border-radius: 15px;
   overflow: hidden;
@@ -2812,6 +3670,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .MemberSidebar {
@@ -3168,6 +4027,9 @@ a:hover {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.DefaultStudent .DefaultStudent-container .DefaultStudent-container-cards-bottom {
   overflow: scroll;
 }
 
@@ -3242,7 +4104,6 @@ a:hover {
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
   margin: 0 0 1rem 0;
   overflow: scroll;
-  width: 100%;
 }
 
 .OrderCard .OrderCard-container {
@@ -3786,6 +4647,7 @@ a:hover {
 .CourseInsert .CourseInsert-container {
   height: 95%;
   width: 100%;
+  overflow: scroll;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -3816,6 +4678,205 @@ a:hover {
 
 .CourseInsert .CourseInsert-container .CourseInsert-container-header h1 {
   font-weight: 100;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-label {
+  font-weight: 900;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-input {
+  width: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 150px;
+          flex: 1 1 150px;
+  height: 10vw;
+  max-height: 200px;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin: 0.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-input {
+  display: none;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin: 0.25rem 0;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label {
+  width: 20vw;
+  height: 20vw;
+  max-width: 270px;
+  max-height: 270px;
+  margin-right: 0.75rem;
+  border: 2px solid #666666;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label img {
+  width: 100%;
+  height: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right {
+  width: 65%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right input {
+  border-radius: 5px 5px 0 0;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right textarea {
+  border-radius: 0 0 5px 5px;
+  height: 83%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-input {
+  display: none;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-btnCon {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .ReviewButton {
@@ -3880,6 +4941,1310 @@ a:hover {
 
 .ReviewButton .ReviewButton-btn-active .ReviewButton-btn-imgCon {
   background: url(../../icons/id-card.svg) no-repeat;
+}
+
+.CourseReview {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 2;
+  -webkit-box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+          box-shadow: 50px 0px 0px white, -50px 0px 0px white;
+}
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry {
+  max-width: 70%;
+  -webkit-column-count: 5;
+          column-count: 5;
+}
+
+.wrapper .masonry .item {
+  overflow: hidden;
+  background: white;
+  margin-bottom: 10px;
+  -webkit-column-break-inside: auto;
+  /* Chrome, Safari, Opera */
+  /* Firefox */
+  break-inside: auto;
+  /* IE 10+ */
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper .masonry .item img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.wrapper .masonry .item .opacity {
+  position: absolute;
+  top: 0;
+  border-radius: 20px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .masonry .item .opacity:hover {
+  opacity: 0.5;
+}
+
+.Massonry-modal {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-header {
+  font-size: 30px;
+  background: white;
+}
+
+.Massonry-modal .Massonry-modal-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border {
+  width: 75%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border .Massonry-modal-header {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 100;
+  display: inline-block;
+  border: none;
+  outline: none;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-image-border .Massonry-modal-body-image {
+  width: 100%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop {
+  width: 25%;
+  height: 100%;
+  background: burlywood;
+  padding: 1rem 2rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-orner-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-owner-account-block .Massonry-modal-body-owner-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-text {
+  min-height: 40vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-owner .Massonry-modal-body-orner-logo .Massonry-modal-body-orner-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-account-block .Massonry-modal-body-critic-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-critic .Massonry-modal-body-critic-logo .Massonry-modal-body-critic-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet {
+  border-bottom: white 1px solid;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-account-block .Massonry-modal-body-commet-account {
+  padding: 1rem;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-text {
+  min-height: 10vh;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Massonry-modal-body-commet-logo .Massonry-modal-body-commet-icon-p {
+  padding-right: 5px;
+  color: white;
+}
+
+.Massonry-modal .Massonry-modal-body .Massonry-modal-body-textgrop .Massonry-modal-body-commet .Forum-modal-body-commet-p {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  min-height: 5vh;
+  max-height: 10vh;
+}
+
+* {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrapper {
+  width: 70vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .sidebar {
+  color: #d8a466;
+  width: 100%;
+  height: 100vh;
+  padding-top: 15px;
+  margin: 0 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .sidebar h3 {
+  text-align: center;
+}
+
+.wrapper .sidebar ul {
+  margin-top: 30px;
+  padding-left: 0;
+  text-align: center;
+}
+
+.wrapper .sidebar ul li {
+  padding: 2.5px 0;
+  list-style: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+}
+
+.wrapper .sidebar ul li:hover {
+  color: orange;
+}
+
+.wrapper .forum {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .forum .main {
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.wrapper .forum .main .Forum-main-h3 {
+  margin: 10px;
+}
+
+.wrapper .forum .main .Forum-main-h2 {
+  margin: 10px;
+  color: #d8a466;
+}
+
+.wrapper .forum .main .Forum-main-out {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: #686868 0.1px dashed;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-photo {
+  width: 125px;
+  min-width: 125px;
+  height: 125px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle {
+  padding: 0px 15px;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  position: relative;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-dateAndTheme {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-dateAndTheme .Forum-main-theme {
+  padding: 0;
+  margin: 0px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-p {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 8px;
+  padding-left: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineHeart {
+  color: #eb6b6a;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-love {
+  padding: 5px;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .AiOutlineMessage {
+  color: #5eb2eb;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small p {
+  padding: 0 0.5rem;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small a {
+  display: none;
+  -webkit-transition: 3s ease-in;
+  transition: 3s ease-in;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover .BsFillTriangleFill {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  color: orange;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover p {
+  display: none;
+}
+
+.wrapper .forum .main .Forum-main-out .Forum-main-middle .Forum-main-little .Forum-main-small:hover a {
+  display: block;
+  color: orange;
+  padding: 0% 0.25rem;
+  margin: 0%;
+  text-decoration: none;
+}
+
+.wrapper .publish {
+  background: white;
+  width: 15%;
+  height: 90vh;
+  -webkit-box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+          box-shadow: 2px 3px 27px -13px rgba(0, 0, 0, 0.39);
+  padding-top: 15px;
+  padding-left: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 46.953px;
+}
+
+.wrapper .publish h2 {
+  color: #d8a466;
+}
+
+.wrapper .publish .Forum-publish-form-select {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-select .option:after {
+  position: absolute;
+  right: 20px;
+  top: 41%;
+}
+
+.wrapper .publish .Forum-publish-form-select select {
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper .publish .Forum-publish-form-select select option {
+  border: none;
+  outline: none;
+  width: 70%;
+  background-color: black;
+  color: white;
+}
+
+.wrapper .publish .Forum-publish-label-small-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-small {
+  margin-right: 5%;
+  text-align: left;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block .situation {
+  display: none;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block .AiFillQuestionCircle {
+  color: #f8ac1e;
+}
+
+.wrapper .publish .Forum-publish-label-small-block .Forum-publish-label-question-block:hover .situation {
+  display: block;
+  font-size: 8px;
+}
+
+.wrapper .publish .Forum-publish-label-illustrator {
+  margin-left: 5%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  text-align: left;
+  display: block;
+}
+
+.wrapper .publish .Forum-publish-form-big {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 30px;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.wrapper .publish .Forum-publish-form-file {
+  display: none;
+}
+
+.wrapper .publish .Forum-publish-textarea {
+  margin-left: 5%;
+  width: 90%;
+  max-width: 100%;
+  height: 400px;
+  min-height: 350px;
+  display: inline-block;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 15px;
+  resize: none;
+}
+
+.wrapper .publish .Forum-publish-button-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wrapper .publish .Forum-publish-button-div .Forum-publish-button {
+  margin: 15px 5px;
+  font-weight: bolder;
+}
+
+.Forum-modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-header {
+  font-size: 30px;
+}
+
+.Forum-modal .Forum-modal-body {
+  padding: 1rem 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border {
+  margin: 0 auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-account .Forum-modal-body-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-commet {
+  max-height: 50vh;
+  margin: 15px auto;
+  font-size: 1.25rem;
+  overflow-y: scroll;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-commet .Forum-modal-body-image {
+  max-width: 80%;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border #Forum-modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d8a466;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .AiOutlineMessage {
+  color: #5eb2eb;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-p {
+  font-size: 1.25rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .Forum-modal-body .Forum-modal-body-border .Forum-modal-body-icon .Forum-modal-body-icon-fb {
+  position: absolute;
+  padding-right: 5px;
+  right: 0;
+  color: #4267b2;
+}
+
+.Forum-modal .modal-footer {
+  padding: 1rem 2rem;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+  display: inline-block;
+  color: black;
+  width: 50px;
+  background: white;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .FiMoreHorizontal {
+  color: black;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover {
+  padding: 0 3rem;
+  -webkit-box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+          box-shadow: 0px 15px 15px -14px rgba(0, 0, 0, 0.64);
+  border-radius: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2px 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p {
+  margin: 0.125rem 0;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-main-DateAndDropdown .Forum-main-dropdown:hover .Forum-main-dropdown-content p a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  width: 2rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-account .Forum-modal-footer-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .AiOutlineHeart {
+  color: #eb6b6a;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .Forum-modal-footer-icon .Forum-modal-body-icon-p {
+  font-size: 1.5rem;
+  padding-right: 5px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px auto;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-name {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-account .Forum-modal-footer-write-account-id {
+  padding: 3px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet {
+  margin: 15px auto;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet .Forum-modal-footer-write-commet-textarea {
+  width: 1055.55px;
+  max-width: 1440px;
+  min-width: 900px;
+  resize: none;
+  outline: none;
+  border-bottom: 1px solid #f8ac1e;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  color: #000000;
+  padding: 15px;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttondelete {
+  margin: 0 5px;
+  background: #eb6b6a;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .Forum-modal-footer-write-commet-buttonarea .Forum-modal-footer-write-commet-buttonsave {
+  margin: 0 5px;
+  background: #d8a466;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.Forum-modal .modal-footer .Forum-modal-footer-write-component .st-line {
+  border: 0.5px #ebebeb solid;
+}
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.massonry-title .massonry-title-inside {
+  width: 70%;
+  max-width: 1440px;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-bread {
+  margin-top: 1rem;
+}
+
+.massonry-title .massonry-title-inside .massonry-title-inside-header {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: #d8a466;
+}
+
+.massonry-title .massonry-title-inside .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+.wrapper .discussion {
+  width: 70%;
+  max-width: 1440px;
+  padding: 1rem;
+  background-color: white;
+}
+
+.wrapper .discussion .Discussion-main-theme {
+  text-align: center;
+}
+
+.wrapper .discussion .Discussion-main-brad {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-commet-textarea {
+  width: 90%;
+  margin: 0 1rem;
+  resize: none;
+  padding: 1rem;
+  border: olivedrab 1px dashed;
+}
+
+.wrapper .discussion .Discussion-main-account {
+  margin: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account-image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.wrapper .discussion .Discussion-main-account .Discussion-main-account {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-p {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-image {
+  margin: 0 1rem;
+}
+
+.wrapper .discussion .Discussion-main-commet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineHeart {
+  color: pink;
+}
+
+.wrapper .discussion .Discussion-main-commet .AiOutlineMessage {
+  color: #00ffff;
+}
+
+.wrapper .discussion .Discussion-main-commet .Discussion-main-commet-social {
+  position: absolute;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper .discussion .st-line {
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
 }
 
 .Course {
@@ -4278,138 +6643,103 @@ a:hover {
 /* 三圖片大框 */
 .Coursedetail-header {
   position: relative;
-  display: block;
-  width: 100%;
-  max-width: 2040px;
-  height: 470px;
+  width: 70vw;
+  max-width: 1440px;
+  height: 25vw;
   overflow: hidden;
   margin: auto;
 }
 
-/* 大框圖片設置 */
 .Coursedetail-header img {
-  margin: auto;
-  position: absolute;
-  width: 70vw;
-  max-width: 1440px;
-  height: 470px;
-}
-
-/* 左圖片 */
-.Coursedetail-headerLeft {
-  -webkit-transform: translate(-21.2%, 0px);
-          transform: translate(-21.2%, 0px);
-  opacity: 0.3;
-  -webkit-transition: transform 1s;
-  z-index: 1;
-}
-
-/* 左圖片h */
-.Coursedetail-headerLeft:hover {
-  opacity: 0.7;
-}
-
-/* 中圖片 */
-.Coursedetail-headerMid {
-  -webkit-transform: translate(20.85%, 0px);
-          transform: translate(20.85%, 0px);
-  -webkit-transition: transform 1s;
-  z-index: 3;
-}
-
-/* 右圖片 */
-.Coursedetail-headerRight {
-  -webkit-transform: translate(63.6%, 0px);
-          transform: translate(63.6%, 0px);
-  opacity: 0.3;
-  -webkit-transition: transform 1s;
-  z-index: 2;
-}
-
-/* 右圖片H */
-.Coursedetail-headerRight:hover {
-  opacity: 0.7;
+  height: 100%;
+  width: 100%;
 }
 
 /* 資訊欄 */
 .Coursedetail-info {
   width: 100%;
-  height: 500px;
+  height: 25vw;
+  min-height: 250px;
 }
 
 /* 資訊(右欄) */
 .Coursedetail-infoRight {
   position: relative;
+  -webkit-clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
+          clip-path: polygon(5% 0, 100% 0, 100% 100%, 47% 100%);
+  background-color: #d8a466;
+  height: 19vw;
+  width: 30vw;
   float: right;
-  right: 0px;
-  width: 550px;
-  height: 0;
-  border-top: 360px solid #d8a466;
-  border-left: 200px solid transparent;
+  max-height: 30vw;
 }
 
 /* 資訊(右欄)div */
 .Coursedetail-infoRight div {
   position: relative;
   float: right;
-  margin-right: 20px;
-  top: -330px;
   font-weight: 700;
+  right: 2vw;
+  top: 1vw;
 }
 
 /* 早鳥預購價 */
 .Coursedetail-infoRightPrice {
   color: #ffffff;
-  font-size: 24px;
+  font-size: 1.6vw;
 }
 
 /* 原價 */
 .Coursedetail-originalPrice {
-  font-size: 22px;
+  font-size: 1.3vw;
   color: #d4d4d4;
   text-decoration: line-through;
-  margin-right: 10px;
+  margin-right: 1vw;
 }
 
 /* 特價 */
 .Coursedetail-specialPrice {
   color: #ffffff;
-  font-size: 60px;
-  font-family: 'Noto Sans TC', Medium;
+  font-size: 3vw;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
 }
 
 /* 名額margin */
 .Coursedetail-quota {
-  margin-top: 30px;
+  margin-top: 0.5vw;
 }
 
 .Coursedetail-quota span {
   color: #444444;
-  font-size: 20px;
+  font-size: 1.1vw;
+  margin-left: 10vw;
 }
 
 /* 星數/評論人數 */
 .Coursedetail-count {
-  position: relative;
-  top: 15px;
-  font-size: 15px;
+  position: absolute;
+  top: 1vw;
+  font-size: 1.1vw;
   color: #ffffff;
 }
 
-/* 星星盒子(外框) */
+.Coursedetail-pos {
+  margin: 0 2.75vw 0 10vw;
+}
+
 .Coursedetail-boxStar {
-  color: #ffffff;
+  color: #cecdcd;
   /*背景星星顏色*/
   overflow: hidden;
   /*調整寬度可變更星等*/
-  font-size: 30px;
+  font-size: 2vw;
 }
 
 /* 填滿星星 width設在外面 */
 .Coursedetail-fullStar {
   /*調整寬度可變更星等 須跟上面一樣*/
-  font-size: 30px;
+  font-size: 2vw;
   position: absolute;
   left: 0;
   top: 0;
@@ -4421,13 +6751,14 @@ a:hover {
 
 .Coursedetail-allTime span {
   color: #444444;
-  font-size: 20px;
+  font-size: 1vw;
+  margin-left: 20vw;
 }
 
 .Coursedetail-iconSvg svg {
-  font-size: 48px;
+  font-size: 2vw;
   color: #ffffff;
-  margin: 10px 0px 0 40px;
+  margin: 0.5vw 0px 0 1vw;
 }
 
 /* 資訊(左欄) */
@@ -4435,10 +6766,10 @@ a:hover {
   position: absolute;
   float: left;
   max-width: 50%;
-  font-family: 'Noto Sans TC', Medium;
+  font-family: "Noto Sans TC", Medium;
   font-weight: 700;
-  padding-top: 20px;
-  width: 800px;
+  padding-top: 1vw;
+  width: 42vw;
 }
 
 .Coursedetail-infoLeft ul {
@@ -4455,8 +6786,8 @@ a:hover {
 /*偽裝麵包屑*/
 .Coursedetail-infoLeft-breadcrumb ul li {
   color: #666666;
-  font-size: 18px;
-  margin-right: 5px;
+  font-size: 1vw;
+  margin-right: 0.5vw;
   cursor: pointer;
 }
 
@@ -4467,50 +6798,52 @@ a:hover {
 /* 左邊資訊標題 */
 .Coursedetail-infoLeftTitle {
   margin-top: 5px;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   font-weight: bold;
-  font-size: 60px;
+  font-size: 3vw;
   color: #444444;
 }
 
-.Coursedetail-placeWithChef {
-  margin: 20px 0 20px 0;
-}
-
 .Coursedetail-placeWithChef ul li {
-  margin-right: 40px;
-  font-size: 1.6em;
+  margin-right: 1.25vw;
+  font-size: 1.5vw;
 }
 
 .Coursedetail-placeWithChef ul li svg {
   top: 3px;
   position: relative;
   color: #f7921e;
-  font-size: 1.2em;
+  font-size: 2vw;
 }
 
 .Coursedetail-infoLeftPlace {
   /* 地圖hover標註用 */
   padding: 0;
-  height: 50px;
+  height: 3.2vw;
   cursor: pointer;
 }
 
 /* 地圖 */
 .Coursedetail-infoLeftPlace iframe {
-  width: 200px;
-  height: 100px;
+  height: 4vw;
   border: 0;
   display: none;
 }
 
+.Coursedetail-mapClose {
+  pointer-events: none;
+}
+
 .Coursedetail-infoLeftPlace:hover iframe {
-  top: 200px;
+  top: 2.5vw;
   left: 0px;
   position: absolute;
-  width: 80%;
-  height: 200px;
+  width: 25vw;
+  height: 10vw;
   display: inline;
+  z-index: 5;
+  border: #666666 2px solid;
+  border-radius: 5px;
 }
 
 /* 梯次按鈕 */
@@ -4520,73 +6853,26 @@ a:hover {
   display: flex;
 }
 
-.Coursedetail-data button {
-  width: 30%;
-  height: 59px;
-  background: #FFFFFF;
-  -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-          box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 34px;
-  cursor: pointer;
-  color: #d8a466;
-  font-size: 28px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: left;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  min-width: 237px;
-}
-
-.Coursedetail-data button svg {
-  color: #d8a466;
-  font-size: 32px;
-  margin: 0px 24% 0 10px;
-}
-
-.Coursedetail-data div {
-  height: 59px;
-  display: inline-block;
-}
-
-.Coursedetail-data .CT svg {
-  color: initial;
-  font-size: initial;
-  font-size: 59px;
-  margin: 2px 0 0 20px;
-}
-
-.Coursedetail-data .CT svg:hover {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
 .Coursedetail-data p {
   color: #444444;
-  margin-left: 40px;
+  margin-left: 2vw;
   font-weight: 700;
+  font-size: 1vw;
 }
 
 .Coursedetail-infoLeftJoin {
-  margin-top: 20px;
+  margin-top: 1.5vw;
 }
 
 .Coursedetail-infoLeftJoin ul li {
   cursor: pointer;
   color: #d8a466;
-  font-size: 36px;
-  margin-right: 15px;
+  font-size: 1.5vw;
+  margin-right: 1vw;
 }
 
 .Coursedetail-shortLine {
-  position: relative;
-  top: -50px;
-  height: 5px;
+  height: 0.5vh;
   width: 10%;
   margin: auto;
   border-radius: 100px;
@@ -4597,8 +6883,9 @@ a:hover {
 .Coursedetail-infoBox {
   width: 100%;
   height: 100%;
+  min-height: 350px;
   background-color: #d8a466;
-  margin-bottom: 100px;
+  margin-bottom: 5vw;
   border-radius: 5px;
 }
 
@@ -4606,54 +6893,49 @@ a:hover {
 .Coursedetail-outsideTitle {
   width: 100%;
   text-align: center;
-  font-size: 48px;
-  margin: 20px auto 20px auto;
+  font-size: 2.5vw;
+  margin: 1vw auto 1vw auto;
   color: #d8a466;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-}
-
-.Coursedetail-well {
-  height: 20px;
+  font-family: "Noto Sans TC", Bold;
 }
 
 /* 內標 */
 .Coursedetail-insideTitle {
   width: 100%;
   text-align: center;
-  font-size: 48px;
+  font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-  padding-top: 20px;
+  font-family: "Noto Sans TC", Bold;
+  padding-top: 1vw;
 }
 
 .Coursedetail-whiteLine {
-  height: 3px;
+  height: 0.5vh;
   width: 90%;
-  margin: auto;
   border-radius: 100px;
   background-color: #ffffff;
-  margin: 10px auto 40px auto;
+  margin: 0.5vw auto 2vw auto;
 }
 
 /* 內文 */
 .Coursedetail-insideText {
   /* word-break: keep-all; */
-  text-indent: 2em;
+  text-indent: 1em;
   width: 90%;
   text-align: left;
-  margin: 0 auto 20px auto;
-  line-height: 40px;
-  font-size: 24px;
+  margin: auto;
+  line-height: 3vw;
+  font-size: 1.4vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
-  padding-bottom: 40px;
+  font-family: "Noto Sans TC", Regular;
+  padding-bottom: 2vw;
 }
 
 .Coursedetail-titleLine {
-  height: 5px;
+  height: 0.5vh;
   width: 100%;
   border-radius: 100px;
   background-color: #d8a466;
@@ -4671,27 +6953,12 @@ a:hover {
   width: 100%;
   height: 100%;
   background-color: #d8a466;
-  margin-top: 20px;
+  margin-top: 1vw;
   border-radius: 5px;
 }
 
 .Coursedetail-foodInfo {
-  padding: 20px;
-}
-
-.Coursedetail-sixPicture {
-  padding: 10px;
-  position: relative;
-  width: 780px;
-  height: 550px;
-}
-
-.Coursedetail-sixPicture img {
-  padding: 5px;
-}
-
-.Coursedetail-sixPictureTitlePosition {
-  position: absolute;
+  padding: 1vw;
 }
 
 .Coursedetail-sixPictureTitle {
@@ -4705,23 +6972,27 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  height: 50px;
+  height: 2.5vw;
   top: -4px;
-  background-color: rgba(223, 223, 223, 0.6);
   z-index: 3;
-  opacity: 0;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Regular;
-  font-size: 24px;
+  font-family: "Noto Sans TC", Regular;
+  font-size: 1.5vw;
   cursor: pointer;
   width: 100%;
+  color: #ffffff;
 }
 
-.Coursedetail-sixPictureTitle:hover {
-  opacity: 1;
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
-  -webkit-transition: transform 0.5s;
+.Coursedetail-sixPictureTitleMask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 15vw;
+  position: relative;
+  top: -15vw;
+  background-color: black;
+  opacity: 0;
 }
 
 .Coursedetail-sixPictureTitleTopBox {
@@ -4743,39 +7014,51 @@ a:hover {
 }
 
 .Coursedetail-active {
-  opacity: 1;
-  background-color: rgba(223, 223, 223, 0.8);
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
-  -webkit-transition: transform 0.5s;
-  border-radius: 0 0 5px 5px;
+  -webkit-transform: translate(0px, -6vw);
+          transform: translate(0px, -6vw);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+.Coursedetail-activeBottom {
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  top: 0;
+  margin-top: 1.2vw;
+  border-bottom: 5px solid #eb6b6a;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 {
   width: 60%;
   position: relative;
-  height: 100%;
-  padding-bottom: 5px;
+  height: 25vw;
+  padding-bottom: 0.5vw;
+  max-height: 520px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul {
   overflow: hidden;
-  height: 200px;
+  height: 50%;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 40px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li {
   display: inline-block;
   padding: 0;
-  min-height: 150px;
-  width: 28%;
-  height: 100%;
+  height: 10vw;
+  width: 10vw;
   margin: auto auto auto 0;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .Coursedetail-sixPictureTextBox_1 ul li img {
@@ -4788,9 +7071,18 @@ a:hover {
 
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
   opacity: 1;
-  -webkit-transform: translate(0px, -50px);
-          transform: translate(0px, -50px);
+  color: #ffffff;
+  -webkit-transform: translate(0px, -6vw);
+          transform: translate(0px, -6vw);
   -webkit-transition: transform 0.5s;
+}
+
+.Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
+  opacity: 0.4;
+}
+
+.Coursedetail-sixPictureTitleMask:hover {
+  opacity: 0.4;
 }
 
 .Coursedetail-pictureBox {
@@ -4804,7 +7096,6 @@ a:hover {
 .Coursedetail-chepBoxTextWidth {
   position: relative;
   width: 40%;
-  min-width: 200px;
   height: 100%;
 }
 
@@ -4813,7 +7104,7 @@ a:hover {
   text-align: center;
   font-weight: 700;
   color: #ffffff;
-  font-size: 36px;
+  font-size: 1.8vw;
 }
 
 .Coursedetail-chepBoxTitle {
@@ -4821,7 +7112,7 @@ a:hover {
   text-align: center;
   font-weight: 700;
   color: #ffffff;
-  font-size: 48px;
+  font-size: 2vw;
 }
 
 .Coursedetail-chepBoxTitle :hover .testActive {
@@ -4830,9 +7121,10 @@ a:hover {
 
 .Coursedetail-chepBoxInfomation {
   text-align: left;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 700;
-  text-indent: 2em;
+  text-indent: 1em;
+  margin-top: 0.5rem;
   color: rgba(255, 255, 255, 0);
 }
 
@@ -4842,14 +7134,18 @@ a:hover {
   color: white;
 }
 
+.Coursedetail-costBox {
+  width: 80%;
+  height: 100%;
+}
+
 .Coursedetail-cost {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 40vw;
   background-color: #ffffff;
   margin: 80px 0;
   font-size: 100%;
-  border: 2px solid #666666;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -4857,10 +7153,11 @@ a:hover {
 .Coursedetail-cost span {
   position: relative;
   float: left;
-  width: 65%;
+  width: 60%;
   height: 100%;
-  border-bottom: 850px solid #d8a466;
-  border-right: 200px solid transparent;
+  -webkit-clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+          clip-path: polygon(0 0, 80% 0, 95% 100%, 0% 100%);
+  background-color: #d8a466;
   z-index: 2;
 }
 
@@ -4875,170 +7172,68 @@ a:hover {
 .Coursedetail-cost p {
   width: 100%;
   text-align: center;
-  font-size: 48px;
+  font-size: 2.5vw;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-  padding-top: 40px;
+  font-family: "Noto Sans TC", Bold;
+  padding: 2vw 0 1vw 0;
 }
 
 .Coursedetail-cost .Coursedetail-costLine {
-  width: 90%;
+  width: 80%;
   border: 1px solid #fff;
-  margin: 10px auto 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 0.5vh;
   position: relative;
-  left: 10px;
+  margin: auto;
 }
 
 .Coursedetail-cost .Coursedetail-costArea {
   width: 90%;
-  height: 60%;
   margin: auto;
-  min-height: 500px;
+  min-height: 23vw;
   position: relative;
   left: 10px;
   top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .Coursedetail-cost ul {
   color: #fff;
-  width: 40%;
+  width: 50%;
   position: relative;
   left: 10px;
   padding: 20px 0 20px 5%;
   height: 100px;
-  font-size: 24px;
+  font-size: 1.2vw;
   list-style: disc;
   font-weight: 500;
   font-family: "Noto Sans TC", Medium;
 }
 
 .Coursedetail-attention {
-  width: 110%;
-  height: 100px;
+  width: 80%;
+  height: 5vw;
   margin-left: 35px;
   position: relative;
-  left: 10px;
   padding-top: 20px;
 }
 
 .Coursedetail-attention p {
   color: #fff;
-  font-size: 24px;
+  font-size: 1.2vw;
   padding: 0;
   text-align: left;
 }
 
 .Coursedetail-attention div {
-  font-size: 24px;
+  font-size: 1.2vw;
   color: #fff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
-}
-
-.Coursedetail-recommend {
-  margin: 60px 0;
-  height: 700px;
-  width: 100%;
-}
-
-.Coursedetail-recommendLeft {
-  height: 100%;
-  float: left;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendLeft img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendLeft span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendLeft span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
-}
-
-.Coursedetail-recommendText {
-  color: #ffffff;
-}
-
-.Coursedetail-recommendTitle {
-  text-align: center;
-  font-size: 48px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendLine {
-  width: 80%;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-  position: relative;
-  top: 540px;
-  margin: auto;
-}
-
-.Coursedetail-recommendName {
-  text-align: center;
-  font-size: 60px;
-  position: relative;
-  top: 540px;
-}
-
-.Coursedetail-recommendInfo {
-  text-align: left;
-  font-size: 24px;
-  position: relative;
-  top: 540px;
-  text-indent: 2em;
-  width: 80%;
-  margin: auto;
-}
-
-.Coursedetail-recommendRight {
-  height: 100%;
-  float: right;
-  width: 45%;
-  border-radius: 5px;
-  border: 2px solid #666666;
-  overflow: hidden;
-}
-
-.Coursedetail-recommendRight img {
-  width: 100%;
-  height: 100%;
-}
-
-.Coursedetail-recommendRight span {
-  width: 100%;
-  background-color: RGBA(50, 50, 50, 0.5);
-  display: inline-block;
-  height: 200%;
-  position: relative;
-  top: -700px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.Coursedetail-recommendRight span:hover {
-  top: -1100px;
-  -webkit-transition: top 0.5s;
-  transition: top 0.5s;
+  font-family: "Noto Sans TC", Bold;
 }
 
 .Coursedetail-join {
@@ -5085,15 +7280,348 @@ a:hover {
   font-size: 48px;
   color: #ffffff;
   font-weight: bold;
-  font-family: 'Noto Sans TC', Bold;
+  font-family: "Noto Sans TC", Bold;
   padding-top: 40px;
+}
+
+.Coursedetail-clip {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+  background-color: aquamarine;
+  height: 40vw;
+  width: 30vw;
+}
+
+.Course-starGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.Course-starGroup p {
+  font-size: 0.9vw;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+.Course-starGroup .Course-starGroup-container {
+  width: 1.5vw;
+  position: relative;
+  height: 1.5vw;
+  overflow: hidden;
+  margin-right: 0.5vw;
+  top: initial;
+  right: initial;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+.Course-starGroup .Course-starGroup-container .Course-starGroup-container-star {
+  z-index: 2;
+  width: 101%;
+  height: 100%;
+}
+
+.Course-starGroup .Course-starGroup-container .Course-starGroup-container-background {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.CourseDetail-headerPicture {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.CourseDetail-headerPicture img {
+  height: 25vw;
+}
+
+.CourseDetail-headerPicture .Course-headerPictureButton {
+  background-color: RGBA(0, 0, 0, 0.5);
+  width: 5%;
+}
+
+.Coursedetail-recommend {
+  margin: 60px 0;
+  height: 30vw;
+  width: 103.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Coursedetail-recommendLeft {
+  height: 100%;
+  width: 30%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto auto 0;
+  max-height: 570px;
+}
+
+.Coursedetail-recommendLeft img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendLeft span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 220%;
+  position: relative;
+  top: -570px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft span:hover {
+  top: -1030px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.Coursedetail-recommendLeft .t1:hover {
+  cursor: pointer;
+}
+
+.Coursedetail-recommendLeft .t1:hover .Coursedetail-recommendInfo {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendText {
+  color: #ffffff;
+}
+
+.Coursedetail-recommendTitle {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+  padding-top: 5vw;
+}
+
+.Coursedetail-recommendLine {
+  width: 80%;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  position: relative;
+  margin: auto;
+}
+
+.Coursedetail-recommendName {
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+}
+
+.Coursedetail-recommendInfo {
+  text-align: left;
+  font-size: 1vw;
+  text-indent: 1em;
+  width: 80%;
+  margin: auto;
+  color: white;
+  padding-top: 2vw;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendClick {
+  font-size: 1.8vw;
+  width: 100%;
+  text-align: center;
+  text-indent: initial;
+  padding-top: 5vw;
+  position: absolute;
+  top: 65%;
+}
+
+.Coursedetail-recommendRight {
+  height: 100%;
+  float: right;
+  width: 45%;
+  border-radius: 5px;
+  border: 2px solid #666666;
+  overflow: hidden;
+}
+
+.Coursedetail-recommendRight img {
+  width: 100%;
+  height: 100%;
+}
+
+.Coursedetail-recommendRight span {
+  width: 100%;
+  background-color: RGBA(50, 50, 50, 0.5);
+  display: inline-block;
+  height: 200%;
+  position: relative;
+  top: -700px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.Coursedetail-recommendRight span:hover {
+  top: -1100px;
+  -webkit-transition: top 0.5s;
+  transition: top 0.5s;
+}
+
+.t1 {
+  position: relative;
+  height: 105%;
+  width: 100%;
+  top: -102%;
+  background-color: RGBA(50, 50, 50, 0.5);
+}
+
+.chef-set {
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.chef-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin-left: 30px;
+  color: #d8a466;
+}
+
+.chef-infomationBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chef-ul {
+  width: 220px;
+  border: black 1px solid;
+  padding: 10px 0;
+}
+
+.chef-li {
+  background: #ffffff;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: darkgray 1px solid;
+}
+
+.chef-li:hover {
+  background-color: #ffb257;
+  width: 90%;
+  margin: auto;
+  font-size: 20px;
+}
+
+.chef-liActive {
+  width: 100%;
+  background-color: #ffb257;
+  border: none;
+}
+
+.chef-liActive:hover {
+  width: 100%;
+  background-color: #ffb257;
+}
+
+.chef-liLine {
+  background-color: darkgray;
+  height: 1px;
+  width: 90%;
+  margin: auto;
+}
+
+.chef-cardAndCourseCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chef-margin {
+  margin: auto;
+}
+
+.chef-courseCardMargin {
+  margin-left: 90px;
 }
 
 @media screen and (max-width: 1200px) {
   .Navbar .Navbar-container {
     width: 90%;
   }
+  .Navbar-dropdowns .Navbar-dropdowns-container {
+    width: 90%;
+  }
+  .Navbar-CourseSearch .Navbar-CourseSearch-container {
+    width: 90%;
+  }
   .MemberCenter .MemberCenter-container {
+    width: 90%;
+  }
+  .CourseDetail-headerPicture {
+    width: 90%;
+  }
+  .CourseDetail-headerPicture img {
+    height: 35vw;
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+  }
+  .Coursedetail .Coursedetail-header {
+    width: 90%;
+    height: 35vw;
+  }
+  .Coursedetail-set .Coursedetail-container {
+    width: 90%;
+  }
+  .chef-set {
     width: 90%;
   }
 }

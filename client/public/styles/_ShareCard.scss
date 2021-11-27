@@ -1,40 +1,43 @@
 .ShareCard {
   font-family: "Noto Sans TC", sans-serif;
-  margin: 20px 0;
   height: 30vw;
   width: 20vw;
-  min-height: 360px;
-  min-width: 220px;
   max-height: 480px;
   max-width: 330px;
   border-radius: 1vw;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   background: white;
-  .ShareCardContentFrame {
+  overflow: hidden;
+  .ShareCardContentWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 10%;
+    margin: 7% 0 !important;
+    height: 86%;
+    width: 100%;
     .ShareCardPictureBox {
       position: relative;
-      margin: 2vw 0 0 0;
-      height: 7vw;
-      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 7.5vw;
+      width: 7.5vw;
+      max-height: 132px;
+      max-width: 132px;
+      border-radius: 50%;
       background-color: rgb(255, 255, 255);
+      margin: 0;
       overflow: hidden;
       border-radius: 10px 10px 10px 10px;
       .ShareCardPicture {
-        position: relative;
-        border-radius: 50%;
-        width: 7vw;
-        height: 7vw;
-        overflow: hidden;
-        img {
-          border-radius: 10px 10px 10px 10px;
-        }
+        width: 100%;
+        height: 100%;
       }
     }
     .ShareCardPictureName {
+      width: 100%;
       color: #707070;
       font-size: calc(1rem + 0.1vw);
       font-weight: 700px;
@@ -42,9 +45,9 @@
       padding: 5px;
     }
     .ShareCardCourseName {
-      height: 2vw;
+      height: 8%;
       max-height: 34px;
-      width: 80%;
+      width: 100%;
       color: #000000;
       font-size: calc(1rem + 0.25vw);
       line-height: calc(1.25rem + 0.25vw);
@@ -52,14 +55,13 @@
       text-align: center;
     }
     .ShareCardStar {
+      width: 100%;
+      height: 5%;
       .st-boxPos {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 2vw;
-        max-height: 34px;
-        width: 7vw;
         margin: auto;
       }
       .st-boxStar {
@@ -82,31 +84,34 @@
     }
 
     .ShareCardText {
-      height: 10vw;
-      max-height: 170px;
-      width: 80%;
-      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 40%;
+      width: 100%;
       .ShareCardTextTop {
-        height: 1vw;
+        height: 15%;
         text-align: left;
         font-size: calc(2rem + 0.1vw);
         font-weight: 700;
         width: 100%;
       }
       .ShareCardComment {
-        margin-top: 1vw;
         display: flex;
         text-align: center;
         justify-content: center;
         font-weight: 700;
+        margin-top: 1vw;
         p {
+          font-size: calc(10px + 0.4vw);
           text-align: left;
           padding: 0 1.5vw;
           color: #000000;
         }
       }
       .ShareCardTextDown {
-        height: 1vw;
+        height: 15%;
         text-align: right;
         font-size: calc(2rem + 0.1vw);
         font-weight: 700;

@@ -1,0 +1,100 @@
+$primary: 0 1rem;
+
+.massonry-title {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .massonry-title-inside {
+    width: 70%;
+    max-width: 1440px;
+    .massonry-title-inside-bread {
+      margin-top: 1rem;
+    }
+    .massonry-title-inside-header {
+      text-align: left;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      color: #d8a466;
+    }
+    .st-line {
+      border: 3px solid #d8a466;
+      border-radius: 10px;
+      margin: 15px 0px;
+    }
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  .discussion {
+    width: 70%;
+    max-width: 1440px;
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    .Discussion-main-theme {
+      text-align: center;
+    }
+    .Discussion-main-brad {
+      margin: $primary;
+    }
+    .Discussion-commet {
+      margin: $primary;
+    }
+    .Discussion-commet-textarea {
+      width: 90%;
+      margin: $primary;
+      resize: none;
+      padding: 1rem;
+      border: olivedrab 1px dashed;
+    }
+    .Discussion-main-account {
+      margin: 1rem 1rem;
+      display: flex;
+      align-items: center;
+      .Discussion-main-account-image {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+      .Discussion-main-account {
+        margin: $primary;
+      }
+    }
+    .Discussion-main-p {
+      margin: $primary;
+    }
+    .Discussion-main-image {
+      margin: $primary;
+    }
+    .Discussion-main-commet {
+      display: flex;
+      position: relative;
+      margin: 0 1rem;
+      align-items: center;
+      .AiOutlineHeart {
+        color: pink;
+      }
+      .AiOutlineMessage {
+        color: #00ffff;
+      }
+      .Discussion-main-commet-social {
+        position: absolute;
+        right: 0;
+        display: flex;
+      }
+    }
+    .st-line {
+      border: 3px solid #d8a466;
+      border-radius: 10px;
+      margin: 15px 0px;
+    }
+  }
+}

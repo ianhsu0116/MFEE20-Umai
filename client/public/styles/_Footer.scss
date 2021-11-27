@@ -2,12 +2,12 @@
   --footerTriangleBG-height: 10vw;
   --footerTitle-height: 35px;
 }
-.main {
+.footerPadding {
   padding-bottom: var(--footerTriangleBG-height);
-  z-index: 0;
+  // z-index: 0;
 }
 
-.customFooter {
+.Footer {
   // position: absolute;
   // bottom: 0;
   padding: 0;

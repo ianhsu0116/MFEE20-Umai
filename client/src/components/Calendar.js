@@ -14,20 +14,33 @@ let todayYear = today.getFullYear(); // 獲取當前的年份
 let todayMonth = today.getMonth(); // 獲取當前的月份(月份是從0開始計算，獲取的值比正常月份的值少1)
 let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期表格時高亮顯示當天)
 
-// 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
+// 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期。
+// value = 預設的日期 (格式 YYYY-MM-DD)，沒有給的話 預設就是今日。
 const Calendar = (props) => {
-  let { onChange } = props;
+  let { onChange, value = "" } = props;
+
+  // 如果有預設的日期，就把預設改成此日期
+  useEffect(() => {
+    if (value) {
+      let parseDate = value.split("-");
+      setCurrentYear(Number(parseDate[0]));
+      setCurrentMonth(Number(parseDate[1] - 1));
+      setCurrentDay(Number(parseDate[2]));
+    }
+  }, [value]);
 
   // 日期窗開關
-  let [calenderOpen, setCalenderOpen] = useState(false);
+  let [calendarOpen, setCalendarOpen] = useState(false);
   // 預設的年份
-  let [currentYear, setCurrentYear] = useState(todayYear); //todayYear);
+  let [currentYear, setCurrentYear] = useState(todayYear);
   // 預設的月份
-  let [currentMonth, setCurrentMonth] = useState(todayMonth); //todayMonth);
+  let [currentMonth, setCurrentMonth] = useState(todayMonth);
   // 預設的日期
-  let [currentDay, setCurrentDay] = useState(todayDay); //todayDay);
-  // 正確格式的日期
-  let selectedDay = `${currentYear}-${currentMonth + 1}-${currentDay}`;
+  let [currentDay, setCurrentDay] = useState(todayDay);
+  // 正確格式的日期（單數前面補零）
+  let selectedDay = `${currentYear}-${currentMonth <= 8 ? "0" : ""}${
+    currentMonth + 1
+  }-${currentDay <= 9 ? "0" : ""}${currentDay}`;
 
   // 判斷是否為閏年
   function isLeap(year) {
@@ -66,13 +79,13 @@ const Calendar = (props) => {
   str_nums = new Array(str_nums).fill(1);
 
   // 控制日期窗開關
-  const handleCalenderOpen = (e) => {
+  const handleCalendarOpen = (e) => {
     e.stopPropagation();
-    calenderOpen ? setCalenderOpen(false) : setCalenderOpen(true);
+    calendarOpen ? setCalendarOpen(false) : setCalendarOpen(true);
   };
   // 點擊空白處關閉日期窗
   window.addEventListener("click", (e) => {
-    setCalenderOpen(false);
+    setCalendarOpen(false);
   });
 
   // 選取日期
@@ -82,7 +95,7 @@ const Calendar = (props) => {
       setCurrentDay(e.target.innerText);
 
       // 關閉日期窗
-      setCalenderOpen(false);
+      setCalendarOpen(false);
     }
   };
 
@@ -98,22 +111,24 @@ const Calendar = (props) => {
   }, [currentDay]);
 
   return (
-    <div className="Calender">
-      <div className="Calender-selector" onClick={handleCalenderOpen}>
+    <div className="Calendar">
+      <div className="Calendar-selector" onClick={handleCalendarOpen}>
         <FcCalendar />
-        <span className="Calender-selector-text">
-          {currentYear} - {currentMonth + 1} - {currentDay}
+        <span className="Calendar-selector-text">
+          {currentYear} - {currentMonth <= 8 ? "0" : ""}
+          {currentMonth + 1} - {currentDay <= 9 ? "0" : ""}
+          {currentDay}
         </span>
         <MdKeyboardArrowDown />
       </div>
-      {calenderOpen && (
+      {calendarOpen && (
         <div
-          className="Calender-container"
+          className="Calendar-container"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <div className="Calender-header">
+          <div className="Calendar-header">
             <select
               name=""
               id=""
@@ -148,19 +163,19 @@ const Calendar = (props) => {
                 ))}
             </select>
           </div>
-          <table className="Calender-table">
-            <thead className="Calender-table-head">
-              <tr className="Calender-table-tr">
+          <table className="Calendar-table">
+            <thead className="Calendar-table-head">
+              <tr className="Calendar-table-tr">
                 {weekdays.map((i, index) => (
-                  <th key={index} className="Calender-table-th">
+                  <th key={index} className="Calendar-table-th">
                     {i}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="Calender-table-body">
+            <tbody className="Calendar-table-body">
               {str_nums.map((days, i) => (
-                <tr key={i} className="Calender-table-tr">
+                <tr key={i} className="Calendar-table-tr">
                   {weekdays.map((day, k) => {
                     let idx = 7 * i + k; //為每個表格建立索引,從0開始
                     let date = idx - dayOfWeek + 1; //將當月的1號與星期進行匹配
@@ -175,7 +190,7 @@ const Calendar = (props) => {
                       return (
                         <td
                           key={k}
-                          className="Calender-table-td today"
+                          className="Calendar-table-td today"
                           onClick={handleDaySelect}
                         >
                           {date}
@@ -185,7 +200,7 @@ const Calendar = (props) => {
                       return (
                         <td
                           key={k}
-                          className="Calender-table-td active"
+                          className="Calendar-table-td active"
                           onClick={handleDaySelect}
                         >
                           {date}
@@ -195,7 +210,7 @@ const Calendar = (props) => {
                       return (
                         <td
                           key={k}
-                          className="Calender-table-td"
+                          className="Calendar-table-td"
                           onClick={handleDaySelect}
                         >
                           {date}

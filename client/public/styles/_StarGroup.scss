@@ -3,14 +3,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 0.15rem;
-  & p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.7rem;
-    color: #909090;
-    margin-left: 5px;
-  }
 
   .StarGroup-container {
     display: flex;
@@ -18,20 +10,30 @@
     align-items: center;
     max-width: 80px;
     position: relative;
-    height: 17px;
+    height: 5vw;
+    max-height: 30px;
     overflow: hidden;
     .StarGroup-container-star {
-      z-index: 2;
-      width: 101%;
+      width: 100%;
       height: 100%;
+      top: 1.5px;
+      z-index: 2;
     }
     .StarGroup-container-background {
       position: absolute;
-      top: 2px;
+      top: 3.5px;
       left: 0;
       width: 20%;
       height: 100%;
       z-index: 1;
     }
+  }
+  & p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #909090;
+    margin-left: 5px;
   }
 }

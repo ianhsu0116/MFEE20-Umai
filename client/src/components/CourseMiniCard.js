@@ -25,17 +25,18 @@ const CourseMiniCard = (props) => {
     <>
       <div className="st-courseMiniCard">
         <div className="st-courseMiniCardWrapper">
-          {/* 課程照片 */}
+          {/* 課程照片容器 */}
           <div className="courseMiniCardPictureWrapper">
             <img className="courseMiniCardPicture" src={Chef} alt=""></img>
             {/* 課程標籤(即將截止/即將額滿) */}
             <div className="st-courseMiniCardTag st-courseMiniCardBarActiveDeadline">
-              即將截止
+              <p>即將截止</p>
             </div>
           </div>
 
-          {/* 上方文字資訊 */}
+          {/* 課程資訊上半 */}
           <div className="courseMiniCardTextUpper">
+            {/* 上方文字容器 */}
             <div className="st-courseMiniCardName">
               {/* 課程名稱 */}
               {CardTest[0].courseName}
@@ -52,7 +53,7 @@ const CourseMiniCard = (props) => {
             </div>
           </div>
 
-          {/* 下方文字資訊 */}
+          {/* 課程資訊下半 */}
           <div className="courseMiniCardTextDown">
             {/* 梯次日期 */}
             <div className="st-courseMiniCardBatch">
@@ -83,8 +84,9 @@ const CourseMiniCard = (props) => {
             </div>
           </div>
 
-          {/* 卡片下方資訊 */}
+          {/* 課程分級與價格 */}
           <div className="courseMiniCardContentDown">
+            {/* 課程分級 */}
             <div className="st-courseMiniCardLevel">
               <p className="st-courseMiniCardLevelText">
                 {courseLevelList[CardTest[0].courseLevel - 1]}

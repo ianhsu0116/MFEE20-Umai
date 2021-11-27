@@ -4,7 +4,7 @@ import { RiInstagramFill } from "react-icons/ri";
 const Footer = () => {
   return (
     <>
-      <footer className="customFooter">
+      <footer className="Footer">
         <div className="footerTriangleBG"></div>
         <div className="footerContent">
           <div className="footerLink">

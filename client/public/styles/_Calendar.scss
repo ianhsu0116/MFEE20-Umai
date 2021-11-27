@@ -1,9 +1,9 @@
-.Calender {
+.Calendar {
   position: relative;
   width: 100%;
-  max-width: 255px;
+  max-width: 600px;
   max-height: 34px;
-  .Calender-selector {
+  .Calendar-selector {
     width: 100%;
     max-height: 34px;
     padding: 0.25rem 0.35rem;
@@ -15,7 +15,7 @@
     position: relative;
     cursor: pointer;
 
-    .Calender-selector-text {
+    .Calendar-selector-text {
       margin: 0 0.5rem;
     }
     & svg {
@@ -24,22 +24,23 @@
     }
   }
 
-  .Calender-container {
+  .Calendar-container {
     position: absolute;
     z-index: 10;
     background: white;
     border-radius: 10px;
     padding: 0.5rem;
     border: 2px solid $themeColor;
-    width: 255px;
-    max-width: 180%;
+    width: 100%;
+    max-width: 600px;
     @include flex(column);
     justify-content: center;
     align-items: center;
     //position: relative;
     font-size: 0.8rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 
-    .Calender-header {
+    .Calendar-header {
       width: 100%;
       @include flex(row);
       justify-content: center;
@@ -55,11 +56,11 @@
       }
     }
 
-    .Calender-table {
-      .Calender-table-head {
-        .Calender-table-tr {
+    .Calendar-table {
+      .Calendar-table-head {
+        .Calendar-table-tr {
           border-bottom: 1px solid $fontColor;
-          .Calender-table-th {
+          .Calendar-table-th {
             padding: 0.35rem;
             //margin: 0.15rem;
             text-align: center;
@@ -67,10 +68,10 @@
           }
         }
       }
-      .Calender-table-body {
-        .Calender-table-tr {
+      .Calendar-table-body {
+        .Calendar-table-tr {
           //border-bottom: 1px solid $fontColor;
-          .Calender-table-td {
+          .Calendar-table-td {
             cursor: pointer;
             padding: 0.35rem;
             //margin: 0.15rem;
