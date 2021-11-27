@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 import CourseCard1 from "../../components/CourseCard1";
@@ -54,6 +55,14 @@ const CollectionCourse = (props) => {
         course_id,
         type
       );
+
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "課程收藏刪除成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       // 拿到更新後的課程收藏
       refreshCollection();

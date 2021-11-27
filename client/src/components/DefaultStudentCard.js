@@ -127,8 +127,8 @@ const DefaultStudentCard = (props) => {
             onClick={() => {
               handleDeleteStudent(index, newStudentData);
             }}
-            dataBsToggle="modal"
-            dataBsTarget="#DefaultStudent-delete-alert"
+            // dataBsToggle="modal"
+            // dataBsTarget="#DefaultStudent-delete-alert"
           />
         </div>
       </div>
