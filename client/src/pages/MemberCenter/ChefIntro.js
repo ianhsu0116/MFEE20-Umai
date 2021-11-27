@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import MemberService from "../../services/member.service";
 import AuthService from "../../services/auth.service";
 import ChefCard2 from "../../components/member/ChefCard2";
@@ -85,7 +86,13 @@ const ChefIntro = (props) => {
         stringChefInfomation
       );
 
-      window.alert("編輯完成！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "主廚資料編輯成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       // 清空errorMsg
       setErrorMsg("");

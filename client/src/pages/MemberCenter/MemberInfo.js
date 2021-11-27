@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -40,7 +41,7 @@ const MemberInfo = (props) => {
   });
   // 密碼修改容器開關
   const [passwordConOpen, setPasswordConOpen] = useState(false);
-  // 修改密碼按糗狀態
+  // 修改密碼按鈕狀態
   const [editPasswordActive, setEditPasswordActive] = useState("");
 
   // 即時更新當前使用者資料的function
@@ -134,7 +135,13 @@ const MemberInfo = (props) => {
       // 清空錯誤訊息
       setErrorMsg("");
 
-      window.alert("更新成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "基本資料更新成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -165,7 +172,13 @@ const MemberInfo = (props) => {
       // 清空錯誤訊息
       setErrorMsgPwd("");
 
-      window.alert("密碼修改成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "密碼修改成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -190,7 +203,13 @@ const MemberInfo = (props) => {
       // 清空錯誤訊息
       setErrorMsgCard("");
 
-      window.alert("更新成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "信用卡資訊修改成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -208,7 +227,15 @@ const MemberInfo = (props) => {
     <div
       className="MemberInfo"
       onClick={() => {
+        // 關閉密碼修改容器
         setPasswordConOpen(false);
+
+        // 清空資料
+        setPasswordInfo({
+          passwordConfirm: "",
+          newPassword: "",
+          confirmNewPassword: "",
+        });
       }}
     >
       <div className="MemberInfo-container">
