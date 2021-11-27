@@ -1,351 +1,262 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
 .Img {
-	width: 100vw;
-	height: 100vh;
-	margin: 63px auto 0 auto;
+  width: 100vw;
+  height: 100vh;
+  margin: 63px auto 0 auto;
 }
 
 .Img1 {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .family {
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	font-size: 60px;
-	font-weight: 600;
-	color: #fff;
-	z-index: 0;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  font-size: 60px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 .About-title {
-	font-style: normal;
-	font-weight: 700;
-	font-size: 2.8vw;
-	line-height: 55px;
-	margin-left: auto;
-	color: #d8a466;
-	width: 82%;
-	margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vw;
+  line-height: 55px;
+  margin-left: auto;
+  color: #d8a466;
+  width: 82%;
+  margin-bottom: 20px;
 }
 .Linktop {
-	width: 70%;
-	max-width: 1440px;
-	margin: auto;
-	border: 3px solid #d8a466;
-	border-radius: 10px;
-	background-color: #d8a466;
+  width: 70%;
+  max-width: 1440px;
+  margin: auto;
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  background-color: #d8a466;
 }
 
 .Card1 {
-	margin: 0px auto;
-	margin-top: 48px;
-	width: 60%;
-	height: 240px;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	cursor: pointer;
-	text-align: center;
-	background: #fff;
-	border-radius: 0.99rem;
+  margin: 0px auto;
+  margin-top: 48px;
+  width: 60%;
+  height: 240px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+  border-radius: 0.99rem;
 }
 
 .Teammate1 {
-	overflow: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	border-radius: 0.99rem 0 0 0.99rem;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0.99rem 0 0 0.99rem;
 }
 
 div > .Card1front {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 div > .Card1back {
-	background-color: #fff;
-	position: absolute;
-	top: 0;
-	left: 0;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .Card1 > .Card1front,
 .Card1 > .Card1back {
-	height: 224px;
-	width: 100%;
-	color: #641568;
-	text-align: center;
-	/* padding: 20px; */
-	display: block;
-	border-radius: 0.99rem;
-	box-shadow: 4px 4px 24px 0 rgba(46, 61, 73, 0.2);
-	-webkit-transition-duration: 1s;
-	transition-duration: 1s;
-	-webkit-transition-property: opacity, -webkit-transform;
-	transition-property: opacity, -webkit-transform;
-	transition-property: transform, opacity;
-	transition-property: transform, opacity, -webkit-transform;
+  height: 224px;
+  width: 100%;
+  color: #641568;
+  text-align: center;
+  /* padding: 20px; */
+  display: block;
+  border-radius: 0.99rem;
+  box-shadow: 4px 4px 24px 0 rgba(46, 61, 73, 0.2);
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
 }
 
 .Card1 > .Card1front {
-	opacity: 1;
-	-webkit-transform: rotateX(0deg);
-	transform: rotateX(0deg);
+  opacity: 1;
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
 }
 
 .Card1 > .Card1back {
-	opacity: 0;
-	-webkit-transform: rotateX(180deg);
-	transform: rotateX(180deg);
+  opacity: 0;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .Card1:hover > .Card1front {
-	opacity: 0;
-	-webkit-transform: rotateX(180deg);
-	transform: rotateX(180deg);
+  opacity: 0;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .Card1:hover > .Card1back {
-	opacity: 1;
-	-webkit-transform: rotateX(0deg);
-	transform: rotateX(0deg);
+  opacity: 1;
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
 }
 
 .Title1 {
-	font-size: 2.4rem;
-	font-weight: 600;
-	margin-left: 600px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-left: 600px;
 }
 
 .Word1 {
-	margin-left: 600px;
+  margin-left: 600px;
 }
 .Linefront {
-	width: 8vw;
-	height: 1px;
-	border-top: solid #641568 2px;
-	margin: 0px auto;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-right: 99px;
+  width: 8vw;
+  height: 1px;
+  border-top: solid #641568 2px;
+  margin: 0px auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 99px;
 }
 
 .List li {
-	font-size: 1.2rem;
-	font-weight: 200;
-	margin-left: 720px;
-	text-align: left;
+  font-size: 1.2rem;
+  font-weight: 200;
+  margin-left: 720px;
+  text-align: left;
 }
 
 .Word1back {
-	margin-right: 500px;
-	padding-left: 24px;
-	text-align: left;
+  margin-right: 500px;
+  padding-left: 24px;
+  text-align: left;
 }
 
 .Lineback {
-	width: 8vw;
-	height: 1px;
-	border-top: solid #641568 2px;
-	margin: 0px auto;
-	margin-top: 15px;
-	margin-left: 99px;
+  width: 8vw;
+  height: 1px;
+  border-top: solid #641568 2px;
+  margin: 0px auto;
+  margin-top: 15px;
+  margin-left: 99px;
 }
 
 .Teammate1back {
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	top: 0;
-	height: 100%;
-	border-radius: 0 0.99rem 0.99rem 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0 0.99rem 0.99rem 0;
 }
 
 .Card2 {
-	margin: 0px auto;
-	margin-top: 48px;
-	width: 60%;
-	height: 240px;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	cursor: pointer;
-	text-align: center;
-	background: #fff;
-	border-radius: 0.99rem;
+  margin: 0px auto;
+  margin-top: 48px;
+  width: 60%;
+  height: 240px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+  border-radius: 0.99rem;
 }
 
 .Teammate2 {
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	top: 0;
-	height: 100%;
-	border-radius: 0 0.99rem 0.99rem 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0 0.99rem 0.99rem 0;
 }
 
 div > .Card2front {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 div > .Card2back {
-	background-color: #fff;
-	position: absolute;
-	top: 0px;
-	left: 0px;
+  background-color: #fff;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .Card2 > .Card2front,
 .Card2 > .Card2back {
-	height: 224px;
-	width: 100%;
-	color: #641568;
-	text-align: center;
-	/* padding: 20px; */
-	display: block;
-	border-radius: 0.99rem;
-	box-shadow: -4px 4px 24px 0 rgba(46, 61, 73, 0.2);
-	-webkit-transition-duration: 1s;
-	transition-duration: 1s;
-	-webkit-transition-property: opacity, -webkit-transform;
-	transition-property: opacity, -webkit-transform;
-	transition-property: transform, opacity;
-	transition-property: transform, opacity, -webkit-transform;
+  height: 224px;
+  width: 100%;
+  color: #641568;
+  text-align: center;
+  /* padding: 20px; */
+  display: block;
+  border-radius: 0.99rem;
+  box-shadow: -4px 4px 24px 0 rgba(46, 61, 73, 0.2);
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
 }
 
 .Card2 > .Card2front {
-	opacity: 1;
-	-webkit-transform: rotateX(0deg);
-	transform: rotateX(0deg);
+  opacity: 1;
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
 }
 
 .Card2 > .Card2back {
-	opacity: 0;
-	-webkit-transform: rotateX(180deg);
-	transform: rotateX(180deg);
+  opacity: 0;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .Card2:hover > .Card2front {
-	opacity: 0;
-	-webkit-transform: rotateX(180deg);
-	transform: rotateX(180deg);
+  opacity: 0;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .Card2:hover > .Card2back {
-	opacity: 1;
-	-webkit-transform: rotateX(0deg);
-	transform: rotateX(0deg);
+  opacity: 1;
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
 }
 
 .Title2 {
-	font-size: 2.4rem;
-	font-weight: 600;
-	margin-left: -600px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-left: -600px;
 }
 
 .Word2 {
-	margin-left: -600px;
+  margin-left: -600px;
 }
 
 .Teammate2back {
-	overflow: hidden;
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	border-radius: 0.99rem 0 0 0.99rem;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0.99rem 0 0 0.99rem;
 }
