@@ -73,38 +73,80 @@ function CourseInfomation(props) {
         content2: "", // 費用包含內容
         content3: "", // 注意事項說明
       },
+      chef_introduction:[
+        {
+          chefInfo:"",
+          chefInfoTitle:"",
+          chefIntroduce1: ""
+        }],
+        avatar:"",
+        first_name:"",
+        last_name:"",
 
       // 下方是table內的獨立欄位，不是存在json內
       course_name: "", // 課程名稱
       course_price: 0,
       course_hour: 0,
-      course_level: "1", // 1, 2, 3 (高階 中階 初階)
+      course_level: "", // 1, 2, 3 (高階 中階 初階)
       member_limit: 0,
       company_name: "", // 餐廳名稱
       company_address: "", // 餐廳地址, 供google地圖搜尋
 
       // 下方為需要join的資料
-      category_id: "1", // 1 ~ 6 代表category table的id
-      member_id: "0001",
+      category_id: "", // 1 ~ 6 代表category table的id
+      member_id: "",
     },
   ]);
 
-  // const [course_batch , setCourse_batch ] = useState([{
-
-  // }])
+  // 抓取課程JSON
+  const [course_batchJSON , setCourse_batchJSON ] = useState({})
+  // 該梯次目前參加人數
+  const [batch_member , setBatch_member] = useState(0)
+  // 全部評論給的分數(下面迴圈加)
+  const [course_Score , setCourse_Score] = useState(0)
+  // 該堂幾人評論
+  const [course_Score_member , setCourse_Score_member] = useState(0)
 
   useEffect(async () => {
     try {
       let result = await CourseService.course_courseId(id_number);
+      result.data.course[0].chef_introduction = JSON.parse(
+      result.data.course[0].chef_introduction
+        );
       result.data.course[0].course_detail = JSON.parse(
       result.data.course[0].course_detail
       );
+      console.log(result.data.course_comment[0])
       setNewCourseJSON(result.data.course);
+      setCourse_batchJSON(result.data.course_batch)
+      setCourse_Score(result.data.course_comment)
+      setCourse_Score_member(result.data.course_comment.length)
       return
     } catch (error) {
       console.log(error);
     }
   }, []);
+
+  // 現在年月日 用來判斷從後台抓來的日期是否能用
+  let nowdate = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + ((new Date().getDate()) < 10 ? ("0"+new Date().getDate()) : new Date().getDate())
+  let course_batch = []
+
+  for( let i = 0  ; i < course_batchJSON.length  ; i++)
+  {
+    if(course_batchJSON[i].batch_date > nowdate){
+      course_batch.push(
+      course_batchJSON[i].batch_date
+    )}}
+
+    //計算分數
+    let scoreSum = 0
+
+
+    for (let i = 0 ; i < course_Score_member ; i ++){
+      scoreSum += course_Score[i].score
+    }
+
+
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
@@ -131,24 +173,13 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
+    for (let i = 0 ; i <course_batchJSON.length ; i++){
+      if (e == course_batchJSON[i].batch_date){
+        setBatch_member(course_batchJSON[i].member_count)
+        console.log(batch_member)
+      }
+    }
   };
-
-  let course_batch = [
-    "2021-11-18",
-    "2021-11-20",
-    "2021-11-23",
-    "2021-11-24",
-    "2021-11-25",
-    "2021-11-26",
-    "2021-11-27",
-    "2021-11-29",
-    "2021-12-01",
-    "2021-12-02",
-    "2021-12-03",
-    "2021-12-04",
-    "2021-12-05",
-  ];
-
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
     newCourseJSON[0].company_address +
@@ -168,6 +199,9 @@ function CourseInfomation(props) {
 
   return (
     <>
+      {/* {console.log(course_Score)}
+      {console.log(course_Score_member)} */}
+      {console.log(scoreSum)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -201,12 +235,11 @@ function CourseInfomation(props) {
                   <span>
                     本梯次總名額&nbsp;{newCourseJSON[0].member_limit}
                     &nbsp;位&nbsp;/&nbsp;剩餘名額&nbsp;
-                    {newCourseJSON[0].member_limit -
-                      newCourseJSON[0].member_limit}
+                    {newCourseJSON[0].member_limit - batch_member}
                     &nbsp;位
                   </span>
                 </div>
-                <StarGroup Score={4.3} percent={200} />
+                <StarGroup Score={Math.round((scoreSum/course_Score_member)*10)/10} percent={course_Score_member} />
                 <div className="Coursedetail-allTime">
                   <span>
                     課程時數&nbsp;:&nbsp;{newCourseJSON[0].course_hour}
@@ -340,7 +373,14 @@ function CourseInfomation(props) {
             </div>
 
             <div className="Coursedetail-chefCardMargin">
-              <ChefCard />
+              <ChefCard 
+                chefIntroduce1={newCourseJSON[0].chef_introduction.chefIntroduce1}
+                chefInfoTiele={newCourseJSON[0].chef_introduction.chefInfoTitle}
+                chefInfo={newCourseJSON[0].chef_introduction.chefInfo}
+                chefFirstName={newCourseJSON[0].first_name}
+                chefLastName={newCourseJSON[0].last_name}
+                avatar={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].avatar}`}
+              />
             </div>
 
             <div className="Coursedetail-infoBox2">

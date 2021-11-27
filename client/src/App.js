@@ -14,8 +14,6 @@ import Chef from "./pages/Chef/Chef";
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
-import StarGroup from "./components/StarGroup";
-import ChefCard from "./components/ChefCard";
 import CourseMiniCard from "./components/CourseMiniCard";
 import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
@@ -79,7 +77,6 @@ function App() {
         <Route path="/" exact>
           <h1>home</h1>
           <DefaultStudentCard />
-          <ChefCard />
           <ShareCard />
           <CourseMiniCard />
           {/* <StarGroup percent={96} allScore={50} /> */}
