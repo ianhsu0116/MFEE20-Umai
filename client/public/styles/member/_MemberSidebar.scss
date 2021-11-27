@@ -191,7 +191,8 @@ $icon-size: 2vw;
 
         // 主廚專屬按鈕
         .MemberSidebar-container-ul-li2 {
-          font-weight: 700;
+          //font-weight: 700;
+          //color: $themeColorBlue;
 
           &:hover {
             color: $themeColorBlue;
