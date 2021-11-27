@@ -141,12 +141,9 @@ function CourseInfomation(props) {
     //計算分數
     let scoreSum = 0
 
-
     for (let i = 0 ; i < course_Score_member ; i ++){
       scoreSum += course_Score[i].score
     }
-
-
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
