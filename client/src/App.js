@@ -5,7 +5,8 @@ import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
 import Forum from "./pages/Forum/Forum";
-// import Items from "./pages/Items";
+
+import Contactus from "./pages/Contactus/Contactus";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
@@ -13,8 +14,6 @@ import Chef from "./pages/Chef/Chef";
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
-import StarGroup from "./components/StarGroup";
-import ChefCard from "./components/ChefCard";
 import CourseMiniCard from "./components/CourseMiniCard";
 import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
@@ -78,7 +77,6 @@ function App() {
         <Route path="/" exact>
           <h1>home</h1>
           <DefaultStudentCard />
-          <ChefCard />
           <ShareCard />
           <CourseMiniCard />
           {/* <StarGroup percent={96} allScore={50} /> */}
@@ -107,6 +105,9 @@ function App() {
         </Route>
         <Route path="/about" exact>
           <About />
+        </Route>
+        <Route path="/contactus" exact>
+          <Contactus />
         </Route>
         <Route path="/courses/:course_id" exact>
           <CourseDetail />

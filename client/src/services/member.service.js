@@ -107,6 +107,11 @@ class MemberService {
       }
     );
   }
+  chefName() {
+    return axios.get(AUTH_API_URL + "/member/chefName", {
+      withCredentials: true,
+    });
+  }
 }
 
 export default new MemberService();

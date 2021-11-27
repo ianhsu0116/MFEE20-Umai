@@ -186,7 +186,7 @@ router.get("/:course_id", async (req, res) => {
   try {
     // 拿到課程詳細資料(有join category, member)
     let course = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
+      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction , member.avatar FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
       [course_id, 1]
     );
 
@@ -199,7 +199,16 @@ router.get("/:course_id", async (req, res) => {
       );
     }
 
-    res.status(200).json({ success: true, course, course_batch });
+    //拿到課程分數
+    let course_comment = [];
+    if (course.length !== 0) {
+      course_comment = await connection.queryAsync(
+        "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
+        [course_id, 1]
+      );
+    }  
+
+    res.status(200).json({ success: true, course, course_batch , course_comment});
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });

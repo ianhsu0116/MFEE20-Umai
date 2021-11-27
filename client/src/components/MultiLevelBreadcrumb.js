@@ -12,7 +12,6 @@ function MultiLevelBreadcrumb(props) {
   }
   // find index，目前匹配的pathname，它的中文是什麼
   const findPathnameIndex = (pathname,search) => {
-    console.log(props)
     // 找到剛好的，從前面開始找起
     const foundIndex = pathnameList.findIndex((v, i) => v === pathname)
     // 沒找到剛好的路徑時用的(動態id params會遇到)
@@ -37,7 +36,6 @@ function MultiLevelBreadcrumb(props) {
 
     // '/產品/嬰兒/初生兒' -> ['','產品','嬰兒', '初生兒']
     const textArray = pathnameTextList[index].split('/')
-    console.log(location.search)
     if(location.search !== ""){
     textArray.push(location.search)
     }
