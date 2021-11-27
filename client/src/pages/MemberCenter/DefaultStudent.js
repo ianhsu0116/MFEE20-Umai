@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import MemberService from "../../services/member.service";
 import getValidMessage from "../../validMessage/validMessage";
 import DefaultStudentCard from "../../components/DefaultStudentCard";
@@ -37,7 +38,7 @@ const DefaultStudent = (props) => {
     }
   }, []);
 
-  // 按下新增學員
+  // 送出新增學員
   const handleAddStudent = async (e) => {
     //console.log("新增學員");
     try {
@@ -57,7 +58,13 @@ const DefaultStudent = (props) => {
       // 重新拿取學員資料
       refieshStudent();
 
-      window.alert("新增成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "新學員資料新增成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -65,7 +72,7 @@ const DefaultStudent = (props) => {
     }
   };
 
-  // 按下編輯學生
+  // 送出編輯學生
   const handleEditStudent = async (index, studentData) => {
     console.log(index);
     try {
@@ -80,7 +87,13 @@ const DefaultStudent = (props) => {
       // 重新拿取學員資料
       refieshStudent();
 
-      window.alert("編輯成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "學員資料編輯成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -91,40 +104,64 @@ const DefaultStudent = (props) => {
     }
   };
 
-  // 按下刪除學生
+  // 存要被刪除的學生資料
   const [studentDataDelete, setStudentDataDelete] = useState({});
+  // 按下確認刪除的didUpdate(非同步)
+  const [didDelete, setDidDelete] = useState(false);
+
+  // 按下刪除學生(跳確認)
   const handleDeleteStudent = (index, studentData) => {
     //console.log(index);
     //console.log(studentData);
 
     // 將此次要刪除的學生資料存進state備份，等使用者按下確認刪除
     setStudentDataDelete(studentData);
+    Swal.fire({
+      title: "確認刪除?",
+      text: "刪除後即無法復原學生資料!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0078b3",
+      cancelButtonColor: "#eb6b6a",
+      confirmButtonText: "刪除!",
+      cancelButtonText: "取消",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // 按下確認刪除後 改變狀態
+        setDidDelete(true);
+        // Swal.fire("刪除成功!", "學生資料已被刪除！", "success");
+      }
+    });
   };
 
-  const handleDeleteConfirm = async () => {
-    let { id } = studentDataDelete;
-    try {
-      let result = await MemberService.studentDelete(id);
+  // 按下確認刪除學員(真進資料庫刪除)
+  useEffect(async () => {
+    // 只有didDelete === tru時才執行
+    if (didDelete) {
+      let { id } = studentDataDelete;
+      try {
+        let result = await MemberService.studentDelete(id);
 
-      //清空待刪除的學員資料
-      setStudentDataDelete({});
+        //清空待刪除的學員資料
+        setStudentDataDelete({});
 
-      // 重新拿取學員資料
-      refieshStudent();
+        // 將didDelete恢復成false
+        setDidDelete(false);
 
-      window.alert("刪除成功！");
-    } catch (error) {
-      //console.log(error.response);
-      window.alert("學員資料刪除失敗！");
+        // 重新拿取學員資料
+        refieshStudent();
+
+        // 跳通知
+        Swal.fire("刪除成功!", "學生資料已被刪除！", "success");
+      } catch (error) {
+        //console.log(error.response);
+        Swal.fire("刪除成功!", "學員資料刪除失敗！", "false");
+      }
     }
-  };
+  }, [didDelete]);
+
   return (
     <div className="DefaultStudent">
-      {/* Bootstrap5 Modal */}
-      <BsModalAlert
-        id={"DefaultStudent-delete-alert"}
-        handleDelete={handleDeleteConfirm}
-      />
       <div className="DefaultStudent-container">
         <header className="DefaultStudent-container-header">
           <h2>預設學員</h2>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import OptionBar from "../../components/OptionBar";
 import OrderCard from "../../components/member/OrderCard";
 import OrderService from "../../services/order.service";
@@ -45,8 +46,14 @@ const OrderInfo = (props) => {
     } catch (error) {
       //console.log(error);
       // console.log(error.response);
-      let { code } = error.response.data;
-      window.alert(getValidMessage("member", code));
+      let { code } = error.response.dta;
+      // 跳通知
+      Swal.fire({
+        icon: "error",
+        title: getValidMessage("member", code),
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }, [orderStatus]);
 
@@ -66,7 +73,6 @@ const OrderInfo = (props) => {
   const handleCommentSubmit = async (commentAndStar, index) => {
     // 先判斷是否留言是空白的
     if (commentAndStar.comment.length === 0) {
-      //window.alert("不可空白");
       setErrorMsg({ ...ErrorMessage, [index]: "評論不可為空白！" });
       return;
     }
@@ -74,9 +80,23 @@ const OrderInfo = (props) => {
     // 沒錯誤後才送後端
     try {
       let result = await OrderService.commentEdit(commentAndStar);
-      window.alert("評論新增成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "評論新增成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       console.log(error.response);
+      let { code } = error.response.data;
+      // 跳通知
+      Swal.fire({
+        icon: "error",
+        title: getValidMessage("member", code),
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
