@@ -102,11 +102,14 @@
         .OrderCard-detail-container2-right-stars {
           @include flex(row);
           padding-left: 1rem;
+          &:hover .OrderCard-detail-container2-right-star {
+            transform: scale(1.05);
+          }
+
           .OrderCard-detail-container2-right-star {
             width: 24px;
             height: 24px;
             cursor: pointer;
-
             &:hover {
               background: url(../icons/star-solid.svg) no-repeat;
             }

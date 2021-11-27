@@ -244,7 +244,7 @@ const Login = (props) => {
                 setFindPasswordOpen(true);
               }}
             >
-              忘記密碼
+              忘記密碼?
             </button>
           </div>
         </div>

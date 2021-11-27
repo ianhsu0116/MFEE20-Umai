@@ -13,14 +13,14 @@
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 5$MemberCenterShadow;
+    box-shadow: $MemberCenterShadow;
 
     position: relative;
 
     .OrderInfo-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-      border-left: 2px solid $activeColor;
+      border-left: $header-border;
       width: 100%;
 
       & h1 {
