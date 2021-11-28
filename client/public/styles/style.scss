@@ -250,6 +250,7 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
+@import "./CourseDetail//CourseDecorate";
 
 // 主廚
 @import "./chef/chef";
@@ -295,5 +296,23 @@ $header-border: 3px solid $activeColor; // title的左border
 	}
 	.chef-set {
 		width: 90%;
+	}
+	.CourseDecorate_RWD1 {
+		width: 22%;
+	}
+	.CourseDecorate_RWD2 {
+		width: 35%;
+		top: 22vw;
+	}
+	.CourseDecorate_RWD5 {
+		width: 30%;
+	}
+	.CourseDecorate_RWD6{
+		margin-top: 10vw;
+	}
+	.CourseDecorate_RWDEx{
+		width: 30%;
+		top: 14vw;
+		right: -5vw;
 	}
 }

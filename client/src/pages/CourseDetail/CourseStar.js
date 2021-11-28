@@ -5,7 +5,7 @@ import Whitestar from '../../components/images/whitestar.png'
 
 function CourseStar(props){
     let { percent, Score } = props;
-    
+
     let wd = 0;
     let lists = [];
     for(let i = 1 ; i < 6 ; i++)
@@ -25,7 +25,8 @@ function CourseStar(props){
 
   return (
     <>
-        <div className="Course-starGroup" title={"平均"+Score+"顆星"}>
+    {console.log(Score)}
+        <div className="Course-starGroup" title={"平均 "+Score+" 顆星"}>
                 {lists}
                 <p>({percent})</p>
         </div>

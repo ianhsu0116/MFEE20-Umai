@@ -46,7 +46,8 @@ const OrderInfo = (props) => {
     } catch (error) {
       //console.log(error);
       // console.log(error.response);
-      let { code } = error.response.dta;
+      let { code } = error.response.data;
+      console.log(error.response)
       // 跳通知
       Swal.fire({
         icon: "error",

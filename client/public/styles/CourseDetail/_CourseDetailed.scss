@@ -21,13 +21,6 @@
   align-items: center;
 }
 
-/* 大容器div */
-.Coursedetail {
-  width: 100%;
-}
-.CoursedetailMargin {
-	margin: 63px auto 0 auto;
-}
 /* 三圖片大框 */
 .Coursedetail-header {
   position: relative;
@@ -245,7 +238,7 @@
 .Coursedetail-infoBox {
   width: 100%;
   height: 100%;
-  min-height: 350px; // ian 新加的
+  min-height: 650px; // ian 新加的  11/28為了讓定位圓圈擴大
   //max-height: 600px; // ian 新加的
   overflow: hidden; // ian 新加的
 
@@ -286,7 +279,7 @@
   /* word-break: keep-all; */
   text-indent: 1em;
   width: 90%;
-  text-align: left;
+  text-align: justify;
   margin: auto;
   line-height: 3vw;
   font-size: 1.4vw;
@@ -446,7 +439,7 @@
   }
 }
 .Coursedetail-chepBoxInfomation {
-  text-align: left;
+  text-align: justify;
   // color: #ffffff;
   font-size: 1.2vw;
   font-weight: 700;
@@ -525,7 +518,7 @@
     height: 100px;
     font-size: 1.2vw;
     list-style: disc;
-    font-weight: 500;
+    font-weight: 600;
     font-family: "Noto Sans TC", Medium;
   }
 }
