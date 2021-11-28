@@ -9,7 +9,7 @@
     position: absolute;
     left: -17vw;
     width: 35%;
-    top: 30vw;
+   top: 30vw;
 }
 .orange3{
     position: absolute;
@@ -22,6 +22,13 @@
     margin-top: 25vw;
     width: 50%;
     position: absolute;
+}
+.orange2-right{
+    position: absolute;
+    right: 0;
+    transform: rotate( 180deg);
+    top: 240vw;
+    width: 24%;
 }
 // 預覽課程用的
 .orangeEx{
@@ -53,4 +60,10 @@
     width: 35%;
     position: absolute;
     z-index: -1;
+}
+.blue1-right{
+    position: absolute;
+    right: 0;
+    top: 140vw;
+    width: 40%;
 }
