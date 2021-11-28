@@ -4,6 +4,7 @@
   width: 60%;
   overflow: scroll;
   justify-content: center;
+  margin-top: 63px;
   .main {
     background: white;
     margin: 0 0;
@@ -41,7 +42,7 @@
           display: flex;
           align-items: flex-start;
           justify-content: center;
-          z-index: 100;
+          z-index: 5;
 
           .Forum-main-dropdown {
             padding: 0 3rem;
@@ -51,7 +52,6 @@
             // background-color: pink;
             color: black;
             width: 50px;
-            background: white;
             .FiMoreHorizontal {
               color: black;
             }

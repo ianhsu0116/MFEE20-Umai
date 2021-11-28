@@ -34,3 +34,12 @@
 .CourseDetail-headerColor {
 	background-color: papayawhip;
 }
+/* 大容器div */
+.Coursedetail {
+	width: 100%;
+  }
+  .CoursedetailMargin {
+	  margin: 63px auto 0 auto;
+	background: $themeColorBlue;
+	z-index: 2;
+  }
