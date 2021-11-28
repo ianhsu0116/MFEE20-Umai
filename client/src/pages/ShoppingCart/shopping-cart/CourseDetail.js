@@ -21,11 +21,11 @@ function CourseDetail(props){
         </div>
         <table className="CourseDetail-Consumer-details">
             <tr>
-                <td><h4>訂單小計</h4></td>
-                <td><h4>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h4></td>
+                <td><h5>訂單小計</h5></td>
+                <td><h5>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h5></td>
             </tr>
             <tr>
-                <td><h4>優惠券</h4></td>
+                <td><h5>優惠券</h5></td>
                 <td>
                     <select onChange={(e)=>{setdiscount(e.target.value); setselectedIndex(e.target.options.selectedIndex)}}>
                         {props.coupon.map((data) => <option value={data.discount_percent}>{data.title}</option>)}
@@ -33,8 +33,8 @@ function CourseDetail(props){
                 </td>
             </tr>
             <tr>
-                <td><h4>優惠折扣</h4></td>
-                <td><h4>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h4></td>
+                <td><h5>優惠折扣</h5></td>
+                <td><h5>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h5></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>

@@ -2,7 +2,7 @@ function ShoppingBill(props){
     let coursetitle = props.coursetitle;
     let coupon = props.coupon;
     let carddata = props.carddata;
-    let OrderData = props.OrderData;
+    let OrdererData = props.OrdererData;
     let index = 1;
     return(
         <>
@@ -20,7 +20,7 @@ function ShoppingBill(props){
                 </tr> 
                 <tr className="ShoppingBill-list-item">
                     <td>
-                        <h3>{coursetitle.name}</h3>
+                        <h4>{coursetitle.name}</h4>
                         <h5>報名人數剩餘5人</h5>
                     </td>
                     <td><h4>NT$ {coursetitle.value}</h4></td>
@@ -63,10 +63,10 @@ function ShoppingBill(props){
                 </tr>
                 <tr className="ShoppingBill-orderer-info">
                     <td></td>
-                    <td>{OrderData.lastName+OrderData.firstName}</td>
-                    <td>{OrderData.telephone}</td>
-                    <td>{OrderData.birthday}</td>
-                    <td>{OrderData.email}</td>
+                    <td>{OrdererData.lastName+OrdererData.firstName}</td>
+                    <td>{OrdererData.telephone}</td>
+                    <td>{OrdererData.birthday}</td>
+                    <td>{OrdererData.email}</td>
                 </tr>
             </table>
         </div>

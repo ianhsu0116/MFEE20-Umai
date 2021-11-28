@@ -6,8 +6,7 @@ import Orderinfo from "./orderinfo";
 
 function CourseList(props){
     const [ card, setCard] = useState(true);
-    let index=1;    
-
+    let index=1;
     return(
     <>
         <div className="CourseList-title">
@@ -29,8 +28,8 @@ function CourseList(props){
     card ? setCard(false) : setCard(true);
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
-                    <h3>{props.coursetitle.name}</h3>
-                    <h5>報名人數剩餘5人</h5>
+                    <h4>{props.coursetitle.name}</h4>
+                    <h6>報名人數剩餘5人</h6>
                 </td>
                 <td><h4>NT$ {props.coursetitle.value}</h4></td>
                 <td><h4>*{props.coursetitle.studentnumber}位</h4></td>  
@@ -53,7 +52,7 @@ function CourseList(props){
                                 }}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                        {props.carddata.map((data) => <DefaultStudentCard data={data} index={index++} carddata={props.carddata}/>)}
+                        {props.carddata.map((data) => <DefaultStudentCard data={data} index={index++} carddata={props.carddata} coursetitle={props.coursetitle}/>)}
                         </div>
                     </div>
                 </td>

@@ -1,5 +1,5 @@
 function PaymentDetails(props){
-    let OrderData = props.OrderData;
+    let OrdererData = props.OrdererData;
     return(
         <>
             <div className="ShoppingBill-padding">
@@ -30,9 +30,9 @@ function PaymentDetails(props){
                 <tr className="ShoppingBill-student-info">
                     <td>發票聯絡人</td>
                     <td>Email寄送</td>
-                    <td>{OrderData.lastName+OrderData.firstName}</td>
-                    <td>{OrderData.telephone}</td>
-                    <td>{OrderData.email}</td>
+                    <td>{OrdererData.lastName+OrdererData.firstName}</td>
+                    <td>{OrdererData.telephone}</td>
+                    <td>{OrdererData.email}</td>
                 </tr>
             </table>
         </div>

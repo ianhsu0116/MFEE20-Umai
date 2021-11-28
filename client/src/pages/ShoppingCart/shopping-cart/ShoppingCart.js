@@ -9,16 +9,16 @@ import axios from "axios";
 function shopping_cart(props) {
   //會員ID
   const { currentUser } = props;
-
   //課程資訊
   const [ coursetitle, setCoursetitle] = useState({});
-  useEffect(async () => {
+  useEffect( async () => {
     try {
       let result = await axios.get(`http://localhost:8080/api/course/9`, {
         withCredentials: true,
       });
-      console.log(result.data.course);
       setCoursetitle({
+        course_id:"9",
+        batch_id:"1",
         name:result.data.course[0].course_name,
         value:result.data.course[0].course_price,
         studentnumber:1
@@ -70,11 +70,12 @@ function shopping_cart(props) {
     setCarddata(carddata);
   }
 
-  function deletecarddata(i,carddata){
+  function deletecarddata(i,carddata,coursetitle){
     if(carddata.length===1)
       return;
     carddata.splice(i-1,1)
     setCarddata(carddata)
+    console.log(coursetitle);
     setCoursetitle({...coursetitle,studentnumber:carddata.length})
   }
 
@@ -83,8 +84,9 @@ function shopping_cart(props) {
       ...defaultcarddata,
       index:carddata.length+1,
       changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
-      deletecarddata:(index,newdata)=>{deletecarddata(index,newdata)}
+      deletecarddata:(index,newdata,coursetitle)=>{deletecarddata(index,newdata,coursetitle)}
       });
+      console.log(coursetitle);
     setCoursetitle({...coursetitle,studentnumber:carddata.length})
   }
   
@@ -94,11 +96,10 @@ function shopping_cart(props) {
     defultcard.push({
       ...defaultcarddata,
       changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
-      deletecarddata:(index,newdata)=>{deletecarddata(index,newdata)}
+      deletecarddata:(index,newdata,coursetitle)=>{deletecarddata(index,newdata,coursetitle)}
       })
     setCarddata(defultcard)
   }
-
   return (
     <>
       <div className="main-block wrapper">
@@ -108,7 +109,7 @@ function shopping_cart(props) {
               coursetitle={coursetitle} 
               newcarddata={(carddata)=>{newcarddata(carddata)}} 
               changecarddata={(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)}} 
-              deletecarddata={(index,newdata)=>deletecarddata(index,newdata)}
+              deletecarddata={(index,newdata,coursetitle)=>deletecarddata(index,newdata,coursetitle)}
               changeorderdata={(data)=>{changeorderdata(data)}} 
               />
           </main>

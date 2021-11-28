@@ -78,10 +78,11 @@
       width: 30%;
     }
     &:nth-child(2) {
-      h2 {
-        font-size: 30px;
-      }
+      text-align: left;
       width: 25%;
+      h4{
+        margin-bottom: 5px;
+      }
     }
     &:nth-child(3) {
       width: 17%;

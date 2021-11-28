@@ -54,7 +54,8 @@ const DefaultStudentCard = (props) => {
   // 刪除學生(動畫)
   const handleDeleteStudent = (index) => (e) => {
     console.log("刪除學員");
-    deletecarddata(index,props.carddata);
+    console.log(props.coursetitle);
+    deletecarddata(index,props.carddata,props.coursetitle);
   };
 
   // 啓閉學員詳細內容
