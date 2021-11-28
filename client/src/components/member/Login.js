@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorMessage from "../ErrorMessage";
 import getValidMessage from "../../validMessage/validMessage";
 import AuthService from "../../services/auth.service";
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import UmaiLogo from "../images//Umai.png";
 import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -16,11 +18,18 @@ const Login = (props) => {
   const [accountData, setAccountData] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
   });
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");
   // 錯誤訊息
   const [errorMsg2, setErrorMsg2] = useState("");
+
+  // 註冊或登入切換 (login / register)
+  const [currentMode, setCurrentMode] = useState("login");
+  // 登入註冊按鈕的狀態
+  const [isLoginSignupErr, setIsLoginSignupErr] = useState(true);
+
   // 忘記密碼視窗開關
   const [findPasswordOpen, setFindPasswordOpen] = useState(false);
   // 送出忘記密碼button狀態
@@ -38,9 +47,48 @@ const Login = (props) => {
     setAccountData({ ...accountData, [e.target.name]: e.target.value });
   };
 
+  // 前端即時錯誤阻擋
+  useEffect(() => {
+    // 先確認當前模式
+    if (currentMode === "register") {
+      // 確認兩個密碼欄位
+      if (accountData.password !== accountData.confirmPassword) {
+        setErrorMsg("密碼與確認密碼不符！");
+      } else {
+        setErrorMsg("");
+      }
+
+      // 確認三欄位都有填寫 (正確 按鈕才會亮)
+      if (
+        accountData.email.length >= 10 &&
+        accountData.password.length >= 8 &&
+        accountData.confirmPassword.length >= 8 &&
+        accountData.password === accountData.confirmPassword
+      ) {
+        setIsLoginSignupErr(false);
+      } else {
+        setIsLoginSignupErr(true);
+      }
+    } else {
+      // 確認兩個欄位都有填寫 (正確 按鈕才會亮)
+      if (accountData.email.length >= 10 && accountData.password.length >= 8) {
+        setIsLoginSignupErr(false);
+      } else {
+        setIsLoginSignupErr(true);
+      }
+    }
+
+    //
+  }, [accountData]);
+
   // 本地登入
   const handleLogin = async () => {
+    // 錯誤阻擋
+    if (isLoginSignupErr) return;
+
     let { email, password } = accountData;
+
+    // 實際送後端
     try {
       let result = await AuthService.login(email, password);
 
@@ -69,7 +117,12 @@ const Login = (props) => {
 
   // 本地註冊
   const handleRegistration = async () => {
-    let { email, password } = accountData;
+    // 錯誤阻擋
+    if (isLoginSignupErr) return;
+
+    let { email, password, confirmPassword } = accountData;
+
+    // 實際送後端
     try {
       let result = await AuthService.registration(email, password);
 
@@ -83,6 +136,9 @@ const Login = (props) => {
         showConfirmButton: false,
         timer: 1500,
       });
+
+      // 調回登入模式
+      setCurrentMode("login");
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -187,7 +243,27 @@ const Login = (props) => {
   return (
     <div className="Login">
       <div className="Login-container" onClick={preventLoginClose}>
-        <div className="Login-container-left"></div>
+        <div className="Login-container-left">
+          {/* 遮罩 */}
+          <div className="Login-container-left-mask"></div>
+
+          <Link
+            to="/"
+            className="Login-container-left-con"
+            onClick={() => {
+              setShowLogin(false);
+            }}
+            title="來去Umai首頁逛逛"
+          >
+            <img src={UmaiLogo} alt="Umai Logo" className="UmaiLogo" />
+            <span className="Login-container-left-con-text">
+              任何您有興趣的<span className="heighLight-text">廚藝技巧</span>
+            </span>
+            <span className="Login-container-left-con-text">
+              都在Umai等您探索！
+            </span>
+          </Link>
+        </div>
         <div className="Login-container-right">
           <div className="Login-container-right-thirdPartyCon">
             <GoogleLogin
@@ -227,47 +303,81 @@ const Login = (props) => {
 
           <div className="Login-container-right-center">
             <div className="Login-container-right-center-text">
-              或使用Umai帳號登入
+              或使用Umai帳號{currentMode === "login" ? "登入" : "註冊"}
             </div>
             <div className="Login-container-right-center-line"></div>
           </div>
 
           <div className="Login-container-right-inputCon">
-            <label htmlFor="email">常用Email</label>
+            {/* <label htmlFor="email">帳號</label> */}
             <input
               type="text"
               name="email"
               id="email"
+              minLength="1"
+              maxLength="50"
+              placeholder="帳號(請輸入有效Email)"
               value={accountData.email}
               onChange={handleInputChange}
             />
             <BsPersonFill />
           </div>
           <div className="Login-container-right-inputCon">
-            <label htmlFor="password">密碼</label>
+            {/* <label htmlFor="password">密碼</label> */}
             <input
               type="password"
               name="password"
               id="password"
+              minLength="1"
+              maxLength="12"
+              placeholder="密碼(限8~12字元)"
               value={accountData.password}
               onChange={handleInputChange}
             />
             <HiLockClosed />
           </div>
 
+          {/* 註冊時才出現 */}
+          {currentMode === "register" && (
+            <div className="Login-container-right-inputCon">
+              {/* <label htmlFor="confirmPassword">密碼確認</label> */}
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                minLength="1"
+                maxLength="12"
+                placeholder="請再次輸入密碼"
+                value={accountData.confirmPassword}
+                onChange={handleInputChange}
+              />
+              <HiLockClosed />
+            </div>
+          )}
+
           {/* 錯誤訊息提示 */}
           {errorMsg && <ErrorMessage value={errorMsg} />}
 
           <div className="Login-container-right-button-con">
-            <button className="login-submit-btn" onClick={handleLogin}>
-              登入
-            </button>
-            <button
-              className="register-submit-btn"
-              onClick={handleRegistration}
-            >
-              註冊
-            </button>
+            {currentMode === "login" ? (
+              <button
+                className={`login-submit-btn  ${
+                  !isLoginSignupErr && " login-submit-btn-active"
+                }`}
+                onClick={handleLogin}
+              >
+                登入
+              </button>
+            ) : (
+              <button
+                className={`register-submit-btn  ${
+                  !isLoginSignupErr && " register-submit-btn-active"
+                }`}
+                onClick={handleRegistration}
+              >
+                註冊
+              </button>
+            )}
           </div>
 
           <div className="Login-container-right-bottom">
@@ -279,6 +389,41 @@ const Login = (props) => {
             >
               忘記密碼?
             </button>
+            {currentMode === "login" ? (
+              <button
+                className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
+                onClick={() => {
+                  setCurrentMode("register");
+                  // 重置當前輸入的資料
+                  setAccountData({
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                  });
+                  //重置錯誤訊息
+                  setErrorMsg("");
+                }}
+              >
+                快速註冊
+              </button>
+            ) : (
+              <button
+                className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
+                onClick={() => {
+                  setCurrentMode("login");
+                  // 重置當前輸入的資料
+                  setAccountData({
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                  });
+                  //重置錯誤訊息
+                  setErrorMsg("");
+                }}
+              >
+                登入
+              </button>
+            )}
           </div>
         </div>
       </div>
