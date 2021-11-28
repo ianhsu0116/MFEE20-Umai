@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -104,7 +105,11 @@ const CollectionCourse = (props) => {
               />
             ))}
           {currentCourses.length === 0 && (
-            <p>目前您還沒有任何收藏呦，趕緊去課程探索逛逛吧！</p>
+            <div className="MemberCenter-defaultText">
+              目前您還沒有收藏任何課程喔！趕緊去
+              <Link to="/courses">課程探索</Link>
+              逛逛吧！
+            </div>
           )}
         </div>
       </div>

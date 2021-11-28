@@ -153,7 +153,12 @@ const MemberInfo = (props) => {
   const handlePasswordEdit = async () => {
     // 先確認資料是否都有填寫
     let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
-    if (!passwordConfirm || !newPassword || !confirmNewPassword) {
+    if (
+      !passwordConfirm ||
+      !newPassword ||
+      !confirmNewPassword ||
+      newPassword !== confirmNewPassword
+    ) {
       return;
     }
     try {
@@ -162,7 +167,7 @@ const MemberInfo = (props) => {
       // 關閉密碼修改容器
       setPasswordConOpen(false);
 
-      // 清空當前輸入的value
+      // 清空當前密碼修改輸入的value
       setPasswordInfo({
         passwordConfirm: "",
         newPassword: "",
@@ -230,7 +235,10 @@ const MemberInfo = (props) => {
         // 關閉密碼修改容器
         setPasswordConOpen(false);
 
-        // 清空資料
+        // 清空錯誤訊息
+        setErrorMsgPwd("");
+
+        // 清空忘記密碼的資料
         setPasswordInfo({
           passwordConfirm: "",
           newPassword: "",
@@ -316,7 +324,23 @@ const MemberInfo = (props) => {
             <span>密碼修改</span>
           </div>
         </header>
+
         <div className="MemberInfo-container-cards">
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label className="MemberInfo-container-inputCon-label">
+                會員帳號 (Email)
+              </label>
+              <input
+                type="text"
+                className="MemberInfo-container-inputCon-input"
+                placeholder="用戶email帳號"
+                value={currentUser && currentUser.email}
+                disabled
+              />
+            </div>
+          </div>
+
           <div className="MemberInfo-container-row">
             <div className="MemberInfo-container-inputCon">
               <label
@@ -395,10 +419,10 @@ const MemberInfo = (props) => {
             />
           </div>
         </div>
+        <header className="MemberInfo-container-header">
+          <h2>付款資訊</h2>
+        </header>
         <div className="MemberInfo-container-cards">
-          <header className="MemberInfo-container-header">
-            <h2>付款資訊</h2>
-          </header>
           <CreditCards
             creditCardsInfo={creditCardsInfo}
             setCreditCardsInfo={setCreditCardsInfo}

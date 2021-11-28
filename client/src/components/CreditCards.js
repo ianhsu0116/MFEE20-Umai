@@ -41,7 +41,7 @@ const CreditCards = (props) => {
             type="text"
             name="number"
             className="CreditCards-right-row-input"
-            placeholder="請輸入信用卡卡號"
+            placeholder="請輸入信用卡卡號(16碼)"
             maxLength="16"
             onChange={handleCardsChange}
             onFocus={handleInputFocus}
@@ -65,7 +65,7 @@ const CreditCards = (props) => {
             type="text"
             name="expiry"
             className="CreditCards-right-row-input"
-            placeholder="到期日(1225)"
+            placeholder="到期日(YYDD)"
             maxLength="4"
             onChange={handleCardsChange}
             onFocus={handleInputFocus}

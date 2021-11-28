@@ -138,34 +138,37 @@ const ChefIntro = (props) => {
               條列式展示授課主廚的職涯事蹟、獲獎事蹟、經歷...
             </li>
           </ul>
-          <ChefCard2
-            image={currentUser && currentUser.avatar}
-            name={
-              currentUser && currentUser.first_name
-                ? currentUser.first_name + " " + currentUser.last_name
-                : "XXX"
-            }
-            chefInfomation={chefInfomation}
-            setChefInfomation={setChefInfomation}
-          />
 
-          {errorMsg && (
-            <div className="ChefIntro-container-errorCon">
-              <ErrorMessage value={errorMsg} />
+          <div className="ChefIntro-container-cards-con">
+            <ChefCard2
+              image={currentUser && currentUser.avatar}
+              name={
+                currentUser && currentUser.first_name
+                  ? currentUser.first_name + " " + currentUser.last_name
+                  : "XXX"
+              }
+              chefInfomation={chefInfomation}
+              setChefInfomation={setChefInfomation}
+            />
+
+            {errorMsg && (
+              <div className="ChefIntro-container-errorCon">
+                <ErrorMessage value={errorMsg} />
+              </div>
+            )}
+
+            <div className="ChefIntro-container-buttomCon">
+              <Button
+                value="取消修改"
+                className="button-darkColor"
+                onClick={handleCancel}
+              />
+              <Button
+                value="確定送出"
+                className="button-themeColor"
+                onClick={handleSubmit}
+              />
             </div>
-          )}
-
-          <div className="ChefIntro-container-buttomCon">
-            <Button
-              value="取消修改"
-              className="button-darkColor"
-              onClick={handleCancel}
-            />
-            <Button
-              value="確定送出"
-              className="button-themeColor"
-              onClick={handleSubmit}
-            />
           </div>
         </div>
       </div>

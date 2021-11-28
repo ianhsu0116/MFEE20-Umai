@@ -15,6 +15,7 @@
     justify-content: flex-start;
     box-shadow: $MemberCenterShadow;
     position: relative;
+    overflow: scroll;
 
     .MemberInfo-container-header {
       margin-bottom: 1rem;
@@ -54,7 +55,6 @@
       margin: 0 0 1rem 0;
       @include flex(column);
       //flex-wrap: wrap;
-      overflow: scroll;
       border: 2.2px solid #e1e1e1;
       padding: 1rem;
       border-radius: 10px;

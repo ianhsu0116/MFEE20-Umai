@@ -145,7 +145,7 @@ const Login = (props) => {
     }
   };
 
-  // 判斷email有無超過十個字
+  // 判斷密碼找回email有無超過十個字
   useEffect(() => {
     if (findPasswordEmail.length > 10) {
       setFindPasswordActive(true);
@@ -170,6 +170,9 @@ const Login = (props) => {
 
         // 清空錯誤訊息
         setErrorMsg2("");
+
+        // 清空input
+        setFindPasswordEmail("");
 
         // 關閉密碼找回使窗
         setFindPasswordOpen(false);
