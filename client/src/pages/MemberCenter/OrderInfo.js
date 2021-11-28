@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import OptionBar from "../../components/OptionBar";
 import OrderCard from "../../components/member/OrderCard";
@@ -47,7 +48,6 @@ const OrderInfo = (props) => {
       //console.log(error);
       // console.log(error.response);
       let { code } = error.response.data;
-      console.log(error.response)
       // 跳通知
       Swal.fire({
         icon: "error",
@@ -141,7 +141,13 @@ const OrderInfo = (props) => {
         </div>
 
         {/* 沒有任何訂單的情況 */}
-        {currentData && currentData.length === 0 && <p>目前還沒有任何訂單～</p>}
+        {currentData && currentData.length === 0 && (
+          <div className="MemberCenter-defaultText">
+            目前您還沒有任何訂單喔！趕緊去
+            <Link to="/courses">課程探索</Link>
+            逛逛吧！
+          </div>
+        )}
       </div>
     </div>
   );

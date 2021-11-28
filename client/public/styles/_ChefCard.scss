@@ -100,6 +100,10 @@ $chefTextSize-li: calc(6px + 0.5vw);
       width: 100%;
       font-size: $chefTextSize-ul;
     }
+    pre {
+      width: 100%;
+    font-size:  $chefTextSize-ul;
+    }
     ul {
       width: 100%;
       padding-top: 0.5vw;

@@ -46,10 +46,16 @@
         margin-bottom: 1rem;
       }
 
+      .ChefIntro-container-cards-con {
+        border: 2.2px solid #e1e1e1;
+        padding: 1rem;
+        border-radius: 10px;
+        width: 100%;
+      }
+
       .ChefIntro-container-buttomCon {
         width: 100%;
         text-align: end;
-        padding: 1rem 0;
         & button {
           margin-left: 0.5rem;
         }

@@ -384,7 +384,7 @@ function CourseInfomation(props) {
       
               <ChefCard 
                 chefIntroduce1={newCourseJSON[0].chef_introduction.chefIntroduce1}
-                chefInfoTiele={newCourseJSON[0].chef_introduction.chefInfoTitle}
+                chefInfoTitle={newCourseJSON[0].chef_introduction.chefInfoTitle}
                 chefInfo={newCourseJSON[0].chef_introduction.chefInfo}
                 chefFirstName={newCourseJSON[0].first_name}
                 chefLastName={newCourseJSON[0].last_name}
