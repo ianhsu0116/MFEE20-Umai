@@ -38,16 +38,27 @@ router.get("/:fourmId", async (req, res) => {
 
 router.post("/insertArticle", upload.array(), async (req, res) => {
   console.log("body", req.body);
-  // try {
-  //   let forumdatadetail = await connection.queryAsync(
-  //     "INSERT INTO forum_article(member_id,category_id,article_title,article_text,image_name,created_time,valid)VALUES(?,?,?,?,?,?,?),()"
-  //   );
-  //   console.log(forumdatadetail);
-  //   res.json({ forumdatadetail: forumdatadetail });
-  // } catch (error) {
-  //   console.log(error);
-  //   res.json({ error: error });
-  // }
+  res.json({ result: "okok" });
+  try {
+    let forumdatadetail = await connection.queryAsync(
+      "INSERT INTO forum_article (image_name,category_id,course_name,article_title,article_link,article_text) VALUES (?)",
+      [
+        [
+          filename,
+          req.body.category_id,
+          req.body.course_name,
+          req.body.article_title,
+          req.body.article_link,
+          req.body.article_text,
+        ],
+      ]
+    );
+    console.log(forumdatadetail);
+    res.json({ forumdatadetail: forumdatadetail });
+  } catch (error) {
+    console.log(error);
+    res.json({ error: error });
+  }
 });
 
 module.exports = router;

@@ -14,13 +14,14 @@ $width: 5px;
   margin: 0 auto;
   .sidebar {
     // background: white；
-    color: #d8a466;
+    background: white;
     width: 20%;
-    height: 100vh;
+    height: 90vh;
     padding-top: 15px;
-    margin: 0 15px;
+    padding-left: 15px;
     position: sticky;
     top: 63px;
+    color: #d8a466;
     h3 {
       text-align: center;
     }
@@ -140,8 +141,8 @@ $width: 5px;
       margin-left: 5%;
       width: 90%;
       max-width: 100%;
-      height: 400px;
-      min-height: 350px;
+      height: 20vh;
+      min-height: 10vh;
       display: inline-block;
       outline: none;
       border-bottom: 1px solid #f8ac1e;

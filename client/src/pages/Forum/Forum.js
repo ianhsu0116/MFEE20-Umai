@@ -39,12 +39,12 @@ const Forum = () => {
   const handleShow = () => setShow(true);
 
   const [article, setArticle] = useState({
-    image: "",
-    category: "",
-    coursename: "",
-    title: "",
-    quote: "",
-    comment: "",
+    image_name: "",
+    category_id: "",
+    course_name: "",
+    article_title: "",
+    article_link: "",
+    article_text: "",
   });
 
   function handleChange(e) {
@@ -57,7 +57,7 @@ const Forum = () => {
 
   function handleUpload(e) {
     let newArticle = { ...article };
-    newArticle.photo = e.target.files[0];
+    newArticle.image_name = e.target.files[0];
     setArticle(newArticle);
   }
 
@@ -67,12 +67,12 @@ const Forum = () => {
       // json 格式無法傳檔案
       // 改成用 form data
       let formData = new FormData();
-      formData.append("image", article.image);
-      formData.append("category", article.category);
-      formData.append("coursename", article.coursename);
-      formData.append("title", article.title);
-      formData.append("quote", article.quote);
-      formData.append("comment", article.comment);
+      formData.append("image_name", article.image_name);
+      formData.append("category_id", article.category_id);
+      formData.append("course_name", article.course_name);
+      formData.append("article_title", article.article_title);
+      formData.append("article_link", article.article_link);
+      formData.append("article_text", article.article_text);
       // console.log("formData", formData.getAll());
       let res = await axios({
         method: "post",
@@ -100,19 +100,19 @@ const Forum = () => {
                 id="upload"
                 className="Forum-publish-form-file"
                 type="file"
-                name="image"
-                value={article.image}
+                name="image_name"
+                value={article.image_name}
                 onChange={handleChange}
               />
             </label>
-            <label htmlFor="category" className="Forum-publish-label-small">
+            <label htmlFor="category_id" className="Forum-publish-label-small">
               類別項目
             </label>
             <div className="Forum-publish-form-select">
               <select
-                id="category"
-                name="category"
-                selectedValue={article.category}
+                id="category_id"
+                name="category_id"
+                selectedValue={article.category_id}
                 onChange={handleChange}
               >
                 <option value="" selected>
@@ -127,8 +127,8 @@ const Forum = () => {
             <div className="Forum-publish-form-select">
               <select
                 id=""
-                name="coursename"
-                defaultValue={article.coursename}
+                name="course_name"
+                defaultValue={article.course_name}
                 onChange={handleChange}
               >
                 <option value="" selected>
@@ -139,19 +139,25 @@ const Forum = () => {
                 <option value="韓式料理">韓式料理</option>
               </select>
             </div>
-            <label htmlFor="title" className="Forum-publish-label-small">
+            <label
+              htmlFor="article_title"
+              className="Forum-publish-label-small"
+            >
               發表標題
             </label>
             <input
-              id="title"
+              id="article_title"
               className="Forum-publish-form-big"
               type="text"
-              name="title"
-              value={article.title}
+              name="article_title"
+              value={article.article_title}
               onChange={handleChange}
             />
             <div className="Forum-publish-label-small-block">
-              <label htmlFor="quote" className="Forum-publish-label-small">
+              <label
+                htmlFor="article_link"
+                className="Forum-publish-label-small"
+              >
                 引用連結
               </label>
               <div className="Forum-publish-label-question-block">
@@ -160,21 +166,21 @@ const Forum = () => {
               </div>
             </div>
             <input
-              id="quote"
+              id="article_link"
               className="Forum-publish-form-big"
               type="text"
-              name="quote"
-              value={article.quote}
+              name="article_link"
+              value={article.article_link}
               onChange={handleChange}
             />
-            <label htmlFor="commet" className="Forum-publish-label-small">
+            <label htmlFor="article_text" className="Forum-publish-label-small">
               內容
             </label>
             <textarea
               className="Forum-publish-textarea"
-              name="comment"
+              name="article_text"
               id="commet"
-              value={article.comment}
+              value={article.article_text}
               onChange={handleChange}
             ></textarea>
             <div className="Forum-publish-button-div">
