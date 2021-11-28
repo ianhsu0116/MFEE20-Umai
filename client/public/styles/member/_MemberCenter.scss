@@ -14,3 +14,16 @@
     position: relative;
   }
 }
+
+// 會員中心各個頁面，沒有資料時顯示文字的樣式
+.MemberCenter-defaultText {
+  width: 100%;
+  text-align: center;
+  & a {
+    color: $themeColor;
+    font-size: 110%;
+    &:hover {
+      color: $activeColor;
+    }
+  }
+}

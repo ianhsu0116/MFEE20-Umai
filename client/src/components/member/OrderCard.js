@@ -28,6 +28,8 @@ const OrderCard = (props) => {
   const [status, setStatus] = useState("訂單狀態");
   // 方票方式(1: 電子; 2: 捐贈)
   const [receiptStatus, setReceiptStatus] = useState("發票方式");
+  // hover 星星時的active
+  const [starsTemp, setStarsTemp] = useState(0);
 
   // 設定訂單狀態欄位顯示文字
   useEffect(() => {
@@ -68,30 +70,6 @@ const OrderCard = (props) => {
       });
     }
   }, [orderDetail]);
-
-  // let orderDetail = {
-  //   batch_date: "2021-11-25",
-  //   batch_id: 41,
-  //   comment_text: "good23232322",
-  //   course_image: "course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg",
-  //   course_id: 10,
-  //   course_name: "極度美味中式饗宴",
-  //   created_time: "2021-11-22 11:14:08",
-  //   id: 5,
-  //   member_count: 26,
-  //   member_id: 1,
-  //   member_limit: 30,
-  //   orders_birthdate: "2021-01-01",
-  //   orders_email: "test@test.com",
-  //   orders_first_name: "mike",
-  //   orders_last_name: "kee",
-  //   orders_student_count: 1,
-  //   orders_telephone: "0966666666",
-  //   payment_type: 1,
-  //   receipt_type: 1,
-  //   score: 5,
-  //   valid: 1,
-  // }
 
   // 控制下拉視窗開關
   const handleOrderDetailOpen = () => {
@@ -229,8 +207,17 @@ const OrderCard = (props) => {
                       className={`OrderCard-detail-container2-right-star ${
                         commentAndStar.star >= index + 1 &&
                         "OrderCard-detail-container2-right-starActive"
+                      } ${
+                        starsTemp >= index &&
+                        " OrderCard-detail-container2-right-starActive"
                       }`}
                       onClick={handleStarClick}
+                      onMouseEnter={(e) => {
+                        setStarsTemp(index);
+                      }}
+                      onMouseLeave={() => {
+                        setStarsTemp(0);
+                      }}
                     >
                       <AiOutlineStar />
                     </li>

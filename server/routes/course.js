@@ -64,7 +64,7 @@ router.get("/collection/:member_id", async (req, res) => {
   try {
     // 抓到此會員的所有收藏課程
     let collections = await connection.queryAsync(
-      "SELECT course_id FROM cart_and_collection WHERE member_id = ? AND inCollection = 1",
+      "SELECT course_id FROM cart_and_collection WHERE member_id = ? AND inCollection = 1 ORDER BY id desc",
       [member_id]
     );
 
@@ -80,6 +80,18 @@ router.get("/collection/:member_id", async (req, res) => {
       "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.id IN (?) AND course.valid = ? GROUP BY course.id",
       [collections, 1]
     );
+
+    // 將找到的課程按照加入購物車的順序排好
+    let sortedResult = [];
+    collections.forEach((id, index) => {
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].id === id) {
+          sortedResult.push(result[i]);
+          break;
+        }
+      }
+    });
+    result = sortedResult;
 
     // 每個課程的id
     let id_array = result.map((item) => item.id);
@@ -174,7 +186,7 @@ router.get("/:course_id", async (req, res) => {
   try {
     // 拿到課程詳細資料(有join category, member)
     let course = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
+      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction , member.avatar FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
       [course_id, 1]
     );
 
@@ -187,7 +199,16 @@ router.get("/:course_id", async (req, res) => {
       );
     }
 
-    res.status(200).json({ success: true, course, course_batch });
+    //拿到課程分數
+    let course_comment = [];
+    if (course.length !== 0) {
+      course_comment = await connection.queryAsync(
+        "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
+        [course_id, 1]
+      );
+    }  
+
+    res.status(200).json({ success: true, course, course_batch , course_comment});
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import MemberService from "../../services/member.service";
 import AuthService from "../../services/auth.service";
 import ChefCard2 from "../../components/member/ChefCard2";
@@ -85,7 +86,13 @@ const ChefIntro = (props) => {
         stringChefInfomation
       );
 
-      window.alert("編輯完成！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "主廚資料編輯成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       // 清空errorMsg
       setErrorMsg("");
@@ -131,34 +138,37 @@ const ChefIntro = (props) => {
               條列式展示授課主廚的職涯事蹟、獲獎事蹟、經歷...
             </li>
           </ul>
-          <ChefCard2
-            image={currentUser && currentUser.avatar}
-            name={
-              currentUser && currentUser.first_name
-                ? currentUser.first_name + " " + currentUser.last_name
-                : "XXX"
-            }
-            chefInfomation={chefInfomation}
-            setChefInfomation={setChefInfomation}
-          />
 
-          {errorMsg && (
-            <div className="ChefIntro-container-errorCon">
-              <ErrorMessage value={errorMsg} />
+          <div className="ChefIntro-container-cards-con">
+            <ChefCard2
+              image={currentUser && currentUser.avatar}
+              name={
+                currentUser && currentUser.first_name
+                  ? currentUser.first_name + " " + currentUser.last_name
+                  : "XXX"
+              }
+              chefInfomation={chefInfomation}
+              setChefInfomation={setChefInfomation}
+            />
+
+            {errorMsg && (
+              <div className="ChefIntro-container-errorCon">
+                <ErrorMessage value={errorMsg} />
+              </div>
+            )}
+
+            <div className="ChefIntro-container-buttomCon">
+              <Button
+                value="取消修改"
+                className="button-darkColor"
+                onClick={handleCancel}
+              />
+              <Button
+                value="確定送出"
+                className="button-themeColor"
+                onClick={handleSubmit}
+              />
             </div>
-          )}
-
-          <div className="ChefIntro-container-buttomCon">
-            <Button
-              value="取消修改"
-              className="button-darkColor"
-              onClick={handleCancel}
-            />
-            <Button
-              value="確定送出"
-              className="button-themeColor"
-              onClick={handleSubmit}
-            />
           </div>
         </div>
       </div>

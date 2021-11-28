@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
 import { PUBLIC_URL } from "../../config/config";
@@ -58,7 +59,13 @@ const MemberSidebar = (props) => {
           setCurrentAvatar(readFile.result);
         });
       } else {
-        window.alert("只能上傳圖片歐！(檔案須小於4mb)");
+        // 跳通知
+        Swal.fire({
+          icon: "warning",
+          title: "只能上傳圖片歐！(檔案須小於4mb)",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   };
@@ -69,8 +76,15 @@ const MemberSidebar = (props) => {
     try {
       let result = await AuthService.logout();
       //console.log(result);
+      // 清空當前user資料
       setCurrentUser(null);
-      window.alert("登出成功，現在導回首頁！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "登出成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       history.push("/");
     } catch (error) {
       console.log(error);
@@ -143,6 +157,21 @@ const MemberSidebar = (props) => {
                   <img src={require("../images/facebookLogin.svg").default} />
                   <p className="MemberSidebar-container-loginType-left-p">
                     Facebook
+                  </p>
+                </div>
+                <div className="MemberSidebar-container-loginType-right">
+                  <BsCheckCircle />
+                </div>
+              </div>
+            </div>
+          )}
+          {currentUser && currentUser.member_category === 2 && (
+            <div className="MemberSidebar-container-loginType-con">
+              <div className="MemberSidebar-container-loginType">
+                <div className="MemberSidebar-container-loginType-left">
+                  <GiCook />
+                  <p className="MemberSidebar-container-loginType-left-p">
+                    授課主廚帳戶
                   </p>
                 </div>
                 <div className="MemberSidebar-container-loginType-right">

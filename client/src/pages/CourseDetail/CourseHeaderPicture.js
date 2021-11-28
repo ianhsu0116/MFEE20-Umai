@@ -1,16 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import CourBody from "./CourseInfomation";
-// import '../../components/CourseDetailed.css'
-import background1 from "../../components/images/sushi-unsplash.jpg";
-import background2 from "../../components/images/test/istock韓風課程.jpg";
-import background3 from "../../components/images/test/istock舒食拌飯課程.jpg";
+
 
 function CourseHeaderPicture(props) {
   let { image1, image2, image3 } = props;
   return (
     <>
-      <div className="Coursedetail">
+      <div className="Coursedetail CoursedetailMargin">
         <div
           id="carouselExampleIndicators"
           className="carousel slide CourseDetail-headerPicture"

@@ -20,7 +20,7 @@
     .CollectionCourse-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-      border-left: 2px solid $activeColor;
+      border-left: $header-border;
       width: 100%;
 
       & h1 {
@@ -31,8 +31,10 @@
       width: 100%;
       position: relative;
       margin: 0 0 1rem 0;
-      @include flex(column);
+      @include flex(row);
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       overflow: scroll;
     }
   }

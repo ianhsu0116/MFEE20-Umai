@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -6,13 +7,17 @@ import Button from "../../components/Button";
 import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
+import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
+import { TiPencil } from "react-icons/ti";
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
 
-  // 錯誤訊息
+  // 錯誤訊息(一般資訊)
   const [errorMsg, setErrorMsg] = useState("");
-  const [errorMsgPassword, setErrorMsgPassword] = useState("");
+  // 錯誤訊息(密碼修改)
+  const [errorMsgPwd, setErrorMsgPwd] = useState("");
+  // 錯誤訊息(信用卡)
   const [errorMsgCard, setErrorMsgCard] = useState("");
   // 使用者基本資料
   const [memberInfo, setMemberInfo] = useState({
@@ -25,6 +30,7 @@ const MemberInfo = (props) => {
   const [passwordInfo, setPasswordInfo] = useState({
     passwordConfirm: "",
     newPassword: "",
+    confirmNewPassword: "",
   });
   // 信用卡資料
   const [creditCardsInfo, setCreditCardsInfo] = useState({
@@ -33,10 +39,10 @@ const MemberInfo = (props) => {
     name: "",
     number: "",
   });
-  // 放預設的日期(生日) 給自己寫ㄉ日曆用的
-  const [defaultDate, setDefaultDate] = useState("");
   // 密碼修改容器開關
   const [passwordConOpen, setPasswordConOpen] = useState(false);
+  // 修改密碼按鈕狀態
+  const [editPasswordActive, setEditPasswordActive] = useState("");
 
   // 即時更新當前使用者資料的function
   async function refreshUser() {
@@ -79,20 +85,6 @@ const MemberInfo = (props) => {
     }
   }, [currentUser]);
 
-  // 控制密碼修改容器開關
-  const handlePasswordConOpen = () => {
-    passwordConOpen ? setPasswordConOpen(false) : setPasswordConOpen(true);
-
-    // 清空當前輸入的value
-    setPasswordInfo({
-      passwordConfirm: "",
-      newPassword: "",
-    });
-
-    // 清空錯誤訊息
-    setErrorMsgPassword("");
-  };
-
   // 即時抓取基本資料填寫
   const handleMemberInfoChange = (e) => {
     setMemberInfo({ ...memberInfo, [e.target.name]: e.target.value });
@@ -107,6 +99,24 @@ const MemberInfo = (props) => {
   const handlePasswordChange = (e) => {
     setPasswordInfo({ ...passwordInfo, [e.target.name]: e.target.value });
   };
+
+  // 即時判斷新密碼與確認密碼是否相同 / 以及控制確認修改按鍵狀態
+  useEffect(() => {
+    // 控制確認修改按鍵狀態 (三欄位都正確填寫 且 密碼與密碼確認相符時)
+    passwordInfo.passwordConfirm &&
+    passwordInfo.newPassword &&
+    passwordInfo.confirmNewPassword &&
+    passwordInfo.newPassword === passwordInfo.confirmNewPassword
+      ? setEditPasswordActive(true)
+      : setEditPasswordActive("");
+
+    // 判斷兩密碼是否相同
+    if (passwordInfo.newPassword && passwordInfo.confirmNewPassword) {
+      passwordInfo.newPassword !== passwordInfo.confirmNewPassword
+        ? setErrorMsgPwd("新密碼與密碼確認不相符！")
+        : setErrorMsgPwd("");
+    }
+  }, [passwordInfo]);
 
   // 送出個資修改
   const handleInfoEdit = async () => {
@@ -125,7 +135,13 @@ const MemberInfo = (props) => {
       // 清空錯誤訊息
       setErrorMsg("");
 
-      window.alert("更新成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "基本資料更新成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -136,9 +152,14 @@ const MemberInfo = (props) => {
   // 送出密碼修改
   const handlePasswordEdit = async () => {
     // 先確認資料是否都有填寫
-    let { passwordConfirm, newPassword } = passwordInfo;
-    if (!passwordConfirm || !newPassword) {
-      return setErrorMsgPassword("請確實填寫兩個密碼欄位再送出！");
+    let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
+    if (
+      !passwordConfirm ||
+      !newPassword ||
+      !confirmNewPassword ||
+      newPassword !== confirmNewPassword
+    ) {
+      return;
     }
     try {
       let result = await MemberService.passwordEdit(passwordInfo);
@@ -146,20 +167,27 @@ const MemberInfo = (props) => {
       // 關閉密碼修改容器
       setPasswordConOpen(false);
 
-      // 清空當前輸入的value
+      // 清空當前密碼修改輸入的value
       setPasswordInfo({
         passwordConfirm: "",
         newPassword: "",
+        confirmNewPassword: "",
       });
 
       // 清空錯誤訊息
-      setErrorMsgPassword("");
+      setErrorMsgPwd("");
 
-      window.alert("密碼修改成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "密碼修改成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
-      setErrorMsgPassword(getValidMessage("member", code));
+      setErrorMsgPwd(getValidMessage("member", code));
     }
   };
 
@@ -180,7 +208,13 @@ const MemberInfo = (props) => {
       // 清空錯誤訊息
       setErrorMsgCard("");
 
-      window.alert("更新成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "信用卡資訊修改成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -188,13 +222,125 @@ const MemberInfo = (props) => {
     }
   };
 
+  // 控制密碼修改容器開關
+  const handlePwdConOpen = (e) => {
+    e.stopPropagation();
+    setPasswordConOpen(true);
+  };
+
   return (
-    <div className="MemberInfo">
+    <div
+      className="MemberInfo"
+      onClick={() => {
+        // 關閉密碼修改容器
+        setPasswordConOpen(false);
+
+        // 清空錯誤訊息
+        setErrorMsgPwd("");
+
+        // 清空忘記密碼的資料
+        setPasswordInfo({
+          passwordConfirm: "",
+          newPassword: "",
+          confirmNewPassword: "",
+        });
+      }}
+    >
       <div className="MemberInfo-container">
+        {/* 密碼修改 */}
+        <div
+          className={`MemberInfo-editPwd ${
+            passwordConOpen && " MemberInfo-editPwd-active"
+          }`}
+        >
+          <div
+            className="MemberInfo-editPwd-con"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <h3 className="MemberInfo-editPwd-con-title">
+              {<RiLockPasswordFill />} 重設會員密碼
+            </h3>
+            <div className="MemberInfo-editPwd-con-line"></div>
+            <div className="MemberInfo-editPwd-con-info">
+              請填寫你的新舊密碼
+            </div>
+            <div className="MemberInfo-editPwd-con-main">
+              <div className="MemberInfo-editPwd-con-main-inputCon">
+                <input
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  value={passwordInfo.passwordConfirm}
+                  onChange={handlePasswordChange}
+                  placeholder="舊密碼"
+                />
+                <RiLockPasswordLine />
+              </div>
+              <div className="MemberInfo-editPwd-con-main-inputCon">
+                <input
+                  type="password"
+                  name="newPassword"
+                  id="password"
+                  value={passwordInfo.newPassword}
+                  onChange={handlePasswordChange}
+                  placeholder="新密碼"
+                />
+                <RiLockPasswordFill />
+              </div>
+              <div className="MemberInfo-editPwd-con-main-inputCon">
+                <input
+                  type="password"
+                  name="confirmNewPassword"
+                  id="confirmNewPassword"
+                  value={passwordInfo.confirmNewPassword}
+                  onChange={handlePasswordChange}
+                  placeholder="新密碼確認"
+                />
+                <RiLockPasswordFill />
+              </div>
+              {/* 錯誤訊息提示 */}
+              {errorMsgPwd && <ErrorMessage value={errorMsgPwd} />}
+              <button
+                className={`MemberInfo-editPwd-con-main-btn ${
+                  editPasswordActive && "MemberInfo-editPwd-con-main-btn-active"
+                }`}
+                onClick={handlePasswordEdit}
+              >
+                送出
+              </button>
+            </div>
+          </div>
+        </div>
+
         <header className="MemberInfo-container-header">
           <h2>會員資訊</h2>
+          <div
+            className="MemberInfo-passwordEditButton"
+            onClick={handlePwdConOpen}
+          >
+            <TiPencil />
+            <span>密碼修改</span>
+          </div>
         </header>
+
         <div className="MemberInfo-container-cards">
+          <div className="MemberInfo-container-row">
+            <div className="MemberInfo-container-inputCon">
+              <label className="MemberInfo-container-inputCon-label">
+                會員帳號 (Email)
+              </label>
+              <input
+                type="text"
+                className="MemberInfo-container-inputCon-input"
+                placeholder="用戶email帳號"
+                value={currentUser && currentUser.email}
+                disabled
+              />
+            </div>
+          </div>
+
           <div className="MemberInfo-container-row">
             <div className="MemberInfo-container-inputCon">
               <label
@@ -257,63 +403,14 @@ const MemberInfo = (props) => {
                 出生日期
               </label>
 
-              <Calendar onChange={handleBirthdayChange} value={defaultDate} />
+              <Calendar
+                onChange={handleBirthdayChange}
+                value={memberInfo.birthday}
+              />
             </div>
           </div>
           {errorMsg && <ErrorMessage value={errorMsg} />}
-          {currentUser && !currentUser.googleId && !currentUser.facebookId && (
-            <div className="MemberInfo-container-row">
-              <div
-                className={`MemberInfo-container-inputCon MemberInfo-container-passwordCon ${
-                  passwordConOpen && "MemberInfo-container-passwordCon-active"
-                }`}
-              >
-                <label
-                  className="MemberInfo-container-inputCon-label"
-                  htmlFor="password"
-                >
-                  密碼修改
-                </label>
-                <input
-                  type="password"
-                  name="passwordConfirm"
-                  id="passwordConfirm"
-                  value={passwordInfo.passwordConfirm}
-                  placeholder="舊密碼確認"
-                  className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-topInput"
-                  onChange={handlePasswordChange}
-                />
-                <input
-                  type="password"
-                  name="newPassword"
-                  id="password"
-                  value={passwordInfo.newPassword}
-                  placeholder="輸入新密碼"
-                  className="MemberInfo-container-inputCon-input MemberInfo-container-passwordCon-bottomInput"
-                  onChange={handlePasswordChange}
-                />
-              </div>
-              <div className="MemberInfo-container-inputCon-buttonCon">
-                <button
-                  className="MemberInfo-container-inputCon-passwordEditBtn"
-                  onClick={handlePasswordConOpen}
-                >
-                  {passwordConOpen ? "取消修改" : "修改密碼"}
-                </button>
-                <button
-                  className={`MemberInfo-container-inputCon-passwordSubmitBtn ${
-                    passwordConOpen &&
-                    "MemberInfo-container-inputCon-passwordSubmitBtn-active"
-                  }`}
-                  onClick={handlePasswordEdit}
-                >
-                  確認修改
-                </button>
-              </div>
-            </div>
-          )}
 
-          {errorMsgPassword && <ErrorMessage value={errorMsgPassword} />}
           <div className="MemberInfo-container-buttonCon">
             <Button
               value={"確認修改"}
@@ -321,9 +418,11 @@ const MemberInfo = (props) => {
               onClick={handleInfoEdit}
             />
           </div>
-          <header className="MemberInfo-container-header">
-            <h2>付款資訊</h2>
-          </header>
+        </div>
+        <header className="MemberInfo-container-header">
+          <h2>付款資訊</h2>
+        </header>
+        <div className="MemberInfo-container-cards">
           <CreditCards
             creditCardsInfo={creditCardsInfo}
             setCreditCardsInfo={setCreditCardsInfo}

@@ -216,6 +216,7 @@ a {
 @import "./CalendarMulti"; // 可多選
 
 // member相關
+$header-border: 3px solid $activeColor; // title的左border
 @import "./member/Login";
 @import "./member/MemberCenter";
 @import "./member/MemberSidebar";
@@ -252,6 +253,12 @@ a {
 
 // 主廚
 @import "./chef/chef";
+
+//關於我們
+@import "./about/about";
+
+//聯絡我們
+@import "./contactus/contactus";
 
 // RWD
 @media screen and (max-width: 1200px) {

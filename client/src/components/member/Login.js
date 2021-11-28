@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import ErrorMessage from "../ErrorMessage";
 import getValidMessage from "../../validMessage/validMessage";
 import AuthService from "../../services/auth.service";
@@ -51,7 +52,14 @@ const Login = (props) => {
 
       // 關閉登入的視窗
       setShowLogin(false);
-      window.alert("登入成功！");
+
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "登入成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       // console.log(error);
       let { code } = error.response.data;
@@ -69,7 +77,12 @@ const Login = (props) => {
       setErrorMsg("");
 
       // 通知使用者可以登入了
-      window.alert("註冊成功 可以直接登入囉！");
+      Swal.fire({
+        icon: "success",
+        title: "註冊成功 可以直接登入囉！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -90,7 +103,13 @@ const Login = (props) => {
 
       // 關閉登入的視窗
       setShowLogin(false);
-      window.alert("登入成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "登入成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       // console.log(error.response);
       let { code } = error.response.data;
@@ -111,7 +130,14 @@ const Login = (props) => {
 
       // 關閉登入的視窗
       setShowLogin(false);
-      window.alert("登入成功！");
+
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "登入成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       // console.log(error.response);
       let { code } = error.response.data;
@@ -119,7 +145,7 @@ const Login = (props) => {
     }
   };
 
-  // 判斷email有無超過十個字
+  // 判斷密碼找回email有無超過十個字
   useEffect(() => {
     if (findPasswordEmail.length > 10) {
       setFindPasswordActive(true);
@@ -134,12 +160,19 @@ const Login = (props) => {
       try {
         let result = await AuthService.findPassword(findPasswordEmail);
 
-        window.alert(
-          `新密碼已寄送至${findPasswordEmail}, 請於24小時內查看並修改！`
-        );
+        // 跳通知
+        Swal.fire({
+          icon: "success",
+          title: `新密碼已寄送至${findPasswordEmail}, 請於24小時內查看並修改！`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
         // 清空錯誤訊息
         setErrorMsg2("");
+
+        // 清空input
+        setFindPasswordEmail("");
 
         // 關閉密碼找回使窗
         setFindPasswordOpen(false);
@@ -244,7 +277,7 @@ const Login = (props) => {
                 setFindPasswordOpen(true);
               }}
             >
-              忘記密碼
+              忘記密碼?
             </button>
           </div>
         </div>
