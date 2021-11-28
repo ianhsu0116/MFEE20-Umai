@@ -20,6 +20,9 @@
       max-height: 80px;
       position: relative;
       overflow: hidden;
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
       .OrderCard-image {
         width: 100%;
       }
@@ -99,11 +102,14 @@
         .OrderCard-detail-container2-right-stars {
           @include flex(row);
           padding-left: 1rem;
+          &:hover .OrderCard-detail-container2-right-star {
+            transform: scale(1.05);
+          }
+
           .OrderCard-detail-container2-right-star {
             width: 24px;
             height: 24px;
             cursor: pointer;
-
             &:hover {
               background: url(../icons/star-solid.svg) no-repeat;
             }

@@ -82,7 +82,9 @@ const CourseCard1 = (props) => {
 
       <div className="CourseCard1-detailCon">
         <h4 className="CourseCard1-detailCon-h4">
-          <Link to="/courses/course_id">{courseDetail.course_name}</Link>
+          <Link to={`/courses/${courseDetail.id}`}>
+            {courseDetail.course_name}
+          </Link>
         </h4>
         <StarGroup
           percent={scorePercent || 0}

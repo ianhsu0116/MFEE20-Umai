@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CollectionArticle = (props) => {
   return (
@@ -9,7 +10,11 @@ const CollectionArticle = (props) => {
         </header>
 
         <div className="CollectionArticle-container-cards">
-          目前您還沒有任何收藏文章喔！快去討論區逛逛吧！
+          <div className="MemberCenter-defaultText">
+            目前您還沒有任何收藏文章喔！趕緊去
+            <Link to="/forum">討論區</Link>
+            逛逛吧！
+          </div>
         </div>
       </div>
     </div>

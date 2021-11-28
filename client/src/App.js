@@ -4,15 +4,18 @@ import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
+<<<<<<< HEAD
 import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
 import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
 import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
  
 // 測試元件區
 import Masonry from "./pages/Masonry/Masonry";
+=======
+>>>>>>> main
 import Forum from "./pages/Forum/Forum";
-import Discussion from "./pages/Forum/Discussion";
 
+import Contactus from "./pages/Contactus/Contactus";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
@@ -20,8 +23,6 @@ import Chef from "./pages/Chef/Chef";
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
-import StarGroup from "./components/StarGroup";
-import ChefCard from "./components/ChefCard";
 import CourseMiniCard from "./components/CourseMiniCard";
 import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
@@ -84,9 +85,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <h1>home</h1>
-
           <DefaultStudentCard />
-          <ChefCard />
           <ShareCard />
           <CourseMiniCard />
           {/* <StarGroup percent={96} allScore={50} /> */}
@@ -112,21 +111,17 @@ function App() {
             setCurrentUser={setCurrentUser}
           />
         </Route>
-
-        <Route path="/masonry" exact>
-          <Masonry />
-        </Route>
         <Route path="/Forum" exact>
           <Forum />
-        </Route>
-        <Route path="/Discussion" exact>
-          <Discussion />
         </Route>
         <Route path="/courses/category" exact>
           <Course />
         </Route>
         <Route path="/about" exact>
           <About />
+        </Route>
+        <Route path="/contactus" exact>
+          <Contactus />
         </Route>
         <Route path="/courses/:course_id" exact>
           <CourseDetail />
@@ -141,6 +136,9 @@ function App() {
             currentUser={currentUser}
           />
         </Route>
+        {/* <Route path="/Items" exact>
+          <Items />
+        </Route> */}
         <Route path="/chef" exact>
           <Chef />
         </Route>

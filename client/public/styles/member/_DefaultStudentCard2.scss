@@ -71,15 +71,16 @@
 
         .DefaultStudentCard2-main-row-item-label {
           cursor: pointer;
+          margin-bottom: 0.25rem;
         }
 
         .DefaultStudentCard2-main-row-item-input {
           border-radius: 5px;
           border: 1px solid $fontColor;
-          padding: 0.15rem 0.35rem;
-          font-size: 1.1rem;
+          // padding: 0.15rem 0.35rem;
+          // font-size: 1.1rem;
           width: 100%;
-          margin-top: 0.25rem;
+          // margin-top: 0.25rem;
         }
         .DefaultStudentCard2-main-row-item-email {
           width: 100%;

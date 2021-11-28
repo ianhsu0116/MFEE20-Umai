@@ -1,5 +1,5 @@
 .ChefIntro {
-  height: calc(100vh - 50px);
+  height: $MemberCenterHeight;
   //position: relative;
   display: flex;
   align-items: center;
@@ -13,26 +13,59 @@
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: $MemberCenterShadow;
     position: relative;
 
     .ChefIntro-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-      border-left: 2px solid $activeColor;
+      border-left: $header-border;
       width: 100%;
 
       & h1 {
         font-weight: 100;
       }
     }
-    // .ChefIntro-container-cards {
-    //   width: 100%;
-    //   position: relative;
-    //   margin: 1rem 0;
-    //   @include flex(row);
-    //   flex-wrap: wrap;
-    //   overflow: scroll;
-    // }
+
+    .ChefIntro-container-cards {
+      width: 100%;
+      position: relative;
+      //margin: 1rem 0;
+      @include flex(column);
+      align-items: center;
+      justify-content: center;
+      overflow: scroll;
+
+      .ChefIntro-container-cards-intro {
+        margin: 1rem 0;
+        font-size: calc(0.9rem + 0.25vw);
+      }
+      .ChefIntro-container-cards-ul {
+        list-style-type: disc;
+        width: 94%;
+        margin-bottom: 1rem;
+      }
+
+      .ChefIntro-container-cards-con {
+        border: 2.2px solid #e1e1e1;
+        padding: 1rem;
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      .ChefIntro-container-buttomCon {
+        width: 100%;
+        text-align: end;
+        & button {
+          margin-left: 0.5rem;
+        }
+      }
+
+      .ChefIntro-container-errorCon {
+        width: 100%;
+        text-align: center;
+        padding: 0.25rem 0;
+      }
+    }
   }
 }

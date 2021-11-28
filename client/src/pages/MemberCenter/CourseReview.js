@@ -5,6 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import sliderBasic from "../../components/images/sliderBasic.png";
 import imageBasic from "../../components/images/imageBasic.png";
 import ChefCard from "../../components/ChefCard";
+import ChefCard2 from "../../components/member/ChefCard2";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";
@@ -17,16 +18,29 @@ import { GiCook } from "react-icons/gi";
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
 
-function CourseInfomation(props) {
-  const { courseDetail, sliderImage, sixDishesImage } = props;
+// 11/28 神奇小圈圈
+import CircleBlue from "../../components/images/circle_blue.svg";
+import CircleOrange from "../../components/images/circle_orange.svg";
 
-  const [course, setCourse] = useState(0); //課程六圖片
-  const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
+function CourseInfomation(props) {
+  const { courseDetail, sliderImage, sixDishesImage, currentUser } = props;
+  //課程六圖片
+  const [course, setCourse] = useState(0);
+  //六標題
+  const [courseFoodTitle, setCourseFoodTitle] = useState("");
   const [color, setColor] = useState(
     "Coursedetail-chepBoxInfomation Coursedetail-colorActive"
   );
   const [map, setMap] = useState(false);
   const [batch, setBatch] = useState("尚未選擇");
+
+  // 主廚卡片預設資料
+  const [chefInfomation, setChefInfomation] = useState({
+    chefIntroduce1: "",
+    chefIntroduce2: "Name",
+    chefInfoTitle: "",
+    chefInfo: ["", "", "", ""],
+  });
 
   window.addEventListener("click", (e) => {
     setMap(false);
@@ -34,6 +48,22 @@ function CourseInfomation(props) {
 
   useEffect(() => {
     setCourseFoodTitle(courseDetail.six_dishes[course].dishes_title);
+
+    // 先確認有使用者，且使用者的chef_intro有東西
+    if (currentUser && currentUser.chef_introduction) {
+      let parsedIntro = JSON.parse(currentUser.chef_introduction);
+      setChefInfomation({
+        chefIntroduce1: parsedIntro.chefIntroduce1,
+        chefIntroduce2: "Name",
+        chefInfoTitle: parsedIntro.chefInfoTitle,
+        chefInfo: [
+          parsedIntro.chefInfo[0],
+          parsedIntro.chefInfo[1],
+          parsedIntro.chefInfo[2],
+          parsedIntro.chefInfo[3],
+        ],
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -77,7 +107,7 @@ function CourseInfomation(props) {
                 <div>
                   <span className="Coursedetail-specialPrice">
                     NT$
-                    {(courseDetail.course_price * 0.9)
+                    {Math.floor(courseDetail.course_price * 0.9)
                       .toString()
                       .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
                   </span>
@@ -195,6 +225,10 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-shortLine"></div>
             {/* 下面是主廚外標題 */}
+            
+            {/* 11/28 神奇小圈圈 */}
+            <img className="orange2 CourseDecorate_RWD2" src={CircleOrange} alt=""></img>
+            
             <div className="Coursedetail-outsideTitle">
               {courseDetail.title1_1}
             </div>
@@ -218,13 +252,27 @@ function CourseInfomation(props) {
             <div className="Coursedetail-outsideTitle" id="chef">
               米其林星級主廚精心準備，絕無冷場
             </div>
+            {/* 11/28小圈圈 */}
+            <img className="blue1 CourseDecorate_RWD3" src={CircleBlue} alt=""></img>
             <div className="Coursedetail-titleLine"></div>
             <div className="Coursedetail-outsideTitle">
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
+            {/* 11/28 */}
+            <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>   
 
             <div className="Coursedetail-chefCardMargin">
-              <ChefCard />
+              {/* <ChefCard /> */}
+              <ChefCard2
+                image={currentUser && currentUser.avatar}
+                name={
+                  currentUser && currentUser.first_name
+                    ? currentUser.first_name + " " + currentUser.last_name
+                    : "XXX"
+                }
+                chefInfomation={chefInfomation}
+                setChefInfomation={() => {}}
+              />
             </div>
 
             <div className="Coursedetail-infoBox2">

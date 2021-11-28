@@ -1,5 +1,5 @@
 .CollectionCourse {
-  height: calc(100vh - 50px);
+  height: $MemberCenterHeight;
   //position: relative;
   display: flex;
   align-items: center;
@@ -13,14 +13,14 @@
     border-radius: 10px;
     @include flex(column);
     align-items: center;
-    justify-content: flex-start;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    //justify-content: center;
+    box-shadow: $MemberCenterShadow;
     position: relative;
 
     .CollectionCourse-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-      border-left: 2px solid $activeColor;
+      border-left: $header-border;
       width: 100%;
 
       & h1 {
@@ -31,7 +31,10 @@
       width: 100%;
       position: relative;
       margin: 0 0 1rem 0;
-      @include flex(column);
+      @include flex(row);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       overflow: scroll;
     }
   }

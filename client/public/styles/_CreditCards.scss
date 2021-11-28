@@ -1,14 +1,14 @@
 .CreditCards {
-  width: 70%;
-  max-width: 900px;
+  width: 85%;
+  max-width: 800px;
   @include flex(row);
   align-items: center;
   position: relative;
   flex-wrap: wrap;
-  padding: 1rem 0;
+  padding: 1rem 1.2rem;
 
   .CreditCards-left {
-    margin: 0 1rem 0 0;
+    margin: 0 1.5rem 0 0;
     flex: 1 1 200px;
     position: relative;
   }
@@ -48,6 +48,6 @@
 
 @media screen and (max-width: 1500px) {
   .CreditCards {
-    width: 80%;
+    width: 95%;
   }
 }

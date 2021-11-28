@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 import ReviewButton from "../../components/member/ReviewButton";
@@ -157,7 +158,13 @@ const CourseInsert = (props) => {
           setSliderImage(newSliderImage);
         });
       } else {
-        window.alert("只能上傳圖片歐！(檔案須小於4mb)");
+        // 跳通知
+        Swal.fire({
+          icon: "warning",
+          title: "只能上傳圖片歐！(檔案須小於4mb)",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   };
@@ -187,7 +194,13 @@ const CourseInsert = (props) => {
           setSixDishesImage(newSixImage);
         });
       } else {
-        window.alert("只能上傳圖片歐！(檔案須小於2.5mb)");
+        // 跳通知
+        Swal.fire({
+          icon: "warning",
+          title: "只能上傳圖片歐！(檔案須小於2.5mb)",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   };
@@ -235,7 +248,13 @@ const CourseInsert = (props) => {
       // 清空錯誤訊息
       setErrorMsg("");
 
-      window.alert("課程新增成功！");
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "課程資料新增成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       // console.log(error.response);
       let { code } = error.response.data;
@@ -521,7 +540,7 @@ const CourseInsert = (props) => {
               onChange={handleCourseChange}
               className="CourseInsert-container-row-inputCon-input"
               type="text"
-              maxLength="50"
+              maxLength="ˇ30"
               placeholder="信じられない！とても美味しい！..."
             />
           </div>
@@ -541,7 +560,7 @@ const CourseInsert = (props) => {
               onChange={handleCourseChange}
               className="CourseInsert-container-row-inputCon-input"
               type="text"
-              maxLength="50"
+              maxLength="30"
               placeholder="最驚艷的日式料理，入口彷如人就在日本北海道..."
             />
           </div>
@@ -561,7 +580,7 @@ const CourseInsert = (props) => {
               rows="10"
               value={courseDetail.content1}
               onChange={handleCourseChange}
-              maxLength="340"
+              maxLength="380"
               placeholder="信じられない！とても美味しい！..."
             ></textarea>
           </div>

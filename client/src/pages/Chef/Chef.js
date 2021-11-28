@@ -1,60 +1,66 @@
-import React, { useState } from "react";
+import React, { useState , useEffect  } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import ChefCard from '../../components/ChefCard'
+import { IoMdArrowDropleft } from "react-icons/io"
 import CourseCard from '../../components/CourseCard1'
 
-const Chef = (props) => {
+import MemberService from "../../services/member.service";
 
-  const [active , SetActive] = useState(-1);
+const Chef = (props) => {
+  const [active, SetActive] = useState(-1);
+
+  //主廚JSON
+  const [chefJSON , setChefJSON] = useState([{
+    chef_introduction: null,
+    first_name: null,
+    id: null,
+    last_name: null,
+    member_category: null
+  }]
+  );
+  //主廚數量
+  const [chefCount , setChefCount] = useState();
+
+  useEffect(async () => {
+    try {
+      let result = await MemberService.chefName();
+      setChefJSON(result.data.chefs);
+      setChefCount(result.data.chefs.length)
+      console.log( result.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+ const chefJson = []
+
+  for( let j = 0  ; j < chefCount  ; j++)
+  {
+    chefJson.push(
+      chefJSON[j].first_name + "" + chefJSON[j].last_name
+    )}
 
   let liForLoop = [];
 
-  const chefJson = [
-    "吳紀維",
-    "黃智堯", 
-    "李怡璇",
-    "葉裕仁", 
-    "葉承光", 
-    "張延剛", 
-    "黃秀福", 
-    "吳韻如", 
-    "張學諭", 
-    "孫治信", 
-    "吳巧郁", 
-    "劉佩珊", 
-    "何俊男", 
-    "陳怡婷", 
-    "曾偉誠", 
-    "賴林仲", 
-    "陳虹善", 
-    "郭馨儀", 
-    "沈俊諺", 
-    "黃上喬", 
-    "黃協銘", 
-    "蔡怡文", 
-    "林東琴", 
-    "傅致年", 
-    "謝與奇", 
-    "王書瑋", 
-    "柳千惠", 
-    "黃冠雨", 
-    "江妤芬"
-  ]
-
-  for(let i = 0 ; i < 30 ; i++)
+  for( let i = 0  ; i < chefCount  ; i++)
   {
     liForLoop.push(
       // eslint-disable-next-line eqeqeq
       <li className={active == i ? 'chef-li chef-liActive':"chef-li"} id={i} onClick={(e)=> {
         SetActive(e.target.id)
-        }}>{chefJson[i]}</li>
+        console.log(chefJSON[i])
+        }}>{chefJson[i]}<span className={active == i ? "chef-arrowActive":"chef-arrow"}><IoMdArrowDropleft /></span></li>
     )
   }
 
+
   return (
     <>
+    {console.log(chefJSON)}
       <div className="chef-set">
-      <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
+        <div className="CourseBreadbox">
+          <MultiLevelBreadcrumb />
+        </div>
         <div className="chef-title">主廚殿堂</div>
         <div className="st-line"></div>
           <div className="chef-infomationBox">
@@ -66,17 +72,17 @@ const Chef = (props) => {
                   <ChefCard />
                 </div> 
                 <div className="chef-courseCardMargin">
+                  {/* <CourseCard /> */}
+                  {/* <CourseCard />
                   <CourseCard />
                   <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
-                  <CourseCard />
+                  <CourseCard /> */}
                 </div> 
               </div>   
           </div>
-      </div>  
+        </div>
     </>
   );
 };
 
-export default Chef
+export default Chef;

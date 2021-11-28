@@ -13,6 +13,12 @@ $lowLevelColor: #5eb2eb;
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
 
+// MemberCenter
+// 定高
+$MemberCenterHeight: calc(100vh - 63px);
+// 最外框框陰影
+$MemberCenterShadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -186,6 +192,11 @@ a {
   overflow: hidden;
 }
 
+// 重點字體 改變顏色
+.heighLight-text {
+  color: $activeColor;
+}
+
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
@@ -205,6 +216,7 @@ a {
 @import "./CalendarMulti"; // 可多選
 
 // member相關
+$header-border: 3px solid $activeColor; // title的左border
 @import "./member/Login";
 @import "./member/MemberCenter";
 @import "./member/MemberSidebar";
@@ -226,7 +238,7 @@ a {
 @import "./massonry/massonry";
 // forum 相關
 @import "./forum/forum";
-@import "./forum/discussion";
+@import "./forum/forumcard";
 
 // 課程分類
 @import "./course/Course";
@@ -238,6 +250,7 @@ a {
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
+@import "./CourseDetail//CourseDecorate";
 
 // 主廚
 @import "./chef/chef";
@@ -255,38 +268,64 @@ a {
 @import "./shoppingCart/pamentMethod/PamentMethod";
 @import "./shoppingCart/pamentMethod/PamentWay";
 @import "./shoppingCart/pamentMethod/Receipt";
+//關於我們
+@import "./about/about";
+
+//聯絡我們
+@import "./contactus/contactus";
+
 // RWD
 @media screen and (max-width: 1200px) {
-  .Navbar {
-    .Navbar-container {
-      width: 90%;
-    }
-  }
+	.Navbar {
+		.Navbar-container {
+			width: 90%;
+		}
+	}
 
-  .MemberCenter {
-    .MemberCenter-container {
-      width: 90%;
-    }
-  }
+	.MemberCenter {
+		.MemberCenter-container {
+			width: 90%;
+		}
+	}
+	.CourseDetail-headerPicture {
+		width: 90%;
+
+		// ian 移除（確保圖片不壓縮）
+		// img {
+		//   height: 35vw;
+		// }
+	}
+	.Coursedetail {
+		/* 三圖片大框 */
+		.Coursedetail-header {
+			width: 90%;
+			height: 35vw;
+		}
+	}
+	.Coursedetail-set {
+		.Coursedetail-container {
+			width: 90%;
+		}
+	}
+	.chef-set {
+		width: 90%;
+	}
+	.CourseDecorate_RWD1 {
+		width: 22%;
+	}
+	.CourseDecorate_RWD2 {
+		width: 35%;
+		top: 22vw;
+	}
+	.CourseDecorate_RWD5 {
+		width: 30%;
+	}
+	.CourseDecorate_RWD6{
+		margin-top: 10vw;
+	}
+	.CourseDecorate_RWDEx{
+		width: 30%;
+		top: 14vw;
+		right: -5vw;
+	}
 }
-  .CourseDetail-headerPicture {
-    width: 90%;
-    img {
-      height: 35vw;
-    }
-  }
-  .Coursedetail {
-    /* 三圖片大框 */
-    .Coursedetail-header {
-      width: 90%;
-      height: 35vw;
-    }
-  }
-  .Coursedetail-set {
-    .Coursedetail-container {
-      width: 90%;
-    }
-  }
-  .chef-set {
-    width: 90%;
-  }
