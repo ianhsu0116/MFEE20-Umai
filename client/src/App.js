@@ -4,15 +4,12 @@ import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
-<<<<<<< HEAD
 import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
 import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
 import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
  
 // 測試元件區
 import Masonry from "./pages/Masonry/Masonry";
-=======
->>>>>>> main
 import Forum from "./pages/Forum/Forum";
 
 import Contactus from "./pages/Contactus/Contactus";
