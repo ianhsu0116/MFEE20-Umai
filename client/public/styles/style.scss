@@ -67,6 +67,22 @@ body {
 //   opacity: 1;
 // }
 
+// placehoder預設顏色
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgba(0, 0, 0, 0.3);
+}
+
 // 覆蓋bootstrap樣式
 h1,
 h2,
