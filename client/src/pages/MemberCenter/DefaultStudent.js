@@ -152,10 +152,20 @@ const DefaultStudent = (props) => {
         refieshStudent();
 
         // 跳通知
-        Swal.fire("刪除成功!", "學生資料已被刪除！", "success");
+        Swal.fire({
+          icon: "success",
+          title: "學生資料已被刪除！",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } catch (error) {
         //console.log(error.response);
-        Swal.fire("刪除成功!", "學員資料刪除失敗！", "false");
+        Swal.fire({
+          icon: "error",
+          title: "學員資料刪除失敗！",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   }, [didDelete]);
@@ -190,7 +200,11 @@ const DefaultStudent = (props) => {
             />
           ))}
 
-          {allStudents.length === 0 && "目前還沒有任何已儲存的學員資料喔！"}
+          {allStudents.length === 0 && (
+            <div className="MemberCenter-defaultText">
+              目前還沒有任何已儲存的學員資料喔！
+            </div>
+          )}
         </div>
       </div>
     </div>

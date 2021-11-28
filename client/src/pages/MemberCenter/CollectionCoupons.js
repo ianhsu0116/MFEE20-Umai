@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Coupons from "../../components/Coupons";
 import OptionBar from "../../components/OptionBar";
 import MemberService from "../../services/member.service";
@@ -60,7 +61,11 @@ const CollectionCoupons = (props) => {
             ))}
 
           {currentData && currentData.length === 0 && (
-            <p>您目前還沒有任何優惠券喔！快去課程探索逛逛吧！</p>
+            <div className="MemberCenter-defaultText">
+              目前您還沒有優惠券喔！趕緊去
+              <Link to="/courses">課程探索</Link>
+              逛逛吧，即日起選購滿三堂課程就送一張9折優惠券！
+            </div>
           )}
         </div>
       </div>
