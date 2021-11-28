@@ -1,7 +1,7 @@
 .Login {
   position: fixed;
-  // top: 0;
-  // left: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   z-index: 12;
@@ -13,7 +13,7 @@
   .Login-container {
     //top: -100%;
     width: 750px;
-    height: 500px;
+    min-height: 465px;
     z-index: 13;
     background: white;
     border-radius: 15px;
@@ -26,6 +26,38 @@
       background: url(../../images/loginPageBackground.jpg) center center
         no-repeat;
       background-size: cover;
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+
+      // 遮罩
+      .Login-container-left-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+      }
+
+      .Login-container-left-con {
+        z-index: 3;
+        @include flex(column);
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: calc(0.5rem + 0.2vw);
+        font-weight: 600;
+        & .UmaiLogo {
+          margin-bottom: 1rem;
+          width: 11vw;
+          max-width: 120px;
+          min-width: 90px;
+        }
+      }
     }
 
     .Login-container-right {
@@ -66,7 +98,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         color: white;
 
         .Login-container-right-center-text {
@@ -96,14 +128,15 @@
         & input {
           border-radius: 5px;
           padding: 0.35rem 0.6rem 0.35rem 2.2rem;
-          margin-top: 0.25rem;
+          margin-top: 0.5rem;
           font-size: 1.1rem;
           width: 100%;
         }
 
         & svg {
           position: absolute;
-          top: 37px;
+          // top: 37px;
+          top: 18px;
           left: 8px;
           width: 22px;
           height: 22px;
@@ -120,33 +153,50 @@
         position: relative;
 
         & button {
-          width: 50%;
+          width: 100%;
           border: none;
           padding: 0.5rem;
           text-align: center;
-          background: $themeColorBlue;
+          background: rgb(204, 204, 204);
           color: white;
+          border-radius: 10px;
+          cursor: not-allowed;
+        }
+
+        .login-submit-btn-active {
+          background: $themeColorBlue;
+          cursor: pointer;
           text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+          &:hover {
+            background: #008fd6;
+          }
         }
-        .login-submit-btn {
-          margin-right: 0.1;
-          border-radius: 10px 0 0 10px;
-        }
-        .register-submit-btn {
-          margin-left: 0.1rem;
+        .register-submit-btn-active {
           background: $activeColor;
-          border-radius: 0 10px 10px 0;
+          cursor: pointer;
+          text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+          &:hover {
+            background: #ffa63a;
+          }
         }
       }
 
       .Login-container-right-bottom {
         @include flex(row);
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
 
-        & button {
+        .Login-container-right-bottom-btn {
+          margin: 0 0.25rem;
           &:hover {
-            color: white;
+            color: rgb(0, 0, 0);
+          }
+        }
+
+        .Login-container-right-bottom-btnBlue {
+          color: $themeColorBlue;
+          &:hover {
+            color: #008fd6;
           }
         }
       }
