@@ -68,6 +68,8 @@
       @include flex(column);
       justify-content: center;
 
+      box-shadow: inset 15px 15px 21px #b58a56, inset -15px -15px 21px #fbbe76;
+
       .Login-container-right-thirdPartyCon {
         .Login-container-right-googleBtn,
         .Login-container-right-fbBtn {
@@ -86,10 +88,16 @@
         .Login-container-right-googleBtn {
           background: white;
           border: 1px solid rgba(0, 0, 0, 0.2);
+          &:hover {
+            background: rgb(243, 243, 243);
+          }
         }
         .Login-container-right-fbBtn {
           background: $facebookBlue;
           color: white;
+          &:hover {
+            background: rgb(60, 93, 160);
+          }
         }
       }
 
