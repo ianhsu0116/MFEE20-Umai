@@ -59,7 +59,9 @@
       padding: 1rem;
       border-radius: 10px;
       .MemberInfo-container-row {
-        width: 70%;
+        // width: 70%;
+        width: 85%;
+        max-width: 900px;
         @include flex(row);
         align-items: flex-end;
         justify-content: flex-start;
