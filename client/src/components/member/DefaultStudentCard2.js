@@ -51,7 +51,8 @@ const DefaultStudentCard2 = (props) => {
               type="text"
               id="first_name"
               name="first_name"
-              placeholder="請輸入真實名字"
+              placeholder="請輸入真實名字(限15字內)"
+              maxLength="15"
               value={newStudentData.first_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -68,7 +69,8 @@ const DefaultStudentCard2 = (props) => {
               type="text"
               id="last_name"
               name="last_name"
-              placeholder="請輸入真實姓氏"
+              placeholder="請輸入真實姓氏(限15字內)"
+              maxLength="15"
               value={newStudentData.last_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -88,6 +90,7 @@ const DefaultStudentCard2 = (props) => {
               id="telephone"
               name="telephone"
               placeholder="請輸入手機號碼"
+              maxLength="10"
               value={newStudentData.telephone}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -100,14 +103,6 @@ const DefaultStudentCard2 = (props) => {
             >
               出生日期
             </label>
-            {/* <input
-              type="date"
-              id="birthday"
-              name="birthday"
-              placeholder="請輸入真實姓氏"
-              className="DefaultStudentCard2-main-row-item-input"
-              onChange={handleInputChange}
-            /> */}
             <Calendar
               onChange={handleBirthdayChange}
               value={newStudentData.birthday}
@@ -126,7 +121,8 @@ const DefaultStudentCard2 = (props) => {
               type="email"
               id="email"
               name="email"
-              placeholder="請輸入Email"
+              maxLength="50"
+              placeholder="請輸入常用Email"
               value={newStudentData.email}
               className="DefaultStudentCard2-main-row-item-input DefaultStudentCard2-main-row-item-email"
               onChange={handleInputChange}

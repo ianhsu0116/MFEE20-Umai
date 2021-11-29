@@ -292,17 +292,22 @@ $header-border: 3px solid $activeColor; // title的左border
 
 // RWD
 @media screen and (max-width: 1200px) {
-	.Navbar {
-		.Navbar-container {
-			width: 90%;
-		}
-	}
+  .Navbar {
+    .Navbar-container {
+      width: 90%;
+    }
+  }
 
-	.MemberCenter {
-		.MemberCenter-container {
-			width: 90%;
-		}
-	}
+  .MemberCenter {
+    .MemberCenter-container {
+      width: 90%;
+    }
+  }
+
+  .MemberInfo-container-row {
+    width: 100% !important;
+  }
+  
 	.CourseDetail-headerPicture {
 		width: 90%;
 

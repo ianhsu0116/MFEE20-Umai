@@ -1,6 +1,6 @@
 .CreditCards {
   width: 85%;
-  max-width: 800px;
+  max-width: 900px;
   @include flex(row);
   align-items: center;
   position: relative;
@@ -28,10 +28,18 @@
 
       .CreditCards-right-row-input {
         width: 100%;
-        margin: 0 1rem 0 0;
+        // margin: 0 1rem 0 0;
         border-radius: 5px;
         border: 1px solid $fontColor;
         //padding: 0.25rem 0.5rem;
+      }
+
+      // 到期日 / 安全碼欄位
+      .CreditCards-right-row-date {
+        margin-right: 0.25rem;
+      }
+      .CreditCards-right-row-cvc {
+        margin-left: 0.25rem;
       }
     }
   }

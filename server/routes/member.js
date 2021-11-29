@@ -371,6 +371,7 @@ router.post("/chefIntro/:member_id", async (req, res) => {
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
+
 // 抓member_category = 2(主廚)資料
 router.get("/member/chefName", async (req, res) => {
   let { id } = req.session.member;
