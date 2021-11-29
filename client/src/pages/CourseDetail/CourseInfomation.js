@@ -21,6 +21,8 @@ import { GrInstagram } from "react-icons/gr";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
+import Join from '../../components/images/JoinPicture.jpg';
+
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
   const { location } = props;
@@ -272,7 +274,7 @@ function CourseInfomation(props) {
                     </li>
                   </ul>
                 </div>
-                <div className="Coursedetail-infoLeftTitle">
+                <div className="Coursedetail-infoLeftTitle" id="batch">
                   {newCourseJSON[0].course_name}
                 </div>
                 <div className="Coursedetail-placeWithChef">
@@ -634,10 +636,23 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-join">
               <span>
-                <p>立即報名</p>
+                <p className="Coursedetail-joinTitle">立即報名</p>
+                <div className="Coursedetail-joinLineWidth">
                 <div className="Coursedetail-joinLine"></div>
-                <p>馬上加入好嗎?</p>
+                </div>
+                <p>喜歡這堂課嗎?</p>
+                <p>歡迎加入我們</p>
+                <p>成為Umai的一員</p>
+                <p>讓我們帶您前往美食的世界</p>
+                <p　className="Coursedetail-joinNow" onClick={() => {
+                        if (batch === "尚未選擇") {
+                          window.location.href='#batch';
+                          alert("請先選擇梯次日期後再點擊");
+                        }
+                      }}>點擊我立即加入！</p>
               </span>
+              <img src={Join} alt=""></img>
+
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ export const devUrl = 'http://localhost:3000'
 export const prodUrl = 'http://www.abc.com'
 
 export const pathnameList = [
-  '/course',
+  '/courses',
   '/about',
   '/masonry',
   '/chef',
