@@ -297,9 +297,10 @@
 .Coursedetail-chefCardMargin {
   position: relative;
   padding: 50px 0px 60px 0px;
-  width: 55%;
   margin: auto;
-  min-width: 750px;
+  width: 60vw;
+  min-width: 450px;
+  max-width: 900px;
 }
 .Coursedetail-infoBox2 {
   width: 100%;

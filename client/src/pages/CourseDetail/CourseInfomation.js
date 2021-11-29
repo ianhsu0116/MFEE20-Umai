@@ -376,7 +376,7 @@ function CourseInfomation(props) {
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
         
-            <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>      
+            {/* <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>       */}
               
             <div className="Coursedetail-chefCardMargin">
             
@@ -626,7 +626,7 @@ function CourseInfomation(props) {
               content={newCourseJSON[0].course_detail.content2}
               attention={newCourseJSON[0].course_detail.content3}
             />
-            <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img> 
+            {/* <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img>  */}
             <img className="orange4 CourseDecorate_RWD7" src={CircleOrange} alt=""></img>      
             <div className="Coursedetail-outsideTitle">推薦課程</div>
             <div className="Coursedetail-titleLine"></div>    
