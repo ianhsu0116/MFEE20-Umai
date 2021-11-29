@@ -22,14 +22,6 @@ function CourseDetail(props){
                 <td><h5>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h5></td>
             </tr>
             <tr>
-                <td><h5>優惠券</h5></td>
-                <td>
-                    <select disabled="disabled">
-                        <option>{props.coupon.title}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <td><h5>優惠折扣</h5></td>
                 <td><h5>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h5></td>
             </tr>
@@ -39,6 +31,16 @@ function CourseDetail(props){
             </tr>
         </table>
         <hr/>
+        <table className="CourseDetail-coupon">
+            <tr>
+                <td><h5>優惠券</h5></td>
+                <td>
+                    <select disabled="disabled">
+                        <option>{props.coupon.title}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
         <Link 
         to={{
             pathname:"/ShoppingList",

@@ -22,8 +22,21 @@ function CourseDetail(props){
         <table className="CourseDetail-Consumer-details">
             <tr>
                 <td><h5>訂單小計</h5></td>
-                <td><h5>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h5></td>
+                <td><h5>NT$ {coursetitle.value*coursetitle.studentnumber}</h5></td>
             </tr>
+            
+            <tr>
+                <td><h5>優惠折扣</h5></td>
+                <td><h5>NT$ {Math.floor(coursetitle.value*coursetitle.studentnumber*(1-discount/100))}</h5></td>
+            </tr>
+            <tr>
+                <td><h3>總金額</h3></td>
+                <td><h3>NT$ {coursetitle.value*coursetitle.studentnumber-Math.floor(coursetitle.value*coursetitle.studentnumber*(1-discount/100))}</h3></td>
+            </tr>
+        </table>
+        
+        <hr/>
+        <table className="CourseDetail-coupon">
             <tr>
                 <td><h5>優惠券</h5></td>
                 <td>
@@ -32,16 +45,7 @@ function CourseDetail(props){
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td><h5>優惠折扣</h5></td>
-                <td><h5>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h5></td>
-            </tr>
-            <tr>
-                <td><h3>總金額</h3></td>
-                <td><h3>NT$ {props.coursetitle.value*props.coursetitle.studentnumber-Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-discount/100))}</h3></td>
-            </tr>
         </table>
-        <hr/>
         <Link 
         to={{
             pathname:"/PaymentMethod",

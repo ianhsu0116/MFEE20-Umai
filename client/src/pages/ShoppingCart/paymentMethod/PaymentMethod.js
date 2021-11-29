@@ -13,7 +13,6 @@ function PaymentMethod(props){
     let coupon = JSON.parse(data).coupon;
     let carddata = JSON.parse(data).carddata;
     let OrderData = JSON.parse(data).OrderData;
-
     const [creditCards,setcreditCards]=useState({})
     const [paymenttype,setpaymenttype]=useState(0)
     const [receipttype,setreceipttype]=useState(0)

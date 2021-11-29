@@ -20,7 +20,7 @@ router.use((req, res, next) => {
 // 測試路由
 router.get("/testAPI", async (req, res) => {
   const msgObj = {
-    message: "Test API is working",
+    message: "success",
   };
   return res.json(msgObj);
 });
@@ -129,13 +129,40 @@ router.post("/comment/:orders_id", async (req, res) => {
 
 //輸入訂單
 router.post("/insertOrderData", async (req, res) => {
-  let { memberid,courseid,batchid,firstName,lastName, telephone,birthday,email,paymenttype,receipttype,ordersprice} = req.body.orderdata;
+  let { memberid, courseid, batchid, firstName, lastName, telephone, birthday, email, paymenttype, receipttype, ordersprice} = req.body;
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
   try{
-    let result = await connection.queryAsync(
-      "INSERT INTO orders (member_id, course_id, batch_id, orders_first_name, orders_last_name, orders_telephone, orders_birthdate, orders_email, payment_type, receipt_type, orders_price, created_time, valid) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
-      [memberid,courseid,batchid,firstName,lastName, telephone,birthday,email,paymenttype,receipttype,ordersprice,now,1]
-    );
+    //確認沒有重複的訂單
+    let check = await connection.queryAsync("SELECT * FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ?",[memberid,courseid,batchid]);
+
+    if(check.length===0){
+      const result = await connection.queryAsync(
+        "INSERT INTO orders (member_id, course_id, batch_id, orders_first_name, orders_last_name, orders_telephone, orders_birthdate, orders_email, payment_type, receipt_type, orders_price, created_time, valid) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        [memberid, courseid, batchid, firstName, lastName, telephone, birthday, email, paymenttype, receipttype, ordersprice, now, 1]
+      );
+    } 
+
+    res.status(200).json({ success: true });
+  }catch(error){
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+})
+
+//輸入學員資料
+router.post("/insertStudentData",async (req, res) => {
+  let { memberid, firstName, lastName, telephone, birthday, email } = req.body;
+  let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  try{
+    //確認沒有重複的資料
+    let check = await connection.queryAsync("SELECT * FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND email = ?",[memberid, firstName, lastName, telephone, birthday, email]);
+
+    if(check.length===0){
+      const result = await connection.queryAsync(
+        "INSERT INTO student (member_id, first_name, last_name, telephone, birthday, email, created_time, valid) VALUES(?,?,?,?,?,?,?,?)",
+        [memberid, firstName, lastName, telephone, birthday, email, now, 1]
+      );
+    }
+    
     res.status(200).json({ success: true });
   }catch(error){
     res.status(500).json({ success: false, code: "G999", message: error });

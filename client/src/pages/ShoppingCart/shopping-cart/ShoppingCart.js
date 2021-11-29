@@ -35,14 +35,12 @@ function shopping_cart(props) {
   }])
   useEffect(async () => {
     try {
-      let result = await axios.get(`http://localhost:8080/api/member/coupons/${currentUser.id}?type=1`, {
-        withCredentials: true,
-      });
+      let result = await axios.get(`http://localhost:8080/api/member/coupons/${currentUser.id}?type=1`, {withCredentials: true})
       let data=[...coupon]
       data=data.concat(result.data.coupons)
-      setcoupon(data);
+      setcoupon(data)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }, []);
 
@@ -52,51 +50,49 @@ function shopping_cart(props) {
     lastName: "",
     telephone: "",
     birthday: "",
-    email: "",
+    email: "", 
+    addIntoStudent: false,
+    autoUpdateMember: false,
   };
   
 
-  const [ carddata, setCarddata] = useState([]);
+  const [ carddata, setCarddata] = useState([])
   const [ OrderData, setOrderData] = useState({})
 
 //修改訂購人資料
   function changeorderdata(data){
-    setOrderData(data)
+    setOrderData(data);
   }
 
 //新增刪除卡片 修改卡片資料
-  function changecarddata(i,newdata,carddata){
-    carddata[i-1]=Object.assign(carddata[i-1],newdata)
-    setCarddata(carddata);
+  function changecarddata(i,newdata){
+    let card = [...carddata]
+    card[i-1]=newdata
+    setCarddata(card)
   }
 
-  function deletecarddata(i,carddata,coursetitle){
-    if(carddata.length===1)
+  function deletecarddata(i,deletecarddata,coursetitle){
+    if(deletecarddata.length===1)
       return;
-    carddata.splice(i-1,1)
-    setCarddata(carddata)
-    console.log(coursetitle);
-    setCoursetitle({...coursetitle,studentnumber:carddata.length})
+      deletecarddata.splice(i-1,1)
+    setCarddata(deletecarddata)
+    setCoursetitle({...coursetitle,studentnumber:deletecarddata.length})
   }
 
-  function newcarddata(carddata){
-    carddata.push({
+  function newcarddata(newcarddata){
+    newcarddata.push({
       ...defaultcarddata,
-      index:carddata.length+1,
-      changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
-      deletecarddata:(index,newdata,coursetitle)=>{deletecarddata(index,newdata,coursetitle)}
-      });
-      console.log(coursetitle);
-    setCoursetitle({...coursetitle,studentnumber:carddata.length})
+      index:newcarddata.length+1
+      })
+    setCarddata(newcarddata)
+    setCoursetitle({...coursetitle,studentnumber:newcarddata.length})
   }
   
   //第一次進入頁面時生成學員資料卡片
   if(carddata.length===0){
     let defultcard=[];
     defultcard.push({
-      ...defaultcarddata,
-      changecarddata:(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)},
-      deletecarddata:(index,newdata,coursetitle)=>{deletecarddata(index,newdata,coursetitle)}
+      ...defaultcarddata
       })
     setCarddata(defultcard)
   }
@@ -108,9 +104,9 @@ function shopping_cart(props) {
               carddata={carddata} 
               coursetitle={coursetitle} 
               newcarddata={(carddata)=>{newcarddata(carddata)}} 
-              changecarddata={(index,newdata,carddata)=>{changecarddata(index,newdata,carddata)}} 
-              deletecarddata={(index,newdata,coursetitle)=>deletecarddata(index,newdata,coursetitle)}
               changeorderdata={(data)=>{changeorderdata(data)}} 
+              changecarddata={(index,newdata)=>{changecarddata(index,newdata)}}
+              deletecarddata={(index,newdata,coursetitle)=>{deletecarddata(index,newdata,coursetitle)}}
               />
           </main>
           <aside className="avatar">

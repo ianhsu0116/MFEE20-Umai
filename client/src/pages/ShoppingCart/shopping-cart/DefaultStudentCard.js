@@ -4,7 +4,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../../components/Button";
 
 const DefaultStudentCard = (props) => {
-  let { deletecarddata, changecarddata } = props.data;
+  let { deletecarddata, changecarddata } = props;
   let index = props.index;
   let [cardOpen, setCardOpen] = useState(false);
   let [newStudentData, setNewStudentData] = useState({
@@ -28,11 +28,7 @@ const DefaultStudentCard = (props) => {
         autoUpdateMember: false,
       }
     )
-  },[props.data])
-
-  useEffect(()=>{
-    changecarddata(index,newStudentData,props.carddata)
-  },[newStudentData])
+  },[props])
 
   // 即時抓取 input value
   const handleInputChange = (e) => {
@@ -42,11 +38,10 @@ const DefaultStudentCard = (props) => {
       e.target.name !== "autoUpdateMember"
     ) {
       setNewStudentData({ ...newStudentData, [e.target.name]: e.target.value });
+      changecarddata(index,{ ...newStudentData, [e.target.name]: e.target.value })
     } else {
-      setNewStudentData({
-        ...newStudentData,
-        [e.target.name]: e.target.checked,
-      });
+      setNewStudentData({...newStudentData, [e.target.name]: e.target.checked});
+      changecarddata(index,{ ...newStudentData, [e.target.name]: e.target.checked})
     }
     
   };
@@ -217,7 +212,7 @@ const DefaultStudentCard = (props) => {
                 htmlFor="autoUpdateMember"
                 className="DefaultStudentCard-main-row-item-label"
               >
-                同步更新會員資料
+                同步更新學員資料
               </label>
             </div>
           </div>

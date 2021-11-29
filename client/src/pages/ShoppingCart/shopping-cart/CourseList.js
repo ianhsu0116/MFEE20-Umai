@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import Orderinfo from "./orderinfo";
 
 function CourseList(props){
-    const [ card, setCard] = useState(true);
-    let index=1;
+    const [ card, setCard] = useState(true)
+    let index=1
     return(
     <>
         <div className="CourseList-title">
@@ -25,7 +25,7 @@ function CourseList(props){
         <table className="CourseList-list">
             <tr className="CourseList-list-item">
                 <td><button onClick={() => {
-    card ? setCard(false) : setCard(true);
+    card ? setCard(false) : setCard(true)
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
                     <h4>{props.coursetitle.name}</h4>
@@ -52,7 +52,14 @@ function CourseList(props){
                                 }}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                        {props.carddata.map((data) => <DefaultStudentCard data={data} index={index++} carddata={props.carddata} coursetitle={props.coursetitle}/>)}
+                        {props.carddata.map((data) => <DefaultStudentCard 
+                                                        data={data} 
+                                                        index={index++} 
+                                                        carddata={props.carddata} 
+                                                        coursetitle={props.coursetitle}
+                                                        changecarddata={(index,newdata)=>{props.changecarddata(index,newdata)}}
+                                                        deletecarddata={(index,newdata,coursetitle)=>{props.deletecarddata(index,newdata,coursetitle)}}
+                                                        />)}
                         </div>
                     </div>
                 </td>
