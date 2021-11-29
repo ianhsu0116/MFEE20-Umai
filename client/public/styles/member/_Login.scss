@@ -101,7 +101,7 @@
               background: white;
               border: 1px solid rgba(0, 0, 0, 0.2);
               &:hover {
-                background: rgb(243, 243, 243);
+                background: rgb(248, 248, 248);
               }
             }
             .Login-container-right-fbBtn {
@@ -208,15 +208,28 @@
 
             .Login-container-right-bottom-btn {
               margin: 0 0.25rem;
+              border-bottom: 1px solid transparent;
               &:hover {
                 color: rgb(0, 0, 0);
+                border-bottom: 1px solid rgb(0, 0, 0);
               }
             }
 
             .Login-container-right-bottom-btnBlue {
-              color: $themeColorBlue;
+              //color: $themeColorBlue;
+              color: #008fd6;
+
+              @include flex(row);
+              justify-content: center;
+              align-items: center;
               &:hover {
-                color: #008fd6;
+                // color: #008fd6;
+                color: $themeColorBlue;
+                border-bottom: 1px solid $themeColorBlue;
+              }
+
+              & svg {
+                top: 2px;
               }
             }
           }
@@ -225,6 +238,9 @@
     }
 
     .Login-container-right-login {
+      .Login-container-right-group {
+        left: 0;
+      }
     }
     .Login-container-right-register {
       .Login-container-right-group {
@@ -239,7 +255,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 14;
+    z-index: 23;
     background: rgba(0, 0, 0, 0.3);
     @include flex(row);
     justify-content: center;
