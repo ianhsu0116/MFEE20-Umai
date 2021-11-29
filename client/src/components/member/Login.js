@@ -330,7 +330,7 @@ const Login = (props) => {
               id="password"
               minLength="1"
               maxLength="12"
-              placeholder="密碼(限8~12字元)"
+              placeholder="密碼(限8~12英數字)"
               value={accountData.password}
               onChange={handleInputChange}
             />

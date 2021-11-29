@@ -103,9 +103,9 @@ const MemberInfo = (props) => {
   // 即時判斷新密碼與確認密碼是否相同 / 以及控制確認修改按鍵狀態
   useEffect(() => {
     // 控制確認修改按鍵狀態 (三欄位都正確填寫 且 密碼與密碼確認相符時)
-    passwordInfo.passwordConfirm &&
-    passwordInfo.newPassword &&
-    passwordInfo.confirmNewPassword &&
+    passwordInfo.passwordConfirm.length >= 8 &&
+    passwordInfo.newPassword.length >= 8 &&
+    passwordInfo.confirmNewPassword.length >= 8 &&
     passwordInfo.newPassword === passwordInfo.confirmNewPassword
       ? setEditPasswordActive(true)
       : setEditPasswordActive("");
@@ -264,7 +264,7 @@ const MemberInfo = (props) => {
             </h3>
             <div className="MemberInfo-editPwd-con-line"></div>
             <div className="MemberInfo-editPwd-con-info">
-              請填寫你的新舊密碼
+              請填寫您的新舊密碼
             </div>
             <div className="MemberInfo-editPwd-con-main">
               <div className="MemberInfo-editPwd-con-main-inputCon">
@@ -285,7 +285,7 @@ const MemberInfo = (props) => {
                   id="password"
                   value={passwordInfo.newPassword}
                   onChange={handlePasswordChange}
-                  placeholder="新密碼"
+                  placeholder="新密碼(限8~12英數字)"
                 />
                 <RiLockPasswordFill />
               </div>
