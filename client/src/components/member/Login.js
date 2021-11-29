@@ -264,166 +264,266 @@ const Login = (props) => {
             </span>
           </Link>
         </div>
-        <div className="Login-container-right">
-          <div className="Login-container-right-thirdPartyCon">
-            <GoogleLogin
-              clientId={GOOGLE_CLIENT_ID}
-              buttonText="使用 Google 帳戶繼續"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-              render={(renderProps) => (
+
+        <div
+          className={`Login-container-right ${
+            currentMode === "login"
+              ? " Login-container-right-login"
+              : " Login-container-right-register"
+          }`}
+        >
+          <div className="Login-container-right-group">
+            {/* 登入 */}
+            <div className="Login-container-right-con">
+              <div className="Login-container-right-thirdPartyCon">
+                <GoogleLogin
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="使用 Google 帳戶繼續"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                  render={(renderProps) => (
+                    <button
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      className="Login-container-right-googleBtn"
+                    >
+                      <img src={require("../images/googleLogin.svg").default} />
+                      <div>使用 Google 帳戶繼續</div>
+                      <div></div>
+                    </button>
+                  )}
+                />
+                <FacebookLogin
+                  appId={FACEBOOK_CLIENT_ID}
+                  fields="name,email,picture"
+                  callback={responseFacebook}
+                  render={(renderProps) => (
+                    <button
+                      onClick={renderProps.onClick}
+                      className="Login-container-right-fbBtn"
+                    >
+                      <img
+                        src={require("../images/facebookLogin.svg").default}
+                      />
+                      <div>使用 Facebook 帳戶繼續</div>
+                      <div></div>
+                    </button>
+                  )}
+                />
+              </div>
+
+              <div className="Login-container-right-center">
+                <div className="Login-container-right-center-text">
+                  或使用Umai帳號登入
+                </div>
+                <div className="Login-container-right-center-line"></div>
+              </div>
+
+              <div className="Login-container-right-inputCon">
+                {/* <label htmlFor="email">帳號</label> */}
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  minLength="1"
+                  maxLength="50"
+                  placeholder="帳號(請輸入有效Email)"
+                  value={accountData.email}
+                  onChange={handleInputChange}
+                />
+                <BsPersonFill />
+              </div>
+              <div className="Login-container-right-inputCon">
+                {/* <label htmlFor="password">密碼</label> */}
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  minLength="1"
+                  maxLength="12"
+                  placeholder="密碼(限8~12英數字)"
+                  value={accountData.password}
+                  onChange={handleInputChange}
+                />
+                <HiLockClosed />
+              </div>
+
+              {/* 錯誤訊息提示 */}
+              {errorMsg && <ErrorMessage value={errorMsg} />}
+
+              <div className="Login-container-right-button-con">
                 <button
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                  className="Login-container-right-googleBtn"
+                  className={`login-submit-btn  ${
+                    !isLoginSignupErr && " login-submit-btn-active"
+                  }`}
+                  onClick={handleLogin}
                 >
-                  <img src={require("../images/googleLogin.svg").default} />
-                  <div>使用 Google 帳戶繼續</div>
-                  <div></div>
+                  登入
                 </button>
-              )}
-            />
-            <FacebookLogin
-              appId={FACEBOOK_CLIENT_ID}
-              fields="name,email,picture"
-              callback={responseFacebook}
-              render={(renderProps) => (
+              </div>
+
+              <div className="Login-container-right-bottom">
                 <button
-                  onClick={renderProps.onClick}
-                  className="Login-container-right-fbBtn"
+                  className="Login-container-right-bottom-btn"
+                  onClick={() => {
+                    setFindPasswordOpen(true);
+                  }}
                 >
-                  <img src={require("../images/facebookLogin.svg").default} />
-                  <div>使用 Facebook 帳戶繼續</div>
-                  <div></div>
+                  忘記密碼?
                 </button>
-              )}
-            />
-          </div>
-
-          <div className="Login-container-right-center">
-            <div className="Login-container-right-center-text">
-              或使用Umai帳號{currentMode === "login" ? "登入" : "註冊"}
+                <button
+                  className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
+                  onClick={() => {
+                    setCurrentMode("register");
+                    // 重置當前輸入的資料
+                    setAccountData({
+                      email: "",
+                      password: "",
+                      confirmPassword: "",
+                    });
+                    //重置錯誤訊息
+                    setErrorMsg("");
+                  }}
+                >
+                  快速註冊
+                </button>
+              </div>
             </div>
-            <div className="Login-container-right-center-line"></div>
-          </div>
 
-          <div className="Login-container-right-inputCon">
-            {/* <label htmlFor="email">帳號</label> */}
-            <input
-              type="text"
-              name="email"
-              id="email"
-              minLength="1"
-              maxLength="50"
-              placeholder="帳號(請輸入有效Email)"
-              value={accountData.email}
-              onChange={handleInputChange}
-            />
-            <BsPersonFill />
-          </div>
-          <div className="Login-container-right-inputCon">
-            {/* <label htmlFor="password">密碼</label> */}
-            <input
-              type="password"
-              name="password"
-              id="password"
-              minLength="1"
-              maxLength="12"
-              placeholder="密碼(限8~12英數字)"
-              value={accountData.password}
-              onChange={handleInputChange}
-            />
-            <HiLockClosed />
-          </div>
+            {/* 註冊 */}
+            <div className="Login-container-right-con">
+              <div className="Login-container-right-thirdPartyCon">
+                <GoogleLogin
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="使用 Google 帳戶繼續"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                  render={(renderProps) => (
+                    <button
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      className="Login-container-right-googleBtn"
+                    >
+                      <img src={require("../images/googleLogin.svg").default} />
+                      <div>使用 Google 帳戶繼續</div>
+                      <div></div>
+                    </button>
+                  )}
+                />
+                <FacebookLogin
+                  appId={FACEBOOK_CLIENT_ID}
+                  fields="name,email,picture"
+                  callback={responseFacebook}
+                  render={(renderProps) => (
+                    <button
+                      onClick={renderProps.onClick}
+                      className="Login-container-right-fbBtn"
+                    >
+                      <img
+                        src={require("../images/facebookLogin.svg").default}
+                      />
+                      <div>使用 Facebook 帳戶繼續</div>
+                      <div></div>
+                    </button>
+                  )}
+                />
+              </div>
 
-          {/* 註冊時才出現 */}
-          {currentMode === "register" && (
-            <div className="Login-container-right-inputCon">
-              {/* <label htmlFor="confirmPassword">密碼確認</label> */}
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                minLength="1"
-                maxLength="12"
-                placeholder="請再次輸入密碼"
-                value={accountData.confirmPassword}
-                onChange={handleInputChange}
-              />
-              <HiLockClosed />
+              <div className="Login-container-right-center">
+                <div className="Login-container-right-center-text">
+                  或使用Umai帳號註冊
+                </div>
+                <div className="Login-container-right-center-line"></div>
+              </div>
+
+              <div className="Login-container-right-inputCon">
+                {/* <label htmlFor="email">帳號</label> */}
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  minLength="1"
+                  maxLength="50"
+                  placeholder="帳號(請輸入有效Email)"
+                  value={accountData.email}
+                  onChange={handleInputChange}
+                />
+                <BsPersonFill />
+              </div>
+              <div className="Login-container-right-inputCon">
+                {/* <label htmlFor="password">密碼</label> */}
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  minLength="1"
+                  maxLength="12"
+                  placeholder="密碼(限8~12英數字)"
+                  value={accountData.password}
+                  onChange={handleInputChange}
+                />
+                <HiLockClosed />
+              </div>
+
+              <div className="Login-container-right-inputCon">
+                {/* <label htmlFor="confirmPassword">密碼確認</label> */}
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  minLength="1"
+                  maxLength="12"
+                  placeholder="請再次輸入密碼"
+                  value={accountData.confirmPassword}
+                  onChange={handleInputChange}
+                />
+                <HiLockClosed />
+              </div>
+
+              {/* 錯誤訊息提示 */}
+              {errorMsg && <ErrorMessage value={errorMsg} />}
+
+              <div className="Login-container-right-button-con">
+                <button
+                  className={`register-submit-btn  ${
+                    !isLoginSignupErr && " register-submit-btn-active"
+                  }`}
+                  onClick={handleRegistration}
+                >
+                  註冊
+                </button>
+              </div>
+
+              <div className="Login-container-right-bottom">
+                <button
+                  className="Login-container-right-bottom-btn"
+                  onClick={() => {
+                    setFindPasswordOpen(true);
+                  }}
+                >
+                  忘記密碼?
+                </button>
+
+                <button
+                  className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
+                  onClick={() => {
+                    setCurrentMode("login");
+                    // 重置當前輸入的資料
+                    setAccountData({
+                      email: "",
+                      password: "",
+                      confirmPassword: "",
+                    });
+                    //重置錯誤訊息
+                    setErrorMsg("");
+                  }}
+                >
+                  登入
+                </button>
+              </div>
             </div>
-          )}
-
-          {/* 錯誤訊息提示 */}
-          {errorMsg && <ErrorMessage value={errorMsg} />}
-
-          <div className="Login-container-right-button-con">
-            {currentMode === "login" ? (
-              <button
-                className={`login-submit-btn  ${
-                  !isLoginSignupErr && " login-submit-btn-active"
-                }`}
-                onClick={handleLogin}
-              >
-                登入
-              </button>
-            ) : (
-              <button
-                className={`register-submit-btn  ${
-                  !isLoginSignupErr && " register-submit-btn-active"
-                }`}
-                onClick={handleRegistration}
-              >
-                註冊
-              </button>
-            )}
-          </div>
-
-          <div className="Login-container-right-bottom">
-            <button
-              className="Login-container-right-bottom-btn"
-              onClick={() => {
-                setFindPasswordOpen(true);
-              }}
-            >
-              忘記密碼?
-            </button>
-            {currentMode === "login" ? (
-              <button
-                className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-                onClick={() => {
-                  setCurrentMode("register");
-                  // 重置當前輸入的資料
-                  setAccountData({
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
-                  });
-                  //重置錯誤訊息
-                  setErrorMsg("");
-                }}
-              >
-                快速註冊
-              </button>
-            ) : (
-              <button
-                className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-                onClick={() => {
-                  setCurrentMode("login");
-                  // 重置當前輸入的資料
-                  setAccountData({
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
-                  });
-                  //重置錯誤訊息
-                  setErrorMsg("");
-                }}
-              >
-                登入
-              </button>
-            )}
           </div>
         </div>
       </div>

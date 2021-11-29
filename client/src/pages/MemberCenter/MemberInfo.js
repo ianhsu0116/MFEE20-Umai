@@ -333,7 +333,7 @@ const MemberInfo = (props) => {
               </label>
               <input
                 type="text"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-accountContainer"
                 placeholder="用戶email帳號"
                 value={currentUser && currentUser.email}
                 disabled

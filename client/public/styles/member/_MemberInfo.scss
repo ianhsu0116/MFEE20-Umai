@@ -83,6 +83,12 @@
             // font-size: 1.1rem;
             width: 100%;
           }
+
+          // 放使用者帳號的input
+          .MemberInfo-accountContainer {
+            background: rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+          }
         }
       }
     }
