@@ -1,0 +1,26 @@
+.ShoppingBill-wrapper {
+  width: 70%;
+  max-width: 1440px;
+  margin: 20px auto;
+  .ShoppingBill-title {
+    h1 {
+      margin-right: 5px;
+      display: inline-flex;
+      color: var(--main-color);
+    }
+    h5 {
+      display: inline-flex;
+    }
+  }
+  hr {
+    background: var(--main-color);
+    height: 5px;
+    border: 0px;
+    opacity: 1;
+  }
+  .ShoppingBill-payment-details{
+    h3{
+        margin-top: 20px;
+    }
+  }
+}

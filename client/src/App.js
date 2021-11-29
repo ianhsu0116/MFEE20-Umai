@@ -4,6 +4,12 @@ import AuthService from "./services/auth.service";
 import Navbar from "./components/Navbar";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
+import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
+import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
+import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
+ 
+// 測試元件區
+import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
 
 import Contactus from "./pages/Contactus/Contactus";
@@ -91,6 +97,11 @@ function App() {
           <h4>可多選萬年曆</h4>
           <CalendarMulti onChange={onChange} />
         </Route>
+        <Route path="/ShoppingCart" exact>
+          <ShoppingCart
+            currentUser={currentUser}
+          />
+        </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
@@ -111,6 +122,16 @@ function App() {
         </Route>
         <Route path="/courses/:course_id" exact>
           <CourseDetail />
+        </Route>
+        <Route path="/ShoppingList" exact>
+          <ShoppingList 
+            currentUser={currentUser}
+          />
+        </Route>
+        <Route path="/PaymentMethod" exact>
+          <PaymentMethod 
+            currentUser={currentUser}
+          />
         </Route>
         {/* <Route path="/Items" exact>
           <Items />

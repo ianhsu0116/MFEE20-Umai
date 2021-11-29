@@ -42,7 +42,7 @@
         }
 
         & span {
-          margin-left: 0.01rem;
+          margin-left: 0.15rem;
           font-size: 1.1rem;
         }
       }
@@ -83,6 +83,12 @@
             // font-size: 1.1rem;
             width: 100%;
           }
+
+          // 放使用者帳號的input
+          .MemberInfo-accountContainer {
+            background: rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+          }
         }
       }
     }
@@ -97,7 +103,7 @@
 
     // 密碼修改容器
     .MemberInfo-editPwd {
-      position: absolute;
+      position: fixed;
       background: transparent;
       border-radius: 10px;
       top: 0;

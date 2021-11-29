@@ -42,9 +42,13 @@ const Navbar = (props) => {
         </div>
         {currentUser && (
           <div className="Navbar-container-item">
-            <button className="Navbar-container-item-btn2 ">
+          <Link
+            to="/ShoppingCart"
+          >
+            <button className="Navbar-container-item-btn2">
               <MdShoppingCart className="Navbar-container-item-btn2-cart" />
             </button>
+            </Link>
             <Link
               to="/memberCenter"
               className="Navbar-container-item-btn Navbar-container-item-btn2"
@@ -69,7 +73,9 @@ const Navbar = (props) => {
 
         {!currentUser && (
           <div className="Navbar-container-item">
-            <button className="Navbar-container-item-btn2">
+            <button
+              onClick={handleLoginClick}
+             className="Navbar-container-item-btn2">
               <MdShoppingCart className="Navbar-container-item-btn2-cart" />
             </button>
             &thinsp;

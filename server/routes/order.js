@@ -127,4 +127,18 @@ router.post("/comment/:orders_id", async (req, res) => {
   }
 });
 
+//輸入訂單
+router.post("/insertOrderData", async (req, res) => {
+  let { memberid,courseid,batchid,firstName,lastName, telephone,birthday,email,paymenttype,receipttype,ordersprice} = req.body.orderdata;
+  let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
+  try{
+    let result = await connection.queryAsync(
+      "INSERT INTO orders (member_id, course_id, batch_id, orders_first_name, orders_last_name, orders_telephone, orders_birthdate, orders_email, payment_type, receipt_type, orders_price, created_time, valid) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      [memberid,courseid,batchid,firstName,lastName, telephone,birthday,email,paymenttype,receipttype,ordersprice,now,1]
+    );
+    res.status(200).json({ success: true });
+  }catch(error){
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+})
 module.exports = router;

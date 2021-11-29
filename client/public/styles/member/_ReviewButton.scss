@@ -13,6 +13,8 @@
   transition: all 0.35s ease;
   z-index: 10;
 
+  box-shadow: inset 13px 13px 26px #a88050, inset -13px -13px 26px #ffc87c;
+
   .ReviewButton-btn {
     position: relative;
     @include flex(row);
@@ -20,7 +22,8 @@
     align-items: center;
     width: 38px;
     height: 38px;
-    background-color: $themeColorBlue;
+    //background-color: $themeColorBlue;
+    background: linear-gradient(145deg, #0080c0, #006ca1);
     border-radius: 50px;
     left: 0px;
     transition: all 0.3s ease;
