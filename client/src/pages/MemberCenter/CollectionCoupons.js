@@ -1,109 +1,42 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Coupons from "../../components/Coupons";
 import OptionBar from "../../components/OptionBar";
+import MemberService from "../../services/member.service";
 
 // 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未使用優惠券", "已使用優惠券", "已過期優惠券"];
 
 const CollectionCoupons = (props) => {
+  const { currentUser } = props;
   const [couponsStatus, setCouponsStatus] = useState("未使用優惠券"); // 優惠券狀態
-  const [currentData, setCurrentDate] = useState([]); // 當前拿到的所有優惠券
+  const [currentData, setCurrentData] = useState([]); // 當前拿到的所有優惠券
 
-  useEffect(() => {
+  // 依照不同的狀態，拿到當符合的優惠券資料
+  useEffect(async () => {
+    // type => 1:未使用(未過期) 2:已使用 3:已過期未使用
+    let type = 1;
     switch (couponsStatus) {
       case "未使用優惠券":
-        setCurrentDate([
-          {
-            id: "0000000000001",
-            title: "中秋節快閃！全站商品85折大放送！",
-            discount_percent: "0.85",
-            status: 1,
-            expire_date: "2021-12-25",
-            valid: "1",
-          },
-          {
-            id: "0000000000002",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 1,
-            expire_date: "2021-12-30",
-            valid: "1",
-          },
-          {
-            id: "0000000000003",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 1,
-            expire_date: "2021-11-25",
-            valid: "1",
-          },
-          {
-            id: "0000000000003",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 1,
-            expire_date: "2021-11-25",
-            valid: "1",
-          },
-          {
-            id: "0000000000003",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 1,
-            expire_date: "2021-11-25",
-            valid: "1",
-          },
-        ]);
+        type = 1;
         break;
       case "已使用優惠券":
-        setCurrentDate([
-          {
-            id: "0000000000004",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 2,
-            expire_date: "2021-12-3",
-            valid: "1",
-          },
-          {
-            id: "0000000000005",
-            title: "中秋節快閃！全站商品85折大放送！",
-            discount_percent: "0.85",
-            status: 2,
-            expire_date: "2021-11-3",
-            valid: "1",
-          },
-          {
-            id: "0000000000006",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 2,
-            expire_date: "2021-11-2",
-            valid: "1",
-          },
-        ]);
+        type = 2;
         break;
       case "已過期優惠券":
-        setCurrentDate([
-          {
-            id: "0000000000007",
-            title: "聖誕節快閃！全站商品95折大放送！",
-            discount_percent: "0.95",
-            status: 1,
-            expire_date: "2021-1-5",
-            valid: 1,
-          },
-          {
-            id: "0000000000008",
-            title: "中秋節快閃！全站商品85折大放送！",
-            discount_percent: "0.85",
-            status: 2,
-            expire_date: "2021-4-30",
-            valid: 1,
-          },
-        ]);
+        type = 3;
         break;
       default:
+        type = 1;
+        break;
+    }
+
+    try {
+      let result = await MemberService.coupons(currentUser.id, type);
+      //console.log(result.data);
+      setCurrentData(result.data.coupons);
+    } catch (error) {
+      console.log(error);
     }
   }, [couponsStatus]);
 
@@ -126,6 +59,14 @@ const CollectionCoupons = (props) => {
             currentData.map((data, index) => (
               <Coupons key={index} data={data} />
             ))}
+
+          {currentData && currentData.length === 0 && (
+            <div className="MemberCenter-defaultText">
+              目前您還沒有優惠券喔！趕緊去
+              <Link to="/courses">課程探索</Link>
+              逛逛吧，即日起選購滿三堂課程就送一張9折優惠券！
+            </div>
+          )}
         </div>
       </div>
     </div>

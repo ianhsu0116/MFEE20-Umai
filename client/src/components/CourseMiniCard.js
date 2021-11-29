@@ -1,116 +1,67 @@
-import React from "react";
+import React from 'react'
 // import { useState } from 'react'
-import Chef from "./images/test/photoAC設置拌飯.jpg";
-import StarGroup from "./StarGroup";
+import Chef from './images/test/photoAC設置拌飯.jpg';
 
-const CourseMiniCard = (props) => {
-  const CardTest = [
-    {
-      courseCategory: "日式料理", //分類
-      courseName: "好吃好吃好好吃料理好吃好吃好好吃料理", //名稱 //字數上限20字
-      chefName: "佐藤真一(Sado)", //主廚名稱
-      courseBatch: "2022/12/20", //梯次日期
-      coursePrice: 5000, //價格
-      courseScore: 1000, //總分
-      courseScoreCount: 200, //評分人數
-      courseQuota: 100, //課程總人數
-      courseNowQuota: 60, //現在人數
-      courseChefImage: Chef,
-      courseLevel: "1",
-    },
-  ];
-  const courseLevelList = ["初級", "中級", "高級"];
+    const CourseMiniCard=(props)=>{
+        
+        const CardTest =[
+            {
+                courseCategory : "日式料理", //分類
+                courseName:"好吃好吃好好吃料理好吃好吃好好吃料理",//名稱
+                chefName:"佐藤真一(Sado)",//主廚名稱
+                courseBatch:"第六期課程",//梯次+時間
+                courseTimeStart:"2022/12/20",//時間
+                courseTimeEnd:"2022/12/24",//時間
+                coursePrice:5000,//價格
+                courseScore:1000, //總分
+                courseScoreCount:200,//評分人數
+                courseQuota:100,//課程總人數
+                courseNowQuota:60,//現在人數
+                courseChefImage:Chef,
+                courseLevel:"初級",
+            }
+        ]
 
   return (
     <>
-      <div className="st-courseMiniCard">
-        <div className="st-courseMiniCardWrapper">
-          {/* 課程照片容器 */}
-          <div className="courseMiniCardPictureWrapper">
-            <img className="courseMiniCardPicture" src={Chef} alt=""></img>
-            {/* 課程標籤(即將截止/即將額滿) */}
-            <div className="st-courseMiniCardTag st-courseMiniCardBarActiveDeadline">
-              <p>即將截止</p>
+    <div className="st-courseMiniCard">
+        <div className="st-courseMiniCardPicture">
+        <div className="st-courseMiniCardBar st-courseMiniCardBarActiveDeadline">即將截止</div>
+            <img src={Chef} alt=""></img>
+            <div className="st-courseMiniCardName">{CardTest[0].courseName}
+            <div className="st-courseMiniCardChefName">{CardTest[0].chefName}</div>
+            
+            <div className="st-startWidth">
+                <span  className="st-courseMiniCardBoxStar"><span>★★★★★</span></span>
+                <span  className="st-courseMiniCardFullStar" title={Math.floor(CardTest[0].courseScore*10/CardTest[0].courseScoreCount)/10} style={{ width: Math.round(CardTest[0].courseScore/CardTest[0].courseScoreCount * 20) +'%'  }}>★★★★★</span>
+                <span  className="st-courseMiniCardStarCount">({CardTest[0].courseScoreCount})</span>
+                </div>
             </div>
-          </div>
 
-          {/* 課程資訊上半 */}
-          <div className="courseMiniCardTextUpper">
-            {/* 上方文字容器 */}
-            <div className="st-courseMiniCardName">
-              {/* 課程名稱 */}
-              {CardTest[0].courseName}
-
-              <div className="st-courseMiniCardChefName">
-                {/* 主廚名稱 */}
-                {CardTest[0].chefName}
-              </div>
-
-              {/* 評價星數 */}
-              <div className="st-startWidth">
-                <StarGroup />
-              </div>
-            </div>
-          </div>
-
-          {/* 課程資訊下半 */}
-          <div className="courseMiniCardTextDown">
-            {/* 梯次日期 */}
             <div className="st-courseMiniCardBatch">
-              最早可報名梯次：
-              <div className="st-courseMiniCardTime">
-                {CardTest[0].courseBatch}
-              </div>
+                {CardTest[0].courseBatch}：
+                <div className="st-courseMiniCardTime">{CardTest[0].courseTimeStart}&nbsp;~&nbsp;{CardTest[0].courseTimeEnd}</div>
             </div>
-
-            {/* 學員報名進度條 */}
+            
             <div className="st-courseMiniCardProgressBox">
-              <div className="st-courseMiniCardProgress"></div>
-              <div
-                className="st-courseMiniCardFullProgress"
-                style={{
-                  width:
-                    Math.round(
-                      100 -
-                        (CardTest[0].courseQuota - CardTest[0].courseNowQuota)
-                    ) + "%",
-                }}
-              ></div>
-
-              <div className="st-courseMiniCardCount">
-                報名人數：{CardTest[0].courseNowQuota}&nbsp;/&nbsp;
-                {CardTest[0].courseQuota}
-              </div>
+            <div className="st-courseMiniCardProgress"></div>
+            <div className="st-courseMiniCardFullProgress" style={{ width: Math.round(100-(CardTest[0].courseQuota-CardTest[0].courseNowQuota)) +'%'  }}></div>
+            <div className="st-courseMiniCardCount">報名人數：{CardTest[0].courseNowQuota}&nbsp;/&nbsp;{CardTest[0].courseQuota}</div>
             </div>
-          </div>
-
-          {/* 課程分級與價格 */}
-          <div className="courseMiniCardContentDown">
-            {/* 課程分級 */}
+            
             <div className="st-courseMiniCardLevel">
-              <p className="st-courseMiniCardLevelText">
-                {courseLevelList[CardTest[0].courseLevel - 1]}
-              </p>
+                <p className="st-courseMiniCardLevelText">初級</p>
             </div>
             <div className="st-courseMiniCardPriceBox">
-              <p className="st-courseMiniCardPrice">
-                NT$
-                {CardTest[0].coursePrice
-                  .toString()
-                  .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
-              </p>
-              <p className="st-courseMiniCardSpecialPrice ">
-                NT$
-                {(CardTest[0].coursePrice * 0.9)
-                  .toString()
-                  .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
-              </p>
+            <p className="st-courseMiniCardPrice ">NT${CardTest[0].coursePrice.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</p>
+            <p className="st-courseMiniCardSpecialPrice">NT${(CardTest[0].coursePrice*1.2).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}</p>
             </div>
-          </div>
         </div>
-      </div>
+        
+    </div>
     </>
-  );
-};
+         )
+    
+}
 
-export default CourseMiniCard;
+export default CourseMiniCard

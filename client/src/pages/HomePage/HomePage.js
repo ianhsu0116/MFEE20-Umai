@@ -17,8 +17,8 @@ import pan from "../../components/images/pan.png";
 import cooking from "../../components/images/cooking.png";
 
 // 共用元件
-import ShareCard from "../../components/ShareCard";
-import CourseMiniCard from "../../components/CourseMiniCard";
+import ShareCard from "../../components/ShareCard2";
+import CourseMiniCard from "../../components/CourseMiniCard2";
 import CourseMiniCardSlider from "../../components/CourseMiniCardSlider";
 import ChefCard from "../../components/ChefCard2";
 

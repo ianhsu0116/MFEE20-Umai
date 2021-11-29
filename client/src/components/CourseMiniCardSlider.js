@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import CourseMiniCard from "./CourseMiniCard";
+import CourseMiniCard from "./CourseMiniCard2";
 
 export default class Responsive extends Component {
   render() {
