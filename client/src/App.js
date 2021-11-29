@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import AuthService from "./services/auth.service";
 import courseService from "./services/course.service";
-import HomePage from "./pages/HomePage/HomePage";
+import HomePage from "./pages/Homepage/HomePage";
 import Navbar from "./components/Navbar";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
@@ -48,6 +48,14 @@ function App() {
     });
   }, []);
 
+  //課程搜尋列狀態
+  const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
+
+  //課程搜尋列狀態判斷
+  const handleToggleCourseSearch = async () => {
+    setActiveCourseSearch(!isActiveCourseSearch);
+  };
+
   // ==================== 共用元件展示用ㄉ東西 ======================
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   // 給萬年曆用的(回傳已選定日期)
@@ -74,112 +82,99 @@ function App() {
     "2021-12-05",
   ];
 
-  //儲存購物車的課程資訊
-  const [cartCourseInfoList, setCartCourseInfoList] = useState([
-    {
-      id: 9,
-      member_id: 1,
-      category_id: 1,
-      batch_id: 1, //(course_batch table)(alia)
-      course_image: "course-44d67cba-78ee-419a-a853-907974d112aa.jpg",
-      course_name: "美式經典牛排烹調高階課程",
-      course_price: 5400,
-      member_limit: 30,
-      batch_date: "2021/12/26", //(course_batch table)
-      member_count: 0, //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-    {
-      id: 10,
-      member_id: 1,
-      category_id: 1,
-      batch_id: 2, //(course_batch table)(alia)
-      course_image: "course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg",
-      course_name: "極度美味中式饗宴，傳統粵式名菜",
-      course_price: 2800,
-      member_limit: 30,
-      batch_date: "2022/01/05", //(course_batch table)
-      member_count: 5, //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-    {
-      id: 11,
-      member_id: 1,
-      category_id: 5,
-      batch_id: 3, //(course_batch table)(alia)
-      course_image: "course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg",
-      course_name: "極度美味中式饗宴，傳統粵式名菜",
-      course_price: 4500,
-      member_limit: 25,
-      batch_date: "2022/01/11", //(course_batch table)
-      member_count: 10, //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-  ]);
+  //搜尋列推薦關鍵字
+  const SearchKeywordTagList = [
+    "創意壽司",
+    "義大利麵",
+    "紅酒燉牛肉",
+    "獵人燉雞",
+  ];
+  //搜尋列推薦課程
+  const SearchCourseList = [
+    "創意壽司",
+    "築地創意壽司",
+    "築地高級壽司",
+    "築地高級創意壽司",
+  ];
 
-  //將選購課程的詳細資料，存入state中
-  async function addCourseInfoIntoCart(course_id) {
-    //驗證該課程是否已經被加入購物車、有無重複加入購物車
-    let isCourseAdded = await cartCourseInfoList.filter((obj) => {
-      return obj.id === course_id;
-    });
-    if (isCourseAdded === []) {
-      //該課程尚未加入購物車
-      let res = courseService.course_courseId(course_id);
-      let { newCourseInfo } = (await res).data;
-      newCourseInfo["cartCourseCount"] = 1;
-      setCartCourseInfoList([...cartCourseInfoList, newCourseInfo]);
-    } else if (isCourseAdded !== [] && isCourseAdded.length === 1) {
-      //該課程已加入購物車，增加報名人數(無重複加入購物車)
-      isCourseAdded["cartCourseCount"] >= 1 &&
-      isCourseAdded["cartCourseCount"] <=
-        isCourseAdded["member_limit"] - isCourseAdded["member_count"]
-        ? (isCourseAdded["cartCourseCount"] =
-            isCourseAdded["cartCourseCount"] + 1)
-        : console.log("已達報名人數上限");
-      //[waiting]待新增 於加入溝物車時 處理 "已達報名人數上限" 的function
-      let newCartCourseInfoList = cartCourseInfoList;
-      newCartCourseInfoList["cartCourseCount"] =
-        isCourseAdded["cartCourseCount"];
-      setCartCourseInfoList(newCartCourseInfoList);
-    }
-  }
+  //課程分類左
+  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
+  //課程分類右
+  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
 
-  //頁面首次render與購物車有增減時要檢查
-  useEffect(() => {
-    try {
-      //檢查購物車是否有異常狀況(重複加入購物車)，若有異常則更新購物車
-      async function handleCartException() {
-        // 產生一個包含當前購物車所有課程id的陣列，例：[1,2,3,1,5,6]
-        let courseIdArray = cartCourseInfoList.map((obj) => obj.id);
-        let newCartCourseInfoList = [];
-        //逐一比對購物車內容，並去除重複課程、更新購物車state
-        courseIdArray.forEach((courseId) => {
-          if (
-            newCartCourseInfoList.find((obj) => obj.id === courseId) ===
-            undefined
-          ) {
-            newCartCourseInfoList = [
-              ...newCartCourseInfoList,
-              cartCourseInfoList.find((obj) => obj.id === courseId),
-            ];
-          }
-        });
-        setCartCourseInfoList(newCartCourseInfoList);
-      }
-      handleCartException();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [cartCourseInfoList]);
+  //體驗分享左
+  const ExperienceShareListLeft = ["故事牆"];
+  //體驗分享右
+  const ExperienceShareListRight = ["討論區"];
+  // //將選購課程的詳細資料，存入state中
+  // async function addCourseInfoIntoCart(course_id) {
+  //   //驗證該課程是否已經被加入購物車、有無重複加入購物車
+  //   let isCourseAdded = await cartCourseInfoList.filter((obj) => {
+  //     return obj.id === course_id;
+  //   });
+  //   if (isCourseAdded === []) {
+  //     //該課程尚未加入購物車
+  //     let res = courseService.course_courseId(course_id);
+  //     let { newCourseInfo } = (await res).data;
+  //     newCourseInfo["cartCourseCount"] = 1;
+  //     setCartCourseInfoList([...cartCourseInfoList, newCourseInfo]);
+  //   } else if (isCourseAdded !== [] && isCourseAdded.length === 1) {
+  //     //該課程已加入購物車，增加報名人數(無重複加入購物車)
+  //     isCourseAdded["cartCourseCount"] >= 1 &&
+  //     isCourseAdded["cartCourseCount"] <=
+  //       isCourseAdded["member_limit"] - isCourseAdded["member_count"]
+  //       ? (isCourseAdded["cartCourseCount"] =
+  //           isCourseAdded["cartCourseCount"] + 1)
+  //       : console.log("已達報名人數上限");
+  //     //[waiting]待新增 於加入溝物車時 處理 "已達報名人數上限" 的function
+  //     let newCartCourseInfoList = cartCourseInfoList;
+  //     newCartCourseInfoList["cartCourseCount"] =
+  //       isCourseAdded["cartCourseCount"];
+  //     setCartCourseInfoList(newCartCourseInfoList);
+  //   }
+  // }
+
+  // //檢查購物車是否有異常狀況(重複加入購物車)，若有異常則更新購物車
+  // async function handleCartException() {
+  //   // 產生一個包含當前購物車所有課程id的陣列，例：[1,2,3,1,5,6]
+  //   let courseIdArray = cartCourseInfoList.map((obj) => obj.id);
+  //   let newCartCourseInfoList = [];
+  //   //逐一比對購物車內容，並去除重複課程、更新購物車state
+  //   courseIdArray.forEach((courseId) => {
+  //     if (
+  //       newCartCourseInfoList.find((obj) => obj.id === courseId) === undefined
+  //     ) {
+  //       newCartCourseInfoList = [
+  //         ...newCartCourseInfoList,
+  //         cartCourseInfoList.find((obj) => obj.id === courseId),
+  //       ];
+  //     }
+  //   });
+  //   setCartCourseInfoList(newCartCourseInfoList);
+  // }
+
+  // // 頁面首次render與購物車有增減時要檢查
+  // useEffect(() => {
+  //   try {
+  //     // handleCartException();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [cartCourseInfoList]);
 
   return (
     <Router>
       <Navbar
         handleLoginClick={handleLoginClick}
         currentUser={currentUser}
-        cartCourseInfoList={cartCourseInfoList}
-        setCartCourseInfoList={setCartCourseInfoList}
+        SearchKeywordTagList={SearchKeywordTagList}
+        SearchCourseList={SearchCourseList}
+        isActiveCourseSearch={isActiveCourseSearch}
+        handleToggleCourseSearch={handleToggleCourseSearch}
+        CourseCategoryListLeft={CourseCategoryListLeft}
+        CourseCategoryListRight={CourseCategoryListRight}
+        ExperienceShareListLeft={ExperienceShareListLeft}
+        ExperienceShareListRight={ExperienceShareListRight}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />

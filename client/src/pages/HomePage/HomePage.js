@@ -13,12 +13,16 @@ import HeadingUnderline from "../../components/images/HeadingUnderline.svg";
 import plate from "../../components/images/plate.png";
 import noodle from "../../components/images/noodle.png";
 import BackgroundTexture from "../../components/images/BackgroundTexture.jpg";
+import pan from "../../components/images/pan.png";
+import cooking from "../../components/images/cooking.png";
 
 // 共用元件
 import ShareCard from "../../components/ShareCard";
 import CourseMiniCard from "../../components/CourseMiniCard";
 import CourseMiniCardSlider from "../../components/CourseMiniCardSlider";
 import ChefCard from "../../components/ChefCard";
+
+import ChefCardSlider from "../../components/homepage/ChefCardSlider";
 
 const HomePage = () => {
   return (
@@ -148,6 +152,18 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+        {/* <div className="chefIntroduction">
+          <div className="chefIntroductionTrim"></div>
+          <div className="circleWrapperA">
+            <img className="circleOrange" src={circleOrange} alt="" />
+          </div>
+          <div className="circleWrapperB">
+            <img className="circleOrange" src={circleOrange} alt="" />
+          </div>
+          <div className="chefIntroductionBox">
+            <ChefCardSlider />
+          </div>
+        </div> */}
         <div className="ShareCardBox">
           <div className="Background">
             <img className="BackgroundTexture" src={BackgroundTexture} alt="" />
@@ -206,6 +222,12 @@ const HomePage = () => {
           <div className="imageA">
             <img className="plate" src={plate} alt="" />
           </div>
+          <div className="imageB">
+            <img className="pan" src={pan} alt="" />
+          </div>
+          <div className="imageC">
+            <img className="cooking" src={cooking} alt="" />
+          </div>
           <div className="RecommandCourseCardContentWrapper">
             <div className="RecommandCourseCardSliderWrapper">
               <CourseMiniCardSlider SliderTitle="熱門課程" />
@@ -214,6 +236,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
       {/* <CourseMiniCard /> */}
     </>
   );

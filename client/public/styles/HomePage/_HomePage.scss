@@ -546,7 +546,7 @@
     position: relative;
     height: 80vw;
     width: 100vw;
-    min-height: 1250px;
+    min-height: 1550px;
     // margin-top: -20vw;
     background: white;
     // 斜率16vw
@@ -559,7 +559,6 @@
       position: relative;
       height: 100%;
       width: 100%;
-      min-height: 1250px;
       .BackgroundTexture {
         width: 100%;
       }
@@ -581,10 +580,39 @@
       overflow: hidden;
       .plate {
         position: absolute;
-        top: 0%;
+        top: 0;
         right: -40%;
         height: 100%;
         width: 100%;
+        z-index: 3;
+      }
+    }
+    .imageB {
+      position: absolute;
+      top: 23%;
+      right: -5%;
+      height: 60vw;
+      width: 36vw;
+      overflow: hidden;
+      .pan {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 3;
+      }
+    }
+    .imageC {
+      position: absolute;
+      bottom: -2%;
+      left: 0;
+      height: 24vw;
+      width: 18vw;
+      overflow: hidden;
+      .cooking {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 3;
       }
     }
     .RecommandCourseCardContentWrapper {

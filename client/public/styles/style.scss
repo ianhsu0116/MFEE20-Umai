@@ -196,9 +196,9 @@ a {
 @import "./ShareCard";
 @import "./CourseMiniCard";
 @import "./CourseMiniCardSlider";
-@import "./ChefCard";
 @import "./Breadcrumb";
 @import "./CreditCards";
+@import "./Footer";
 
 // 三種不一樣的萬年曆
 @import "./Calendar"; // 一般日曆
@@ -209,7 +209,9 @@ a {
 @import "./Navbar/CartCourse";
 
 // Homepage相關
-@import "./HomePage/HomePage";
+@import "./homepage/HomePage";
+@import "./homepage/ChefCardSlider";
+@import "./ChefCard";
 
 // member相關
 @import "./member/Login";
