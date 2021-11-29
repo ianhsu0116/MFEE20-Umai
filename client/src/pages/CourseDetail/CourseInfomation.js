@@ -10,6 +10,8 @@ import CourseCost from "./CourseCost";
 import CourseRecommend from "./CourseRecommend";
 
 import CalendarAvailable from "../../components/CalendarAvailable";
+import CircleBlue from "../../components/images/circle_blue.svg";
+import CircleOrange from "../../components/images/circle_orange.svg";
 
 import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
@@ -18,6 +20,8 @@ import { GrInstagram } from "react-icons/gr";
 
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
+
+import Join from '../../components/images/JoinPicture.jpg';
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
@@ -141,12 +145,9 @@ function CourseInfomation(props) {
     //計算分數
     let scoreSum = 0
 
-
     for (let i = 0 ; i < course_Score_member ; i ++){
       scoreSum += course_Score[i].score
     }
-
-
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
@@ -255,6 +256,7 @@ function CourseInfomation(props) {
                   </a>
                 </div>
               </div>
+              
 
               <div className="Coursedetail-infoLeft">
                 <div className="Coursedetail-infoLeft-breadcrumb">
@@ -272,7 +274,7 @@ function CourseInfomation(props) {
                     </li>
                   </ul>
                 </div>
-                <div className="Coursedetail-infoLeftTitle">
+                <div className="Coursedetail-infoLeftTitle" id="batch">
                   {newCourseJSON[0].course_name}
                 </div>
                 <div className="Coursedetail-placeWithChef">
@@ -342,6 +344,9 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-shortLine"></div>
             {/* 下面是主廚外標題 */}
+
+            <img className="orange2 CourseDecorate_RWD2" src={CircleOrange} alt=""></img>
+
             <div className="Coursedetail-outsideTitle">
               {newCourseJSON[0].course_detail.title1_1}
             </div>
@@ -367,15 +372,21 @@ function CourseInfomation(props) {
             <div className="Coursedetail-outsideTitle" id="chef">
               米其林一星主廚精心準備，絕無冷場
             </div>
+            <img className="blue1 CourseDecorate_RWD3" src={CircleBlue} alt=""></img>
             <div className="Coursedetail-titleLine"></div>
             <div className="Coursedetail-outsideTitle">
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
-
+        
+            {/* <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>       */}
+              
             <div className="Coursedetail-chefCardMargin">
+            
+            
+      
               <ChefCard 
                 chefIntroduce1={newCourseJSON[0].chef_introduction.chefIntroduce1}
-                chefInfoTiele={newCourseJSON[0].chef_introduction.chefInfoTitle}
+                chefInfoTitle={newCourseJSON[0].chef_introduction.chefInfoTitle}
                 chefInfo={newCourseJSON[0].chef_introduction.chefInfo}
                 chefFirstName={newCourseJSON[0].first_name}
                 chefLastName={newCourseJSON[0].last_name}
@@ -617,18 +628,31 @@ function CourseInfomation(props) {
               content={newCourseJSON[0].course_detail.content2}
               attention={newCourseJSON[0].course_detail.content3}
             />
-
+            {/* <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img>  */}
+            <img className="orange4 CourseDecorate_RWD7" src={CircleOrange} alt=""></img>      
             <div className="Coursedetail-outsideTitle">推薦課程</div>
-            <div className="Coursedetail-titleLine"></div>
-
+            <div className="Coursedetail-titleLine"></div>    
             <CourseRecommend />
 
             <div className="Coursedetail-join">
               <span>
-                <p>立即報名</p>
+                <p className="Coursedetail-joinTitle">立即報名</p>
+                <div className="Coursedetail-joinLineWidth">
                 <div className="Coursedetail-joinLine"></div>
-                <p>馬上加入好嗎?</p>
+                </div>
+                <p>喜歡這堂課嗎?</p>
+                <p>歡迎加入我們</p>
+                <p>成為Umai的一員</p>
+                <p>讓我們帶您前往美食的世界</p>
+                <p　className="Coursedetail-joinNow" onClick={() => {
+                        if (batch === "尚未選擇") {
+                          window.location.href='#batch';
+                          alert("請先選擇梯次日期後再點擊");
+                        }
+                      }}>點擊我立即加入！</p>
               </span>
+              <img src={Join} alt=""></img>
+
             </div>
           </div>
         </div>

@@ -1,0 +1,69 @@
+.orange1{
+    position: absolute;
+    right: 0;
+    transform: rotate( 180deg);
+    top: 20vw;
+    width: 24%;
+}
+.orange2{
+    position: absolute;
+    left: -17vw;
+    width: 35%;
+   top: 30vw;
+}
+.orange3{
+    position: absolute;
+    right: -19vw;
+    width: 35%;
+    transform: rotate(180deg);
+}
+.orange4{
+    left: -19vw;
+    margin-top: 25vw;
+    width: 50%;
+    position: absolute;
+}
+.orange2-right{
+    position: absolute;
+    right: 0;
+    transform: rotate( 180deg);
+    top: 240vw;
+    width: 24%;
+}
+// 預覽課程用的
+.orangeEx{
+    z-index: -1;
+    position: absolute;
+    right: -17vw;
+    transform: rotate(180deg);
+    top: 20vw;
+    width: 36%;
+}
+.blue1{
+    position: absolute;
+    transform: rotate(180deg);
+    left: -17vw;
+    width: 60%;
+    z-index: -1;
+}
+.blue2{
+    position: absolute;
+    right: -17vw;
+    width: 60%;
+    z-index: -1;
+    margin-top: 20vw;
+}
+.blue3{
+    transform: rotate( 180deg);
+    left: -17vw;
+    margin-top: 10vw;
+    width: 35%;
+    position: absolute;
+    z-index: -1;
+}
+.blue1-right{
+    position: absolute;
+    right: 0;
+    top: 140vw;
+    width: 40%;
+}

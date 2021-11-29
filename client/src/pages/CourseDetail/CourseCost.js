@@ -1,5 +1,6 @@
 import React from 'react'
 import Food4 from '../../components/images/test/istock韓風課程.jpg';
+import CircleBlue from "../../components/images/circle_blue.svg";
 
 function CourseCost(props){
     let { content, attention } = props;
@@ -26,8 +27,9 @@ function CourseCost(props){
 
   return (
     <>
+    <img className="blue3 CourseDecorate_RWD5" src={CircleBlue} alt=""></img> 
   <div className="Coursedetail-cost">
-            
+              
             <span>
             <div className="Coursedetail-costBox">
             <p>

@@ -1,29 +1,56 @@
 import React  from "react";
 import Swal from "sweetalert2";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
+import { useState } from "react";
 
 
 const Contactus = () => {
-    const success = () => {
-      Swal.fire({
-        title: '我們將會盡快回復',
-        width: 450,
-        
-        padding: '3em',
-        background: '#fff url(../images/coffee-gfe407c465_641.png)',
-        backdrop: `
-          rgba(0,0,123,0.4)
-          url("../images/1111111111.gif")
-          right top
-          no-repeat
-        `
-        
-    }).then(function(){
-        window.location.reload();
-    });
+    // const [data, setData] = useState({});
+         
+    const success = (e) => {
+      let name=document.getElementsByName("yourname");
+      let email=document.getElementsByName("youremail");
+      let title=document.getElementsByName("yourtitle");
+      let content=document.getElementsByName("yourcontent");
+      console.log(name[0].value)
+      if(name[0].value && email[0].value && title[0].value && content[0].value){
+        Swal.fire({
+          title: '我們將會盡快回覆',
+          width: 450,
+          
+          padding: '3em',
+          background: '#fff url(../images/coffee-gfe407c465_641.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("../images/1111111111.gif")
+            right top
+            no-repeat
+          `        
+        }).then(function(){
+            window.location.reload();
+        });
+        e.preventDefault();  
+      } 
+     
    }
+   
 
+  
+
+   
+
+
+
+
+   
+
+  //  function Contact() { 
+  //  const [inputText,setInputText] = useState('')
+  //  const [textArea,setTextArea] = useState('')
+   
+   
     return (
+      <>
       <div>
       <header className="Classroom">
       <div className="contactus_breadCrum">
@@ -51,7 +78,8 @@ const Contactus = () => {
         ></iframe>
       </div>
     </div>
-
+   
+   <form action="" >   
     <div className="Detail">
       <h1 style={{top:"-17px"}}>取得聯絡</h1>
       <p>
@@ -63,40 +91,49 @@ const Contactus = () => {
               <label>
                 你的名字(必填)
                </label>
-               <textarea
-                  name="your-message"
+               <input
+                  type="text"
+                  name="yourname"
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
-                ></textarea>
+                  required
+                  // value={inputText}
+                  // onChange={(e) =>{setInputText(e.target.value)
+                  // }}
+                ></input>
             </p>
 
             <p className="Uremail">
               <label>
                 你的信箱(必填)
                </label>
-               <textarea
-                  name="your-message"
+               <input
+                  type="text"
+                  name="youremail"
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
-                ></textarea>
+                  required
+                ></input>
             </p>
          </div>
 
-          <p style={{margin: "0", padding: "0"}} class="Urtitle">
+          <p style={{margin: "0", padding: "0",width: "600px"}} class="Urtitle">
             <label
               >主旨<br />
               </label>
-              <textarea
-                  name="your-message"
+              <input
+                  type="text"
+                  name="yourtitle"
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
-                ></textarea>
+                  required
+                ></input>
           </p>
 
           <p style={{margin: "0", padding: "0",top:"20px"}} class="Urcontent">
@@ -104,11 +141,15 @@ const Contactus = () => {
               </label>
               內容<br />
                 <textarea
-                  name="your-message"
+                  name="yourcontent"
                   cols="73"
                   rows="24"
                   class=""
                   aria-invalid="false"
+                  required
+                  // value={textArea}
+                  // onChange={(e) =>{setTextArea(e.target.value)
+                  // }}
                 ></textarea>
           </p>
       </div>  
@@ -121,8 +162,12 @@ const Contactus = () => {
         <div className="" aria-hidden="true"></div>
         <div className="Trapezoid"></div>
     </div>
+  </form>  
   </div>
-    )
+  </>
+    );
 }
+
+
 
 export default Contactus

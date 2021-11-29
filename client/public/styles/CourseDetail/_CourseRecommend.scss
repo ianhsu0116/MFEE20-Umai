@@ -32,10 +32,23 @@
 	.Coursedetail-recommendMask:hover {
 		cursor: pointer;
 		background-color: RGBA(50, 50, 50, 0.7);
+		transition: background-color 0.5s;
 		.Coursedetail-recommendInfo {
 			opacity: 1;
 			transition: opacity 0.5s;
 			cursor: pointer;
+		}
+		.Coursedetail-recommendTitle{
+			opacity: 1;
+			transition: opacity 0.5s;
+		}
+		.Coursedetail-recommendLine{
+			opacity: 1;
+			transition: opacity 0.5s;
+		}
+		.Coursedetail-recommendName{
+			opacity: 1;
+			transition: opacity 0.5s;
 		}
 	}
 }
@@ -49,20 +62,23 @@
 	position: relative;
 	color: white;
 	padding-top: 5vw;
+	opacity: 0;
 }
 .Coursedetail-recommendLine {
 	width: 80%;
 	border-radius: 5px;
-	border: 2px solid #ffffff;
+	border: 1px solid #ffffff;
 	background-color: #ffffff;
 	position: relative;
 	margin: auto;
+	opacity: 0;
 }
 .Coursedetail-recommendName {
 	text-align: center;
 	font-size: 1.5vw;
 	position: relative;
 	color: white;
+	opacity: 0;
 }
 .Coursedetail-recommendInfo {
 	text-align: left;
@@ -73,27 +89,28 @@
 	color: white;
 	padding-top: 2vw;
 	opacity: 0;
-	transition: opacity 0.5s;
+	// transition: opacity 0.5s;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 6;
 	overflow: hidden;
+	font-weight: 500;
 	// font-size: 24px;
 }
 .Coursedetail-recommendClick {
-	font-size: 1.8vw;
-	width: 100%;
 	text-align: center;
-	text-indent: initial;
-	padding-top: 5vw;
-	position: absolute;
-	top: 65%;
+    text-indent: initial;
+    padding-top: 3vw;
+    position: relative;
+    opacity: 1;
+    width: 35%;
+    border-bottom: 1px solid;
+    font-size: 1.2vw;
 }
 .Coursedetail-recommendMask {
 	position: absolute;
 	height: 105%;
 	width: 100%;
-	background-color: RGBA(0, 0, 0, 0.1);
 }
 .Coursedetail-recommendFlag {
 	clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);

@@ -123,16 +123,12 @@ router.put("/password", async (req, res) => {
     );
     oldPassword = oldPassword[0].password;
 
-    // 比對密碼確認
+    // 比對新舊密碼
     let isCompare = await bcrypt.compare(passwordConfirm, oldPassword);
 
-    // 密碼確認不符合
+    // 新舊密碼不符合
     if (!isCompare)
       return res.status(401).json({ success: false, code: "G005" });
-
-    // 比對新設定的密碼是否跟舊的一樣(一樣就等於沒改)
-    if (passwordConfirm === newPassword)
-      return res.status(401).json({ success: false, code: "G008" });
 
     // 將新密碼加密
     let hashedPassword = await bcrypt.hash(newPassword, 10);
@@ -383,14 +379,16 @@ router.get("/member/chefName", async (req, res) => {
   try {
     let result = await connection.queryAsync(
       "SELECT member.id , member.first_name , last_name , member.chef_introduction , member.member_category  FROM member WHERE member_category = 2 AND valid = ?",
-      [id, 1]
+      [id , 1]
     );
-
+    
+    
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
+
 
 module.exports = router;

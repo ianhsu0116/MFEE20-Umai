@@ -266,10 +266,24 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
+@import "./CourseDetail//CourseDecorate";
 
 // 主廚
 @import "./chef/chef";
 
+// shoppingcart-shoppingcart
+@import "./shoppingCart/shoppingCart/ShoppingCart";
+@import "./shoppingCart/shoppingCart/CourseList";
+@import "./shoppingCart/shoppingCart/CourstDetail";
+
+// shoppingcart-shoppinglist
+@import "./shoppingCart/shoppingList/ShoppingList";
+@import "./shoppingCart/shoppingList/ShoppingBill";
+
+//PamentWayMethod
+@import "./shoppingCart/pamentMethod/PamentMethod";
+@import "./shoppingCart/pamentMethod/PamentWay";
+@import "./shoppingCart/pamentMethod/Receipt";
 //關於我們
 @import "./about/about";
 
@@ -293,28 +307,46 @@ $header-border: 3px solid $activeColor; // title的左border
   .MemberInfo-container-row {
     width: 100% !important;
   }
+  
+	.CourseDetail-headerPicture {
+		width: 90%;
 
-  .CourseDetail-headerPicture {
-    width: 90%;
-
-    // ian 移除（確保圖片不壓縮）
-    // img {
-    //   height: 35vw;
-    // }
-  }
-  .Coursedetail {
-    /* 三圖片大框 */
-    .Coursedetail-header {
-      width: 90%;
-      height: 35vw;
-    }
-  }
-  .Coursedetail-set {
-    .Coursedetail-container {
-      width: 90%;
-    }
-  }
-  .chef-set {
-    width: 90%;
-  }
+		// ian 移除（確保圖片不壓縮）
+		// img {
+		//   height: 35vw;
+		// }
+	}
+	.Coursedetail {
+		/* 三圖片大框 */
+		.Coursedetail-header {
+			width: 90%;
+			height: 35vw;
+		}
+	}
+	.Coursedetail-set {
+		.Coursedetail-container {
+			width: 90%;
+		}
+	}
+	.chef-set {
+		width: 90%;
+	}
+	.CourseDecorate_RWD1 {
+		width: 22%;
+	}
+	.CourseDecorate_RWD2 {
+		width: 35%;
+		top: 22vw;
+	}
+	.CourseDecorate_RWD5 {
+		width: 30%;
+	}
+	.CourseDecorate_RWD6{
+		margin-top: 10vw;
+	}
+	.CourseDecorate_RWDEx{
+		width: 30%;
+		top: 14vw;
+		right: -5vw;
+	}
 }

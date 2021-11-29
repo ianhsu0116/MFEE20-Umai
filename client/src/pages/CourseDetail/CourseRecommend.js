@@ -1,5 +1,6 @@
 import React from 'react'
 import Food3 from '../../components/images/test/istock韓風課程.jpg';
+import CircleOrange from "../../components/images/circle_orange.svg";
 
 function CourseRecommend(props){
    
@@ -7,7 +8,7 @@ function CourseRecommend(props){
        
 
   return (
-    <>
+    <>  
             <div className="Coursedetail-recommend">
             <div className="Coursedetail-recommendLeft">
                     <img src={Food3} alt=""></img>
@@ -17,22 +18,10 @@ function CourseRecommend(props){
                         <div className="Coursedetail-recommendLine"></div>
                         <div className="Coursedetail-recommendName">如何開始料理</div>
                         <div className="Coursedetail-recommendInfo">{recommendText}{recommendText}</div>
-                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解詳細課程</div>
+                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解更多</div>
                     </div>
                 </div>
                 
-
-                <div className="Coursedetail-recommendLeft">
-                    <img src={Food3} alt="" ></img>
-                    <div className="Coursedetail-recommendMask">
-                        <div className="Coursedetail-recommendFlag"><p>日式料理</p></div>
-                        <div className="Coursedetail-recommendTitle">難度:中級</div>
-                        <div className="Coursedetail-recommendLine"></div>
-                        <div className="Coursedetail-recommendName">如何開始料理</div>
-                        <div className="Coursedetail-recommendInfo">{recommendText}{recommendText}</div>
-                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解詳細課程</div>
-                    </div>
-                </div>
 
                 <div className="Coursedetail-recommendLeft">
                     <img src={Food3} alt=""></img>
@@ -42,7 +31,18 @@ function CourseRecommend(props){
                         <div className="Coursedetail-recommendLine"></div>
                         <div className="Coursedetail-recommendName">如何開始料理</div>
                         <div className="Coursedetail-recommendInfo">{recommendText}{recommendText}</div>
-                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解詳細課程</div>
+                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解更多</div>
+                    </div>
+                </div>
+                <div className="Coursedetail-recommendLeft">
+                    <img src={Food3} alt=""></img>
+                    <div className="Coursedetail-recommendMask">
+                        <div className="Coursedetail-recommendFlag"><p>日式料理</p></div>
+                        <div className="Coursedetail-recommendTitle">難度:中級</div>
+                        <div className="Coursedetail-recommendLine"></div>
+                        <div className="Coursedetail-recommendName">如何開始料理</div>
+                        <div className="Coursedetail-recommendInfo">{recommendText}{recommendText}</div>
+                        <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解更多</div>
                     </div>
                 </div>
                 {/* <div className="Coursedetail-recommendRight">

@@ -1,13 +1,17 @@
 import React from "react";
-import { useState } from "react";
-import CourBody from "./CourseInfomation";
+import CircleOrange from "../../components/images/circle_orange.svg";
+import CircleBlue from "../../components/images/circle_blue.svg";
 
 
 function CourseHeaderPicture(props) {
   let { image1, image2, image3 } = props;
   return (
     <>
+      <img className="orange1 CourseDecorate_RWD1" src={CircleOrange} alt=""></img>
+      <img className="orange2-right CourseDecorate_RWD6" src={CircleOrange} alt=""></img>
+      <img className="blue1-right CourseDecorate_RWD4" src={CircleBlue} alt=""></img>       
       <div className="Coursedetail CoursedetailMargin">
+      {/* <img className="orange1" src={CircleOrange} alt=""></img> */}
         <div
           id="carouselExampleIndicators"
           className="carousel slide CourseDetail-headerPicture"
