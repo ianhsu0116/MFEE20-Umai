@@ -23,6 +23,13 @@ function ChefCard2(props) {
     }
   }, [chefInfomation]);
 
+  // 點擊window關閉編輯模式
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      setInputMode([false, false, false, false]);
+    });
+  }, []);
+
   // input 和 文字展示的切換
   const handleModeChange = (e, index) => {
     e.stopPropagation();

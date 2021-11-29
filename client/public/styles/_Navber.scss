@@ -61,12 +61,10 @@
         justify-content: center;
         &:hover {
           transform: scale(1.1);
-          background: $themeColorBlue;
+          // background: $themeColorBlue;
           //fill: white;
         }
-        &:hover svg {
-          fill: white;
-        }
+
         .Navbar-container-item-btn2-cart {
           fill: $themeColor;
         }
