@@ -8,7 +8,7 @@ const registerValidation = (data) => {
       .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-    password: Joi.string().min(8).max(255).required(),
+    password: Joi.string().min(8).max(12).required(),
   });
 
   return schema.validate(data); // 直接 return schema.validate(data)的結果
@@ -22,7 +22,7 @@ const loginValidation = (data) => {
       .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-    password: Joi.string().min(8).max(255).required(),
+    password: Joi.string().min(8).max(12).required(),
   });
   return schema.validate(data);
 };
@@ -44,7 +44,7 @@ const userInfoValidation = (data) => {
 // password 格式
 const passwordValidation = (data) => {
   const schema = Joi.object({
-    newPassword: Joi.string().min(8).max(255).required(),
+    newPassword: Joi.string().min(8).max(12).required(),
   });
 
   return schema.validate(data);

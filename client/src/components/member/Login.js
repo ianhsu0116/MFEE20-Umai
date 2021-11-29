@@ -10,6 +10,7 @@ import UmaiLogo from "../images//Umai.png";
 import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const Login = (props) => {
   // 存放當前使用者資料
@@ -129,6 +130,17 @@ const Login = (props) => {
       // 註冊成功，將錯誤訊息清除
       setErrorMsg("");
 
+      // 重開一次loginCon, 因為直接切回loginMode會有霸個(不知名)
+      setShowLogin(false);
+      setShowLogin(true);
+
+      // 清空註冊input資料
+      setAccountData({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+
       // 通知使用者可以登入了
       Swal.fire({
         icon: "success",
@@ -136,9 +148,6 @@ const Login = (props) => {
         showConfirmButton: false,
         timer: 1500,
       });
-
-      // 調回登入模式
-      setCurrentMode("login");
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -201,6 +210,22 @@ const Login = (props) => {
     }
   };
 
+  // 切換登入/註冊模式
+  const handleChangeMode = (e) => {
+    currentMode === "login"
+      ? setCurrentMode("register")
+      : setCurrentMode("login");
+    // setCurrentMode("register");
+    // 重置當前輸入的資料
+    setAccountData({
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+    //重置錯誤訊息
+    setErrorMsg("");
+  };
+
   // 判斷密碼找回email有無超過十個字
   useEffect(() => {
     if (findPasswordEmail.length > 10) {
@@ -227,7 +252,7 @@ const Login = (props) => {
         // 清空錯誤訊息
         setErrorMsg2("");
 
-        // 清空input
+        // 清空忘記密碼input
         setFindPasswordEmail("");
 
         // 關閉密碼找回使窗
@@ -374,19 +399,10 @@ const Login = (props) => {
                 </button>
                 <button
                   className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-                  onClick={() => {
-                    setCurrentMode("register");
-                    // 重置當前輸入的資料
-                    setAccountData({
-                      email: "",
-                      password: "",
-                      confirmPassword: "",
-                    });
-                    //重置錯誤訊息
-                    setErrorMsg("");
-                  }}
+                  onClick={handleChangeMode}
                 >
-                  快速註冊
+                  <p>快速註冊</p>
+                  <IoIosArrowForward />
                 </button>
               </div>
             </div>
@@ -499,27 +515,16 @@ const Login = (props) => {
               <div className="Login-container-right-bottom">
                 <button
                   className="Login-container-right-bottom-btn"
-                  onClick={() => {
-                    setFindPasswordOpen(true);
-                  }}
-                >
-                  忘記密碼?
-                </button>
+                  // onClick={() => {
+                  //   setFindPasswordOpen(true);
+                  // }}
+                ></button>
 
                 <button
                   className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-                  onClick={() => {
-                    setCurrentMode("login");
-                    // 重置當前輸入的資料
-                    setAccountData({
-                      email: "",
-                      password: "",
-                      confirmPassword: "",
-                    });
-                    //重置錯誤訊息
-                    setErrorMsg("");
-                  }}
+                  onClick={handleChangeMode}
                 >
+                  <IoIosArrowBack />
                   登入
                 </button>
               </div>
@@ -534,6 +539,11 @@ const Login = (props) => {
           className="Login-findPassword"
           onClick={(e) => {
             e.stopPropagation();
+            // 清空錯誤訊息
+            setErrorMsg2("");
+            // 清空忘記密碼input
+            setFindPasswordEmail("");
+            // 關閉忘記密碼視窗
             setFindPasswordOpen(false);
           }}
         >
