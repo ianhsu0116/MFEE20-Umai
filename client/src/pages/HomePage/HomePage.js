@@ -20,7 +20,7 @@ import cooking from "../../components/images/cooking.png";
 import ShareCard from "../../components/ShareCard";
 import CourseMiniCard from "../../components/CourseMiniCard";
 import CourseMiniCardSlider from "../../components/CourseMiniCardSlider";
-import ChefCard from "../../components/ChefCard";
+import ChefCard from "../../components/ChefCard2";
 
 import ChefCardSlider from "../../components/homepage/ChefCardSlider";
 

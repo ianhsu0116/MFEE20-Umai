@@ -9,7 +9,7 @@ import Food3 from "../../components/images/test/istock辣海鮮.jpg";
 import Food4 from "../../components/images/test/istock韓風課程.jpg";
 import Food5 from "../../components/images/test/photoAC炸醬麵.jpg";
 import Food6 from "../../components/images/test/photoAC石鍋拌飯.jpg";
-import ChefCard from "../../components/ChefCard";
+import ChefCard from "../../components/ChefCard2";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";
@@ -258,8 +258,8 @@ function CourseInfomation(props) {
                   <ul>
                     <li
                       onClick={() => {
-                        if(batch === "尚未選擇"){
-                          alert('請先選擇梯次日期後再點擊');
+                        if (batch === "尚未選擇") {
+                          alert("請先選擇梯次日期後再點擊");
                         }
                       }}
                     >
@@ -268,21 +268,15 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        if(batch === "尚未選擇"){
-                          alert('請先選擇梯次日期後再點擊');
+                        if (batch === "尚未選擇") {
+                          alert("請先選擇梯次日期後再點擊");
                         }
                       }}
                     >
                       現在報名
                     </li>
                     <li>|</li>
-                    <li
-                      onClick={() => {
-                     
-                      }}
-                    >
-                      評論區
-                    </li>
+                    <li onClick={() => {}}>評論區</li>
                   </ul>
                 </div>
               </div>

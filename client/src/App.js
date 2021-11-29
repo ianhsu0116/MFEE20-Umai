@@ -7,10 +7,16 @@ import Navbar from "./components/Navbar";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
+import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
+import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
+import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
+
+// 測試元件區
 import Masonry from "./pages/Masonry/Masonry";
 import Forum from "./pages/Forum/Forum";
 import Discussion from "./pages/Forum/Discussion";
 
+import Contactus from "./pages/Contactus/Contactus";
 import About from "./pages/About/About";
 import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
@@ -19,7 +25,7 @@ import CourseDetail from "./pages/CourseDetail/CourseInfomation";
 import CourseStar from "./pages/CourseDetail/CourseStar";
 import DefaultStudentCard from "./components/DefaultStudentCard";
 import StarGroup from "./components/StarGroup";
-import ChefCard from "./components/ChefCard";
+import ChefCard from "./components/ChefCard2";
 import CourseMiniCard from "./components/CourseMiniCard";
 import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
@@ -106,61 +112,6 @@ function App() {
   const ExperienceShareListLeft = ["故事牆"];
   //體驗分享右
   const ExperienceShareListRight = ["討論區"];
-  // //將選購課程的詳細資料，存入state中
-  // async function addCourseInfoIntoCart(course_id) {
-  //   //驗證該課程是否已經被加入購物車、有無重複加入購物車
-  //   let isCourseAdded = await cartCourseInfoList.filter((obj) => {
-  //     return obj.id === course_id;
-  //   });
-  //   if (isCourseAdded === []) {
-  //     //該課程尚未加入購物車
-  //     let res = courseService.course_courseId(course_id);
-  //     let { newCourseInfo } = (await res).data;
-  //     newCourseInfo["cartCourseCount"] = 1;
-  //     setCartCourseInfoList([...cartCourseInfoList, newCourseInfo]);
-  //   } else if (isCourseAdded !== [] && isCourseAdded.length === 1) {
-  //     //該課程已加入購物車，增加報名人數(無重複加入購物車)
-  //     isCourseAdded["cartCourseCount"] >= 1 &&
-  //     isCourseAdded["cartCourseCount"] <=
-  //       isCourseAdded["member_limit"] - isCourseAdded["member_count"]
-  //       ? (isCourseAdded["cartCourseCount"] =
-  //           isCourseAdded["cartCourseCount"] + 1)
-  //       : console.log("已達報名人數上限");
-  //     //[waiting]待新增 於加入溝物車時 處理 "已達報名人數上限" 的function
-  //     let newCartCourseInfoList = cartCourseInfoList;
-  //     newCartCourseInfoList["cartCourseCount"] =
-  //       isCourseAdded["cartCourseCount"];
-  //     setCartCourseInfoList(newCartCourseInfoList);
-  //   }
-  // }
-
-  // //檢查購物車是否有異常狀況(重複加入購物車)，若有異常則更新購物車
-  // async function handleCartException() {
-  //   // 產生一個包含當前購物車所有課程id的陣列，例：[1,2,3,1,5,6]
-  //   let courseIdArray = cartCourseInfoList.map((obj) => obj.id);
-  //   let newCartCourseInfoList = [];
-  //   //逐一比對購物車內容，並去除重複課程、更新購物車state
-  //   courseIdArray.forEach((courseId) => {
-  //     if (
-  //       newCartCourseInfoList.find((obj) => obj.id === courseId) === undefined
-  //     ) {
-  //       newCartCourseInfoList = [
-  //         ...newCartCourseInfoList,
-  //         cartCourseInfoList.find((obj) => obj.id === courseId),
-  //       ];
-  //     }
-  //   });
-  //   setCartCourseInfoList(newCartCourseInfoList);
-  // }
-
-  // // 頁面首次render與購物車有增減時要檢查
-  // useEffect(() => {
-  //   try {
-  //     // handleCartException();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [cartCourseInfoList]);
 
   return (
     <Router>
@@ -200,6 +151,9 @@ function App() {
             {/* <h4>可多選萬年曆</h4> */}
             {/* <CalendarMulti onChange={onChange} /> */}
           </Route>
+          <Route path="/ShoppingCart" exact>
+            <ShoppingCart currentUser={currentUser} />
+          </Route>
           <Route path="/memberCenter" exact>
             <MemberCenter
               currentUser={currentUser}
@@ -222,9 +176,21 @@ function App() {
           <Route path="/about" exact>
             <About />
           </Route>
+          <Route path="/contactus" exact>
+            <Contactus />
+          </Route>
           <Route path="/courses/:course_id" exact>
             <CourseDetail />
           </Route>
+          <Route path="/ShoppingList" exact>
+            <ShoppingList currentUser={currentUser} />
+          </Route>
+          <Route path="/PaymentMethod" exact>
+            <PaymentMethod currentUser={currentUser} />
+          </Route>
+          {/* <Route path="/Items" exact>
+          <Items />
+        </Route> */}
           <Route path="/chef" exact>
             <Chef />
           </Route>

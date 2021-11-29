@@ -89,6 +89,16 @@ module.exports = (passport) => {
             [[email, id, given_name, family_name, now]]
           );
 
+          // 取出新的id
+          let { insertId } = result;
+          // 優惠券期限
+          let nowPlus30 = new Date(Date.now() + 2592000000);
+          // 送新用戶一張優惠券
+          let couponsResult = await connection.queryAsync(
+            "INSERT INTO member_coupons (member_id, coupons_id, expire_date, status, valid) VALUES (?)",
+            [[insertId, 5, nowPlus30, 1, 1]]
+          );
+
           // 製作一個要回覆給前端的 member date
           let returnMember = {
             id: result.insertId,
@@ -185,6 +195,16 @@ module.exports = (passport) => {
           let result = await connection.queryAsync(
             "INSERT INTO member (email, facebookId, first_name, last_name, created_time) VALUES (?)",
             [[email, id, givenName, familyName, now]]
+          );
+
+          // 取出新的id
+          let { insertId } = result;
+          // 優惠券期限
+          let nowPlus30 = new Date(Date.now() + 2592000000);
+          // 送新用戶一張優惠券
+          let couponsResult = await connection.queryAsync(
+            "INSERT INTO member_coupons (member_id, coupons_id, expire_date, status, valid) VALUES (?)",
+            [[insertId, 5, nowPlus30, 1, 1]]
           );
 
           // 製作一個要回覆給前端的 member date

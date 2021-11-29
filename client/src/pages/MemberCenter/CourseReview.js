@@ -4,7 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 
 import sliderBasic from "../../components/images/sliderBasic.png";
 import imageBasic from "../../components/images/imageBasic.png";
-import ChefCard from "../../components/ChefCard";
+import ChefCard from "../../components/ChefCard2";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";

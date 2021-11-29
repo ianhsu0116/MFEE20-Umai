@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import ChefCard from "../ChefCard";
+import ChefCard from "../ChefCard2";
 
 export default class Responsive extends Component {
   render() {
