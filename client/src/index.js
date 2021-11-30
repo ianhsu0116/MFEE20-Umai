@@ -12,7 +12,8 @@ export const pathnameList = [
   '/about',
   '/masonry',
   '/chef',
-  '/contactus'
+  '/contactus',
+  '/forum'
 ]
 
 export const pathnameTextList = [
@@ -20,7 +21,8 @@ export const pathnameTextList = [
   '/關於我們',
   '/課程體驗',
   '/主廚殿堂',
-  '/聯絡我們'
+  '/聯絡我們',
+  '/討論區'
 ]
 
 ReactDOM.render(

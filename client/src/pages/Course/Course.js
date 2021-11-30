@@ -13,23 +13,23 @@ import getValidMessage from "../../validMessage/validMessage";
 function Course (props){
 
   const { location } = props;
-  let category_number = location.search.slice(1);
-  console.log(location)
+  // let category_number = location.search.slice(1);
+  // console.log(location)
   const [selectedOptionLevel, setSelectedOptionLevel] = useState('')
   const [selectedOptionDate, setSelectedOptionDate] = useState('')
   const [selectedOptionStart, setSelectedOptionStart] = useState('')
 
   const [dataC, setDataC] = useState('日式料理')
 
-  useEffect(async () => {
-    try {
-      let result = await CategoryService.categoryID(category_number);
-      console.log(result.data)
-      return
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // useEffect(async () => {
+  //   try {
+  //     let result = await CategoryService.categoryID(category_number);
+  //     console.log(result.data)
+  //     return
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   return (
     <>

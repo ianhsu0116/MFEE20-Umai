@@ -19,7 +19,7 @@ router.use((req, res, next) => {
   
     try {
       let result = await connection.queryAsync(
-        "SELECT category_name FROM course_category WHERE valid = 1",
+        "SELECT category_name FROM course_category WHERE id=? AND valid = 1",
         [category_id , 1]
       );
       console.log(category_id)
