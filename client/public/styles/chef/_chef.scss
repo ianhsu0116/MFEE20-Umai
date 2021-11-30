@@ -1,143 +1,75 @@
 .chef-set {
-	width: 70vw;
-	max-width: 1440px;
-<<<<<<< HEAD
-	margin: 63px auto 0 auto;
+  width: 70vw;
+  max-width: 1440px;
+  margin: 63px auto 0 auto;
 }
 
 .chef-title {
-	font-style: normal;
-	font-weight: 700;
-	font-size: 2.8vw;
-	line-height: 55px;
-	margin-left: 1.5vw;
-	color: #d8a466;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vw;
+  line-height: 55px;
+  margin-left: 1.5vw;
+  color: #d8a466;
 }
 .chef-infomationBox {
-	display: flex;
+  display: flex;
 }
 .chef-ul {
-	width: 15vw;
-	padding: 1em 0;
-	height: 100%;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
+  width: 15vw;
+  padding: 1em 0;
+  height: 100%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 .chef-li {
-	background: #ffffff;
-	text-align: center;
-	margin: auto;
-	height: 2.5vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.5em;
-	cursor: pointer;
-	border-bottom: #666 1px solid;
-	width: 80%;
-	svg {
-		color: $activeColor;
-	}
+  background: #ffffff;
+  text-align: center;
+  margin: auto;
+  height: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  border-bottom: #666 1px solid;
+  width: 80%;
+  svg {
+    color: $activeColor;
+  }
 }
 .chef-li:hover {
-	color: $activeColor;
-	margin: auto;
-	font-size: 1.6em;
-	transition: font-size 0.05s;
+  color: $activeColor;
+  margin: auto;
+  font-size: 1.6em;
+  transition: font-size 0.05s;
 }
 .chef-liActive {
-	color: $activeColor;
-	margin: auto;
-	font-size: 1.6em;
+  color: $activeColor;
+  margin: auto;
+  font-size: 1.6em;
 }
 .chef-arrow {
-	padding-top: 0.6vw;
-	opacity: 0;
-	position: absolute;
-	right: 0;
+  padding-top: 0.6vw;
+  opacity: 0;
+  position: absolute;
+  right: 0;
 }
 .chef-arrowActive {
-	padding-top: 0.6vw;
-	opacity: 1;
-	position: absolute;
-	right: 0;
+  padding-top: 0.6vw;
+  opacity: 1;
+  position: absolute;
+  right: 0;
 }
 .chef-cardAndCourseCard {
-	display: flex;
-	height: 100%;
-	margin: 0 auto;
-	flex-direction: column;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
 }
 .chef-margin {
-	margin: auto;
+  margin: auto;
 }
 .chef-courseCardMargin {
-	margin-left: 90px;
+  margin-left: 90px;
 }
-=======
-    margin: auto;
-}
-
-.chef-title{
-font-style: normal;
-font-weight: 700;
-font-size: 48px;
-line-height: 55px;
-margin-left: 30px;
-color: #d8a466;
-}
-.chef-infomationBox{
-    display: flex;
-}
-.chef-ul{
-    width: 220px;
-    border: black 1px solid;
-    padding: 10px 0;
-}
-.chef-li{
-    background: #ffffff;
-    width: 90%;
-    text-align: center;
-    margin: auto;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: darkgray 1px solid;
-}
-.chef-li:hover{
-    background-color: $activeColor;
-    width: 90%;
-    margin: auto;
-    font-size: 20px;
-}
-.chef-liActive{
-    width: 100%;
-    background-color: $activeColor;
-    border:none;
-
-}
-.chef-liActive:hover{
-    width: 100%;
-    background-color: $activeColor;
-   
-}
-.chef-liLine{
-    background-color:darkgray;
-    height: 1px;
-    width: 90%;
-    margin: auto;
-}
-.chef-cardAndCourseCard{
-    display: flex;
-    height: 100%;
-    margin: 0 auto;
-    flex-direction: column;
-}
-.chef-margin{
-    margin: auto;
-}
-.chef-courseCardMargin{
-    margin-left:90px;
-}
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a

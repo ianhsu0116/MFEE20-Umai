@@ -10,10 +10,7 @@ import UmaiLogo from "../images//Umai.png";
 import { GOOGLE_CLIENT_ID, FACEBOOK_CLIENT_ID } from "../../config/config";
 import { BsPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
-<<<<<<< HEAD
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 const Login = (props) => {
   // 存放當前使用者資料
@@ -133,7 +130,6 @@ const Login = (props) => {
       // 註冊成功，將錯誤訊息清除
       setErrorMsg("");
 
-<<<<<<< HEAD
       // 重開一次loginCon, 因為直接切回loginMode會有霸個(不知名)
       setShowLogin(false);
       setShowLogin(true);
@@ -145,8 +141,6 @@ const Login = (props) => {
         confirmPassword: "",
       });
 
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       // 通知使用者可以登入了
       Swal.fire({
         icon: "success",
@@ -154,12 +148,6 @@ const Login = (props) => {
         showConfirmButton: false,
         timer: 1500,
       });
-<<<<<<< HEAD
-=======
-
-      // 調回登入模式
-      setCurrentMode("login");
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -222,7 +210,6 @@ const Login = (props) => {
     }
   };
 
-<<<<<<< HEAD
   // 切換登入/註冊模式
   const handleChangeMode = (e) => {
     currentMode === "login"
@@ -239,8 +226,6 @@ const Login = (props) => {
     setErrorMsg("");
   };
 
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   // 判斷密碼找回email有無超過十個字
   useEffect(() => {
     if (findPasswordEmail.length > 10) {
@@ -267,11 +252,7 @@ const Login = (props) => {
         // 清空錯誤訊息
         setErrorMsg2("");
 
-<<<<<<< HEAD
         // 清空忘記密碼input
-=======
-        // 清空input
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         setFindPasswordEmail("");
 
         // 關閉密碼找回使窗
@@ -418,26 +399,10 @@ const Login = (props) => {
                 </button>
                 <button
                   className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-<<<<<<< HEAD
                   onClick={handleChangeMode}
                 >
                   <p>快速註冊</p>
                   <IoIosArrowForward />
-=======
-                  onClick={() => {
-                    setCurrentMode("register");
-                    // 重置當前輸入的資料
-                    setAccountData({
-                      email: "",
-                      password: "",
-                      confirmPassword: "",
-                    });
-                    //重置錯誤訊息
-                    setErrorMsg("");
-                  }}
-                >
-                  快速註冊
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                 </button>
               </div>
             </div>
@@ -550,7 +515,6 @@ const Login = (props) => {
               <div className="Login-container-right-bottom">
                 <button
                   className="Login-container-right-bottom-btn"
-<<<<<<< HEAD
                   // onClick={() => {
                   //   setFindPasswordOpen(true);
                   // }}
@@ -561,29 +525,6 @@ const Login = (props) => {
                   onClick={handleChangeMode}
                 >
                   <IoIosArrowBack />
-=======
-                  onClick={() => {
-                    setFindPasswordOpen(true);
-                  }}
-                >
-                  忘記密碼?
-                </button>
-
-                <button
-                  className="Login-container-right-bottom-btn Login-container-right-bottom-btnBlue"
-                  onClick={() => {
-                    setCurrentMode("login");
-                    // 重置當前輸入的資料
-                    setAccountData({
-                      email: "",
-                      password: "",
-                      confirmPassword: "",
-                    });
-                    //重置錯誤訊息
-                    setErrorMsg("");
-                  }}
-                >
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   登入
                 </button>
               </div>
@@ -598,14 +539,11 @@ const Login = (props) => {
           className="Login-findPassword"
           onClick={(e) => {
             e.stopPropagation();
-<<<<<<< HEAD
             // 清空錯誤訊息
             setErrorMsg2("");
             // 清空忘記密碼input
             setFindPasswordEmail("");
             // 關閉忘記密碼視窗
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             setFindPasswordOpen(false);
           }}
         >

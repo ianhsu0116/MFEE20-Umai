@@ -21,11 +21,8 @@ import { GrInstagram } from "react-icons/gr";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
-<<<<<<< HEAD
-import Join from '../../components/images/JoinPicture.jpg';
+import Join from "../../components/images/JoinPicture.jpg";
 
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
   const { location } = props;
@@ -80,15 +77,16 @@ function CourseInfomation(props) {
         content2: "", // 費用包含內容
         content3: "", // 注意事項說明
       },
-      chef_introduction:[
+      chef_introduction: [
         {
-          chefInfo:"",
-          chefInfoTitle:"",
-          chefIntroduce1: ""
-        }],
-        avatar:"",
-        first_name:"",
-        last_name:"",
+          chefInfo: "",
+          chefInfoTitle: "",
+          chefIntroduce1: "",
+        },
+      ],
+      avatar: "",
+      first_name: "",
+      last_name: "",
 
       // 下方是table內的獨立欄位，不是存在json內
       course_name: "", // 課程名稱
@@ -106,51 +104,57 @@ function CourseInfomation(props) {
   ]);
 
   // 抓取課程JSON
-  const [course_batchJSON , setCourse_batchJSON ] = useState({})
+  const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
-  const [batch_member , setBatch_member] = useState(0)
+  const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
-  const [course_Score , setCourse_Score] = useState(0)
+  const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
-  const [course_Score_member , setCourse_Score_member] = useState(0)
+  const [course_Score_member, setCourse_Score_member] = useState(0);
 
   useEffect(async () => {
     try {
       let result = await CourseService.course_courseId(id_number);
       result.data.course[0].chef_introduction = JSON.parse(
-      result.data.course[0].chef_introduction
-        );
-      result.data.course[0].course_detail = JSON.parse(
-      result.data.course[0].course_detail
+        result.data.course[0].chef_introduction
       );
-      console.log(result.data.course_comment[0])
+      result.data.course[0].course_detail = JSON.parse(
+        result.data.course[0].course_detail
+      );
+      console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
-      setCourse_batchJSON(result.data.course_batch)
-      setCourse_Score(result.data.course_comment)
-      setCourse_Score_member(result.data.course_comment.length)
-      return
+      setCourse_batchJSON(result.data.course_batch);
+      setCourse_Score(result.data.course_comment);
+      setCourse_Score_member(result.data.course_comment.length);
+      return;
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   // 現在年月日 用來判斷從後台抓來的日期是否能用
-  let nowdate = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + ((new Date().getDate()) < 10 ? ("0"+new Date().getDate()) : new Date().getDate())
-  let course_batch = []
+  let nowdate =
+    new Date().getFullYear() +
+    "-" +
+    (new Date().getMonth() + 1) +
+    "-" +
+    (new Date().getDate() < 10
+      ? "0" + new Date().getDate()
+      : new Date().getDate());
+  let course_batch = [];
 
-  for( let i = 0  ; i < course_batchJSON.length  ; i++)
-  {
-    if(course_batchJSON[i].batch_date > nowdate){
-      course_batch.push(
-      course_batchJSON[i].batch_date
-    )}}
-
-    //計算分數
-    let scoreSum = 0
-
-    for (let i = 0 ; i < course_Score_member ; i ++){
-      scoreSum += course_Score[i].score
+  for (let i = 0; i < course_batchJSON.length; i++) {
+    if (course_batchJSON[i].batch_date > nowdate) {
+      course_batch.push(course_batchJSON[i].batch_date);
     }
+  }
+
+  //計算分數
+  let scoreSum = 0;
+
+  for (let i = 0; i < course_Score_member; i++) {
+    scoreSum += course_Score[i].score;
+  }
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
@@ -177,10 +181,10 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
-    for (let i = 0 ; i <course_batchJSON.length ; i++){
-      if (e == course_batchJSON[i].batch_date){
-        setBatch_member(course_batchJSON[i].member_count)
-        console.log(batch_member)
+    for (let i = 0; i < course_batchJSON.length; i++) {
+      if (e == course_batchJSON[i].batch_date) {
+        setBatch_member(course_batchJSON[i].member_count);
+        console.log(batch_member);
       }
     }
   };
@@ -243,7 +247,10 @@ function CourseInfomation(props) {
                     &nbsp;位
                   </span>
                 </div>
-                <StarGroup Score={Math.round((scoreSum/course_Score_member)*10)/10} percent={course_Score_member} />
+                <StarGroup
+                  Score={Math.round((scoreSum / course_Score_member) * 10) / 10}
+                  percent={course_Score_member}
+                />
                 <div className="Coursedetail-allTime">
                   <span>
                     課程時數&nbsp;:&nbsp;{newCourseJSON[0].course_hour}
@@ -259,7 +266,6 @@ function CourseInfomation(props) {
                   </a>
                 </div>
               </div>
-              
 
               <div className="Coursedetail-infoLeft">
                 <div className="Coursedetail-infoLeft-breadcrumb">
@@ -277,11 +283,7 @@ function CourseInfomation(props) {
                     </li>
                   </ul>
                 </div>
-<<<<<<< HEAD
                 <div className="Coursedetail-infoLeftTitle" id="batch">
-=======
-                <div className="Coursedetail-infoLeftTitle">
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   {newCourseJSON[0].course_name}
                 </div>
                 <div className="Coursedetail-placeWithChef">
@@ -352,7 +354,11 @@ function CourseInfomation(props) {
             <div className="Coursedetail-shortLine"></div>
             {/* 下面是主廚外標題 */}
 
-            <img className="orange2 CourseDecorate_RWD2" src={CircleOrange} alt=""></img>
+            <img
+              className="orange2 CourseDecorate_RWD2"
+              src={CircleOrange}
+              alt=""
+            ></img>
 
             <div className="Coursedetail-outsideTitle">
               {newCourseJSON[0].course_detail.title1_1}
@@ -379,20 +385,23 @@ function CourseInfomation(props) {
             <div className="Coursedetail-outsideTitle" id="chef">
               米其林一星主廚精心準備，絕無冷場
             </div>
-            <img className="blue1 CourseDecorate_RWD3" src={CircleBlue} alt=""></img>
+            <img
+              className="blue1 CourseDecorate_RWD3"
+              src={CircleBlue}
+              alt=""
+            ></img>
             <div className="Coursedetail-titleLine"></div>
             <div className="Coursedetail-outsideTitle">
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
-        
+
             {/* <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>       */}
-              
+
             <div className="Coursedetail-chefCardMargin">
-            
-            
-      
-              <ChefCard 
-                chefIntroduce1={newCourseJSON[0].chef_introduction.chefIntroduce1}
+              <ChefCard
+                chefIntroduce1={
+                  newCourseJSON[0].chef_introduction.chefIntroduce1
+                }
                 chefInfoTitle={newCourseJSON[0].chef_introduction.chefInfoTitle}
                 chefInfo={newCourseJSON[0].chef_introduction.chefInfo}
                 chefFirstName={newCourseJSON[0].first_name}
@@ -636,37 +645,38 @@ function CourseInfomation(props) {
               attention={newCourseJSON[0].course_detail.content3}
             />
             {/* <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img>  */}
-            <img className="orange4 CourseDecorate_RWD7" src={CircleOrange} alt=""></img>      
+            <img
+              className="orange4 CourseDecorate_RWD7"
+              src={CircleOrange}
+              alt=""
+            ></img>
             <div className="Coursedetail-outsideTitle">推薦課程</div>
-            <div className="Coursedetail-titleLine"></div>    
+            <div className="Coursedetail-titleLine"></div>
             <CourseRecommend />
 
             <div className="Coursedetail-join">
               <span>
-<<<<<<< HEAD
                 <p className="Coursedetail-joinTitle">立即報名</p>
                 <div className="Coursedetail-joinLineWidth">
-                <div className="Coursedetail-joinLine"></div>
+                  <div className="Coursedetail-joinLine"></div>
                 </div>
                 <p>喜歡這堂課嗎?</p>
                 <p>歡迎加入我們</p>
                 <p>成為Umai的一員</p>
                 <p>讓我們帶您前往美食的世界</p>
-                <p　className="Coursedetail-joinNow" onClick={() => {
-                        if (batch === "尚未選擇") {
-                          window.location.href='#batch';
-                          alert("請先選擇梯次日期後再點擊");
-                        }
-                      }}>點擊我立即加入！</p>
+                <p
+                  className="Coursedetail-joinNow"
+                  onClick={() => {
+                    if (batch === "尚未選擇") {
+                      window.location.href = "#batch";
+                      alert("請先選擇梯次日期後再點擊");
+                    }
+                  }}
+                >
+                  點擊我立即加入！
+                </p>
               </span>
               <img src={Join} alt=""></img>
-
-=======
-                <p>立即報名</p>
-                <div className="Coursedetail-joinLine"></div>
-                <p>馬上加入好嗎?</p>
-              </span>
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             </div>
           </div>
         </div>

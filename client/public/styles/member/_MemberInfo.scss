@@ -1,9 +1,5 @@
 .MemberInfo {
-<<<<<<< HEAD
   height: $MemberCenterHeight;
-=======
-  height: calc(100vh - 50px);
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   //position: relative;
   display: flex;
   align-items: center;
@@ -11,40 +7,26 @@
   .MemberInfo-container {
     height: 95%;
     width: 100%;
-<<<<<<< HEAD
-=======
-    //overflow: scroll;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     padding: 1rem 2rem;
     margin-left: 1rem;
     border-radius: 10px;
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-<<<<<<< HEAD
     box-shadow: $MemberCenterShadow;
     position: relative;
     overflow: scroll;
-=======
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
     .MemberInfo-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-<<<<<<< HEAD
       border-left: $header-border;
       width: 100%;
       position: relative;
-=======
-      border-left: 2px solid $activeColor;
-      width: 100%;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
       & h1 {
         font-weight: 100;
       }
-<<<<<<< HEAD
 
       // 密碼修改按鍵
       .MemberInfo-passwordEditButton {
@@ -64,21 +46,15 @@
           font-size: 1.1rem;
         }
       }
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     }
 
     .MemberInfo-container-cards {
       width: 100%;
-<<<<<<< HEAD
       //min-height: 300px;
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       position: relative;
       margin: 0 0 1rem 0;
       @include flex(column);
       //flex-wrap: wrap;
-<<<<<<< HEAD
       border: 2.2px solid #e1e1e1;
       padding: 1rem;
       border-radius: 10px;
@@ -86,11 +62,6 @@
         // width: 70%;
         width: 85%;
         max-width: 900px;
-=======
-      overflow: scroll;
-      .MemberInfo-container-row {
-        width: 70%;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         @include flex(row);
         align-items: flex-end;
         justify-content: flex-start;
@@ -114,7 +85,6 @@
             // font-size: 1.1rem;
             width: 100%;
           }
-<<<<<<< HEAD
 
           // 放使用者帳號的input
           .MemberInfo-accountContainer {
@@ -245,70 +215,6 @@
         transform: scale(1);
         transition: all 0.3s ease-in;
       }
-=======
-        }
-
-        .MemberInfo-container-passwordCon {
-          max-width: 0px;
-          max-height: 0;
-          transition: 0.5s ease;
-          font-size: 90%;
-          overflow: hidden;
-          margin-right: 0;
-          position: relative;
-
-          .MemberInfo-container-passwordCon-topInput {
-            border-radius: 5px 5px 0 0;
-          }
-          .MemberInfo-container-passwordCon-bottomInput {
-            border-radius: 0 0 5px 5px;
-            position: relative;
-            top: -1px;
-          }
-        }
-        .MemberInfo-container-passwordCon-active {
-          max-width: calc(50% - 1rem);
-          max-height: 105px;
-          margin-right: 1rem;
-        }
-        // 密碼修改按鈕
-        .MemberInfo-container-inputCon-buttonCon {
-          //height: 100%;
-          .MemberInfo-container-inputCon-passwordEditBtn,
-          .MemberInfo-container-inputCon-passwordSubmitBtn {
-            border-radius: 5px;
-            padding: 0.15rem 0.35rem;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid $fontColor;
-            // margin-left: -10px;
-            // margin-right: 20px;
-            font-size: 90%;
-            margin-top: 0.25rem;
-
-            &:hover {
-              color: black;
-              border: 1px solid black;
-            }
-          }
-        }
-
-        .MemberInfo-container-inputCon-passwordSubmitBtn {
-          display: none;
-          color: $highLevelColor;
-          border: 1px solid $highLevelColor;
-        }
-        .MemberInfo-container-inputCon-passwordSubmitBtn-active {
-          display: block;
-        }
-      }
-    }
-
-    .MemberInfo-container-buttonCon {
-      width: 100%;
-      @include flex(row);
-      justify-content: flex-end;
-      margin: 1rem 0;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     }
   }
 }

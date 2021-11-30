@@ -51,12 +51,8 @@ const DefaultStudentCard2 = (props) => {
               type="text"
               id="first_name"
               name="first_name"
-<<<<<<< HEAD
               placeholder="請輸入真實名字(限15字內)"
               maxLength="15"
-=======
-              placeholder="請輸入真實名字"
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
               value={newStudentData.first_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -73,12 +69,8 @@ const DefaultStudentCard2 = (props) => {
               type="text"
               id="last_name"
               name="last_name"
-<<<<<<< HEAD
               placeholder="請輸入真實姓氏(限15字內)"
               maxLength="15"
-=======
-              placeholder="請輸入真實姓氏"
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
               value={newStudentData.last_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -98,10 +90,7 @@ const DefaultStudentCard2 = (props) => {
               id="telephone"
               name="telephone"
               placeholder="請輸入手機號碼"
-<<<<<<< HEAD
               maxLength="10"
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
               value={newStudentData.telephone}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -114,17 +103,6 @@ const DefaultStudentCard2 = (props) => {
             >
               出生日期
             </label>
-<<<<<<< HEAD
-=======
-            {/* <input
-              type="date"
-              id="birthday"
-              name="birthday"
-              placeholder="請輸入真實姓氏"
-              className="DefaultStudentCard2-main-row-item-input"
-              onChange={handleInputChange}
-            /> */}
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             <Calendar
               onChange={handleBirthdayChange}
               value={newStudentData.birthday}
@@ -143,12 +121,8 @@ const DefaultStudentCard2 = (props) => {
               type="email"
               id="email"
               name="email"
-<<<<<<< HEAD
               maxLength="50"
               placeholder="請輸入常用Email"
-=======
-              placeholder="請輸入Email"
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
               value={newStudentData.email}
               className="DefaultStudentCard2-main-row-item-input DefaultStudentCard2-main-row-item-email"
               onChange={handleInputChange}

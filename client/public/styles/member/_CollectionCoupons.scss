@@ -1,9 +1,5 @@
 .CollectionCoupons {
-<<<<<<< HEAD
   height: $MemberCenterHeight;
-=======
-  height: calc(100vh - 50px);
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   //position: relative;
   display: flex;
   align-items: center;
@@ -17,21 +13,13 @@
     @include flex(column);
     align-items: center;
     justify-content: flex-start;
-<<<<<<< HEAD
     box-shadow: $MemberCenterShadow;
-=======
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     position: relative;
 
     .CollectionCoupons-container-header {
       margin-bottom: 1rem;
       padding-left: 1rem;
-<<<<<<< HEAD
       border-left: $header-border;
-=======
-      border-left: 2px solid $activeColor;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       width: 100%;
 
       & h1 {

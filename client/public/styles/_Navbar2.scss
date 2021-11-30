@@ -1,80 +1,3 @@
-<<<<<<< HEAD
-.Navbar {
-  background: $themeColor;
-  color: white;
-  font-weight: 100;
-  @include flex(row);
-  justify-content: center;
-  font-size: 100%;
-  transition: all 0.3s ease;
-
-  // 11/24新增
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 11;
-  .Navbar-container {
-    width: 70vw;
-    max-width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .Navbar-container-item {
-      @include flex(row);
-      justify-content: center;
-      align-items: center;
-
-      & a {
-        @include flex(row);
-        justify-content: center;
-        align-items: center;
-        .UmaiLogo {
-          width: 85px;
-          padding: 0.75rem 0;
-          transition: all 0.3s ease;
-        }
-      }
-
-      .Navbar-container-item-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 500;
-        font-size: 1.1rem;
-
-        &:hover {
-          color: $themeColorBlue;
-        }
-      }
-
-      .Navbar-container-item-btn2 {
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        overflow: hidden;
-        background: white;
-        margin: 0 0.15rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &:hover {
-          transform: scale(1.1);
-          // background: $themeColorBlue;
-          //fill: white;
-        }
-
-        .Navbar-container-item-btn2-cart {
-          fill: $themeColor;
-        }
-
-        .Navbar-container-item-btn2-avatar {
-          position: relative;
-          //width: 100%;
-          height: 100%;
-=======
 :root {
   --navbar-height: 55px;
   --navbar-dropdown-top: 80px;
@@ -342,27 +265,10 @@
             width: 100%;
             height: 100%;
           }
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         }
       }
     }
   }
-<<<<<<< HEAD
-}
-
-.Navbar-active {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
-  background: rgba(216, 164, 102, 0.8);
-
-  .Navbar-container {
-    .Navbar-container-item {
-      & a {
-        .UmaiLogo {
-          width: 85px;
-          padding: 0.25rem 0;
-          transition: all 0.3s ease;
-=======
 
   //搜尋列
   .Navbar-CourseSearch {
@@ -459,7 +365,6 @@
             cursor: pointer;
             background: #ffebd2;
           }
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         }
       }
     }

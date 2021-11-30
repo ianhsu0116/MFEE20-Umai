@@ -1,33 +1,5 @@
 .StarGroup {
   @include flex(row);
-<<<<<<< HEAD
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 0.15rem;
-  & p {
-    font-size: 0.7rem;
-  }
-
-  .StarGroup-container {
-    max-width: 80px;
-    position: relative;
-    height: 17px;
-    overflow: hidden;
-    .StarGroup-container-star {
-      z-index: 2;
-      width: 101%;
-      height: 100%;
-    }
-    .StarGroup-container-background {
-      position: absolute;
-      top: 2px;
-      left: 0;
-      width: 20%;
-      height: 100%;
-      z-index: -1;
-    }
-  }
-=======
   justify-content: center;
   align-items: center;
   margin-bottom: 0.15rem;
@@ -64,5 +36,4 @@
     color: #909090;
     margin-left: 5px;
   }
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }

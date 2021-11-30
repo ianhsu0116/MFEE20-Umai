@@ -64,11 +64,7 @@ const CreditCards = (props) => {
           <input
             type="text"
             name="expiry"
-<<<<<<< HEAD
             className="CreditCards-right-row-input CreditCards-right-row-date"
-=======
-            className="CreditCards-right-row-input"
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             placeholder="到期日(YYDD)"
             maxLength="4"
             onChange={handleCardsChange}
@@ -78,11 +74,7 @@ const CreditCards = (props) => {
           <input
             type="text"
             name="cvc"
-<<<<<<< HEAD
             className="CreditCards-right-row-input CreditCards-right-row-cvc"
-=======
-            className="CreditCards-right-row-input"
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             placeholder="安全碼"
             maxLength="3"
             onChange={handleCardsChange}

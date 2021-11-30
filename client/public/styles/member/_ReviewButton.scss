@@ -13,11 +13,8 @@
   transition: all 0.35s ease;
   z-index: 10;
 
-<<<<<<< HEAD
   box-shadow: inset 13px 13px 26px #a88050, inset -13px -13px 26px #ffc87c;
 
-=======
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   .ReviewButton-btn {
     position: relative;
     @include flex(row);
@@ -25,12 +22,8 @@
     align-items: center;
     width: 38px;
     height: 38px;
-<<<<<<< HEAD
     //background-color: $themeColorBlue;
     background: linear-gradient(145deg, #0080c0, #006ca1);
-=======
-    background-color: $themeColorBlue;
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     border-radius: 50px;
     left: 0px;
     transition: all 0.3s ease;
