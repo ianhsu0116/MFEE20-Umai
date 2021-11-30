@@ -5,6 +5,7 @@ import ForumService from "../../services/forum.service";
 import { AiOutlineMessage, AiOutlineHeart } from "react-icons/ai";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { PUBLIC_URL } from "../../config/config";
+import getValidMessage from "../../validMessage/validMessage";
 import image from "../../components/images/img5.jpg";
 
 const CollectionArticle = (props) => {
@@ -19,14 +20,16 @@ const CollectionArticle = (props) => {
       let result = await ForumService.collection(currentUser.id);
       // console.log(result.data.article);
 
+      // 將資料裝入
       setArticleData(result.data.article);
     } catch (error) {
-      console.log(error.response);
-      // let { code } = error.response.data;
-      // setErrorMsg(getValidMessage("member", code));
+      //console.log(error.response);
+      let { code } = error.response.data;
+
+      // 提示錯誤
       Swal.fire({
         icon: "error",
-        title: "不知名錯誤！",
+        title: getValidMessage("forum", code),
         showConfirmButton: false,
         timer: 1500,
       });
@@ -42,7 +45,7 @@ const CollectionArticle = (props) => {
 
         <div className="CollectionArticle-container-cards">
           {articleData.map((article) => (
-            <Link to="/forum" className="ArticleCard">
+            <div to="/forum" className="ArticleCard">
               <div className="ArticleCard-left">
                 <div className="ArticleCard-left-imgCon">
                   <img
@@ -58,7 +61,7 @@ const CollectionArticle = (props) => {
 
               <div className="ArticleCard-right">
                 <h4 className="ArticleCard-right-title">
-                  {article.article_title}
+                  <Link to="/forum">{article.article_title}</Link>
                 </h4>
                 <div className="ArticleCard-right-content">
                   {article.article_text}
@@ -67,11 +70,15 @@ const CollectionArticle = (props) => {
                 <div className="ArticleCard-right-bottom">
                   <div className="ArticleCard-right-bottom-con ArticleCard-right-bottom-like">
                     <AiOutlineHeart />
-                    <span className="ArticleCard-likeCount">150</span>
+                    <span className="ArticleCard-likeCount">
+                      {article.like_count || 0}
+                    </span>
                   </div>
                   <div className="ArticleCard-right-bottom-con ArticleCard-right-bottom-comment">
                     <AiOutlineMessage />
-                    <span className="ArticleCard-commentCount">350</span>
+                    <span className="ArticleCard-commentCount">
+                      {article.comment_count || 0}
+                    </span>
                   </div>
                   <div className="ArticleCard-right-bottom-con ArticleCard-right-bottom-collect">
                     <MdCollectionsBookmark />
@@ -79,14 +86,16 @@ const CollectionArticle = (props) => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
 
-          <div className="MemberCenter-defaultText">
-            目前您還沒有任何收藏文章喔！趕緊去
-            <Link to="/forum">討論區</Link>
-            逛逛吧！
-          </div>
+          {articleData.length === 0 && (
+            <div className="MemberCenter-defaultText">
+              目前您還沒有任何收藏文章喔！趕緊去
+              <Link to="/forum">討論區</Link>
+              逛逛吧！
+            </div>
+          )}
         </div>
       </div>
     </div>

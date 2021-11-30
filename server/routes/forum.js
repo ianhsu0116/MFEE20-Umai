@@ -81,31 +81,45 @@ router.get("/collection/:member_id", async (req, res) => {
     // 將 id 提取出來，變成一個單純的array
     let articleIds = result.map((item) => item.article_id);
 
-    // 拿到所有文章的詳細資料
+    // 拿到每篇文的資料 + 愛心數量 + 留言數量
     let articles = await connection.queryAsync(
-      "SELECT * FROM forum_article WHERE id IN (?) AND valid = ?",
+      "SELECT forum_article.*, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id WHERE forum_article.id IN (?) AND forum_article.valid = ? GROUP BY forum_article.id ",
       [articleIds, 1]
     );
-    // let articles = await connection.queryAsync(
-    //   "SELECT forum_article.*, IFNULL(like_count, 0) FROM forum_article WHERE id IN (?) AND valid = ?",
-    //   [articleIds, 1]
-    // );
 
-    // 依序拿到每篇文有幾個讚
+    // 將article按照articleIds的順序排好
+    let sortedArticles = [];
+    articleIds.forEach((item) => {
+      for (let i = 0; i < articles.length; i++) {
+        if (articles[i].id === item) {
+          sortedArticles.push(articles[i]);
+          break;
+        }
+      }
+    });
+
+    // 依序拿到每篇文章按讚的所有會員的member_id
     let likes = await connection.queryAsync(
-      "SELECT COUNT(member_id) like_count FROM article_like WHERE article_id IN (?) GROUP BY article_id",
+      "SELECT * FROM article_like WHERE article_id IN (?)",
       [articleIds]
     );
-    console.log("likes", likes);
 
-    // 依序拿到每篇文有幾則留言
-    let comments = await connection.queryAsync(
-      "SELECT COUNT(id) comment_count FROM forum_comment WHERE article_id IN (?) GROUP BY article_id",
-      [articleIds]
-    );
-    console.log("comments", comments);
+    // 將按讚的人依照文章id分組
+    let sortedLikes = {};
+    // 將裝分組likes的容器準備好
+    articleIds.forEach((id) => (sortedLikes[id] = []));
 
-    res.json({ success: true, article: articles });
+    // 依序將id裝入對應的key內
+    likes.forEach((item) => {
+      sortedLikes[item.article_id].push(item.member_id);
+    });
+
+    // 將id_Array分別裝入對應的articleDetail中
+    sortedArticles.forEach((item) => {
+      item["whoLikes"] = sortedLikes[item.id];
+    });
+
+    res.json({ success: true, article: sortedArticles });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, code: "C999", message: error });
