@@ -8,30 +8,24 @@ import CategoryService from "../services/category.service";
 
 function MultiLevelBreadcrumb(props) {
   const { location } = props
+  // let page_category = location.pathname.substr(1, 7)
   let category_number = location.search.slice(1);
 
+  //麵包屑根據種類id判斷當前是什麼
+  const [categoryid , setCategoryid] = useState('')
 
-  const [categoryid , setCategoryud] = useState([
-    {category_name: '日式料理'}, //1
-    {category_name: '韓式料理'}, //2
-    {category_name: '法式料理'}, //3
-    {category_name: '義式料理'}, //4
-    {category_name: '中式料理'}, //5
-    {category_name: '經典調酒'}, //6
-    {category_name: '全部分類'}, //7
-  ])
-
+ 
   useEffect(async () => {
     try {
       let result = await CategoryService.categoryID(category_number);
-      // setCategoryud(result.data.categoryID)
-      console.log(result.data)
+      console.log(result.data.categoryID[0].category_name)
+      setCategoryid(result.data.categoryID[0].category_name)
       return
     } catch (error) {
       console.log(error);
    }
   }, []);
-
+  
 
 
 
@@ -61,27 +55,30 @@ function MultiLevelBreadcrumb(props) {
 
     // '/產品/嬰兒/初生兒' -> ['','產品','嬰兒', '初生兒']
     const textArray = pathnameTextList[index].split('/')
-    if(location.search !== ""){
-    textArray.push(location.search)
+
+ if(categoryid){
+    // 麵包屑增加名字
+    textArray.push(categoryid)
     }
     // textArray.replace("?","")
     // '/product/baby/birth' -> ['','product','baby', 'birth']
     const pathArray = pathnameList[index].split('/')
 
-    // console.log(pathArray[1])
-
+ 
+    // 可讀性偏差，但時間因素先這樣撰寫　當location.search不是空值時(Ex category?1)，判斷是不是courses，不是的話加了問號會導到首頁，是的話當?小於0或大於7會導向7(全部分類)以及預設導向7
     if(location.search != ""){
       if(pathArray[1] != "courses"){
-        console.log(pathArray[1])
+        alert("資料錯誤，將導向首頁")
         window.location.href='http://localhost:3000/';
-      }   else if(location.search === "?1" || location.search === "日式料理" ){
-        location.search = "日式料理"
-      } else{
-        // window.location.href='http://localhost:3000/';
+      }   else if(pathArray[1] == "courses" && (category_number < 1|| category_number > 7)){
+        alert("錯誤的分類，將導向全部分類")
+        window.location.href='http://localhost:3000/courses/category?7';
       }
     } else if(pathArray[1] == "courses"){
       window.location.href='http://localhost:3000/courses/category?7';
     }
+
+
 
     const listArray = textArray.map((v, i, array) => {
       if (i === 0) return ''
@@ -108,6 +105,7 @@ function MultiLevelBreadcrumb(props) {
 
   return (
     <>
+
     {console.log(categoryid)}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">

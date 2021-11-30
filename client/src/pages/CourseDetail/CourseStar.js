@@ -28,7 +28,6 @@ function CourseStar(props){
 
   return (
     <>
-    {console.log(Score)}
         <div className="Course-starGroup" title={"平均 "+Score+" 顆星"}>
                 {lists}
                 <p>({percent})</p>

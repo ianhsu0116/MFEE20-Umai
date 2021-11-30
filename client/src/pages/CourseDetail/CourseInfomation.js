@@ -125,9 +125,12 @@ function CourseInfomation(props) {
       setCourse_batchJSON(result.data.course_batch)
       setCourse_Score(result.data.course_comment)
       setCourse_Score_member(result.data.course_comment.length)
+      console.log(result.data)
       return
     } catch (error) {
       console.log(error);
+      alert("似乎沒有這堂課的資料哦!\n即將導回首頁")
+      window.location.href='http://localhost:3000/';
     }
   }, []);
 
