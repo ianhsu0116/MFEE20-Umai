@@ -196,6 +196,19 @@ a {
   }
 }
 
+// 載入更多按鈕
+.LoadMoreButton {
+  padding: 0.35rem 0.75rem;
+  color: white;
+  border-radius: 50px;
+  background: $themeColor;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  &:hover {
+    //background: $activeColor;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
 // 錯誤碼元件
 .ErrorMessage {
   font-size: 90%;
@@ -307,46 +320,46 @@ $header-border: 3px solid $activeColor; // title的左border
   .MemberInfo-container-row {
     width: 100% !important;
   }
-  
-	.CourseDetail-headerPicture {
-		width: 90%;
 
-		// ian 移除（確保圖片不壓縮）
-		// img {
-		//   height: 35vw;
-		// }
-	}
-	.Coursedetail {
-		/* 三圖片大框 */
-		.Coursedetail-header {
-			width: 90%;
-			height: 35vw;
-		}
-	}
-	.Coursedetail-set {
-		.Coursedetail-container {
-			width: 90%;
-		}
-	}
-	.chef-set {
-		width: 90%;
-	}
-	.CourseDecorate_RWD1 {
-		width: 22%;
-	}
-	.CourseDecorate_RWD2 {
-		width: 35%;
-		top: 22vw;
-	}
-	.CourseDecorate_RWD5 {
-		width: 30%;
-	}
-	.CourseDecorate_RWD6{
-		margin-top: 10vw;
-	}
-	.CourseDecorate_RWDEx{
-		width: 30%;
-		top: 14vw;
-		right: -5vw;
-	}
+  .CourseDetail-headerPicture {
+    width: 90%;
+
+    // ian 移除（確保圖片不壓縮）
+    // img {
+    //   height: 35vw;
+    // }
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+    .Coursedetail-header {
+      width: 90%;
+      height: 35vw;
+    }
+  }
+  .Coursedetail-set {
+    .Coursedetail-container {
+      width: 90%;
+    }
+  }
+  .chef-set {
+    width: 90%;
+  }
+  .CourseDecorate_RWD1 {
+    width: 22%;
+  }
+  .CourseDecorate_RWD2 {
+    width: 35%;
+    top: 22vw;
+  }
+  .CourseDecorate_RWD5 {
+    width: 30%;
+  }
+  .CourseDecorate_RWD6 {
+    margin-top: 10vw;
+  }
+  .CourseDecorate_RWDEx {
+    width: 30%;
+    top: 14vw;
+    right: -5vw;
+  }
 }

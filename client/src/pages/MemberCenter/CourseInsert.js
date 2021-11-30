@@ -269,78 +269,359 @@ const CourseInsert = (props) => {
         <header className="CourseInsert-container-header">
           <h2>新增課程</h2>
         </header>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_name"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程名稱
-            </label>
-            <input
-              id="course_name"
-              name="course_name"
-              value={courseDetail.course_name}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="50"
-              placeholder="最精緻的三星級牛排課程..."
-            />
+        <div className="CourseInsert-container-group">
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_name"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程名稱
+              </label>
+              <input
+                id="course_name"
+                name="course_name"
+                value={courseDetail.course_name}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="50"
+                placeholder="最精緻的三星級牛排課程..."
+              />
+            </div>
           </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="company_name"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              餐廳名稱
-            </label>
-            <input
-              id="company_name"
-              name="company_name"
-              value={courseDetail.company_name}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="50"
-              placeholder="XX米其林餐廳..."
-            />
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="company_name"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                餐廳名稱
+              </label>
+              <input
+                id="company_name"
+                name="company_name"
+                value={courseDetail.company_name}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="50"
+                placeholder="XX米其林餐廳..."
+              />
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="company_address"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                餐廳地址
+              </label>
+              <input
+                id="company_address"
+                name="company_address"
+                value={courseDetail.company_address}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="70"
+                placeholder="台北市中山區..."
+              />
+            </div>
           </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="company_address"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              餐廳地址
-            </label>
-            <input
-              id="company_address"
-              name="company_address"
-              value={courseDetail.company_address}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="70"
-              placeholder="台北市中山區..."
-            />
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label className="CourseInsert-container-row-inputCon-label">
+                幻燈片圖片(Slider)
+              </label>
+              <div className="CourseInsert-container-row-inputCon-sliderImage">
+                {sliderArray.map((item, index) => (
+                  <>
+                    <label
+                      htmlFor={item}
+                      className="CourseInsert-container-row-inputCon-sliderImage-label"
+                    >
+                      {sliderImage[index] ? (
+                        <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                      ) : (
+                        <FaPen />
+                      )}
+                    </label>
+                    <input
+                      id={item}
+                      data-index={index}
+                      name="slider_image"
+                      onChange={handleSliderChange}
+                      className="CourseInsert-container-row-inputCon-sliderImage-input"
+                      type="file"
+                    />
+                  </>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label className="CourseInsert-container-row-inputCon-label">
-              幻燈片圖片(Slider)
-            </label>
-            <div className="CourseInsert-container-row-inputCon-sliderImage">
-              {sliderArray.map((item, index) => (
-                <>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="time_of_course"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程時段(10:00AM ~ 05:00PM)
+              </label>
+              <input
+                id="time_of_course"
+                name="time_of_course"
+                value={courseDetail.time_of_course}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="50"
+                placeholder="上午10:00 ~ 下午04:00..."
+              />
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_hour"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程時數(小時)
+              </label>
+              <input
+                id="course_hour"
+                name="course_hour"
+                value={courseDetail.course_hour}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="number"
+                max="24"
+                min="1"
+              />
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="courseBatch"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                開課梯次
+              </label>
+              <CalendarMulti onChange={handleBatchChange} />
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_level"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程難易度
+              </label>
+              <select
+                name="course_level"
+                id="course_level"
+                className="CourseInsert-container-row-inputCon-input"
+                onChange={handleCourseChange}
+              >
+                <option value="1">高階</option>
+                <option value="2">中階</option>
+                <option value="3">初階</option>
+              </select>
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="category_id"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程分類
+              </label>
+              <select
+                name="category_id"
+                id="category_id"
+                className="CourseInsert-container-row-inputCon-input"
+                onChange={handleCourseChange}
+                value={courseDetail.category_id}
+              >
+                <option value="1">日式料理</option>
+                <option value="2">韓式料理</option>
+                <option value="3">法式料理</option>
+                <option value="4">義式料理</option>
+                <option value="5">中式料理</option>
+                <option value="6">經典飲調</option>
+              </select>
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="member_limit"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                學員上限(Max:99)
+              </label>
+              <input
+                id="member_limit"
+                name="member_limit"
+                value={courseDetail.member_limit}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="2"
+              />
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_price"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                課程價位(Max:9999)
+              </label>
+              <input
+                id="course_price"
+                name="course_price"
+                value={courseDetail.course_price}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="4"
+              />
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_ig"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                Instagram連結
+              </label>
+              <input
+                id="course_ig"
+                name="course_ig"
+                value={courseDetail.course_ig}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="100"
+                placeholder="https://www....."
+              />
+            </div>
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="course_fb"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                Facebook連結
+              </label>
+              <input
+                id="course_fb"
+                name="course_fb"
+                value={courseDetail.course_fb}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="100"
+                placeholder="https://www....."
+              />
+            </div>
+          </div>
+          <br />
+          <header className="CourseInsert-container-header">
+            <h2>課程詳細內容</h2>
+          </header>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="title1_1"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                標題1｜課程介紹區 - 1
+              </label>
+              <input
+                id="title1_1"
+                name="title1_1"
+                value={courseDetail.title1_1}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="ˇ30"
+                placeholder="信じられない！とても美味しい！..."
+              />
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="title1_2"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                標題2｜課程介紹區 - 1
+              </label>
+              <input
+                id="title1_2"
+                name="title1_2"
+                value={courseDetail.title1_2}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="30"
+                placeholder="最驚艷的日式料理，入口彷如人就在日本北海道..."
+              />
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="content1"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                內文｜課程介紹區 - 1
+              </label>
+              <textarea
+                name="content1"
+                id="content1"
+                cols="30"
+                rows="10"
+                value={courseDetail.content1}
+                onChange={handleCourseChange}
+                maxLength="380"
+                placeholder="信じられない！とても美味しい！..."
+              ></textarea>
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="title2"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                標題｜教材內容介紹區
+              </label>
+              <input
+                id="title2"
+                name="title2"
+                value={courseDetail.title2}
+                onChange={handleCourseChange}
+                className="CourseInsert-container-row-inputCon-input"
+                type="text"
+                maxLength="50"
+                placeholder="精選六道最經典的日式傳統料理..."
+              />
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label className="CourseInsert-container-row-inputCon-label">
+                課程教材圖文內容
+              </label>
+              {sixDishesArray.map((item, index) => (
+                <div
+                  key={index}
+                  className="CourseInsert-container-row-inputCon-sixDishes"
+                >
                   <label
                     htmlFor={item}
-                    className="CourseInsert-container-row-inputCon-sliderImage-label"
+                    className="CourseInsert-container-row-inputCon-sixDishes-label"
                   >
-                    {sliderImage[index] ? (
-                      <img src={sliderImage[index]} alt="Slider圖片預覽" />
+                    {sixDishesImage[index] ? (
+                      <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
                     ) : (
                       <FaPen />
                     )}
@@ -348,366 +629,87 @@ const CourseInsert = (props) => {
                   <input
                     id={item}
                     data-index={index}
-                    name="slider_image"
-                    onChange={handleSliderChange}
-                    className="CourseInsert-container-row-inputCon-sliderImage-input"
+                    name="dishes_image"
+                    onChange={handleSixDishesImageChange}
+                    className="CourseInsert-container-row-inputCon-sixDishes-input"
                     type="file"
                   />
-                </>
+
+                  <div className="CourseInsert-container-row-inputCon-sixDishes-right">
+                    <input
+                      type="text"
+                      name="dishes_title"
+                      id={index}
+                      onChange={handleCourseChange}
+                      value={courseDetail.six_dishes[index].dishes_title}
+                      placeholder="課程教材名稱..."
+                      maxLength="10"
+                    />
+                    <textarea
+                      name="dishes_content"
+                      id={index}
+                      cols="10"
+                      rows="7"
+                      onChange={handleCourseChange}
+                      value={courseDetail.six_dishes[index].dishes_content}
+                      placeholder="課程教材詳細介紹..."
+                      maxLength="200"
+                    ></textarea>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="time_of_course"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程時段(10:00AM ~ 05:00PM)
-            </label>
-            <input
-              id="time_of_course"
-              name="time_of_course"
-              value={courseDetail.time_of_course}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="50"
-              placeholder="上午10:00 ~ 下午04:00..."
-            />
-          </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_hour"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程時數(小時)
-            </label>
-            <input
-              id="course_hour"
-              name="course_hour"
-              value={courseDetail.course_hour}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="number"
-              max="24"
-              min="1"
-            />
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="courseBatch"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              開課梯次
-            </label>
-            <CalendarMulti onChange={handleBatchChange} />
-          </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_level"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程難易度
-            </label>
-            <select
-              name="course_level"
-              id="course_level"
-              className="CourseInsert-container-row-inputCon-input"
-              onChange={handleCourseChange}
-            >
-              <option value="1">高階</option>
-              <option value="2">中階</option>
-              <option value="3">初階</option>
-            </select>
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="category_id"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程分類
-            </label>
-            <select
-              name="category_id"
-              id="category_id"
-              className="CourseInsert-container-row-inputCon-input"
-              onChange={handleCourseChange}
-              value={courseDetail.category_id}
-            >
-              <option value="1">日式料理</option>
-              <option value="2">韓式料理</option>
-              <option value="3">法式料理</option>
-              <option value="4">義式料理</option>
-              <option value="5">中式料理</option>
-              <option value="6">經典飲調</option>
-            </select>
-          </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="member_limit"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              學員上限(Max:99)
-            </label>
-            <input
-              id="member_limit"
-              name="member_limit"
-              value={courseDetail.member_limit}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="2"
-            />
-          </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_price"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              課程價位(Max:9999)
-            </label>
-            <input
-              id="course_price"
-              name="course_price"
-              value={courseDetail.course_price}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="4"
-            />
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_ig"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              Instagram連結
-            </label>
-            <input
-              id="course_ig"
-              name="course_ig"
-              value={courseDetail.course_ig}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="100"
-              placeholder="https://www....."
-            />
-          </div>
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="course_fb"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              Facebook連結
-            </label>
-            <input
-              id="course_fb"
-              name="course_fb"
-              value={courseDetail.course_fb}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="100"
-              placeholder="https://www....."
-            />
-          </div>
-        </div>
-        <br />
-        <header className="CourseInsert-container-header">
-          <h2>課程詳細內容</h2>
-        </header>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="title1_1"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              標題1｜課程介紹區 - 1
-            </label>
-            <input
-              id="title1_1"
-              name="title1_1"
-              value={courseDetail.title1_1}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="ˇ30"
-              placeholder="信じられない！とても美味しい！..."
-            />
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="title1_2"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              標題2｜課程介紹區 - 1
-            </label>
-            <input
-              id="title1_2"
-              name="title1_2"
-              value={courseDetail.title1_2}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="30"
-              placeholder="最驚艷的日式料理，入口彷如人就在日本北海道..."
-            />
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="content1"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              內文｜課程介紹區 - 1
-            </label>
-            <textarea
-              name="content1"
-              id="content1"
-              cols="30"
-              rows="10"
-              value={courseDetail.content1}
-              onChange={handleCourseChange}
-              maxLength="380"
-              placeholder="信じられない！とても美味しい！..."
-            ></textarea>
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="title2"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              標題｜教材內容介紹區
-            </label>
-            <input
-              id="title2"
-              name="title2"
-              value={courseDetail.title2}
-              onChange={handleCourseChange}
-              className="CourseInsert-container-row-inputCon-input"
-              type="text"
-              maxLength="50"
-              placeholder="精選六道最經典的日式傳統料理..."
-            />
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label className="CourseInsert-container-row-inputCon-label">
-              課程教材圖文內容
-            </label>
-            {sixDishesArray.map((item, index) => (
-              <div
-                key={index}
-                className="CourseInsert-container-row-inputCon-sixDishes"
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="content1"
+                className="CourseInsert-container-row-inputCon-label"
               >
-                <label
-                  htmlFor={item}
-                  className="CourseInsert-container-row-inputCon-sixDishes-label"
-                >
-                  {sixDishesImage[index] ? (
-                    <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
-                  ) : (
-                    <FaPen />
-                  )}
-                </label>
-                <input
-                  id={item}
-                  data-index={index}
-                  name="dishes_image"
-                  onChange={handleSixDishesImageChange}
-                  className="CourseInsert-container-row-inputCon-sixDishes-input"
-                  type="file"
-                />
+                費用包含介紹
+              </label>
+              <textarea
+                name="content2"
+                id="content2"
+                cols="30"
+                rows="7"
+                value={courseDetail.content2}
+                onChange={handleCourseChange}
+                maxLength="340"
+                placeholder="請條列式述敘..."
+              ></textarea>
+            </div>
+          </div>
+          <div className="CourseInsert-container-row">
+            <div className="CourseInsert-container-row-inputCon">
+              <label
+                htmlFor="content3"
+                className="CourseInsert-container-row-inputCon-label"
+              >
+                注意事項說明
+              </label>
+              <textarea
+                name="content3"
+                id="content3"
+                cols="30"
+                rows="7"
+                value={courseDetail.content3}
+                onChange={handleCourseChange}
+                maxLength="340"
+                placeholder="請條著名此課程需要注意的事宜..."
+              ></textarea>
+            </div>
+          </div>
 
-                <div className="CourseInsert-container-row-inputCon-sixDishes-right">
-                  <input
-                    type="text"
-                    name="dishes_title"
-                    id={index}
-                    onChange={handleCourseChange}
-                    value={courseDetail.six_dishes[index].dishes_title}
-                    placeholder="課程教材名稱..."
-                    maxLength="10"
-                  />
-                  <textarea
-                    name="dishes_content"
-                    id={index}
-                    cols="10"
-                    rows="7"
-                    onChange={handleCourseChange}
-                    value={courseDetail.six_dishes[index].dishes_content}
-                    placeholder="課程教材詳細介紹..."
-                    maxLength="200"
-                  ></textarea>
-                </div>
-              </div>
-            ))}
+          {/* 錯誤訊息提示 */}
+          {errorMsg && <ErrorMessage value={errorMsg} />}
+          <div className="CourseInsert-container-btnCon">
+            <Button
+              value={"新增課程"}
+              className={"button-themeColor"}
+              onClick={handleCourseInsert}
+            />
           </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="content1"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              費用包含介紹
-            </label>
-            <textarea
-              name="content2"
-              id="content2"
-              cols="30"
-              rows="7"
-              value={courseDetail.content2}
-              onChange={handleCourseChange}
-              maxLength="340"
-              placeholder="請條列式述敘..."
-            ></textarea>
-          </div>
-        </div>
-        <div className="CourseInsert-container-row">
-          <div className="CourseInsert-container-row-inputCon">
-            <label
-              htmlFor="content3"
-              className="CourseInsert-container-row-inputCon-label"
-            >
-              注意事項說明
-            </label>
-            <textarea
-              name="content3"
-              id="content3"
-              cols="30"
-              rows="7"
-              value={courseDetail.content3}
-              onChange={handleCourseChange}
-              maxLength="340"
-              placeholder="請條著名此課程需要注意的事宜..."
-            ></textarea>
-          </div>
-        </div>
-
-        {/* 錯誤訊息提示 */}
-        {errorMsg && <ErrorMessage value={errorMsg} />}
-        <div className="CourseInsert-container-btnCon">
-          <Button
-            value={"新增課程"}
-            className={"button-themeColor"}
-            onClick={handleCourseInsert}
-          />
         </div>
       </div>
     </div>
