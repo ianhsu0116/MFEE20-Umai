@@ -18,6 +18,7 @@ import { GrInstagram } from "react-icons/gr";
 
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
+import Swal from "sweetalert2";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
@@ -73,15 +74,16 @@ function CourseInfomation(props) {
         content2: "", // 費用包含內容
         content3: "", // 注意事項說明
       },
-      chef_introduction:[
+      chef_introduction: [
         {
-          chefInfo:"",
-          chefInfoTitle:"",
-          chefIntroduce1: ""
-        }],
-        avatar:"",
-        first_name:"",
-        last_name:"",
+          chefInfo: "",
+          chefInfoTitle: "",
+          chefIntroduce1: "",
+        },
+      ],
+      avatar: "",
+      first_name: "",
+      last_name: "",
 
       // 下方是table內的獨立欄位，不是存在json內
       course_name: "", // 課程名稱
@@ -99,54 +101,57 @@ function CourseInfomation(props) {
   ]);
 
   // 抓取課程JSON
-  const [course_batchJSON , setCourse_batchJSON ] = useState({})
+  const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
-  const [batch_member , setBatch_member] = useState(0)
+  const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
-  const [course_Score , setCourse_Score] = useState(0)
+  const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
-  const [course_Score_member , setCourse_Score_member] = useState(0)
+  const [course_Score_member, setCourse_Score_member] = useState(0);
 
   useEffect(async () => {
     try {
       let result = await CourseService.course_courseId(id_number);
       result.data.course[0].chef_introduction = JSON.parse(
-      result.data.course[0].chef_introduction
-        );
-      result.data.course[0].course_detail = JSON.parse(
-      result.data.course[0].course_detail
+        result.data.course[0].chef_introduction
       );
-      console.log(result.data.course_comment[0])
+      result.data.course[0].course_detail = JSON.parse(
+        result.data.course[0].course_detail
+      );
+      console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
-      setCourse_batchJSON(result.data.course_batch)
-      setCourse_Score(result.data.course_comment)
-      setCourse_Score_member(result.data.course_comment.length)
-      return
+      setCourse_batchJSON(result.data.course_batch);
+      setCourse_Score(result.data.course_comment);
+      setCourse_Score_member(result.data.course_comment.length);
+      return;
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   // 現在年月日 用來判斷從後台抓來的日期是否能用
-  let nowdate = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + ((new Date().getDate()) < 10 ? ("0"+new Date().getDate()) : new Date().getDate())
-  let course_batch = []
+  let nowdate =
+    new Date().getFullYear() +
+    "-" +
+    (new Date().getMonth() + 1) +
+    "-" +
+    (new Date().getDate() < 10
+      ? "0" + new Date().getDate()
+      : new Date().getDate());
+  let course_batch = [];
 
-  for( let i = 0  ; i < course_batchJSON.length  ; i++)
-  {
-    if(course_batchJSON[i].batch_date > nowdate){
-      course_batch.push(
-      course_batchJSON[i].batch_date
-    )}}
-
-    //計算分數
-    let scoreSum = 0
-
-
-    for (let i = 0 ; i < course_Score_member ; i ++){
-      scoreSum += course_Score[i].score
+  for (let i = 0; i < course_batchJSON.length; i++) {
+    if (course_batchJSON[i].batch_date > nowdate) {
+      course_batch.push(course_batchJSON[i].batch_date);
     }
+  }
 
+  //計算分數
+  let scoreSum = 0;
 
+  for (let i = 0; i < course_Score_member; i++) {
+    scoreSum += course_Score[i].score;
+  }
 
   const [course, setCourse] = useState(0); //課程六圖片
   const [courseFoodTitle, setCourseFoodTitle] = useState(""); //六標題
@@ -173,10 +178,10 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
-    for (let i = 0 ; i <course_batchJSON.length ; i++){
-      if (e == course_batchJSON[i].batch_date){
-        setBatch_member(course_batchJSON[i].member_count)
-        console.log(batch_member)
+    for (let i = 0; i < course_batchJSON.length; i++) {
+      if (e == course_batchJSON[i].batch_date) {
+        setBatch_member(course_batchJSON[i].member_count);
+        console.log(batch_member);
       }
     }
   };
@@ -196,6 +201,18 @@ function CourseInfomation(props) {
   //    setHt(200);
   //  }
   // });
+
+  const cart_deliver = () => {
+    Swal.fire({
+      // title: "",
+      icon: "success",
+      // customClass: "Custom_Cancel",
+      confirmButtonColor: "#0078b3",
+      confirmButtonText: "已送出文章，返回討論區",
+    }).then(function () {
+      window.location.reload();
+    });
+  };
 
   return (
     <>
@@ -239,7 +256,10 @@ function CourseInfomation(props) {
                     &nbsp;位
                   </span>
                 </div>
-                <StarGroup Score={Math.round((scoreSum/course_Score_member)*10)/10} percent={course_Score_member} />
+                <StarGroup
+                  Score={Math.round((scoreSum / course_Score_member) * 10) / 10}
+                  percent={course_Score_member}
+                />
                 <div className="Coursedetail-allTime">
                   <span>
                     課程時數&nbsp;:&nbsp;{newCourseJSON[0].course_hour}
@@ -317,7 +337,15 @@ function CourseInfomation(props) {
                     <li
                       onClick={() => {
                         if (batch === "尚未選擇") {
-                          alert("請先選擇梯次日期後再點擊");
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先選擇日期後再點擊",
+                          }).then(function () {
+                            window.location.reload();
+                          });
                         }
                       }}
                     >
@@ -327,7 +355,15 @@ function CourseInfomation(props) {
                     <li
                       onClick={() => {
                         if (batch === "尚未選擇") {
-                          alert("請先選擇梯次日期後再點擊");
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先選擇日期後再點擊",
+                          }).then(function () {
+                            window.location.reload();
+                          });
                         }
                       }}
                     >
@@ -373,8 +409,10 @@ function CourseInfomation(props) {
             </div>
 
             <div className="Coursedetail-chefCardMargin">
-              <ChefCard 
-                chefIntroduce1={newCourseJSON[0].chef_introduction.chefIntroduce1}
+              <ChefCard
+                chefIntroduce1={
+                  newCourseJSON[0].chef_introduction.chefIntroduce1
+                }
                 chefInfoTiele={newCourseJSON[0].chef_introduction.chefInfoTitle}
                 chefInfo={newCourseJSON[0].chef_introduction.chefInfo}
                 chefFirstName={newCourseJSON[0].first_name}

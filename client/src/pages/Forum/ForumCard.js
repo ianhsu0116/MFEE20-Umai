@@ -11,26 +11,7 @@ import {
 import { BsFillTriangleFill } from "react-icons/bs";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import axios from "axios";
-import { API_URL } from "../../config/config";
-
-const array = [
-  "img1.jpg",
-  "img2.jpg",
-  "img3.jpg",
-  "img4.jpg",
-  "img5.jpg",
-  "img6.jfif",
-  "img7.jpg",
-  "img8.jfif",
-  "img9.jpg",
-  "img10.jfif",
-  "確認付款.jpg",
-  "付款頁面-01.jpg",
-  "結帳頁面1-2-01.jpg",
-  "購買頁面-1.1-01-01.jpg",
-  "確認付款.jpg",
-  "avatar.jpg",
-];
+import { API_URL, PUBLIC_URL } from "../../config/config";
 
 const ForumCard = () => {
   const [show, setShow] = useState(false);
@@ -51,84 +32,84 @@ const ForumCard = () => {
 
   return (
     <>
-      <div className="forum">
-        <div className="main">
-          <h5 className="Forum-main-h3">首頁>討論區</h5>
-          <h1 className="Forum-main-h2 ">日式料理</h1>
-          <div className="st-line"></div>
-          {forumcard &&
-            forumcard.map((forumdata) => (
-              <div
-                className="Forum-main-out"
-                data-forumId={forumdata.id}
-                onClick={async (e) => {
-                  console.log(forumdata);
-                  console.log(e.currentTarget.dataset.forumid);
-                  let forumEach = await axios.get(
-                    `${API_URL}/forum/${e.currentTarget.dataset.forumid}`
-                  );
-                  setArticleDetail(forumEach.data.forumdatadetail);
-                }}
-              >
-                <img
-                  data-forumId={forumdata.id}
-                  className="Forum-main-photo"
-                  // onClick={async (e) => {
-                  //   console.log(e.target.dataset.forumid);
-                  //   let forumEach = await axios.get(
-                  //     `${API_URL}/forum/${e.target.dataset.forumid}`
-                  //   );
-                  //   setArticleDetail(forumEach.data.forumdatadetail);
-                  // }}
-                  // src={require(`./../../components/images/${image}`).default}
-                  src=""
-                  alt="drink"
-                ></img>
-                <div className="Forum-main-middle">
-                  <div className="Forum-main-DateAndDropdown">
-                    <p className="Forum-main-date">{forumdata.created_time}</p>
-                    <div class="Forum-main-dropdown">
-                      <FiMoreHorizontal className="FiMoreHorizontal" />
-                      <div class="Forum-main-dropdown-content">
-                        <p>
-                          <a href="#">分享</a>
-                        </p>
-                        <p>
-                          <a href="#">檢舉</a>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="Forum-main-dateAndTheme" onClick={handleShow}>
-                    <h5 className="Forum-main-theme" onClick={handleShow}>
-                      {forumdata.article_title}
-                    </h5>
-                  </div>
-                  <p className="Forum-main-p" onClick={handleShow}>
-                    {forumdata.article_text}
-                  </p>
-                  <div className="Forum-main-little">
-                    <AiOutlineHeart className="AiOutlineHeart" />
-                    <p className="Forum-main-love">333</p>
-                    <AiOutlineMessage className="AiOutlineMessage" />
-                    <p className="Forum-main-love">99999</p>
-                    <div className="Forum-main-small">
-                      <BsFillTriangleFill className="BsFillTriangleFill" />
-                      <p>其他功能</p>
+      {forumcard &&
+        forumcard.map((forumdata) => (
+          <div
+            className="Forum-main-out"
+            data-forumId={forumdata.id}
+            onClick={async (e) => {
+              console.log(forumdata);
+              console.log(e.currentTarget.dataset.forumid);
+              let forumEach = await axios.get(
+                `${API_URL}/forum/${e.currentTarget.dataset.forumid}`
+              );
+              setArticleDetail(forumEach.data.forumdatadetail);
+            }}
+          >
+            <img
+              data-forumId={forumdata.id}
+              className="Forum-main-photo"
+              src={`${PUBLIC_URL}/upload-images/${
+                articleDetail && articleDetail.image_name
+              }`}
+              // onClick={async (e) => {
+              //   console.log(e.target.dataset.forumid);
+              //   let forumEach = await axios.get(
+              //     `${API_URL}/forum/${e.target.dataset.forumid}`
+              //   );
+              //   setArticleDetail(forumEach.data.forumdatadetail);
+              // }}
+              // src={require(`./../../components/images/${image}`).default}
+              alt="drink"
+            ></img>
+            <div className="Forum-main-middle">
+              <div className="Forum-main-DateAndDropdown">
+                <p className="Forum-main-date">{forumdata.created_time}</p>
+                <div class="Forum-main-dropdown">
+                  <FiMoreHorizontal className="FiMoreHorizontal" />
+                  <div class="Forum-main-dropdown-content">
+                    <p>
                       <a href="#">收藏</a>
+                    </p>
+                    <p>
                       <a href="#">分享</a>
-                      <a href="#">引用</a>
+                    </p>
+                    <p>
                       <a href="#">檢舉</a>
-                    </div>
+                    </p>
+                    <p>
+                      <a href="#">刪除</a>
+                    </p>
                   </div>
                 </div>
               </div>
-            ))}
-        </div>
-      </div>
-      {/* 把各自的ID綁再按鈕上面，e.target.id，抓到當筆資料的ID再去發ID，抓到的資料去取代MODAL的狀態。 */}
-      {/* [articleDetail.category_id article_title article_text article_tag
-      image_name created_time] */}
+              <div className="Forum-main-dateAndTheme" onClick={handleShow}>
+                <h5 className="Forum-main-theme" onClick={handleShow}>
+                  {forumdata.article_title}
+                </h5>
+              </div>
+              <p className="Forum-main-p" onClick={handleShow}>
+                {forumdata.article_text}
+              </p>
+              <div className="Forum-main-little">
+                <AiOutlineHeart className="AiOutlineHeart" />
+                <p className="Forum-main-love">333</p>
+                <AiOutlineMessage className="AiOutlineMessage" />
+                <p className="Forum-main-love">99999</p>
+                <div className="Forum-main-small">
+                  <BsFillTriangleFill className="BsFillTriangleFill" />
+                  <p>其他功能</p>
+                  <a href="#">收藏</a>
+                  <a href="#">分享</a>
+                  <a href="#">引用</a>
+                  <a href="#">檢舉</a>
+                  <a href="#">刪除</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
       <Modal
         className="Forum-modal"
         id="style-10"
@@ -146,7 +127,10 @@ const ForumCard = () => {
             <div className="Forum-modal-body-account">
               <img
                 className="Forum-modal-body-account-image"
-                src={require(`./../../components/images/img1.jpg`).default}
+                src={`${PUBLIC_URL}/upload-images/${
+                  articleDetail && articleDetail.image_name
+                }`}
+                // src={require(`./../../components/images/img1.jpg`).default}
                 alt="cake"
               ></img>
 
@@ -161,10 +145,16 @@ const ForumCard = () => {
                   <FiMoreHorizontal className="FiMoreHorizontal" />
                   <div class="Forum-main-dropdown-content">
                     <p>
+                      <a href="#">收藏</a>
+                    </p>
+                    <p>
                       <a href="#">分享</a>
                     </p>
                     <p>
                       <a href="#">檢舉</a>
+                    </p>
+                    <p>
+                      <a href="#">刪除</a>
                     </p>
                   </div>
                 </div>
@@ -174,9 +164,19 @@ const ForumCard = () => {
               <p className="">{articleDetail && articleDetail.article_text}</p>
               <img
                 className="Forum-modal-body-image"
-                src={require(`./../../components/images/img1.jpg`).default}
+                src={`${PUBLIC_URL}/upload-images/${
+                  articleDetail && articleDetail.image_name
+                }`}
                 alt="cake"
               ></img>
+              <iframe
+                className="Forum-modal-body-youtube"
+                src="https://www.youtube.com/embed/CAbUdQbTz7c"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             </div>
             <div className="Forum-modal-body-icon">
               <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
@@ -212,10 +212,16 @@ const ForumCard = () => {
                   <FiMoreHorizontal className="FiMoreHorizontal" />
                   <div class="Forum-main-dropdown-content">
                     <p>
+                      <a href="#">收藏</a>
+                    </p>
+                    <p>
                       <a href="#">分享</a>
                     </p>
                     <p>
                       <a href="#">檢舉</a>
+                    </p>
+                    <p>
+                      <a href="#">刪除</a>
                     </p>
                   </div>
                 </div>

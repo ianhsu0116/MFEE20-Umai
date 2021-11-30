@@ -19,6 +19,8 @@ import ShareCard from "./components/ShareCard";
 import Calendar from "./components/Calendar";
 import CalendarAvailable from "./components/CalendarAvailable";
 import CalendarMulti from "./components/CalendarMulti";
+import ForumPublish from "./pages/Forum/ForumPublish";
+import ForumUpdate from "./pages/Forum/ForumUpdate";
 
 function App() {
   // 存取當前登入中的使用者資料
@@ -112,9 +114,12 @@ function App() {
         <Route path="/courses/:course_id" exact>
           <CourseDetail />
         </Route>
-        {/* <Route path="/Items" exact>
-          <Items />
-        </Route> */}
+        <Route path="/ForumPublish" exact>
+          <ForumPublish />
+        </Route>
+        <Route path="/ForumUpdate" exact>
+          <ForumUpdate />
+        </Route>
         <Route path="/chef" exact>
           <Chef />
         </Route>

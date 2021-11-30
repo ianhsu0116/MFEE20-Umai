@@ -239,6 +239,7 @@ $header-border: 3px solid $activeColor; // title的左border
 // forum 相關
 @import "./forum/forum";
 @import "./forum/forumcard";
+@import "./forum/forumPublish";
 
 // 課程分類
 @import "./course/Course";

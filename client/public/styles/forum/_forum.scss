@@ -3,7 +3,6 @@ $width: 5px;
   // border: 1px black solid;
   position: relative;
   box-sizing: border-box;
-  // border: 1px solid black;
 }
 
 .wrapper {
@@ -51,6 +50,7 @@ $width: 5px;
     padding-left: 15px;
     position: sticky;
     top: 63px;
+    display: none;
     h2 {
       color: #d8a466;
     }
@@ -259,7 +259,12 @@ $width: 5px;
         font-size: 1.25rem;
         overflow-y: scroll;
         .Forum-modal-body-image {
-          max-width: 80%;
+          max-width: 50vw;
+          display: block;
+        }
+        .Forum-modal-body-youtube {
+          max-width: 50vw;
+          display: block;
         }
       }
       #Forum-modal-scrollbar::-webkit-scrollbar-track {
