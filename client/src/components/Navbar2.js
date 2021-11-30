@@ -353,7 +353,7 @@ const Navbar = (props) => {
             <div className="SearchCourseList">
               {SearchCourseList.map((Course) => (
                 <div
-                  className="Course"
+                  className="recommandCourse"
                   title={Course}
                   onClick={(e) => {
                     setSearchValue(e.target.title);

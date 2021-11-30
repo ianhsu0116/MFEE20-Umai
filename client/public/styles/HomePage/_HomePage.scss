@@ -631,4 +631,123 @@
       }
     }
   }
+
+  // 主廚介紹 (含背景)
+  .CourseCategory {
+    font-family: "Noto Sans TC", sans-serif;
+    position: relative;
+    width: 100vw;
+    height: 80vw;
+    // height: 64vw;
+    margin-top: -20vw;
+    background: #d8a466;
+    z-index: 5;
+    // filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 60%));
+
+    // 斜率16vw
+    clip-path: polygon(0% 20%, 100% 0%, 100% 80%, 0% 100%);
+    // clip-path: polygon(0% 25%, 100% 0%, 100% 75%, 0% 100%);
+
+    // 飾條
+    .CourseCategory-Trim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      // 斜率16vw
+      clip-path: polygon(
+        0% 22%,
+        100% 2%,
+        100% 2.5%,
+        0% 22.5%,
+        0% 97.5%,
+        100% 77.5%,
+        100% 78%,
+        0% 98%
+      );
+    }
+    .circleWrapperA {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 50vw;
+      width: 50vw;
+      overflow: hidden;
+      .circleWhite {
+        position: absolute;
+        top: 0%;
+        left: -30%;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .circleWrapperB {
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      height: 30vw;
+      width: 30vw;
+      overflow: hidden;
+      .circleWhite {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 1;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .CourseCategory-Box {
+      position: absolute;
+      top: 0%;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      // filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 60%));
+      .CourseCategory-container {
+        text-align: center;
+        overflow: hidden;
+        .CourseCategory-title {
+          margin-top: 15vw;
+          z-index: 5;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+          h1 {
+            color: #1f4557;
+            font-size: calc(1.5rem + 1vw);
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+            z-index: 5;
+          }
+          .HeadingUnderline {
+            width: calc(9.25rem + 6vw);
+          }
+        }
+        .chefIntroductionContentWrapper {
+          margin-top: calc(0.25rem + 2vw);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          // overflow: hidden;
+          .chefIntroductionContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 3vw;
+            z-index: 6;
+          }
+        }
+      }
+    }
+  }
 }
