@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 import { API_URL } from "../config/config";
 dotenv.config();
 
-const AUTH_API_URL = API_URL + "/member";
+const MEMBER_API_URL = API_URL + "/member";
 
 class MemberService {
   // 修改使用者基本資料
   infoEdit({ first_name, last_name, telephone, birthday }) {
     return axios.put(
-      AUTH_API_URL + "/info",
+      MEMBER_API_URL + "/info",
       {
         first_name,
         last_name,
@@ -23,7 +23,7 @@ class MemberService {
   // 修改使用者密碼
   passwordEdit({ newPassword, passwordConfirm }) {
     return axios.put(
-      AUTH_API_URL + "/password",
+      MEMBER_API_URL + "/password",
       { newPassword, passwordConfirm },
       { withCredentials: true }
     );
@@ -36,7 +36,7 @@ class MemberService {
     formData.append("avatar", avatar);
 
     // 送出
-    return axios.put(AUTH_API_URL + "/avatar", formData, {
+    return axios.put(MEMBER_API_URL + "/avatar", formData, {
       withCredentials: true,
     });
   }
@@ -45,7 +45,7 @@ class MemberService {
   creditCardEdit(number, name) {
     // 送出
     return axios.put(
-      AUTH_API_URL + "/creditCard",
+      MEMBER_API_URL + "/creditCard",
       { number, name },
       {
         withCredentials: true,
@@ -56,7 +56,7 @@ class MemberService {
   // 新增學生資訊
   studentInsert(studentInfo) {
     // 送出
-    return axios.post(AUTH_API_URL + "/student", studentInfo, {
+    return axios.post(MEMBER_API_URL + "/student", studentInfo, {
       withCredentials: true,
     });
   }
@@ -64,7 +64,7 @@ class MemberService {
   // 拿取所有學員資訊
   student() {
     // 送出
-    return axios.get(AUTH_API_URL + "/student", {
+    return axios.get(MEMBER_API_URL + "/student", {
       withCredentials: true,
     });
   }
@@ -72,7 +72,7 @@ class MemberService {
   // 編輯學生資訊
   studentEdit(studentInfo) {
     // 送出
-    return axios.put(AUTH_API_URL + "/student", studentInfo, {
+    return axios.put(MEMBER_API_URL + "/student", studentInfo, {
       withCredentials: true,
     });
   }
@@ -81,7 +81,7 @@ class MemberService {
   studentDelete(id) {
     // 送出
     return axios.put(
-      AUTH_API_URL + "/studentDelete",
+      MEMBER_API_URL + "/studentDelete",
       { id },
       {
         withCredentials: true,
@@ -92,7 +92,7 @@ class MemberService {
   // 拿會員擁有的優惠券
   // type => 1:未使用; 2:已使用; 3:已過期(未使用)
   coupons(member_id, type) {
-    return axios.get(`${AUTH_API_URL}/coupons/${member_id}?type=${type}`, {
+    return axios.get(`${MEMBER_API_URL}/coupons/${member_id}?type=${type}`, {
       withCredentials: true,
     });
   }
@@ -100,15 +100,18 @@ class MemberService {
   // 主廚卡片資料編輯
   chefIntroEdit(member_id, info_text) {
     return axios.post(
-      `${AUTH_API_URL}/chefIntro/${member_id}`,
+      `${MEMBER_API_URL}/chefIntro/${member_id}`,
       { info_text },
       {
         withCredentials: true,
       }
     );
   }
+
+  // 以下為不需登入即可使用的
+  // 拿到所有主廚資料(在member的chef_introduction欄位內)
   chefName() {
-    return axios.get(AUTH_API_URL + "/member/chefName", {
+    return axios.get(MEMBER_API_URL + "/member/chefName", {
       withCredentials: true,
     });
   }

@@ -3,28 +3,28 @@ import dotenv from "dotenv";
 import { API_URL } from "../config/config";
 dotenv.config();
 
-const AUTH_API_URL = API_URL + "/course";
+const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
   // 拿到所有課程資料
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
-    return axios.get(AUTH_API_URL + `/${course_id}`,{
+    return axios.get(COURSE_API_URL + `/${course_id}`, {
       withCredentials: true,
     });
   }
 
   // 依照member_id(主廚)拿到所有此會員發布的課程(卡片)
   course_memeberId(member_id) {
-    return axios.get(AUTH_API_URL + `/member/${member_id}`, {
+    return axios.get(COURSE_API_URL + `/member/${member_id}`, {
       withCredentials: true,
     });
   }
 
   // 依照member_id 拿到所有此會員收藏的課程(卡片)
   course_collection(member_id) {
-    return axios.get(AUTH_API_URL + `/collection/${member_id}`, {
+    return axios.get(COURSE_API_URL + `/collection/${member_id}`, {
       withCredentials: true,
     });
   }
@@ -32,7 +32,7 @@ class CourseService {
   // 新增或移除課程收藏
   course_collection_edit(member_id, course_id, type) {
     return axios.post(
-      AUTH_API_URL + `/collection/${member_id}`,
+      COURSE_API_URL + `/collection/${member_id}`,
       { course_id, type },
       {
         withCredentials: true,
@@ -125,7 +125,7 @@ class CourseService {
       formData.append("images", file);
     });
 
-    return axios.post(AUTH_API_URL + "/", formData, {
+    return axios.post(COURSE_API_URL + "/", formData, {
       withCredentials: true,
     });
   }

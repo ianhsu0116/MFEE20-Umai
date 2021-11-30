@@ -31,8 +31,119 @@
       width: 100%;
       position: relative;
       margin: 0 0 1rem 0;
+
       @include flex(column);
+      align-items: center;
       overflow: scroll;
+    }
+  }
+}
+
+.ArticleCard {
+  width: 95%;
+  max-width: 900px;
+  height: 150px;
+  border-radius: 8px;
+  position: relative;
+  @include flex(row);
+  padding: 0.5rem 0;
+  cursor: pointer;
+  margin: 0.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  &:hover {
+    .ArticleCard-right {
+      .ArticleCard-right-title {
+        color: $activeColor;
+      }
+    }
+    color: $fontColor;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  .ArticleCard-left {
+    // flex: 1 1 150px;
+    width: 25%;
+    min-width: 150px;
+    position: relative;
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    .ArticleCard-left-imgCon {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      @include flex(row);
+      justify-content: center;
+      align-items: center;
+
+      & img {
+        height: 120%;
+      }
+    }
+  }
+
+  .ArticleCard-right {
+    width: 75%;
+    padding: 0.5rem;
+    overflow: hidden;
+
+    .ArticleCard-right-title {
+      margin-bottom: 0.25rem;
+      max-width: 50%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ArticleCard-right-content {
+      //min-height: 55%;
+      height: 55%;
+      width: 95%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ArticleCard-right-bottom {
+      @include flex(row);
+      justify-content: flex-start;
+      align-items: center;
+
+      .ArticleCard-right-bottom-con {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+        margin-right: 0.5rem;
+        & svg {
+          top: 1px;
+          margin-right: 0.2rem;
+        }
+      }
+      .ArticleCard-right-bottom-like {
+        & svg {
+          fill: $highLevelColor;
+        }
+      }
+
+      .ArticleCard-right-bottom-comment {
+        & svg {
+          fill: $themeColorBlue;
+        }
+      }
+      .ArticleCard-right-bottom-collect {
+        color: $themeColor;
+        & svg {
+          fill: $themeColor;
+        }
+
+        &:hover {
+          color: $activeColor;
+          & svg {
+            fill: $activeColor;
+          }
+        }
+      }
     }
   }
 }
