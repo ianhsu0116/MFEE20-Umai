@@ -8,7 +8,11 @@ import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
 import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
+<<<<<<< HEAD
 import { FaPencilAlt } from "react-icons/fa";
+=======
+import { TiPencil } from "react-icons/ti";
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
@@ -260,7 +264,11 @@ const MemberInfo = (props) => {
             }}
           >
             <h3 className="MemberInfo-editPwd-con-title">
+<<<<<<< HEAD
               {<RiLockPasswordFill />} 修改會員密碼
+=======
+              {<RiLockPasswordFill />} 重設會員密碼
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             </h3>
             <div className="MemberInfo-editPwd-con-line"></div>
             <div className="MemberInfo-editPwd-con-info">
@@ -320,7 +328,11 @@ const MemberInfo = (props) => {
             className="MemberInfo-passwordEditButton"
             onClick={handlePwdConOpen}
           >
+<<<<<<< HEAD
             <FaPencilAlt />
+=======
+            <TiPencil />
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             <span>密碼修改</span>
           </div>
         </header>

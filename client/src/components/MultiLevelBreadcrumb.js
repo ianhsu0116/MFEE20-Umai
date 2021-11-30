@@ -6,6 +6,13 @@ import { pathnameList, pathnameTextList } from '../index'
 
 function MultiLevelBreadcrumb(props) {
   const { location } = props
+<<<<<<< HEAD
+=======
+
+  if(location.search === "?Japan"){
+    location.search = "日式料理"
+  }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   // find index，目前匹配的pathname，它的中文是什麼
   const findPathnameIndex = (pathname,search) => {
     // 找到剛好的，從前面開始找起
@@ -39,6 +46,7 @@ function MultiLevelBreadcrumb(props) {
     // '/product/baby/birth' -> ['','product','baby', 'birth']
     const pathArray = pathnameList[index].split('/')
 
+<<<<<<< HEAD
     // console.log(pathArray[1])
 
     if(location.search != ""){
@@ -52,6 +60,9 @@ function MultiLevelBreadcrumb(props) {
       }
     }
 
+=======
+    console.log(textArray, pathArray)
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
     const listArray = textArray.map((v, i, array) => {
       if (i === 0) return ''
@@ -74,8 +85,11 @@ function MultiLevelBreadcrumb(props) {
     return listArray
   }
 
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   return (
     <>
       <nav aria-label="breadcrumb">

@@ -21,6 +21,13 @@
 	align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+/* 大容器div */
+.Coursedetail {
+	width: 100%;
+}
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 /* 三圖片大框 */
 .Coursedetail-header {
 	position: relative;
@@ -34,10 +41,54 @@
 	height: 100%;
 	width: 100%;
 }
+<<<<<<< HEAD
 .Coursedetail-info {
 	width: 100%;
 	//height: 25vw;
 	height: 23vw; // ian改的
+=======
+// /* 大框圖片設置 */
+// .Coursedetail-header img {
+// 	margin: auto;
+// 	position: absolute;
+// 	width: 70vw;
+// 	// width: 70%;
+// 	max-width: 1440px;
+// 	height: 470px;
+// }
+// /* 左圖片 */
+// .Coursedetail-headerLeft {
+// 	transform: translate(-21.2%, 0px);
+// 	opacity: 0.3;
+// 	-webkit-transition: transform 1s;
+// 	z-index: 1;
+// }
+// /* 左圖片h */
+// .Coursedetail-headerLeft:hover {
+// 	opacity: 0.7;
+// }
+// /* 中圖片 */
+// .Coursedetail-headerMid {
+// 	transform: translate(20.85%, 0px);
+// 	-webkit-transition: transform 1s;
+// 	z-index: 3;
+// }
+// /* 右圖片 */
+// .Coursedetail-headerRight {
+// 	transform: translate(63.6%, 0px);
+// 	opacity: 0.3;
+// 	-webkit-transition: transform 1s;
+// 	z-index: 2;
+// }
+// /* 右圖片H */
+// .Coursedetail-headerRight:hover {
+// 	opacity: 0.7;
+// }
+/* 資訊欄 */
+.Coursedetail-info {
+	width: 100%;
+	height: 25vw;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	min-height: 250px;
 }
 /* 資訊(右欄) */
@@ -129,12 +180,22 @@
 }
 /* 資訊(左欄) */
 .Coursedetail-infoLeft {
+<<<<<<< HEAD
 	float: left;
 	max-width: 55%;
+=======
+	position: absolute;
+	float: left;
+	max-width: 50%;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	font-family: "Noto Sans TC", Medium;
 	font-weight: 700;
 	padding-top: 1vw;
 	width: 42vw;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	ul {
 		display: inline;
 		padding: 0;
@@ -210,7 +271,10 @@
 /* 梯次按鈕 */
 .Coursedetail-data {
 	display: flex;
+<<<<<<< HEAD
 	align-items: center;
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	p {
 		color: #444444;
 		margin-left: 2vw;
@@ -238,10 +302,14 @@
 .Coursedetail-infoBox {
 	width: 100%;
 	height: 100%;
+<<<<<<< HEAD
 	min-height: 650px; // ian 新加的  11/28為了讓定位圓圈擴大
 	//max-height: 600px; // ian 新加的
 	overflow: hidden; // ian 新加的
 
+=======
+	min-height: 350px; // ian 新加的
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	background-color: $themeColor;
 	margin-bottom: 5vw;
 	border-radius: 5px;
@@ -256,6 +324,13 @@
 	font-weight: bold;
 	font-family: "Noto Sans TC", Bold;
 }
+<<<<<<< HEAD
+=======
+// 內標距離用
+// .Coursedetail-well {
+// 	height: 20px;
+// }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 /* 內標 */
 .Coursedetail-insideTitle {
@@ -279,7 +354,11 @@
 	/* word-break: keep-all; */
 	text-indent: 1em;
 	width: 90%;
+<<<<<<< HEAD
 	text-align: justify;
+=======
+	text-align: left;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	margin: auto;
 	line-height: 3vw;
 	font-size: 1.4vw;
@@ -297,10 +376,16 @@
 .Coursedetail-chefCardMargin {
 	position: relative;
 	padding: 50px 0px 60px 0px;
+<<<<<<< HEAD
 	margin: auto;
 	width: 60vw;
 	min-width: 450px;
 	max-width: 900px;
+=======
+	width: 55%;
+	margin: auto;
+	min-width: 750px;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }
 .Coursedetail-infoBox2 {
 	width: 100%;
@@ -312,6 +397,21 @@
 .Coursedetail-foodInfo {
 	padding: 1vw;
 }
+<<<<<<< HEAD
+=======
+// .Coursedetail-sixPicture {
+// 	padding: 10px;
+// 	position: relative;
+// 	width: 780px;
+// 	height: 550px;
+// }
+// .Coursedetail-sixPicture img {
+// 	padding: 5px;
+// }
+// .Coursedetail-sixPictureTitlePosition {
+// 	position: absolute;
+// }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 .Coursedetail-sixPictureTitle {
 	display: flex;
 	align-items: center;
@@ -331,10 +431,23 @@
 	display: flex;
 	width: 100%;
 	height: 15vw;
+<<<<<<< HEAD
 	position: absolute;
 	background-color: black;
 	opacity: 0;
 }
+=======
+	position: relative;
+	top: -15vw;
+	background-color: black;
+	opacity: 0;
+}
+// .Coursedetail-sixPictureTitle:hover {
+// 	opacity: 1;
+// 	transform: translate(0px, -50px);
+// 	-webkit-transition: transform 0.5s;
+// }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 .Coursedetail-sixPictureTitleTopBox {
 	display: flex;
 	margin-top: 50px;
@@ -357,7 +470,12 @@
 	height: 10vw;
 	position: absolute;
 	top: 0;
+<<<<<<< HEAD
 	border-bottom: 5px solid $themeColorBlue;
+=======
+	margin-top: 1.2vw;
+	border-bottom: 5px solid $highLevelColor;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	overflow: hidden;
 	border-radius: 5px;
 }
@@ -383,6 +501,7 @@
 	cursor: pointer;
 	overflow: hidden;
 	border-radius: 5px;
+<<<<<<< HEAD
 	@include flex(column);
 	align-items: center;
 }
@@ -393,6 +512,15 @@
 	border-radius: 5px;
 	cursor: pointer;
 	//right: calc(25%);
+=======
+}
+.Coursedetail-sixPictureTextBox_1 ul li img {
+	width: 100%;
+	height: 100%;
+	min-width: 100px;
+	border-radius: 5px;
+	cursor: pointer;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
 	opacity: 1;
@@ -437,7 +565,11 @@
 	}
 }
 .Coursedetail-chepBoxInfomation {
+<<<<<<< HEAD
 	text-align: justify;
+=======
+	text-align: left;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	// color: #ffffff;
 	font-size: 1.2vw;
 	font-weight: 700;
@@ -453,11 +585,18 @@
 .Coursedetail-costBox {
 	width: 80%;
 	height: 100%;
+<<<<<<< HEAD
 	padding-bottom: 1vw;
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }
 .Coursedetail-cost {
 	position: relative;
 	width: 100%;
+<<<<<<< HEAD
+=======
+	height: 40vw;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	background-color: #ffffff;
 	margin: 80px 0;
 	font-size: 100%;
@@ -475,6 +614,10 @@
 	}
 	img {
 		width: 100%;
+<<<<<<< HEAD
+=======
+		height: 100%;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 		position: absolute;
 		left: 0;
 		z-index: 1;
@@ -515,12 +658,21 @@
 		height: 100px;
 		font-size: 1.2vw;
 		list-style: disc;
+<<<<<<< HEAD
 		font-weight: 600;
+=======
+		font-weight: 500;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 		font-family: "Noto Sans TC", Medium;
 	}
 }
 .Coursedetail-attention {
+<<<<<<< HEAD
 	//width: 80%;  ian 修改的 => 這樣比例比較正常一點ㄦ
+=======
+	width: 80%;
+	height: 5vw;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 	margin-left: 35px;
 	position: relative;
 	padding-top: 20px;
@@ -540,6 +692,7 @@
 .Coursedetail-join {
 	position: relative;
 	width: 100%;
+<<<<<<< HEAD
 	height: 40vw;
 	background-color: #ffffff;
 	margin: 80px 0;
@@ -581,11 +734,40 @@
 		margin: auto;
 	}
 	img {
+=======
+	height: 800px;
+	background-color: #ffffff;
+	margin: 80px 0;
+	font-size: 100%;
+	border: 2px solid #666666;
+	border-radius: 5px;
+	overflow: hidden;
+	span {
+		position: relative;
+		float: right;
+		width: 65%;
+		height: 100%;
+		border-bottom: 850px solid #d8a466;
+		border-left: 200px solid transparent;
+		// min-width: 550px;
+		z-index: 2;
+	}
+	.Coursedetail-joinLine {
+		width: 90%;
+		border: 1px solid #fff;
+		margin: 10px auto 0 auto;
+		position: relative;
+		right: 10px;
+	}
+	img {
+		width: 100%;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 		height: 100%;
 		position: absolute;
 		left: 0;
 		z-index: 1;
 	}
+<<<<<<< HEAD
 	.Coursedetail-joinTitle {
 		padding-top: 2vw;
 		font-size: 2.5vw;
@@ -600,3 +782,23 @@
 		padding: 1vw 0 1vw 20%;
 	}
 }
+=======
+	p {
+		width: 100%;
+		text-align: center;
+		font-size: 48px;
+		color: #ffffff;
+		font-weight: bold;
+		font-family: "Noto Sans TC", Bold;
+		padding-top: 40px;
+	}
+}
+
+.Coursedetail-clip {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+	background-color: aquamarine;
+	// margin-bottom: 100px;
+	height: 40vw;
+	width: 30vw;
+}
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a

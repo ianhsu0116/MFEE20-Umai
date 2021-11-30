@@ -21,8 +21,11 @@ import { GrInstagram } from "react-icons/gr";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
+<<<<<<< HEAD
 import Join from '../../components/images/JoinPicture.jpg';
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
   const { location } = props;
@@ -274,7 +277,11 @@ function CourseInfomation(props) {
                     </li>
                   </ul>
                 </div>
+<<<<<<< HEAD
                 <div className="Coursedetail-infoLeftTitle" id="batch">
+=======
+                <div className="Coursedetail-infoLeftTitle">
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   {newCourseJSON[0].course_name}
                 </div>
                 <div className="Coursedetail-placeWithChef">
@@ -636,6 +643,7 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-join">
               <span>
+<<<<<<< HEAD
                 <p className="Coursedetail-joinTitle">立即報名</p>
                 <div className="Coursedetail-joinLineWidth">
                 <div className="Coursedetail-joinLine"></div>
@@ -653,6 +661,12 @@ function CourseInfomation(props) {
               </span>
               <img src={Join} alt=""></img>
 
+=======
+                <p>立即報名</p>
+                <div className="Coursedetail-joinLine"></div>
+                <p>馬上加入好嗎?</p>
+              </span>
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             </div>
           </div>
         </div>

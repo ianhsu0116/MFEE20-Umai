@@ -8,9 +8,26 @@ const AUTH_API_URL = API_URL + "/course";
 class CourseService {
   // 拿到所有課程資料
 
+<<<<<<< HEAD
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
     return axios.get(AUTH_API_URL + `/${course_id}`,{
+=======
+  // 依照course_id拿到課程內容與梯次資料
+  course_shoppingCart(course_id, batch_date) {
+    return axios.post(
+      AUTH_API_URL + `/`,
+      { course_id, batch_date },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  // 依照course_id拿到課程詳細資料(detail)
+  course_courseId(course_id) {
+    return axios.get(AUTH_API_URL + `/${course_id}`, {
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       withCredentials: true,
     });
   }

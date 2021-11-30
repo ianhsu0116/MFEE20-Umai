@@ -4,7 +4,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+<<<<<<< HEAD
   z-index: 20;
+=======
+  z-index: 10;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   background: rgba(0, 0, 0, 0.3);
   @include flex(row);
   justify-content: center;
@@ -13,8 +17,13 @@
   .Login-container {
     //top: -100%;
     width: 750px;
+<<<<<<< HEAD
     min-height: 465px;
     z-index: 21;
+=======
+    height: 500px;
+    z-index: 11;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     background: white;
     border-radius: 15px;
     overflow: hidden;
@@ -26,6 +35,7 @@
       background: url(../../images/loginPageBackground.jpg) center center
         no-repeat;
       background-size: cover;
+<<<<<<< HEAD
       @include flex(row);
       justify-content: center;
       align-items: center;
@@ -58,6 +68,8 @@
           min-width: 90px;
         }
       }
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     }
 
     .Login-container-right {
@@ -65,6 +77,7 @@
       padding: 20px 50px;
       position: relative;
       background: $themeColor;
+<<<<<<< HEAD
       -webkit-box-align: center;
       @include flex(row);
       justify-content: flex-start;
@@ -341,6 +354,115 @@
             background: $activeColor;
           }
         }
+=======
+      @include flex(column);
+      justify-content: center;
+
+      .Login-container-right-thirdPartyCon {
+        .Login-container-right-googleBtn,
+        .Login-container-right-fbBtn {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          border: none;
+          border-radius: 10px;
+          padding: 1rem;
+          margin: 0.5rem 0;
+          & img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+        .Login-container-right-googleBtn {
+          background: white;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .Login-container-right-fbBtn {
+          background: $facebookBlue;
+          color: white;
+        }
+      }
+
+      .Login-container-right-center {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 1rem 0;
+        color: white;
+
+        .Login-container-right-center-text {
+          background: $themeColor;
+          padding: 0.35rem 0.75rem;
+          z-index: 1;
+        }
+
+        .Login-container-right-center-line {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          height: 1px;
+          background: white;
+        }
+      }
+
+      .Login-container-right-inputCon {
+        @include flex(column);
+        align-items: flex-start;
+        position: relative;
+
+        & label {
+          color: white;
+        }
+
+        & input {
+          border-radius: 5px;
+          padding: 0.35rem 0.6rem 0.35rem 2.2rem;
+          margin-top: 0.25rem;
+          font-size: 1.1rem;
+          width: 100%;
+        }
+
+        & svg {
+          position: absolute;
+          top: 37px;
+          left: 8px;
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .Login-container-right-button-con {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        & button {
+          width: 50%;
+          border: none;
+          padding: 0.5rem;
+          text-align: center;
+          background: $themeColorBlue;
+          color: white;
+        }
+        .login-submit-btn {
+          margin-right: 0.1;
+        }
+        .register-submit-btn {
+          margin-left: 0.1rem;
+          background: $activeColor;
+        }
+      }
+
+      .Login-container-right-bottom {
+        @include flex(row);
+        justify-content: center;
+        align-items: center;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       }
     }
   }

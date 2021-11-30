@@ -1,6 +1,7 @@
 import React  from "react";
 import Swal from "sweetalert2";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
+<<<<<<< HEAD
 import { useState } from "react";
 
 
@@ -51,6 +52,31 @@ const Contactus = () => {
    
     return (
       <>
+=======
+
+
+const Contactus = () => {
+    const success = () => {
+      Swal.fire({
+        title: '我們將會盡快回復',
+        width: 450,
+        
+        padding: '3em',
+        background: '#fff url(../images/coffee-gfe407c465_641.png)',
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("../images/1111111111.gif")
+          right top
+          no-repeat
+        `
+        
+    }).then(function(){
+        window.location.reload();
+    });
+   }
+
+    return (
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       <div>
       <header className="Classroom">
       <div className="contactus_breadCrum">
@@ -78,8 +104,12 @@ const Contactus = () => {
         ></iframe>
       </div>
     </div>
+<<<<<<< HEAD
    
    <form action="" >   
+=======
+
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     <div className="Detail">
       <h1 style={{top:"-17px"}}>取得聯絡</h1>
       <p>
@@ -91,31 +121,46 @@ const Contactus = () => {
               <label>
                 你的名字(必填)
                </label>
+<<<<<<< HEAD
                <input
                   type="text"
                   name="yourname"
+=======
+               <textarea
+                  name="your-message"
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
+<<<<<<< HEAD
                   required
                   // value={inputText}
                   // onChange={(e) =>{setInputText(e.target.value)
                   // }}
                 ></input>
+=======
+                ></textarea>
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             </p>
 
             <p className="Uremail">
               <label>
                 你的信箱(必填)
                </label>
+<<<<<<< HEAD
                <input
                   type="text"
                   name="youremail"
+=======
+               <textarea
+                  name="your-message"
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
+<<<<<<< HEAD
                   required
                 ></input>
             </p>
@@ -128,12 +173,28 @@ const Contactus = () => {
               <input
                   type="text"
                   name="yourtitle"
+=======
+                ></textarea>
+            </p>
+         </div>
+
+          <p style={{margin: "0", padding: "0"}} class="Urtitle">
+            <label
+              >主旨<br />
+              </label>
+              <textarea
+                  name="your-message"
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   cols="73"
                   rows="1"
                   class=""
                   aria-invalid="false"
+<<<<<<< HEAD
                   required
                 ></input>
+=======
+                ></textarea>
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
           </p>
 
           <p style={{margin: "0", padding: "0",top:"20px"}} class="Urcontent">
@@ -141,15 +202,22 @@ const Contactus = () => {
               </label>
               內容<br />
                 <textarea
+<<<<<<< HEAD
                   name="yourcontent"
+=======
+                  name="your-message"
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                   cols="73"
                   rows="24"
                   class=""
                   aria-invalid="false"
+<<<<<<< HEAD
                   required
                   // value={textArea}
                   // onChange={(e) =>{setTextArea(e.target.value)
                   // }}
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
                 ></textarea>
           </p>
       </div>  
@@ -162,6 +230,7 @@ const Contactus = () => {
         <div className="" aria-hidden="true"></div>
         <div className="Trapezoid"></div>
     </div>
+<<<<<<< HEAD
   </form>  
   </div>
   </>
@@ -170,4 +239,10 @@ const Contactus = () => {
 
 
 
+=======
+  </div>
+    )
+}
+
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 export default Contactus

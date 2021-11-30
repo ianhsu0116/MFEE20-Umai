@@ -238,7 +238,11 @@ router.post("/findPassword", async (req, res) => {
 
     // 修改使用者密碼
     let newPassword = uuidv4();
+<<<<<<< HEAD
     newPassword = newPassword.substr(0, 12);
+=======
+    newPassword = newPassword.substr(0, 18);
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     let hashedPassword = await bcrypt.hash(newPassword, 10);
 
     // 將新密碼裝好並寄出email

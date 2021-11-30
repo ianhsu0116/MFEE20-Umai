@@ -1,16 +1,25 @@
 .CourseCard1 {
   @include flex(row);
   border-radius: 15px;
+<<<<<<< HEAD
   // width: 90%;
   max-width: 900px;
   max-height: 200px;
+=======
+  width: 90%;
+  max-width: 900px;
+  height: 200px;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   background: white;
   overflow: hidden;
   position: relative;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   position: relative;
   margin: 1rem 0;
+<<<<<<< HEAD
   flex: 1 1 600px;
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
   .CourseCard1-imageCon {
     height: 100%;
@@ -20,6 +29,7 @@
     //flex: 2 1 230px;
     position: relative;
     overflow: hidden;
+<<<<<<< HEAD
     @include flex(row);
     align-items: center;
     justify-content: center;
@@ -28,6 +38,12 @@
       height: 100%;
       max-height: 250px;
       //width: 100%;
+=======
+
+    & img {
+      height: 100%;
+      width: 100%;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       object-fit: cover;
       object-position: center center;
     }
@@ -90,7 +106,11 @@
           position: absolute;
           top: 0;
           left: 0;
+<<<<<<< HEAD
           width: 0;
+=======
+          width: 25%;
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
           height: 100%;
           border-radius: 5px;
           background-color: $activeColor;

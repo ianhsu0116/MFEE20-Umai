@@ -13,12 +13,15 @@ $lowLevelColor: #5eb2eb;
 // DefaultStudentCard 用
 $titleBackgroundColor: #eeeeee;
 
+<<<<<<< HEAD
 // MemberCenter
 // 定高
 $MemberCenterHeight: calc(100vh - 63px);
 // 最外框框陰影
 $MemberCenterShadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
@@ -67,6 +70,7 @@ body {
 //   opacity: 1;
 // }
 
+<<<<<<< HEAD
 // placehoder預設顏色
 ::placeholder {
   /* Firefox, Chrome, Opera */
@@ -83,6 +87,8 @@ body {
   color: rgba(0, 0, 0, 0.3);
 }
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 // 覆蓋bootstrap樣式
 h1,
 h2,
@@ -208,11 +214,14 @@ a {
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 // 重點字體 改變顏色
 .heighLight-text {
   color: $activeColor;
 }
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 // 共用元件
 @import "./Navber";
 @import "./OptionBar";
@@ -222,17 +231,36 @@ a {
 @import "./StarGroup";
 @import "./ShareCard";
 @import "./CourseMiniCard";
+<<<<<<< HEAD
 @import "./ChefCard";
 @import "./Breadcrumb";
 @import "./CreditCards";
+=======
+@import "./CourseMiniCardSlider";
+@import "./Breadcrumb";
+@import "./CreditCards";
+@import "./Footer";
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 // 三種不一樣的萬年曆
 @import "./Calendar"; // 一般日曆
 @import "./CalendarAvailable"; // 可顯同時顯示多日期
 @import "./CalendarMulti"; // 可多選
 
+<<<<<<< HEAD
 // member相關
 $header-border: 3px solid $activeColor; // title的左border
+=======
+// Navbar相關
+@import "./Navbar/CartCourse";
+
+// Homepage相關
+@import "./homepage/HomePage";
+@import "./homepage/ChefCardSlider";
+@import "./ChefCard";
+
+// member相關
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 @import "./member/Login";
 @import "./member/MemberCenter";
 @import "./member/MemberSidebar";
@@ -247,14 +275,21 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./member/CourseInsert";
 @import "./member/ReviewButton";
 @import "./member/CourseReview";
+<<<<<<< HEAD
 @import "./member/ChefIntro";
 @import "./member/ChefCard2";
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 // masonry相關
 @import "./massonry/massonry";
 // forum 相關
 @import "./forum/forum";
+<<<<<<< HEAD
 @import "./forum/forumcard";
+=======
+@import "./forum/discussion";
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 // 課程分類
 @import "./course/Course";
@@ -266,11 +301,15 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
+<<<<<<< HEAD
 @import "./CourseDetail//CourseDecorate";
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 // 主廚
 @import "./chef/chef";
 
+<<<<<<< HEAD
 // shoppingcart-shoppingcart
 @import "./shoppingCart/shoppingCart/ShoppingCart";
 @import "./shoppingCart/shoppingCart/CourseList";
@@ -290,6 +329,8 @@ $header-border: 3px solid $activeColor; // title的左border
 //聯絡我們
 @import "./contactus/contactus";
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 // RWD
 @media screen and (max-width: 1200px) {
   .Navbar {
@@ -297,12 +338,26 @@ $header-border: 3px solid $activeColor; // title的左border
       width: 90%;
     }
   }
+<<<<<<< HEAD
+=======
+  .Navbar-dropdowns {
+    .Navbar-dropdowns-container {
+      width: 90%;
+    }
+  }
+  .Navbar-CourseSearch {
+    .Navbar-CourseSearch-container {
+      width: 90%;
+    }
+  }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
   .MemberCenter {
     .MemberCenter-container {
       width: 90%;
     }
   }
+<<<<<<< HEAD
 
   .MemberInfo-container-row {
     width: 100% !important;
@@ -349,4 +404,27 @@ $header-border: 3px solid $activeColor; // title的左border
 		top: 14vw;
 		right: -5vw;
 	}
+=======
+  .CourseDetail-headerPicture {
+    width: 90%;
+    img {
+      height: 35vw;
+    }
+  }
+  .Coursedetail {
+    /* 三圖片大框 */
+    .Coursedetail-header {
+      width: 90%;
+      height: 35vw;
+    }
+  }
+  .Coursedetail-set {
+    .Coursedetail-container {
+      width: 90%;
+    }
+  }
+  .chef-set {
+    width: 90%;
+  }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }

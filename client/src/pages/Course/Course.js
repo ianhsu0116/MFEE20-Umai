@@ -3,7 +3,10 @@ import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import CourseCard_Course from './CourseCard_Course'
 import Test from './test1'
 
+<<<<<<< HEAD
 import CourseCard from '../../components/CourseCard1'
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 
 function Course (props){
 
@@ -64,11 +67,15 @@ function Course (props){
       </select>
     </div>
         <div className="CourseCard">
+<<<<<<< HEAD
         {/* <CourseCard_Course />
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         <CourseCard_Course />
         <CourseCard_Course />
         <CourseCard_Course />
         <CourseCard_Course />
+<<<<<<< HEAD
         <CourseCard_Course /> */}
         <CourseCard
          courseDetail={{
@@ -268,6 +275,11 @@ function Course (props){
                 handleAddIntoCart={5464}
                 handlePurchase={4564}
                 className={1111111} />
+=======
+        <CourseCard_Course />
+        <CourseCard_Course />
+        
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
         </div>
     </div>
     </>

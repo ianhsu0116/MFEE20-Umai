@@ -20,9 +20,12 @@
       max-height: 80px;
       position: relative;
       overflow: hidden;
+<<<<<<< HEAD
       @include flex(row);
       justify-content: center;
       align-items: center;
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       .OrderCard-image {
         width: 100%;
       }
@@ -39,12 +42,15 @@
 
     .OrderCard-mamberCount {
       align-items: flex-end;
+<<<<<<< HEAD
 
       // 訂單價錢顯示
       .OrderCard-mamberCount-price {
         padding-top: 0.9rem;
         font-weight: 800;
       }
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     }
   }
 
@@ -102,14 +108,21 @@
         .OrderCard-detail-container2-right-stars {
           @include flex(row);
           padding-left: 1rem;
+<<<<<<< HEAD
           &:hover .OrderCard-detail-container2-right-star {
             transform: scale(1.05);
           }
 
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
           .OrderCard-detail-container2-right-star {
             width: 24px;
             height: 24px;
             cursor: pointer;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
             &:hover {
               background: url(../icons/star-solid.svg) no-repeat;
             }

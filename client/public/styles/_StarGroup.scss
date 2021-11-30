@@ -1,5 +1,6 @@
 .StarGroup {
   @include flex(row);
+<<<<<<< HEAD
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 0.15rem;
@@ -26,4 +27,42 @@
       z-index: -1;
     }
   }
+=======
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.15rem;
+
+  .StarGroup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80px;
+    position: relative;
+    height: 5vw;
+    max-height: 30px;
+    overflow: hidden;
+    .StarGroup-container-star {
+      width: 100%;
+      height: 100%;
+      top: 1.5px;
+      z-index: 2;
+    }
+    .StarGroup-container-background {
+      position: absolute;
+      top: 3.5px;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+  & p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #909090;
+    margin-left: 5px;
+  }
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
 }

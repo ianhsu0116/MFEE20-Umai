@@ -21,6 +21,10 @@
     "react-read-more-read-less": "^1.0.7",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+<<<<<<< HEAD
+=======
+    "react-slick": "^0.28.1",
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     "sweetalert2": "^11.2.1",
     "sweetalert2-react-content": "^4.2.0",
     "uuid": "^8.3.2",

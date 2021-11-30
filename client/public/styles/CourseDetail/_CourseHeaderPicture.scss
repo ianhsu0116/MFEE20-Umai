@@ -2,6 +2,7 @@
 	width: 70vw;
 	max-width: 1440px;
 	margin: auto;
+<<<<<<< HEAD
 	// ian新增 為了讓圖片不被壓縮
 	position: relative;
 	@include flex(row);
@@ -43,3 +44,13 @@
 	// background: $themeColorBlue;
 	z-index: 2;
 }
+=======
+	img {
+		height: 25vw;
+	}
+    .Course-headerPictureButton{
+        background-color:RGBA( 0 , 0 , 0 , 0.5);
+        width:5%
+    }
+}
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a

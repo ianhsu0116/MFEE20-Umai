@@ -28,7 +28,10 @@ const CourseCard1 = (props) => {
     handleAddIntoCollection,
     handleAddIntoCart,
     handlePurchase,
+<<<<<<< HEAD
     className,
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   } = props;
 
   // 當前課程人數限制
@@ -67,7 +70,11 @@ const CourseCard1 = (props) => {
   }, [collectionIds]);
 
   return (
+<<<<<<< HEAD
     <div className={`CourseCard1 ${className ? " " + className : ""}`}>
+=======
+    <div className="CourseCard1">
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
       <div className="CourseCard1-imageCon">
         <img
           src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
