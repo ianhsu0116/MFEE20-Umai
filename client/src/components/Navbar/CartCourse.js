@@ -14,6 +14,7 @@ const CartCourse = (props) => {
     sumCartCoursePrice,
     setSumCartCoursePrice,
     handleSumPriceZeroing,
+    addCourseIntoCart,
   } = props;
 
   //特定課程金額小計

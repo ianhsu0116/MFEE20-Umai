@@ -39,6 +39,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
+  const [checkoutList, setCheckoutList] = useState({
+    member_id: "",
+    course_id: "",
+    cartCourseCount: "",
+  });
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -62,6 +67,11 @@ function App() {
   const handleToggleCourseSearch = async () => {
     setActiveCourseSearch(!isActiveCourseSearch);
   };
+
+  //
+  async function addCourseIntoCart(course_id) {
+    // getCurrentInfoObject;
+  }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -127,6 +137,9 @@ function App() {
         CourseCategoryListRight={CourseCategoryListRight}
         ExperienceShareListLeft={ExperienceShareListLeft}
         ExperienceShareListRight={ExperienceShareListRight}
+        checkoutList={checkoutList}
+        setCheckoutList={setCheckoutList}
+        addCourseIntoCart={addCourseIntoCart}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />

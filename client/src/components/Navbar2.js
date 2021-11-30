@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
 import { numDotFormat } from "../config/formula";
+import OrderService from "../services/order.service";
 
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
@@ -10,8 +11,10 @@ import { ImCross } from "react-icons/im";
 import UmaiLogo from "./images/Umai.png";
 import avatar from "./images/avatar.jpg";
 
+import Swal from "sweetalert2";
 import CartCourse from "./Navbar/CartCourse";
 import { empty } from "statuses";
+import getValidMessage from "../validMessage/validMessage";
 
 const Navbar = (props) => {
   let {
@@ -25,50 +28,73 @@ const Navbar = (props) => {
     CourseCategoryListRight,
     ExperienceShareListLeft,
     ExperienceShareListRight,
+    checkoutList,
+    setCheckoutList,
   } = props;
 
   //儲存購物車的課程資訊
   const [cartCourseInfoList, setCartCourseInfoList] = useState([
     {
-      id: 9,
-      member_id: 1,
-      category_id: 1,
-      batch_id: 1, //(course_batch table)(alia)
-      course_image: "course-44d67cba-78ee-419a-a853-907974d112aa.jpg",
-      course_name: "美式經典牛排烹調高階課程",
-      course_price: 5400,
-      member_limit: 30,
-      batch_date: "2021/12/26", //(course_batch table)
-      member_count: 0, //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-    {
-      id: 10,
-      member_id: 1,
-      category_id: 1,
-      batch_id: 2, //(course_batch table)(alia)
-      course_image: "course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg",
-      course_name: "極度美味中式饗宴，傳統粵式名菜",
-      course_price: 2800,
-      member_limit: 30,
-      batch_date: "2022/01/05", //(course_batch table)
-      member_count: 5, //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-    {
-      id: 11,
-      member_id: 1,
-      category_id: 5,
-      batch_id: 3, //(course_batch table)(alia)
-      course_image: "course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg",
-      course_name: "米其林二星經典港式傳統料理",
-      course_price: 4500,
-      member_limit: 25,
-      batch_date: "2022/01/11", //(course_batch table)
-      member_count: 10, //(course_batch table)
+      id: "",
+      member_id: "",
+      category_id: "",
+      batch_id: "", //(course_batch table)(alia)
+      course_image: "",
+      course_name: "",
+      course_price: "",
+      member_limit: "",
+      batch_date: "", //(course_batch table)
+      member_count: "", //(course_batch table)
       cartCourseCount: 1, //(notInDB)
     },
   ]);
+
+  // [
+  //   {
+  //     id: 9,
+  //     member_id: 1,
+  //     category_id: 1,
+  //     batch_id: 1, //(course_batch table)(alia)
+  //     course_image: "course-44d67cba-78ee-419a-a853-907974d112aa.jpg",
+  //     course_name: "美式經典牛排烹調高階課程",
+  //     course_price: 5400,
+  //     member_limit: 30,
+  //     batch_date: "2021/12/26", //(course_batch table)
+  //     member_count: 0, //(course_batch table)
+  //     cartCourseCount: 1, //(notInDB)
+  //   },
+  //   {
+  //     id: 10,
+  //     member_id: 1,
+  //     category_id: 1,
+  //     batch_id: 2, //(course_batch table)(alia)
+  //     course_image: "course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg",
+  //     course_name: "極度美味中式饗宴，傳統粵式名菜",
+  //     course_price: 2800,
+  //     member_limit: 30,
+  //     batch_date: "2022/01/05", //(course_batch table)
+  //     member_count: 5, //(course_batch table)
+  //     cartCourseCount: 1, //(notInDB)
+  //   },
+  //   {
+  //     id: 11,
+  //     member_id: 1,
+  //     category_id: 5,
+  //     batch_id: 3, //(course_batch table)(alia)
+  //     course_image: "course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg",
+  //     course_name: "米其林二星經典港式傳統料理",
+  //     course_price: 4500,
+  //     member_limit: 25,
+  //     batch_date: "2022/01/11", //(course_batch table)
+  //     member_count: 10, //(course_batch table)
+  //     cartCourseCount: 1, //(notInDB)
+  //   },
+  // ];
+
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState("");
+  // 判斷購物車中是否只有一堂課
+  const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
 
   //當前選購課程的總數量
   const numberOfCoursesInCart = cartCourseInfoList.length;
@@ -92,12 +118,87 @@ const Navbar = (props) => {
     setSearchValue("");
   }
 
-  //
+  // 結帳按鈕判斷
+  const handleCheckout = async () => {
+    // 告知需要登入才能購買課程
+    ifLogIn();
+    // 沒登入無法結帳(離開結帳判斷)
+    if (currentUser === null) return;
+
+    //確認購物車是否只有一堂課程
+    ifOnlyCourseInAlert();
+    //購物車中太多課程無法結帳(離開結帳判斷)
+    if (!isOnlyCourseInCart) return;
+
+    //設定結帳課程資訊
+    setCheckoutList({
+      member_id: cartCourseInfoList[0].member_id,
+      course_id: cartCourseInfoList[0].course_id,
+      cartCourseCount: cartCourseInfoList[0].cartCourseCount,
+    });
+
+    // 結帳資料送後端
+    try {
+      let result = await OrderService.checkout(
+        checkoutList.member_id,
+        checkoutList.course_id
+      );
+
+      // 刪除錯誤訊息
+      setErrorMsg("");
+    } catch (error) {
+      // console.log(error.response);
+      let { code } = error.response.data;
+      setErrorMsg(getValidMessage("cart", code));
+    }
+  };
+
+  // 確認是否登入，並提醒要登入才能買課程
+  async function ifLogIn() {
+    if (currentUser === null) {
+      return Swal.fire({
+        icon: "warning",
+        title: getValidMessage("cart", "D002"),
+        text: "單筆消費僅能購買一堂課程",
+        confirmButtonColor: "#0078B3",
+        timer: 1500,
+      });
+    }
+  }
+
+  //確認購物車是否只有一堂課程
+  function ifOnlyCourseInCart() {
+    cartCourseInfoList.length === 1
+      ? setIsOnlyCourseInCart(true)
+      : setIsOnlyCourseInCart(false);
+  }
+
+  //確認購物車是否只有一堂課程，並跳出通知提醒
+  async function ifOnlyCourseInAlert() {
+    //確認購物車是否只有一堂課程
+    ifOnlyCourseInCart();
+
+    if (isOnlyCourseInCart) {
+      return true;
+    } else {
+      // 告知需要刪除多餘課程
+      Swal.fire({
+        icon: "warning",
+        title: getValidMessage("cart", "D002"),
+        text: "單筆消費僅能購買一堂課程",
+        confirmButtonColor: "#0078B3",
+        timer: 1500,
+      });
+    }
+  }
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
     //當購物車沒課程時，將總金額歸零
     handleSumPriceZeroing();
+
+    //確認購物車是否只有一堂課程
+    ifOnlyCourseInCart();
   }, [cartCourseInfoList]);
 
   return (
@@ -303,7 +404,7 @@ const Navbar = (props) => {
                       </div>
                       <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
                         {/* 結帳按鈕 */}
-                        <div className="goCheckOut">
+                        <div className="goCheckOut" onClick={handleCheckout}>
                           <h5>前往結帳</h5>
                         </div>
                       </div>
