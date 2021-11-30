@@ -20,7 +20,7 @@ router.use((req, res, next) => {
 });
 
 // 阻擋未登入的請求
-//router.use(authCheck);
+router.use(authCheck);
 
 // multer
 const multer = require("multer");
@@ -378,17 +378,15 @@ router.get("/member/chefName", async (req, res) => {
 
   try {
     let result = await connection.queryAsync(
-      "SELECT member.id , member.first_name , last_name , member.chef_introduction , member.member_category  FROM member WHERE member_category = 2 AND valid = ?",
-      [id , 1]
+      "SELECT member.id, member.first_name, last_name, member.chef_introduction, member.member_category FROM member WHERE member_category = 2 AND valid = ?",
+      [id, 1]
     );
-    
-    
+
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
-
 
 module.exports = router;
