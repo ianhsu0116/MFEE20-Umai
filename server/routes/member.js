@@ -377,11 +377,7 @@ router.get("/member/chefName", async (req, res) => {
 
   try {
     let result = await connection.queryAsync(
-<<<<<<< HEAD
       "SELECT member.id, member.first_name, last_name, member.chef_introduction, member.member_category FROM member WHERE member_category = 2 AND valid = ?",
-=======
-      "SELECT member.id , member.first_name , last_name , member.chef_introduction , member.member_category  FROM member WHERE member_category = 2 AND valid = ?",
->>>>>>> df47f098939dfeaaa20e707a4cebb14467547a76
       [id, 1]
     );
 
