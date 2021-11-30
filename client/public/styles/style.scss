@@ -227,7 +227,8 @@ a {
 }
 
 // 共用元件
-@import "./Navber";
+@import "./Navbar";
+@import "./Navbar2";
 @import "./OptionBar";
 @import "./CourseCard1";
 @import "./Coupons";
@@ -238,11 +239,21 @@ a {
 @import "./ChefCard";
 @import "./Breadcrumb";
 @import "./CreditCards";
+@import "./CourseMiniCardSlider";
+@import "./Footer";
 
 // 三種不一樣的萬年曆
 @import "./Calendar"; // 一般日曆
 @import "./CalendarAvailable"; // 可顯同時顯示多日期
 @import "./CalendarMulti"; // 可多選
+
+// Navbar相關
+@import "./Navbar/CartCourse";
+
+// Homepage相關
+@import "./homepage/HomePage";
+@import "./homepage/ChefCardSlider";
+@import "./ChefCard";
 
 // member相關
 $header-border: 3px solid $activeColor; // title的左border
@@ -307,6 +318,16 @@ $header-border: 3px solid $activeColor; // title的左border
 @media screen and (max-width: 1200px) {
   .Navbar {
     .Navbar-container {
+      width: 90%;
+    }
+  }
+  .Navbar-dropdowns {
+    .Navbar-dropdowns-container {
+      width: 90%;
+    }
+  }
+  .Navbar-CourseSearch {
+    .Navbar-CourseSearch-container {
       width: 90%;
     }
   }

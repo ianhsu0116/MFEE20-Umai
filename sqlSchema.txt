@@ -20,13 +20,19 @@ CREATE TABLE `article_like` (
 
 DROP TABLE IF EXISTS `cart_and_collection`;
 CREATE TABLE `cart_and_collection` (
+<<<<<<< HEAD
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   `member_id` int(10) unsigned NOT NULL,
   `course_id` int(11) NOT NULL,
   `batch_id` int(11) DEFAULT NULL,
   `inCart` int(1) NOT NULL DEFAULT '0',
   `inCollection` int(1) NOT NULL DEFAULT '0',
+<<<<<<< HEAD
   PRIMARY KEY (`id`),
+=======
+>>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   KEY `member_id` (`member_id`),
   KEY `course_id` (`course_id`),
   KEY `batch_id` (`batch_id`),

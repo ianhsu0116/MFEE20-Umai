@@ -149,7 +149,7 @@ const Login = (props) => {
         timer: 1500,
       });
     } catch (error) {
-      //console.log(error.response);
+      // console.log(error.response);
       let { code } = error.response.data;
       setErrorMsg(getValidMessage("registration", code));
     }

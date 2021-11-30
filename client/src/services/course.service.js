@@ -10,7 +10,7 @@ class CourseService {
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
-    return axios.get(AUTH_API_URL + `/${course_id}`,{
+    return axios.get(AUTH_API_URL + `/${course_id}`, {
       withCredentials: true,
     });
   }

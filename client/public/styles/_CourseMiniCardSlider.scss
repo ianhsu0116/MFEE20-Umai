@@ -1,0 +1,52 @@
+$arrowFontSize: calc(24px + 1vw);
+
+.SliderTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2vw;
+  .circle {
+    height: $arrowFontSize;
+    width: $arrowFontSize;
+    border-radius: 50%;
+    margin-left: 2vw;
+    background: #ebab5e;
+  }
+  .TitleText {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+      font-family: "Noto Sans TC", sans-serif;
+      color: #1f4557;
+      font-weight: 700;
+      padding-left: 2vw;
+    }
+  }
+}
+
+.slick-slider {
+  margin-bottom: calc(100px + 0.5vw);
+  .slick-arrow {
+    height: $arrowFontSize;
+    width: $arrowFontSize;
+  }
+  .slick-next:before,
+  .slick-prev:before {
+    font-size: $arrowFontSize;
+    color: #707070;
+  }
+  .slick-list {
+    .slick-track {
+      .slick-slide {
+        padding-bottom: 2vw;
+        .CourseMiniCardWrapper {
+          display: flex !important;
+          justify-content: center;
+          align-items: center;
+          height: 120%;
+        }
+      }
+    }
+  }
+}
