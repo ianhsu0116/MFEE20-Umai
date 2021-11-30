@@ -18,11 +18,11 @@ import cooking from "../../components/images/cooking.png";
 
 // 共用元件
 import ShareCard from "../../components/ShareCard2";
-import CourseMiniCard from "../../components/CourseMiniCard2";
+// import CourseMiniCard from "../../components/CourseMiniCard2";
 import CourseMiniCardSlider from "../../components/CourseMiniCardSlider";
 import ChefCard from "../../components/ChefCard2";
 
-import ChefCardSlider from "../../components/homepage/ChefCardSlider";
+// import ChefCardSlider from "../../components/homepage/ChefCardSlider";
 
 const HomePage = () => {
   return (

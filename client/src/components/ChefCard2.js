@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import Chef from "./images/chef.png";
 
 function ChefCard(props) {

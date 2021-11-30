@@ -8,11 +8,7 @@ const registerValidation = (data) => {
       .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-<<<<<<< HEAD
     password: Joi.string().min(8).max(12).required(),
-=======
-    password: Joi.string().min(8).max(255).required(),
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   });
 
   return schema.validate(data); // 直接 return schema.validate(data)的結果
@@ -26,11 +22,7 @@ const loginValidation = (data) => {
       .max(50)
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
-<<<<<<< HEAD
     password: Joi.string().min(8).max(12).required(),
-=======
-    password: Joi.string().min(8).max(255).required(),
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   });
   return schema.validate(data);
 };
@@ -52,11 +44,7 @@ const userInfoValidation = (data) => {
 // password 格式
 const passwordValidation = (data) => {
   const schema = Joi.object({
-<<<<<<< HEAD
     newPassword: Joi.string().min(8).max(12).required(),
-=======
-    newPassword: Joi.string().min(8).max(255).required(),
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
   });
 
   return schema.validate(data);
@@ -76,13 +64,8 @@ const creditCardValidation = (data) => {
 const studentValidation = (data) => {
   const schema = Joi.object({
     id: Joi.number(),
-<<<<<<< HEAD
     first_name: Joi.string().min(1).max(15).required(),
     last_name: Joi.string().min(1).max(15).required(),
-=======
-    first_name: Joi.string().min(1).max(50).required(),
-    last_name: Joi.string().min(1).max(50).required(),
->>>>>>> 6e5cd6ec554d430d1b4a17d42a5590a0bec1aa5a
     telephone: Joi.string()
       .length(10)
       .pattern(new RegExp("^[0, 9]{2}[0-9]{8}$"))
