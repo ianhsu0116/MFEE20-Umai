@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import CourseCard_Course from './CourseCard_Course'
-import Test from './test1'
+
+import { withRouter, Link } from "react-router-dom";
+import { PUBLIC_URL } from "../../config/config";
 
 import CourseCard from '../../components/CourseCard1'
 
+import CategoryService from "../../services/category.service";
+import getValidMessage from "../../validMessage/validMessage";
+
 function Course (props){
 
+  const { location } = props;
+  let category_number = location.search.slice(1);
+  console.log(location)
   const [selectedOptionLevel, setSelectedOptionLevel] = useState('')
   const [selectedOptionDate, setSelectedOptionDate] = useState('')
   const [selectedOptionStart, setSelectedOptionStart] = useState('')
 
-  const [dataC, setDataC] = useState('')
+  const [dataC, setDataC] = useState('日式料理')
+
+  useEffect(async () => {
+    try {
+      let result = await CategoryService.categoryID(category_number);
+      console.log(result.data)
+      return
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <>
-    <Test setData={setDataC} />
     {console.log(props)}
     <div className="Course">
     <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
@@ -274,4 +291,4 @@ function Course (props){
   );
 };
 
-export default Course;
+export default withRouter (Course);
