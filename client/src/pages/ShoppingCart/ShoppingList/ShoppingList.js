@@ -1,25 +1,40 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-pascal-case */
 import PaymentDetails from './PaymentDetails';
 import Shopping_bill from './ShoppingBill';
 import { useLocation } from 'react-router-dom'
 import axios from 'axios';
 import { API_URL } from "../../../config/config";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function ShoppingList(props){
     //會員ID
     const { currentUser } = props;
 
     const location = useLocation();
-    let {data} = location.state;
-    let coursetitle = JSON.parse(data).coursetitle;
-    let coupon = JSON.parse(data).coupon;
-    let carddata = JSON.parse(data).carddata;
-    let OrdererData = JSON.parse(data).OrderData;
-    let creditCards = JSON.parse(data).creditCards;
-    let paymenttype = JSON.parse(data).paymenttype;
-    let receipttype = JSON.parse(data).receipttype;
-    async function insert(){
+    let data = JSON.parse(location.state.data);
+    
+    const [coursetitle,setcoursetitle]=useState(data.coursetitle)
+    //let coursetitle = data.coursetitle;
+    let coupon = data.coupon;
+    let carddata = data.carddata;
+    let OrdererData = data.OrderData;
+    let creditCards = data.creditCards;
+    let paymenttype = data.paymenttype;
+    let receipttype = data.receipttype;
+
+    async function getmembercount(){
+        try {
+            let result = await axios.get(`http://localhost:8080/api/course/${coursetitle.course_id}`, {
+            withCredentials: true,
+            });
+            setcoursetitle({...coursetitle,membercount:result.data.course_batch[0].member_count})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function insertorderdata(){
         const orderdata={
             memberid: currentUser.id,
             courseid: coursetitle.course_id,
@@ -35,26 +50,59 @@ function ShoppingList(props){
         };
         try{
             let insert_order_data =await axios.post( API_URL + "/order/insertOrderData",orderdata,{ withCredentials: true });
-            
         }catch(error){
             console.log(error.response.data);
         }
     }
+
     async function insertstudentdata(){
         carddata.map(async (data)=>{
-            data={...data,memberid:currentUser.id}
-            console.log(data);
+            let studentdata={
+                ...data,
+                memberid:currentUser.id,
+                courseid: coursetitle.course_id,
+                batchid: coursetitle.batch_id
+            }
+
             try{
-                let inset_student_data =await axios.post( API_URL + "/order/insertStudentData",data,{ withCredentials: true });
+                let inset_student_data =await axios.post( API_URL + "/order/insertStudentData",studentdata,{ withCredentials: true });
             }catch(error){
                 console.log(error.response.data);
             }
         })
+    } 
+    
+    async function modifymembercount(){
+        let modifydata = {
+            studentnumber:coursetitle.studentnumber,
+            courseid: coursetitle.course_id,
+            batchid: coursetitle.batch_id
+        };
+        try{
+            let modify_membercount =await axios.put( API_URL + "/order/modifyMembercount",modifydata,{ withCredentials: true });
+        }catch(error){
+            console.log(error.response.data);
+        }
     }
+    async function modifycart(){
+        try {
+            let result = await axios.put(`http://localhost:8080/api/order/modifycart`,{ 
+                memberid: currentUser.id, 
+                courseid:coursetitle.course_id, 
+                batchid:coursetitle.batch_id} ,{ withCredentials: true,});
+          } catch (error) {
+            console.log(error);
+          }
+    }
+
     useEffect(()=>{
-        insert()
-        insertstudentdata()
+    getmembercount()
+    insertorderdata()
+    insertstudentdata()
+    modifymembercount()
+    modifycart()
     },[])
+    
 
     return(
         <>

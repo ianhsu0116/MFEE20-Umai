@@ -3,7 +3,6 @@ function ShoppingBill(props){
     let coupon = props.coupon;
     let carddata = props.carddata;
     let OrdererData = props.OrdererData;
-    let index = 1;
     return(
         <>
         <div className="ShoppingBill-padding">
@@ -40,9 +39,9 @@ function ShoppingBill(props){
                 <tr>
                     <td colspan="5"><hr/></td>
                 </tr>
-                {carddata.map((data)=>{
+                {carddata.map((data,i)=>{
                     return(<tr className="ShoppingBill-student-info">
-                            <td><h5>學員-{index++}</h5></td>
+                            <td><h5>學員-{i+1}</h5></td>
                             <td><h5>{data.lastName+data.firstName}</h5></td>
                             <td><h5>{data.telephone}</h5></td>
                             <td><h5>{data.birthday}</h5></td>

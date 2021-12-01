@@ -3,10 +3,48 @@ import { FiChevronRight } from "react-icons/fi";
 import DefaultStudentCard from "./DefaultStudentCard";
 import React, { useState } from "react";
 import Orderinfo from "./orderinfo";
+import axios from "axios";
+
 
 function CourseList(props){
     const [ card, setCard] = useState(true)
-    let index=1
+    let coursetitle=props.coursetitle;
+    const { currentUser } = props;
+    let carddata=props.carddata;
+    console.log(coursetitle);
+    console.log(currentUser);
+    console.log({ 
+        memberid: currentUser.id, 
+        courseid:coursetitle.course_id, 
+        batchid:coursetitle.batch_id});
+    
+    //將訂單移除購物車
+    async function modifycart(){
+        try {
+            let result = await axios.put(`http://localhost:8080/api/order/modifycart`,{ 
+                memberid: currentUser.id, 
+                courseid:coursetitle.course_id, 
+                batchid:coursetitle.batch_id} ,{ withCredentials: true,});
+          } catch (error) {
+            console.log(error);
+          }
+          alert("刪除成功")
+          window.location.href='http://localhost:3000/'
+    }
+
+    //將訂單加入收藏
+    async function modifycollection(){
+        try {
+            let result = await axios.put(`http://localhost:8080/api/order/modifycollection`,{ 
+                memberid: currentUser.id, 
+                courseid:coursetitle.course_id, 
+                batchid:coursetitle.batch_id} ,{ withCredentials: true,});
+          } catch (error) {
+            console.log(error);
+          }
+          alert("加入成功")
+    }
+
     return(
     <>
         <div className="CourseList-title">
@@ -28,15 +66,18 @@ function CourseList(props){
     card ? setCard(false) : setCard(true)
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
-                    <h4>{props.coursetitle.name}</h4>
-                    <h6>報名人數剩餘5人</h6>
+                    <h4>{coursetitle.name}</h4>
+                    <h6>報名人數剩餘{coursetitle.membercount}人</h6>
                 </td>
-                <td><h4>NT$ {props.coursetitle.value}</h4></td>
-                <td><h4>*{props.coursetitle.studentnumber}位</h4></td>  
-                <td><h4>NT$ {props.coursetitle.value*props.coursetitle.studentnumber}</h4></td>
+                <td><h4>NT$ {coursetitle.value}</h4></td>
+                <td><h4>*{coursetitle.studentnumber}位</h4></td>  
+                <td><h4>NT$ {coursetitle.value*coursetitle.studentnumber}</h4></td>
             </tr>
             <tr className="CourseList-list-tool">
-                <td colSpan="5"><button>收藏</button><button>刪除</button></td>
+                <td colSpan="5">
+                    <button onClick={()=>{modifycollection()}}>收藏</button>
+                    <button onClick={()=>{modifycart()}}>刪除</button>
+                </td>
             </tr>
             <tr>
                 <td className={`Insert-area ${card && "Showarea"}`} colspan="5">
@@ -48,18 +89,19 @@ function CourseList(props){
                         <div className="Insert-area-title">
                             <h4>學員資料</h4>
                             <button onClick={()=>{
-                               props.newcarddata(props.carddata)
+                               props.newcarddata(carddata)
                                 }}>新增學員</button>
                         </div>
                         <div className="Student-card">
-                        {props.carddata.map((data) => <DefaultStudentCard 
-                                                        data={data} 
-                                                        index={index++} 
-                                                        carddata={props.carddata} 
-                                                        coursetitle={props.coursetitle}
-                                                        changecarddata={(index,newdata)=>{props.changecarddata(index,newdata)}}
-                                                        deletecarddata={(index,newdata,coursetitle)=>{props.deletecarddata(index,newdata,coursetitle)}}
-                                                        />)}
+                        {carddata.map((data,i) => 
+                            <DefaultStudentCard 
+                                data={data} 
+                                index={i+1} 
+                                carddata={carddata} 
+                                coursetitle={coursetitle}
+                                changecarddata={(index,newdata)=>{props.changecarddata(index,newdata)}}
+                                deletecarddata={(index,newdata,coursetitle)=>{props.deletecarddata(index,newdata,coursetitle)}}
+                            />)}
                         </div>
                     </div>
                 </td>

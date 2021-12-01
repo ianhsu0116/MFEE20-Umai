@@ -21,7 +21,8 @@ function shopping_cart(props) {
         batch_id:"1",
         name:result.data.course[0].course_name,
         value:result.data.course[0].course_price,
-        studentnumber:1
+        studentnumber:1,
+        membercount:result.data.course_batch[0].member_count
       });
     } catch (error) {
       console.log(error);
@@ -80,6 +81,8 @@ function shopping_cart(props) {
   }
 
   function newcarddata(newcarddata){
+    if(newcarddata.length===coursetitle.membercount)
+    return;
     newcarddata.push({
       ...defaultcarddata,
       index:newcarddata.length+1
@@ -103,6 +106,7 @@ function shopping_cart(props) {
               <Course_list 
               carddata={carddata} 
               coursetitle={coursetitle} 
+              currentUser={currentUser}
               newcarddata={(carddata)=>{newcarddata(carddata)}} 
               changeorderdata={(data)=>{changeorderdata(data)}} 
               changecarddata={(index,newdata)=>{changecarddata(index,newdata)}}
