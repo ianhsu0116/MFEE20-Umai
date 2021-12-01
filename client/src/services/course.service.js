@@ -6,7 +6,12 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-  // 拿到所有課程資料
+  // 依照course_id拿到課程詳細資料(cart)
+  course_courseId_cart(course_id) {
+    return axios.get(COURSE_API_URL + `/${course_id}`, {
+      withCredentials: true,
+    });
+  }
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {

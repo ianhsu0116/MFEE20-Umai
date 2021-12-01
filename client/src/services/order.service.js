@@ -42,13 +42,13 @@ class OrderService {
   //   },
   // ]);
 
-  checkout({ member_id, course_id }) {
-    return axios.post(
-      ORDER_API_URL + "/checkout" + member_id,
-      { course_id },
-      { withCredentials: true }
-    );
-  }
+  // checkout({ member_id, course_id }) {
+  //   return axios.post(
+  //     ORDER_API_URL + "/checkout" + member_id,
+  //     { course_id },
+  //     { withCredentials: true }
+  //   );
+  // }
 }
 
 export default new OrderService();

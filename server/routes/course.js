@@ -190,6 +190,44 @@ router.get("/:course_id", async (req, res) => {
       [course_id, 1]
     );
 
+    // // 課程的所有梯次
+    // let course_batch = [];
+    // if (course.length !== 0) {
+    //   course_batch = await connection.queryAsync(
+    //     "SELECT * FROM course_batch WHERE course_id = ? AND valid = ?",
+    //     [course_id, 1]
+    //   );
+    // }
+
+    // //拿到課程分數
+    // let course_comment = [];
+    // if (course.length !== 0) {
+    //   course_comment = await connection.queryAsync(
+    //     "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
+    //     [course_id, 1]
+    //   );
+    // }
+
+    res
+      .status(200)
+      .json({ success: true, course, course_batch, course_comment });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
+// 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
+router.get("/:course_id", async (req, res) => {
+  let { course_id } = req.params;
+
+  try {
+    // 拿到課程詳細資料(有join category, member)
+    let course = await connection.queryAsync(
+      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction , member.avatar FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
+      [course_id, 1]
+    );
+
     // 課程的所有梯次
     let course_batch = [];
     if (course.length !== 0) {
@@ -206,9 +244,11 @@ router.get("/:course_id", async (req, res) => {
         "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
         [course_id, 1]
       );
-    }  
+    }
 
-    res.status(200).json({ success: true, course, course_batch , course_comment});
+    res
+      .status(200)
+      .json({ success: true, course, course_batch, course_comment });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
