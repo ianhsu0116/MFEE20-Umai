@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -47,6 +47,7 @@ const CourseInsert = (props) => {
     setSliderImage,
     sixDishesImage,
     setSixDishesImage,
+    setCurrentBoard,
   } = props;
 
   // 錯誤訊息
@@ -115,6 +116,43 @@ const CourseInsert = (props) => {
     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
     course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
   });
+
+  // 先判斷當前登入的 User 是否已填寫主廚卡片
+  // 還沒填寫的話就把他導回去卡片頁面
+  useEffect(() => {
+    console.log(currentUser);
+    // 沒有內容
+    if (!currentUser.chef_introduction) {
+      // 跳通知
+      Swal.fire({
+        icon: "warning",
+        title: "請先填寫主廚卡片後，才能新增課程！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // 導回去卡片編輯頁面
+      setCurrentBoard("主廚卡片");
+    }
+
+    // 有內容但內容為空
+    if (currentUser.chef_introduction) {
+      let { chefIntroduce1, chefIntroduce2, chefInfoTitle, chefInfo } =
+        JSON.parse(currentUser.chef_introduction);
+      if (!chefIntroduce1 || !chefIntroduce2 || !chefInfoTitle || !chefInfo) {
+        // 跳通知
+        Swal.fire({
+          icon: "warning",
+          title: "請先填寫主廚卡片後，才能新增課程！",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        // 導回去卡片編輯頁面
+        setCurrentBoard("主廚卡片");
+      }
+    }
+  }, []);
 
   // 即時抓取input輸入的內容
   const handleCourseChange = (e) => {
