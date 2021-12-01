@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function Orderinfo(props){
+    //存取訂購者資料
     let [OrderData, setOrderData] = useState({
         firstName: "",
         lastName: "",
@@ -8,12 +9,14 @@ function Orderinfo(props){
         birthday: "",
         email: ""
       });
+    //更改訂購者資料
     const handleInputChange = (e) => {
         setOrderData({...OrderData,[e.target.name]: e.target.value})
     }
     useEffect(()=>{
         props.changeorderdata(OrderData)
       },[OrderData])
+      
     return(
         <table className="Orderer-info">
             <tr>

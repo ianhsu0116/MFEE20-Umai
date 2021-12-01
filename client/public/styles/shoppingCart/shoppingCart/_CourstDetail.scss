@@ -5,10 +5,11 @@
     font-weight: 500;
   }
   tr {
+    height: 50px;
     td:nth-of-type(2) {
       text-align: right;
     }
-    &:nth-child(4) {
+    &:nth-child(3) {
       h3 {
         font-weight: 600;
       }
@@ -21,12 +22,26 @@
         }
       }
     }
-    select {
-      width: 100%;
-      border: 1px solid #666666;
-      box-sizing: border-box;
-      border-radius: 5px;
+    
+  }
+}
+.CourseDetail-coupon{
+  margin: 20px 0;
+  min-width: 100%;
+  td{
+    &:first-child{
+      width: 25%;
     }
+    &:last-child{
+      text-align: right;
+      width: 75%;
+    }
+  }
+  select {
+    width: 100%;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+    border-radius: 5px;
   }
 }
 .ToShoppingList {
@@ -37,7 +52,7 @@
     height: 60px;
     width: 80%;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 20px / 50%;
+    border-radius: 30px;
   }
   h4 {
     color: #f3f3f1;

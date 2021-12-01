@@ -40,7 +40,7 @@ const DefaultStudent = (props) => {
 
   // 送出新增學員
   const handleAddStudent = async (e) => {
-    //console.log("新增學員");
+    // console.log("新增學員");
     try {
       let result = await MemberService.studentInsert(newStudentData);
 
