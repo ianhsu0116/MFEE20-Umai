@@ -1,22 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FiChevronRight } from "react-icons/fi";
 import DefaultStudentCard from "./DefaultStudentCard";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Orderinfo from "./orderinfo";
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 
 function CourseList(props){
-    const [ card, setCard] = useState(true)
-    let coursetitle=props.coursetitle;
     const { currentUser } = props;
+    const [ card, setCard] = useState(true)
+    const [ studentdata, setstudentdata] = useState([])
+
+    let coursetitle=props.coursetitle;
     let carddata=props.carddata;
-    console.log(coursetitle);
-    console.log(currentUser);
-    console.log({ 
-        memberid: currentUser.id, 
-        courseid:coursetitle.course_id, 
-        batchid:coursetitle.batch_id});
     
     //將訂單移除購物車
     async function modifycart(){
@@ -28,8 +24,14 @@ function CourseList(props){
           } catch (error) {
             console.log(error);
           }
-          alert("刪除成功")
-          window.location.href='http://localhost:3000/'
+          Swal.fire({
+            icon: 'success',
+            text:'刪除成功'
+        }).then(
+            (result)=>{
+                if (result.isConfirmed)window.location.href='http://localhost:3000/'
+            })
+          
     }
 
     //將訂單加入收藏
@@ -42,9 +44,27 @@ function CourseList(props){
           } catch (error) {
             console.log(error);
           }
-          alert("加入成功")
+          Swal.fire({
+            icon: 'success',
+            text:'加入收藏成功'
+        })
     }
 
+    // 初次渲染時，拿取當前使用者的預設學員
+    async function get (){
+        try {
+        // 拿取所有學員料
+        let result = await axios.get("http://localhost:8080/api/member/student", {
+        withCredentials: true,
+        });
+        setstudentdata(result.data.students)
+        } catch (error) {
+        console.log(error);
+        }
+    };
+    useEffect(()=>{
+        get()
+    },[])
     return(
     <>
         <div className="CourseList-title">
@@ -97,7 +117,8 @@ function CourseList(props){
                             <DefaultStudentCard 
                                 data={data} 
                                 index={i+1} 
-                                carddata={carddata} 
+                                carddata={carddata}
+                                studentdata={studentdata}
                                 coursetitle={coursetitle}
                                 changecarddata={(index,newdata)=>{props.changecarddata(index,newdata)}}
                                 deletecarddata={(index,newdata,coursetitle)=>{props.deletecarddata(index,newdata,coursetitle)}}

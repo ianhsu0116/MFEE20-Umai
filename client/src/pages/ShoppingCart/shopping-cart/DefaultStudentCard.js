@@ -1,34 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "../../../components/Button";
+import axios from "axios";
 
 const DefaultStudentCard = (props) => {
-  let { deletecarddata, changecarddata } = props;
-  let index = props.index;
+  let { deletecarddata, changecarddata, index, data, studentdata } = props;
   let [cardOpen, setCardOpen] = useState(false);
   let [newStudentData, setNewStudentData] = useState({
-    firstName: props.data.firstName,
-    lastName: props.data.lastName,
-    telephone: props.data.telephone,
-    birthday: props.data.birthday,
-    email: props.data.email, 
+    firstName:data.firstName,
+    lastName:data.lastName,
+    telephone:data.telephone,
+    birthday:data.birthday,
+    email:data.email, 
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-  useEffect(()=>{
-    setNewStudentData(
-      {
-        firstName: props.data.firstName,
-        lastName: props.data.lastName,
-        telephone: props.data.telephone,
-        birthday: props.data.birthday,
-        email: props.data.email, 
+
+  function selectDefultStudent(i){
+    if(i==="-1"){
+      setNewStudentData({
+        firstName:"",
+        lastName:"",
+        telephone:"",
+        birthday:"",
+        email:"", 
         addIntoStudent: false,
         autoUpdateMember: false,
-      }
-    )
-  },[props])
+      })
+      changecarddata(index,{
+        firstName:"",
+        lastName:"",
+        telephone:"",
+        birthday:"",
+        email:"", 
+        addIntoStudent: false,
+        autoUpdateMember: false,
+      })
+    }else{
+      setNewStudentData({...studentdata[i],
+        firstName:studentdata[i].first_name,
+        lastName:studentdata[i].last_name,
+        addIntoStudent: false,
+        autoUpdateMember: false,
+      })
+      changecarddata(index,{...studentdata[i],
+        firstName:studentdata[i].first_name,
+        lastName:studentdata[i].last_name,
+        addIntoStudent: false,
+        autoUpdateMember: false,
+      })
+    }
+  }
 
   // 即時抓取 input value
   const handleInputChange = (e) => {
@@ -75,11 +99,10 @@ const DefaultStudentCard = (props) => {
             <select
               name="selectedStudent"
               className="DefaultStudentCard-title-right-select"
+              onChange={(e)=>{selectDefultStudent(e.target.value)}}
             >
-              <option value="">選擇預設學員</option>
-              <option value="id">學員名稱</option>
-              <option value="id">學員名稱</option>
-              <option value="id">學員名稱</option>
+              <option value="-1">選擇預設學員</option>
+              {studentdata.map((data,i)=><option value={i}>{data.last_name+data.first_name}</option>)}
             </select>
           <Button
             value={"刪除"}
@@ -188,6 +211,7 @@ const DefaultStudentCard = (props) => {
                 type="checkbox"
                 id="addIntoStudent"
                 name="addIntoStudent"
+                checked={newStudentData.addIntoStudent === true ?  "checked": ""}
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
@@ -204,6 +228,7 @@ const DefaultStudentCard = (props) => {
                 type="checkbox"
                 id="autoUpdateMember"
                 name="autoUpdateMember"
+                checked={newStudentData.autoUpdateMember === true ?  "checked": ""}
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
               />
