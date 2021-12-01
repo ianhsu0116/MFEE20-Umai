@@ -42,6 +42,7 @@ body {
   -ms-overflow-style: none;
   //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 // 設定scrollbar樣式
