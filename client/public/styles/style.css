@@ -7595,6 +7595,18 @@ a:hover {
   width: 15%;
 }
 
+.CourseList-list-item svg {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
 .CourseList-list-tool {
   background: #eeeeee;
 }
@@ -7869,6 +7881,13 @@ a:hover {
   margin: 20px 0;
 }
 
+.PamentWay-box .turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
 .PamentWay-box .PamentWay-head {
   background: #eeeeee;
   border-radius: 20px;
@@ -7886,6 +7905,8 @@ a:hover {
 .PamentWay-box .PamentWay-head svg {
   width: 30px;
   height: 30px;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
 .PamentWay-box .PamentWay-head h5 {
@@ -7914,7 +7935,14 @@ a:hover {
   width: 100%;
 }
 
-.Receipt-head {
+.Receipt-box .turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.Receipt-box .Receipt-head {
   background: #eeeeee;
   border-radius: 20px;
   -webkit-box-align: center;
@@ -7928,16 +7956,18 @@ a:hover {
   display: flex;
 }
 
-.Receipt-head svg {
+.Receipt-box .Receipt-head svg {
   width: 30px;
   height: 30px;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 
-.Receipt-head h5 {
+.Receipt-box .Receipt-head h5 {
   font-weight: 600;
 }
 
-.Receipt-body {
+.Receipt-box .Receipt-body {
   width: 90%;
   margin: 0 auto;
   height: 100px;
@@ -7953,12 +7983,12 @@ a:hover {
   transition: 0.3s linear;
 }
 
-.Receipt-body li {
+.Receipt-box .Receipt-body li {
   margin: 10px auto;
   margin-left: 5px;
 }
 
-.Receipt-body-open {
+.Receipt-box .Receipt-body-open {
   max-height: 100px;
 }
 

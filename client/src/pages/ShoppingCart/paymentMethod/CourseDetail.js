@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 
 function CourseDetail(props){
+
     let coursetitle = props.coursetitle;
     let coupon = props.coupon;
     let carddata = props.carddata;
@@ -9,7 +10,10 @@ function CourseDetail(props){
     let creditCards = props.creditCards;
     let paymenttype = props.paymenttype;
     let receipttype = props.receipttype;
+
+    //要傳送至下一個頁面的資料
     let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData,creditCards:creditCards,paymenttype:paymenttype,receipttype:receipttype});
+
     return(
     <>
         <div>

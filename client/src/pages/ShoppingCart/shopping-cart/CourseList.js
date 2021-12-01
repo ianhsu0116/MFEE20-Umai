@@ -7,8 +7,11 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 
 function CourseList(props){
+    //取得會員id
     const { currentUser } = props;
+    //控制卡片開關
     const [ card, setCard] = useState(true)
+    //存取學員資料
     const [ studentdata, setstudentdata] = useState([])
 
     let coursetitle=props.coursetitle;
@@ -65,6 +68,7 @@ function CourseList(props){
     useEffect(()=>{
         get()
     },[])
+
     return(
     <>
         <div className="CourseList-title">
@@ -81,7 +85,7 @@ function CourseList(props){
             </tr>
         </table>
         <table className="CourseList-list">
-            <tr className="CourseList-list-item">
+            <tr className={`CourseList-list-item ${card && "turnicon"}`}>
                 <td><button onClick={() => {
     card ? setCard(false) : setCard(true)
   }}><FiChevronRight size="3em"/></button></td>

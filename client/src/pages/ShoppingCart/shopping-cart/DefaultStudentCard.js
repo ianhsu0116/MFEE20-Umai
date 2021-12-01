@@ -8,6 +8,7 @@ import axios from "axios";
 const DefaultStudentCard = (props) => {
   let { deletecarddata, changecarddata, index, data, studentdata } = props;
   let [cardOpen, setCardOpen] = useState(false);
+  //從props抓取學員資料
   let [newStudentData, setNewStudentData] = useState({
     firstName:data.firstName,
     lastName:data.lastName,
@@ -17,7 +18,7 @@ const DefaultStudentCard = (props) => {
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-
+  //選擇預設學員並更改資料
   function selectDefultStudent(i){
     if(i==="-1"){
       setNewStudentData({
@@ -40,14 +41,19 @@ const DefaultStudentCard = (props) => {
       })
     }else{
       setNewStudentData({...studentdata[i],
+        id:studentdata[i].id,
         firstName:studentdata[i].first_name,
         lastName:studentdata[i].last_name,
         addIntoStudent: false,
         autoUpdateMember: false,
       })
-      changecarddata(index,{...studentdata[i],
+      changecarddata(index,{
+        id:studentdata[i].id,
         firstName:studentdata[i].first_name,
         lastName:studentdata[i].last_name,
+        telephone:studentdata[i].telephone,
+        birthday:studentdata[i].birthday,
+        email:studentdata[i].email,
         addIntoStudent: false,
         autoUpdateMember: false,
       })

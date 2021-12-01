@@ -3,10 +3,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function CourseDetail(props){
+    //優惠卷額度
     const [discount,setdiscount]=useState(100);
+    //存取選到會券
     const [selectedIndex,setselectedIndex]=useState(0);
+
     let coursetitle = props.coursetitle;
     let coupon={};
+    
     if(props.coupon[selectedIndex]!==undefined){
         coupon = props.coupon[selectedIndex];
     }

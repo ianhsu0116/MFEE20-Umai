@@ -23,6 +23,7 @@ function ShoppingList(props){
     let paymenttype = data.paymenttype;
     let receipttype = data.receipttype;
 
+    //抓取課程剩餘人數
     async function getmembercount(){
         try {
             let result = await axios.get(`http://localhost:8080/api/course/${coursetitle.course_id}`, {
@@ -34,6 +35,7 @@ function ShoppingList(props){
         }
     }
 
+    //上傳訂購者資料
     async function insertorderdata(){
         const orderdata={
             memberid: currentUser.id,
@@ -55,6 +57,7 @@ function ShoppingList(props){
         }
     }
 
+    //上傳會員資料
     async function insertstudentdata(){
         carddata.map(async (data)=>{
             let studentdata={
@@ -72,6 +75,7 @@ function ShoppingList(props){
         })
     } 
     
+    //更改課程剩餘人數
     async function modifymembercount(){
         let modifydata = {
             studentnumber:coursetitle.studentnumber,
@@ -84,6 +88,8 @@ function ShoppingList(props){
             console.log(error.response.data);
         }
     }
+
+    //將此訂單從購物車移除
     async function modifycart(){
         try {
             let result = await axios.put(`http://localhost:8080/api/order/modifycart`,{ 

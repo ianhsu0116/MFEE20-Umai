@@ -59,7 +59,6 @@ function shopping_cart(props) {
 
   const [ carddata, setCarddata] = useState([])
   const [ OrderData, setOrderData] = useState({})
-
 //修改訂購人資料
   function changeorderdata(data){
     setOrderData(data);
