@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 import CourseCard1 from "../../components/CourseCard1";
-import CourseReview from "./CourseReview";
 
 const CollectionCourse = (props) => {
   const { currentUser } = props;

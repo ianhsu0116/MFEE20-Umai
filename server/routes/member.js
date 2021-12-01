@@ -19,6 +19,24 @@ router.use((req, res, next) => {
   next();
 });
 
+// 這裡為不需登入也可使用的路由
+// 抓member_category = 2(主廚)資料
+router.get("/member/chefName", async (req, res) => {
+  let { id } = req.session.member;
+
+  try {
+    let result = await connection.queryAsync(
+      "SELECT member.id, member.first_name, last_name, member.chef_introduction, member.member_category FROM member WHERE member_category = 2 AND valid = ?",
+      [id, 1]
+    );
+
+    res.status(200).json({ success: true, chefs: result });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
 // 阻擋未登入的請求
 router.use(authCheck);
 
@@ -372,20 +390,20 @@ router.post("/chefIntro/:member_id", async (req, res) => {
   }
 });
 // 抓member_category = 2(主廚)資料
-router.get("/member/chefName", async (req, res) => {
-  let { id } = req.session.member;
+// router.get("/member/chefName", async (req, res) => {
+//   let { id } = req.session.member;
 
-  try {
-    let result = await connection.queryAsync(
-      "SELECT member.id, member.first_name, last_name, member.chef_introduction, member.member_category FROM member WHERE member_category = 2 AND valid = ?",
-      [id, 1]
-    );
+//   try {
+//     let result = await connection.queryAsync(
+//       "SELECT member.id, member.first_name, last_name, member.chef_introduction, member.member_category FROM member WHERE member_category = 2 AND valid = ?",
+//       [id, 1]
+//     );
 
-    res.status(200).json({ success: true, chefs: result });
-  } catch (error) {
-    //console.log(error);
-    res.status(500).json({ success: false, code: "G999", message: error });
-  }
-});
+//     res.status(200).json({ success: true, chefs: result });
+//   } catch (error) {
+//     //console.log(error);
+//     res.status(500).json({ success: false, code: "G999", message: error });
+//   }
+// });
 
 module.exports = router;
