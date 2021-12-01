@@ -1,45 +1,45 @@
 .CourseDetail-headerPicture {
-	width: 70vw;
-	max-width: 1440px;
-	margin: auto;
-	// ian新增 為了讓圖片不被壓縮
-	position: relative;
-	@include flex(row);
-	justify-content: center;
-	align-items: center;
-	height: 30vw;
-	overflow: hidden;
-	transition: 0.2s ease;
-	// img {
-	//   height: 25vw;
+  width: 70vw;
+  max-width: 1440px;
+  margin: auto;
+  // ian新增 為了讓圖片不被壓縮
+  position: relative;
+  @include flex(row);
+  justify-content: center;
+  align-items: center;
+  height: 30vw;
+  overflow: hidden;
+  transition: 0.2s ease;
+  // img {
+  //   height: 25vw;
 
-	//   //height: 100%;
-	// }
-	.Course-headerPictureButton {
-		background-color: rgba(0, 0, 0, 0.3);
-		width: 5%;
-	}
+  //   //height: 100%;
+  // }
+  .Course-headerPictureButton {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 5%;
+  }
 }
 
 // ian新增 為了讓圖片不被壓縮 且 版型不會跑掉
 .carousel-inner {
-	@include flex(row);
-	align-items: center;
+  @include flex(row);
+  align-items: center;
 }
 
 .CourseDetail-headerPicture-img {
-	transition: 0.2s ease;
-	height: 100%;
+  transition: 0.2s ease;
+  height: 100%;
 }
 .CourseDetail-headerColor {
-	background-color: papayawhip;
+  background-color: papayawhip;
 }
 /* 大容器div */
 .Coursedetail {
-	width: 100%;
+  width: 100%;
 }
 .CoursedetailMargin {
-	margin: 63px auto 0 auto;
-	// background: $themeColorBlue;
-	z-index: 2;
+  margin: 63px auto 0 auto;
+  // background: $themeColorBlue;
+  z-index: 2;
 }

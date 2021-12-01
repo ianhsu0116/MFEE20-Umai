@@ -23,6 +23,32 @@ class OrderService {
       { withCredentials: true }
     );
   }
+
+  //儲存購物車的課程資訊
+  getCurrentInfoObject() {}
+  // const [cartCourseInfoList, setCartCourseInfoList] = useState([
+  //   {
+  //     id: "",
+  //     member_id: "",
+  //     category_id: "",
+  //     batch_id: "", //(course_batch table)(alia)
+  //     course_image: "",
+  //     course_name: "",
+  //     course_price: "",
+  //     member_limit: "",
+  //     batch_date: "", //(course_batch table)
+  //     member_count: "", //(course_batch table)
+  //     cartCourseCount: 1, //(notInDB)
+  //   },
+  // ]);
+
+  // checkout({ member_id, course_id }) {
+  //   return axios.post(
+  //     ORDER_API_URL + "/checkout" + member_id,
+  //     { course_id },
+  //     { withCredentials: true }
+  //   );
+  // }
 }
 
 export default new OrderService();
