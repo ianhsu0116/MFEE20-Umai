@@ -140,7 +140,7 @@ router.get("/member/:member_id", async (req, res) => {
       [member_id, 1]
     );
 
-    // 如果沒有任何收藏的話
+    // 如果沒有任何課程的話
     if (result.length === 0)
       return res.status(204).json({ success: true, course: [] });
 
@@ -203,7 +203,7 @@ router.get("/:course_id", async (req, res) => {
     let course_comment = [];
     if (course.length !== 0) {
       course_comment = await connection.queryAsync(
-        "SELECT course_comment.* , orders.member_id  FROM course_comment , orders WHERE course_comment.orders_id = orders.id  AND  course_comment.course_id = ? AND course_comment.valid = 1",
+        "SELECT course_comment.* , orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member WHERE member.id = orders.member_id AND course_comment.orders_id = orders.id  AND  course_comment.course_id = ? AND course_comment.valid = 1",
         [course_id, 1]
       );
     }  

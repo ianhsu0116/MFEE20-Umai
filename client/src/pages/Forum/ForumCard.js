@@ -12,6 +12,7 @@ import { BsFillTriangleFill } from "react-icons/bs";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import { API_URL } from "../../config/config";
+import Breadcrumb from "../../components/MultiLevelBreadcrumb"
 
 const array = [
   "img1.jpg",
@@ -53,7 +54,8 @@ const ForumCard = () => {
     <>
       <div className="forum">
         <div className="main">
-          <h5 className="Forum-main-h3">首頁>討論區</h5>
+          {/* <h5 className="Forum-main-h3">首頁>討論區</h5> */}
+          <Breadcrumb />
           <h1 className="Forum-main-h2 ">日式料理</h1>
           <div className="st-line"></div>
           {forumcard &&

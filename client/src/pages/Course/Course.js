@@ -21,10 +21,23 @@ function Course (props){
 
   const [categoryname, setCategoryname] = useState('')
 
+  const [categoryclass , setCategoryclass] = useState('')
+
   useEffect(async () => {
     try {
       let result = await CategoryService.categoryID(category_number);
       setCategoryname(result.data.categoryID[0].category_name)
+      return
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(async () => {
+    try {
+      let result123 = await CategoryService.categoryClass(category_number);
+      // setCategoryname(result.data.categoryID[0].category_name)
+      console.log(result123)
       return
     } catch (error) {
       console.log(error);

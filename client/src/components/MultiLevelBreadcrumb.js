@@ -9,10 +9,12 @@ import CategoryService from "../services/category.service";
 function MultiLevelBreadcrumb(props) {
   const { location } = props
   // let page_category = location.pathname.substr(1, 7)
-  let category_number = location.search.slice(1);
+  let category_number = Math.floor(location.search.slice(1));
 
   //麵包屑根據種類id判斷當前是什麼
   const [categoryid , setCategoryid] = useState('')
+
+  const [categorylength , setCategorylength] = useState()
 
  
   useEffect(async () => {
@@ -25,6 +27,19 @@ function MultiLevelBreadcrumb(props) {
       console.log(error);
    }
   }, []);
+
+
+  // 抓課程全部長度
+  useEffect(async () => {
+    try {
+      let result = await CategoryService.categoryLength();
+      setCategorylength(result.data.category_length.length)
+      return
+    } catch (error) {
+      console.log(error);
+   }
+  }, []);
+  
   
 
 
@@ -70,7 +85,7 @@ function MultiLevelBreadcrumb(props) {
       if(pathArray[1] != "courses"){
         alert("資料錯誤，將導向首頁")
         window.location.href='http://localhost:3000/';
-      }   else if(pathArray[1] == "courses" && (category_number < 1|| category_number > 7)){
+      }   else if(pathArray[1] == "courses" && (category_number < 1|| category_number > categorylength)){
         alert("錯誤的分類，將導向全部分類")
         window.location.href='http://localhost:3000/courses/category?7';
       }
@@ -106,7 +121,7 @@ function MultiLevelBreadcrumb(props) {
   return (
     <>
 
-    {console.log(categoryid)}
+    {console.log(categorylength)}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="st-breadcrumb-homepage">
