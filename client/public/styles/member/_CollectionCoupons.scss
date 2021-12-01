@@ -31,6 +31,7 @@
       position: relative;
       margin: 1rem 0;
       @include flex(row);
+      justify-content: center;
       flex-wrap: wrap;
       overflow: scroll;
     }

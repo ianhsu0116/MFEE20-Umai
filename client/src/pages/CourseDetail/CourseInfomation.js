@@ -21,6 +21,8 @@ import { GrInstagram } from "react-icons/gr";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
+import Join from '../../components/images/JoinPicture.jpg';
+
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
   const { location } = props;
@@ -272,7 +274,7 @@ function CourseInfomation(props) {
                     </li>
                   </ul>
                 </div>
-                <div className="Coursedetail-infoLeftTitle">
+                <div className="Coursedetail-infoLeftTitle" id="batch">
                   {newCourseJSON[0].course_name}
                 </div>
                 <div className="Coursedetail-placeWithChef">
@@ -376,7 +378,7 @@ function CourseInfomation(props) {
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
         
-            <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>      
+            {/* <img className="blue2 CourseDecorate_RWD4" src={CircleBlue} alt=""></img>       */}
               
             <div className="Coursedetail-chefCardMargin">
             
@@ -626,7 +628,7 @@ function CourseInfomation(props) {
               content={newCourseJSON[0].course_detail.content2}
               attention={newCourseJSON[0].course_detail.content3}
             />
-            <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img> 
+            {/* <img className="orange3 CourseDecorate_RWD6" src={CircleOrange} alt=""></img>  */}
             <img className="orange4 CourseDecorate_RWD7" src={CircleOrange} alt=""></img>      
             <div className="Coursedetail-outsideTitle">推薦課程</div>
             <div className="Coursedetail-titleLine"></div>    
@@ -634,10 +636,23 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-join">
               <span>
-                <p>立即報名</p>
+                <p className="Coursedetail-joinTitle">立即報名</p>
+                <div className="Coursedetail-joinLineWidth">
                 <div className="Coursedetail-joinLine"></div>
-                <p>馬上加入好嗎?</p>
+                </div>
+                <p>喜歡這堂課嗎?</p>
+                <p>歡迎加入我們</p>
+                <p>成為Umai的一員</p>
+                <p>讓我們帶您前往美食的世界</p>
+                <p　className="Coursedetail-joinNow" onClick={() => {
+                        if (batch === "尚未選擇") {
+                          window.location.href='#batch';
+                          alert("請先選擇梯次日期後再點擊");
+                        }
+                      }}>點擊我立即加入！</p>
               </span>
+              <img src={Join} alt=""></img>
+
             </div>
           </div>
         </div>

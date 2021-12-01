@@ -8,7 +8,7 @@ import CreditCards from "../../components/CreditCards";
 import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
 import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
-import { TiPencil } from "react-icons/ti";
+import { FaPencilAlt } from "react-icons/fa";
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
@@ -104,8 +104,8 @@ const MemberInfo = (props) => {
   useEffect(() => {
     // 控制確認修改按鍵狀態 (三欄位都正確填寫 且 密碼與密碼確認相符時)
     passwordInfo.passwordConfirm &&
-    passwordInfo.newPassword &&
-    passwordInfo.confirmNewPassword &&
+    passwordInfo.newPassword.length >= 8 &&
+    passwordInfo.confirmNewPassword.length >= 8 &&
     passwordInfo.newPassword === passwordInfo.confirmNewPassword
       ? setEditPasswordActive(true)
       : setEditPasswordActive("");
@@ -260,11 +260,11 @@ const MemberInfo = (props) => {
             }}
           >
             <h3 className="MemberInfo-editPwd-con-title">
-              {<RiLockPasswordFill />} 重設會員密碼
+              {<RiLockPasswordFill />} 修改會員密碼
             </h3>
             <div className="MemberInfo-editPwd-con-line"></div>
             <div className="MemberInfo-editPwd-con-info">
-              請填寫你的新舊密碼
+              請填寫您的新舊密碼
             </div>
             <div className="MemberInfo-editPwd-con-main">
               <div className="MemberInfo-editPwd-con-main-inputCon">
@@ -285,7 +285,7 @@ const MemberInfo = (props) => {
                   id="password"
                   value={passwordInfo.newPassword}
                   onChange={handlePasswordChange}
-                  placeholder="新密碼"
+                  placeholder="新密碼(限8~12英數字)"
                 />
                 <RiLockPasswordFill />
               </div>
@@ -320,7 +320,7 @@ const MemberInfo = (props) => {
             className="MemberInfo-passwordEditButton"
             onClick={handlePwdConOpen}
           >
-            <TiPencil />
+            <FaPencilAlt />
             <span>密碼修改</span>
           </div>
         </header>
@@ -333,7 +333,7 @@ const MemberInfo = (props) => {
               </label>
               <input
                 type="text"
-                className="MemberInfo-container-inputCon-input"
+                className="MemberInfo-container-inputCon-input MemberInfo-accountContainer"
                 placeholder="用戶email帳號"
                 value={currentUser && currentUser.email}
                 disabled

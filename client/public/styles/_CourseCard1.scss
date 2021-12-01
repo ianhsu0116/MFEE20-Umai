@@ -1,7 +1,7 @@
 .CourseCard1 {
   @include flex(row);
   border-radius: 15px;
-  width: 90%;
+  // width: 90%;
   max-width: 900px;
   max-height: 200px;
   background: white;
@@ -10,6 +10,7 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   position: relative;
   margin: 1rem 0;
+  flex: 1 1 600px;
 
   .CourseCard1-imageCon {
     height: 100%;

@@ -37,6 +37,33 @@ body {
 }
 
 /* Handle on hover */
+::-webkit-input-placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+:-ms-input-placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+::-ms-input-placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgba(0, 0, 0, 0.3);
+}
+
 h1,
 h2,
 h3,
@@ -146,6 +173,24 @@ a:hover {
 
 .button-darkColor:hover {
   background-color: #424242;
+}
+
+.LoadMoreButton {
+  padding: 0.35rem 0.75rem;
+  color: white;
+  border-radius: 50px;
+  background: #d8a466;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.LoadMoreButton:hover {
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.LoadMoreButton .LoadMoreButton-text {
+  margin-right: 0.25rem;
 }
 
 .ErrorMessage {
@@ -279,11 +324,6 @@ a:hover {
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  background: #0078b3;
-}
-
-.Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2:hover svg {
-  fill: white;
 }
 
 .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-btn2 .Navbar-container-item-btn2-cart {
@@ -367,7 +407,6 @@ a:hover {
       -ms-flex-direction: row;
           flex-direction: row;
   border-radius: 15px;
-  width: 90%;
   max-width: 900px;
   max-height: 200px;
   background: white;
@@ -377,6 +416,9 @@ a:hover {
           box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
   position: relative;
   margin: 1rem 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 600px;
+          flex: 1 1 600px;
 }
 
 .CourseCard1 .CourseCard1-imageCon {
@@ -1501,7 +1543,7 @@ a:hover {
 
 .CreditCards {
   width: 85%;
-  max-width: 800px;
+  max-width: 900px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1557,9 +1599,16 @@ a:hover {
 
 .CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-input {
   width: 100%;
-  margin: 0 1rem 0 0;
   border-radius: 5px;
   border: 1px solid #666666;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-date {
+  margin-right: 0.25rem;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-cvc {
+  margin-left: 0.25rem;
 }
 
 .rccs {
@@ -1983,9 +2032,11 @@ a:hover {
 
 .Login {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 12;
+  z-index: 20;
   background: rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2004,8 +2055,8 @@ a:hover {
 
 .Login .Login-container {
   width: 750px;
-  height: 500px;
-  z-index: 13;
+  min-height: 465px;
+  z-index: 21;
   background: white;
   border-radius: 15px;
   overflow: hidden;
@@ -2024,13 +2075,35 @@ a:hover {
   width: 50%;
   background: url(../../images/loginPageBackground.jpg) center center no-repeat;
   background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.Login .Login-container .Login-container-right {
-  width: 50%;
-  padding: 20px 50px;
-  position: relative;
-  background: #d8a466;
+.Login .Login-container .Login-container-left .Login-container-left-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.Login .Login-container .Login-container-left .Login-container-left-con {
+  z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2041,10 +2114,70 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: calc(0.8rem + 0.2vw);
+  font-weight: 600;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn,
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+.Login .Login-container .Login-container-left .Login-container-left-con .UmaiLogo {
+  margin-bottom: 1.2rem;
+  width: 11vw;
+  max-width: 140px;
+  min-width: 90px;
+}
+
+.Login .Login-container .Login-container-right {
+  width: 50%;
+  padding: 20px 50px;
+  position: relative;
+  background: #d8a466;
+  -webkit-box-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+  -webkit-box-shadow: inset 15px 15px 21px #b58a56, inset -15px -15px 21px #fbbe76;
+          box-shadow: inset 15px 15px 21px #b58a56, inset -15px -15px 21px #fbbe76;
+  overflow: hidden;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con {
+  min-width: 275px;
+  margin-right: 52px;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-googleBtn,
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2058,23 +2191,31 @@ a:hover {
   margin: 0.5rem 0;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn img,
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn img {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-googleBtn img,
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-fbBtn img {
   width: 25px;
   height: 25px;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-googleBtn {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-googleBtn {
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-googleBtn:hover {
+  background: #f8f8f8;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-fbBtn {
   background: #4267b2;
   color: white;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-center {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-thirdPartyCon .Login-container-right-fbBtn:hover {
+  background: #3c5da0;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-center {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2089,17 +2230,17 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   color: white;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-text {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-center .Login-container-right-center-text {
   background: #d8a466;
   padding: 0.35rem 0.75rem;
   z-index: 1;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-center .Login-container-right-center-line {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-center .Login-container-right-center-line {
   position: absolute;
   top: 50%;
   width: 100%;
@@ -2107,7 +2248,7 @@ a:hover {
   background: white;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-inputCon {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-inputCon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2121,27 +2262,27 @@ a:hover {
   position: relative;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-inputCon label {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-inputCon label {
   color: white;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-inputCon input {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-inputCon input {
   border-radius: 5px;
   padding: 0.35rem 0.6rem 0.35rem 2.2rem;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   font-size: 1.1rem;
   width: 100%;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-inputCon svg {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-inputCon svg {
   position: absolute;
-  top: 37px;
+  top: 18px;
   left: 8px;
   width: 22px;
   height: 22px;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-button-con {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con {
   width: 100%;
   overflow: hidden;
   padding: 1rem 0;
@@ -2155,28 +2296,65 @@ a:hover {
   position: relative;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-button-con button {
-  width: 50%;
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con button {
+  width: 100%;
   border: none;
   padding: 0.5rem;
   text-align: center;
-  background: #0078b3;
+  background: #cccccc;
   color: white;
+  border-radius: 10px;
+  cursor: not-allowed;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con .login-submit-btn-active {
+  background: #0078b3;
+  cursor: pointer;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-button-con .login-submit-btn {
-  margin-right: 0.1;
-  border-radius: 10px 0 0 10px;
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con .login-submit-btn-active:hover {
+  background: #008fd6;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-button-con .register-submit-btn {
-  margin-left: 0.1rem;
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con .register-submit-btn-active {
   background: #ffb257;
-  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-bottom {
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-button-con .register-submit-btn-active:hover {
+  background: #ffa63a;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom .Login-container-right-bottom-btn {
+  margin: 0 0.25rem;
+  border-bottom: 1px solid transparent;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom .Login-container-right-bottom-btn:hover {
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom .Login-container-right-bottom-btnBlue {
+  color: #008fd6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2192,8 +2370,21 @@ a:hover {
           align-items: center;
 }
 
-.Login .Login-container .Login-container-right .Login-container-right-bottom button:hover {
-  color: white;
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom .Login-container-right-bottom-btnBlue:hover {
+  color: #0078b3;
+  border-bottom: 1px solid #0078b3;
+}
+
+.Login .Login-container .Login-container-right .Login-container-right-group .Login-container-right-con .Login-container-right-bottom .Login-container-right-bottom-btnBlue svg {
+  top: 2px;
+}
+
+.Login .Login-container .Login-container-right-login .Login-container-right-group {
+  left: 0;
+}
+
+.Login .Login-container .Login-container-right-register .Login-container-right-group {
+  left: -119%;
 }
 
 .Login .Login-findPassword {
@@ -2202,7 +2393,7 @@ a:hover {
   height: 100vh;
   top: 0;
   left: 0;
-  z-index: 14;
+  z-index: 23;
   background: rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2763,7 +2954,7 @@ a:hover {
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-header .MemberInfo-passwordEditButton span {
-  margin-left: 0.01rem;
+  margin-left: 0.15rem;
   font-size: 1.1rem;
 }
 
@@ -2784,7 +2975,8 @@ a:hover {
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row {
-  width: 70%;
+  width: 85%;
+  max-width: 900px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2825,6 +3017,11 @@ a:hover {
   width: 100%;
 }
 
+.MemberInfo .MemberInfo-container .MemberInfo-container-cards .MemberInfo-container-row .MemberInfo-container-inputCon .MemberInfo-accountContainer {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: 800;
+}
+
 .MemberInfo .MemberInfo-container .MemberInfo-container-buttonCon {
   margin-top: 2rem;
   width: 100%;
@@ -2841,7 +3038,7 @@ a:hover {
 }
 
 .MemberInfo .MemberInfo-container .MemberInfo-editPwd {
-  position: absolute;
+  position: fixed;
   background: transparent;
   border-radius: 10px;
   top: 0;
@@ -3122,8 +3319,12 @@ a:hover {
 }
 
 .OrderInfo .OrderInfo-container .OrderInfo-container-tableBody {
-  margin: 0 0 1rem 0;
   overflow: scroll;
+}
+
+.OrderInfo .OrderInfo-container .OrderInfo-container-buttonCon {
+  padding: 0.5rem 0;
+  text-align: center;
 }
 
 .OrderCard .OrderCard-container {
@@ -3478,6 +3679,9 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   overflow: scroll;
@@ -3633,6 +3837,7 @@ a:hover {
 .CollectionArticle .CollectionArticle-container {
   height: 95%;
   width: 100%;
+  overflow: hidden;
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -3676,7 +3881,171 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   overflow: scroll;
+}
+
+.ArticleCard {
+  width: 95%;
+  max-width: 900px;
+  height: 150px;
+  border-radius: 8px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ArticleCard:hover {
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.ArticleCard:hover .ArticleCard-right .ArticleCard-right-title {
+  color: #ffb257;
+}
+
+.ArticleCard .ArticleCard-left {
+  width: 25%;
+  min-width: 150px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.ArticleCard .ArticleCard-left .ArticleCard-left-imgCon {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ArticleCard .ArticleCard-left .ArticleCard-left-imgCon img {
+  height: 120%;
+}
+
+.ArticleCard .ArticleCard-right {
+  width: 75%;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-title {
+  margin-bottom: 0.25rem;
+  max-width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-content {
+  height: 55%;
+  width: 95%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 0.5rem;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-con svg {
+  top: 1px;
+  margin-right: 0.2rem;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-like svg {
+  fill: #eb6b6a;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-comment svg {
+  fill: #0078b3;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect {
+  color: #d8a466;
+  cursor: pointer;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect svg {
+  fill: #d8a466;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect:hover {
+  color: #ffb257;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect:hover svg {
+  fill: #ffb257;
 }
 
 .CourseInsert {
@@ -3727,7 +4096,37 @@ a:hover {
   font-weight: 100;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: scroll;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-header {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 3px solid #ffb257;
+  width: 100%;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-header h1 {
+  font-weight: 100;
+}
+
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3739,7 +4138,7 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3752,18 +4151,18 @@ a:hover {
           align-items: flex-start;
   position: relative;
   width: 100%;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-label {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-label {
   font-weight: 900;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-input {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-input {
   width: 100%;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3782,7 +4181,7 @@ a:hover {
       flex-wrap: wrap;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3810,12 +4209,12 @@ a:hover {
   overflow: hidden;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label img {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label img {
   height: 120%;
   border-radius: 5px;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label svg {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-label svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3823,11 +4222,11 @@ a:hover {
           transform: translate(-50%, -50%);
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-input {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sliderImage .CourseInsert-container-row-inputCon-sliderImage-input {
   display: none;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3843,7 +4242,7 @@ a:hover {
   margin: 0.25rem 0;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label {
   width: 20vw;
   height: 20vw;
   max-width: 270px;
@@ -3870,11 +4269,11 @@ a:hover {
           align-items: center;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label img {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label img {
   height: 100%;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label svg {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-label svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3882,7 +4281,7 @@ a:hover {
           transform: translate(-50%, -50%);
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right {
   width: 65%;
   position: relative;
   display: -webkit-box;
@@ -3897,20 +4296,20 @@ a:hover {
           justify-content: space-between;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right input {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right input {
   border-radius: 5px 5px 0 0;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right textarea {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-right textarea {
   border-radius: 0 0 5px 5px;
   height: 83%;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-input {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-row .CourseInsert-container-row-inputCon .CourseInsert-container-row-inputCon-sixDishes .CourseInsert-container-row-inputCon-sixDishes-input {
   display: none;
 }
 
-.CourseInsert .CourseInsert-container .CourseInsert-container-btnCon {
+.CourseInsert .CourseInsert-container .CourseInsert-container-group .CourseInsert-container-btnCon {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3947,6 +4346,8 @@ a:hover {
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
   z-index: 10;
+  -webkit-box-shadow: inset 13px 13px 26px #a88050, inset -13px -13px 26px #ffc87c;
+          box-shadow: inset 13px 13px 26px #a88050, inset -13px -13px 26px #ffc87c;
 }
 
 .ReviewButton .ReviewButton-btn {
@@ -3966,7 +4367,7 @@ a:hover {
           align-items: center;
   width: 38px;
   height: 38px;
-  background-color: #0078b3;
+  background: linear-gradient(145deg, #0080c0, #006ca1);
   border-radius: 50px;
   left: 0px;
   -webkit-transition: all 0.3s ease;
@@ -6176,9 +6577,10 @@ a:hover {
 .Coursedetail-chefCardMargin {
   position: relative;
   padding: 50px 0px 60px 0px;
-  width: 55%;
   margin: auto;
-  min-width: 750px;
+  width: 60vw;
+  min-width: 450px;
+  max-width: 900px;
 }
 
 .Coursedetail-infoBox2 {
@@ -6403,7 +6805,6 @@ a:hover {
 
 .Coursedetail-cost img {
   width: 100%;
-  height: 100%;
   position: absolute;
   left: 0;
   z-index: 1;
@@ -6477,61 +6878,75 @@ a:hover {
 .Coursedetail-join {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 40vw;
   background-color: #ffffff;
   margin: 80px 0;
   font-size: 100%;
-  border: 2px solid #666666;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.Coursedetail-join .Coursedetail-joinNow {
+  cursor: pointer;
+  margin-top: 5vw;
+}
+
+.Coursedetail-join .Coursedetail-joinNow:hover {
+  font-size: 2.5vw;
 }
 
 .Coursedetail-join span {
   position: relative;
   float: right;
-  width: 65%;
+  width: 60%;
   height: 100%;
-  border-bottom: 850px solid #d8a466;
-  border-left: 200px solid transparent;
+  -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 5% 100%);
+          clip-path: polygon(20% 0, 100% 0, 100% 100%, 5% 100%);
+  background-color: #d8a466;
   z-index: 2;
 }
 
+.Coursedetail-join ul li {
+  display: inline-block;
+  padding: 0;
+}
+
+.Coursedetail-join .Coursedetail-joinLineWidth {
+  width: 80%;
+  right: 0;
+  position: absolute;
+}
+
 .Coursedetail-join .Coursedetail-joinLine {
-  width: 90%;
+  width: 80%;
   border: 1px solid #fff;
-  margin: 10px auto 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 0.5vh;
   position: relative;
-  right: 10px;
+  margin: auto;
 }
 
 .Coursedetail-join img {
-  width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   z-index: 1;
 }
 
+.Coursedetail-join .Coursedetail-joinTitle {
+  padding-top: 2vw;
+  font-size: 2.5vw;
+}
+
 .Coursedetail-join p {
   width: 100%;
   text-align: center;
-  font-size: 48px;
+  font-size: 2vw;
   color: #ffffff;
   font-weight: bold;
   font-family: "Noto Sans TC", Bold;
-  padding-top: 40px;
-}
-
-.Coursedetail-clip {
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-  background-color: aquamarine;
-  height: 40vw;
-  width: 30vw;
-}
-
-.Coursedetail-testSc {
-  overflow: hidden;
+  padding: 1vw 0 1vw 20%;
 }
 
 .Course-starGroup {
@@ -6643,7 +7058,6 @@ a:hover {
 
 .CoursedetailMargin {
   margin: 63px auto 0 auto;
-  background: #0078b3;
   z-index: 2;
 }
 
@@ -6836,6 +7250,15 @@ a:hover {
   position: absolute;
 }
 
+.orange2-right {
+  position: absolute;
+  right: 0;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  top: 240vw;
+  width: 24%;
+}
+
 .orangeEx {
   z-index: -1;
   position: absolute;
@@ -6871,6 +7294,13 @@ a:hover {
   width: 35%;
   position: absolute;
   z-index: -1;
+}
+
+.blue1-right {
+  position: absolute;
+  right: 0;
+  top: 140vw;
+  width: 40%;
 }
 
 .chef-set {
@@ -7935,6 +8365,7 @@ div.Container {
   display: inline-block;
   /* background-color: aqua; */
   max-width: 600px;
+  margin-top: 10vw;
 }
 
 .Both {
@@ -8018,7 +8449,7 @@ input[type="submit"].Form-btn .Form-btn:active {
   bottom: 46%;
   z-index: 0;
   position: relative;
-  top: -900px;
+  top: -1000px;
   left: 4px;
 }
 
@@ -8028,6 +8459,9 @@ input[type="submit"].Form-btn .Form-btn:active {
   }
   .MemberCenter .MemberCenter-container {
     width: 90%;
+  }
+  .MemberInfo-container-row {
+    width: 100% !important;
   }
   .CourseDetail-headerPicture {
     width: 90%;
