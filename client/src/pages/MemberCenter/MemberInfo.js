@@ -103,7 +103,7 @@ const MemberInfo = (props) => {
   // 即時判斷新密碼與確認密碼是否相同 / 以及控制確認修改按鍵狀態
   useEffect(() => {
     // 控制確認修改按鍵狀態 (三欄位都正確填寫 且 密碼與密碼確認相符時)
-    passwordInfo.passwordConfirm.length >= 8 &&
+    passwordInfo.passwordConfirm &&
     passwordInfo.newPassword.length >= 8 &&
     passwordInfo.confirmNewPassword.length >= 8 &&
     passwordInfo.newPassword === passwordInfo.confirmNewPassword
