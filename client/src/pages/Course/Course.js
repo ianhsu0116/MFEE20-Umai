@@ -13,30 +13,30 @@ import getValidMessage from "../../validMessage/validMessage";
 function Course (props){
 
   const { location } = props;
-  // let category_number = location.search.slice(1);
-  // console.log(location)
+  let category_number = location.search.slice(1);
+
   const [selectedOptionLevel, setSelectedOptionLevel] = useState('')
   const [selectedOptionDate, setSelectedOptionDate] = useState('')
   const [selectedOptionStart, setSelectedOptionStart] = useState('')
 
-  const [dataC, setDataC] = useState('日式料理')
+  const [categoryname, setCategoryname] = useState('')
 
-  // useEffect(async () => {
-  //   try {
-  //     let result = await CategoryService.categoryID(category_number);
-  //     console.log(result.data)
-  //     return
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
+  useEffect(async () => {
+    try {
+      let result = await CategoryService.categoryID(category_number);
+      setCategoryname(result.data.categoryID[0].category_name)
+      return
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <>
     {console.log(props)}
     <div className="Course">
     <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
-    <div className="CourseCategroy">{dataC}</div>
+    <div className="CourseCategroy">{categoryname}</div>
     <div className="st-line"></div>
     <div className="CourseRecommendTitle">本週推薦課程</div>
     <div className="CourseVideo"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/MKdvHnTk0xs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>

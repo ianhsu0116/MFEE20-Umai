@@ -194,7 +194,7 @@ router.get("/:course_id", async (req, res) => {
     let course_batch = [];
     if (course.length !== 0) {
       course_batch = await connection.queryAsync(
-        "SELECT * FROM course_batch WHERE course_id = ? AND valid = ?",
+        "SELECT course_batch.*  FROM course_batch WHERE course_id = ? AND valid = 1",
         [course_id, 1]
       );
     }
@@ -203,14 +203,15 @@ router.get("/:course_id", async (req, res) => {
     let course_comment = [];
     if (course.length !== 0) {
       course_comment = await connection.queryAsync(
-        "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
+        "SELECT course_comment.* , orders.member_id  FROM course_comment , orders WHERE course_comment.orders_id = orders.id  AND  course_comment.course_id = ? AND course_comment.valid = 1",
         [course_id, 1]
       );
     }  
+    
 
     res.status(200).json({ success: true, course, course_batch , course_comment});
   } catch (error) {
-    //console.log(error);
+    // console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
