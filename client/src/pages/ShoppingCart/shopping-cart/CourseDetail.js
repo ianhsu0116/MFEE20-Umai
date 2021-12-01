@@ -1,12 +1,16 @@
 /* eslint-disable default-case */
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function CourseDetail(props){
     //優惠卷額度
     const [discount,setdiscount]=useState(100);
     //存取選到會券
     const [selectedIndex,setselectedIndex]=useState(0);
+
+    let dataerror=false
+    let link="/PaymentMethod"
 
     let coursetitle = props.coursetitle;
     let coupon={};
@@ -16,6 +20,14 @@ function CourseDetail(props){
     }
     let carddata = props.carddata;
     let OrderData = props.OrderData;
+    
+    //自動抓每個物件內的 name，再比對物件內的值是否為空
+    function checkdata(){
+        carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((data)=>{if(carddata[0].data===undefined){dataerror=true}});
+        if(dataerror)
+        link="ShoppingCart"
+    }
+    checkdata()
     let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData});
     return(
     <>
@@ -50,14 +62,21 @@ function CourseDetail(props){
                 </td>
             </tr>
         </table>
-        <Link 
-        to={{
-            pathname:"/PaymentMethod",
-            state:{data: data}
-        }}
+        <Link
+        to={{pathname:link,state:{data: data}}}
         >
             <div className="ToShoppingList">
-                <button>
+                <button 
+                onClick={()=>{
+                    if(dataerror===true){
+                        Swal.fire({
+                            icon: 'error',
+                            title: '學員資料有誤',
+                            text:'資料未輸入完整'
+                            })
+                        }
+                     }
+                }>
                     <h4>選擇付款方式</h4>
                 </button>
             </div>

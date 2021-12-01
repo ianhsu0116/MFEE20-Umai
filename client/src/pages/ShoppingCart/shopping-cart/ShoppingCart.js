@@ -98,6 +98,7 @@ function shopping_cart(props) {
       })
     setCarddata(defultcard)
   }
+
   return (
     <>
       <div className="main-block wrapper">
