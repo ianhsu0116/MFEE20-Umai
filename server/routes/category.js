@@ -39,7 +39,6 @@ router.use((req, res, next) => {
       // 如果沒有任何收藏的話
       if (collections.length === 0)
         return res.status(204).json({ success: true, course: [] });
-
         // 每個課程的id
         let id_array = category_detail.map((item) => item.id);
         // 裝所有個別課程的最近一筆梯次的Array
@@ -64,7 +63,7 @@ router.use((req, res, next) => {
     closest_batchs.forEach((item, index) => {
       category_detail[index].closest_batchs = item;
     });
-
+      console.log(closest_batchs)
       res.status(200).json({ success: true, categoryID: category_count , courseDetail:category_detail });
     } catch (error) {
       console.log(error);

@@ -2,7 +2,7 @@ import React, { useState , useEffect } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import CourseCard_Course from './CourseCard_Course'
 
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { PUBLIC_URL } from "../../config/config";
 
 import CourseCard from '../../components/CourseCard1'
@@ -14,7 +14,7 @@ function Course (props){
 
   const { location } = props;
   let category_number = location.search.slice(1);
-
+  console.log(location)
   const [selectedOptionLevel, setSelectedOptionLevel] = useState('')
   const [selectedOptionDate, setSelectedOptionDate] = useState('')
   const [selectedOptionStart, setSelectedOptionStart] = useState('')
