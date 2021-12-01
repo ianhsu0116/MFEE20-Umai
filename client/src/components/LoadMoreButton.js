@@ -5,7 +5,7 @@ const LoadMoreButton = (props) => {
   let { onClick } = props;
   return (
     <button className="LoadMoreButton" onClick={onClick}>
-      載入更多
+      <span className="LoadMoreButton-text">載入更多</span>
       <ImDownload />
     </button>
   );

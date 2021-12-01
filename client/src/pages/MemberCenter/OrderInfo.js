@@ -16,7 +16,7 @@ const OrderInfo = (props) => {
   // 當前頁碼
   const [page, setPage] = useState(1);
   // 一頁顯示幾筆
-  const [perPage, setPerPage] = useState(3);
+  const [perPage, setPerPage] = useState(5);
   // 裝每頁要顯示的資料
   const [pageData, setPageData] = useState([]);
   // LoadMoreButton 是否顯示

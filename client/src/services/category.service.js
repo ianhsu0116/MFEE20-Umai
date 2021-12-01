@@ -19,12 +19,12 @@ class CategoryService {
         withCredentials: true,
       });
     }
-  // 課程種類  
-    categoryClass(category_class) {
-      return axios.get(AUTH_API_URL + `/courses/${category_class}`, {
-        withCredentials: true,
-      });
-    }  
+  // // 課程種類  
+  //   categoryClass(category_class) {
+  //     return axios.get(AUTH_API_URL + `/${category_class}`, {
+  //       withCredentials: true,
+  //     });
+  //   }  
   }
 
 

@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 import CourseCard1 from "../../components/CourseCard1";
-import CourseReview from "./CourseReview";
 
 const CollectionCourse = (props) => {
   const { currentUser } = props;
@@ -18,6 +17,7 @@ const CollectionCourse = (props) => {
   // 重整當前收藏課程
   let refreshCollection = async () => {
     let result = await CourseService.course_collection(currentUser.id);
+    console.log(result)
 
     // 如果這次沒回傳任何course
     if (!result.data.course) {

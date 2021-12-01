@@ -42,9 +42,6 @@ body {
 	-ms-overflow-style: none;
 	//width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
 	overflow: auto;
-	#root {
-		overflow-x: hidden;
-	}
 }
 
 // 設定scrollbar樣式
@@ -209,6 +206,9 @@ a {
 	&:hover {
 		//background: $activeColor;
 		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+	}
+	.LoadMoreButton-text {
+		margin-right: 0.25rem;
 	}
 }
 
