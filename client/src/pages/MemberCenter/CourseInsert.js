@@ -120,7 +120,6 @@ const CourseInsert = (props) => {
   // 先判斷當前登入的 User 是否已填寫主廚卡片
   // 還沒填寫的話就把他導回去卡片頁面
   useEffect(() => {
-    console.log(currentUser);
     // 沒有內容
     if (!currentUser.chef_introduction) {
       // 跳通知

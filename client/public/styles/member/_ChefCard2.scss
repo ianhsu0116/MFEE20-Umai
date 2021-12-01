@@ -152,6 +152,10 @@ $chefTextSize-li: calc(8px + 0.15vw);
     }
   }
 
+  .st-chefCard2Down-chefInfoTitleInput {
+    min-height: 35%;
+  }
+
   .st-chefCard2Down-ul {
     cursor: pointer;
 
@@ -178,11 +182,11 @@ $chefTextSize-li: calc(8px + 0.15vw);
 
   // input
   .st-chefCard2Down-inputCon {
-    padding: 0.5rem 0 0.5rem 1rem;
+    padding: 0.5rem 0;
     position: relative;
     @include flex(column);
     justify-content: space-between;
-    height: 60%;
+    height: 52%;
     overflow: scroll;
 
     .st-chefCard2Down-chefInfo {
