@@ -12,6 +12,17 @@ class ForumService {
       withCredentials: true,
     });
   }
+
+  // 新增或移除收藏
+  collectionEdit(member_id, article_id) {
+    return axios.post(
+      FORUM_API_URL + "/collection/" + member_id,
+      { article_id },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }
 
 export default new ForumService();

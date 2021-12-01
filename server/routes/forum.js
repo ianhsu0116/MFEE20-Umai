@@ -126,4 +126,42 @@ router.get("/collection/:member_id", async (req, res) => {
   }
 });
 
+// 取消或新增收藏
+router.post("/collection/:member_id", async (req, res) => {
+  let { member_id } = req.params;
+  let { article_id } = req.body;
+
+  try {
+    // 確認使否已存在收藏列表
+    let isInCollect = await connection.queryAsync(
+      "SELECT * FROM article_collection WHERE member_id = ? AND article_id = ?",
+      [member_id, article_id]
+    );
+
+    // 已經存在，就刪除
+    if (isInCollect.length !== 0) {
+      let { id } = isInCollect[0];
+      let result = await connection.queryAsync(
+        "DELETE FROM article_collection WHERE id = ?",
+        [id]
+      );
+
+      // 刪除成功
+      res.status(200).json({ success: true, mode: "delete" });
+      return;
+    }
+
+    // 原本不存在收藏，就新增
+    let result = await connection.queryAsync(
+      "INSERT INTO article_collection(member_id, article_id) VALUES(?)",
+      [[member_id, article_id]]
+    );
+
+    res.status(200).json({ success: true, mode: "insert" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, code: "C999", message: error });
+  }
+});
+
 module.exports = router;
