@@ -22,7 +22,7 @@ const DefaultStudent = (props) => {
   const [allStudents, setAllStudents] = useState([]);
 
   // 拿取學生資料的function
-  async function refieshStudent() {
+  async function refreshStudent() {
     let result = await MemberService.student();
     let { students } = result.data;
     setAllStudents(students);
@@ -32,7 +32,7 @@ const DefaultStudent = (props) => {
   useEffect(async () => {
     try {
       // 拿取所有學員料
-      refieshStudent();
+      refreshStudent();
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +56,7 @@ const DefaultStudent = (props) => {
       setErrorMsg("");
 
       // 重新拿取學員資料
-      refieshStudent();
+      refreshStudent();
 
       // 跳通知
       Swal.fire({
@@ -85,7 +85,7 @@ const DefaultStudent = (props) => {
       });
 
       // 重新拿取學員資料
-      refieshStudent();
+      refreshStudent();
 
       // 跳通知
       Swal.fire({
@@ -149,7 +149,7 @@ const DefaultStudent = (props) => {
         setDidDelete(false);
 
         // 重新拿取學員資料
-        refieshStudent();
+        refreshStudent();
 
         // 跳通知
         Swal.fire({
