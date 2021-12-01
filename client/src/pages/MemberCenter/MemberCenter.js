@@ -229,6 +229,7 @@ const MemberCenter = (props) => {
             setSliderImage={setSliderImage}
             sixDishesImage={sixDishesImage}
             setSixDishesImage={setSixDishesImage}
+            setCurrentBoard={setCurrentBoard}
           />
         )}
 

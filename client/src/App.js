@@ -23,15 +23,6 @@ import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
 
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
-import CourseStar from "./pages/CourseDetail/CourseStar";
-import DefaultStudentCard from "./components/DefaultStudentCard";
-import StarGroup from "./components/StarGroup";
-import ChefCard from "./components/ChefCard2";
-import CourseMiniCard from "./components/CourseMiniCard2";
-import ShareCard from "./components/ShareCard2";
-import Calendar from "./components/Calendar";
-import CalendarAvailable from "./components/CalendarAvailable";
-import CalendarMulti from "./components/CalendarMulti";
 import Footer from "./components/Footer";
 
 function App() {
@@ -144,26 +135,10 @@ function App() {
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
       )}
-      {/* <NavbarHomePage /> */}
       <Switch>
         <div className="footerPadding">
           <Route path="/" exact>
             <HomePage />
-            {/* <DefaultStudentCard />
-          <ChefCard />
-          <ShareCard />
-          <CourseMiniCard /> */}
-            {/* <StarGroup percent={96} allScore={50} /> */}
-            {/* <h4>一般萬年曆</h4> */}
-            {/* <Calendar onChange={onChange} /> */}
-            {/* <h4>顯示可預訂日期的萬年曆</h4>
-          <CalendarAvailable
-            onChange={onChange}
-            availableDays={availableDays}
-            setIsCalendarOpen={setIsCalendarOpen}
-          /> */}
-            {/* <h4>可多選萬年曆</h4> */}
-            {/* <CalendarMulti onChange={onChange} /> */}
           </Route>
           <Route path="/ShoppingCart" exact>
             <ShoppingCart currentUser={currentUser} />
@@ -173,10 +148,6 @@ function App() {
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
             />
-          </Route>
-
-          <Route path="/masonry" exact>
-            <Masonry />
           </Route>
           <Route path="/Forum" exact>
             <Forum />
@@ -199,9 +170,6 @@ function App() {
           <Route path="/PaymentMethod" exact>
             <PaymentMethod currentUser={currentUser} />
           </Route>
-          {/* <Route path="/Items" exact>
-          <Items />
-        </Route> */}
           <Route path="/chef" exact>
             <Chef />
           </Route>

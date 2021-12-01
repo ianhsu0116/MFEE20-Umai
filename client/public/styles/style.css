@@ -189,6 +189,13 @@ a:hover {
           box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
+<<<<<<< HEAD
+=======
+.LoadMoreButton .LoadMoreButton-text {
+  margin-right: 0.25rem;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .ErrorMessage {
   font-size: 90%;
   color: red;
@@ -346,6 +353,7 @@ a:hover {
   transition: all 0.3s ease;
 }
 
+<<<<<<< HEAD
 :root {
   --navbar-height: 55px;
   --navbar-dropdown-top: 80px;
@@ -362,6 +370,9 @@ a:hover {
   background: #d8a466;
   color: white;
   font-weight: 100;
+=======
+.OptionBar {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,6 +383,7 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+<<<<<<< HEAD
   font-size: 100%;
 }
 
@@ -391,6 +403,14 @@ a:hover {
 }
 
 .Header .Navbar .Navbar-container .Navbar-container-item {
+=======
+  width: 100%;
+  margin: 0.5rem;
+}
+
+.OptionBar .OptionBar-ul {
+  width: 65%;
+  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -398,6 +418,39 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 100px;
+  -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.OptionBar .OptionBar-ul .OptionBar-ul-li {
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  color: #0078b3;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: 900;
+}
+
+.OptionBar .OptionBar-ul .OptionBar-ul-li-active {
+  background: linear-gradient(45deg, #ffb257, #d8a466);
+  color: white;
+}
+
+.CourseCard1 {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+<<<<<<< HEAD
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -408,6 +461,31 @@ a:hover {
 }
 
 .Header .Navbar .Navbar-container .Navbar-container-item a {
+=======
+  border-radius: 15px;
+  max-width: 900px;
+  max-height: 200px;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 1rem 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 600px;
+          flex: 1 1 600px;
+}
+
+.CourseCard1 .CourseCard1-imageCon {
+  height: 100%;
+  max-height: 200px;
+  width: 38%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,6 +493,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+<<<<<<< HEAD
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -663,12 +742,178 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.CourseCard1 .CourseCard1-imageCon img {
+  height: 100%;
+  max-height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.CourseCard1 .CourseCard1-imageCon .CourseCard1-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.CourseCard1 .CourseCard1-detailCon {
+  padding: 1rem;
+  font-size: 95%;
+  width: 60%;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  border-top-right-radius: 60px 130px;
+  border-bottom-right-radius: 60px 130px;
+  z-index: 3;
+  background: white;
+  position: relative;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-h4 {
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-company svg {
+  fill: #ffb257;
+  font-size: 1.15rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-courseTime {
+  margin-top: 0.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount {
+  font-size: 80%;
+  margin-top: 0.25rem;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon {
+  width: 130px;
+  height: 6px;
+  border-radius: 5px;
+  border: 1px solid #ffb257;
+  position: relative;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-MemberCount .CourseCard1-detailCon-MemberCount-progressCon .CourseCard1-detailCon-MemberCount-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #ffb257;
+  border: 1px solid #ffb257;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-courseLevel {
+  display: block;
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .highLevel {
+  background: #eb6b6a;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .midLevel {
+  background: #5f9e72;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .lowLevel {
+  background: #5eb2eb;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard1-detailCon-bottom-coursePrice-origin {
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: line-through;
+  margin-bottom: -8px;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom .CourseCard1-detailCon-bottom-coursePrice .CourseCard1-detailCon-bottom-coursePrice-discount {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn {
+  position: absolute;
+  z-index: 6;
+  right: -7px;
+  top: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
 }
 
 .Header .Navbar .Navbar-container .Navbar-container-item .Navbar-container-item-container .Navbar-container-item-Cart-dropdown .Navbar-container-item-Cart-dropdown-container .Navbar-container-item-Cart-dropdown-info-bottom,
@@ -909,6 +1154,163 @@ a:hover {
 .OptionBar .OptionBar-ul {
   width: 65%;
   list-style: none;
+=======
+  cursor: pointer;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
+  fill: #eb6b6a;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn:hover svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn-active svg {
+  background: url(../icons/heart-solid.svg) center center no-repeat;
+}
+
+.CourseCard1 .CourseCard1-buttonCon {
+  width: 30%;
+  height: 100%;
+  background: #5d5548;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.CourseCard1 .CourseCard1-buttonCon .CourseCard1-buttonCon-btn {
+  margin: 0.5rem 1.3rem;
+  position: relative;
+  width: 88px;
+  text-align: center;
+  font-size: 80%;
+}
+
+.CourseCard1:hover .CourseCard1-imageCon {
+  width: 34%;
+}
+
+.CourseCard1:hover .CourseCard1-detailCon {
+  width: 47%;
+}
+
+.Coupons {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  margin: 1rem;
+}
+
+.Coupons:hover {
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.Coupons .Coupons-imageCon {
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+  position: relative;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-img {
+  height: 100%;
+  width: 100%;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner {
+  position: absolute;
+  background: #ffb257;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner:hover {
+  -webkit-transform: scale(1.1) rotate(45deg);
+          transform: scale(1.1) rotate(45deg);
+}
+
+.Coupons .Coupons-imageCon .Coupons-imageCon-banner a {
+  color: white;
+}
+
+.Coupons .Coupons-textCon {
+  height: 60%;
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-title {
+  font-size: 1.15rem;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom {
+  font-size: 85%;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-title {
+  font-weight: 900;
+}
+
+.Coupons .Coupons-textCon .Coupons-textCon-bottom .Coupons-textCon-bottom-expireDate {
+  color: #d8a466;
+}
+
+.Coupons-disabled {
+  cursor: not-allowed;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.DefaultStudentCard {
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  margin: 0.5rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -919,6 +1321,7 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+<<<<<<< HEAD
   border-radius: 100px;
   -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
@@ -1062,6 +1465,25 @@ a:hover {
 }
 
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-bottom {
+=======
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px;
+  background: #eeeeee;
+  padding: 0.75rem;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
+  -webkit-box-shadow: 2px 2px 5px rgba(32, 26, 26, 0.3);
+          box-shadow: 2px 2px 5px rgba(32, 26, 26, 0.3);
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left {
+  font-weight: 900;
+  font-size: 110%;
+  color: #d8a466;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1069,6 +1491,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+<<<<<<< HEAD
   width: 95%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -1143,12 +1566,18 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+=======
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .CourseCard1 .CourseCard1-detailCon .CourseCard1-detailCon-likeBtn svg {
   fill: #eb6b6a;
 }
@@ -2734,6 +3163,17 @@ a:hover {
 
 .CalendarMulti .CalendarMulti-container .CalendarMulti-header {
   width: 100%;
+=======
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  width: 30px;
+  height: 30px;
+  -webkit-transition: 0.35s ease;
+  transition: 0.35s ease;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right {
+  font-size: 1rem;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2741,6 +3181,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+<<<<<<< HEAD
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -2807,11 +3248,100 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  max-height: 34px;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-select {
+  padding: 0.25rem 0.25rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #666666;
+}
+
+.DefaultStudentCard .DefaultStudentCard-title .DefaultStudentCard-title-right .DefaultStudentCard-title-right-btn {
+  padding: 0.25rem 0.75rem;
+  font-size: 90%;
+  margin-left: 0.5rem;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main {
+  max-height: 0;
+  -webkit-transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
+  opacity: 0;
+}
+
+.DefaultStudentCard .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  display: none;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title {
+  border-radius: 15px 15px 0 0;
+  -webkit-box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+          box-shadow: 2px 1px 5px rgba(32, 26, 26, 0.3);
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-title .DefaultStudentCard-title-left svg {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main {
+  border-radius: 0 0 15px 15px;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 1rem 2rem;
+  max-height: 500px;
+  -webkit-transition: 0.4s ease-in;
+  transition: 0.4s ease-in;
+  opacity: 1;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  margin: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
 
+<<<<<<< HEAD
 .CartCourse-container .CartCourse-info-left {
   width: 30%;
   height: 75%;
@@ -3241,6 +3771,478 @@ a:hover {
 }
 
 .HomePageBox .platformIntroduction .platformIntroductionBox .platformIntroductionWrapper .platformIntroductionContentWrapper .platformIntroductionContent {
+=======
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-label {
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-item .DefaultStudentCard-main-row-item-input {
+  border-radius: 5px;
+  border: 1px solid #666666;
+  width: 100%;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-itemEmail {
+  width: 100%;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon {
+  margin: 0 1rem;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox {
+  display: inline-block;
+  background-color: #aaa;
+  padding: 3px 6px;
+  border: 1px solid gray;
+  color: #444;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: auto;
+}
+
+.DefaultStudentCard-active .DefaultStudentCard-main .DefaultStudentCard-main-row .DefaultStudentCard-main-row-selectCon .DefaultStudentCard-main-row-selectCon-checkbox:checked {
+  color: yellow;
+  background-color: #0078b3;
+}
+
+@-webkit-keyframes DefaultStudentCard-scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes DefaultStudentCard-scaleDown {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+.StarGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 0.15rem;
+}
+
+.StarGroup p {
+  font-size: 0.7rem;
+}
+
+.StarGroup .StarGroup-container {
+  max-width: 80px;
+  position: relative;
+  height: 17px;
+  overflow: hidden;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-star {
+  z-index: 2;
+  width: 101%;
+  height: 100%;
+}
+
+.StarGroup .StarGroup-container .StarGroup-container-background {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.ShareCard {
+  margin: 20px 0;
+  height: 470px;
+  width: 320px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.ShareCardPictureBox {
+  position: relative;
+  margin-top: 10px;
+  height: 145px;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ShareCardPictureBox .ShareCardPicture {
+  position: relative;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  margin: 35px 105px;
+}
+
+.ShareCardPictureBox .ShareCardPicture img {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ShareCardPictureName {
+  color: #707070;
+  size: 20px;
+  font-weight: 700px;
+  text-align: center;
+  padding: 5px;
+}
+
+.ShareCardCourseName {
+  height: 50px;
+  width: 75%;
+  margin: auto;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #000000;
+}
+
+.st-boxPos {
+  position: relative;
+  height: 32px;
+  width: 100px;
+  margin: auto;
+}
+
+.st-boxStar {
+  color: #999999;
+  /*背景星星顏色*/
+  overflow: hidden;
+  /*調整寬度可變更星等*/
+  font-size: 24px;
+}
+
+/* 填滿星星 width設在外面 */
+.st-fullStar {
+  /*調整寬度可變更星等 須跟上面一樣*/
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ffa231;
+  /*前景星星顏色*/
+}
+
+.ShareCardText {
+  padding-top: 20px;
+  height: 200px;
+  width: 80%;
+  margin: auto;
+}
+
+.ShareCardTextTop {
+  height: 20px;
+  float: left;
+  font-size: 30px;
+  font-weight: bold;
+  font-weight: 900;
+  width: 100%;
+}
+
+.ShareCardComment {
+  margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  width: 80%;
+  font-weight: bold;
+  font-weight: 900;
+}
+
+.ShareCardComment p {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  color: #000000;
+}
+
+.ShareCardTextDown {
+  height: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  font-weight: 900;
+  width: 100%;
+  margin-left: 230px;
+}
+
+.st-courseMiniCard {
+  position: relative;
+  width: 250px;
+  height: 450px;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.st-courseMiniCardPicture img {
+  height: 200px;
+  width: 250px;
+  border-radius: 10px 10px 0px 0px;
+  background-color: black;
+}
+
+.st-courseMiniCardBar {
+  position: absolute;
+  color: white;
+  padding: 0.25rem 1rem;
+  z-index: 3;
+  width: 150px;
+  top: 15px;
+  right: -45px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.st-courseMiniCardBarActiveDeadline {
+  background: #ffb257;
+}
+
+.st-courseMiniCardBarActiveFull {
+  background: #0078b3;
+}
+
+.st-courseMiniCardName {
+  width: 250px;
+  height: 115px;
+  font-weight: bold;
+  font-family: 'Noto Sans TC', Bold;
+  color: #505050;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  line-height: 23px;
+}
+
+.st-courseMiniCardChefName {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #909090;
+}
+
+.st-startWidth {
+  width: 120px;
+  max-height: 34.5px;
+}
+
+/* 星星盒子(外框) */
+.st-courseMiniCardBoxStar {
+  color: #999999;
+  /*背景星星顏色*/
+  overflow: hidden;
+  font-size: 24px;
+}
+
+/* 填滿星星 width設在外面 */
+.st-startWidth .st-courseMiniCardFullStar {
+  font-size: 24px;
+  top: -24.5px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  color: #ffa231;
+  /*前景星星顏色*/
+}
+
+.st-courseMiniCardStarCount {
+  position: relative;
+  top: -48px;
+  left: 125px;
+  color: #909090;
+  font-size: 14px;
+}
+
+.st-courseMiniCardBatch {
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  margin-left: 20px;
+  font-family: 'Noto Sans TC', Bold;
+  font-size: 14px;
+}
+
+.st-courseMineCardTime {
+  margin-top: 5px;
+}
+
+.st-courseMineCardTime {
+  margin-top: 5px;
+}
+
+.st-courseMiniCardProgressBox {
+  position: relative;
+  top: 45px;
+  width: 200px;
+  margin-left: 20px;
+  height: 6px;
+}
+
+.st-courseMiniCardProgress {
+  width: 200px;
+  height: 6px;
+  border: 1px solid #ffb257;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.st-courseMiniCardFullProgress {
+  height: 5px;
+  background-color: #ffb257;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  top: -19px;
+}
+
+.st-courseMiniCardCount {
+  top: -20px;
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  color: #909090;
+}
+
+.st-courseMiniCardLevel {
+  position: relative;
+  width: 47px;
+  height: 25px;
+  top: 75px;
+  margin-left: 20px;
+  border-radius: 5px 5px 5px 5px;
+  color: white;
+  background: #5eb2eb;
+  padding: 0.15rem 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.st-courseMiniCardSpecialPrice {
+  top: 5px;
+  left: 83px;
+  position: relative;
+  text-align: center;
+  font-family: 'Noto Sans TC', Bold;
+  color: #909090;
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+.st-courseMiniCardPrice {
+  top: 48px;
+  left: -10px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.st-courseMiniCardPriceBox {
+  width: 100%;
+  height: 80px;
+}
+
+.st-chefCard {
+  width: 60vw;
+  height: 35vw;
+  min-width: 450px;
+  min-height: 300px;
+  max-width: 900px;
+  max-height: 600px;
+  background-color: #d8a566;
+  border-radius: 1.5vw;
+  margin: 1vw 0;
+  -webkit-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.st-chefCardPictureWrapper {
+  height: 100%;
+  border-radius: 1.5vw 0 0 1.5vw;
+  float: left;
+  width: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #707070;
+}
+
+.st-chefCardPictureWrapper img {
+  height: 100%;
+}
+
+.st-chefCardTextWrapper {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3254,6 +4256,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+<<<<<<< HEAD
 }
 
 .HomePageBox .platformIntroduction .platformIntroductionBox .platformIntroductionWrapper .platformIntroductionContentWrapper .platformIntroductionContent h3 {
@@ -3277,6 +4280,23 @@ a:hover {
 }
 
 .HomePageBox .platformIntroduction .platformIntroductionBox .platformIntroductionWrapper .platformIntroductionButtonWrapper {
+=======
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.st-chefCardTextWrapper .st-chefCardTop {
+  height: 20vw;
+  max-height: 20vw;
+  float: right;
+  border-radius: 0 1.5vw 0 0;
+  width: 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: calc(10px + 0.5vw);
+  color: #ffffff;
+  padding: 0 calc((10px + 0.5vw) * 2);
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3286,9 +4306,46 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
 }
 
 .HomePageBox .platformIntroduction .platformIntroductionBox .platformIntroductionWrapper .platformIntroductionButtonWrapper .platformIntroductionButton {
+=======
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: justify;
+}
+
+.st-chefCardTextWrapper .st-chefCardTop .st-chefCardTopQuotation {
+  font-weight: 500;
+}
+
+.st-chefCardTextWrapper .st-chefCardTop .st-chefCardLine {
+  height: 3px;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin-top: calc(0.25rem + 0.75vw);
+}
+
+.st-chefCardTextWrapper .st-chefCardTop .st-chefCardTopChefName {
+  width: 100%;
+  margin-top: calc(0.25rem + 0.75vw);
+}
+
+.st-chefCardTextWrapper .st-chefCardDown {
+  height: 15vw;
+  max-height: 15vw;
+  float: right;
+  border-radius: 0 0 1.5vw 0;
+  background-color: #5e5548;
+  width: 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  color: #ffffff;
+  padding: 0 calc((10px + 0.5vw) * 2);
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3298,6 +4355,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   height: calc(2.5rem + 1.25vw);
   width: calc(6rem + 5vw);
   margin-top: 3vw;
@@ -3544,12 +4602,201 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: justify;
+  letter-spacing: 2px;
+}
+
+.st-chefCardTextWrapper .st-chefCardDown div {
+  width: 100%;
+  font-size: calc(6px + 0.75vw);
+}
+
+.st-chefCardTextWrapper .st-chefCardDown pre {
+  width: 100%;
+  font-size: calc(6px + 0.75vw);
+}
+
+.st-chefCardTextWrapper .st-chefCardDown ul {
+  width: 100%;
+  padding-top: 0.5vw;
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.st-chefCardTextWrapper .st-chefCardDown ul li {
+  font-size: calc(6px + 0.5vw);
+}
+
+.st-breadcrumb-item-end::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+  content: var(--bs-breadcrumb-divider, ">");
+}
+
+.st-breadcrumb-item-end span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFB257;
+}
+
+.st-breadcrumb-item::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+  content: var(--bs-breadcrumb-divider, ">");
+}
+
+.st-breadcrumb-item span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.st-breadcrumb-item span:hover {
+  color: #FFB257;
+}
+
+.st-breadcrumb-homepage::before {
+  float: left;
+  padding: 0em .5rem;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.st-breadcrumb-homepage span {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #666666;
+}
+
+.st-breadcrumb-homepage span:hover {
+  color: #FFB257;
+}
+
+.CreditCards {
+  width: 85%;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem 1.2rem;
+}
+
+.CreditCards .CreditCards-left {
+  margin: 0 1.5rem 0 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 200px;
+          flex: 1 1 200px;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 1 180px;
+          flex: 2 1 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row {
+  padding: 0.5rem 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #666666;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-date {
+  margin-right: 0.25rem;
+}
+
+.CreditCards .CreditCards-right .CreditCards-right-row .CreditCards-right-row-cvc {
+  margin-left: 0.25rem;
+}
+
+.rccs {
+  width: 275px !important;
+  position: relative;
+}
+
+.rccs .rccs__card {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 1500px) {
+  .CreditCards {
+    width: 95%;
+  }
+}
+
+.Calendar {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 34px;
+}
+
+.Calendar .Calendar-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   width: 100vw;
   height: 80vw;
   z-index: 5;
@@ -3597,34 +4844,80 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+=======
+  position: relative;
+  cursor: pointer;
+}
+
+.Calendar .Calendar-selector .Calendar-selector-text {
+  margin: 0 0.5rem;
+}
+
+.Calendar .Calendar-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.Calendar .Calendar-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+<<<<<<< HEAD
 }
 
 .HomePageBox .ShareCardBox .ShareCardContainer .ShareCardWrapper .moreShareButtonWrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
 }
 
 .HomePageBox .ShareCardBox .ShareCardContainer .ShareCardWrapper .moreShareButtonWrapper .moreShareButton {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  font-size: 0.8rem;
+}
+
+.Calendar .Calendar-container .Calendar-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   height: calc(2.5rem + 1.25vw);
   width: calc(6rem + 5vw);
   margin-top: 3vw;
@@ -3857,12 +5150,123 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+}
+
+.Calendar .Calendar-container .Calendar-header .year-selector,
+.Calendar .Calendar-container .Calendar-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-head .Calendar-table-tr .Calendar-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .Calendar-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .available {
+  background: #b3cedb;
+}
+
+.Calendar .Calendar-container .Calendar-table .Calendar-table-body .Calendar-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.CalendarAvailable {
+  position: relative;
+  width: 100%;
+  max-width: 140px;
+  max-height: 45px;
+}
+
+.CalendarAvailable .CalendarAvailable-selector {
+  width: 100%;
+  max-height: 45px;
+  padding: 0.45rem;
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  font-weight: 900;
+  color: #d8a466;
+}
+
+.CalendarAvailable .CalendarAvailable-selector .CalendarAvailable-selector-text {
+  margin: 0 0.5rem;
+}
+
+.CalendarAvailable .CalendarAvailable-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.CalendarAvailable .CalendarAvailable-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 200%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+<<<<<<< HEAD
   height: 100%;
   width: 100%;
 }
@@ -3871,12 +5275,29 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   padding: 0 3vw;
   z-index: 6;
 }
@@ -3926,12 +5347,94 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .year-selector,
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-head .CalendarAvailable-table-tr .CalendarAvailable-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .CalendarAvailable-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .available {
+  background: #b3cedb;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled {
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.CalendarAvailable .CalendarAvailable-container .CalendarAvailable-table .CalendarAvailable-table-body .CalendarAvailable-table-tr .disabled:hover {
+  background: none;
+}
+
+.CalendarMulti {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 34px;
+}
+
+.CalendarMulti .CalendarMulti-selector {
+  width: 100%;
+  max-height: 34px;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   padding: 0 3vw;
   z-index: 6;
 }
@@ -3974,12 +5477,44 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  position: relative;
+  cursor: pointer;
+}
+
+.CalendarMulti .CalendarMulti-selector .CalendarMulti-selector-text {
+  margin: 0 0.5rem;
+}
+
+.CalendarMulti .CalendarMulti-selector svg {
+  width: 20px;
+  height: 20px;
+}
+
+.CalendarMulti .CalendarMulti-container {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 2px solid #d8a466;
+  width: 100%;
+  max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -4002,12 +5537,29 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+=======
+  font-size: 0.8rem;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0);
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0);
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+<<<<<<< HEAD
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -4078,6 +5630,57 @@ a:hover {
 
 .st-chefCardTextWrapper .st-chefCardDown ul li {
   font-size: calc(6px + 0.5vw);
+=======
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .year-selector,
+.CalendarMulti .CalendarMulti-container .CalendarMulti-header .month-selector {
+  border: none;
+  margin: 0 0.35rem 0.15rem;
+  background: white;
+  border-bottom: 1px solid #0078b3;
+  border-radius: 0;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr {
+  border-bottom: 1px solid #666666;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-head .CalendarMulti-table-tr .CalendarMulti-table-th {
+  padding: 0.35rem;
+  text-align: center;
+  font-weight: 900;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td {
+  cursor: pointer;
+  padding: 0.35rem;
+  margin: 0.15rem;
+  width: 8%;
+  height: 8%;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .CalendarMulti-table-td:hover {
+  background: #e0e0e0;
+  color: black;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .today {
+  background: #e0e0e0;
+  border: 2px solid #eb6b6a;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .available {
+  background: #b3cedb;
+}
+
+.CalendarMulti .CalendarMulti-container .CalendarMulti-table .CalendarMulti-table-body .CalendarMulti-table-tr .active {
+  background: #0078b3;
+  color: white;
+  border: 2px solid #666666;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 }
 
 .Login {
@@ -5729,6 +7332,12 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+<<<<<<< HEAD
+=======
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   overflow: scroll;
@@ -5884,6 +7493,10 @@ a:hover {
 .CollectionArticle .CollectionArticle-container {
   height: 95%;
   width: 100%;
+<<<<<<< HEAD
+=======
+  overflow: hidden;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   padding: 1rem 2rem;
   margin-left: 1rem;
   border-radius: 10px;
@@ -5927,9 +7540,179 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+<<<<<<< HEAD
   overflow: scroll;
 }
 
+=======
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: scroll;
+}
+
+.ArticleCard {
+  width: 95%;
+  max-width: 900px;
+  height: 150px;
+  border-radius: 8px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ArticleCard:hover {
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.ArticleCard:hover .ArticleCard-right .ArticleCard-right-title {
+  color: #ffb257;
+}
+
+.ArticleCard .ArticleCard-left {
+  width: 25%;
+  min-width: 150px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.ArticleCard .ArticleCard-left .ArticleCard-left-imgCon {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ArticleCard .ArticleCard-left .ArticleCard-left-imgCon img {
+  height: 120%;
+}
+
+.ArticleCard .ArticleCard-right {
+  width: 75%;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-title {
+  margin-bottom: 0.25rem;
+  max-width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-content {
+  height: 55%;
+  width: 95%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 0.5rem;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-con svg {
+  top: 1px;
+  margin-right: 0.2rem;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-like svg {
+  fill: #eb6b6a;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-comment svg {
+  fill: #0078b3;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect {
+  color: #d8a466;
+  cursor: pointer;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect svg {
+  fill: #d8a466;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect:hover {
+  color: #ffb257;
+}
+
+.ArticleCard .ArticleCard-right .ArticleCard-right-bottom .ArticleCard-right-bottom-collect:hover svg {
+  fill: #ffb257;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .CourseInsert {
   height: calc(100vh - 63px);
   position: relative;
@@ -7795,7 +9578,11 @@ a:hover {
 .CourseRecommendTitle {
   width: 300px;
   height: 55px;
+<<<<<<< HEAD
   font-family: "Noto Sans TC", sans-serif;
+=======
+  font-family: 'Noto Sans TC', sans-serif;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   font-weight: 700;
   font-size: 48px;
   line-height: 55px;
@@ -9313,6 +11100,10 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+<<<<<<< HEAD
+=======
+  margin-top: 65px;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 }
 
 .main-block hr {
@@ -9336,7 +11127,11 @@ a:hover {
   background: #fdfdfd;
   width: 30%;
   min-width: 251px;
+<<<<<<< HEAD
   height: 360px;
+=======
+  height: 410px;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   margin: 30px 0 0 0;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -9370,6 +11165,10 @@ a:hover {
   display: -ms-inline-flexbox;
   display: inline-flex;
   color: var(--main-color);
+<<<<<<< HEAD
+=======
+  font-weight: 600;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 }
 
 .CourseList-list {
@@ -9475,12 +11274,31 @@ a:hover {
   width: 15%;
 }
 
+<<<<<<< HEAD
+=======
+.CourseList-list-item svg {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .CourseList-list-tool {
   background: #eeeeee;
 }
 
 .CourseList-list-tool td {
+<<<<<<< HEAD
   font-size: 20px;
+=======
+  font-size: 18px;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   text-align: right;
   padding-right: 20px;
 }
@@ -9496,6 +11314,12 @@ a:hover {
 }
 
 .Insert-area .Cardarea {
+<<<<<<< HEAD
+=======
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 10px;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   -webkit-transition: 0.5s cubic-bezier(0, 1, 0, 1);
   transition: 0.5s cubic-bezier(0, 1, 0, 1);
   overflow: hidden;
@@ -9526,6 +11350,7 @@ a:hover {
   margin-top: 0.25rem;
 }
 
+<<<<<<< HEAD
 .Insert-area .Cardarea .DefaultStudentCard {
   width: 90%;
   margin: 20px auto;
@@ -9538,6 +11363,9 @@ a:hover {
 }
 
 .Insert-area-title {
+=======
+.Insert-area .Cardarea .Insert-area-title {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   height: 50px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -9548,11 +11376,18 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+<<<<<<< HEAD
   margin: 0 30px;
   margin-top: 20px;
 }
 
 .Insert-area-title button {
+=======
+  margin-top: 20px;
+}
+
+.Insert-area .Cardarea .Insert-area-title button {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   width: 110px;
   height: 32px;
   font-weight: 800;
@@ -9562,6 +11397,20 @@ a:hover {
   color: var(--main-color);
 }
 
+<<<<<<< HEAD
+=======
+.Insert-area .Cardarea .DefaultStudentCard {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.Showarea .Cardarea {
+  max-height: 4500px;
+  -webkit-transition: 0.3s cubic-bezier(1, 0, 1, 0);
+  transition: 0.3s cubic-bezier(1, 0, 1, 0);
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .CourseDetail-Consumer-details {
   width: 100%;
 }
@@ -9571,10 +11420,18 @@ a:hover {
   font-weight: 500;
 }
 
+<<<<<<< HEAD
+=======
+.CourseDetail-Consumer-details tr {
+  height: 50px;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .CourseDetail-Consumer-details tr td:nth-of-type(2) {
   text-align: right;
 }
 
+<<<<<<< HEAD
 .CourseDetail-Consumer-details tr:nth-child(4) h3 {
   font-weight: 600;
 }
@@ -9588,6 +11445,35 @@ a:hover {
 }
 
 .CourseDetail-Consumer-details tr select {
+=======
+.CourseDetail-Consumer-details tr:nth-child(3) h3 {
+  font-weight: 600;
+}
+
+.CourseDetail-Consumer-details tr:nth-child(3) td {
+  width: 50%;
+}
+
+.CourseDetail-Consumer-details tr:nth-child(3) td:last-child h3 {
+  color: var(--main-color);
+}
+
+.CourseDetail-coupon {
+  margin: 20px 0;
+  min-width: 100%;
+}
+
+.CourseDetail-coupon td:first-child {
+  width: 25%;
+}
+
+.CourseDetail-coupon td:last-child {
+  text-align: right;
+  width: 75%;
+}
+
+.CourseDetail-coupon select {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   width: 100%;
   border: 1px solid #666666;
   -webkit-box-sizing: border-box;
@@ -9606,7 +11492,11 @@ a:hover {
   width: 80%;
   -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
           box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+<<<<<<< HEAD
   border-radius: 20px / 50%;
+=======
+  border-radius: 30px;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 }
 
 .ToShoppingList h4 {
@@ -9621,6 +11511,28 @@ a:hover {
   margin: 20px auto;
 }
 
+<<<<<<< HEAD
+=======
+.ShoppingBill-wrapper h1 {
+  font-weight: 600;
+}
+
+.ShoppingBill-wrapper h4 {
+  font-weight: 600;
+  color: #777;
+}
+
+.ShoppingBill-wrapper h5 {
+  font-weight: 600;
+  font-size: 18px;
+  color: #aaaaaa;
+}
+
+.ShoppingBill-wrapper .ShoppingBill-title {
+  margin-top: 64px;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .ShoppingBill-wrapper .ShoppingBill-title h1 {
   margin-right: 5px;
   display: -webkit-inline-box;
@@ -9710,6 +11622,16 @@ a:hover {
   margin: 20px 0;
 }
 
+<<<<<<< HEAD
+=======
+.PamentWay-box .turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 .PamentWay-box .PamentWay-head {
   background: #eeeeee;
   border-radius: 20px;
@@ -9727,6 +11649,11 @@ a:hover {
 .PamentWay-box .PamentWay-head svg {
   width: 30px;
   height: 30px;
+<<<<<<< HEAD
+=======
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
 }
 
 .PamentWay-box .PamentWay-head h5 {
@@ -9755,7 +11682,18 @@ a:hover {
   width: 100%;
 }
 
+<<<<<<< HEAD
 .Receipt-head {
+=======
+.Receipt-box .turnicon svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.Receipt-box .Receipt-head {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   background: #eeeeee;
   border-radius: 20px;
   -webkit-box-align: center;
@@ -9769,6 +11707,7 @@ a:hover {
   display: flex;
 }
 
+<<<<<<< HEAD
 .Receipt-head svg {
   width: 30px;
   height: 30px;
@@ -9779,6 +11718,20 @@ a:hover {
 }
 
 .Receipt-body {
+=======
+.Receipt-box .Receipt-head svg {
+  width: 30px;
+  height: 30px;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.Receipt-box .Receipt-head h5 {
+  font-weight: 600;
+}
+
+.Receipt-box .Receipt-body {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   width: 90%;
   margin: 0 auto;
   height: 100px;
@@ -9794,12 +11747,20 @@ a:hover {
   transition: 0.3s linear;
 }
 
+<<<<<<< HEAD
 .Receipt-body li {
+=======
+.Receipt-box .Receipt-body li {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   margin: 10px auto;
   margin-left: 5px;
 }
 
+<<<<<<< HEAD
 .Receipt-body-open {
+=======
+.Receipt-box .Receipt-body-open {
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   max-height: 100px;
 }
 
@@ -10298,12 +12259,15 @@ input[type="submit"].Form-btn .Form-btn:active {
   .Navbar .Navbar-container {
     width: 90%;
   }
+<<<<<<< HEAD
   .Navbar-dropdowns .Navbar-dropdowns-container {
     width: 90%;
   }
   .Navbar-CourseSearch .Navbar-CourseSearch-container {
     width: 90%;
   }
+=======
+>>>>>>> b09c651683f6cb57bff6a4c4c636b3dcba7c4830
   .MemberCenter .MemberCenter-container {
     width: 90%;
   }

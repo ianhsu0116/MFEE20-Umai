@@ -3,6 +3,9 @@
   display: flex;
   justify-content: center;
 
+  // ian 為了不讓神奇小圈圈把頁寬拉大造成scrollY
+  overflow-x: hidden;
+
   // 11/24新增
   margin-top: 63px;
   .MemberCenter-container {

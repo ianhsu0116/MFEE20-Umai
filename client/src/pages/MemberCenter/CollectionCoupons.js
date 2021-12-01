@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Coupons from "../../components/Coupons";
 import OptionBar from "../../components/OptionBar";
 import MemberService from "../../services/member.service";
+import getValidMessage from "../../validMessage/validMessage";
+import Swal from "sweetalert2";
 
 // 要丟入 OptionBar 的三個按鍵值
 const allOrderStatus = ["未使用優惠券", "已使用優惠券", "已過期優惠券"];
@@ -35,8 +37,19 @@ const CollectionCoupons = (props) => {
       let result = await MemberService.coupons(currentUser.id, type);
       //console.log(result.data);
       setCurrentData(result.data.coupons);
+      // console.log(result.data.coupons);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
+
+      let { code } = error.response.data;
+
+      // 提示錯誤
+      Swal.fire({
+        icon: "error",
+        title: getValidMessage("forum", code),
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }, [couponsStatus]);
 
@@ -63,7 +76,7 @@ const CollectionCoupons = (props) => {
           {currentData && currentData.length === 0 && (
             <div className="MemberCenter-defaultText">
               目前您還沒有優惠券喔！趕緊去
-              <Link to="/courses">課程探索</Link>
+              <Link to="/courses/category?all">課程探索</Link>
               逛逛吧，即日起選購滿三堂課程就送一張9折優惠券！
             </div>
           )}

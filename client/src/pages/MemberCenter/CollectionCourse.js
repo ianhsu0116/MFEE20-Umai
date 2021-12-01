@@ -106,7 +106,7 @@ const CollectionCourse = (props) => {
           {currentCourses.length === 0 && (
             <div className="MemberCenter-defaultText">
               目前您還沒有收藏任何課程喔！趕緊去
-              <Link to="/courses">課程探索</Link>
+              <Link to="/courses/category?all">課程探索</Link>
               逛逛吧！
             </div>
           )}
