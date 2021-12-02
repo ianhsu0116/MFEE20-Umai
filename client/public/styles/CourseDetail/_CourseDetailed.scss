@@ -21,13 +21,6 @@
   align-items: center;
 }
 
-/* 大容器div */
-.Coursedetail {
-  width: 100%;
-}
-.CoursedetailMargin {
-	margin: 63px auto 0 auto;
-}
 /* 三圖片大框 */
 .Coursedetail-header {
   position: relative;
@@ -245,7 +238,7 @@
 .Coursedetail-infoBox {
   width: 100%;
   height: 100%;
-  min-height: 350px; // ian 新加的
+  min-height: 650px; // ian 新加的  11/28為了讓定位圓圈擴大
   //max-height: 600px; // ian 新加的
   overflow: hidden; // ian 新加的
 
@@ -286,7 +279,7 @@
   /* word-break: keep-all; */
   text-indent: 1em;
   width: 90%;
-  text-align: left;
+  text-align: justify;
   margin: auto;
   line-height: 3vw;
   font-size: 1.4vw;
@@ -304,9 +297,10 @@
 .Coursedetail-chefCardMargin {
   position: relative;
   padding: 50px 0px 60px 0px;
-  width: 55%;
   margin: auto;
-  min-width: 750px;
+  width: 60vw;
+  min-width: 450px;
+  max-width: 900px;
 }
 .Coursedetail-infoBox2 {
   width: 100%;
@@ -334,12 +328,12 @@
   color: #ffffff;
 }
 .Coursedetail-sixPictureTitleMask {
-	display: flex;
-	width: 100%;
-	height: 15vw;
-	position: absolute;
-	background-color: black;
-	opacity: 0;
+  display: flex;
+  width: 100%;
+  height: 15vw;
+  position: absolute;
+  background-color: black;
+  opacity: 0;
 }
 .Coursedetail-sixPictureTitleTopBox {
   display: flex;
@@ -359,13 +353,13 @@
   // border-radius: 0 0 5px 5px;
 }
 .Coursedetail-activeBottom {
-	width: 10vw;
-	height: 10vw;
-	position: absolute;
-	top: 0;
-	border-bottom: 5px solid $themeColorBlue;
-	overflow: hidden;
-	border-radius: 5px;
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  top: 0;
+  border-bottom: 5px solid $themeColorBlue;
+  overflow: hidden;
+  border-radius: 5px;
 }
 .Coursedetail-sixPictureTextBox_1 {
   width: 60%;
@@ -446,7 +440,7 @@
   }
 }
 .Coursedetail-chepBoxInfomation {
-  text-align: left;
+  text-align: justify;
   // color: #ffffff;
   font-size: 1.2vw;
   font-weight: 700;
@@ -484,7 +478,6 @@
   }
   img {
     width: 100%;
-    height: 100%;
     position: absolute;
     left: 0;
     z-index: 1;
@@ -525,7 +518,7 @@
     height: 100px;
     font-size: 1.2vw;
     list-style: disc;
-    font-weight: 500;
+    font-weight: 600;
     font-family: "Noto Sans TC", Medium;
   }
 }
@@ -550,55 +543,63 @@
 .Coursedetail-join {
   position: relative;
   width: 100%;
-  height: 800px;
+  height: 40vw;
   background-color: #ffffff;
   margin: 80px 0;
   font-size: 100%;
-  border: 2px solid #666666;
   border-radius: 5px;
   overflow: hidden;
+  .Coursedetail-joinNow {
+    cursor: pointer;
+    margin-top: 5vw;
+  }
+  .Coursedetail-joinNow:hover {
+    font-size: 2.5vw;
+  }
   span {
     position: relative;
     float: right;
-    width: 65%;
+    width: 60%;
     height: 100%;
-    border-bottom: 850px solid #d8a466;
-    border-left: 200px solid transparent;
-    // min-width: 550px;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 5% 100%);
+    background-color: #d8a466;
     z-index: 2;
   }
+  ul li {
+    display: inline-block;
+    padding: 0;
+  }
+  .Coursedetail-joinLineWidth {
+    width: 80%;
+    right: 0;
+    position: absolute;
+  }
   .Coursedetail-joinLine {
-    width: 90%;
+    width: 80%;
     border: 1px solid #fff;
-    margin: 10px auto 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 0.5vh;
     position: relative;
-    right: 10px;
+    margin: auto;
   }
   img {
-    width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     z-index: 1;
   }
+  .Coursedetail-joinTitle {
+    padding-top: 2vw;
+    font-size: 2.5vw;
+  }
   p {
     width: 100%;
     text-align: center;
-    font-size: 48px;
+    font-size: 2vw;
     color: #ffffff;
     font-weight: bold;
     font-family: "Noto Sans TC", Bold;
-    padding-top: 40px;
+    padding: 1vw 0 1vw 20%;
   }
-}
-
-.Coursedetail-clip {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-  background-color: aquamarine;
-  // margin-bottom: 100px;
-  height: 40vw;
-  width: 30vw;
-}
-.Coursedetail-testSc {
-  overflow: hidden;
 }

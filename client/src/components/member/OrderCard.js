@@ -225,7 +225,7 @@ const OrderCard = (props) => {
                 </ul>
                 <div className="OrderCard-detail-container2-right-buttonCon">
                   <Button
-                    value={"送出評論"}
+                    value={commentAndStar.comment ? "修改評論" : "送出評論"}
                     className={"button-themeColor"}
                     onClick={() => {
                       handleCommentSubmit(commentAndStar, index);

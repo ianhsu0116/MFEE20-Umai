@@ -1,0 +1,45 @@
+.PamentWay-title {
+  margin: 20px 0;
+}
+.PamentWay-box {
+  .turnicon{
+    & svg {
+      transform: rotate(90deg);
+      transition: 0.4s ease;
+    }
+  }
+  .PamentWay-head {
+    background: #eeeeee;
+    border-radius: 20px;
+    align-items: center;
+    cursor: pointer;
+    color: var(--main-color);
+    padding: 0.75rem;
+    display: flex;
+    & svg {
+      width: 30px;
+      height: 30px;
+      transition: 0.4s ease;
+    }
+    & h5 {
+      font-weight: 600;
+    }
+  }
+  .PamentWay-body {
+    width: 90%;
+    margin: 0 auto;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.3s linear;
+    li {
+      margin-top: 10px;
+      margin-left: 5px;
+    }
+  }
+  .PamentWay-body-open {
+    max-height: 303px;
+  }
+  .CreditCards {
+    width: 100%;
+  }
+}

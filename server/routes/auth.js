@@ -97,6 +97,7 @@ router.post("/registration", async (req, res) => {
   // 紀錄當前時間
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
 
+  console.log(req.body);
   // 確認是否已被註冊
   try {
     let member = await connection.queryAsync(
@@ -129,6 +130,7 @@ router.post("/registration", async (req, res) => {
 
     res.status(200).json({ success: true });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, code: "B999", message: error });
   }
 });
@@ -238,7 +240,7 @@ router.post("/findPassword", async (req, res) => {
 
     // 修改使用者密碼
     let newPassword = uuidv4();
-    newPassword = newPassword.substr(0, 18);
+    newPassword = newPassword.substr(0, 12);
     let hashedPassword = await bcrypt.hash(newPassword, 10);
 
     // 將新密碼裝好並寄出email

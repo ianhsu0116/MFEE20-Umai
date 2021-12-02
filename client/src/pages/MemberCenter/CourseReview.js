@@ -4,7 +4,6 @@ import { withRouter, Link } from "react-router-dom";
 
 import sliderBasic from "../../components/images/sliderBasic.png";
 import imageBasic from "../../components/images/imageBasic.png";
-import ChefCard from "../../components/ChefCard";
 import ChefCard2 from "../../components/member/ChefCard2";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
@@ -17,6 +16,10 @@ import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
+
+// 11/28 神奇小圈圈
+import CircleBlue from "../../components/images/circle_blue.svg";
+import CircleOrange from "../../components/images/circle_orange.svg";
 
 function CourseInfomation(props) {
   const { courseDetail, sliderImage, sixDishesImage, currentUser } = props;
@@ -221,6 +224,14 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-shortLine"></div>
             {/* 下面是主廚外標題 */}
+
+            {/* 11/28 神奇小圈圈 */}
+            <img
+              className="orange2 CourseDecorate_RWD2"
+              src={CircleOrange}
+              alt=""
+            ></img>
+
             <div className="Coursedetail-outsideTitle">
               {courseDetail.title1_1}
             </div>
@@ -244,10 +255,22 @@ function CourseInfomation(props) {
             <div className="Coursedetail-outsideTitle" id="chef">
               米其林星級主廚精心準備，絕無冷場
             </div>
+            {/* 11/28小圈圈 */}
+            <img
+              className="blue1 CourseDecorate_RWD3"
+              src={CircleBlue}
+              alt=""
+            ></img>
             <div className="Coursedetail-titleLine"></div>
             <div className="Coursedetail-outsideTitle">
               挑戰舌尖上的味蕾，每一秒的幸福口感
             </div>
+            {/* 11/28 */}
+            <img
+              className="blue2 CourseDecorate_RWD4"
+              src={CircleBlue}
+              alt=""
+            ></img>
 
             <div className="Coursedetail-chefCardMargin">
               {/* <ChefCard /> */}

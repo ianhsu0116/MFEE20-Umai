@@ -42,7 +42,7 @@
         }
 
         & span {
-          margin-left: 0.01rem;
+          margin-left: 0.15rem;
           font-size: 1.1rem;
         }
       }
@@ -59,7 +59,9 @@
       padding: 1rem;
       border-radius: 10px;
       .MemberInfo-container-row {
-        width: 70%;
+        // width: 70%;
+        width: 85%;
+        max-width: 900px;
         @include flex(row);
         align-items: flex-end;
         justify-content: flex-start;
@@ -83,6 +85,12 @@
             // font-size: 1.1rem;
             width: 100%;
           }
+
+          // 放使用者帳號的input
+          .MemberInfo-accountContainer {
+            background: rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+          }
         }
       }
     }
@@ -97,7 +105,7 @@
 
     // 密碼修改容器
     .MemberInfo-editPwd {
-      position: absolute;
+      position: fixed;
       background: transparent;
       border-radius: 10px;
       top: 0;

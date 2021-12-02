@@ -42,6 +42,7 @@ body {
   -ms-overflow-style: none;
   //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 // 設定scrollbar樣式
@@ -66,6 +67,22 @@ body {
 //   background: $activeColor;
 //   opacity: 1;
 // }
+
+// placehoder預設顏色
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 0, 0, 0.3);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgba(0, 0, 0, 0.3);
+}
 
 // 覆蓋bootstrap樣式
 h1,
@@ -180,6 +197,22 @@ a {
   }
 }
 
+// 載入更多按鈕
+.LoadMoreButton {
+  padding: 0.35rem 0.75rem;
+  color: white;
+  border-radius: 50px;
+  background: $themeColor;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  &:hover {
+    //background: $activeColor;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  .LoadMoreButton-text {
+    margin-right: 0.25rem;
+  }
+}
+
 // 錯誤碼元件
 .ErrorMessage {
   font-size: 90%;
@@ -198,7 +231,8 @@ a {
 }
 
 // 共用元件
-@import "./Navber";
+@import "./Navbar";
+@import "./Navbar2";
 @import "./OptionBar";
 @import "./CourseCard1";
 @import "./Coupons";
@@ -209,11 +243,21 @@ a {
 @import "./ChefCard";
 @import "./Breadcrumb";
 @import "./CreditCards";
+@import "./CourseMiniCardSlider";
+@import "./Footer";
 
 // 三種不一樣的萬年曆
 @import "./Calendar"; // 一般日曆
 @import "./CalendarAvailable"; // 可顯同時顯示多日期
 @import "./CalendarMulti"; // 可多選
+
+// Navbar相關
+@import "./Navbar/CartCourse";
+
+// Homepage相關
+@import "./homepage/HomePage";
+@import "./homepage/ChefCardSlider";
+@import "./ChefCard";
 
 // member相關
 $header-border: 3px solid $activeColor; // title的左border
@@ -251,10 +295,24 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseStar";
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
+@import "./CourseDetail//CourseDecorate";
 
 // 主廚
 @import "./chef/chef";
 
+// shoppingcart-shoppingcart
+@import "./shoppingCart/shoppingCart/ShoppingCart";
+@import "./shoppingCart/shoppingCart/CourseList";
+@import "./shoppingCart/shoppingCart/CourstDetail";
+
+// shoppingcart-shoppinglist
+@import "./shoppingCart/shoppingList/ShoppingList";
+@import "./shoppingCart/shoppingList/ShoppingBill";
+
+//PamentWayMethod
+@import "./shoppingCart/pamentMethod/PamentMethod";
+@import "./shoppingCart/pamentMethod/PamentWay";
+@import "./shoppingCart/pamentMethod/Receipt";
 //關於我們
 @import "./about/about";
 
@@ -268,12 +326,27 @@ $header-border: 3px solid $activeColor; // title的左border
       width: 90%;
     }
   }
+  .Navbar-dropdowns {
+    .Navbar-dropdowns-container {
+      width: 90%;
+    }
+  }
+  .Navbar-CourseSearch {
+    .Navbar-CourseSearch-container {
+      width: 90%;
+    }
+  }
 
   .MemberCenter {
     .MemberCenter-container {
       width: 90%;
     }
   }
+
+  .MemberInfo-container-row {
+    width: 100% !important;
+  }
+
   .CourseDetail-headerPicture {
     width: 90%;
 
@@ -296,5 +369,23 @@ $header-border: 3px solid $activeColor; // title的左border
   }
   .chef-set {
     width: 90%;
+  }
+  .CourseDecorate_RWD1 {
+    width: 22%;
+  }
+  .CourseDecorate_RWD2 {
+    width: 35%;
+    top: 22vw;
+  }
+  .CourseDecorate_RWD5 {
+    width: 30%;
+  }
+  .CourseDecorate_RWD6 {
+    margin-top: 10vw;
+  }
+  .CourseDecorate_RWDEx {
+    width: 30%;
+    top: 14vw;
+    right: -5vw;
   }
 }

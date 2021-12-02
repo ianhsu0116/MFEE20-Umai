@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 import CourseCard1 from "../../components/CourseCard1";
-import CourseReview from "./CourseReview";
 
 const CollectionCourse = (props) => {
   const { currentUser } = props;
@@ -17,7 +16,7 @@ const CollectionCourse = (props) => {
 
   // 重整當前收藏課程
   let refreshCollection = async () => {
-    let result = await CourseService.course_collection(currentUser.id);
+    let result = await CourseService.course_cart(currentUser.id);
 
     // 如果這次沒回傳任何course
     if (!result.data.course) {
@@ -107,7 +106,7 @@ const CollectionCourse = (props) => {
           {currentCourses.length === 0 && (
             <div className="MemberCenter-defaultText">
               目前您還沒有收藏任何課程喔！趕緊去
-              <Link to="/courses">課程探索</Link>
+              <Link to="/courses/category?all">課程探索</Link>
               逛逛吧！
             </div>
           )}

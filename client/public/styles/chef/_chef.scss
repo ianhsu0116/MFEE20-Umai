@@ -1,75 +1,75 @@
 .chef-set {
-	width: 70vw;
-	max-width: 1440px;
-	margin: 63px auto 0 auto;
+  width: 70vw;
+  max-width: 1440px;
+  margin: 63px auto 0 auto;
 }
 
 .chef-title {
-	font-style: normal;
-	font-weight: 700;
-	font-size: 2.8vw;
-	line-height: 55px;
-	margin-left: 1.5vw;
-	color: #d8a466;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vw;
+  line-height: 55px;
+  margin-left: 1.5vw;
+  color: #d8a466;
 }
 .chef-infomationBox {
-	display: flex;
+  display: flex;
 }
 .chef-ul {
-	width: 15vw;
-	padding: 1em 0;
-	height: 100%;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
+  width: 15vw;
+  padding: 1em 0;
+  height: 100%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 .chef-li {
-	background: #ffffff;
-	text-align: center;
-	margin: auto;
-	height: 2.5vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.5em;
-	cursor: pointer;
-	border-bottom: #666 1px solid;
-	width: 80%;
-	svg {
-		color: $activeColor;
-	}
+  background: #ffffff;
+  text-align: center;
+  margin: auto;
+  height: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  border-bottom: #666 1px solid;
+  width: 80%;
+  svg {
+    color: $activeColor;
+  }
 }
 .chef-li:hover {
-	color: $activeColor;
-	margin: auto;
-	font-size: 1.6em;
-	transition: font-size 0.05s;
+  color: $activeColor;
+  margin: auto;
+  font-size: 1.6em;
+  transition: font-size 0.05s;
 }
 .chef-liActive {
-	color: $activeColor;
-	margin: auto;
-	font-size: 1.6em;
+  color: $activeColor;
+  margin: auto;
+  font-size: 1.6em;
 }
 .chef-arrow {
-	padding-top: 0.6vw;
-	opacity: 0;
-	position: absolute;
-	right: 0;
+  padding-top: 0.6vw;
+  opacity: 0;
+  position: absolute;
+  right: 0;
 }
 .chef-arrowActive {
-	padding-top: 0.6vw;
-	opacity: 1;
-	position: absolute;
-	right: 0;
+  padding-top: 0.6vw;
+  opacity: 1;
+  position: absolute;
+  right: 0;
 }
 .chef-cardAndCourseCard {
-	display: flex;
-	height: 100%;
-	margin: 0 auto;
-	flex-direction: column;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  flex-direction: column;
 }
 .chef-margin {
-	margin: auto;
+  margin: auto;
 }
 .chef-courseCardMargin {
-	margin-left: 90px;
+  margin-left: 90px;
 }

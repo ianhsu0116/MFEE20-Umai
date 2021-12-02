@@ -28,6 +28,7 @@ const CourseCard1 = (props) => {
     handleAddIntoCollection,
     handleAddIntoCart,
     handlePurchase,
+    className,
   } = props;
 
   // 當前課程人數限制
@@ -66,7 +67,7 @@ const CourseCard1 = (props) => {
   }, [collectionIds]);
 
   return (
-    <div className="CourseCard1">
+    <div className={`CourseCard1 ${className ? " " + className : ""}`}>
       <div className="CourseCard1-imageCon">
         <img
           src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}

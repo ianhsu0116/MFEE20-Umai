@@ -7,6 +7,19 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+DROP TABLE IF EXISTS `article_collection`;
+CREATE TABLE `article_collection` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(10) unsigned NOT NULL,
+  `article_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `article_collection_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  CONSTRAINT `article_collection_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 DROP TABLE IF EXISTS `article_like`;
 CREATE TABLE `article_like` (
   `member_id` int(10) unsigned NOT NULL,

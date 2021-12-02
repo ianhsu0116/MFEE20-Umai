@@ -1,78 +1,117 @@
 $chefTextColor: #ffffff;
-$chefFontWeightText: "Noto Sans TC", Regular;
-$chefTextSize: 24px;
-$chefTextSizeDown: 18px;
-$chefTextSize-li: 14px;
+$chefFontWeightText: "Noto Sans TC", sans-serif;
+$chefTextSize: calc(10px + 0.5vw);
+$chefTextSizePadding: calc((10px + 0.5vw) * 2);
+$chefTextSize-ul: calc(6px + 0.75vw);
+$chefTextSize-li: calc(6px + 0.5vw);
 
 // 主廚卡片大小
 .st-chefCard {
-  width: 750px;
-  height: 500px;
+  width: 60vw;
+  height: 35vw;
+  min-width: 450px;
+  min-height: 300px;
+  max-width: 900px;
+  max-height: 600px;
   background-color: #d8a566;
-  border-radius: 20px;
-  margin-top: 10px;
+  border-radius: 1.5vw;
+  margin: 1vw 0;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
-// 主廚照片(左)
-.st-chefCardPicture {
+// 主廚照片容器(左)
+.st-chefCardPictureWrapper {
   height: 100%;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 1.5vw 0 0 1.5vw;
   float: left;
   width: 50%;
-  // 確認圖片範圍用
-  background-color: aqua;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  // 防暴版背景色
+  background: #707070;
+  img {
+    height: 100%;
+  }
 }
-// 主廚上資訊欄
-.st-chefCardTop {
-  height: 300px;
-  float: right;
-  border-radius: 0px 20px 0px 0px;
-  width: 50%;
-  font-family: $chefFontWeightText;
-  font-size: $chefTextSize;
-  color: $chefTextColor;
-  font-weight: bold;
-  padding: 30px;
-  text-align: left;
-}
-// 分隔線
-.st-chefCardLine {
-  height: 3px;
-  width: 100%;
-  border-radius: 100px;
-  background-color: $chefTextColor;
-  margin: 30px 0;
-}
-// 主廚上資訊欄名字
-.st-chefCardTopChefName {
-  font-family: $chefFontWeightText;
-  font-size: 20px;
-  color: $chefTextColor;
-}
-// 主廚下資訊欄
-.st-chefCardDown {
-  height: 200px;
-  float: right;
-  border-radius: 0px 0px 20px 0px;
-  width: 50%;
-  background-color: #5e5548;
-  font-family: $chefFontWeightText;
-  font-size: $chefTextSizeDown;
-  color: $chefTextColor;
-  font-weight: bold;
-  padding: 20px 0px 0px 35px;
-  text-align: left;
-  letter-spacing: 2px;
-}
-// 下資訊欄Padding設定
-.st-chefCardDown ul {
-  padding: 20px 0px 15px 20px;
-  list-style: disc;
-}
-// 下資訊欄li設定
-.st-chefCardDown ul li {
-  font-family: $chefFontWeightText;
-  font-size: $chefTextSize-li;
-  font-weight: bold;
+
+// 主廚文字容器(右)
+.st-chefCardTextWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+
+  // 主廚上資訊欄
+  .st-chefCardTop {
+    height: 20vw;
+    max-height: 20vw;
+    float: right;
+    border-radius: 0 1.5vw 0 0;
+    width: 100%;
+    font-family: $chefFontWeightText;
+    font-size: $chefTextSize;
+    color: $chefTextColor;
+    padding: 0 $chefTextSizePadding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
+    .st-chefCardTopQuotation {
+      font-weight: 500;
+    }
+    // 分隔線
+    .st-chefCardLine {
+      height: 3px;
+      width: 100%;
+      border-radius: 100px;
+      background-color: $chefTextColor;
+      margin-top: calc(0.25rem + 0.75vw);
+    }
+    // 主廚上資訊欄名字
+    .st-chefCardTopChefName {
+      width: 100%;
+      margin-top: calc(0.25rem + 0.75vw);
+    }
+  }
+  // 主廚下資訊欄
+  .st-chefCardDown {
+    height: 15vw;
+    max-height: 15vw;
+    float: right;
+    border-radius: 0 0 1.5vw 0;
+    background-color: #5e5548;
+    width: 100%;
+    font-family: $chefFontWeightText;
+    color: $chefTextColor;
+    padding: 0 $chefTextSizePadding;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: justify;
+    letter-spacing: 2px;
+    div {
+      width: 100%;
+      font-size: $chefTextSize-ul;
+    }
+    pre {
+      width: 100%;
+      font-size: $chefTextSize-ul;
+    }
+    ul {
+      width: 100%;
+      padding-top: 0.5vw;
+      list-style: disc;
+      list-style-position: inside;
+      li {
+        font-size: $chefTextSize-li;
+      }
+    }
+  }
 }
