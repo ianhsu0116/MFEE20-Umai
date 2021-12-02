@@ -22,7 +22,7 @@ function ShoppingList(props){
     let creditCards = data.creditCards;
     let paymenttype = data.paymenttype;
     let receipttype = data.receipttype;
-
+    console.log(coupon);
     //抓取課程剩餘人數
     async function getmembercount(){
         try {
@@ -101,12 +101,26 @@ function ShoppingList(props){
           }
     }
 
+    //將優惠券從使用者移除
+    async function modifycoupon(){
+        try {
+            let result = await axios.put(`http://localhost:8080/api/order/modifycoupon`,{ 
+                id: coupon.id,
+                memberid: currentUser.id,
+                couponsid: coupon.coupons_id,
+            } ,{ withCredentials: true,});
+          } catch (error) {
+            console.log(error);
+          }
+    }
     useEffect(()=>{
-    getmembercount()
-    insertorderdata()
-    insertstudentdata()
-    modifymembercount()
-    modifycart()
+        getmembercount()
+        insertorderdata()
+        insertstudentdata()
+        modifymembercount()
+        modifycart()
+        if(coupon.id!==undefined){
+        modifycoupon()}
     },[])
     
 

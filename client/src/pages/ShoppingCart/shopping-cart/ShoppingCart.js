@@ -22,6 +22,7 @@ function shopping_cart(props) {
         name:result.data.course[0].course_name,
         value:result.data.course[0].course_price,
         studentnumber:1,
+        memberlimit:result.data.course[0].member_limit,
         membercount:result.data.course_batch[0].member_count
       });
     } catch (error) {
@@ -80,7 +81,7 @@ function shopping_cart(props) {
   }
 
   function newcarddata(newcarddata){
-    if(newcarddata.length===coursetitle.membercount)
+    if(newcarddata.length===coursetitle.memberlimit-coursetitle.membercount)
     return;
     newcarddata.push({
       ...defaultcarddata,
