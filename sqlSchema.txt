@@ -156,7 +156,7 @@ CREATE TABLE `forum_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(10) unsigned NOT NULL,
   `category_id` int(11) NOT NULL,
-  `coruse_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `article_title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_link` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -166,10 +166,10 @@ CREATE TABLE `forum_article` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `category_id` (`category_id`),
-  KEY `coruse_id` (`coruse_id`),
+  KEY `course_id` (`course_id`),
   CONSTRAINT `forum_article_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
   CONSTRAINT `forum_article_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `course_category` (`id`),
-  CONSTRAINT `forum_article_ibfk_3` FOREIGN KEY (`coruse_id`) REFERENCES `course` (`id`)
+  CONSTRAINT `forum_article_ibfk_3` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
