@@ -11,12 +11,16 @@ const ChefIntro = (props) => {
 
   // 即時更新當前使用者資料的function
   async function refreshUser() {
-    // 更新成功後，更新當前使用者資料
-    let newUser = await AuthService.memberInfo(currentUser.id);
-    // 存入local
-    localStorage.setItem("user", JSON.stringify(newUser.data.member));
-    // 裝入state
-    setCurrentUser(AuthService.getCurrentUser());
+    try {
+      // 更新成功後，更新當前使用者資料
+      let newUser = await AuthService.memberInfo(currentUser.id);
+      // 存入local
+      localStorage.setItem("user", JSON.stringify(newUser.data.member));
+      // 裝入state
+      setCurrentUser(AuthService.getCurrentUser());
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // 將chef_intro從currentUser解析出來

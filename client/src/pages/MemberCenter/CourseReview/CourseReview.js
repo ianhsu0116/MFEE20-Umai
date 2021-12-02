@@ -2,15 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 
-import sliderBasic from "../../components/images/sliderBasic.png";
-import imageBasic from "../../components/images/imageBasic.png";
-import ChefCard2 from "../../components/member/ChefCard2";
+import sliderBasic from "../../../components/images/sliderBasic.png";
+import imageBasic from "../../../components/images/imageBasic.png";
+import ChefCard2 from "../../../components/member/ChefCard2";
 
 import CourseHeaderPicture from "./CourseHeaderPicture";
 import StarGroup from "./CourseStar";
 import CourseCost from "./CourseCost";
 
-import CalendarAvailable from "../../components/CalendarAvailable";
+import CalendarAvailable from "../../../components/CalendarAvailable";
 
 import { IoLocationSharp } from "react-icons/io5";
 import { GiCook } from "react-icons/gi";
@@ -18,8 +18,8 @@ import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
 
 // 11/28 神奇小圈圈
-import CircleBlue from "../../components/images/circle_blue.svg";
-import CircleOrange from "../../components/images/circle_orange.svg";
+import CircleBlue from "../../../components/images/circle_blue.svg";
+import CircleOrange from "../../../components/images/circle_orange.svg";
 
 function CourseInfomation(props) {
   const { courseDetail, sliderImage, sixDishesImage, currentUser } = props;
