@@ -1,127 +1,122 @@
 .ShareCard {
-	margin: 20px 0;
-	height: 470px;
-	width: 320px;
-	border-radius: 10px 10px 10px 10px;
-	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
-}
-.ShareCardPictureBox {
-	position: relative;
-	margin-top: 10px;
-	height: 145px;
-	width: 100%;
-	background-color: rgb(255, 255, 255);
-	overflow: hidden;
-	border-radius: 10px 10px 10px 10px;
-}
-.ShareCardPictureBox .ShareCardPicture {
-	position: relative;
-	border-radius: 50%;
-	width: 110px;
-	height: 110px;
-	overflow: hidden;
-	margin: 35px 105px;
-}
-.ShareCardPictureBox .ShareCardPicture img {
-	border-radius: 10px 10px 10px 10px;
-}
-.ShareCardPictureName {
-	color: #707070;
-	size: 20px;
-	font-weight: 700px;
-	text-align: center;
-	padding: 5px;
-}
-.ShareCardCourseName {
-	height: 50px;
-	width: 75%;
-	margin: auto;
-	text-align: left;
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 23px;
-	text-align: center;
-	color: #000000;
-	// background-color: aquamarine;
-}
-.st-boxPos {
-	position: relative;
-	height: 32px;
-	width: 100px;
-	margin:auto;
-}
-.st-boxStar {
-	color: #999999; /*背景星星顏色*/
-	overflow: hidden;
-	/*調整寬度可變更星等*/
-	font-size: 24px;
-}
-/* 填滿星星 width設在外面 */
-.st-fullStar {
-	/*調整寬度可變更星等 須跟上面一樣*/
-	font-size: 24px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	color: #ffa231; /*前景星星顏色*/
-}
+  font-family: "Noto Sans TC", sans-serif;
+  height: 30vw;
+  width: 20vw;
+  max-height: 480px;
+  max-width: 330px;
+  border-radius: 1vw;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  background: white;
+  overflow: hidden;
+  .ShareCardContentWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 10%;
+    margin: 7% 0 !important;
+    height: 86%;
+    width: 100%;
+    .ShareCardPictureBox {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 7.5vw;
+      width: 7.5vw;
+      max-height: 132px;
+      max-width: 132px;
+      border-radius: 50%;
+      background-color: rgb(255, 255, 255);
+      margin: 0;
+      overflow: hidden;
+      border-radius: 10px 10px 10px 10px;
+      .ShareCardPicture {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .ShareCardPictureName {
+      width: 100%;
+      color: #707070;
+      font-size: calc(1rem + 0.1vw);
+      font-weight: 700px;
+      text-align: center;
+      padding: 5px;
+    }
+    .ShareCardCourseName {
+      height: 8%;
+      max-height: 34px;
+      width: 100%;
+      color: #000000;
+      font-size: calc(1rem + 0.25vw);
+      line-height: calc(1.25rem + 0.25vw);
+      font-weight: 700;
+      text-align: center;
+    }
+    .ShareCardStar {
+      width: 100%;
+      height: 5%;
+      .st-boxPos {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
+      .st-boxStar {
+        color: #999999; /*背景星星顏色*/
+        overflow: hidden;
+        /*調整寬度可變更星等*/
+        font-size: calc(1rem + 0.1vw);
+      }
+      /* 填滿星星 width設在外面 */
+      .st-fullStar {
+        /*調整寬度可變更星等 須跟上面一樣*/
+        font-size: calc(1rem + 0.1vw);
+        position: absolute;
+        left: 0;
+        top: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        color: #ffa231; /*前景星星顏色*/
+      }
+    }
 
-.ShareCardText {
-	padding-top: 20px;
-	height: 200px;
-	width: 80%;
-	margin: auto;
-}
-.ShareCardTextTop {
-	height: 20px;
-	float: left;
-	font-size: 30px;
-	font-weight: bold;
-	font-weight: 900;
-	width: 100%;
-}
-// .ShareCardText p{
-//     display: flex;
-//     text-align: center;
-//     justify-content: center;
-
-//     margin-top: 5px;
-//     font-family: Helvetica;
-//     font-style: normal;
-//     font-weight: normal;
-//     font-size: 20px;
-//     line-height: 23px;
-//     letter-spacing: 0.1em;
-
-//     width: 100%;
-
-//     color: #000000;
-// }
-.ShareCardComment {
-	margin-left: 25px;
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	height: 100px;
-	width: 80%;
-	font-weight: bold;
-	font-weight: 900;
-}
-.ShareCardComment p {
-	margin-top: 20px;
-	display: flex;
-	text-align: left;
-	justify-content: center;
-	height: 100px;
-	color: #000000;
-}
-.ShareCardTextDown {
-	height: 20px;
-	font-size: 30px;
-	font-weight: bold;
-	font-weight: 900;
-	width: 100%;
-	margin-left: 230px;
+    .ShareCardText {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 40%;
+      width: 100%;
+      .ShareCardTextTop {
+        height: 15%;
+        text-align: left;
+        font-size: calc(2rem + 0.1vw);
+        font-weight: 700;
+        width: 100%;
+      }
+      .ShareCardComment {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-top: 1vw;
+        p {
+          font-size: calc(10px + 0.4vw);
+          text-align: left;
+          padding: 0 1.5vw;
+          color: #000000;
+        }
+      }
+      .ShareCardTextDown {
+        height: 15%;
+        text-align: right;
+        font-size: calc(2rem + 0.1vw);
+        font-weight: 700;
+        width: 100%;
+      }
+    }
+  }
 }

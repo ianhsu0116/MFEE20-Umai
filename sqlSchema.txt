@@ -33,13 +33,11 @@ CREATE TABLE `article_like` (
 
 DROP TABLE IF EXISTS `cart_and_collection`;
 CREATE TABLE `cart_and_collection` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `member_id` int(10) unsigned NOT NULL,
   `course_id` int(11) NOT NULL,
   `batch_id` int(11) DEFAULT NULL,
   `inCart` int(1) NOT NULL DEFAULT '0',
   `inCollection` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `course_id` (`course_id`),
   KEY `batch_id` (`batch_id`),

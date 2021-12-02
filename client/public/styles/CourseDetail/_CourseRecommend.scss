@@ -1,130 +1,130 @@
 .Coursedetail-recommend {
-	margin: 60px 0;
-	height: 30vw;
-	width: 103.5%;
-	display: flex;
+  margin: 60px 0;
+  height: 30vw;
+  width: 103.5%;
+  display: flex;
 }
 .Coursedetail-recommendLeft {
-	height: 100%;
-	width: 30%;
-	border-radius: 5px;
-	overflow: hidden;
-	margin: 0 auto auto 0;
-	max-height: 570px;
-	display: flex;
-	justify-content: center;
-	img {
-	}
-	span {
-		width: 100%;
-		background-color: RGBA(50, 50, 50, 0.5);
-		display: inline-block;
-		height: 220%;
-		position: relative;
-		top: -570px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	span:hover {
-		top: -1030px;
-		transition: top 0.5s;
-	}
-	.Coursedetail-recommendMask:hover {
-		cursor: pointer;
-		background-color: RGBA(50, 50, 50, 0.7);
-		transition: background-color 0.5s;
-		.Coursedetail-recommendInfo {
-			opacity: 1;
-			transition: opacity 0.5s;
-			cursor: pointer;
-		}
-		.Coursedetail-recommendTitle{
-			opacity: 1;
-			transition: opacity 0.5s;
-		}
-		.Coursedetail-recommendLine{
-			opacity: 1;
-			transition: opacity 0.5s;
-		}
-		.Coursedetail-recommendName{
-			opacity: 1;
-			transition: opacity 0.5s;
-		}
-	}
+  height: 100%;
+  width: 30%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto auto 0;
+  max-height: 570px;
+  display: flex;
+  justify-content: center;
+  img {
+  }
+  span {
+    width: 100%;
+    background-color: RGBA(50, 50, 50, 0.5);
+    display: inline-block;
+    height: 220%;
+    position: relative;
+    top: -570px;
+    z-index: 2;
+    cursor: pointer;
+  }
+  span:hover {
+    top: -1030px;
+    transition: top 0.5s;
+  }
+  .Coursedetail-recommendMask:hover {
+    cursor: pointer;
+    background-color: RGBA(50, 50, 50, 0.7);
+    transition: background-color 0.5s;
+    .Coursedetail-recommendInfo {
+      opacity: 1;
+      transition: opacity 0.5s;
+      cursor: pointer;
+    }
+    .Coursedetail-recommendTitle {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    .Coursedetail-recommendLine {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    .Coursedetail-recommendName {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+  }
 }
 
 .Coursedetail-recommendText {
-	color: #ffffff;
+  color: #ffffff;
 }
 .Coursedetail-recommendTitle {
-	text-align: center;
-	font-size: 1.5vw;
-	position: relative;
-	color: white;
-	padding-top: 5vw;
-	opacity: 0;
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+  padding-top: 5vw;
+  opacity: 0;
 }
 .Coursedetail-recommendLine {
-	width: 80%;
-	border-radius: 5px;
-	border: 1px solid #ffffff;
-	background-color: #ffffff;
-	position: relative;
-	margin: auto;
-	opacity: 0;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  position: relative;
+  margin: auto;
+  opacity: 0;
 }
 .Coursedetail-recommendName {
-	text-align: center;
-	font-size: 1.5vw;
-	position: relative;
-	color: white;
-	opacity: 0;
+  text-align: center;
+  font-size: 1.5vw;
+  position: relative;
+  color: white;
+  opacity: 0;
 }
 .Coursedetail-recommendInfo {
-	text-align: left;
-	font-size: 1vw;
-	text-indent: 1em;
-	width: 80%;
-	margin: auto;
-	color: white;
-	padding-top: 2vw;
-	opacity: 0;
-	// transition: opacity 0.5s;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 6;
-	overflow: hidden;
-	font-weight: 500;
-	// font-size: 24px;
+  text-align: left;
+  font-size: 1vw;
+  text-indent: 1em;
+  width: 80%;
+  margin: auto;
+  color: white;
+  padding-top: 2vw;
+  opacity: 0;
+  // transition: opacity 0.5s;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+  font-weight: 500;
+  // font-size: 24px;
 }
 .Coursedetail-recommendClick {
-	text-align: center;
-    text-indent: initial;
-    padding-top: 3vw;
-    position: relative;
-    opacity: 1;
-    width: 35%;
-    border-bottom: 1px solid;
-    font-size: 1.2vw;
+  text-align: center;
+  text-indent: initial;
+  padding-top: 3vw;
+  position: relative;
+  opacity: 1;
+  width: 35%;
+  border-bottom: 1px solid;
+  font-size: 1.2vw;
 }
 .Coursedetail-recommendMask {
-	position: absolute;
-	height: 105%;
-	width: 100%;
+  position: absolute;
+  height: 105%;
+  width: 100%;
 }
 .Coursedetail-recommendFlag {
-	clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);
-	background-color: $activeColor;
-	height: 6.5vw;
-	width: 3.5vw;
-	position: absolute;
-	right: 2vw;
-	p {
-		font-size: 1.2vw;
-		text-align: center;
-		height: 100%;
-		display: flex;
-		top: 0.5vw;
-		color: white;
-	}
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 65%, 0 100%);
+  background-color: $activeColor;
+  height: 6.5vw;
+  width: 3.5vw;
+  position: absolute;
+  right: 2vw;
+  p {
+    font-size: 1.2vw;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    top: 0.5vw;
+    color: white;
+  }
 }

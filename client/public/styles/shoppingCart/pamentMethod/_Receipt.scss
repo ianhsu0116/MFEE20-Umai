@@ -1,33 +1,42 @@
-.Receipt-head {
-  background: #eeeeee;
-  border-radius: 20px;
-  align-items: center;
-  cursor: pointer;
-  color: var(--main-color);
-  padding: 0.75rem;
-  display: flex;
-  & svg {
-    width: 30px;
-    height: 30px;
+.Receipt-box{
+  .turnicon{
+    & svg {
+      transform: rotate(90deg);
+      transition: 0.4s ease;
+    }
   }
-  & h5 {
-    font-weight: 600;
+  .Receipt-head {
+    background: #eeeeee;
+    border-radius: 20px;
+    align-items: center;
+    cursor: pointer;
+    color: var(--main-color);
+    padding: 0.75rem;
+    display: flex;
+    & svg {
+      width: 30px;
+      height: 30px;
+      transition: 0.4s ease;
+    }
+    & h5 {
+      font-weight: 600;
+    }
   }
-}
-.Receipt-body {
-  width: 90%;
-  margin: 0 auto;
-  height: 100px;
-  max-height: 0px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  transition: 0.3s linear;
-  li {
-    margin: 10px auto;
-    margin-left: 5px;
+  .Receipt-body {
+    width: 90%;
+    margin: 0 auto;
+    height: 100px;
+    max-height: 0px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.3s linear;
+    li {
+      margin: 10px auto;
+      margin-left: 5px;
+    }
   }
-}
-.Receipt-body-open {
-  max-height: 100px;
+  .Receipt-body-open {
+    max-height: 100px;
+  }
 }
