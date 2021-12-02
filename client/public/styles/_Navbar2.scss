@@ -9,6 +9,8 @@
 	// height: 100vh;
 	width: 100vw;
 	z-index: 20;
+	left: 0;
+	top: 0;
 	.Navbar {
 		background: $themeColor;
 		color: white;
@@ -57,7 +59,7 @@
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						height: 100%;
+						height: 35px;
 						color: white;
 						transition: 0.3s;
 						cursor: initial;
@@ -242,8 +244,8 @@
 
 				.Navbar-container-item-btn2 {
 					border-radius: 50%;
-					width: 30px;
-					height: 30px;
+					width: 35px;
+					height: 35px;
 					transition: 0.4s;
 					background: white;
 					margin: 0 0.15rem;
@@ -273,7 +275,7 @@
 
 	//搜尋列
 	.Navbar-CourseSearch {
-		position: absolute;
+		//position: absolute;
 		top: var(--navbar-CourseSearch-dropdown-top);
 		width: 100vw;
 		z-index: 10;
