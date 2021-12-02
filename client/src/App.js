@@ -59,8 +59,8 @@ function App() {
     setActiveCourseSearch(!isActiveCourseSearch);
   };
 
-  //
-  async function addCourseIntoCart(course_id) {
+  // 把課程資訊加入購物車
+  async function addCourseIntoCart(course_id, batch_date) {
     // getCurrentInfoObject;
   }
 
@@ -105,16 +105,6 @@ function App() {
     "築地高級創意壽司",
   ];
 
-  //課程分類左
-  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
-  //課程分類右
-  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
-
-  //體驗分享左
-  const ExperienceShareListLeft = ["故事牆"];
-  //體驗分享右
-  const ExperienceShareListRight = ["討論區"];
-
   return (
     <Router>
       <Navbar2
@@ -124,10 +114,6 @@ function App() {
         SearchCourseList={SearchCourseList}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
-        CourseCategoryListLeft={CourseCategoryListLeft}
-        CourseCategoryListRight={CourseCategoryListRight}
-        ExperienceShareListLeft={ExperienceShareListLeft}
-        ExperienceShareListRight={ExperienceShareListRight}
         checkoutList={checkoutList}
         setCheckoutList={setCheckoutList}
         addCourseIntoCart={addCourseIntoCart}
@@ -162,7 +148,7 @@ function App() {
             <Contactus />
           </Route>
           <Route path="/courses/:course_id" exact>
-            <CourseDetail />
+            <CourseDetail addCourseIntoCart={addCourseIntoCart} />
           </Route>
           <Route path="/ShoppingList" exact>
             <ShoppingList currentUser={currentUser} />
