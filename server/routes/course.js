@@ -179,6 +179,27 @@ router.get("/member/:member_id", async (req, res) => {
   }
 });
 
+// // 根據course_id把課程加入購物車資料庫 (購物車)
+// router.post("/cart/:member_id", async (req, res) => {
+//   let { member_id } = req.params;
+//   let { course_id, batch_date } = req.body;
+//   // console.log(member_id, course_id, batch_date);
+
+//   try {
+//     確認是否在購物車中資料庫(join course_batch)
+//     let courseInfoInCart = await connection.queryAsync(
+//       "SELECT course.id, course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id , course_batch.batch_date, course_batch.member_count FROM course, course_batch WHERE course.id = course_batch.course_id AND course.id = ? AND batch_date = ? AND course.valid = ? AND course_batch.valid = ?",
+//       [course_id, batch_date, 1, 1]
+//     );
+
+//     // console.log(courseInfoInCart);
+//     res.status(200).json({ success: true, courseInfoInCart });
+//   } catch (error) {
+//     //console.log(error);
+//     res.status(500).json({ success: false, code: "E999", message: error });
+//   }
+// });
+
 // 根據course_id拿到購物車所需的課程資料 (購物車)
 router.get("/cart/:course_id/:batch_date", async (req, res) => {
   let { course_id, batch_date } = req.params;
