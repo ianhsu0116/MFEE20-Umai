@@ -124,6 +124,7 @@ router.get("/:forumId", async (req, res) => {
   }
 });
 
+// 新增文章
 router.post("/insertArticle", uploader.single("image"), async (req, res) => {
   console.log("body", req.body);
   console.log("req.file", req.file);

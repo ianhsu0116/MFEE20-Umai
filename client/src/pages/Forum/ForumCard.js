@@ -22,6 +22,7 @@ const ForumCard = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [data, setdata] = useState({});;
   // 通常會設定初始狀態是某一個型態，因為在底下可能會用到這樣的值。
   const [forumcard, setForumcard] = useState([]);
   const [articleDetail, setArticleDetail] = useState({});
@@ -34,34 +35,36 @@ const ForumCard = () => {
       let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
       console.log(res.data.forumdata);
       setForumcard(res.data.forumdata);
+
+      let data = JSON.stringify(res.data.forumdata);
     } catch (error) {
       console.log(error.response);
     }
   }, []);
 
-  useEffect(async () => {
-    try {
-      let image = await axios.get(API_URL + "/forum/forumupdate", {
-        withCredentials: true,
-      });
-      let category_id = category_id;
-      let course_id = data.course_id;
-      let article_title = article_title;
-      let article_link = article_link;
-      let article_text = article_text;
-      let data = JSON.stringify({
-        image: image,
-        category_id: category_id,
-        course_id: data.course_id,
-        article_title: article_title,
-        article_link: article_link,
-        article_text: article_text,
-      });
-      console.log(image);
-    } catch (error) {
-      console.log(error.response);
-    }
-  }, []);
+  // useEffect(async () => {
+  //   try {
+  //     let image = await axios.get(API_URL + "/forum/forumupdate", {
+  //       withCredentials: true,
+  //     });
+  //     let category_id = category_id;
+  //     let course_id = data.course_id;
+  //     let article_title = article_title;
+  //     let article_link = article_link;
+  //     let article_text = article_text;
+  //     let data = JSON.stringify({
+  //       image: image,
+  //       category_id: category_id,
+  //       course_id: data.course_id,
+  //       article_title: article_title,
+  //       article_link: article_link,
+  //       article_text: article_text,
+  //     });
+  //     console.log(image);
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -84,6 +87,8 @@ const ForumCard = () => {
               );
               // 整筆資料的儲存
               setArticleDetail(forumEach.data.forumdatadetail);
+              console.log(forumEach.data.forumdatadetail);
+              setdata(JSON.stringify(forumEach.data.forumdatadetail))
             }}
           >
             <img
@@ -195,7 +200,7 @@ const ForumCard = () => {
                       <Link
                         to={{
                           pathname: "/forumupdate",
-                          state: { data: "data" },
+                          state: { data: data },
                         }}
                       >
                         <a>修改</a>

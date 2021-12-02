@@ -5,24 +5,29 @@ import { AiFillQuestionCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { API_URL } from "../../config/config";
 import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ForumUpdate = () => {
+  const { forumid } = useParams();
   const [show, setShow] = useState(false);
   const [articleDetail, setArticleDetail] = useState({});
   const [forumcard, setForumcard] = useState([""]);
 
-  // 接住卡片的資料
-  // const location = useLocation();
-  // let data = JSON.parse(location.state.data);
-  // console.log(data);
+  //接住卡片的資料
+  const location = useLocation();
+  //console.log(location.state.data);
+  let data = JSON.parse(location.state.data);
+  console.log(data);
 
-  // let image = data.image;
-  // let category_id = category_id;
-  // let course_id = data.course_id;
-  // let article_title = article_title;
-  // let article_link = article_link;
-  // let article_text = article_text;
-
+  const [article, setArticle] = useState({
+    image_name: data.image_name,
+    category_id: data.category_id,
+    course_id: data.course_id,
+    article_title: data.article_title,
+    article_link: data.article_link,
+    article_text: data.article_text,
+  });
+  console.log(article);
   function handleUpload(e) {
     let newArticle = { ...article };
     newArticle.image = e.target.files[0];
@@ -31,6 +36,7 @@ const ForumUpdate = () => {
     console.log(e.target.files[0]);
   }
 
+  // 將資料送出
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -44,27 +50,17 @@ const ForumUpdate = () => {
       formData.append("article_link", article.article_link);
       formData.append("article_text", article.article_text);
       // console.log("formData", formData.getAll());
-      let res = await axios({
-        method: "post",
-        url: "http://localhost:8080/api/forum/updateArticle",
-        data: formData,
-        // header: { "Content-Type": "multipart/form-data" },
-      });
+      let res = await axios.post(
+        "http://localhost:8080/api/forum/updateArticle",
+        formData
+      );
     } catch (e) {
       console.log("handleSubmit", e);
     }
     console.log(article);
   }
 
-  const [article, setArticle] = useState({
-    image_name: "",
-    category_id: "",
-    course_id: "",
-    article_title: "",
-    article_link: "",
-    article_text: "",
-  });
-
+  // 改變article的狀態
   function handleChange(e) {
     let newArticle = { ...article };
     newArticle[e.target.name] = e.target.value;
@@ -73,6 +69,7 @@ const ForumUpdate = () => {
     console.log(e.target.value);
   }
 
+  // sweetalert2
   const article_deliver = () => {
     Swal.fire({
       // title: "",
@@ -81,10 +78,11 @@ const ForumUpdate = () => {
       confirmButtonColor: "#0078b3",
       confirmButtonText: "已送出文章，返回討論區",
     }).then(function () {
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
+  // 重設forum
   const reset_function = () => {
     setArticle({
       image_name: "",
@@ -110,10 +108,13 @@ const ForumUpdate = () => {
     <>
       <div className="space"></div>
       <div className="publish">
-        <form action="post" className="form">
+        <form  className="form">
           {/* onSubmit={handleSubmit}  */}
-          <h2>我要投稿</h2>
-          <label HtmlFor="upload" className="Forum-publish-label-illustrator">
+          <h2>修改文章</h2>
+          <label
+            HtmlFor="upload"
+            className="Forum-publish-label-update-illustrator"
+          >
             上傳圖片
             <input
               id="upload"
@@ -124,7 +125,9 @@ const ForumUpdate = () => {
               onChange={handleUpload}
             />
           </label>
-
+          <p className="Forum-publish-label-update-illustrator-name">
+            {article.image_name}
+          </p>
           <label htmlFor="category_id" className="Forum-publish-label-small">
             類別項目
           </label>
@@ -132,12 +135,10 @@ const ForumUpdate = () => {
             <select
               id="category_id"
               name="category_id"
-              selectedValue={article.category_id}
+              value={article.category_id}
               onChange={handleChange}
             >
-              <option value="" selected>
-                請選擇選項
-              </option>
+              <option>請選擇選項</option>
               <option value="1">日式料理</option>
               <option value="2">韓式料理</option>
               <option value="3">法式料理</option>
@@ -152,15 +153,15 @@ const ForumUpdate = () => {
             <select
               id=""
               name="course_id"
-              defaultValue={article.course_id}
+              // defaultValue={article.course_id}
               onChange={handleChange}
+              value={article.course_id}
             >
               <option value="" selected>
                 請選擇選項
               </option>
-              <option value="1">日式料理</option>
-              <option value="2">美式料理</option>
-              <option value="3">韓式料理</option>
+              <option value="12">築地創意壽司</option>
+              <option value="13">炸薯條</option>
             </select>
           </div>
           <label htmlFor="article_title" className="Forum-publish-label-small">
@@ -171,7 +172,7 @@ const ForumUpdate = () => {
             className="Forum-publish-form-big"
             type="text"
             name="article_title"
-            value={articleDetail && articleDetail.article_title}
+            value={articleDetail && article.article_title}
             onChange={handleChange}
           />
           <label htmlFor="article_title" className="Forum-publish-label-small">
@@ -196,7 +197,9 @@ const ForumUpdate = () => {
             onChange={handleChange}
           ></textarea>
           <div className="Forum-publish-button-div">
-            <button className="Forum-publish-button">送出</button>
+            <button className="Forum-publish-button" onClick={article_deliver}>
+              送出
+            </button>
 
             <button
               className="Forum-publish-button"
