@@ -11,7 +11,7 @@ import CollectionArticle from "./CollectionArticle";
 import CourseInsert from "./CourseInsert";
 import ChefIntro from "./ChefIntro";
 
-import CourseReview from "./CourseReview";
+import CourseReview from "./CourseReview/CourseReview";
 
 const MemberCenter = (props) => {
   let { currentUser, setCurrentUser } = props;
