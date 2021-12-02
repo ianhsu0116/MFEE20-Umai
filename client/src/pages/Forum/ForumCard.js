@@ -39,29 +39,29 @@ const ForumCard = () => {
     }
   }, []);
 
-  // useEffect(async () => {
-  //   try {
-  //     let image = await axios.get(API_URL + "/forum/forumupdate", {
-  //       withCredentials: true,
-  //     });
-  //     let category_id = category_id;
-  //     let course_id = data.course_id;
-  //     let article_title = article_title;
-  //     let article_link = article_link;
-  //     let article_text = article_text;
-  //     let data = JSON.stringify({
-  //       image: image,
-  //       category_id: category_id,
-  //       course_id: data.course_id,
-  //       article_title: article_title,
-  //       article_link: article_link,
-  //       article_text: article_text,
-  //     });
-  //     console.log(image);
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // }, []);
+  useEffect(async () => {
+    try {
+      let image = await axios.get(API_URL + "/forum/forumupdate", {
+        withCredentials: true,
+      });
+      let category_id = category_id;
+      let course_id = data.course_id;
+      let article_title = article_title;
+      let article_link = article_link;
+      let article_text = article_text;
+      let data = JSON.stringify({
+        image: image,
+        category_id: category_id,
+        course_id: data.course_id,
+        article_title: article_title,
+        article_link: article_link,
+        article_text: article_text,
+      });
+      console.log(image);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, []);
 
   return (
     <>
@@ -214,9 +214,10 @@ const ForumCard = () => {
                 }`}
                 alt="cake"
               ></img>
+              {/* {articleDetail && articleDetail.article_link} */}
               <iframe
                 className="Forum-modal-body-youtube"
-                src="https://www.youtube.com/embed/CAbUdQbTz7c"
+                src="https://www.youtube.com/embed/ArTVfdHOB-M"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -273,12 +274,7 @@ const ForumCard = () => {
               </div>
             </div>
             <div className="Forum-modal-footer-commet">
-              <p className="">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam
-                ad voluptates ullam odio sed, nihil atque illo earum, neque
-                minus quasi aliquam quaerat quae error animi, provident
-                obcaecati aut debitis.
-              </p>
+              <p className="">{articleDetail && articleDetail.article_link}</p>
             </div>
             <div className="Forum-modal-footer-icon">
               <AiOutlineHeart className="AiOutlineHeart" size="2rem" />

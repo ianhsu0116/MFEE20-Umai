@@ -7,6 +7,24 @@ import Swal from "sweetalert2";
 const ForumPublish = () => {
   const [show, setShow] = useState(false);
 
+  // 設定article初始值\
+  const [article, setArticle] = useState({
+    image_name: "",
+    category_id: "",
+    course_id: "",
+    article_title: "",
+    article_link: "",
+    article_text: "",
+  });
+
+  function handleChange(e) {
+    let newArticle = { ...article };
+    newArticle[e.target.name] = e.target.value;
+    setArticle(newArticle);
+    // setArticle({ ...Article, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  }
+
   function handleUpload(e) {
     let newArticle = { ...article };
     newArticle.image = e.target.files[0];
@@ -18,6 +36,7 @@ const ForumPublish = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      console.log(article);
       // json 格式無法傳檔案
       // 改成用 form data
       let formData = new FormData();
@@ -37,24 +56,7 @@ const ForumPublish = () => {
     } catch (e) {
       console.log("handleSubmit", e);
     }
-    console.log(article);
-  }
-
-  const [article, setArticle] = useState({
-    image_name: "",
-    category_id: "",
-    course_id: "",
-    article_title: "",
-    article_link: "",
-    article_text: "",
-  });
-
-  function handleChange(e) {
-    let newArticle = { ...article };
-    newArticle[e.target.name] = e.target.value;
-    setArticle(newArticle);
-    // setArticle({ ...Article, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    //console.log(article);
   }
 
   const article_deliver = () => {
@@ -65,7 +67,7 @@ const ForumPublish = () => {
       confirmButtonColor: "#0078b3",
       confirmButtonText: "已送出文章，返回討論區",
     }).then(function () {
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
@@ -131,9 +133,9 @@ const ForumPublish = () => {
               <option value="" selected>
                 請選擇選項
               </option>
-              <option value="1">日式料理</option>
-              <option value="2">美式料理</option>
-              <option value="3">韓式料理</option>
+              <option value="9">日式料理</option>
+              <option value="10">美式料理</option>
+              <option value="11">韓式料理</option>
             </select>
           </div>
           <label htmlFor="article_title" className="Forum-publish-label-small">

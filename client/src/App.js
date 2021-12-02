@@ -173,6 +173,13 @@ function App() {
           <Route path="/contactus" exact>
             <Contactus />
           </Route>
+          <Route path="/ForumPublish" exact>
+            <ForumPublish />
+          </Route>
+          <Route path="/ForumUpdate" exact>
+            <ForumUpdate />
+          </Route>
+
           <Route path="/courses/:course_id" exact>
             <CourseDetail addCourseIntoCart={addCourseIntoCart} />
           </Route>
