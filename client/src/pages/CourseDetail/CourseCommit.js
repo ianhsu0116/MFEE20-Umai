@@ -1,65 +1,55 @@
 import { useState, useEffect } from "react";
-import { AiOutlineMessage, AiOutlineHeart } from "react-icons/ai";
-import { MdCollectionsBookmark } from "react-icons/md";
-import { Link } from "react-router-dom";
+import StarGroup from "../../components/StarGroup";
+import { PUBLIC_URL } from "../../config/config";
 
 
 function CourseCommit(props){
+  let { course_comment } = props;
 
-    const [articleData, setArticleData] = useState([{member_id:1},{article_id:1}]);
+    const [articleData, setArticleData] = useState([]);
+    useEffect(() => {
+      if(course_comment != 0 && course_comment != null && course_comment != undefined)
+      setArticleData(
+        course_comment
+      );
+    }, [course_comment]);
 
   return (
     <>
-            <div className="CollectionArticle-container-cards">
-          {articleData.map((article) => (
-            <div className="ArticleCard">
-              <div className="ArticleCard-left">
-                <div className="ArticleCard-left-imgCon">
-                  {/* <img
-                    src={
-                      article.image_name
-                        ? `${PUBLIC_URL}/uploads-image/${article.image_name}`
-                        : image
-                    }
-                    alt="image"
-                  /> */}
+    {console.log(articleData)}
+    <div className="CourseCategroy" id="discuss">討論區</div>
+    <div className="st-line"></div>
+     <div className="CoursesCommitCard-container-cards">
+     {articleData.map((article) => (
+            <div className="CoursesCommitCard">
+              <div className="CoursesCommitCard-left">
+                <div className="CoursesCommitCard-left-imgCon">
+                  <img
+                        src={`${PUBLIC_URL}/upload-images/${article.avatar}`}
+                        alt=""
+                  ></img>      
                 </div>
               </div>
 
-              <div className="ArticleCard-right">
+              <div className="CoursesCommitCard-right">
                 <h4 className="ArticleCard-right-title">
-                  <Link to="/forum">{article.article_title}</Link>
+                  <div>{article.first_name + article.last_name}</div>
                 </h4>
-                <div className="ArticleCard-right-content">
-                  {article.article_text}
-                </div>
-
-                <div className="ArticleCard-right-bottom">
-                  <div className="ArticleCard-right-bottom-con ArticleCard-right-bottom-like">
-                    <AiOutlineHeart />
-                    <span className="ArticleCard-likeCount">
-                      {article.like_count || 0}
-                    </span>
-                  </div>
-                  <div className="ArticleCard-right-bottom-con ArticleCard-right-bottom-comment">
-                    <AiOutlineMessage />
-                    <span className="ArticleCard-commentCount">
-                      {article.comment_count || 0}
-                    </span>
-                  </div>
-                  <div
-                    className="ArticleCard-right-bottom-con ArticleCard-right-bottom-collect"
-                    onClick={(e) => {
-                      // handleCollectEdit(e, article.id);
-                    }}
-                  >
-                    <MdCollectionsBookmark />
-                    <span>取消收藏</span>
-                  </div>
+                <span><StarGroup
+                        percent={article.score*20}
+                        allScore={article.score} />
+                        <div>{article.created_time}</div></span>
+                <div className="CoursesCommitCard-right-content">
+                  {article.comment_text}
                 </div>
               </div>
             </div>
-          ))}
+            ))}
+            {articleData.length === 0 && (
+            <div className="MemberCenter-defaultText">
+              目前該課程還沒有留言哦！歡迎跟大家分享課堂的心得。
+            </div>
+          )}
         </div>      
     </>
          )
