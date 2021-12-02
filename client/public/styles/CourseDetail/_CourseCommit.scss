@@ -1,42 +1,49 @@
-.CoursesCommitCard{
-    width: 100%;
-    position: relative;
-    display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    padding: 0.5rem 0;
-    // margin: 0.5rem 0;
-    // border-bottom: 2px solid #666666;
-    border-top: 2px solid #666666;
-
+.CoursesCommitCard-container-cards {
+	position: relative;
+	box-sizing: border-box;
+	min-height: 100px;
 }
-.CoursesCommitCard-left{
-    width: 5vw;
-    height: 5vw;
-    /* min-width: 150px; */
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 2rem 0  0 2rem;
-    .CoursesCommitCard-left-imgCon{
-    width: 10vw;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    }
-    img{
-        width: 200%;
-    }
+.CoursesCommitCard {
+	width: 100%;
+	position: relative;
+	display: flex;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	padding: 0.5rem 0;
+	// margin: 0.5rem 0;
+	// border-bottom: 2px solid #666666;
+	border-bottom: 3px solid #d8a466;
 }
-.CoursesCommitCard-right{
-    margin-top: 2rem;
-    padding: 0.5rem;
+.CoursesCommitCard-left {
+	// width: 5vw;
+	height: 100px;
+	/* min-width: 150px; */
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	margin: 1.5rem 0 0 2rem;
+	.CoursesCommitCard-left-imgCon {
+		width: 70px;
+		height: 70px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 1px solid rgba(0, 0, 0, 0.3);
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	img {
+		height: 100%;
+	}
+}
+.CoursesCommitCard-right {
+	margin-top: 2rem;
+	padding: 0.5rem;
+	.CoursesCommitCard-right-content {
+		font-size: 1.5vw;
+	}
 }

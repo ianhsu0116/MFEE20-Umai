@@ -9,6 +9,8 @@ import StarGroup from "./CourseStar";
 import CourseCost from "./CourseCost";
 import CourseRecommend from "./CourseRecommend";
 
+import CourseCommit from "./CourseCommit";
+
 import CalendarAvailable from "../../components/CalendarAvailable";
 import CircleBlue from "../../components/images/circle_blue.svg";
 import CircleOrange from "../../components/images/circle_orange.svg";
@@ -122,7 +124,7 @@ function CourseInfomation(props) {
         result.data.course[0].chef_introduction
       );
       result.data.course[0].course_detail = JSON.parse(
-        result.data.course[0].course_detail
+      result.data.course[0].course_detail
       );
       console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
@@ -346,7 +348,9 @@ function CourseInfomation(props) {
                       現在報名
                     </li>
                     <li>|</li>
-                    <li onClick={() => {}}>評論區</li>
+                    <li onClick={() => {
+                          window.location.href = "#discuss";
+                    }}>評論區</li>
                   </ul>
                 </div>
               </div>
@@ -679,34 +683,9 @@ function CourseInfomation(props) {
               </span>
               <img src={Join} alt=""></img>
             </div>
-
-
-            <div className="CollectionArticle-container-cards">
-          {articleData.map((article) => (
-            <div className="CoursesCommitCard">
-              <div className="CoursesCommitCard-left">
-                <div className="CoursesCommitCard-left-imgCon">
-                  <img
-                        src={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.six_dishes[2].dishes_image}`}
-                        alt=""
-                  ></img>      
-                </div>
-              </div>
-
-              <div className="CoursesCommitCard-right">
-                <h4 className="ArticleCard-right-title">
-                  <Link to="/forum">奇異博士</Link>
-                </h4>
-                <span>★★★★★</span> <span>2021/12/2</span>
-                <div className="ArticleCard-right-content">
-                  我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心我感受到主廚的用心
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>      
-
-
+            <CourseCommit 
+              course_comment={course_Score}
+            />
           </div>
         </div>
       </div>
