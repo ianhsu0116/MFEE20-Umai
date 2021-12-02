@@ -43,59 +43,20 @@ const Navbar = (props) => {
 
   // {
   //   id: "",
+
   //   member_id: "",
   //   category_id: "",
-  //   batch_id: "", //(course_batch table)(alia)
   //   course_image: "",
   //   course_name: "",
   //   course_price: "",
   //   member_limit: "",
+
+  //   batch_id: "", //(course_batch table)(alia)
   //   batch_date: "", //(course_batch table)
   //   member_count: "", //(course_batch table)
   //   cartCourseCount: 1, //(notInDB)
   // },
-
-  // [
-  //   {
-  //     id: 9,
-  //     member_id: 1,
-  //     category_id: 1,
-  //     batch_id: 1, //(course_batch table)(alia)
-  //     course_image: "course-44d67cba-78ee-419a-a853-907974d112aa.jpg",
-  //     course_name: "美式經典牛排烹調高階課程",
-  //     course_price: 5400,
-  //     member_limit: 30,
-  //     batch_date: "2021/12/26", //(course_batch table)
-  //     member_count: 0, //(course_batch table)
-  //     cartCourseCount: 1, //(notInDB)
-  //   },
-  //   {
-  //     id: 10,
-  //     member_id: 1,
-  //     category_id: 1,
-  //     batch_id: 2, //(course_batch table)(alia)
-  //     course_image: "course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg",
-  //     course_name: "極度美味中式饗宴，傳統粵式名菜",
-  //     course_price: 2800,
-  //     member_limit: 30,
-  //     batch_date: "2022/01/05", //(course_batch table)
-  //     member_count: 5, //(course_batch table)
-  //     cartCourseCount: 1, //(notInDB)
-  //   },
-  //   {
-  //     id: 11,
-  //     member_id: 1,
-  //     category_id: 5,
-  //     batch_id: 3, //(course_batch table)(alia)
-  //     course_image: "course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg",
-  //     course_name: "米其林二星經典港式傳統料理",
-  //     course_price: 4500,
-  //     member_limit: 25,
-  //     batch_date: "2022/01/11", //(course_batch table)
-  //     member_count: 10, //(course_batch table)
-  //     cartCourseCount: 1, //(notInDB)
-  //   },
-  // ];
+  // course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id, course_batch,batch_date, course_batch.member_count FROM course, course_batch
 
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");

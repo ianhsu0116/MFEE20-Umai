@@ -182,7 +182,7 @@ router.get("/member/:member_id", async (req, res) => {
 // 根據course_id拿到購物車所需的課程資料 (購物車)
 router.get("/cart/:course_id/:batch_date", async (req, res) => {
   let { course_id, batch_date } = req.params;
-  console.log(course_id, batch_date);
+  // console.log(course_id, batch_date);
 
   try {
     // 拿到課程資料與梯次(join course_batch)
@@ -191,8 +191,7 @@ router.get("/cart/:course_id/:batch_date", async (req, res) => {
       [course_id, batch_date, 1, 1]
     );
 
-    console.log(courseInfoInCart);
-
+    // console.log(courseInfoInCart);
     res.status(200).json({ success: true, courseInfoInCart });
   } catch (error) {
     //console.log(error);

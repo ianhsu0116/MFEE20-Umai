@@ -16,7 +16,7 @@ const CollectionCourse = (props) => {
 
   // 重整當前收藏課程
   let refreshCollection = async () => {
-    let result = await CourseService.course_collection(currentUser.id);
+    let result = await CourseService.course_cart(currentUser.id);
 
     // 如果這次沒回傳任何course
     if (!result.data.course) {

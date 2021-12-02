@@ -62,6 +62,23 @@ function App() {
   // 把課程資訊加入購物車
   async function addCourseIntoCart(course_id, batch_date) {
     // getCurrentInfoObject;
+    let result = courseService.getCourseIntoCart(course_id, batch_date);
+
+    // 如果這次沒回傳任何course
+    if (!result.data.courseInfoInCart) {
+      console.log({
+        success: false,
+        code: "D999",
+        message: "課程未加入購物車",
+      });
+      return;
+    }
+
+    // // 設定當前課程的資料Array
+    // setCurrentCourses(result.data.course);
+
+    // // 設定當前使用者的所有收藏課程Array
+    // setCollectionIds(result.data.course.map((item) => item.id));
   }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
@@ -121,8 +138,8 @@ function App() {
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
       )}
-      <Switch>
-        <div className="footerPadding">
+      <div className="footerPadding">
+        <Switch>
           <Route path="/" exact>
             <HomePage />
           </Route>
@@ -159,8 +176,8 @@ function App() {
           <Route path="/chef" exact>
             <Chef />
           </Route>
-        </div>
-      </Switch>
+        </Switch>
+      </div>
       <Footer />
     </Router>
   );
