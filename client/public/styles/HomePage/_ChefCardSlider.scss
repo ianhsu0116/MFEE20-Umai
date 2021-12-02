@@ -1,0 +1,38 @@
+.chefIntroductionWrapper {
+  text-align: center;
+  overflow: hidden;
+  .chefIntroductionHeading {
+    margin-top: 15vw;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    h1 {
+      color: #1f4557;
+      font-size: calc(1.5rem + 1vw);
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0;
+      z-index: 5;
+    }
+    .HeadingUnderline {
+      width: calc(9.25rem + 6vw);
+    }
+  }
+  .chefIntroductionContentWrapper {
+    margin-top: calc(0.25rem + 2vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    // overflow: hidden;
+    .chefIntroductionContent {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 3vw;
+      z-index: 6;
+    }
+  }
+}

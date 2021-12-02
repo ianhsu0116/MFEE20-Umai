@@ -1,166 +1,202 @@
-.st-courseMiniCard {
-	position: relative;
-	width: 250px;
-	height: 450px;
-	border-radius: 10px 10px 10px 10px;
-	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
-	overflow: hidden;
-	display: flex;
-}
-.st-courseMiniCardPicture img {
-	height: 200px;
-	width: 250px;
-	border-radius: 10px 10px 0px 0px;
-	background-color: black;
-}
-.st-courseMiniCardBar {
-	position: absolute;
-	color: white;
-	padding: 0.25rem 1rem;
-	z-index: 3;
-	width: 150px;
-	top: 15px;
-	right: -45px;
-	text-align: center;
-	font-weight: 700;
-	font-size: 90%;
-	transform: rotate(45deg);
-}
-.st-courseMiniCardBarActiveDeadline {
-	background: $activeColor;
-}
-.st-courseMiniCardBarActiveFull {
-	background: $themeColorBlue;
-}
-.st-courseMiniCardName {
-	width: 250px;
-	height: 115px;
-	font-weight: bold;
-	font-family: 'Noto Sans TC', Bold;
-	color: #505050;
-	font-size: 20px;
-	padding: 10px 20px 10px 20px;
-	line-height: 23px;
-}
-.st-courseMiniCardChefName {
-	margin-top: 5px;
-	font-size: 14px;
-	font-weight: 400;
-	color: #909090;
-}
-.st-startWidth {
-	width: 120px;
-	max-height: 34.5px;
-}
-/* 星星盒子(外框) */
-.st-courseMiniCardBoxStar {
-	color: #999999; /*背景星星顏色*/
-	overflow: hidden;
-	font-size: 24px;
-}
-/* 填滿星星 width設在外面 */
-.st-startWidth .st-courseMiniCardFullStar {
-	font-size: 24px;
-	top: -24.5px;
-	position: relative;
-	white-space: nowrap;
-	overflow: hidden;
-	display: inline-block;
-	color: #ffa231; /*前景星星顏色*/
-}
-.st-courseMiniCardStarCount {
-	position: relative;
-	top: -48px;
-	left: 125px;
-	color: #909090;
-	font-size: 14px;
-}
-.st-courseMiniCardBatch {
-	position: absolute;
-	width: 100%;
-	height: 45px;
-	margin-left: 20px;
-	font-family: 'Noto Sans TC', Bold;
-	font-size: 14px;
-}
-.st-courseMineCardTime {
-	margin-top: 5px;
-}
-.st-courseMineCardTime {
-	margin-top: 5px;
-}
-.st-courseMiniCardProgressBox {
-	position: relative;
-	top: 45px;
-	width: 200px;
-	margin-left: 20px;
-	height: 6px;
-}
-.st-courseMiniCardProgress {
-	width: 200px;
-	height: 6px;
-	border: 1px solid $activeColor;
-	box-sizing: border-box;
-	border-radius: 5px;
-	overflow: hidden;
-}
-.st-courseMiniCardFullProgress {
-	height: 5px;
-	background-color: $activeColor;
-	// width: 80%;
-	box-sizing: border-box;
-	border-radius: 5px;
-	overflow: hidden;
-	position: relative;
-	display: inline-block;
-	top: -19px;
-}
-.st-courseMiniCardCount {
-	top: -20px;
-	position: relative;
-	// font-weight: 700;
-	// font-size: $chefTextSize-li;
-	font-size: 14px;
-	font-weight: normal;
-	color: #909090;
-}
-.st-courseMiniCardLevel {
-	position: relative;
-	width: 47px;
-	height: 25px;
-	top: 75px;
-	margin-left: 20px;
-	border-radius: 5px 5px 5px 5px;
+$tagTextSize: calc(6px + 0.5vw);
 
-	color: white;
-	background: $lowLevelColor;
-	padding: 0.15rem 0.5rem;
-	text-align: center;
-	border-radius: 5px;
-	font-weight: 500;
-	cursor: pointer;
-	font-size: 80%;
-}
-.st-courseMiniCardSpecialPrice {
-	top: 5px;
-	left: 83px;
-	position: relative;
-	text-align: center;
-	font-family: 'Noto Sans TC', Bold;
-	color: #909090;
-	font-size: 14px;
-	text-decoration: line-through;
-}
-.st-courseMiniCardPrice {
-	top: 48px;
-	left: -10px;
-	position: relative;
-	@include flex(column);
-	align-items: flex-end;
-	font-size: 1.3rem;
-	font-weight: 700;
-}
-.st-courseMiniCardPriceBox {
-	width: 100%;
-	height: 80px;
+$courseMiniCardNameTextSize: calc(10px + 0.5vw);
+$courseMiniCardNameLineHeight: calc(16px + 0.5vw);
+
+$courseMiniCardChefNameTextSize: calc(10px + 0.25vw);
+
+$st-courseMiniCardBatchTextSize: calc(10px + 0.25vw);
+
+$courseMiniCardCountTextSize: calc(10px + 0.25vw);
+
+$st-courseMiniCardPriceTextSize: calc(8px + 0.25vw);
+// $st-courseMiniCardPriceLineHeight: calc(8px + 0.25vw);
+
+$st-courseMiniCardSpecialPriceTextSize: calc(8px + 0.75vw);
+// $st-courseMiniCardSpecialPriceLineHeight: calc(8px + 0.75vw);
+
+.st-courseMiniCard {
+  font-family: "Noto Sans TC", sans-serif;
+  display: flex;
+  position: relative;
+  height: 36vw;
+  width: 20vw;
+  max-height: 450px;
+  max-width: 250px;
+  border-radius: 0.5vw;
+  background: white;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  .st-courseMiniCardBarActiveDeadline {
+    background: $activeColor;
+  }
+  .st-courseMiniCardBarActiveFull {
+    background: $themeColorBlue;
+  }
+
+  .st-courseMiniCardWrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    // 課程照片容器
+    .courseMiniCardPictureWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40%;
+      width: 100%;
+      border-radius: 0.5vw 0.5vw 0 0;
+      // 防爆版檢測色
+      background: #666;
+      overflow: hidden;
+      .courseMiniCardPicture {
+        min-height: 100%;
+        min-width: 100%;
+      }
+      .st-courseMiniCardTag {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        // top: 12%;
+        // right: -24%;
+        top: 9%;
+        right: -27%;
+        height: 15%;
+        width: 80%;
+        font-size: $tagTextSize;
+        font-weight: 700;
+        text-align: center;
+        color: white;
+        z-index: 3;
+        transform: rotate(45deg);
+        p {
+          padding: auto;
+        }
+      }
+    }
+    // 課程資訊上半
+    .courseMiniCardTextUpper {
+      width: 100%;
+      // 課程名稱
+      .st-courseMiniCardName {
+        // width: 250px;
+        // height: 115px;
+        height: 5%;
+        width: 80%;
+        font-weight: bold;
+        color: #505050;
+        font-size: $courseMiniCardNameTextSize;
+        font-weight: 700;
+        margin: 10px 20px;
+        line-height: $courseMiniCardNameLineHeight;
+
+        // 主廚名稱
+        .st-courseMiniCardChefName {
+          margin-top: 5px;
+          // font-size: 14px;
+          font-size: $courseMiniCardChefNameTextSize;
+          line-height: $courseMiniCardChefNameTextSize;
+          font-weight: 400;
+          color: #909090;
+        }
+
+        // 評價星數
+        .st-startWidth {
+          left: -2px;
+          width: 120px;
+          max-height: 34.5px;
+        }
+      }
+    }
+  }
+
+  // 課程資訊下半
+  .courseMiniCardTextDown {
+    position: absolute;
+    width: 100%;
+    .st-courseMiniCardBatch {
+      position: relative;
+      width: 100%;
+      height: 45px;
+      margin-left: 20px;
+      // font-size: 14px;
+      font-size: $st-courseMiniCardBatchTextSize;
+      font-weight: 500;
+      .st-courseMiniCardTime {
+      }
+    }
+    .st-courseMiniCardProgressBox {
+      position: relative;
+      width: 80%;
+      margin-left: 20px;
+      height: 6px;
+
+      .st-courseMiniCardProgress {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border: 1px solid $activeColor;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .st-courseMiniCardFullProgress {
+        position: relative;
+        box-sizing: border-box;
+        height: 5px;
+        background-color: $activeColor;
+        border-radius: 5px;
+        overflow: hidden;
+        display: inline-block;
+        top: -19px;
+      }
+      .st-courseMiniCardCount {
+        position: relative;
+        top: -20px;
+        font-size: $courseMiniCardCountTextSize;
+        font-weight: 500;
+      }
+    }
+  }
+  // 課程分級與價格
+  .courseMiniCardContentDown {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    // 課程分級
+    .st-courseMiniCardLevel {
+      width: 47px;
+      height: 25px;
+      margin-left: 20px;
+      margin-bottom: 0.15rem;
+      border-radius: 5px 5px 5px 5px;
+      color: white;
+      background: $lowLevelColor;
+      padding: 0.15rem 0.5rem;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 80%;
+    }
+    .st-courseMiniCardPriceBox {
+      top: 0;
+      right: 0;
+      margin-right: 20px;
+      .st-courseMiniCardPrice {
+        text-align: right;
+        color: #909090;
+        font-size: $st-courseMiniCardPriceTextSize;
+        text-decoration: line-through;
+      }
+      .st-courseMiniCardSpecialPrice {
+        font-size: $st-courseMiniCardSpecialPriceTextSize;
+        font-weight: 700;
+      }
+    }
+  }
 }

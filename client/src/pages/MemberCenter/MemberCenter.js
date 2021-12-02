@@ -31,6 +31,7 @@ const MemberCenter = (props) => {
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
 
+  // CourseReview的預設資料
   // const [courseDetail, setCourseDetail] = useState({
   //   slider_images: ["img_name", "img_name", "img_name"],
   //   time_of_course: "範例：平日上午10:30 ~ 下午04:00",
@@ -170,6 +171,15 @@ const MemberCenter = (props) => {
       ? `${currentUser.first_name} ${currentUser.last_name}`
       : "主廚名稱", //主廚名稱　 原本沒有我新增的
   });
+  // 即時更新課程預設資料內的主廚名稱
+  useEffect(() => {
+    setCourseDetail({
+      ...courseDetail,
+      course_chef: currentUser
+        ? `${currentUser.first_name} ${currentUser.last_name}`
+        : "主廚名稱",
+    });
+  }, [currentUser]);
 
   // 課程新增頁面 => 儲存slider上傳的圖片(二元編碼 即時顯示使用)
   const [sliderImage, setSliderImage] = useState(["", "", ""]);

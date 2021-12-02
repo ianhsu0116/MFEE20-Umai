@@ -97,6 +97,7 @@ router.post("/registration", async (req, res) => {
   // 紀錄當前時間
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
 
+  console.log(req.body);
   // 確認是否已被註冊
   try {
     let member = await connection.queryAsync(

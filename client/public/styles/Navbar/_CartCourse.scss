@@ -1,0 +1,126 @@
+.CartCourse-container {
+  // transform: scale(0.7);
+  width: calc(22rem + 5vw);
+  height: 8rem;
+  border-bottom: 2px solid #999;
+  background: white;
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  .CartCourse-info-left {
+    width: 30%;
+    height: 75%;
+    .CartCourse-pic-container {
+      height: 100%;
+      border-radius: 0.5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      .CartCourse-pic {
+        height: 7rem;
+      }
+    }
+  }
+  .CartCourse-info-right {
+    width: 70%;
+    height: 87.5%;
+    .CartCourse-info-right-top {
+      height: 3rem;
+      text-align: justify;
+      padding: 0 1rem;
+      .CartCourse-name {
+        h6 {
+          color: #555;
+          font-weight: 700;
+        }
+      }
+      .CartCourse-batch {
+        p {
+          font-size: 0.75rem;
+          color: #999;
+          font-weight: 500;
+        }
+      }
+    }
+    .CartCourse-info-right-bottom {
+      height: 4.25rem;
+      .count-container {
+        position: absolute;
+        bottom: 1.25rem;
+        left: 1rem;
+        height: 1.5rem;
+        width: 7rem;
+        border: 2px solid #888;
+        border-radius: 2px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .count-minus,
+        .count-plus {
+          width: 1.5rem;
+          color: #888;
+          //   transition: 0.3s;
+          &:hover {
+            color: #555;
+          }
+          &:active {
+            color: #888;
+          }
+        }
+        .count-minus {
+          border-right: 2px solid #888;
+        }
+        .count-plus {
+          border-left: 2px solid #888;
+        }
+        .count {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          line-height: 1rem;
+          padding-bottom: 5px;
+        }
+      }
+      .price {
+        position: absolute;
+        bottom: 1.2rem;
+        right: 1rem;
+        h5 {
+          font-weight: 700;
+          line-height: calc(1.5rem + 4px);
+        }
+      }
+      .edit-Button {
+        position: absolute;
+        bottom: -0.2rem;
+        right: 1rem;
+        padding-bottom: 0;
+        .addToCollection,
+        .seperationLine,
+        .DeleteThisCourse {
+          display: inline-block;
+          color: #1f4557;
+          button p {
+            font-size: 0.75vw;
+            &:hover {
+              color: #377491;
+            }
+          }
+        }
+        .addToCollection {
+          padding-right: 0.5vw;
+        }
+        .seperationLine {
+          height: 0.5vw;
+          width: 0;
+          border-right: 1px solid #1f4557;
+        }
+        .DeleteThisCourse {
+          padding-left: 0.5vw;
+        }
+      }
+    }
+  }
+}

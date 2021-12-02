@@ -146,6 +146,7 @@ function ChefCard2(props) {
           {inputMode[2] && (
             <textarea
               name="chefInfoTitle"
+              className="st-chefCard2Down-chefInfoTitleInput"
               maxLength="40"
               cols="5"
               rows="2"

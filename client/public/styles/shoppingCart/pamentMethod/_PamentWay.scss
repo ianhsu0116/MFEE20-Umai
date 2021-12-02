@@ -2,6 +2,12 @@
   margin: 20px 0;
 }
 .PamentWay-box {
+  .turnicon{
+    & svg {
+      transform: rotate(90deg);
+      transition: 0.4s ease;
+    }
+  }
   .PamentWay-head {
     background: #eeeeee;
     border-radius: 20px;
@@ -13,6 +19,7 @@
     & svg {
       width: 30px;
       height: 30px;
+      transition: 0.4s ease;
     }
     & h5 {
       font-weight: 600;

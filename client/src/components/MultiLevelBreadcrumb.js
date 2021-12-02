@@ -1,8 +1,8 @@
 import React, { useState , useEffect } from 'react'
 // 高階元件樣式(HOC)，增強元件用的
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from "react-router-dom";
 // 中文路徑對照陣列，移出到config/index.js中設定
-import { pathnameList, pathnameTextList } from '../index'
+import { pathnameList, pathnameTextList } from "../index";
 
 import CategoryService from "../services/category.service";
 
@@ -30,9 +30,9 @@ function MultiLevelBreadcrumb(props) {
 
 
   // find index，目前匹配的pathname，它的中文是什麼
-  const findPathnameIndex = (pathname,search) => {
+  const findPathnameIndex = (pathname, search) => {
     // 找到剛好的，從前面開始找起
-    const foundIndex = pathnameList.findIndex((v, i) => v === pathname)
+    const foundIndex = pathnameList.findIndex((v, i) => v === pathname);
     // 沒找到剛好的路徑時用的(動態id params會遇到)
     // 例如：product/detail/123
     // 會用patchnameList的最後一個開始找起
@@ -41,17 +41,17 @@ function MultiLevelBreadcrumb(props) {
     if (foundIndex === -1) {
       for (let i = pathnameList.length - 1; i >= 0; i--) {
         if (pathname.includes(pathnameList[i])) {
-          return i
+          return i;
         }
       }
     }
 
-    return foundIndex
-  }
+    return foundIndex;
+  };
 
   // 有一個項目和二個項目的情況
   const formatText = (index) => {
-    if (index === -1) return ''
+    if (index === -1) return "";
 
     // '/產品/嬰兒/初生兒' -> ['','產品','嬰兒', '初生兒']
     const textArray = pathnameTextList[index].split('/')
@@ -62,7 +62,7 @@ function MultiLevelBreadcrumb(props) {
     }
     // textArray.replace("?","")
     // '/product/baby/birth' -> ['','product','baby', 'birth']
-    const pathArray = pathnameList[index].split('/')
+    const pathArray = pathnameList[index].split("/");
 
  
     // 可讀性偏差，但時間因素先這樣撰寫　當location.search不是空值時(Ex category?1)，判斷是不是courses，不是的話加了問號會導到首頁，是的話當?小於0或大於7會導向7(全部分類)以及預設導向7
@@ -82,27 +82,31 @@ function MultiLevelBreadcrumb(props) {
 
 
     const listArray = textArray.map((v, i, array) => {
-      if (i === 0) return ''
+      if (i === 0) return "";
 
       if (i === array.length - 1) {
         return (
-          <li key={i} className="st-breadcrumb-item-end active" aria-current="page">
+          <li
+            key={i}
+            className="st-breadcrumb-item-end active"
+            aria-current="page"
+          >
             <span>{v}</span>
           </li>
-        )
+        );
       }
 
       return (
         <li key={i} className="st-breadcrumb-item">
-          <Link to={pathArray.slice(0, i + 1).join('/')}><span>{v}</span></Link>
+          <Link to={pathArray.slice(0, i + 1).join("/")}>
+            <span>{v}</span>
+          </Link>
         </li>
-      )
-    })
+      );
+    });
 
-    return listArray
-  }
-
-  
+    return listArray;
+  };
 
   return (
     <>
@@ -111,13 +115,15 @@ function MultiLevelBreadcrumb(props) {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="st-breadcrumb-homepage">
-            <Link to="/"><span>首頁</span></Link>
+            <Link to="/">
+              <span>首頁</span>
+            </Link>
           </li>
           {formatText(findPathnameIndex(location.pathname))}
         </ol>
       </nav>
     </>
-  )
+  );
 }
 
-export default withRouter(MultiLevelBreadcrumb)
+export default withRouter(MultiLevelBreadcrumb);
