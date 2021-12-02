@@ -1,11 +1,12 @@
 :root {
-  --navbar-height: 55px;
-  --navbar-dropdown-top: 80px;
+  --navbar-height: 63px;
+  --navbar-dropdown-top: 73px;
+  --navbar-CourseSearch-dropdown-top: 10px;
 }
 // NavbarHeight
 .Header {
   position: fixed;
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
   z-index: 20;
   .Navbar {
@@ -273,7 +274,7 @@
   //搜尋列
   .Navbar-CourseSearch {
     position: absolute;
-    top: var(--navbar-dropdown-top);
+    top: var(--navbar-CourseSearch-dropdown-top);
     width: 100vw;
     z-index: 10;
     display: flex;
