@@ -22,27 +22,26 @@ function ShoppingList(props){
     let creditCards = data.creditCards;
     let paymenttype = data.paymenttype;
     let receipttype = data.receipttype;
-
     //抓取課程剩餘人數
     async function getmembercount(){
         try {
             let result = await axios.get(`http://localhost:8080/api/course/${coursetitle.course_id}`, {
             withCredentials: true,
             });
-            setcoursetitle({...coursetitle,membercount:result.data.course_batch[0].member_count})
+            setcoursetitle({...coursetitle,membercount:result.data.course_batch[0].member_count,memberlimit:result.data.course[0].member_limit})
         } catch (error) {
             console.log(error);
         }
     }
 
-    //上傳訂購者資料
+    // 新增訂單
     async function insertorderdata(){
         const orderdata={
             memberid: currentUser.id,
             courseid: coursetitle.course_id,
             batchid: coursetitle.batch_id,
-            firstName: OrdererData.firstName,
-            lastName: OrdererData.lastName,
+            first_name: OrdererData.first_name,
+            last_name: OrdererData.last_name,
             telephone: OrdererData.telephone,
             birthday: OrdererData.birthday,
             email: OrdererData.email,
@@ -56,7 +55,6 @@ function ShoppingList(props){
             console.log(error.response.data);
         }
     }
-
     //上傳會員資料
     async function insertstudentdata(){
         carddata.map(async (data)=>{
@@ -101,12 +99,27 @@ function ShoppingList(props){
           }
     }
 
+    //將優惠券從使用者移除
+    async function modifycoupon(){
+        try {
+            let result = await axios.put(`http://localhost:8080/api/order/modifycoupon`,{ 
+                id: coupon.id,
+                memberid: currentUser.id,
+                couponsid: coupon.coupons_id,
+            } ,{ withCredentials: true,});
+          } catch (error) {
+            console.log(error);
+          }
+    }
     useEffect(()=>{
-    getmembercount()
-    insertorderdata()
-    insertstudentdata()
-    modifymembercount()
-    modifycart()
+        getmembercount()
+        insertorderdata()
+        insertstudentdata()
+        modifymembercount()
+        modifycart()
+        if(coupon.id!==undefined){
+        modifycoupon()}
+        getmembercount()
     },[])
     
 

@@ -6,6 +6,7 @@ import ReviewButton from "../../components/member/ReviewButton";
 import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
 import ErrorMessage from "../../components/ErrorMessage";
+import { mergeSort } from "../../config/formula";
 import { FaPen } from "react-icons/fa";
 
 // 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
@@ -242,10 +243,17 @@ const CourseInsert = (props) => {
     }
   };
 
-  // 課程梯次
+  // 課程梯次增減
   const handleBatchChange = (batch) => {
-    // console.log(batch);
-    setCourseDetail({ ...courseDetail, course_batch: batch });
+    if (batch.length !== 0) {
+      // 先將日期照先後順序排列好
+      let sortedDate = mergeSort(batch);
+      //console.log(sortedDate);
+
+      setCourseDetail({ ...courseDetail, course_batch: sortedDate });
+    } else {
+      setCourseDetail({ ...courseDetail, course_batch: [] });
+    }
   };
 
   // 送出課程資料

@@ -59,36 +59,29 @@ function App() {
     setActiveCourseSearch(!isActiveCourseSearch);
   };
 
-  //
-  async function addCourseIntoCart(course_id) {
+  // 把課程資訊加入購物車
+  async function addCourseIntoCart(course_id, batch_date) {
     // getCurrentInfoObject;
+    let result = courseService.getCourseIntoCart(course_id, batch_date);
+
+    // 如果這次沒回傳任何course
+    if (!result.data.courseInfoInCart) {
+      console.log({
+        success: false,
+        code: "D999",
+        message: "課程未加入購物車",
+      });
+      return;
+    }
+
+    // // 設定當前課程的資料Array
+    // setCurrentCourses(result.data.course);
+
+    // // 設定當前使用者的所有收藏課程Array
+    // setCollectionIds(result.data.course.map((item) => item.id));
   }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  // 給萬年曆用的(回傳已選定日期)
-  const onChange = (e) => {
-    console.log(e);
-  };
-  // 給顯示可預訂日期的萬年曆用的
-  let availableDays = [
-    "2021-11-12",
-    "2021-11-13",
-    "2021-11-15",
-    "2021-11-16",
-    "2021-11-20",
-    "2021-11-23",
-    "2021-11-24",
-    "2021-11-25",
-    "2021-11-26",
-    "2021-11-27",
-    "2021-11-29",
-    "2021-12-01",
-    "2021-12-02",
-    "2021-12-03",
-    "2021-12-04",
-    "2021-12-05",
-  ];
 
   //搜尋列推薦關鍵字
   const SearchKeywordTagList = [
@@ -105,16 +98,6 @@ function App() {
     "築地高級創意壽司",
   ];
 
-  //課程分類左
-  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
-  //課程分類右
-  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
-
-  //體驗分享左
-  const ExperienceShareListLeft = ["故事牆"];
-  //體驗分享右
-  const ExperienceShareListRight = ["討論區"];
-
   return (
     <Router>
       <Navbar2
@@ -124,10 +107,6 @@ function App() {
         SearchCourseList={SearchCourseList}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
-        CourseCategoryListLeft={CourseCategoryListLeft}
-        CourseCategoryListRight={CourseCategoryListRight}
-        ExperienceShareListLeft={ExperienceShareListLeft}
-        ExperienceShareListRight={ExperienceShareListRight}
         checkoutList={checkoutList}
         setCheckoutList={setCheckoutList}
         addCourseIntoCart={addCourseIntoCart}
@@ -135,9 +114,8 @@ function App() {
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
       )}
-      <Switch>
-      {/* 影響路由，暫時注解 */}
-        {/* <div className="footerPadding"> */} 
+      <div className="footerPadding">
+        <Switch>
           <Route path="/" exact>
             <HomePage />
           </Route>
@@ -163,7 +141,7 @@ function App() {
             <Contactus />
           </Route>
           <Route path="/courses/:course_id" exact>
-            <CourseDetail />
+            <CourseDetail addCourseIntoCart={addCourseIntoCart} />
           </Route>
           <Route path="/ShoppingList" exact>
             <ShoppingList currentUser={currentUser} />
@@ -174,10 +152,9 @@ function App() {
           <Route path="/chef" exact>
             <Chef />
           </Route>
-        {/* </div> */}
-      </Switch>
-      {/* 像是Ian不希望會員有Footer，折衷方法是塞到需要加Footer的頁面 12/2亭 */}
-      {/* <Footer /> */}
+        </Switch>
+      </div>
+      <Footer />
     </Router>
   );
 }

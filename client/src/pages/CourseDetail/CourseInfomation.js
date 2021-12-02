@@ -28,7 +28,7 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location } = props;
+  const { location, addCourseIntoCart } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -326,6 +326,8 @@ function CourseInfomation(props) {
                       onClick={() => {
                         if (batch === "尚未選擇") {
                           alert("請先選擇梯次日期後再點擊");
+                        } else {
+                          addCourseIntoCart(id_number, batch);
                         }
                       }}
                     >
@@ -336,6 +338,8 @@ function CourseInfomation(props) {
                       onClick={() => {
                         if (batch === "尚未選擇") {
                           alert("請先選擇梯次日期後再點擊");
+                        } else {
+                          addCourseIntoCart(id_number, batch);
                         }
                       }}
                     >

@@ -321,9 +321,19 @@ $header-border: 3px solid $activeColor; // title的左border
 
 // RWD
 @media screen and (max-width: 1200px) {
+  // Navbar
   .Navbar {
     .Navbar-container {
       width: 90%;
+    }
+  }
+
+  // Navbar2
+  .Header {
+    .Navbar {
+      .Navbar-container {
+        width: 90%;
+      }
     }
   }
   .Navbar-dropdowns {
