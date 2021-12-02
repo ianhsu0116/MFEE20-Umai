@@ -152,14 +152,20 @@ const CourseCard1 = (props) => {
           value={"加入購物車"}
           className={"button-themeColor CourseCard1-buttonCon-btn"}
           onClick={() => {
-            handleAddIntoCart(courseDetail.id);
+            handleAddIntoCart({
+              course_id: courseDetail.id,
+              batch: courseDetail.closest_batchs,
+            });
           }}
         />
         <Button
           value={"立即訂購"}
           className={"button-activeColor CourseCard1-buttonCon-btn"}
           onClick={() => {
-            handlePurchase(courseDetail.id);
+            handlePurchase({
+              course_id: courseDetail.id,
+              batch: courseDetail.closest_batchs,
+            });
           }}
         />
       </div>

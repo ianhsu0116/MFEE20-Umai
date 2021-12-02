@@ -1,5 +1,3 @@
--- Adminer 4.8.1 MySQL 5.7.32 dump
-
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
@@ -19,6 +17,10 @@ CREATE TABLE `article_collection` (
   CONSTRAINT `article_collection_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `article_collection` (`id`, `member_id`, `article_id`) VALUES
+(9,	1,	2),
+(12,	1,	3),
+(13,	1,	1);
 
 DROP TABLE IF EXISTS `article_like`;
 CREATE TABLE `article_like` (
@@ -30,14 +32,21 @@ CREATE TABLE `article_like` (
   CONSTRAINT `article_like_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `article_like` (`member_id`, `article_id`) VALUES
+(1,	1),
+(1,	3),
+(6,	2),
+(1,	2);
 
 DROP TABLE IF EXISTS `cart_and_collection`;
 CREATE TABLE `cart_and_collection` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `member_id` int(10) unsigned NOT NULL,
   `course_id` int(11) NOT NULL,
   `batch_id` int(11) DEFAULT NULL,
   `inCart` int(1) NOT NULL DEFAULT '0',
   `inCollection` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `course_id` (`course_id`),
   KEY `batch_id` (`batch_id`),
@@ -46,6 +55,11 @@ CREATE TABLE `cart_and_collection` (
   CONSTRAINT `cart_and_collection_ibfk_3` FOREIGN KEY (`batch_id`) REFERENCES `course_batch` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `cart_and_collection` (`id`, `member_id`, `course_id`, `batch_id`, `inCart`, `inCollection`) VALUES
+(1,	1,	10,	NULL,	1,	1),
+(2,	1,	9,	NULL,	1,	1),
+(3,	1,	11,	NULL,	1,	1),
+(4,	1,	12,	NULL,	0,	1);
 
 DROP TABLE IF EXISTS `comment_like`;
 CREATE TABLE `comment_like` (
@@ -99,9 +113,11 @@ CREATE TABLE `course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `course` (`id`, `member_id`, `category_id`, `course_detail`, `course_image`, `course_name`, `course_price`, `course_hour`, `course_level`, `member_limit`, `company_name`, `company_address`, `created_time`, `valid`) VALUES
-(9,	1,	1,	'{\"slider_images\":[\"course-44d67cba-78ee-419a-a853-907974d112aa.jpg\",\"course-fe588e93-d4f9-42cc-ba5d-9553c8f4048b.jpg\",\"course-456b2296-e191-4fc2-a9ca-1dcfe3b6a617.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-3eb96d6b-995e-42de-b921-a3577aaa0854.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-060ff847-dae0-4afc-bd91-614f91e59ea7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-55e35397-4314-4d3d-8ac9-4c5967d556d6.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-249191f0-97ff-44c7-a365-021f42fe5f9f.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-a1800b76-e82e-44e1-9e17-cb64f42cffb2.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-8f695601-66e9-43f6-97a1-949b530b49f7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}',	'course-44d67cba-78ee-419a-a853-907974d112aa.jpg',	'美式經典牛排烹調高階課程',	5400,	8,	1,	30,	'台北超棒西餐廳',	'台北車站',	'2021-11-18 16:14:08',	1),
-(10,	1,	1,	'{\"slider_images\":[\"course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg\",\"course-feaff491-0e9c-4a28-9d0c-f5063a516f04.jpg\",\"course-a986a6d5-505e-47ed-8052-8534c3ef19a6.jpg\"],\"time_of_course\":\"範例：平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-1b93997b-9ed3-46ba-8e70-0aeb110ed38c.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-b33d2ef1-fbe5-412b-a0d2-ab0b3a268acf.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-41d395b4-6a78-4c6f-9587-00c4586182f7.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-4723c372-9c82-4aa4-8a95-2e43ad2cd248.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-f06256e5-73d3-4070-a5b5-39c9daeb008a.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-0904fa6c-6f30-4f39-8653-ad830522bf12.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}',	'course-642d4711-beff-492a-ad6b-79d3e486fdd8.jpg',	'極度美味中式饗宴，傳統粵式名菜',	2800,	8,	2,	30,	'超棒中餐廳',	'東方文華酒店',	'2021-11-19 14:05:15',	1),
-(11,	1,	5,	'{\"slider_images\":[\"course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg\",\"course-0a60dda1-b775-4c52-af86-db7e47690db9.jpg\",\"course-3b031143-0459-4556-9088-9f68512fb991.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"香港年代最久遠的港式飲茶餐廳\",\"title1_2\":\"蟬聯十五年米其林三星殊榮\",\"content1\":\"請填寫課程介紹區的詳細內容\\n廣州人飲茶的習俗由來已久，飲茶之風甚盛。在民國建立以前，廣州提供飲茶的飲食場所有茶寮、茶館、茶居和茶樓四種。\\n\\n其中，茶寮是普通勞苦大眾飲茶和休息的場所，環境設施極其簡陋，通常店面僅是一個搭建在路邊的竹木棚子，有的茶寮另有主業，兼營茶水。因當時在茶寮飲一盅茶只需一厘錢（72厘=1銀毫），因此茶寮被稱為「一厘館」。\\n\\n茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\",\"title2\":\"香港最經典的六道飲茶小點製作\",\"six_dishes\":[{\"dishes_image\":\"course-21a2caf5-047b-4520-8012-019175a34842.jpg\",\"dishes_title\":\"傳統鮑魚燒賣\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-67846653-ba8a-4e0d-a712-3a3f06433bcd.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-0df36064-adb1-430d-8af5-c9463285fbc2.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-aed8ac1f-def9-438b-b693-9906abe798de.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-8beb6bae-7d82-49f9-985c-cae3719cd5ad.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-97394130-3553-4c05-93c8-df4ddd4e187c.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"}],\"content2\":\"費用包含詳細內容\\n請條列式敘述\\n基本上就能填飽肚子\\n鮑魚燒賣\\n腐皮札春捲\\n超級好吃龍蝦\",\"content3\":\"的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"}',	'course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg',	'米其林二星經典港式傳統料理',	4500,	10,	3,	25,	'香港度小月餐館',	'香港東方文華酒店',	'2021-11-22 19:24:18',	1);
+(9,	1,	1,	'{\"slider_images\":[\"course-44d67cba-78ee-419a-a853-907974d112aa.jpg\",\"course-0a60dda1-b775-4c52-af86-db7e47690db9.jpg\",\"course-0a60dda1-b775-4c52-af86-db7e47690db9.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-3eb96d6b-995e-42de-b921-a3577aaa0854.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-060ff847-dae0-4afc-bd91-614f91e59ea7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-55e35397-4314-4d3d-8ac9-4c5967d556d6.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-249191f0-97ff-44c7-a365-021f42fe5f9f.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-a1800b76-e82e-44e1-9e17-cb64f42cffb2.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"},{\"dishes_image\":\"course-8f695601-66e9-43f6-97a1-949b530b49f7.jpg\",\"dishes_title\":\"菜色標題\",\"dishes_content\":\"菜色介紹\\n菜色介紹\\n菜色介紹\\n\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}',	'course-44d67cba-78ee-419a-a853-907974d112aa.jpg',	'美式經典牛排烹調高階課程',	5400,	8,	1,	30,	'台北超棒西餐廳',	'台北車站',	'2021-11-18 16:14:08',	1),
+(10,	1,	1,	'{\"slider_images\":[\"course-feaff491-0e9c-4a28-9d0c-f5063a516f04.jpg\",\"course-feaff491-0e9c-4a28-9d0c-f5063a516f04.jpg\",\"course-feaff491-0e9c-4a28-9d0c-f5063a516f04.jpg\"],\"time_of_course\":\"範例：平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"課程標題一\",\"title1_2\":\"課程標題ㄧ二\",\"content1\":\"介紹內容1介紹內容1\",\"title2\":\"標題2號(六道菜部分)\",\"six_dishes\":[{\"dishes_image\":\"course-1b93997b-9ed3-46ba-8e70-0aeb110ed38c.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-b33d2ef1-fbe5-412b-a0d2-ab0b3a268acf.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-41d395b4-6a78-4c6f-9587-00c4586182f7.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-4723c372-9c82-4aa4-8a95-2e43ad2cd248.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-f06256e5-73d3-4070-a5b5-39c9daeb008a.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"},{\"dishes_image\":\"course-0904fa6c-6f30-4f39-8653-ad830522bf12.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹\"}],\"content2\":\"費用包含內容\",\"content3\":\"注意事項說明\"}',	'course-3b031143-0459-4556-9088-9f68512fb991.jpg',	'極度美味中式饗宴，傳統粵式名菜',	2800,	8,	2,	30,	'超棒中餐廳',	'東方文華酒店',	'2021-11-19 14:05:15',	1),
+(11,	1,	5,	'{\"slider_images\":[\"course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg\",\"course-0a60dda1-b775-4c52-af86-db7e47690db9.jpg\",\"course-3b031143-0459-4556-9088-9f68512fb991.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"香港年代最久遠的港式飲茶餐廳\",\"title1_2\":\"蟬聯十五年米其林三星殊榮\",\"content1\":\"廣州人飲茶的習俗由來已久，飲茶之風甚盛。在民國建立以前，廣州提供飲茶的飲食場所有茶寮、茶館、茶居和茶樓四種。\\n\\n其中，茶寮是普通勞苦大眾飲茶和休息的場所，環境設施極其簡陋，通常店面僅是一個搭建在路邊的竹木棚子，有的茶寮另有主業，兼營茶水。因當時在茶寮飲一盅茶只需一厘錢（72厘=1銀毫），因此茶寮被稱為「一厘館」。\\n\\n茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\",\"title2\":\"香港最經典的六道飲茶小點製作\",\"six_dishes\":[{\"dishes_image\":\"course-21a2caf5-047b-4520-8012-019175a34842.jpg\",\"dishes_title\":\"傳統鮑魚燒賣\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-67846653-ba8a-4e0d-a712-3a3f06433bcd.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-0df36064-adb1-430d-8af5-c9463285fbc2.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-aed8ac1f-def9-438b-b693-9906abe798de.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-8beb6bae-7d82-49f9-985c-cae3719cd5ad.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"},{\"dishes_image\":\"course-97394130-3553-4c05-93c8-df4ddd4e187c.jpg\",\"dishes_title\":\"教材標題\",\"dishes_content\":\"請填寫課程教材介紹茶館是由某些經營出色的「一厘館」升級而來，這是廣州最初的帶有專業性質的茶館。這些茶館通常設立在碼頭、魚欄、果欄、肉市場等勞苦大眾集中地帶附近，專門針對勞苦大眾提供快餐式的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"}],\"content2\":\"費用包含詳細內容\\n請條列式敘述\\n基本上就能填飽肚子\\n鮑魚燒賣\\n腐皮札春捲\\n超級好吃龍蝦\",\"content3\":\"的飲食和向他們提供與同行交流溝通的場所。因到茶館飲茶的客人，只需花費二厘錢（一盅劣茶，兩件粗製點心，稱為「一盅兩件」），基本上就能填飽肚子，所以這類廣式茶館又稱為「二\"}',	'course-f22462f8-1f79-47ce-85b0-00a567d15476.jpg',	'米其林二星經典港式傳統料理',	4500,	10,	3,	25,	'香港度小月餐館',	'香港東方文華酒店',	'2021-11-22 19:24:18',	1),
+(12,	1,	2,	'{\"slider_images\":[\"course-3a76bc53-812a-44ee-9d35-c0183e6a5676.jpg\",\"course-6c80c573-fd17-41bf-b0e9-55ae4fe7fb5b.jpg\",\"course-cb4a85cf-4bdd-4d5b-aecb-6766e74bf646.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"한국에서 가장 인기 있는 편지 요리는 모두 숨겨져 있지 않습니다！\",\"title1_2\":\"讓您輕鬆學會韓國時下最流行的函式料理\",\"content1\":\"     在朝鮮半島處於1萬年前的新石器時代，就已經有原始人使用石頭做的鍋子、對綠豆等豆科植物進行烹煮的記錄，這成為了石鍋拌飯和大醬湯等韓式鍋類料理的源頭。\\n5世紀的朝鮮三國時代，因為韓半島國家篤信佛教，因此禁止肉食和殺生，卻反而催生出了豐富的素菜文化。這些韓式小菜有一個專有名詞，叫作「飯饌」。到7世紀，由於新羅統一了朝鮮半島並且接受唐朝的禮樂服飾文化，原本純粹的佛教信仰被中國的「佛道儒」三教混合信仰稀釋。\\n也因為唐朝經過絲綢之路而獲得的各種新式香辛料傳入新羅，導致朝鮮半島的素菜文化漸漸褪去。此時，韓式小菜又被加上了蒜、韭菜、生薑、大蔥、小蔥、唐辛子、辣椒等輔助型辛香料。而在20世紀開始，大韓民國為了尋求自己國家美食文化的獨特性。\",\"title2\":\"韓國時下年輕人最愛吃的六道韓式料理！\",\"six_dishes\":[{\"dishes_image\":\"course-84c91fc3-cddb-406f-be45-b172173e8b4d.jpg\",\"dishes_title\":\"慢燉人蔘雞湯\",\"dishes_content\":\"蔘雞湯（韓語：삼계탕／蔘鷄湯）朝鮮半島的傳統名菜之一，以整隻童子雞，腹中塞入糯米、佐以紅棗、薑、蒜和人蔘長時間燉煮製成。朝鮮王朝時期的雞肉類菜餚以清燉雞為主，在日本殖民統治時期，朝鮮半島的富裕階層發明了在清燉雞湯上添撒人參粉的做法。現代的參雞湯最早出現於上世紀60年代，在70年代以後逐漸家喻戶曉。\"},{\"dishes_image\":\"course-1f829d2a-c262-4101-bd7b-f2eaab2eb78f.jpg\",\"dishes_title\":\"韓式醬菜\",\"dishes_content\":\"辛奇起源於朝鮮三國時代，最初稱為「沉菜」（中古朝鮮語：침채／沈菜 Chimchae）。概因其原為一種利用當地蔬菜製作的酸菜或鹹菜，取菜沉於水中之貌而命名，而後語音訛變才成為今日之名。另外據《三國史記》記載，神文王於683年娶王妃時下令準備的聘禮中包括醬油、大醬、醬汁類等食品。即「泡菜類」，中國稱其為「葅」，在朝鮮三國時代後經過統一新羅時代、高麗時代，其製作方法不斷改變。在當時，辛奇可能是以蘿蔔為主\"},{\"dishes_image\":\"course-1116feb2-8b63-438a-a711-b3cfa5a6e492.jpg\",\"dishes_title\":\"韓國炸牛排\",\"dishes_content\":\"炸牛排選用的牛肉部位較便宜也比較少人愛吃，例如牛肩、腿肉，有時會用腹肉。也可以用碎牛肉、絞肉或臀尖肉做炸牛排。用牛絞肉做的炸牛排有時稱為「chuckwagon」。 炸牛排通常在午餐或晚餐食用，澆有奶油肉汁，配菜是馬鈴薯泥、蔬菜與比司吉。炸牛排在中西部則常見於早餐，搭配吐司和薯餅。炸牛排可以夾入漢堡麵包；也可以切丁後塞進烤馬鈴薯，搭配肉汁和起司；也可以切條裝在籃子裡薯條及肉汁一起吃。\"},{\"dishes_image\":\"course-5892c8bd-3e9d-4409-bc28-34d07a9ff40e.jpg\",\"dishes_title\":\"韓式醬油蟹\",\"dishes_content\":\"醬油蟹（韓語：게장），韓國五大名菜之一，將未經烹調的生蟹放在醬油中醃製而成，當地民眾喜愛直接將白飯加進蟹蓋內與蟹黃一起伴吃，故這道菜色又名「偷飯賊」。朝鮮傳統醫學認為螃蟹性寒，有助驅除春溫，醬油蟹於山林經濟、閨閤叢書、是議全書等李氏朝鮮時期的典籍中有所記載。追源中國蟹醬，這種吃法起源很早，在《周禮》上早有記載。 蟹醬，是一種把蟹搗爛、鹽藏酒漬而成的調味品。\"},{\"dishes_image\":\"course-cb75e705-e89b-4da3-8095-37bd092dbd40.jpeg\",\"dishes_title\":\"韓式辣炒年糕\",\"dishes_content\":\"辣炒年糕（韓語：떡볶이），又叫韓式炒年糕，是一道很受歡迎的韓國小吃，一般能在當地的路邊攤或布帳馬車處買到[1]。這道菜的雛形是燉朝鮮打糕（떡찜），是用年糕片、肉、蛋和調味料做成的一道燉菜。炒年糕從前是朝鮮宮廷料理中的一道菜[2]。這種炒年糕是由水煮條狀年糕、肉、菜及調味汁製成，上桌前會在上面加白果及核桃。最初的炒年糕（當時叫宮中炒年糕）是宮廷用作招待賓客的菜，因此是當時高檔菜的代表作。\"},{\"dishes_image\":\"course-c88107ff-de5c-4563-8696-5f55fc0ebc24.jpeg\",\"dishes_title\":\"韓式蒸蛋\",\"dishes_content\":\"蒸蛋（中國大陸、香港稱為蒸水蛋），又稱水蒸蛋、雞蛋羹 ，為韓國飪中常見的小菜。各地做法細節均有所不同，一般而言，蒸蛋應先將雞蛋打散成蛋液，加入調味料如鹽或醬油和飲用水一起攪勻蒸熟後，澆上熟油或蔥花即可。\"}],\"content2\":\"韓國料理由來\\n韓國料理基本知識\\n韓式泡菜認識\\n六道流行韓式料理\\n韓式醬菜\\n韓國炸牛排\\n慢燉人蔘雞湯\\n韓式醬油蟹\\n韓式辣炒年糕\\n韓式蒸蛋\\n韓式餐具一套(湯匙、筷子)\",\"content3\":\"由於課前需帶同學認識廚房安全知識以及，簡單的韓國料理歷史，需要報名的學員於開課時間前15分鍾來到現場。\"}',	'course-3a76bc53-812a-44ee-9d35-c0183e6a5676.jpg',	'2021時下流行韓國精緻料理',	4800,	6,	2,	20,	'楓 - 韓式料理',	'台北101',	'2021-11-25 17:58:23',	1),
+(13,	1,	2,	'{\"slider_images\":[\"course-91f7fac6-fac8-45c0-9c47-b89ef1ad16c6.png\",\"course-fa820967-b6e4-4270-bc38-56799e2d8327.jpg\",\"course-28a58cfb-c499-4675-9315-c2f09c0c91d7.jpg\"],\"time_of_course\":\"平日上午10:30 ~ 下午04:00\",\"course_ig\":\"https://www.instagram.com/\",\"course_fb\":\"https://www.facebook.com/\",\"title1_1\":\"한국에서 가장 인기 있는 편지 요리는 모두 숨겨져 있지 않습니다！\",\"title1_2\":\"讓您輕鬆學會韓國時下最流行的函式料理\",\"content1\":\"     在朝鮮半島處於1萬年前的新石器時代，就已經有原始人使用石頭做的鍋子、對綠豆等豆科植物進行烹煮的記錄，這成為了石鍋拌飯和大醬湯等韓式鍋類料理的源頭。\\n\\n5世紀的朝鮮三國時代，因為韓半島國家篤信佛教，因此禁止肉食和殺生，卻反而催生出了豐富的素菜文化。這些韓式小菜有一個專有名詞，叫作「飯饌」。到7世紀，由於新羅統一了朝鮮半島並且接受唐朝的禮樂服飾文化，原本純粹的佛教信仰被中國的「佛道儒」三教混合信仰稀釋。\\n\\n也因為唐朝經過絲綢之路而獲得的各種新式香辛料傳入新羅，導致朝鮮半島的素菜文化漸漸褪去。此時，韓式小菜又被加上了蒜、韭菜、生薑、大蔥、小蔥、唐辛子、辣椒等輔助型辛香料。\\n\\n而在20世紀開始，大韓民國為了尋求自己國家美食文化的獨特性，叫作「飯饌」。到7世紀，由於新羅統一了朝鮮半島並且接受唐朝的禮樂服飾文化，原本純粹的佛教信仰被中國的「佛道儒」。\",\"title2\":\"韓國時下年輕人最愛吃的六道韓式料理！\",\"six_dishes\":[{\"dishes_image\":\"course-04c289e2-edba-478b-a253-3b95e47b5428.jpg\",\"dishes_title\":\"慢燉人蔘雞湯\",\"dishes_content\":\"蔘雞湯（韓語：삼계탕／蔘鷄湯）朝鮮半島的傳統名菜之一，以整隻童子雞，腹中塞入糯米、佐以紅棗、薑、蒜和人蔘長時間燉煮製成。朝鮮王朝時期的雞肉類菜餚以清燉雞為主，在日本殖民統治時期，朝鮮半島的富裕階層發明了在清燉雞湯上添撒人參粉的做法。現代的參雞湯最早出現於上世紀60年代，在70年代以後逐漸家喻戶曉。\"},{\"dishes_image\":\"course-dcff338c-8a3d-4203-8353-86ec4f19078b.jpg\",\"dishes_title\":\"韓式醬菜\",\"dishes_content\":\"辛奇起源於朝鮮三國時代，最初稱為「沉菜」（中古朝鮮語：침채／沈菜 Chimchae）。概因其原為一種利用當地蔬菜製作的酸菜或鹹菜，取菜沉於水中之貌而命名，而後語音訛變才成為今日之名。另外據《三國史記》記載，神文王於683年娶王妃時下令準備的聘禮中包括醬油、大醬、醬汁類等食品。即「泡菜類」，中國稱其為「葅」，在朝鮮三國時代後經過統一新羅時代、高麗時代，其製作方法不斷改變。在當時，辛奇可能是以蘿蔔為主\"},{\"dishes_image\":\"course-28ed8680-7023-427e-a6ca-7001d5622148.jpg\",\"dishes_title\":\"韓國炸牛排\",\"dishes_content\":\"炸牛排選用的牛肉部位較便宜也比較少人愛吃，例如牛肩、腿肉，有時會用腹肉。也可以用碎牛肉、絞肉或臀尖肉做炸牛排。用牛絞肉做的炸牛排有時稱為「chuckwagon」。 炸牛排通常在午餐或晚餐食用，澆有奶油肉汁，配菜是馬鈴薯泥、蔬菜與比司吉。炸牛排在中西部則常見於早餐，搭配吐司和薯餅。炸牛排可以夾入漢堡麵包；也可以切丁後塞進烤馬鈴薯，搭配肉汁和起司；也可以切條裝在籃子裡薯條及肉汁一起吃。\"},{\"dishes_image\":\"course-c2f338b4-ef69-452b-be71-512b0b8b04e5.jpg\",\"dishes_title\":\"韓式醬油蟹\",\"dishes_content\":\"醬油蟹（韓語：게장），韓國五大名菜之一，將未經烹調的生蟹放在醬油中醃製而成，當地民眾喜愛直接將白飯加進蟹蓋內與蟹黃一起伴吃，故這道菜色又名「偷飯賊」。朝鮮傳統醫學認為螃蟹性寒，有助驅除春溫，醬油蟹於山林經濟、閨閤叢書、是議全書等李氏朝鮮時期的典籍中有所記載。追源中國蟹醬，這種吃法起源很早，在《周禮》上早有記載。 蟹醬，是一種把蟹搗爛、鹽藏酒漬而成的調味品。\"},{\"dishes_image\":\"course-98538e6d-60f8-4e2b-bb4e-5b6efa421d1d.jpg\",\"dishes_title\":\"韓式辣炒年糕\",\"dishes_content\":\"辣炒年糕（韓語：떡볶이），又叫韓式炒年糕，是一道很受歡迎的韓國小吃，一般能在當地的路邊攤或布帳馬車處買到[1]。這道菜的雛形是燉朝鮮打糕（떡찜），是用年糕片、肉、蛋和調味料做成的一道燉菜。炒年糕從前是朝鮮宮廷料理中的一道菜[2]。這種炒年糕是由水煮條狀年糕、肉、菜及調味汁製成，上桌前會在上面加白果及核桃。最初的炒年糕（當時叫宮中炒年糕）是宮廷用作招待賓客的菜，因此是當時高檔菜的代表作。\"},{\"dishes_image\":\"course-759bcc65-68e2-4177-9e50-f7df3eb3dfd6.jpg\",\"dishes_title\":\"韓式蒸蛋\",\"dishes_content\":\"蒸蛋（中國大陸、香港稱為蒸水蛋），又稱水蒸蛋、雞蛋羹 ，為韓國飪中常見的小菜。各地做法細節均有所不同，一般而言，蒸蛋應先將雞蛋打散成蛋液，加入調味料如鹽或醬油和飲用水一起攪勻蒸熟後，澆上熟油或蔥花即可。\"}],\"content2\":\"韓國料理由來\\n韓國料理基本知識\\n韓式泡菜認識\\n六道流行韓式料理\\n韓式醬菜\\n韓國炸牛排\\n慢燉人蔘雞湯\\n韓式醬油蟹\\n韓式辣炒年糕\\n韓式蒸蛋\\n韓式餐具一套(湯匙、筷子)\",\"content3\":\"由於課前需帶同學認識廚房安全知識以及，簡單的韓國料理歷史，需要報名的學員於開課時間前15分鍾來到現場。\"}',	'course-91f7fac6-fac8-45c0-9c47-b89ef1ad16c6.png',	'法式六道最經典料理',	4800,	6,	2,	20,	'海廊 - 法式料理',	'台北101',	'2021-11-27 23:57:42',	1);
 
 DROP TABLE IF EXISTS `course_batch`;
 CREATE TABLE `course_batch` (
@@ -116,6 +132,43 @@ CREATE TABLE `course_batch` (
   CONSTRAINT `course_batch_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `course_batch` (`id`, `course_id`, `batch_date`, `member_count`, `created_time`, `valid`) VALUES
+(35,	9,	'2021-11-09',	1,	'2021-11-18 16:14:08',	1),
+(36,	9,	'2021-11-10',	1,	'2021-11-18 16:14:08',	1),
+(37,	9,	'2021-11-11',	1,	'2021-11-18 16:14:08',	1),
+(38,	9,	'2021-11-15',	25,	'2021-11-18 16:14:08',	1),
+(39,	9,	'2021-11-24',	1,	'2021-11-18 16:14:08',	1),
+(41,	10,	'2021-11-25',	26,	'2021-11-19 14:05:15',	1),
+(42,	10,	'2021-12-09',	25,	'2021-11-19 14:05:15',	1),
+(43,	10,	'2021-11-27',	1,	'2021-11-19 14:05:15',	1),
+(44,	11,	'2021-11-25',	0,	'2021-11-22 19:24:18',	1),
+(45,	11,	'2021-12-09',	0,	'2021-11-22 19:24:18',	1),
+(46,	11,	'2021-12-10',	0,	'2021-11-22 19:24:18',	1),
+(47,	11,	'2021-12-02',	0,	'2021-11-22 19:24:18',	1),
+(48,	11,	'2021-12-03',	0,	'2021-11-22 19:24:18',	1),
+(49,	11,	'2021-12-04',	0,	'2021-11-22 19:24:18',	1),
+(50,	11,	'2021-12-16',	0,	'2021-11-22 19:24:18',	1),
+(51,	11,	'2021-12-17',	0,	'2021-11-22 19:24:18',	1),
+(52,	11,	'2021-12-18',	0,	'2021-11-22 19:24:18',	1),
+(53,	11,	'2021-12-30',	0,	'2021-11-22 19:24:18',	1),
+(54,	11,	'2021-12-31',	0,	'2021-11-22 19:24:18',	1),
+(55,	11,	'2021-11-27',	10,	'2021-11-22 19:30:18',	1),
+(56,	12,	'2021-12-01',	0,	'2021-11-25 17:58:23',	1),
+(57,	12,	'2021-12-03',	0,	'2021-11-25 17:58:23',	1),
+(58,	12,	'2021-12-06',	0,	'2021-11-25 17:58:23',	1),
+(59,	12,	'2021-12-08',	0,	'2021-11-25 17:58:23',	1),
+(60,	12,	'2021-12-10',	0,	'2021-11-25 17:58:23',	1),
+(61,	12,	'2021-12-17',	0,	'2021-11-25 17:58:23',	1),
+(62,	12,	'2021-12-15',	0,	'2021-11-25 17:58:23',	1),
+(63,	12,	'2021-12-13',	0,	'2021-11-25 17:58:23',	1),
+(64,	12,	'2021-12-20',	0,	'2021-11-25 17:58:23',	1),
+(65,	12,	'2021-12-22',	0,	'2021-11-25 17:58:23',	1),
+(66,	12,	'2021-12-24',	0,	'2021-11-25 17:58:23',	1),
+(67,	12,	'2021-12-31',	0,	'2021-11-25 17:58:23',	1),
+(68,	12,	'2021-12-29',	0,	'2021-11-25 17:58:23',	1),
+(69,	12,	'2021-12-27',	0,	'2021-11-25 17:58:23',	1),
+(70,	13,	'2021-11-25',	0,	'2021-11-27 23:57:42',	1),
+(71,	13,	'2021-11-26',	0,	'2021-11-27 23:57:42',	1);
 
 DROP TABLE IF EXISTS `course_category`;
 CREATE TABLE `course_category` (
@@ -150,6 +203,13 @@ CREATE TABLE `course_comment` (
   CONSTRAINT `course_comment_ibfk_2` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `course_comment` (`id`, `course_id`, `orders_id`, `score`, `comment_text`, `created_time`, `valid`) VALUES
+(10,	9,	1,	1,	'good',	'2021-11-29 11:14:08',	1),
+(11,	9,	2,	5,	'goooood',	'2021-11-29 11:14:09',	1),
+(12,	9,	3,	5,	'badddddd',	'2021-11-29 11:14:10',	1),
+(13,	9,	4,	5,	'非常棒耶！！',	'2021-11-29 11:14:11',	1),
+(18,	10,	5,	5,	'good23232322',	'2021-11-22 11:14:08',	1),
+(19,	11,	8,	5,	'超讚的啦！',	'2021-11-26 16:16:22',	1);
 
 DROP TABLE IF EXISTS `forum_article`;
 CREATE TABLE `forum_article` (
@@ -172,6 +232,10 @@ CREATE TABLE `forum_article` (
   CONSTRAINT `forum_article_ibfk_3` FOREIGN KEY (`coruse_id`) REFERENCES `course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `forum_article` (`id`, `member_id`, `category_id`, `coruse_id`, `article_title`, `article_text`, `article_link`, `image_name`, `created_time`, `valid`) VALUES
+(1,	16,	2,	12,	'測試用文章標題',	'測試用文章標題\r\n測試用文章標題\r\n\r\n測試用文章標題\r\n測試用文章標題',	'https://youtube.com',	NULL,	'2021-11-29 11:14:08',	1),
+(2,	1,	2,	13,	'測試用文章標題2',	'測試用文章標題2測試用文章標題2\r\n測試用文章標題2\r\n測試用文章標題2\r\n',	NULL,	NULL,	'2021-11-30 11:15:08',	1),
+(3,	16,	2,	12,	'測試用文章標題3',	'測試用文章標題3測試用文章標題3測試用文章標題3\r\n測試用文章標題3\r\n測試用文章標題3測試用文章標題3\r\n測試用文章標題3測試用文章標題3測試用文章標題3\r\n測試用文章標題3測試用文章標題3\r\n測試用文章標題3',	NULL,	NULL,	'2021-11-30 11:14:08',	1);
 
 DROP TABLE IF EXISTS `forum_comment`;
 CREATE TABLE `forum_comment` (
@@ -189,6 +253,8 @@ CREATE TABLE `forum_comment` (
   CONSTRAINT `forum_comment_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `forum_article` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `forum_comment` (`id`, `member_id`, `article_id`, `comment_text`, `image_name`, `created_time`, `valid`) VALUES
+(1,	1,	2,	'good',	NULL,	'2021-11-22 11:14:08',	1);
 
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
@@ -211,6 +277,11 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `member` (`id`, `email`, `password`, `googleId`, `facebookId`, `first_name`, `last_name`, `birthday`, `telephone`, `avatar`, `credit_card_number`, `credit_card_name`, `chef_introduction`, `member_category`, `created_time`, `valid`) VALUES
+(1,	'ian@fake.com',	'$2b$10$0qjtKCL5rYqN.am8Aeb86u8LH3IwJ3p9c72susd3dnoBoN6k9ay6u',	NULL,	NULL,	'Tony',	'Stark',	'1999-01-01',	'0933888333',	'avatar-4ef46efd-f467-4669-8243-4f21c9caad51.png',	'5377888899990000',	'Ian Hsu',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"LONGTAL restaurant & bar\\n行政主廚 屎坦克(Stark)\",\"chefInfo\":[\"超過20年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-11-15 11:23:28',	1),
+(6,	'test@test.com',	'$2b$10$EsxWrJzVN4IVvVpsbpr7V.fLlchLANdIYv4t5D5jNw6gmcCpfsWPG',	NULL,	NULL,	'',	'',	'1990-11-14',	'',	NULL,	NULL,	NULL,	'',	2,	'2021-11-16 18:41:44',	1),
+(16,	'ianian880116@gmail.com',	'$2b$10$7GHrCn1ofBx21IUjJVm6XupdSd6UcXEEpCF2xrGEmvl0rUTao5Fxa',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-27 00:11:47',	1),
+(17,	'ianhsu0116@gmail.com',	NULL,	NULL,	'2172886946182757',	'Ian',	'Shu',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-30 16:51:30',	1);
 
 DROP TABLE IF EXISTS `member_coupons`;
 CREATE TABLE `member_coupons` (
@@ -227,6 +298,16 @@ CREATE TABLE `member_coupons` (
   CONSTRAINT `member_coupons_ibfk_2` FOREIGN KEY (`coupons_id`) REFERENCES `coupons` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `member_coupons` (`id`, `member_id`, `coupons_id`, `expire_date`, `status`, `valid`) VALUES
+(1,	1,	4,	'2021-09-28',	1,	1),
+(2,	1,	4,	'2021-10-08',	1,	1),
+(3,	1,	3,	'2021-10-05',	2,	1),
+(4,	1,	1,	'2021-12-28',	1,	1),
+(5,	1,	2,	'2021-12-28',	1,	1),
+(6,	1,	3,	'2021-12-25',	1,	1),
+(7,	6,	4,	'2021-12-31',	1,	1),
+(12,	16,	5,	'2021-12-27',	1,	1),
+(13,	17,	5,	'2021-12-30',	1,	1);
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
@@ -256,6 +337,15 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_6` FOREIGN KEY (`batch_id`) REFERENCES `course_batch` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `orders` (`id`, `member_id`, `course_id`, `batch_id`, `orders_first_name`, `orders_last_name`, `orders_telephone`, `orders_birthdate`, `orders_email`, `payment_type`, `receipt_type`, `orders_price`, `created_time`, `valid`) VALUES
+(1,	1,	9,	35,	'ian',	'hsu',	'0988888888',	'2021-01-01',	'test@test.com',	1,	1,	5300,	'2021-11-19 11:14:08',	1),
+(2,	1,	9,	36,	'ian',	'hsu',	'0988888888',	'2021-01-01',	'test@test.com',	1,	2,	4500,	'2021-11-20 11:14:08',	1),
+(3,	1,	9,	37,	'ian',	'hsu',	'0911111111',	'2021-01-01',	'test@test.com',	1,	2,	1930,	'2021-11-21 11:14:08',	1),
+(4,	1,	9,	38,	'ian',	'lu',	'0900000888',	'2021-01-01',	'test@test.com',	1,	1,	3500,	'2021-11-23 11:14:08',	1),
+(5,	1,	10,	41,	'mike',	'kee',	'0966666666',	'2021-01-01',	'test@test.com',	1,	1,	5200,	'2021-11-22 11:14:08',	1),
+(6,	1,	10,	42,	'ian',	'hu',	'0935553421',	'2021-01-01',	'test@test.com',	1,	1,	4200,	'2021-11-25 11:14:08',	1),
+(7,	1,	10,	43,	'Mike',	'Lee',	'0988998938',	'2021-01-01',	'test@test.com',	1,	2,	1540,	'2021-11-29 11:14:08',	1),
+(8,	1,	11,	55,	'徐',	'翔硯',	'0900000000',	'2001-01-01',	'ian@test.com',	1,	2,	3580,	'2021-11-23 22:14:08',	1);
 
 DROP TABLE IF EXISTS `orders_student`;
 CREATE TABLE `orders_student` (
@@ -267,6 +357,17 @@ CREATE TABLE `orders_student` (
   CONSTRAINT `orders_student_ibfk_4` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `orders_student` (`orders_id`, `student_id`) VALUES
+(1,	2),
+(2,	2),
+(3,	2),
+(4,	2),
+(5,	2),
+(6,	2),
+(7,	2),
+(7,	8),
+(8,	9),
+(8,	10);
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
@@ -284,5 +385,15 @@ CREATE TABLE `student` (
   CONSTRAINT `student_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `student` (`id`, `member_id`, `first_name`, `last_name`, `birthday`, `email`, `telephone`, `created_time`, `valid`) VALUES
+(2,	1,	'結實!',	'慎',	'2021-11-03',	'mayamail1111@kkkk.com',	'0988330766',	'2021-11-16 22:26:32',	1),
+(3,	1,	'翔紅',	'滷肉飯',	'2021-11-01',	'xiangHuang@fake.com',	'0988888888',	'2021-11-16 22:35:11',	1),
+(8,	1,	'裝家近',	'莊',	'2003-11-11',	'yen@fake.com',	'0977777777',	'2021-11-16 22:43:55',	1),
+(9,	1,	'雷朋',	'眼鏡',	'1994-11-15',	'rayyy@gmail.com',	'0988888888',	'2021-11-16 23:45:16',	1),
+(10,	1,	'ian',	'hsu',	'1990-06-30',	'ian@fake.com',	'0988888888',	'2021-11-17 15:10:37',	1),
+(11,	1,	'翔硯',	'徐',	'2021-11-27',	'ianhsu0116@gmail.com',	'0988888888',	'2021-11-27 23:19:13',	1),
+(12,	16,	'Johnson',	'Lee',	'2002-11-12',	'johnson@fake.com',	'0988888888',	'2021-11-28 00:09:04',	0),
+(13,	1,	'翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯翔硯',	'徐',	'2021-11-29',	'ianhsu0116@gmail.com',	'0988888888',	'2021-11-29 22:37:47',	0),
+(14,	1,	'ian',	'lee',	'2021-11-29',	'ian@fake.com',	'0988888888',	'2021-11-29 22:48:54',	0);
 
--- 2021-11-23 08:36:50
+-- 2021-12-02 08:05:47

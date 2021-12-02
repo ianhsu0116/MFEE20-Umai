@@ -88,6 +88,14 @@
               margin: 0.25rem;
               position: relative;
               overflow: hidden;
+              transition: all 0.25s ease;
+              &:hover {
+                background: rgba(0, 0, 0, 0.4);
+                & svg {
+                  fill: white;
+                  transform: translate(-50%, -50%) scale(1.5);
+                }
+              }
 
               & img {
                 //width: 100%;
@@ -96,6 +104,7 @@
               }
 
               & svg {
+                transition: all 0.25s ease;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -132,6 +141,14 @@
               @include flex(row);
               justify-content: center;
               align-items: center;
+              transition: all 0.25s ease;
+              &:hover {
+                background: rgba(0, 0, 0, 0.4);
+                & svg {
+                  fill: white;
+                  transform: translate(-50%, -50%) scale(1.5);
+                }
+              }
 
               & img {
                 //width: 100%;
@@ -143,11 +160,12 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+                transition: all 0.25s ease;
               }
             }
 
             .CourseInsert-container-row-inputCon-sixDishes-right {
-              width: 65%;
+              width: 75%;
               position: relative;
               @include flex(column);
               justify-content: space-between;
