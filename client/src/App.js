@@ -4,7 +4,7 @@ import AuthService from "./services/auth.service";
 
 import NavbarOld from "./components/Navbar";
 import courseService from "./services/course.service";
-import HomePage from "./pages/HomePage/HomePage";
+import HomePage from "./pages/Homepage/HomePage";
 import Navbar2 from "./components/Navbar2";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
@@ -54,6 +54,9 @@ function App() {
   //課程搜尋列狀態
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
+  //課程搜尋列狀態
+  const [newAddCourse, setNewAddCourse] = useState();
+
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async () => {
     setActiveCourseSearch(!isActiveCourseSearch);
@@ -61,24 +64,9 @@ function App() {
 
   // 把課程資訊加入購物車
   async function addCourseIntoCart(course_id, batch_date) {
-    // getCurrentInfoObject;
-    let result = courseService.getCourseIntoCart(course_id, batch_date);
-
-    // 如果這次沒回傳任何course
-    if (!result.data.courseInfoInCart) {
-      console.log({
-        success: false,
-        code: "D999",
-        message: "課程未加入購物車",
-      });
-      return;
-    }
-
-    // // 設定當前課程的資料Array
-    // setCurrentCourses(result.data.course);
-
-    // // 設定當前使用者的所有收藏課程Array
-    // setCollectionIds(result.data.course.map((item) => item.id));
+    let result = await courseService.getCourseIntoCart(course_id, batch_date);
+    setNewAddCourse(result.data.courseInfoInCart[0]);
+    setNewAddCourse({});
   }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
@@ -109,6 +97,7 @@ function App() {
         handleToggleCourseSearch={handleToggleCourseSearch}
         checkoutList={checkoutList}
         setCheckoutList={setCheckoutList}
+        newAddCourse={newAddCourse}
         addCourseIntoCart={addCourseIntoCart}
       />
       {showLogin && (
@@ -126,35 +115,50 @@ function App() {
             <MemberCenter
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              addCourseIntoCart={addCourseIntoCart}
+              setNewAddCourse={setNewAddCourse}
             />
           </Route>
           <Route path="/Forum" exact>
             <Forum />
+            <Footer />
           </Route>
           <Route path="/courses/category" exact>
-            <Course />
+            <Course
+              addCourseIntoCart={addCourseIntoCart}
+              setNewAddCourse={setNewAddCourse}
+            />
+            <Footer />
           </Route>
           <Route path="/about" exact>
             <About />
+            <Footer />
           </Route>
           <Route path="/contactus" exact>
             <Contactus />
+            <Footer />
           </Route>
           <Route path="/courses/:course_id" exact>
-            <CourseDetail addCourseIntoCart={addCourseIntoCart} />
+            <CourseDetail
+              addCourseIntoCart={addCourseIntoCart}
+              setNewAddCourse={setNewAddCourse}
+            />
+            <Footer />
           </Route>
           <Route path="/ShoppingList" exact>
             <ShoppingList currentUser={currentUser} />
+            <Footer />
           </Route>
           <Route path="/PaymentMethod" exact>
             <PaymentMethod currentUser={currentUser} />
+            <Footer />
           </Route>
           <Route path="/chef" exact>
             <Chef />
+            <Footer />
           </Route>
         </Switch>
       </div>
-      <Footer />
     </Router>
   );
 }

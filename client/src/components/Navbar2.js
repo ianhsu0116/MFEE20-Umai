@@ -26,6 +26,8 @@ const Navbar = (props) => {
     handleToggleCourseSearch,
     checkoutList,
     setCheckoutList,
+    newAddCourse,
+    addCourseIntoCart,
   } = props;
 
   //課程分類左
@@ -58,20 +60,21 @@ const Navbar = (props) => {
   // },
   // course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id, course_batch,batch_date, course_batch.member_count FROM course, course_batch
 
-  // 錯誤訊息
-  const [errorMsg, setErrorMsg] = useState("");
   // 判斷購物車中是否只有一堂課
   const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
-
-  //當前選購課程的總數量
-  const numberOfCoursesInCart = cartCourseInfoList.length;
 
   //當前購物車總金額
   const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
 
+  //當前選購課程的總數量
+  const numberOfCoursesInCart = cartCourseInfoList.length;
+
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState("");
+
   //當購物車沒課程時，將總金額歸零
   async function handleSumPriceZeroing() {
-    if (cartCourseInfoList.length === 0) {
+    if (numberOfCoursesInCart === 0) {
       setCartCourseInfoList([]);
       setSumCartCoursePrice(0);
     }
@@ -160,13 +163,19 @@ const Navbar = (props) => {
   }
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
-  // useEffect(() => {
-  //   //當購物車沒課程時，將總金額歸零
-  //   handleSumPriceZeroing();
+  useEffect(() => {
+    setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
+    console.log(cartCourseInfoList);
+  }, [newAddCourse]);
 
-  //   //確認購物車是否只有一堂課程
-  //   ifOnlyCourseInCart();
-  // }, [cartCourseInfoList]);
+  //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
+  useEffect(() => {
+    //當購物車沒課程時，將總金額歸零
+    handleSumPriceZeroing();
+
+    //確認購物車是否只有一堂課程
+    ifOnlyCourseInCart();
+  }, []);
 
   return (
     <div className="Header">
@@ -280,6 +289,7 @@ const Navbar = (props) => {
                               setCartCourseInfoList={setCartCourseInfoList}
                               sumCartCoursePrice={sumCartCoursePrice}
                               setSumCartCoursePrice={setSumCartCoursePrice}
+                              handleSumPriceZeroing={handleSumPriceZeroing}
                             />
                           )
                         );
@@ -304,7 +314,7 @@ const Navbar = (props) => {
                       </div>
                       <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
                         {/* 結帳按鈕 */}
-                        <div className="goCheckOut">
+                        <div className="goCheckOut" onClick={handleCheckout}>
                           <h5>前往結帳</h5>
                         </div>
                       </div>
