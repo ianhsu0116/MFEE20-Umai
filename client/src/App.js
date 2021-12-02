@@ -64,7 +64,16 @@ function App() {
 
   // 把課程加入購物車資料庫
   async function addCourseIntoCart(member_id, course_id, batch_date) {
-    // let result = await courseService.getCourseIntoCart(course_id, batch_date);
+    //嘗試更新既有的購物車課程資料(inCart)，若失敗則新增資料
+    let result = await courseService.addCourseIntoCart(
+      member_id,
+      course_id,
+      batch_date
+    );
+    //若更新資料成功回傳true，失敗則return false
+    if (result) {
+    }
+
     // let courseInfoInCart = result.data.courseInfoInCart[0];
     // setNewAddCourse(courseInfoInCart);
   }
