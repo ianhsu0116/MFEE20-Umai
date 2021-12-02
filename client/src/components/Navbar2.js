@@ -160,13 +160,13 @@ const Navbar = (props) => {
   }
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
-  useEffect(() => {
-    //當購物車沒課程時，將總金額歸零
-    handleSumPriceZeroing();
+  // useEffect(() => {
+  //   //當購物車沒課程時，將總金額歸零
+  //   handleSumPriceZeroing();
 
-    //確認購物車是否只有一堂課程
-    ifOnlyCourseInCart();
-  }, [cartCourseInfoList]);
+  //   //確認購物車是否只有一堂課程
+  //   ifOnlyCourseInCart();
+  // }, [cartCourseInfoList]);
 
   return (
     <div className="Header">
