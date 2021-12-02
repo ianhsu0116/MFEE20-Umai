@@ -16,31 +16,42 @@ const CollectionCourse = (props) => {
 
   // 重整當前收藏課程
   let refreshCollection = async () => {
-    let result = await CourseService.course_cart(currentUser.id);
+    try {
+      let result = await CourseService.course_collection(currentUser.id);
 
-    // 如果這次沒回傳任何course
-    if (!result.data.course) {
-      console.log("good");
-      setCurrentCourses([]);
-      setCollectionIds([]);
-      return;
+      // 如果這次沒回傳任何course
+      if (!result.data.course) {
+        //console.log("good");
+        setCurrentCourses([]);
+        setCollectionIds([]);
+        return;
+      }
+
+      // 設定當前課程的資料Array
+      setCurrentCourses(result.data.course);
+
+      // 設定當前使用者的所有收藏課程Array
+      setCollectionIds(result.data.course.map((item) => item.id));
+    } catch (error) {
+      console.log(error.response);
+      let { code } = error.response.data;
+
+      // 跳通知
+      Swal.fire({
+        icon: "error",
+        title: getValidMessage("course", code),
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
-
-    // 設定當前課程的資料Array
-    setCurrentCourses(result.data.course);
-
-    // 設定當前使用者的所有收藏課程Array
-    setCollectionIds(result.data.course.map((item) => item.id));
   };
 
   // 拿到此會員的收藏課程
-  useEffect(() => {
+  useEffect(async () => {
     try {
       refreshCollection();
     } catch (error) {
       console.log(error);
-      // let { code } = error.response.data;
-      // setErrorMsg(getValidMessage("course", code));
     }
   }, []);
 
