@@ -3,6 +3,7 @@ function ShoppingBill(props){
     let coupon = props.coupon;
     let carddata = props.carddata;
     let OrdererData = props.OrdererData;
+    console.log(carddata);
     return(
         <>
         <div className="ShoppingBill-padding">
@@ -20,7 +21,7 @@ function ShoppingBill(props){
                 <tr className="ShoppingBill-list-item">
                     <td>
                         <h4>{coursetitle.name}</h4>
-                        <h5>報名人數剩餘 5 人</h5>
+                        <h5>報名人數剩餘 {coursetitle.memberlimit-coursetitle.membercount} 人</h5>
                     </td>
                     <td><h5>NT$ {coursetitle.value}</h5></td>
                     <td><h5>*{coursetitle.studentnumber}位</h5></td> 
@@ -42,7 +43,7 @@ function ShoppingBill(props){
                 {carddata.map((data,i)=>{
                     return(<tr className="ShoppingBill-student-info">
                             <td><h5>學員-{i+1}</h5></td>
-                            <td><h5>{data.lastName+data.firstName}</h5></td>
+                            <td><h5>{data.last_name+data.first_name}</h5></td>
                             <td><h5>{data.telephone}</h5></td>
                             <td><h5>{data.birthday}</h5></td>
                             <td><h5>{data.email}</h5></td>
@@ -62,7 +63,7 @@ function ShoppingBill(props){
                 </tr>
                 <tr className="ShoppingBill-orderer-info">
                     <td><h5>課程訂購人</h5></td>
-                    <td><h5>{OrdererData.lastName+OrdererData.firstName}</h5></td>
+                    <td><h5>{OrdererData.last_name+OrdererData.first_name}</h5></td>
                     <td><h5>{OrdererData.telephone}</h5></td>
                     <td><h5>{OrdererData.birthday}</h5></td>
                     <td><h5>{OrdererData.email}</h5></td>
