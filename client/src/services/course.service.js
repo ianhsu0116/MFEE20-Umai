@@ -6,12 +6,23 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-  // 根據course_id拿到購物車所需的課程資料(cart)
-  getCourseIntoCart(course_id, batch_date) {
-    return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_date}`, {
-      withCredentials: true,
-    });
+  // 根據course_id把課程加入購物車資料庫(cart)
+  addCourseIntoCart(member_id, course_id, batch_date) {
+    return axios.post(
+      COURSE_API_URL + `/cart/${member_id}`,
+      { course_id, batch_date },
+      {
+        withCredentials: true,
+      }
+    );
   }
+
+  // // 根據course_id拿到購物車所需的課程資料(cart)
+  // getCourseIntoCart(course_id, batch_date) {
+  //   return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_date}`, {
+  //     withCredentials: true,
+  //   });
+  // }
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {

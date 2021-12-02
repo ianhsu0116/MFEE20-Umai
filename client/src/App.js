@@ -54,19 +54,19 @@ function App() {
   //課程搜尋列狀態
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
-  //課程搜尋列狀態
-  const [newAddCourse, setNewAddCourse] = useState();
+  // //課程搜尋列狀態
+  // const [newAddCourse, setNewAddCourse] = useState({});
 
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async () => {
     setActiveCourseSearch(!isActiveCourseSearch);
   };
 
-  // 把課程資訊加入購物車
-  async function addCourseIntoCart(course_id, batch_date) {
-    let result = await courseService.getCourseIntoCart(course_id, batch_date);
-    setNewAddCourse(result.data.courseInfoInCart[0]);
-    setNewAddCourse({});
+  // 把課程加入購物車資料庫
+  async function addCourseIntoCart(member_id, course_id, batch_date) {
+    // let result = await courseService.getCourseIntoCart(course_id, batch_date);
+    // let courseInfoInCart = result.data.courseInfoInCart[0];
+    // setNewAddCourse(courseInfoInCart);
   }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
@@ -97,7 +97,7 @@ function App() {
         handleToggleCourseSearch={handleToggleCourseSearch}
         checkoutList={checkoutList}
         setCheckoutList={setCheckoutList}
-        newAddCourse={newAddCourse}
+        // newAddCourse={newAddCourse}
         addCourseIntoCart={addCourseIntoCart}
       />
       {showLogin && (
@@ -116,7 +116,7 @@ function App() {
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               addCourseIntoCart={addCourseIntoCart}
-              setNewAddCourse={setNewAddCourse}
+              // setNewAddCourse={setNewAddCourse}
             />
           </Route>
           <Route path="/Forum" exact>
@@ -125,8 +125,9 @@ function App() {
           </Route>
           <Route path="/courses/category" exact>
             <Course
+              currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
-              setNewAddCourse={setNewAddCourse}
+              // setNewAddCourse={setNewAddCourse}
             />
             <Footer />
           </Route>
@@ -140,8 +141,9 @@ function App() {
           </Route>
           <Route path="/courses/:course_id" exact>
             <CourseDetail
+              currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
-              setNewAddCourse={setNewAddCourse}
+              // setNewAddCourse={setNewAddCourse}
             />
             <Footer />
           </Route>

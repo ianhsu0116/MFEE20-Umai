@@ -165,7 +165,7 @@ const Navbar = (props) => {
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
     setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
-    console.log(cartCourseInfoList);
+    // console.log(cartCourseInfoList);
   }, [newAddCourse]);
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
@@ -278,7 +278,7 @@ const Navbar = (props) => {
                 <div className="Navbar-container-item-Cart-dropdown">
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
+                    {/* {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -293,7 +293,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })}
+                      })} */}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
@@ -345,7 +345,7 @@ const Navbar = (props) => {
                 <div className="Navbar-container-item-Cart-dropdown">
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
+                    {/* {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -360,7 +360,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })}
+                      })} */}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
