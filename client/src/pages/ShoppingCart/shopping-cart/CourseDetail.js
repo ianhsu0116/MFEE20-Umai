@@ -8,8 +8,9 @@ import datacheck from "./validation";
 function CourseDetail(props){
     //優惠卷額度
     const [discount,setdiscount]=useState(100);
-    //存取選到會券
+    //存取選到的優惠券
     const [selectedIndex,setselectedIndex]=useState(0);
+
     const [link,setlink]=useState("/PaymentMethod")
     const [dataerror,setdataerror]=useState(false)
 
@@ -21,8 +22,7 @@ function CourseDetail(props){
     }
     let carddata = props.carddata;
     let OrderData = props.OrderData;
-
-    //自動抓每個物件內的 name，再比對物件內的值是否為空
+    //自動抓每個物件內的 name，再比對物件內的值
     function checkdata(){
         // carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((name)=>{if(carddata[0][name]===""){dataerror=true}});
         // Object.keys(OrderData).map((name)=>{if(OrderData[name]===""){dataerror=true}})
@@ -37,6 +37,7 @@ function CourseDetail(props){
         }
 
         for(let i=0;i<carddata.length;i++){
+            console.log(carddata[i]);
             if(datacheck.studentValidation(carddata[i]).error !==undefined){
                 console.log(datacheck.studentValidation(carddata[i]).error);
                 setlink("/ShoppingCart")

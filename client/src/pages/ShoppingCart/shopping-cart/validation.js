@@ -5,8 +5,8 @@ class datacheck{
  ordererValidation(data){
   const schema = Joi.object({
     id: Joi.number(),
-    firstName: Joi.string().min(1).max(15).required(),
-    lastName: Joi.string().min(1).max(15).required(),
+    first_name: Joi.string().min(1).max(15).required(),
+    last_name: Joi.string().min(1).max(15).required(),
     telephone: Joi.string()
       .length(10)
       .pattern(new RegExp("^[0, 9]{2}[0-9]{8}$"))
@@ -25,9 +25,10 @@ class datacheck{
 // student 格式
 studentValidation(data){
   const schema = Joi.object({
+    member_id: Joi.number(),
     id: Joi.number(),
-    firstName: Joi.string().min(1).max(15).required(),
-    lastName: Joi.string().min(1).max(15).required(),
+    first_name: Joi.string().min(1).max(15).required(),
+    last_name: Joi.string().min(1).max(15).required(),
     telephone: Joi.string()
       .length(10)
       .pattern(new RegExp("^[0, 9]{2}[0-9]{8}$"))
@@ -40,6 +41,8 @@ studentValidation(data){
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
     addIntoStudent: Joi.boolean().required(),
     autoUpdateMember: Joi.boolean().required(),
+    created_time: Joi.date(),
+    valid: Joi.number()
   });
 
   return schema.validate(data);

@@ -18,7 +18,7 @@ function shopping_cart(props) {
       });
       setCoursetitle({
         course_id:"9",
-        batch_id:"1",
+        batch_id:35,
         name:result.data.course[0].course_name,
         value:result.data.course[0].course_price,
         studentnumber:1,
@@ -48,8 +48,8 @@ function shopping_cart(props) {
 
   //預設卡片資料格式
   let defaultcarddata={
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     telephone: "",
     birthday: "",
     email: "", 
