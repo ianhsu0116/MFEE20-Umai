@@ -28,6 +28,17 @@ const Navbar = (props) => {
     setCheckoutList,
   } = props;
 
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY >= 200) {
+        setActive(true);
+      } else {
+        setActive("");
+      }
+    });
+  }, []);
+
   //課程分類左
   const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
   //課程分類右
@@ -170,7 +181,7 @@ const Navbar = (props) => {
 
   return (
     <div className="Header">
-      <div className="Navbar">
+      <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
         <div className="Navbar-container">
           <div className="Navbar-container-item ">
             {/* Logo */}
@@ -332,7 +343,10 @@ const Navbar = (props) => {
                   登入
                 </button>
                 {/* 購物車框框 */}
-                <div className="Navbar-container-item-Cart-dropdown">
+                <div
+                  id="Navbar-container-item-Cart-dropdown"
+                  className="Navbar-container-item-Cart-dropdown"
+                >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
                     {cartCourseInfoList.length !== 0 &&
