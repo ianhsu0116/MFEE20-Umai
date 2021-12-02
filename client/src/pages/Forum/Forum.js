@@ -36,10 +36,9 @@ const array = [
 ];
 console.log("test");
 const Forum = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  // useState(初始值)
+  // show代表狀態，是唯獨。必須透過setshow去改變
+  // article是唯獨
   const [article, setArticle] = useState({
     image_name: "",
     category_id: "",
@@ -49,22 +48,36 @@ const Forum = () => {
     article_text: "",
   });
 
+
+// 把表單的VALuE變成狀態，讓REACT控管。狀態是不能修改，因此需透過新的值覆蓋初始值。
   function handleChange(e) {
+    // 展開運算子 把原本ARTICLE的東西複製出來到newArticle。
     let newArticle = { ...article };
+    // name必須得初始狀態的值對應到。
+    // e是事件物件，e.target.name是表單裡面的input、select 或textarea標籤的NAME。
+    // e.target.name 可能可以寫成newarticle.e.target.name
+    // 讓KEY有新的value
     newArticle[e.target.name] = e.target.value;
+    //newArtcle等於setarticle，setarticle去改變article
     setArticle(newArticle);
+
+    // let.... set的簡化版。
     // setArticle({ ...Article, [e.target.name]: e.target.value });
+
     console.log(e.target.value);
   }
 
   function handleUpload(e) {
     let newArticle = { ...article };
+    //預設值是一個陣列，只上傳一個檔案。
     newArticle.image = e.target.files[0];
     setArticle(newArticle);
     console.log(newArticle);
     console.log(e.target.files[0]);
   }
 
+
+  // 處理非同步，await本身必須是promise。通常是在於說依序執行。因為非同步無法控制什麼時候執行完。
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -78,6 +91,9 @@ const Forum = () => {
       formData.append("article_link", article.article_link);
       formData.append("article_text", article.article_text);
       // console.log("formData", formData.getAll());
+
+      // 將文章送出去的是 axios。 因為res直接等於
+      // await在等成功的結果。失敗則執行 catch。
       let res = await axios({
         method: "post",
         url: "http://localhost:8080/api/forum/insertArticle",

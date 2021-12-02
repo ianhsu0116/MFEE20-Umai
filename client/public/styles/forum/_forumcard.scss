@@ -1,3 +1,4 @@
+// forum 控制 forumheader forumcard
 .forum {
   display: flex;
   align-items: center;
@@ -10,6 +11,7 @@
     margin: 0 0;
     min-width: 95%;
     position: relative;
+    // 到submit以前都是控制header
     .Forum-main-h3 {
       margin: 10px;
     }
@@ -22,6 +24,7 @@
       right: 30px;
       bottom: 18px;
     }
+    // 
     .Forum-main-out {
       display: flex;
       padding: 10px;

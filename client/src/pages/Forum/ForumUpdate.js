@@ -1,11 +1,27 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { API_URL } from "../../config/config";
+import { useLocation } from "react-router-dom";
 
 const ForumUpdate = () => {
   const [show, setShow] = useState(false);
+  const [articleDetail, setArticleDetail] = useState({});
+  const [forumcard, setForumcard] = useState([""]);
+
+  // 接住卡片的資料
+  // const location = useLocation();
+  // let data = JSON.parse(location.state.data);
+  // console.log(data);
+
+  // let image = data.image;
+  // let category_id = category_id;
+  // let course_id = data.course_id;
+  // let article_title = article_title;
+  // let article_link = article_link;
+  // let article_text = article_text;
 
   function handleUpload(e) {
     let newArticle = { ...article };
@@ -80,11 +96,22 @@ const ForumUpdate = () => {
     });
   };
 
+  useEffect(async () => {
+    try {
+      let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
+      console.log(res.data.forumdata);
+      setForumcard(res.data.forumdata);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, []);
+
   return (
     <>
       <div className="space"></div>
       <div className="publish">
-        <form action="post" onSubmit={handleSubmit} className="form">
+        <form action="post" className="form">
+          {/* onSubmit={handleSubmit}  */}
           <h2>我要投稿</h2>
           <label HtmlFor="upload" className="Forum-publish-label-illustrator">
             上傳圖片
@@ -144,7 +171,7 @@ const ForumUpdate = () => {
             className="Forum-publish-form-big"
             type="text"
             name="article_title"
-            value={article.article_title}
+            value={articleDetail && articleDetail.article_title}
             onChange={handleChange}
           />
           <label htmlFor="article_title" className="Forum-publish-label-small">

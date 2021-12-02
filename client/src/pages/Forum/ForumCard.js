@@ -12,16 +12,25 @@ import { BsFillTriangleFill } from "react-icons/bs";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import { API_URL, PUBLIC_URL } from "../../config/config";
+import { Link } from "react-router-dom";
 
 const ForumCard = () => {
+  // setShow是一個函式，改變SHOW的狀態
+  // useState(初始值)
+  // show代表狀態，是唯獨。必須透過setshow去改變
+  // 解構賦值
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [forumcard, setForumcard] = useState([""]);
+  // 通常會設定初始狀態是某一個型態，因為在底下可能會用到這樣的值。
+  const [forumcard, setForumcard] = useState([]);
   const [articleDetail, setArticleDetail] = useState({});
 
+  // USEEFFECT模擬類別型元件的生命週期
+  // 若把UseEffect設定為UseEffect(),[]的話，在畫面渲染完成以後執行()裡面的內容。
   useEffect(async () => {
     try {
+      // 前端請後端抓資料給前端。至後端抓資料，並回傳response
       let res = await axios.get(`${API_URL}/forum`, { withCredentials: true });
       console.log(res.data.forumdata);
       setForumcard(res.data.forumdata);
@@ -30,19 +39,50 @@ const ForumCard = () => {
     }
   }, []);
 
+  // useEffect(async () => {
+  //   try {
+  //     let image = await axios.get(API_URL + "/forum/forumupdate", {
+  //       withCredentials: true,
+  //     });
+  //     let category_id = category_id;
+  //     let course_id = data.course_id;
+  //     let article_title = article_title;
+  //     let article_link = article_link;
+  //     let article_text = article_text;
+  //     let data = JSON.stringify({
+  //       image: image,
+  //       category_id: category_id,
+  //       course_id: data.course_id,
+  //       article_title: article_title,
+  //       article_link: article_link,
+  //       article_text: article_text,
+  //     });
+  //     console.log(image);
+  //   } catch (error) {
+  //     console.log(error.response);
+  //   }
+  // }, []);
+
   return (
     <>
+      {/* &&前面通常是判斷式，當判斷式式true的時候會執行&&以後的工作。內容若有東西的話就會是true */}
+
       {forumcard &&
         forumcard.map((forumdata) => (
           <div
             className="Forum-main-out"
+            // 自訂意屬性
             data-forumId={forumdata.id}
             onClick={async (e) => {
               console.log(forumdata);
               console.log(e.currentTarget.dataset.forumid);
+              // 去後端要資料
+              // ajax
+              // forumid儲存在dataset裡面。
               let forumEach = await axios.get(
                 `${API_URL}/forum/${e.currentTarget.dataset.forumid}`
               );
+              // 整筆資料的儲存
               setArticleDetail(forumEach.data.forumdatadetail);
             }}
           >
@@ -52,14 +92,6 @@ const ForumCard = () => {
               src={`${PUBLIC_URL}/upload-images/${
                 articleDetail && articleDetail.image_name
               }`}
-              // onClick={async (e) => {
-              //   console.log(e.target.dataset.forumid);
-              //   let forumEach = await axios.get(
-              //     `${API_URL}/forum/${e.target.dataset.forumid}`
-              //   );
-              //   setArticleDetail(forumEach.data.forumdatadetail);
-              // }}
-              // src={require(`./../../components/images/${image}`).default}
               alt="drink"
             ></img>
             <div className="Forum-main-middle">
@@ -79,6 +111,9 @@ const ForumCard = () => {
                     </p>
                     <p>
                       <a href="#">刪除</a>
+                    </p>
+                    <p>
+                      <a href="#">修改</a>
                     </p>
                   </div>
                 </div>
@@ -155,6 +190,16 @@ const ForumCard = () => {
                     </p>
                     <p>
                       <a href="#">刪除</a>
+                    </p>
+                    <p>
+                      <Link
+                        to={{
+                          pathname: "/forumupdate",
+                          state: { data: "data" },
+                        }}
+                      >
+                        <a>修改</a>
+                      </Link>
                     </p>
                   </div>
                 </div>
