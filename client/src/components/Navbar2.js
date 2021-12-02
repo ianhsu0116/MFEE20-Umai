@@ -24,30 +24,36 @@ const Navbar = (props) => {
     SearchCourseList,
     isActiveCourseSearch,
     handleToggleCourseSearch,
-    CourseCategoryListLeft,
-    CourseCategoryListRight,
-    ExperienceShareListLeft,
-    ExperienceShareListRight,
     checkoutList,
     setCheckoutList,
   } = props;
 
+  //課程分類左
+  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
+  //課程分類右
+  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
+
+  //體驗分享左
+  const ExperienceShareListLeft = ["故事牆"];
+  //體驗分享右
+  const ExperienceShareListRight = ["討論區"];
+
   //儲存購物車的課程資訊
-  const [cartCourseInfoList, setCartCourseInfoList] = useState([
-    {
-      id: "",
-      member_id: "",
-      category_id: "",
-      batch_id: "", //(course_batch table)(alia)
-      course_image: "",
-      course_name: "",
-      course_price: "",
-      member_limit: "",
-      batch_date: "", //(course_batch table)
-      member_count: "", //(course_batch table)
-      cartCourseCount: 1, //(notInDB)
-    },
-  ]);
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+
+  // {
+  //   id: "",
+  //   member_id: "",
+  //   category_id: "",
+  //   batch_id: "", //(course_batch table)(alia)
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // },
 
   // [
   //   {
