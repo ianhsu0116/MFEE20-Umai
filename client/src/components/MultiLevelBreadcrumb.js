@@ -63,21 +63,36 @@ function MultiLevelBreadcrumb(props) {
     // textArray.replace("?","")
     // '/product/baby/birth' -> ['','product','baby', 'birth']
     const pathArray = pathnameList[index].split("/");
-
- 
-    // 可讀性偏差，但時間因素先這樣撰寫　當location.search不是空值時(Ex category?1)，判斷是不是courses，不是的話加了問號會導到首頁，是的話當?小於0或大於7會導向7(全部分類)以及預設導向7
     if(location.search != ""){
-      // 不等於courses (Ex about forum...)
-      if(pathArray[1] != "courses"){
-        alert("資料錯誤，將導向首頁")
-        window.location.href='http://localhost:3000/';
-      }   else if(pathArray[1] == "courses" && (category_number < 1|| category_number > 7)){
-        alert("錯誤的分類，將導向全部分類")
-        window.location.href='http://localhost:3000/courses/category?7';
-      }
-    } else if(pathArray[1] == "courses"){
-      window.location.href='http://localhost:3000/courses/category?7';
+    if(category_number == "Japan" || category_number == 1){
+      category_number = 1
+    } else if(category_number == "Korea" || category_number == 2){
+      category_number = 2
+    } else if(category_number == "France" || category_number == 3){
+      category_number = 3
+    } else if(category_number == "Italy" || category_number == 4){
+      category_number = 4
+    } else if(category_number == "Chinese" || category_number == 5){
+      category_number = 5
+    } else if(category_number == "Mediation" || category_number == 6){
+      category_number = 6
+    } else if(category_number == "All" || category_number == 7 || category_number == "all"){
+      category_number = 7
+    } else category_number = 0
+     if(pathArray[1] != "courses"){
+      alert("資料錯誤，將導向首頁")
+      window.location.href='http://localhost:3000/';
+    }   else if(pathArray[1] == "courses" && (category_number < 1|| category_number > 7)){
+      alert("錯誤的分類，將導向全部分類")
+      window.location.href='http://localhost:3000/courses/category?All';
     }
+  }else if(pathArray[1] == "courses"){
+    window.location.href='http://localhost:3000/courses/category?All';
+  }
+
+    // 可讀性偏差，但時間因素先這樣撰寫　當location.search不是空值時(Ex category?1)，判斷是不是courses，不是的話加了問號會導到首頁，是的話當?小於0或大於7會導向7(全部分類)以及預設導向7
+
+  
 
 
 
