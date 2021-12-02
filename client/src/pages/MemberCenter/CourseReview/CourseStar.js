@@ -1,7 +1,7 @@
 import React from "react";
-import Starbox from "../../components/images/starbox.png";
-import Fullcolor from "../../components/images/fullcolor.png";
-import Whitestar from "../../components/images/whitestar.png";
+import Starbox from "../../../components/images/starbox.png";
+import Fullcolor from "../../../components/images/fullcolor.png";
+import Whitestar from "../../../components/images/whitestar.png";
 
 function CourseStar(props) {
   let { percent, Score } = props;

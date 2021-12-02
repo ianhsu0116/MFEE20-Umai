@@ -16,17 +16,12 @@ const CollectionArticle = (props) => {
 
   // 拿取所有收藏文章資料ㄉfunction
   async function getArticleData() {
-    let result = await ForumService.collection(currentUser.id);
-    // console.log(result.data.article);
-
-    // 將資料裝入
-    setArticleData(result.data.article);
-  }
-
-  // 拿到收藏的文章
-  useEffect(async () => {
     try {
-      getArticleData();
+      let result = await ForumService.collection(currentUser.id);
+      // console.log(result.data.article);
+
+      // 將資料裝入
+      setArticleData(result.data.article);
     } catch (error) {
       //console.log(error.response);
       let { code } = error.response.data;
@@ -38,6 +33,15 @@ const CollectionArticle = (props) => {
         showConfirmButton: false,
         timer: 1500,
       });
+    }
+  }
+
+  // 拿到收藏的文章
+  useEffect(async () => {
+    try {
+      getArticleData();
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
@@ -86,8 +90,8 @@ const CollectionArticle = (props) => {
         </header>
 
         <div className="CollectionArticle-container-cards">
-          {articleData.map((article) => (
-            <div className="ArticleCard">
+          {articleData.map((article, index) => (
+            <div key={index} className="ArticleCard">
               <div className="ArticleCard-left">
                 <div className="ArticleCard-left-imgCon">
                   <img

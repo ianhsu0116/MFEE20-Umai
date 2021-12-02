@@ -1,11 +1,15 @@
 import React from "react";
-import CircleOrange from "../../components/images/circle_orange.svg";
+import CircleOrange from "../../../components/images/circle_orange.svg";
 
 function CourseHeaderPicture(props) {
   let { image1, image2, image3 } = props;
   return (
     <>
-      <img className="orangeEx CourseDecorate_RWDEx" src={CircleOrange} alt=""></img>
+      <img
+        className="orangeEx CourseDecorate_RWDEx"
+        src={CircleOrange}
+        alt=""
+      ></img>
       <div className="Coursedetail">
         <div
           id="carouselExampleIndicators"
