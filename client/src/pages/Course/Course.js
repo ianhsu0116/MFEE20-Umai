@@ -23,7 +23,7 @@ function Course (props){
 
   const [categoryname, setCategoryname] = useState('')
 
-  const [category , setCategory] = useState([{
+  let [category , setCategory] = useState([{
     id: 12,
     member_id: 1,
     category_id: 2,
@@ -106,6 +106,55 @@ function Course (props){
   //     });
   //   }
   // };
+
+  
+  useEffect(()=> {
+    if(selectedOptionLevel == "初級"){
+      test()
+      // setCategory(
+      // category = category.sort(function (a, b) {
+      // return a.course_level < b.course_level ? 1 : -1;
+      //  }));
+  }},[selectedOptionLevel]);
+
+  function test(){
+    setCategory(
+      category = category.sort(function (a, b) {
+      return a.course_level < b.course_level ? 1 : -1;
+       }));
+  }
+
+  useEffect(()=> {
+    if(selectedOptionLevel == "中級"){
+      setCategory(
+      category = category.sort(function (a, b) {
+      return a.course_level > b.course_level ? 1 : -1;
+       }));
+  }},[selectedOptionLevel]);
+
+  useEffect(async () => {
+    if(selectedOptionLevel != ""){
+    try {
+      setCategory(
+      category = category.sort(function (a, b) {
+      return a.closest_batchs.batch_date < b.closest_batchs.batch_date ? 1 : -1;
+       }));
+    } catch (error) {
+      console.log(error);
+    }
+  }},[selectedOptionDate]);
+
+  useEffect(async () => {
+    if(selectedOptionLevel != ""){
+    try {
+      setCategory(
+      category = category.sort(function (a, b) {
+      return a.score_sum > b.score_sum  ? 1 : -1;
+       }));
+    } catch (error) {
+      console.log(error);
+    }
+  }},[selectedOptionStart]);
 
   return (
     <>
