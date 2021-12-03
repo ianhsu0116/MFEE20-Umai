@@ -9,6 +9,8 @@ import StarGroup from "./CourseStar";
 import CourseCost from "./CourseCost";
 import CourseRecommend from "./CourseRecommend";
 
+import CourseCommit from "./CourseCommit";
+
 import CalendarAvailable from "../../components/CalendarAvailable";
 import CircleBlue from "../../components/images/circle_blue.svg";
 import CircleOrange from "../../components/images/circle_orange.svg";
@@ -23,6 +25,9 @@ import getValidMessage from "../../validMessage/validMessage";
 import Swal from "sweetalert2";
 
 import Join from "../../components/images/JoinPicture.jpg";
+
+import { AiOutlineMessage, AiOutlineHeart } from "react-icons/ai";
+import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
@@ -120,16 +125,20 @@ function CourseInfomation(props) {
         result.data.course[0].chef_introduction
       );
       result.data.course[0].course_detail = JSON.parse(
-        result.data.course[0].course_detail
+      result.data.course[0].course_detail
       );
       console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
-      setCourse_batchJSON(result.data.course_batch);
-      setCourse_Score(result.data.course_comment);
-      setCourse_Score_member(result.data.course_comment.length);
-      return;
+      setCourse_batchJSON(result.data.course_batch)
+      setCourse_Score(result.data.course_comment)
+      setCourse_Score_member(result.data.course_comment.length)
+      console.log(result.data)
+      return
     } catch (error) {
       console.log(error);
+      // alert("似乎沒有這堂課的資料哦!\n即將導回首頁")
+      alert(error)
+      // window.location.href='http://localhost:3000/';
     }
   }, []);
 
@@ -194,17 +203,7 @@ function CourseInfomation(props) {
     newCourseJSON[0].company_address +
     "&z=16&output=embed&t=";
 
-  // const [ ht , setHt]=useState(100)
-  // let documentHeight = document.body.scrollHeight;
-  // let windowHeight = window.innerHeight;
-  // window.addEventListener("scroll", function(){
-  //  let scorllPercent = this.scrollY / (documentHeight - windowHeight)
-  //  console.log(scorllPercent);
-  //  if(scorllPercent >= 0.27 && ht <= 100){
-  //    console.log("到一半了")
-  //    setHt(200);
-  //  }
-  // });
+    const [articleData, setArticleData] = useState([{member_id:1},{article_id:1}]);
 
   const cart_deliver = () => {
     Swal.fire({
@@ -374,7 +373,9 @@ function CourseInfomation(props) {
                       現在報名
                     </li>
                     <li>|</li>
-                    <li onClick={() => {}}>評論區</li>
+                    <li onClick={() => {
+                          window.location.href = "#discuss";
+                    }}>評論區</li>
                   </ul>
                 </div>
               </div>
@@ -707,6 +708,9 @@ function CourseInfomation(props) {
               </span>
               <img src={Join} alt=""></img>
             </div>
+            <CourseCommit 
+              course_comment={course_Score}
+            />
           </div>
         </div>
       </div>

@@ -8,20 +8,22 @@ export const devUrl = "http://localhost:3000";
 export const prodUrl = "http://www.abc.com";
 
 export const pathnameList = [
-  "/courses",
-  "/about",
-  "/masonry",
-  "/chef",
-  "/contactus",
-];
+  '/courses',
+  '/about',
+  '/masonry',
+  '/chef',
+  '/contactus',
+  '/forum'
+]
 
 export const pathnameTextList = [
-  "/課程探索",
-  "/關於我們",
-  "/課程體驗",
-  "/主廚殿堂",
-  "/聯絡我們",
-];
+  '/課程探索',
+  '/關於我們',
+  '/課程體驗',
+  '/主廚殿堂',
+  '/聯絡我們',
+  '/討論區'
+]
 
 ReactDOM.render(
   <React.StrictMode>

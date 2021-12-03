@@ -31,27 +31,45 @@ const CourseCard1 = (props) => {
     className,
   } = props;
 
-  // 當前課程人數限制
-  const [memberLimit, setMemberLimit] = useState("0");
-  // 當前最近梯次的報名人數
-  const [member, setMember] = useState("0");
+
   // 當前課程是否被當前登入的使用者加入收藏
   const [isCollection, setIsCollection] = useState("");
   // 評分趴數
   const [scorePercent, setScorePercent] = useState(20);
   // 報名趴數
-  let assignPersent = (member / memberLimit) * 100;
+  const [assignPersent, setAssignPersent] = useState(0);
 
-  // 初次render做的事情
+
+
+   // 初次render做的事情
   useEffect(() => {
-    // 將member及memberLimit裝入
-    setMemberLimit(courseDetail.member_limit);
-    setMember(
-      courseDetail.closest_batchs && courseDetail.closest_batchs.member_count
-    );
+    if(courseDetail) {
+    
+        // 計算評分平均值
+        setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
+        
+        // 計算報名趴數
+          let member = courseDetail.closest_batchs ? courseDetail.closest_batchs.member_count : 0;
+        setAssignPersent((member / courseDetail.member_limit) * 100)
+    
+    }
+    
+        // 此課程是否被當前使用者收藏
+        if (collectionIds) {
+          let result = "";
+          for (let i = 0; i < collectionIds.length; i++) {
+            if (collectionIds[i] == courseDetail.id) {
+              result = true;
+              break;
+            }
+          }
+          setIsCollection(result);
+        }
+}, [courseDetail]);
 
-    // 計算評分平均值
-    setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
+  // 若是有傳入使用者收藏IDS
+  useEffect(() => {
+    if(collectionIds) {
 
     // 此課程是否被當前使用者收藏
     if (collectionIds) {
@@ -64,10 +82,18 @@ const CourseCard1 = (props) => {
       }
       setIsCollection(result);
     }
+    }
+   
   }, [collectionIds]);
 
+
+  
+ 
+
   return (
-    <div className={`CourseCard1 ${className ? " " + className : ""}`}>
+    <>
+    {courseDetail && (
+<div className={`CourseCard1 ${className ? " " + className : ""}`}>
       <div className="CourseCard1-imageCon">
         <img
           src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
@@ -111,7 +137,7 @@ const CourseCard1 = (props) => {
             ></div>
           </div>
           <div>
-            報名人數 {member || 0} / {memberLimit}
+            報名人數 {courseDetail.closest_batchs ? courseDetail.closest_batchs.member_count : 0} / {courseDetail.member_limit}
           </div>
         </div>
         <div className="CourseCard1-detailCon-bottom">
@@ -170,6 +196,8 @@ const CourseCard1 = (props) => {
         />
       </div>
     </div>
+    )}
+    </>
   );
 };
 
