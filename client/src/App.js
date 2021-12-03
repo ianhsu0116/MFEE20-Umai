@@ -61,8 +61,14 @@ function App() {
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
   //課程搜尋列狀態判斷
-  const handleToggleCourseSearch = async () => {
-    setActiveCourseSearch(!isActiveCourseSearch);
+  const handleToggleCourseSearch = async (msg) => {
+    // 點擊任意處關閉
+    if (msg === "close") {
+      setActiveCourseSearch(true);
+    } else {
+      // 點擊按鈕toggle
+      setActiveCourseSearch(!isActiveCourseSearch);
+    }
   };
 
   // 把課程加入購物車資料庫

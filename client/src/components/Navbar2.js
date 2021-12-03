@@ -42,6 +42,11 @@ const Navbar = (props) => {
         setActive("");
       }
     });
+
+    // 點擊任意處關閉搜尋容器
+    window.addEventListener("click", () => {
+      handleToggleCourseSearch("close");
+    });
   }, []);
 
   //課程分類左
@@ -204,6 +209,17 @@ const Navbar = (props) => {
     ifOnlyCourseInCart();
   }, []);
 
+  // 控制購物車容器開合
+  const [cartConOpen, setCartConOpen] = useState(false);
+  const handleCartConOpen = () => {
+    console.log("in");
+    setCartConOpen(true);
+  };
+  const handleCartConClose = () => {
+    console.log("out");
+    setCartConOpen(false);
+  };
+
   return (
     <div className="Header">
       <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
@@ -262,7 +278,8 @@ const Navbar = (props) => {
             <div className="Navbar-container-item-container">
               <button
                 className="Navbar-container-item-btn Navbar-container-item-CourseSearch"
-                onClick={async () => {
+                onClick={async (e) => {
+                  e.stopPropagation();
                   await handleToggleCourseSearch();
                   isActiveCourseSearch && focusSearch();
                 }}
@@ -278,7 +295,11 @@ const Navbar = (props) => {
             <div className="Navbar-container-item">
               <div className="Navbar-container-item-container2">
                 {/* 購物車按鈕 */}
-                <button className="Navbar-container-item-btn2 Navbar-container-item-Cart">
+                <button
+                  className="Navbar-container-item-btn2 Navbar-container-item-Cart"
+                  onMouseEnter={handleCartConOpen}
+                  onMouseLeave={handleCartConClose}
+                >
                   <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
                 </button>
                 {/* 會員中心按鈕 */}
@@ -305,10 +326,16 @@ const Navbar = (props) => {
                 </Link>
 
                 {/* 購物車框框 */}
-                <div className="Navbar-container-item-Cart-dropdown">
+                <div
+                  className={`Navbar-container-item-Cart-dropdown ${
+                    cartConOpen
+                      ? "Navbar-container-item-Cart-dropdown-active"
+                      : ""
+                  }`}
+                >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {/* {cartCourseInfoList.length !== 0 &&
+                    {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -324,7 +351,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })} */}
+                      })}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
@@ -361,7 +388,11 @@ const Navbar = (props) => {
             <div className="Navbar-container-item">
               <div className="Navbar-container-item-container2">
                 {/* 購物車按鈕 */}
-                <button className="Navbar-container-item-btn2 Navbar-container-item-Cart">
+                <button
+                  className="Navbar-container-item-btn2 Navbar-container-item-Cart"
+                  onMouseEnter={handleCartConOpen}
+                  onMouseLeave={handleCartConClose}
+                >
                   <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
                 </button>
                 &thinsp;
@@ -374,12 +405,15 @@ const Navbar = (props) => {
                 </button>
                 {/* 購物車框框 */}
                 <div
-                  id="Navbar-container-item-Cart-dropdown"
-                  className="Navbar-container-item-Cart-dropdown"
+                  className={`Navbar-container-item-Cart-dropdown ${
+                    cartConOpen
+                      ? "Navbar-container-item-Cart-dropdown-active"
+                      : ""
+                  }`}
                 >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {/* {cartCourseInfoList.length !== 0 &&
+                    {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -395,7 +429,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })} */}
+                      })}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
@@ -436,7 +470,12 @@ const Navbar = (props) => {
         /> */}
       {!isActiveCourseSearch ? (
         <div className="Navbar-CourseSearch">
-          <div className="Navbar-CourseSearch-container">
+          <div
+            className="Navbar-CourseSearch-container"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <div className="Navbar-CourseSearch-dropdown">
               <input
                 type="text"
