@@ -81,28 +81,29 @@ function App() {
   };
 
   // 把課程加入購物車資料庫
-  async function addCourseIntoCart(member_id, course_id, batch_date) {
+  async function addCourseIntoCart(member_id, course_id, batch_id) {
     //檢查購物車中是否已經有此課程
-    console.log("#@#@#@#@#@#@#@##");
-    console.log(member_id, course_id, batch_date);
+    console.log("FE");
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
-      batch_date
+      batch_id
     );
     console.log(IfInCartResult.data);
-    console.log(IfInCartResult.data.inCart);
+    // console.log(IfInCartResult.data.inCart);
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
-    if (IfInCartResult.data.inCart === 1) {
+    if (IfInCartResult.data.inCart.length === 1) {
       // 把課程加入購物車資料庫(UPDATE)
-      await courseService.UpdateCart(member_id, course_id, batch_date);
+      await courseService.UpdateCart(member_id, course_id, batch_id);
     } else {
       // 把課程加入購物車資料庫(INSERT)
-      await courseService.addCourseIntoCart(member_id, course_id, batch_date);
+      await courseService.addCourseIntoCart(member_id, course_id, batch_id);
     }
-    setNewAddCourse(await courseService.getCourseOfCart(member_id));
-    setNewAddCourse({});
+    let result = await courseService.getCourseOfCart(4);
+    console.log(result.data);
+    // setNewAddCourse(await courseService.getCourseOfCart(member_id));
+    // setNewAddCourse({});
   }
 
   //搜尋內容

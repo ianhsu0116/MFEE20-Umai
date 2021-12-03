@@ -197,7 +197,7 @@ const Navbar = (props) => {
       setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
     }
     // setNewAddCourse({});
-    // console.log(cartCourseInfoList);
+    console.log("test" + cartCourseInfoList);
   }, [newAddCourse]);
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額

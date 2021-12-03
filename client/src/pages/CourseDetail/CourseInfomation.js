@@ -107,6 +107,8 @@ function CourseInfomation(props) {
   // 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
+  const [batch_id, setBatch_id] = useState(0);
+  // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
   const [course_Score, setCourse_Score] = useState(0);
@@ -124,6 +126,7 @@ function CourseInfomation(props) {
       );
       console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
+      setBatch_id(result.data.course_batch[0].id);
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
@@ -351,7 +354,11 @@ function CourseInfomation(props) {
                             window.location.reload();
                           });
                         } else {
-                          addCourseIntoCart(currentUser.id, id_number, batch);
+                          addCourseIntoCart(
+                            currentUser.id,
+                            id_number,
+                            batch_id
+                          );
                           console.log("addCourseIntoCart success");
                         }
                       }}
@@ -372,7 +379,11 @@ function CourseInfomation(props) {
                             window.location.reload();
                           });
                         } else {
-                          addCourseIntoCart(currentUser.id, id_number, batch);
+                          addCourseIntoCart(
+                            currentUser.id,
+                            id_number,
+                            batch_id
+                          );
                           console.log("addCourseIntoCart success");
                         }
                       }}

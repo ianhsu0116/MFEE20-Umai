@@ -203,34 +203,34 @@ router.get("/member/:member_id", async (req, res) => {
 });
 
 //檢查購物車中是否已經有此課程
-router.get("/cart/:member_id/:course_id/:batch_date", async (req, res) => {
-  let { member_id, course_id, batch_date } = req.params;
+router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
+  console.log("BE");
+  let { member_id, course_id, batch_id } = req.params;
   // console.log(member_id, course_id, batch_date);
-
   try {
     let inCart = await connection.queryAsync(
-      `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_date = ?`,
-      [member_id, course_id, batch_date]
+      `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+      [member_id, course_id, batch_id]
     );
+    // console.log(member_id, course_id, batch_id);
 
-    // console.log(courseInfoInCart);
     res.status(200).json({ success: true, inCart });
   } catch (error) {
-    //console.log(error);
+    // console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
 
-// 根據course_id更新購物車
+// 根據course_id把課程加入購物車資料庫(Update)
 router.put("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
-  let { course_id, batch_date } = req.body;
-  // console.log(member_id, course_id, batch_date);
+  let { course_id, batch_id } = req.body;
+  // console.log(member_id, course_id, batch_id);
 
   try {
     let courseInfoInCart = await connection.queryAsync(
-      `UPDATE cart_and_collection SET inCart = 1 WHERE member_id = ? AND course_id = ? AND batch_date = ?`,
-      [member_id, course_id, batch_date]
+      `UPDATE cart_and_collection SET inCart = 1 WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+      [member_id, course_id, batch_id]
     );
 
     // console.log(courseInfoInCart);
@@ -241,18 +241,18 @@ router.put("/cart/:member_id", async (req, res) => {
   }
 });
 
-// 根據course_id把課程加入購物車
+// 根據course_id把課程加入購物車資料庫(cart)
 router.post("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
-  let { course_id, batch_date } = req.body;
-  // console.log(member_id, course_id, batch_date);
+  let { course_id, batch_id } = req.body;
+  // console.log(member_id, course_id, batch_id);
 
   try {
     try {
     } catch (error) {}
     let courseInfoInCart = await connection.queryAsync(
-      "INSERT INTO cart_and_collection (member_id, course_id, batch_date, inCart) VALUE (?, ?, ?, 1)",
-      [member_id, course_id, batch_date]
+      "INSERT INTO cart_and_collection (member_id, course_id, batch_id, inCart) VALUE (?, ?, ?, 1)",
+      [member_id, course_id, batch_id]
     );
 
     // console.log(courseInfoInCart);

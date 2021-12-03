@@ -7,9 +7,9 @@ const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
   //檢查購物車中是否已經有此課程
-  IfCourseInCart(member_id, course_id, batch_date) {
+  IfCourseInCart(member_id, course_id, batch_id) {
     return axios.get(
-      COURSE_API_URL + `/cart/${member_id}/${course_id}/${batch_date}`,
+      COURSE_API_URL + `/cart/${member_id}/${course_id}/${batch_id}`,
       {
         withCredentials: true,
       }
@@ -17,20 +17,20 @@ class CourseService {
   }
 
   // 根據course_id把課程加入購物車資料庫(Update)
-  UpdateCart(member_id, course_id, batch_date) {
+  UpdateCart(member_id, course_id, batch_id) {
     return axios.put(
       COURSE_API_URL + `/cart/${member_id}`,
-      { course_id, batch_date },
+      { course_id, batch_id },
       {
         withCredentials: true,
       }
     );
   }
   // 根據course_id把課程加入購物車資料庫(cart)
-  addCourseIntoCart(member_id, course_id, batch_date) {
+  addCourseIntoCart(member_id, course_id, batch_id) {
     return axios.post(
       COURSE_API_URL + `/cart/${member_id}`,
-      { course_id, batch_date },
+      { course_id, batch_id },
       {
         withCredentials: true,
       }
