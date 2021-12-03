@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
 import { numDotFormat } from "../config/formula";
@@ -6,22 +6,22 @@ import OrderService from "../services/order.service";
 
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
-import { ImCross } from "react-icons/im";
 
 import UmaiLogo from "./images/Umai.png";
 import avatar from "./images/avatar.jpg";
 
 import Swal from "sweetalert2";
+import { ImCross } from "react-icons/im";
+
 import CartCourse from "./Navbar/CartCourse";
-import { empty } from "statuses";
+// import CourseSearch from "./Navbar/CourseSearch";
 import getValidMessage from "../validMessage/validMessage";
+import courseService from "../services/course.service";
 
 const Navbar = (props) => {
   let {
     handleLoginClick,
     currentUser,
-    SearchKeywordTagList,
-    SearchCourseList,
     isActiveCourseSearch,
     handleToggleCourseSearch,
     checkoutList,
@@ -29,6 +29,8 @@ const Navbar = (props) => {
     newAddCourse,
     setNewAddCourse,
     addCourseIntoCart,
+    searchValue,
+    setSearchValue,
   } = props;
 
   const [active, setActive] = useState("");
@@ -52,10 +54,42 @@ const Navbar = (props) => {
   //體驗分享右
   const ExperienceShareListRight = ["討論區"];
 
-  //儲存購物車的課程資訊
-  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  //搜尋列推薦關鍵字
+  const SearchKeywordTagList = [
+    "創意壽司",
+    "義大利麵",
+    "紅酒燉牛肉",
+    "獵人燉雞",
+  ];
+  //搜尋列推薦課程
+  const SearchCourseList = [
+    "創意壽司",
+    "築地創意壽司",
+    "築地高級壽司",
+    "築地高級創意壽司",
+  ];
 
-  // {
+  //搜尋列focus Ref
+  const inputSearch = useRef(null);
+
+  //搜尋列focus
+  const focusSearch = () => {
+    inputSearch.current.focus();
+  };
+
+  //判斷搜尋內容
+  const handleCourseSearch = async () => {
+    let searchResult = await courseService.CourseSearch(searchValue);
+    // console.log(searchResult);
+  };
+
+  //刪除搜尋內容
+  async function handleSearchValueDelete() {
+    setSearchValue("");
+  }
+
+  //儲存購物車的課程資訊
+  // [{
   //   id: "",
   //   member_id: "",
   //   category_id: "",
@@ -67,8 +101,8 @@ const Navbar = (props) => {
   //   batch_date: "", //(course_batch table)
   //   member_count: "", //(course_batch table)
   //   cartCourseCount: 1, //(notInDB)
-  // },
-  // course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id, course_batch,batch_date, course_batch.member_count FROM course, course_batch
+  // }]
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
 
   // 判斷購物車中是否只有一堂課
   const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
@@ -90,16 +124,11 @@ const Navbar = (props) => {
     }
   }
 
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
-
-  //刪除搜尋內容
-  async function handleSearchValueDelete() {
-    setSearchValue("");
-  }
-
   // 結帳按鈕判斷
   const handleCheckout = async () => {
+    //清空結帳資訊
+    setCheckoutList({});
+
     // 告知需要登入才能購買課程
     ifLogIn();
     // 沒登入無法結帳(離開結帳判斷)
@@ -110,27 +139,12 @@ const Navbar = (props) => {
     //購物車中太多課程無法結帳(離開結帳判斷)
     if (!isOnlyCourseInCart) return;
 
-    //設定結帳課程資訊
+    //設定結帳資訊
     setCheckoutList({
       member_id: cartCourseInfoList[0].member_id,
       course_id: cartCourseInfoList[0].course_id,
       cartCourseCount: cartCourseInfoList[0].cartCourseCount,
     });
-
-    // 結帳資料送後端
-    try {
-      let result = await OrderService.checkout(
-        checkoutList.member_id,
-        checkoutList.course_id
-      );
-
-      // 刪除錯誤訊息
-      setErrorMsg("");
-    } catch (error) {
-      // console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("cart", code));
-    }
   };
 
   // 確認是否登入，並提醒要登入才能買課程
@@ -174,8 +188,10 @@ const Navbar = (props) => {
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
-    setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
-    setNewAddCourse({});
+    if (newAddCourse !== {}) {
+      setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
+    }
+    // setNewAddCourse({});
     // console.log(cartCourseInfoList);
   }, [newAddCourse]);
 
@@ -246,7 +262,10 @@ const Navbar = (props) => {
             <div className="Navbar-container-item-container">
               <button
                 className="Navbar-container-item-btn Navbar-container-item-CourseSearch"
-                onClick={handleToggleCourseSearch}
+                onClick={async () => {
+                  await handleToggleCourseSearch();
+                  isActiveCourseSearch && focusSearch();
+                }}
               >
                 <GoSearch />
                 &ensp;尋找課程
@@ -289,7 +308,7 @@ const Navbar = (props) => {
                 <div className="Navbar-container-item-Cart-dropdown">
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
+                    {/* {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -305,7 +324,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })}
+                      })} */}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
@@ -360,7 +379,7 @@ const Navbar = (props) => {
                 >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
+                    {/* {cartCourseInfoList.length !== 0 &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
@@ -376,7 +395,7 @@ const Navbar = (props) => {
                             />
                           )
                         );
-                      })}
+                      })} */}
                     {cartCourseInfoList.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
@@ -411,16 +430,22 @@ const Navbar = (props) => {
       </div>
 
       {/* 課程searchbar */}
+      {/* <CourseSearch
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        /> */}
       {!isActiveCourseSearch ? (
         <div className="Navbar-CourseSearch">
           <div className="Navbar-CourseSearch-container">
             <div className="Navbar-CourseSearch-dropdown">
               <input
                 type="text"
+                ref={inputSearch}
                 className="Navbar-CourseSearch-dropdown-SearchBar"
                 value={searchValue}
-                onChange={(e) => {
-                  setSearchValue(e.target.value);
+                onChange={async (e) => {
+                  await setSearchValue(e.target.value);
+                  await handleCourseSearch();
                 }}
               />
               <button

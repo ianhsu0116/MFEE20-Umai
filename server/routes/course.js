@@ -260,6 +260,25 @@ router.get("/cart/:member_id", async (req, res) => {
   }
 });
 
+// 根據course_name拿到搜尋結果的課程資料(cart)
+router.get("/", async (req, res) => {
+  let { search } = req.params;
+
+  try {
+    // 拿到課程資料與梯次(join course_batch)
+    let courseSearch = await connection.queryAsync(
+      `SELECT course.course_name FROM course WHERE course.course_name LIKE "%料理%" ORDER BY course.course_name ASC`
+    );
+
+    console.log(courseInfoInCart);
+    res.status(200).json({ success: true, courseSearch });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+// CourseSearch(searchValue) {
+
 // 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
 router.get("/:course_id", async (req, res) => {
   let { course_id } = req.params;

@@ -28,13 +28,19 @@ import Footer from "./components/Footer";
 function App() {
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
+
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
+
+  // 結帳資料
   const [checkoutList, setCheckoutList] = useState({
     member_id: "",
     course_id: "",
     cartCourseCount: "",
   });
+
+  //新增課程
+  const [newAddCourse, setNewAddCourse] = useState({});
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -54,9 +60,6 @@ function App() {
   //課程搜尋列狀態
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
-  //課程搜尋列狀態
-  const [newAddCourse, setNewAddCourse] = useState({});
-
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async () => {
     setActiveCourseSearch(!isActiveCourseSearch);
@@ -73,39 +76,26 @@ function App() {
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
     if (IfInCartResult.data.inCart === 1) {
-      // 根據course_id把課程加入購物車資料庫(Update)
+      // 把課程加入購物車資料庫(UPDATE)
       await courseService.UpdateCart(member_id, course_id, batch_date);
     } else {
-      // 根據course_id把課程加入購物車資料庫(cart)
+      // 把課程加入購物車資料庫(INSERT)
       await courseService.addCourseIntoCart(member_id, course_id, batch_date);
     }
     setNewAddCourse(await courseService.getCourseOfCart(member_id));
+    setNewAddCourse({});
   }
 
-  // ==================== 共用元件展示用ㄉ東西 ======================
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
 
-  //搜尋列推薦關鍵字
-  const SearchKeywordTagList = [
-    "創意壽司",
-    "義大利麵",
-    "紅酒燉牛肉",
-    "獵人燉雞",
-  ];
-  //搜尋列推薦課程
-  const SearchCourseList = [
-    "創意壽司",
-    "築地創意壽司",
-    "築地高級壽司",
-    "築地高級創意壽司",
-  ];
+  // ==================== 共用元件展示用ㄉ東西 ======================
 
   return (
     <Router>
       <Navbar2
         handleLoginClick={handleLoginClick}
         currentUser={currentUser}
-        SearchKeywordTagList={SearchKeywordTagList}
-        SearchCourseList={SearchCourseList}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
         checkoutList={checkoutList}
@@ -113,65 +103,82 @@ function App() {
         newAddCourse={newAddCourse}
         setNewAddCourse={setNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
       )}
-      <div className="footerPadding">
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/ShoppingCart" exact>
-            <ShoppingCart currentUser={currentUser} />
-          </Route>
-          <Route path="/memberCenter" exact>
-            <MemberCenter
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-              addCourseIntoCart={addCourseIntoCart}
-            />
-          </Route>
-          <Route path="/Forum" exact>
+
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/ShoppingCart" exact>
+          <ShoppingCart currentUser={currentUser} />
+        </Route>
+        <Route path="/memberCenter" exact>
+          <MemberCenter
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            addCourseIntoCart={addCourseIntoCart}
+          />
+        </Route>
+        <Route path="/Forum" exact>
+          <div className="footerPadding">
             <Forum />
-            <Footer />
-          </Route>
-          <Route path="/courses/category" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/courses/category" exact>
+          <div className="footerPadding">
             <Course
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
             />
-            <Footer />
-          </Route>
-          <Route path="/about" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/about" exact>
+          <div className="footerPadding">
             <About />
-            <Footer />
-          </Route>
-          <Route path="/contactus" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/contactus" exact>
+          <div className="footerPadding">
             <Contactus />
-            <Footer />
-          </Route>
-          <Route path="/courses/:course_id" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/courses/:course_id" exact>
+          <div className="footerPadding">
             <CourseDetail
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
             />
-            <Footer />
-          </Route>
-          <Route path="/ShoppingList" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/ShoppingList" exact>
+          <div className="footerPadding">
             <ShoppingList currentUser={currentUser} />
-            <Footer />
-          </Route>
-          <Route path="/PaymentMethod" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/PaymentMethod" exact>
+          <div className="footerPadding">
             <PaymentMethod currentUser={currentUser} />
-            <Footer />
-          </Route>
-          <Route path="/chef" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/chef" exact>
+          <div className="footerPadding">
             <Chef />
-            <Footer />
-          </Route>
-        </Switch>
-      </div>
+          </div>
+          <Footer />
+        </Route>
+      </Switch>
     </Router>
   );
 }
