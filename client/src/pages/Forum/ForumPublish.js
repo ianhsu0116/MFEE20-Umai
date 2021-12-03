@@ -68,6 +68,7 @@ const ForumPublish = () => {
       confirmButtonText: "已送出文章，返回討論區",
     }).then(function () {
       // window.location.reload();
+      window.location.href = "/forum";
     });
   };
 

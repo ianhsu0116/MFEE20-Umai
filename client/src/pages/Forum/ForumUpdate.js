@@ -15,11 +15,11 @@ const ForumUpdate = () => {
 
   //接住卡片的資料
   const location = useLocation();
-  //console.log(location.state.data);
+  console.log(location.state.data);
   let data = JSON.parse(location.state.data);
   console.log(data);
-
   const [article, setArticle] = useState({
+    id: data.id,
     image_name: data.image_name,
     category_id: data.category_id,
     course_id: data.course_id,
@@ -37,28 +37,28 @@ const ForumUpdate = () => {
   }
 
   // 將資料送出
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      // json 格式無法傳檔案
-      // 改成用 form data
-      let formData = new FormData();
-      formData.append("image", article.image);
-      formData.append("category_id", article.category_id);
-      formData.append("course_id", article.course_id);
-      formData.append("article_title", article.article_title);
-      formData.append("article_link", article.article_link);
-      formData.append("article_text", article.article_text);
-      // console.log("formData", formData.getAll());
-      let res = await axios.post(
-        "http://localhost:8080/api/forum/updateArticle",
-        formData
-      );
-    } catch (e) {
-      console.log("handleSubmit", e);
-    }
-    console.log(article);
-  }
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   try {
+  //     // json 格式無法傳檔案
+  //     // 改成用 form data
+  //     let formData = new FormData();
+  //     formData.append("image", article.image);
+  //     formData.append("category_id", article.category_id);
+  //     formData.append("course_id", article.course_id);
+  //     formData.append("article_title", article.article_title);
+  //     formData.append("article_link", article.article_link);
+  //     formData.append("article_text", article.article_text);
+  //     // console.log("formData", formData.getAll());
+  //     let res = await axios.post(
+  //       "http://localhost:8080/api/forum/insertArticle",
+  //       formData
+  //     );
+  //   } catch (e) {
+  //     console.log("handleSubmit", e);
+  //   }
+  //   console.log(article);
+  // }
 
   // 改變article的狀態
   function handleChange(e) {
@@ -70,7 +70,19 @@ const ForumUpdate = () => {
   }
 
   // sweetalert2
-  const article_deliver = () => {
+  const article_deliver = async () => {
+    let formData = new FormData();
+    formData.append("id", article.id);
+    formData.append("image", article.image);
+    formData.append("category_id", article.category_id);
+    formData.append("course_id", article.course_id);
+    formData.append("article_title", article.article_title);
+    formData.append("article_link", article.article_link);
+    formData.append("article_text", article.article_text);
+    let res = await axios.post(
+      "http://localhost:8080/api/forum/updateArticle",
+      formData
+    );
     Swal.fire({
       // title: "",
       icon: "success",
@@ -78,7 +90,7 @@ const ForumUpdate = () => {
       confirmButtonColor: "#0078b3",
       confirmButtonText: "已送出文章，返回討論區",
     }).then(function () {
-      // window.location.reload();
+      window.location.href = "/forum";
     });
   };
 
@@ -107,31 +119,28 @@ const ForumUpdate = () => {
   return (
     <>
       <div className="space"></div>
-      <div className="publish">
-        <form  className="form">
-          {/* onSubmit={handleSubmit}  */}
+      <div className="update">
+        <div className="form">
           <h2>修改文章</h2>
-          <label
-            HtmlFor="upload"
-            className="Forum-publish-label-update-illustrator"
-          >
-            上傳圖片
-            <input
-              id="upload"
-              className="Forum-publish-form-file"
-              type="file"
-              name="image"
-              // value={article.image_name}
-              onChange={handleUpload}
-            />
-          </label>
-          <p className="Forum-publish-label-update-illustrator-name">
-            {article.image_name}
-          </p>
-          <label htmlFor="category_id" className="Forum-publish-label-small">
+          <div className="Forum-update-image">
+            <label HtmlFor="upload" className="Forum-update-label-small">
+              {/* Forum-update-label-update-illustrator  */}
+              上傳圖片
+              <input
+                id="upload"
+                className="Forum-update-form-file"
+                type="file"
+                name="image"
+                // value={article.image_name}
+                onChange={handleUpload}
+              />
+            </label>
+            <p className="Forum-update-form-data">{article.image_name}</p>
+          </div>
+          <label htmlFor="category_id" className="Forum-update-label-small">
             類別項目
           </label>
-          <div className="Forum-publish-form-select">
+          <div className="Forum-update-form-select">
             <select
               id="category_id"
               name="category_id"
@@ -147,9 +156,8 @@ const ForumUpdate = () => {
               <option value="6">經典調酒</option>
             </select>
           </div>
-
-          <label className="Forum-publish-label-small">課程名稱</label>
-          <div className="Forum-publish-form-select">
+          <label className="Forum-update-label-small">課程名稱</label>
+          <div className="Forum-update-form-select">
             <select
               id=""
               name="course_id"
@@ -164,52 +172,52 @@ const ForumUpdate = () => {
               <option value="13">炸薯條</option>
             </select>
           </div>
-          <label htmlFor="article_title" className="Forum-publish-label-small">
+          <label htmlFor="article_title" className="Forum-update-label-small">
             發表標題
           </label>
           <input
             id="article_title"
-            className="Forum-publish-form-big"
+            className="Forum-update-form-big"
             type="text"
             name="article_title"
             value={articleDetail && article.article_title}
             onChange={handleChange}
           />
-          <label htmlFor="article_title" className="Forum-publish-label-small">
+          <label htmlFor="article_title" className="Forum-update-label-small">
             影片連結
           </label>
           <input
             id="article_link"
-            className="Forum-publish-form-big"
+            className="Forum-update-form-big"
             type="text"
             name="article_link"
             value={article.article_link}
             onChange={handleChange}
           />
-          <label htmlFor="article_text" className="Forum-publish-label-content">
+          <label htmlFor="article_text" className="Forum-update-label-content">
             內容
           </label>
           <textarea
-            className="Forum-publish-textarea"
+            className="Forum-update-textarea"
             name="article_text"
             id="commet"
             value={article.article_text}
             onChange={handleChange}
           ></textarea>
-          <div className="Forum-publish-button-div">
-            <button className="Forum-publish-button" onClick={article_deliver}>
+          <div className="Forum-update-button-div">
+            <button className="Forum-update-button" onClick={article_deliver}>
               送出
             </button>
 
             <button
-              className="Forum-publish-button"
+              className="Forum-update-button"
               value="重設"
               onClick={reset_function}
             >
               重設
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

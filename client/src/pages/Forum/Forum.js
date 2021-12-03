@@ -48,8 +48,7 @@ const Forum = () => {
     article_text: "",
   });
 
-
-// 把表單的VALuE變成狀態，讓REACT控管。狀態是不能修改，因此需透過新的值覆蓋初始值。
+  // 把表單的VALuE變成狀態，讓REACT控管。狀態是不能修改，因此需透過新的值覆蓋初始值。
   function handleChange(e) {
     // 展開運算子 把原本ARTICLE的東西複製出來到newArticle。
     let newArticle = { ...article };
@@ -75,7 +74,6 @@ const Forum = () => {
     console.log(newArticle);
     console.log(e.target.files[0]);
   }
-
 
   // 處理非同步，await本身必須是promise。通常是在於說依序執行。因為非同步無法控制什麼時候執行完。
   async function handleSubmit(e) {

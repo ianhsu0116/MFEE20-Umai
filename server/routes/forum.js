@@ -159,7 +159,8 @@ router.post("/insertArticle", uploader.single("image"), async (req, res) => {
 });
 
 router.post("/updateArticle", uploader.single("image"), async (req, res) => {
-  // console.log("body", req.body);
+  console.log("body", req.body);
+
   console.log("req.file", req.file);
   req.body.image_name = req.file.filename;
   // console.log(req.body.image_name);
@@ -167,19 +168,17 @@ router.post("/updateArticle", uploader.single("image"), async (req, res) => {
   let now = new Date();
   try {
     let forumdatadetail = await connection.queryAsync(
-      "Update forum_article SET (member_id,image_name,category_id,course_id,article_title,article_link,article_text,created_time,valid) VALUES (?)",
+      "UPDATE forum_article SET image_name=?,category_id=?,course_id=?,article_title=? ,article_link=?,article_text=?,created_time=?,valid=? WHERE id=?",
       [
-        [
-          1,
-          req.file.filename,
-          req.body.category_id,
-          req.body.course_id,
-          req.body.article_title,
-          req.body.article_link,
-          req.body.article_text,
-          now,
-          1,
-        ],
+        req.file.filename,
+        req.body.category_id,
+        req.body.course_id,
+        req.body.article_title,
+        req.body.article_link,
+        req.body.article_text,
+        now,
+        1,
+        req.body.id,
       ]
     );
     //console.log(forumdatadetail);
@@ -190,6 +189,14 @@ router.post("/updateArticle", uploader.single("image"), async (req, res) => {
   }
 });
 
+router.post("/deleteArticle", async (req, res) => {
+  let id = req.body.id;
+  let result = await connection.queryAsync(
+    "UPDATE forum_article SET valid=? WHERE id=?",
+    [0, id]
+  );
+  res.send(result);
+});
 // ian 新增
 // 根據 member_id 拿到此member收藏的文章
 router.get("/collection/:member_id", async (req, res) => {

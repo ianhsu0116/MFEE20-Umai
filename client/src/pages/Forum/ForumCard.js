@@ -22,7 +22,7 @@ const ForumCard = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [data, setdata] = useState({});;
+  const [data, setdata] = useState({});
   // 通常會設定初始狀態是某一個型態，因為在底下可能會用到這樣的值。
   const [forumcard, setForumcard] = useState([]);
   const [articleDetail, setArticleDetail] = useState({});
@@ -41,6 +41,21 @@ const ForumCard = () => {
       console.log(error.response);
     }
   }, []);
+
+  const delete_article = async () => {
+    let id = articleDetail.id;
+    let result = await axios.post(
+      `${API_URL}/forum/deleteArticle`,
+      { id: id },
+      {
+        withCredentials: true,
+      }
+    );
+    if (result) {
+      window.location.href = "/forum";
+    }
+    console.log(articleDetail.id);
+  };
 
   // useEffect(async () => {
   //   try {
@@ -88,7 +103,8 @@ const ForumCard = () => {
               // 整筆資料的儲存
               setArticleDetail(forumEach.data.forumdatadetail);
               console.log(forumEach.data.forumdatadetail);
-              setdata(JSON.stringify(forumEach.data.forumdatadetail))
+              setdata(JSON.stringify(forumEach.data.forumdatadetail));
+              console.log("setdata", setdata);
             }}
           >
             <img
@@ -194,7 +210,7 @@ const ForumCard = () => {
                       <a href="#">檢舉</a>
                     </p>
                     <p>
-                      <a href="#">刪除</a>
+                      <button onClick={delete_article}>刪除</button>
                     </p>
                     <p>
                       <Link
@@ -222,7 +238,7 @@ const ForumCard = () => {
               {/* {articleDetail && articleDetail.article_link} */}
               <iframe
                 className="Forum-modal-body-youtube"
-                src="https://www.youtube.com/embed/ArTVfdHOB-M"
+                src="https://www.youtube.com/watch?v=hCG6Sa7EEZ0"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -252,7 +268,7 @@ const ForumCard = () => {
               ></img>
               <div>
                 <h6 className="Forum-modal-footer-account-name">
-                  奇異的小玩偶
+                  {articleDetail && articleDetail.article_link}
                 </h6>
                 <h6 className="Forum-modal-footer-account-id">
                   @olsonlovesmakelove
