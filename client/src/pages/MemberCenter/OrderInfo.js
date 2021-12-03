@@ -70,7 +70,7 @@ const OrderInfo = (props) => {
       if (result.data.order.length > result.data.order.slice(0, perPage).length)
         setLoadMoreShow(true);
     } catch (error) {
-      //console.log(error);
+      console.log(error);
       // console.log(error.response);
       let { code } = error.response.data;
       // 跳通知

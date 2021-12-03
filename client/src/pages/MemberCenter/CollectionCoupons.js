@@ -39,8 +39,8 @@ const CollectionCoupons = (props) => {
       setCurrentData(result.data.coupons);
       // console.log(result.data.coupons);
     } catch (error) {
-      console.log(error.response);
-
+      // console.log(error.response);
+      console.log(error);
       let { code } = error.response.data;
 
       // 提示錯誤
