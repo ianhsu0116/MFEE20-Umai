@@ -113,6 +113,16 @@ router.get("/collection/:member_id", async (req, res) => {
           closest_batchs.push(batchs[i]);
           break;
         }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
+        }
       }
     });
 
@@ -120,6 +130,8 @@ router.get("/collection/:member_id", async (req, res) => {
     closest_batchs.forEach((item, index) => {
       result[index].closest_batchs = item;
     });
+
+    //console.log(result);
 
     res.status(200).json({ success: true, course: result });
   } catch (error) {
@@ -163,6 +175,16 @@ router.get("/member/:member_id", async (req, res) => {
         if (course_id == batchs[i].course_id) {
           closest_batchs.push(batchs[i]);
           break;
+        }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
         }
       }
     });
