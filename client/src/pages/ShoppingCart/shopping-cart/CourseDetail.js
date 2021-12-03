@@ -1,16 +1,18 @@
 /* eslint-disable default-case */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import datacheck from "./validation";
 
 function CourseDetail(props){
     //優惠卷額度
     const [discount,setdiscount]=useState(100);
-    //存取選到會券
+    //存取選到的優惠券
     const [selectedIndex,setselectedIndex]=useState(0);
 
-    let dataerror=false
-    let link="/PaymentMethod"
+    const [link,setlink]=useState("/PaymentMethod")
+    const [dataerror,setdataerror]=useState(false)
 
     let coursetitle = props.coursetitle;
     let coupon={};
@@ -20,14 +22,37 @@ function CourseDetail(props){
     }
     let carddata = props.carddata;
     let OrderData = props.OrderData;
-    
-    //自動抓每個物件內的 name，再比對物件內的值是否為空
+    //自動抓每個物件內的 name，再比對物件內的值
     function checkdata(){
-        carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((data)=>{if(carddata[0].data===undefined){dataerror=true}});
-        if(dataerror)
-        link="ShoppingCart"
+        // carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((name)=>{if(carddata[0][name]===""){dataerror=true}});
+        // Object.keys(OrderData).map((name)=>{if(OrderData[name]===""){dataerror=true}})
+        if(datacheck.ordererValidation(OrderData).error!==undefined){
+            setlink("/ShoppingCart")
+            setdataerror(true)
+            return
+        }else{
+            console.log("orderer success");
+            setlink("/PaymentMethod")
+            setdataerror(false)
+        }
+
+        for(let i=0;i<carddata.length;i++){
+            console.log(carddata[i]);
+            if(datacheck.studentValidation(carddata[i]).error !==undefined){
+                console.log(datacheck.studentValidation(carddata[i]).error);
+                setlink("/ShoppingCart")
+                setdataerror(true)
+                return
+            }else{
+                console.log("carddata success");
+                setlink("/PaymentMethod")
+                setdataerror(false)
+            }
+        }
     }
-    checkdata()
+    useEffect(()=>{
+        checkdata()
+    })
     let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData});
     return(
     <>
@@ -71,7 +96,7 @@ function CourseDetail(props){
                     if(dataerror===true){
                         Swal.fire({
                             icon: 'error',
-                            title: '學員資料有誤',
+                            title: '訂單資料有誤',
                             text:'資料未輸入完整'
                             })
                         }

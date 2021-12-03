@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 function Orderinfo(props){
     //存取訂購者資料
     let [OrderData, setOrderData] = useState({
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         telephone: "",
         birthday: "",
         email: ""
@@ -24,7 +24,7 @@ function Orderinfo(props){
                     <label>名字</label>
                     <input 
                     type="text"
-                    name="firstName"
+                    name="first_name"
                     onChange={handleInputChange}
                     />
                 </td>
@@ -32,7 +32,7 @@ function Orderinfo(props){
                     <label>姓氏</label>
                     <input 
                     type="text"
-                    name="lastName"
+                    name="last_name"
                     onChange={handleInputChange}
                     />
                 </td>

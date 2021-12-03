@@ -30,7 +30,7 @@ function PaymentDetails(props){
                 <tr className="ShoppingBill-student-info">
                     <td><h5>發票聯絡人</h5></td>
                     <td><h5>Email寄送</h5></td>
-                    <td><h5>{OrdererData.lastName+OrdererData.firstName}</h5></td>
+                    <td><h5>{OrdererData.last_name+OrdererData.first_name}</h5></td>
                     <td><h5>{OrdererData.telephone}</h5></td>
                     <td><h5>{OrdererData.email}</h5></td>
                 </tr>

@@ -5,7 +5,7 @@ import AuthService from "./services/auth.service";
 import NavbarOld from "./components/Navbar";
 import courseService from "./services/course.service";
 import HomePage from "./pages/Homepage/HomePage";
-import Navbar2 from "./components/Navbar2";
+import Navbar2 from "./components/Navbar";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
@@ -64,8 +64,14 @@ function App() {
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
   //課程搜尋列狀態判斷
-  const handleToggleCourseSearch = async () => {
-    setActiveCourseSearch(!isActiveCourseSearch);
+  const handleToggleCourseSearch = async (msg) => {
+    // 點擊任意處關閉
+    if (msg === "close") {
+      setActiveCourseSearch(true);
+    } else {
+      // 點擊按鈕toggle
+      setActiveCourseSearch(!isActiveCourseSearch);
+    }
   };
 
   // 把課程資訊加入購物車
