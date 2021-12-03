@@ -8,6 +8,11 @@ function PaymentMethod(props){
     //接收上一頁傳來的資料
     const location = useLocation();
     let { data} = location.state;
+
+    //如果沒有取得資料則跳回首頁
+    if(data===undefined){
+        window.location.href='http://localhost:3000/'
+      }
     
     let coursetitle = JSON.parse(data).coursetitle;
     let coupon = JSON.parse(data).coupon;
