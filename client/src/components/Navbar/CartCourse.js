@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { numDotFormat } from "../../config/formula";
+import courseService from "../../services/course.service";
 
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -15,6 +16,7 @@ const CartCourse = (props) => {
     setSumCartCoursePrice,
     handleSumPriceZeroing,
     addCourseIntoCart,
+    currentUser,
   } = props;
 
   //特定課程金額小計

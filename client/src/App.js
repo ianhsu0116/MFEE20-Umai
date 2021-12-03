@@ -54,8 +54,8 @@ function App() {
   //課程搜尋列狀態
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
-  // //課程搜尋列狀態
-  // const [newAddCourse, setNewAddCourse] = useState({});
+  //課程搜尋列狀態
+  const [newAddCourse, setNewAddCourse] = useState({});
 
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async () => {
@@ -64,18 +64,22 @@ function App() {
 
   // 把課程加入購物車資料庫
   async function addCourseIntoCart(member_id, course_id, batch_date) {
-    //嘗試更新既有的購物車課程資料(inCart)，若失敗則新增資料
-    let result = await courseService.addCourseIntoCart(
+    //檢查購物車中是否已經有此課程
+    let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_date
     );
-    //若更新資料成功回傳true，失敗則return false
-    if (result) {
-    }
 
-    // let courseInfoInCart = result.data.courseInfoInCart[0];
-    // setNewAddCourse(courseInfoInCart);
+    //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
+    if (IfInCartResult.data.inCart === 1) {
+      // 根據course_id把課程加入購物車資料庫(Update)
+      await courseService.UpdateCart(member_id, course_id, batch_date);
+    } else {
+      // 根據course_id把課程加入購物車資料庫(cart)
+      await courseService.addCourseIntoCart(member_id, course_id, batch_date);
+    }
+    setNewAddCourse(await courseService.getCourseOfCart(member_id));
   }
 
   // ==================== 共用元件展示用ㄉ東西 ======================
@@ -106,7 +110,8 @@ function App() {
         handleToggleCourseSearch={handleToggleCourseSearch}
         checkoutList={checkoutList}
         setCheckoutList={setCheckoutList}
-        // newAddCourse={newAddCourse}
+        newAddCourse={newAddCourse}
+        setNewAddCourse={setNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
       />
       {showLogin && (
@@ -125,7 +130,6 @@ function App() {
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               addCourseIntoCart={addCourseIntoCart}
-              // setNewAddCourse={setNewAddCourse}
             />
           </Route>
           <Route path="/Forum" exact>
@@ -136,7 +140,6 @@ function App() {
             <Course
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
-              // setNewAddCourse={setNewAddCourse}
             />
             <Footer />
           </Route>
@@ -152,7 +155,6 @@ function App() {
             <CourseDetail
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
-              // setNewAddCourse={setNewAddCourse}
             />
             <Footer />
           </Route>

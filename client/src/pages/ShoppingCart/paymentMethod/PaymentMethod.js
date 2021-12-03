@@ -16,7 +16,6 @@ function PaymentMethod(props){
     const [creditCards,setcreditCards]=useState({})
     const [paymenttype,setpaymenttype]=useState(0)
     const [receipttype,setreceipttype]=useState(0)
-    
     //修改信用卡資料
     function getcreditCards(data){
         setcreditCards(data)

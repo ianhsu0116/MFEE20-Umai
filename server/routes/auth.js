@@ -91,6 +91,8 @@ router.post("/registration", async (req, res) => {
       return res.status(401).json({ success: false, code: "B002" });
     }
   }
+  console.log(error);
+  console.log(error.details[0].context.key);
 
   //取出資料
   let { email, password } = req.body;

@@ -7,11 +7,12 @@ import axios from "axios";
 
 const DefaultStudentCard = (props) => {
   let { deletecarddata, changecarddata, index, data, studentdata } = props;
-  let [cardOpen, setCardOpen] = useState(false);
+  let [ cardOpen, setCardOpen] = useState(false);
+  let [ DefultStudent, setDefultStudent] = useState(true)
   //從props抓取學員資料
   let [newStudentData, setNewStudentData] = useState({
-    firstName:data.firstName,
-    lastName:data.lastName,
+    first_name:data.first_name,
+    last_name:data.last_name,
     telephone:data.telephone,
     birthday:data.birthday,
     email:data.email, 
@@ -21,9 +22,10 @@ const DefaultStudentCard = (props) => {
   //選擇預設學員並更改資料
   function selectDefultStudent(i){
     if(i==="-1"){
+      setDefultStudent(true)
       setNewStudentData({
-        firstName:"",
-        lastName:"",
+        first_name:"",
+        last_name:"",
         telephone:"",
         birthday:"",
         email:"", 
@@ -31,8 +33,8 @@ const DefaultStudentCard = (props) => {
         autoUpdateMember: false,
       })
       changecarddata(index,{
-        firstName:"",
-        lastName:"",
+        first_name:"",
+        last_name:"",
         telephone:"",
         birthday:"",
         email:"", 
@@ -40,17 +42,18 @@ const DefaultStudentCard = (props) => {
         autoUpdateMember: false,
       })
     }else{
+      setDefultStudent(false)
       setNewStudentData({...studentdata[i],
         id:studentdata[i].id,
-        firstName:studentdata[i].first_name,
-        lastName:studentdata[i].last_name,
+        first_name:studentdata[i].first_name,
+        last_name:studentdata[i].last_name,
         addIntoStudent: false,
         autoUpdateMember: false,
       })
       changecarddata(index,{
         id:studentdata[i].id,
-        firstName:studentdata[i].first_name,
-        lastName:studentdata[i].last_name,
+        first_name:studentdata[i].first_name,
+        last_name:studentdata[i].last_name,
         telephone:studentdata[i].telephone,
         birthday:studentdata[i].birthday,
         email:studentdata[i].email,
@@ -123,16 +126,16 @@ const DefaultStudentCard = (props) => {
         <div className="DefaultStudentCard-main-row">
           <div className="DefaultStudentCard-main-row-item">
             <label
-              htmlFor="firstName"
+              htmlFor="first_name"
               className="DefaultStudentCard-main-row-item-label"
             >
               名字
             </label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={newStudentData.firstName}
+              id="first_name"
+              name="first_name"
+              value={newStudentData.first_name}
               placeholder="請輸入真實名字"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -140,16 +143,16 @@ const DefaultStudentCard = (props) => {
           </div>
           <div className="DefaultStudentCard-main-row-item">
             <label
-              htmlFor="lastName"
+              htmlFor="last_name"
               className="DefaultStudentCard-main-row-item-label"
             >
               姓氏
             </label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={newStudentData.lastName}
+              id="last_name"
+              name="last_name"
+              value={newStudentData.last_name}
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
               onChange={handleInputChange}
@@ -213,6 +216,7 @@ const DefaultStudentCard = (props) => {
         </div>
           <div className="DefaultStudentCard-main-row">
             <div className="DefaultStudentCard-main-row-selectCon">
+            {DefultStudent?
               <input
                 type="checkbox"
                 id="addIntoStudent"
@@ -220,7 +224,17 @@ const DefaultStudentCard = (props) => {
                 checked={newStudentData.addIntoStudent === true ?  "checked": ""}
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
+              />:
+              <input
+                type="checkbox"
+                id="addIntoStudent"
+                name="addIntoStudent"
+                disabled
+                checked={newStudentData.addIntoStudent === true ?  "checked": ""}
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
+                onChange={handleInputChange}
               />
+            }
               &ensp;
               <label
                 htmlFor="addIntoStudent"
@@ -230,6 +244,16 @@ const DefaultStudentCard = (props) => {
               </label>
             </div>
             <div className="DefaultStudentCard-main-row-selectCon">
+            {DefultStudent?
+              <input
+                type="checkbox"
+                id="autoUpdateMember"
+                name="autoUpdateMember"
+                disabled
+                checked={newStudentData.autoUpdateMember === true ?  "checked": ""}
+                className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
+                onChange={handleInputChange}
+              />:
               <input
                 type="checkbox"
                 id="autoUpdateMember"
@@ -237,7 +261,8 @@ const DefaultStudentCard = (props) => {
                 checked={newStudentData.autoUpdateMember === true ?  "checked": ""}
                 className="DefaultStudentCard-main-row-item-input DefaultStudentCard-main-row-selectCon-checkbox"
                 onChange={handleInputChange}
-              />
+              />}
+              
               &ensp;
               <label
                 htmlFor="autoUpdateMember"

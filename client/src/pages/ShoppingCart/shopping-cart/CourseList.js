@@ -29,7 +29,7 @@ function CourseList(props){
           }
           Swal.fire({
             icon: 'success',
-            text:'刪除成功'
+            text:'已成功刪除'
         }).then(
             (result)=>{
                 if (result.isConfirmed)window.location.href='http://localhost:3000/'
@@ -49,7 +49,7 @@ function CourseList(props){
           }
           Swal.fire({
             icon: 'success',
-            text:'加入收藏成功'
+            text: '課程加入收藏'
         })
     }
 
@@ -91,7 +91,7 @@ function CourseList(props){
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
                     <h4>{coursetitle.name}</h4>
-                    <h6>報名人數剩餘{coursetitle.membercount}人</h6>
+                    <h6>報名人數剩餘{coursetitle.memberlimit-coursetitle.membercount}人</h6>
                 </td>
                 <td><h4>NT$ {coursetitle.value}</h4></td>
                 <td><h4>*{coursetitle.studentnumber}位</h4></td>  
