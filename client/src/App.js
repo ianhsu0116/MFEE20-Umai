@@ -5,7 +5,7 @@ import AuthService from "./services/auth.service";
 import NavbarOld from "./components/Navbar";
 import courseService from "./services/course.service";
 import HomePage from "./pages/Homepage/HomePage";
-import Navbar2 from "./components/Navbar2";
+import Navbar2 from "./components/Navbar";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
@@ -61,8 +61,9 @@ function App() {
 
   // 把課程資訊加入購物車
   async function addCourseIntoCart(course_id, batch_date) {
+    console.log(course_id,batch_date);
     // getCurrentInfoObject;
-    let result = courseService.getCourseIntoCart(course_id, batch_date);
+    let result = courseService.course_cart(course_id, batch_date);
 
     // 如果這次沒回傳任何course
     if (!result.data.courseInfoInCart) {

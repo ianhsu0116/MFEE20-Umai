@@ -7,22 +7,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function shopping_cart(props) {
+  //如果沒有取得資料則跳回首頁
+  if(props.course_id===undefined){
+    window.location.href='http://localhost:3000/'
+  }
   //會員ID
   const { currentUser } = props;
   //課程資訊
   const [ coursetitle, setCoursetitle] = useState({});
   useEffect( async () => {
     try {
-      let result = await axios.get(`http://localhost:8080/api/course/9`, {
+      let course = await axios.get(`http://localhost:8080/api/course/9`, {
         withCredentials: true,
       });
+      console.log(course.data.course[0]);
       setCoursetitle({
         course_id:"9",
-        batch_id:"1",
-        name:result.data.course[0].course_name,
-        value:result.data.course[0].course_price,
+        batch_id:"35",
+        name:course.data.course[0].course_name,
+        value:course.data.course[0].course_price,
         studentnumber:1,
-        membercount:result.data.course_batch[0].member_count
+        courseimage:course.data.course[0].course_image,
+        membercount:course.data.course_batch[0].member_count
       });
     } catch (error) {
       console.log(error);

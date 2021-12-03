@@ -71,7 +71,7 @@ function CourseDetail(props){
                     if(dataerror===true){
                         Swal.fire({
                             icon: 'error',
-                            title: '學員資料有誤',
+                            title: '訂單資料有誤',
                             text:'資料未輸入完整'
                             })
                         }

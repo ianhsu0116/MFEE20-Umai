@@ -13,7 +13,11 @@ function ShoppingList(props){
 
     const location = useLocation();
     let data = JSON.parse(location.state.data);
-    
+
+    //如果沒有取得資料則跳回首頁
+    if(data===undefined){
+        window.location.href='http://localhost:3000/'
+      }
     const [coursetitle,setcoursetitle]=useState(data.coursetitle)
     //let coursetitle = data.coursetitle;
     let coupon = data.coupon;
