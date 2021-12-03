@@ -20,6 +20,7 @@ import { GrInstagram } from "react-icons/gr";
 
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
+import Swal from "sweetalert2";
 
 import Join from "../../components/images/JoinPicture.jpg";
 
@@ -205,6 +206,18 @@ function CourseInfomation(props) {
   //  }
   // });
 
+  const cart_deliver = () => {
+    Swal.fire({
+      // title: "",
+      icon: "success",
+      // customClass: "Custom_Cancel",
+      confirmButtonColor: "#0078b3",
+      confirmButtonText: "已送出文章，返回討論區",
+    }).then(function () {
+      window.location.reload();
+    });
+  };
+
   return (
     <>
       {/* {console.log(course_Score)}
@@ -328,9 +341,15 @@ function CourseInfomation(props) {
                     <li
                       onClick={() => {
                         if (batch === "尚未選擇") {
-                          alert("請先選擇梯次日期後再點擊");
-                        } else {
-                          addCourseIntoCart(id_number, batch);
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先選擇日期後再點擊",
+                          }).then(function () {
+                            window.location.reload();
+                          });
                         }
                       }}
                     >
@@ -340,9 +359,15 @@ function CourseInfomation(props) {
                     <li
                       onClick={() => {
                         if (batch === "尚未選擇") {
-                          alert("請先選擇梯次日期後再點擊");
-                        } else {
-                          addCourseIntoCart(id_number, batch);
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先選擇日期後再點擊",
+                          }).then(function () {
+                            window.location.reload();
+                          });
                         }
                       }}
                     >
