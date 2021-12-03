@@ -48,7 +48,7 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, "..", "public", "upload-images"));
   },
   filename: function (req, file, cb) {
-    //console.log("filename", file);
+    console.log("filename", file);
     // 取出副檔名
     const ext = file.originalname.split(".").pop();
     cb(null, `avatar-${uuidv4()}.${ext}`);

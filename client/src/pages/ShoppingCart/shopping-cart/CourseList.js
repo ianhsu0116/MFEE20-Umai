@@ -90,8 +90,12 @@ function CourseList(props){
     card ? setCard(false) : setCard(true)
   }}><FiChevronRight size="3em"/></button></td>
                 <td>
-                    <h4>{coursetitle.name}</h4>
-                    <h6>報名人數剩餘{coursetitle.memberlimit-coursetitle.membercount}人</h6>
+                    {coursetitle.courseimage?<img src={`http://localhost:8080/upload-images/${coursetitle.courseimage}`} alt=""></img>:''}
+                    
+                    <div>
+                        <h4>{coursetitle.name}</h4>
+                        <h6>報名人數剩餘{coursetitle.membercount}人</h6>
+                    </div>
                 </td>
                 <td><h4>NT$ {coursetitle.value}</h4></td>
                 <td><h4>*{coursetitle.studentnumber}位</h4></td>  

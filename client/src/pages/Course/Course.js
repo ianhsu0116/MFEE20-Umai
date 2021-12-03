@@ -1,7 +1,6 @@
 import React, { useState , useEffect } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import Swal from "sweetalert2";
-import CourseCard_Course from './CourseCard_Course'
 
 import { withRouter } from "react-router-dom";
 import { PUBLIC_URL } from "../../config/config";
@@ -9,7 +8,6 @@ import { PUBLIC_URL } from "../../config/config";
 import CourseCard from "../../components/CourseCard1";
 
 import CategoryService from "../../services/category.service";
-import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
 
 function Course (props){
@@ -138,6 +136,7 @@ function Course (props){
 
   return (
     <>
+    {console.log(category)}
     <div className="Course">
     <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
     <div className="CourseCategroy">{categoryname}</div>

@@ -23,6 +23,15 @@ import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
 
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
+import CourseStar from "./pages/CourseDetail/CourseStar";
+import DefaultStudentCard from "./components/DefaultStudentCard";
+import CourseMiniCard from "./components/CourseMiniCard";
+import ShareCard from "./components/ShareCard";
+import Calendar from "./components/Calendar";
+import CalendarAvailable from "./components/CalendarAvailable";
+import CalendarMulti from "./components/CalendarMulti";
+import ForumPublish from "./pages/Forum/ForumPublish";
+import ForumUpdate from "./pages/Forum/ForumUpdate";
 import Footer from "./components/Footer";
 
 function App() {
@@ -55,14 +64,21 @@ function App() {
   const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
   //課程搜尋列狀態判斷
-  const handleToggleCourseSearch = async () => {
-    setActiveCourseSearch(!isActiveCourseSearch);
+  const handleToggleCourseSearch = async (msg) => {
+    // 點擊任意處關閉
+    if (msg === "close") {
+      setActiveCourseSearch(true);
+    } else {
+      // 點擊按鈕toggle
+      setActiveCourseSearch(!isActiveCourseSearch);
+    }
   };
 
   // 把課程資訊加入購物車
   async function addCourseIntoCart(course_id, batch_date) {
+    console.log(course_id,batch_date);
     // getCurrentInfoObject;
-    let result = courseService.getCourseIntoCart(course_id, batch_date);
+    let result = courseService.course_cart(course_id, batch_date);
 
     // 如果這次沒回傳任何course
     if (!result.data.courseInfoInCart) {
@@ -140,6 +156,13 @@ function App() {
           <Route path="/contactus" exact>
             <Contactus />
           </Route>
+          <Route path="/ForumPublish" exact>
+            <ForumPublish />
+          </Route>
+          <Route path="/ForumUpdate" exact>
+            <ForumUpdate />
+          </Route>
+
           <Route path="/courses/:course_id" exact>
             <CourseDetail addCourseIntoCart={addCourseIntoCart} />
           </Route>
@@ -154,6 +177,7 @@ function App() {
           </Route>
         </Switch>
       </div>
+
       <Footer />
     </Router>
   );

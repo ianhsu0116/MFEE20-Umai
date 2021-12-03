@@ -283,6 +283,9 @@ $header-border: 3px solid $activeColor; // title的左border
 // forum 相關
 @import "./forum/forum";
 @import "./forum/forumcard";
+@import "./forum/forumPublish";
+@import "./forum/modal";
+@import "./forum/forumUpdate";
 
 // 課程分類
 @import "./course/Course";
@@ -313,6 +316,7 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./shoppingCart/pamentMethod/PamentMethod";
 @import "./shoppingCart/pamentMethod/PamentWay";
 @import "./shoppingCart/pamentMethod/Receipt";
+
 //關於我們
 @import "./about/about";
 
