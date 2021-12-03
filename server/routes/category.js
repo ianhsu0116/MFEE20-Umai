@@ -40,23 +40,41 @@ router.use((req, res, next) => {
         let now = new Date();
         // 抓到每筆課程的每個梯次(今日以後的所有梯次)
         let batchs = await connection.queryAsync(
-        `SELECT id AS batch_id, course_id, batch_date, member_count FROM course_batch WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
+        `SELECT id AS batch_id, course_id, batch_date, member_count FROM course_batch  WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
          [id_array, 1, now]
         );
          // 根據每個course_id 抓出此課程的最近一比梯次
          id_array.forEach((course_id) => {
            for (let i = 0; i < batchs.length; i++) {
+            // console.log(batchs)
          if (course_id == batchs[i].course_id) {
            closest_batchs.push(batchs[i]);
            break;
           }
+
+          // 全跑完還是不符合
+          if(i === batchs.length - 1) {
+            closest_batchs.push({
+           batch_id: null,
+           course_id,
+           batch_date: null,
+           member_count: 0
+         });
+          
          }
+         }
+         
         });
           // 把梯次依序裝入course的json中
     closest_batchs.forEach((item, index) => {
+      console.log(item)
       category_detail[index].closest_batchs = item;
+      console.log(index)
     });
-      console.log(category_detail)
+
+
+    // console.log(id_array)
+     console.log(category_detail)
       res.status(200).json({ success: true, categoryID: category_count , courseDetail:category_detail });
     } catch (error) {
       console.log(error);

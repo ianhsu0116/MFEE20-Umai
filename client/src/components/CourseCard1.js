@@ -42,22 +42,27 @@ const CourseCard1 = (props) => {
   // 報名趴數
   let assignPersent = (member / memberLimit) * 100;
 
+  const [courseDetail1, setCourseDetail1] = useState("");
+  useEffect(() => {
+    setCourseDetail1({...courseDetail});
+}, [courseDetail]);
+
   // 初次render做的事情
   useEffect(() => {
     // 將member及memberLimit裝入
-    setMemberLimit(courseDetail.member_limit);
+    setMemberLimit(courseDetail1.member_limit);
     setMember(
-      courseDetail.closest_batchs && courseDetail.closest_batchs.member_count
+      courseDetail1.closest_batchs && courseDetail1.closest_batchs.member_count
     );
 
     // 計算評分平均值
-    setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
+    setScorePercent((courseDetail1.score_sum / courseDetail1.score_count) * 20);
 
     // 此課程是否被當前使用者收藏
     if (collectionIds) {
       let result = "";
       for (let i = 0; i < collectionIds.length; i++) {
-        if (collectionIds[i] == courseDetail.id) {
+        if (collectionIds[i] == courseDetail1.id) {
           result = true;
           break;
         }
@@ -66,41 +71,47 @@ const CourseCard1 = (props) => {
     }
   }, [collectionIds]);
 
+
+  
+ 
+
   return (
-    <div className={`CourseCard1 ${className ? " " + className : ""}`}>
+    <>
+    {courseDetail1 && (
+<div className={`CourseCard1 ${className ? " " + className : ""}`}>
       <div className="CourseCard1-imageCon">
         <img
-          src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
+          src={`${PUBLIC_URL}/upload-images/${courseDetail1.course_image}`}
           alt="course_image"
         />
         {assignPersent > 80 && (
           <div className="CourseCard1-imageCon-banner">即將截止</div>
         )}
-        {new Date(courseDetail.created_time) > newCourseCompare && (
+        {new Date(courseDetail1.created_time) > newCourseCompare && (
           <div className="CourseCard1-imageCon-banner">最新課程</div>
         )}
       </div>
 
       <div className="CourseCard1-detailCon">
         <h4 className="CourseCard1-detailCon-h4">
-          <Link to={`/courses/${courseDetail.id}`}>
-            {courseDetail.course_name}
+          <Link to={`/courses/${courseDetail1.id}`}>
+            {courseDetail1.course_name}
           </Link>
         </h4>
         <StarGroup
           percent={scorePercent || 0}
-          allScore={courseDetail.score_count || 0}
+          allScore={courseDetail1.score_count || 0}
         />
         <div className="CourseCard1-detailCon-company">
           <IoLocationSharp />
-          {courseDetail.company_name}
+          {courseDetail1.company_name}
           <GiCook />
-          {courseDetail.first_name + " " + courseDetail.last_name}
+          {courseDetail1.first_name + " " + courseDetail1.last_name}
         </div>
         <div className="CourseCard1-detailCon-courseTime">
           最近可報名梯次：
-          {courseDetail.closest_batchs
-            ? courseDetail.closest_batchs.batch_date
+          {courseDetail1.closest_batchs
+            ? courseDetail1.closest_batchs.batch_date
             : "目前沒有開放"}
         </div>
         <div className="CourseCard1-detailCon-MemberCount">
@@ -118,21 +129,21 @@ const CourseCard1 = (props) => {
           {/* 這裡要自行判斷當前課程階級，切換className即可改變樣式(highLevel, midLevel, lowLevel) */}
           <div
             className={`CourseCard1-detailCon-bottom-courseLevel highLevel ${
-              courseDetail.course_level == 1
+              courseDetail1.course_level == 1
                 ? "highLevel"
-                : courseDetail.course_level == 2
+                : courseDetail1.course_level == 2
                 ? "midLevel"
                 : "lowLevel"
             }`}
           >
-            {leverArray[courseDetail.course_level]}
+            {leverArray[courseDetail1.course_level]}
           </div>
           <div className="CourseCard1-detailCon-bottom-coursePrice">
             <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
-              NT${numDotFormat(courseDetail.course_price)}
+              NT${numDotFormat(courseDetail1.course_price)}
             </span>
             <span className="CourseCard1-detailCon-bottom-coursePrice-discount">
-              NT${numDotFormat(courseDetail.course_price * 0.9)}
+              NT${numDotFormat(courseDetail1.course_price * 0.9)}
             </span>
           </div>
         </div>
@@ -141,7 +152,7 @@ const CourseCard1 = (props) => {
             isCollection && " CourseCard1-detailCon-likeBtn-active"
           }`}
           onClick={() => {
-            handleAddIntoCollection(courseDetail.id);
+            handleAddIntoCollection(courseDetail1.id);
           }}
         >
           <FaRegHeart />
@@ -153,8 +164,8 @@ const CourseCard1 = (props) => {
           className={"button-themeColor CourseCard1-buttonCon-btn"}
           onClick={() => {
             handleAddIntoCart({
-              course_id: courseDetail.id,
-              batch: courseDetail.closest_batchs,
+              course_id: courseDetail1.id,
+              batch: courseDetail1.closest_batchs,
             });
           }}
         />
@@ -163,13 +174,15 @@ const CourseCard1 = (props) => {
           className={"button-activeColor CourseCard1-buttonCon-btn"}
           onClick={() => {
             handlePurchase({
-              course_id: courseDetail.id,
-              batch: courseDetail.closest_batchs,
+              course_id: courseDetail1.id,
+              batch: courseDetail1.closest_batchs,
             });
           }}
         />
       </div>
     </div>
+    )}
+    </>
   );
 };
 

@@ -219,7 +219,7 @@ router.get("/:course_id", async (req, res) => {
       );
     }
 
-    //拿到課程分數
+    //拿到課程討論的各種資料
     let course_comment = [];
     if (course.length !== 0) {
       course_comment = await connection.queryAsync(
