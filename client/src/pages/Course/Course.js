@@ -9,6 +9,7 @@ import CourseCard from "../../components/CourseCard1";
 
 import CategoryService from "../../services/category.service";
 import getValidMessage from "../../validMessage/validMessage";
+import { number } from "joi";
 
 function Course (props){
 
@@ -53,6 +54,11 @@ function Course (props){
   useEffect(async () => {
     try {
       let result = await CategoryService.categoryID(category_number);
+      for(let i = 0 ; i < result.data.courseDetail.length ; i ++){
+        if(result.data.courseDetail[i].score_sum === null){
+          result.data.courseDetail[i].score_sum = 0
+        }
+      }
       setCategory(result.data.courseDetail)
       setCategoryname(result.data.categoryID[0].category_name)
       return
@@ -103,6 +109,23 @@ function Course (props){
   //     });
   //   }
   // };
+
+  useEffect(()=> {
+    if(selectedOptionStart === "評分由高到低"){
+      setCategory(
+        [...category].sort(function (a, b) {
+          console.log((a.score_sum / a.score_count) != number ? 0 : a.score_sum / a.score_count   , (b.score_sum / b.score_count) != number ?  0 : b.score_sum / b.score_count);
+        return ((a.score_sum / a.score_count) != number ? 0 : a.score_sum / a.score_count )  < ((b.score_sum / b.score_count) != number ?  0 : b.score_sum / b.score_count) ? 1 : -1;
+        })
+      );
+  }
+  if(selectedOptionStart === "評分由低到高"){
+    setCategory(
+      [...category].sort(function (a, b) {
+        return ((a.score_sum / a.score_count) != number ?  0 : a.score_sum / a.score_count)  > ((b.score_sum / b.score_count) != number ?  0 : b.score_sum / b.score_count) ? 1 : -1;
+     }));}
+  },[selectedOptionStart]);
+  
 
   useEffect(()=> {
     if(selectedOptionLevel === "初級"){
@@ -173,11 +196,8 @@ function Course (props){
         }}
       >
         <option value="">課程評價</option>
-        <option value="全部評價">全部評價</option>
-        <option value="1星以上">1星以上</option>
-        <option value="2星以上">2星以上</option>
-        <option value="3星以上">3星以上</option>
-        <option value="4星以上">4星以上</option>
+        <option value="評分由高到低">評分由高到低</option>
+        <option value="評分由低到高">評分由低到高</option>
       </select>
     </div>
         <div className="CourseCard">
