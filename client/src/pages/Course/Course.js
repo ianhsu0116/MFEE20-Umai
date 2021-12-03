@@ -6,6 +6,8 @@ import Test from "./test1";
 import CourseCard from "../../components/CourseCard1";
 
 function Course(props) {
+  const { currentUser, addCourseIntoCart } = props;
+
   const [selectedOptionLevel, setSelectedOptionLevel] = useState("");
   const [selectedOptionDate, setSelectedOptionDate] = useState("");
   const [selectedOptionStart, setSelectedOptionStart] = useState("");

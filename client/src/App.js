@@ -23,6 +23,15 @@ import Course from "./pages/Course/Course";
 import Chef from "./pages/Chef/Chef";
 
 import CourseDetail from "./pages/CourseDetail/CourseInfomation";
+import CourseStar from "./pages/CourseDetail/CourseStar";
+import DefaultStudentCard from "./components/DefaultStudentCard";
+import CourseMiniCard from "./components/CourseMiniCard";
+import ShareCard from "./components/ShareCard";
+import Calendar from "./components/Calendar";
+import CalendarAvailable from "./components/CalendarAvailable";
+import CalendarMulti from "./components/CalendarMulti";
+import ForumPublish from "./pages/Forum/ForumPublish";
+import ForumUpdate from "./pages/Forum/ForumUpdate";
 import Footer from "./components/Footer";
 
 function App() {
@@ -74,11 +83,15 @@ function App() {
   // 把課程加入購物車資料庫
   async function addCourseIntoCart(member_id, course_id, batch_date) {
     //檢查購物車中是否已經有此課程
+    console.log("#@#@#@#@#@#@#@##");
+    console.log(member_id, course_id, batch_date);
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_date
     );
+    console.log(IfInCartResult.data);
+    console.log(IfInCartResult.data.inCart);
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
     if (IfInCartResult.data.inCart === 1) {

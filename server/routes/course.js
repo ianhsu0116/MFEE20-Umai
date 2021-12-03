@@ -30,6 +30,7 @@ const storage = multer.diskStorage({
     cb(null, `course-${uuidv4()}.${ext}`);
   },
 });
+
 const uploader = multer({
   storage: storage,
   // 可以用來過濾檔案
@@ -113,6 +114,16 @@ router.get("/collection/:member_id", async (req, res) => {
           closest_batchs.push(batchs[i]);
           break;
         }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
+        }
       }
     });
 
@@ -120,6 +131,8 @@ router.get("/collection/:member_id", async (req, res) => {
     closest_batchs.forEach((item, index) => {
       result[index].closest_batchs = item;
     });
+
+    //console.log(result);
 
     res.status(200).json({ success: true, course: result });
   } catch (error) {
@@ -164,6 +177,16 @@ router.get("/member/:member_id", async (req, res) => {
           closest_batchs.push(batchs[i]);
           break;
         }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
+        }
       }
     });
 
@@ -179,7 +202,7 @@ router.get("/member/:member_id", async (req, res) => {
   }
 });
 
-// // 根據course_id檢查課程是否已加入購物車
+//檢查購物車中是否已經有此課程
 router.get("/cart/:member_id/:course_id/:batch_date", async (req, res) => {
   let { member_id, course_id, batch_date } = req.params;
   // console.log(member_id, course_id, batch_date);
@@ -198,7 +221,7 @@ router.get("/cart/:member_id/:course_id/:batch_date", async (req, res) => {
   }
 });
 
-// // 根據course_id更新購物車
+// 根據course_id更新購物車
 router.put("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
   let { course_id, batch_date } = req.body;

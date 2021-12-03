@@ -14,7 +14,7 @@ import ChefIntro from "./ChefIntro";
 import CourseReview from "./CourseReview/CourseReview";
 
 const MemberCenter = (props) => {
-  let { currentUser, setCurrentUser } = props;
+  let { currentUser, setCurrentUser, addCourseIntoCart } = props;
 
   // 確認當前登入狀態
   const history = useHistory();

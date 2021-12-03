@@ -11,7 +11,7 @@
   border-spacing: 0;
   border-radius: 20px;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-  
+
   tr {
     &:first-child {
       text-align: left;
@@ -48,6 +48,7 @@
     &:nth-child(1) {
       text-align: left;
       width: 30%;
+
       h2 {
         margin-left: 48px;
       }
@@ -69,7 +70,7 @@
 .CourseList-list-item {
   td {
     background: #fdfdfd;
-    height: 150px;
+    height: 160px;
     margin: 0;
     padding: 0;
     color: #888888;
@@ -77,13 +78,24 @@
     text-align: center;
     &:nth-child(1) {
       text-align: left;
-      width: 30%;
+      width: 5%;
     }
     &:nth-child(2) {
+      display: flex;
       text-align: left;
-      width: 25%;
-      h4{
-        margin-bottom: 5px;
+      width: 100%;
+      img {
+        width: 45%;
+        margin: 10px auto;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+      div {
+        width: 55%;
+        margin: auto 5px;
+        h4 {
+          margin-bottom: 10px;
+        }
       }
     }
     &:nth-child(3) {
@@ -100,7 +112,7 @@
     transition: 0.4s ease;
   }
 }
-.turnicon{
+.turnicon {
   & svg {
     transform: rotate(90deg);
     transition: 0.4s ease;
