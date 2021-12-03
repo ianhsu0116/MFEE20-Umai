@@ -1,7 +1,8 @@
+// forum 控制 forumheader forumcard
 .forum {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 100%;
   overflow: scroll;
   justify-content: center;
   margin-top: 63px;
@@ -9,6 +10,8 @@
     background: white;
     margin: 0 0;
     min-width: 95%;
+    position: relative;
+    // 到submit以前都是控制header
     .Forum-main-h3 {
       margin: 10px;
     }
@@ -16,6 +19,12 @@
       margin: 10px;
       color: #d8a466;
     }
+    .Forum-main-submit {
+      position: absolute;
+      right: 30px;
+      bottom: 18px;
+    }
+    // 控制forum card
     .Forum-main-out {
       display: flex;
       padding: 10px;
@@ -106,6 +115,9 @@
         .Forum-main-p {
           padding: 5px;
           font-size: 1rem;
+          max-width: 60vw;
+          width: 50vw;
+          min-height: 2rem;
         }
         .Forum-main-little {
           display: flex;
