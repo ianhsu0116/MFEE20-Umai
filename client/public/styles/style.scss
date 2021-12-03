@@ -20,47 +20,47 @@ $MemberCenterHeight: calc(100vh - 63px);
 $MemberCenterShadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
 @mixin flex($direction) {
-  display: flex;
-  flex-direction: $direction;
+	display: flex;
+	flex-direction: $direction;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-  overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
-  height: 100%;
+	overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 會出問題*/
+	height: 100%;
 }
 body {
-  font-family: "Noto Sans TC", sans-serif;
-  color: $fontColor;
+	font-family: "Noto Sans TC", sans-serif;
+	color: $fontColor;
 
-  // //將scrollbar移除
-  -ms-overflow-style: none;
-  //width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
-  overflow: auto;
-  scroll-behavior: smooth;
+	// //將scrollbar移除
+	-ms-overflow-style: none;
+	//width: calc(100vw + 18px); /*瀏覽器滾動條的長度大約是 18px*/
+	overflow: auto;
+	scroll-behavior: smooth;
 }
 
 // 設定scrollbar樣式
 /* width */
 ::-webkit-scrollbar {
-  //width: 5px;
-  display: none;
+	//width: 5px;
+	display: none;
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
-  opacity: 0;
+	background: transparent;
+	opacity: 0;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  //background: $themeColor;
-  border-radius: 3px;
-  opacity: 0;
+	//background: $themeColor;
+	border-radius: 3px;
+	opacity: 0;
 }
 /* Handle on hover */
 // ::-webkit-scrollbar-thumb:hover {
@@ -70,18 +70,18 @@ body {
 
 // placehoder預設顏色
 ::placeholder {
-  /* Firefox, Chrome, Opera */
-  color: rgba(0, 0, 0, 0.3);
+	/* Firefox, Chrome, Opera */
+	color: rgba(0, 0, 0, 0.3);
 }
 
 :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: rgba(0, 0, 0, 0.3);
+	/* Internet Explorer 10-11 */
+	color: rgba(0, 0, 0, 0.3);
 }
 
 ::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: rgba(0, 0, 0, 0.3);
+	/* Microsoft Edge */
+	color: rgba(0, 0, 0, 0.3);
 }
 
 // 覆蓋bootstrap樣式
@@ -95,143 +95,143 @@ p,
 figure,
 ul,
 ol {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 ul,
 ol {
-  list-style: none;
+	list-style: none;
 }
 
 img,
 svg {
-  vertical-align: baseline;
+	vertical-align: baseline;
 }
 
 // 移除所有button樣式
 button,
 input[type="submit"],
 input[type="reset"] {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 input,
 textarea,
 select {
-  color: $fontColor;
-  outline: none;
-  border: 1px solid $fontColor;
-  padding: 0.25rem 0.45rem;
-  font-size: 1rem;
-  border-radius: 5px;
+	color: $fontColor;
+	outline: none;
+	border: 1px solid $fontColor;
+	padding: 0.25rem 0.45rem;
+	font-size: 1rem;
+	border-radius: 5px;
 }
 input,
 textarea {
-  width: 100%;
+	width: 100%;
 }
 
 textarea {
-  resize: none;
+	resize: none;
 }
 
 a {
-  text-decoration: none;
-  color: $fontColor;
-  &:hover {
-    color: $activeColor;
-  }
+	text-decoration: none;
+	color: $fontColor;
+	&:hover {
+		color: $activeColor;
+	}
 }
 
 // 各個按鍵component的樣式
 %button-basic {
-  padding: 0.35rem 0.75rem;
-  color: white;
-  border-radius: 5px;
+	padding: 0.35rem 0.75rem;
+	color: white;
+	border-radius: 5px;
 }
 
 .button-themeColor {
-  @extend %button-basic;
-  background: $themeColor;
+	@extend %button-basic;
+	background: $themeColor;
 
-  &:hover {
-    background-color: $activeColor;
-  }
+	&:hover {
+		background-color: $activeColor;
+	}
 }
 .button-themeColorBlue {
-  @extend %button-basic;
-  background: $themeColorBlue;
+	@extend %button-basic;
+	background: $themeColorBlue;
 
-  &:hover {
-    background-color: #006ca1;
-  }
+	&:hover {
+		background-color: #006ca1;
+	}
 }
 .button-highLeveColor {
-  @extend %button-basic;
-  background: $highLevelColor;
+	@extend %button-basic;
+	background: $highLevelColor;
 
-  &:hover {
-    background-color: #cc5a5a;
-  }
+	&:hover {
+		background-color: #cc5a5a;
+	}
 }
 .button-activeColor {
-  @extend %button-basic;
-  background: $activeColor;
+	@extend %button-basic;
+	background: $activeColor;
 
-  &:hover {
-    background-color: $activeColor;
-  }
+	&:hover {
+		background-color: $activeColor;
+	}
 }
 .button-darkColor {
-  @extend %button-basic;
-  background: $fontColor;
+	@extend %button-basic;
+	background: $fontColor;
 
-  &:hover {
-    background-color: #424242;
-  }
+	&:hover {
+		background-color: #424242;
+	}
 }
 
 // 載入更多按鈕
 .LoadMoreButton {
-  padding: 0.35rem 0.75rem;
-  color: white;
-  border-radius: 50px;
-  background: $themeColor;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  &:hover {
-    //background: $activeColor;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-  }
-  .LoadMoreButton-text {
-    margin-right: 0.25rem;
-  }
+	padding: 0.35rem 0.75rem;
+	color: white;
+	border-radius: 50px;
+	background: $themeColor;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	&:hover {
+		//background: $activeColor;
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+	}
+	.LoadMoreButton-text {
+		margin-right: 0.25rem;
+	}
 }
 
 // 錯誤碼元件
 .ErrorMessage {
-  font-size: 90%;
-  color: red;
-  font-weight: 800;
+	font-size: 90%;
+	color: red;
+	font-weight: 800;
 }
 
 // 開啟彈出視窗時，防止後方頁面滾動
 .stopScroll {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 // 重點字體 改變顏色
 .heighLight-text {
-  color: $activeColor;
+	color: $activeColor;
 }
 
 // 共用元件
-@import "./Navbar";
+// @import "./Navbar";
 @import "./Navbar2";
 @import "./OptionBar";
 @import "./CourseCard1";
@@ -298,6 +298,7 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
 @import "./CourseDetail//CourseDecorate";
+@import "./CourseDetail/CourseCommit";
 
 // 主廚
 @import "./chef/chef";
@@ -324,81 +325,81 @@ $header-border: 3px solid $activeColor; // title的左border
 
 // RWD
 @media screen and (max-width: 1200px) {
-  // Navbar
-  .Navbar {
-    .Navbar-container {
-      width: 90%;
-    }
-  }
+	// Navbar
+	.Navbar {
+		.Navbar-container {
+			width: 90%;
+		}
+	}
 
-  // Navbar2
-  .Header {
-    .Navbar {
-      .Navbar-container {
-        width: 90%;
-      }
-    }
-  }
-  .Navbar-dropdowns {
-    .Navbar-dropdowns-container {
-      width: 90%;
-    }
-  }
-  .Navbar-CourseSearch {
-    .Navbar-CourseSearch-container {
-      width: 90%;
-    }
-  }
+	// Navbar2
+	.Header {
+		.Navbar {
+			.Navbar-container {
+				width: 90%;
+			}
+		}
+	}
+	.Navbar-dropdowns {
+		.Navbar-dropdowns-container {
+			width: 90%;
+		}
+	}
+	.Navbar-CourseSearch {
+		.Navbar-CourseSearch-container {
+			width: 90%;
+		}
+	}
 
-  .MemberCenter {
-    .MemberCenter-container {
-      width: 90%;
-    }
-  }
+	.MemberCenter {
+		.MemberCenter-container {
+			width: 90%;
+		}
+	}
 
-  .MemberInfo-container-row {
-    width: 100% !important;
-  }
+	.MemberInfo-container-row {
+		width: 100% !important;
+	}
 
-  .CourseDetail-headerPicture {
-    width: 90%;
+	.CourseDetail-headerPicture {
+		width: 90%;
 
-    // ian 移除（確保圖片不壓縮）
-    // img {
-    //   height: 35vw;
-    // }
-  }
-  .Coursedetail {
-    /* 三圖片大框 */
-    .Coursedetail-header {
-      width: 90%;
-      height: 35vw;
-    }
-  }
-  .Coursedetail-set {
-    .Coursedetail-container {
-      width: 90%;
-    }
-  }
-  .chef-set {
-    width: 90%;
-  }
-  .CourseDecorate_RWD1 {
-    width: 22%;
-  }
-  .CourseDecorate_RWD2 {
-    width: 35%;
-    top: 22vw;
-  }
-  .CourseDecorate_RWD5 {
-    width: 30%;
-  }
-  .CourseDecorate_RWD6 {
-    margin-top: 10vw;
-  }
-  .CourseDecorate_RWDEx {
-    width: 30%;
-    top: 14vw;
-    right: -5vw;
-  }
+		// ian 移除（確保圖片不壓縮）
+		// img {
+		//   height: 35vw;
+		// }
+	}
+	.Coursedetail {
+		/* 三圖片大框 */
+		.Coursedetail-header {
+			width: 90%;
+			height: 35vw;
+		}
+	}
+	.Coursedetail-set {
+		.Coursedetail-container {
+			width: 90%;
+		}
+	}
+	.chef-set {
+		width: 90%;
+	}
+	.CourseDecorate_RWD1 {
+		width: 22%;
+	}
+	.CourseDecorate_RWD2 {
+		width: 35%;
+		top: 22vw;
+	}
+	.CourseDecorate_RWD5 {
+		width: 30%;
+	}
+	.CourseDecorate_RWD6 {
+		margin-top: 10vw;
+	}
+	.CourseDecorate_RWDEx {
+		width: 30%;
+		top: 14vw;
+		right: -5vw;
+	}
 }
