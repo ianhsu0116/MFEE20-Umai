@@ -16,6 +16,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ForumHeader from "./ForumHeader";
 
+
 const array = [
   "img1.jpg",
   "img2.jpg",
