@@ -109,7 +109,7 @@ const CourseCard1 = (props) => {
       </div>
 
       <div className="CourseCard1-detailCon">
-        <h4 className="CourseCard1-detailCon-h4">
+        <h4 className="CourseCard1-detailCon-h4" title={courseDetail.course_name}>
           <Link to={`/courses/${courseDetail.id}`}>
             {courseDetail.course_name}
           </Link>
