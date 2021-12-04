@@ -30,6 +30,7 @@ const storage = multer.diskStorage({
     cb(null, `course-${uuidv4()}.${ext}`);
   },
 });
+
 const uploader = multer({
   storage: storage,
   // 可以用來過濾檔案
@@ -113,6 +114,16 @@ router.get("/collection/:member_id", async (req, res) => {
           closest_batchs.push(batchs[i]);
           break;
         }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
+        }
       }
     });
 
@@ -120,6 +131,8 @@ router.get("/collection/:member_id", async (req, res) => {
     closest_batchs.forEach((item, index) => {
       result[index].closest_batchs = item;
     });
+
+    //console.log(result);
 
     res.status(200).json({ success: true, course: result });
   } catch (error) {
@@ -140,7 +153,7 @@ router.get("/member/:member_id", async (req, res) => {
       [member_id, 1]
     );
 
-    // 如果沒有任何收藏的話
+    // 如果沒有任何課程的話
     if (result.length === 0)
       return res.status(204).json({ success: true, course: [] });
 
@@ -164,6 +177,16 @@ router.get("/member/:member_id", async (req, res) => {
           closest_batchs.push(batchs[i]);
           break;
         }
+
+        // 如果沒一個符合(代表沒有可報名的梯次)，則回傳空值
+        if (i === batchs.length - 1) {
+          closest_batchs.push({
+            batch_id: null,
+            course_id,
+            batch_date: null,
+            member_count: 0,
+          });
+        }
       }
     });
 
@@ -183,7 +206,8 @@ router.get("/member/:member_id", async (req, res) => {
 router.get("/cart/:course_id/:batch_date", async (req, res) => {
   let { course_id, batch_date } = req.params;
   // console.log(course_id, batch_date);
-
+console.log("SELECT course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id, course_batch.batch_date, course_batch.member_count FROM course, course_batch WHERE course.id = course_batch.course_id AND course.id = ? AND batch_date = ? AND course.valid = ? AND course_batch.valid = ?",
+[course_id, batch_date, 1, 1]);
   try {
     // 拿到課程資料與梯次(join course_batch)
     let courseInfoInCart = await connection.queryAsync(
@@ -214,25 +238,26 @@ router.get("/:course_id", async (req, res) => {
     let course_batch = [];
     if (course.length !== 0) {
       course_batch = await connection.queryAsync(
-        "SELECT * FROM course_batch WHERE course_id = ? AND valid = ?",
+        "SELECT course_batch.*  FROM course_batch WHERE course_id = ? AND valid = 1",
         [course_id, 1]
       );
     }
 
-    //拿到課程分數
+    //拿到課程討論的各種資料
     let course_comment = [];
     if (course.length !== 0) {
       course_comment = await connection.queryAsync(
-        "SELECT * FROM course_comment WHERE course_id = ? AND valid = ?",
+        "SELECT course_comment.* , orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member WHERE member.id = orders.member_id AND course_comment.orders_id = orders.id  AND  course_comment.course_id = ? AND course_comment.valid = 1",
         [course_id, 1]
       );
-    }
+    }  
+    
 
     res
       .status(200)
       .json({ success: true, course, course_batch, course_comment });
   } catch (error) {
-    //console.log(error);
+    // console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });

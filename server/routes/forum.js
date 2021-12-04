@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 
 // multer 處理上傳檔案
 const multer = require("multer");
-const { resourceUsage } = require("process");
+// const { resourceUsage } = require("process");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "..", "public", "upload-images"));
@@ -365,7 +365,7 @@ router.post("/collection/:member_id", async (req, res) => {
   }
 });
 
-// 取消或新增收藏
+// 按讚或 / 取消按讚
 router.post("/like/:member_id", async (req, res) => {
   let { member_id } = req.params;
   let { article_id } = req.body;
