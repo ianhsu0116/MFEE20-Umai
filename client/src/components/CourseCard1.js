@@ -126,7 +126,6 @@ const CourseCard1 = (props) => {
         </div>
         <div className="CourseCard1-detailCon-courseTime">
           最近可報名梯次：
-          {console.log(courseDetail.closest_batchs)}
           {/* {courseDetail.closest_batchs.batch_date
             ? courseDetail.closest_batchs.batch_date
             : "目前沒有開放"} */}

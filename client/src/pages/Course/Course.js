@@ -112,63 +112,28 @@ function Course (props){
     } else category_number = 0}
 
 
-  //    // 當前所有收藏課程
-  // const [currentCourses, setCurrentCourses] = useState([]);
-
-  // // 當前使用者所有的收藏課程id
-  // const [collectionIds, setCollectionIds] = useState([]);
-
-  // // 重整當前收藏課程
-  // let refreshCollection = async () => {
-  //   try {
-  //     let result = await CourseService.course_collection(currentUser.id);
-
-  //     // 如果這次沒回傳任何course
-  //     if (!result.data.course) {
-  //       //console.log("good");
-  //       setCurrentCourses([]);
-  //       setCollectionIds([]);
-  //       return;
-  //     }
-
-  //     // 設定當前課程的資料Array
-  //     setCurrentCourses(result.data.course);
-
-  //     // 設定當前使用者的所有收藏課程Array
-  //     setCollectionIds(result.data.course.map((item) => item.id));
-  //   } catch (error) {
-  //     console.log(error.response);
-  //     let { code } = error.response.data;
-
-  //     // 跳通知
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: getValidMessage("course", code),
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //   }
-  // };
-
-
-
   // NaN資料型態是Number
   useEffect(()=> {
     if(selectedOptionDate === "離今日最近"){
+      let test1 = [...category].filter(function(item){
+        return item.closest_batchs?.batch_date != null
+     }).sort(function (a, b) {
+       return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
+    })
+    let test2 = [...category].filter(function(item){
+      return item.closest_batchs?.batch_date == null
+   })
+   Array.prototype.push.apply(test1, test2);
       setCategory(
-        [...category].filter(function(item){
-           return item.closest_batchs.batch_date != null
-        }).sort(function (a, b) {
-          return a.closest_batchs.batch_date >  b.closest_batchs.batch_date  ? 1 : -1;
-       })
+        test1
       );
   }
   if(selectedOptionDate === "離今日最遠"){
     setCategory(
       [...category].filter(function(item){
-         return item.closest_batchs.batch_date != null
+         return item.closest_batchs?.batch_date != null
       }).sort(function (a, b) {
-        return a.closest_batchs.batch_date <  b.closest_batchs.batch_date ? 1 : -1;
+        return a.closest_batchs?.batch_date <  b.closest_batchs?.batch_date ? 1 : -1;
      })
     );}
   },[selectedOptionDate]);
@@ -179,7 +144,7 @@ function Course (props){
         [...category].sort(function (a, b) {
         return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
         }).sort(function (a, b) {
-          return a.closest_batchs.batch_date  > b.closest_batchs.batch_date ? 1 : -1;
+          return a.closest_batchs?.batch_date  > b.closest_batchs?.batch_date ? 1 : -1;
           })
       );
     } else if(selectedOptionStart === "評分由高到低" && selectedOptionDate === "離今日最遠"){
@@ -187,7 +152,7 @@ function Course (props){
       [...category].sort(function (a, b) {
       return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
       }).sort(function (a, b) {
-        return a.closest_batchs.batch_date  < b.closest_batchs.batch_date ? 1 : -1;
+        return a.closest_batchs?.batch_date  < b.closest_batchs?.batch_date ? 1 : -1;
         })
     );
    }  
@@ -203,7 +168,7 @@ function Course (props){
       [...category].sort(function (a, b) {
       return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
       }).sort(function (a, b) {
-        return a.closest_batchs.batch_date  > b.closest_batchs.batch_date ? 1 : -1;
+        return a.closest_batchs?.batch_date  > b.closest_batchs?.batch_date ? 1 : -1;
         })
     );
  }  else if(selectedOptionStart === "評分由低到高" && selectedOptionDate === "離今日最遠"){
@@ -211,7 +176,7 @@ function Course (props){
     [...category].sort(function (a, b) {
     return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
     }).sort(function (a, b) {
-      return a.closest_batchs.batch_date  < b.closest_batchs.batch_date ? 1 : -1;
+      return a.closest_batchs?.batch_date  < b.closest_batchs?.batch_date ? 1 : -1;
       })
   );
  }   
@@ -285,6 +250,7 @@ function Course (props){
             onChange={(e) => {
               setSelectedOptionLevel(e.target.value)
               setSelectedOptionDate("");
+              setSelectedOptionStart("")
             }}
           >
           {/* 3 初級 2 中級 1 高級  */}
@@ -297,6 +263,7 @@ function Course (props){
           <select
             onChange={(e) => { 
               setSelectedOptionDate(e.target.value)
+              setSelectedOptionStart("")
             }}
           >
             <option value="" selected={selectedOptionDate == ''}>上課時間</option>
@@ -309,7 +276,7 @@ function Course (props){
               setSelectedOptionStart(e.target.value)
             }}
           >
-            <option value="">課程評分</option>
+            <option value="" selected={selectedOptionStart == ''}>課程評分</option>
             <option value="評分由高到低">評分由高到低</option>
             <option value="評分由低到高">評分由低到高</option>
           </select>
