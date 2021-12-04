@@ -10,6 +10,9 @@ function CourseStar(props){
     let lists = [];
     for(let i = 1 ; i < 6 ; i++)
     {
+        if(!Score){
+            Score = 0; //修正Title可能是NaN的問題 11/30
+        }
         if (i < Score){
             wd = 100
         }else if(Score+1>i){
@@ -25,7 +28,6 @@ function CourseStar(props){
 
   return (
     <>
-    {console.log(Score)}
         <div className="Course-starGroup" title={"平均 "+Score+" 顆星"}>
                 {lists}
                 <p>({percent})</p>

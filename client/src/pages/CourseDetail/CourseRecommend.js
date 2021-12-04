@@ -45,15 +45,6 @@ function CourseRecommend(props){
                         <div className="Coursedetail-recommendInfo Coursedetail-recommendClick">點擊了解更多</div>
                     </div>
                 </div>
-                {/* <div className="Coursedetail-recommendRight">
-                    <img src={Food3} alt="" width="300px"></img>
-                    <span className="Coursedetail-recommendText">
-                        <div className="Coursedetail-recommendTitle">難度:高級</div>
-                        <div className="Coursedetail-recommendLine"></div>
-                        <div className="Coursedetail-recommendName">製作道地的麵</div>
-                        <div className="Coursedetail-recommendInfo">123</div>
-                    </span>
-                </div> */}
             </div>
     </>
          )

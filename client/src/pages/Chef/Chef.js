@@ -23,7 +23,7 @@ const Chef = (props) => {
 
   useEffect(async () => {
     try {
-      let result = await MemberService.chefName();
+      let result = await MemberService.chefName(1);
       setChefJSON(result.data.chefs);
       setChefCount(result.data.chefs.length)
       console.log( result.data)
