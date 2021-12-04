@@ -132,7 +132,7 @@ function CourseInfomation(props) {
       setCourse_Score_member(result.data.course_comment.length);
       return;
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   }, []);
 
