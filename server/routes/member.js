@@ -144,9 +144,13 @@ router.put("/password", async (req, res) => {
     // 比對新舊密碼
     let isCompare = await bcrypt.compare(passwordConfirm, oldPassword);
 
-    // 新舊密碼不符合
+    // 密碼確認與舊密碼不符合
     if (!isCompare)
       return res.status(401).json({ success: false, code: "G005" });
+
+    // 新密碼與舊密碼設定相同
+    if (passwordConfirm === newPassword)
+      return res.status(401).json({ success: false, code: "G008" });
 
     // 將新密碼加密
     let hashedPassword = await bcrypt.hash(newPassword, 10);
