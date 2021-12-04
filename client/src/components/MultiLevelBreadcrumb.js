@@ -10,7 +10,6 @@ function MultiLevelBreadcrumb(props) {
   const { location } = props
   // let page_category = location.pathname.substr(1, 7)
   let category_number = location.search.slice(1);
-
   //麵包屑根據種類id判斷當前是什麼
   const [categoryid , setCategoryid] = useState('')
 
@@ -18,7 +17,6 @@ function MultiLevelBreadcrumb(props) {
   useEffect(async () => {
     try {
       let result = await CategoryService.categoryID(category_number);
-      console.log(result.data.categoryID[0].category_name)
       setCategoryid(result.data.categoryID[0].category_name)
       return
     } catch (error) {
@@ -64,17 +62,17 @@ function MultiLevelBreadcrumb(props) {
     // '/product/baby/birth' -> ['','product','baby', 'birth']
     const pathArray = pathnameList[index].split("/");
     if(location.search != ""){
-    if(category_number == "Japan" || category_number == 1){
+    if(category_number == "Japan" || category_number == 1 || category_number == "%E6%97%A5%E5%BC%8F%E6%96%99%E7%90%86" ){
       category_number = 1
-    } else if(category_number == "Korea" || category_number == 2){
+    } else if(category_number == "Korea" || category_number == 2 || category_number == "%E9%9F%93%E5%BC%8F%E6%96%99%E7%90%86"){
       category_number = 2
-    } else if(category_number == "France" || category_number == 3){
+    } else if(category_number == "France" || category_number == 3 || category_number == "%E6%B3%95%E5%BC%8F%E6%96%99%E7%90%86"){
       category_number = 3
-    } else if(category_number == "Italy" || category_number == 4){
+    } else if(category_number == "Italy" || category_number == 4 || category_number == "%E7%BE%A9%E5%BC%8F%E6%96%99%E7%90%86"){
       category_number = 4
-    } else if(category_number == "Chinese" || category_number == 5){
+    } else if(category_number == "Chinese" || category_number == 5 || category_number == "%E4%B8%AD%E5%BC%8F%E6%96%99%E7%90%86"){
       category_number = 5
-    } else if(category_number == "Mediation" || category_number == 6){
+    } else if(category_number == "Mediation" || category_number == 6 || category_number == "%E7%B6%93%E5%85%B8%E8%AA%BF%E9%A3%B2"){
       category_number = 6
     } else if(category_number == "All" || category_number == 7 || category_number == "all"){
       category_number = 7
@@ -125,8 +123,6 @@ function MultiLevelBreadcrumb(props) {
 
   return (
     <>
-
-    {console.log(categoryid)}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="st-breadcrumb-homepage">

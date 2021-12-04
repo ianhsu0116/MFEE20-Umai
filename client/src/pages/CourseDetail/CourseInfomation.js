@@ -225,9 +225,6 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {/* {console.log(course_Score)}
-      {console.log(course_Score_member)} */}
-      {console.log(scoreSum)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -260,9 +257,8 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-quota">
                   <span>
                     本梯次總名額&nbsp;{newCourseJSON[0].member_limit}
-                    &nbsp;位&nbsp;/&nbsp;剩餘名額&nbsp;
-                    {newCourseJSON[0].member_limit - batch_member}
-                    &nbsp;位
+                    &nbsp;位&nbsp;/&nbsp;
+                    {batch_member == newCourseJSON[0].member_limit ? "已經額滿囉！":"剩餘名額"+" "+(newCourseJSON[0].member_limit - batch_member)+ " " + "位"}
                   </span>
                 </div>
                 <StarGroup
@@ -353,7 +349,17 @@ function CourseInfomation(props) {
                             confirmButtonColor: "#0078b3",
                             confirmButtonText: "請先選擇日期後再點擊",
                           }).then(function () {
-                            window.location.reload();
+                            // window.location.reload();
+                          });
+                        } else if (batch_member == newCourseJSON[0].member_limit){
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                          }).then(function () {
+                            // window.location.reload();
                           });
                         } else {
                           addCourseIntoCart(
@@ -378,7 +384,17 @@ function CourseInfomation(props) {
                             confirmButtonColor: "#0078b3",
                             confirmButtonText: "請先選擇日期後再點擊",
                           }).then(function () {
-                            window.location.reload();
+                            // window.location.reload();
+                          });
+                        }　 else if (batch_member == newCourseJSON[0].member_limit){
+                          Swal.fire({
+                            // title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                          }).then(function () {
+                            // window.location.reload();
                           });
                         } else {
                           addCourseIntoCart(

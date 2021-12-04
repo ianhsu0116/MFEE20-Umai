@@ -91,8 +91,6 @@ router.post("/registration", async (req, res) => {
       return res.status(401).json({ success: false, code: "B002" });
     }
   }
-  console.log(error);
-  console.log(error.details[0].context.key);
 
   //取出資料
   let { email, password } = req.body;
@@ -132,7 +130,7 @@ router.post("/registration", async (req, res) => {
 
     res.status(200).json({ success: true });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ success: false, code: "B999", message: error });
   }
 });
