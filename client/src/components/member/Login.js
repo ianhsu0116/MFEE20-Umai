@@ -111,7 +111,7 @@ const Login = (props) => {
       });
     } catch (error) {
       console.log(error.response);
-      let { code } = error.response.data;
+      let { code } = error.response?.data;
       setErrorMsg(getValidMessage("login", code));
     }
   };
@@ -151,7 +151,7 @@ const Login = (props) => {
     } catch (error) {
       // console.log(error);
       // console.log(error.response);
-      let { code } = error.response.data;
+      let { code } = error.response?.data;
       setErrorMsg(getValidMessage("registration", code));
     }
   };
@@ -178,7 +178,7 @@ const Login = (props) => {
       });
     } catch (error) {
       // console.log(error.response);
-      let { code } = error.response.data;
+      let { code } = error.response?.data;
       setErrorMsg(getValidMessage("registration", code));
     }
   };
@@ -206,7 +206,7 @@ const Login = (props) => {
       });
     } catch (error) {
       // console.log(error.response);
-      let { code } = error.response.data;
+      let { code } = error.response?.data;
       setErrorMsg(getValidMessage("registration", code));
     }
   };
@@ -260,7 +260,7 @@ const Login = (props) => {
         setFindPasswordOpen(false);
       } catch (error) {
         //console.log(error.response);
-        let { code } = error.response.data;
+        let { code } = error.response?.data;
         setErrorMsg2(getValidMessage("login", code));
       }
     }
