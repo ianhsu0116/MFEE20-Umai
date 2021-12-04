@@ -31,6 +31,7 @@ const CourseCard1 = (props) => {
     className,
   } = props;
 
+
   // 當前課程是否被當前登入的使用者加入收藏
   const [isCollection, setIsCollection] = useState("");
   // 評分趴數
@@ -38,18 +39,38 @@ const CourseCard1 = (props) => {
   // 報名趴數
   const [assignPersent, setAssignPersent] = useState(0);
 
-  // 初次render做的事情
-  useEffect(() => {
-    if (courseDetail) {
-      // 計算評分平均值
-      setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
 
-      // 計算報名趴數
-      let member = courseDetail.closest_batchs
-        ? courseDetail.closest_batchs.member_count
-        : 0;
-      setAssignPersent((member / courseDetail.member_limit) * 100);
+
+   // 初次render做的事情
+  useEffect(() => {
+    if(courseDetail) {
+    
+        // 計算評分平均值
+        setScorePercent((courseDetail.score_sum / courseDetail.score_count) * 20);
+        
+        // 計算報名趴數
+          let member = courseDetail.closest_batchs ? courseDetail.closest_batchs.member_count : 0;
+        setAssignPersent((member / courseDetail.member_limit) * 100)
+    
+        
     }
+    
+        // 此課程是否被當前使用者收藏
+        if (collectionIds) {
+          let result = "";
+          for (let i = 0; i < collectionIds.length; i++) {
+            if (collectionIds[i] == courseDetail.id) {
+              result = true;
+              break;
+            }
+          }
+          setIsCollection(result);
+        }
+}, [courseDetail]);
+
+  // 若是有傳入使用者收藏IDS
+  useEffect(() => {
+    if(collectionIds) {
 
     // 此課程是否被當前使用者收藏
     if (collectionIds) {
@@ -62,136 +83,123 @@ const CourseCard1 = (props) => {
       }
       setIsCollection(result);
     }
-  }, [courseDetail]);
-
-  // 若是有傳入使用者收藏IDS
-  useEffect(() => {
-    if (collectionIds) {
-      // 此課程是否被當前使用者收藏
-      if (collectionIds) {
-        let result = "";
-        for (let i = 0; i < collectionIds.length; i++) {
-          if (collectionIds[i] == courseDetail.id) {
-            result = true;
-            break;
-          }
-        }
-        setIsCollection(result);
-      }
     }
+   
   }, [collectionIds]);
+
+
+  
+ 
 
   return (
     <>
-      {courseDetail && (
-        <div className={`CourseCard1 ${className ? " " + className : ""}`}>
-          <div className="CourseCard1-imageCon">
-            <img
-              src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
-              alt="course_image"
-            />
-            {assignPersent > 80 && (
-              <div className="CourseCard1-imageCon-banner">即將截止</div>
-            )}
-            {new Date(courseDetail.created_time) > newCourseCompare && (
-              <div className="CourseCard1-imageCon-banner">最新課程</div>
-            )}
-          </div>
+    {courseDetail && (
+<div className={`CourseCard1 ${className ? " " + className : ""}`}>
+      <div className="CourseCard1-imageCon">
+        <img
+          src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
+          alt="course_image"
+        />
+        {assignPersent > 80 && (
+          <div className="CourseCard1-imageCon-banner">即將截止</div>
+        )}
+        {new Date(courseDetail.created_time) > newCourseCompare && (
+          <div className="CourseCard1-imageCon-banner">最新課程</div>
+        )}
+      </div>
 
-          <div className="CourseCard1-detailCon">
-            <h4 className="CourseCard1-detailCon-h4">
-              <Link to={`/courses/${courseDetail.id}`}>
-                {courseDetail.course_name}
-              </Link>
-            </h4>
-            <StarGroup
-              percent={scorePercent || 0}
-              allScore={courseDetail.score_count || 0}
-            />
-            <div className="CourseCard1-detailCon-company">
-              <IoLocationSharp />
-              {courseDetail.company_name}
-              <GiCook />
-              {courseDetail.first_name + " " + courseDetail.last_name}
-            </div>
-            <div className="CourseCard1-detailCon-courseTime">
-              最近可報名梯次：
-              {courseDetail.closest_batchs.batch_date
-                ? courseDetail.closest_batchs.batch_date
-                : "目前沒有開放"}
-            </div>
-            <div className="CourseCard1-detailCon-MemberCount">
-              <div className="CourseCard1-detailCon-MemberCount-progressCon">
-                <div
-                  className="CourseCard1-detailCon-MemberCount-progress"
-                  style={{ width: assignPersent + "%" }}
-                ></div>
-              </div>
-              <div>
-                報名人數{" "}
-                {courseDetail.closest_batchs
-                  ? courseDetail.closest_batchs.member_count
-                  : 0}{" "}
-                / {courseDetail.member_limit}
-              </div>
-            </div>
-            <div className="CourseCard1-detailCon-bottom">
-              {/* 這裡要自行判斷當前課程階級，切換className即可改變樣式(highLevel, midLevel, lowLevel) */}
-              <div
-                className={`CourseCard1-detailCon-bottom-courseLevel highLevel ${
-                  courseDetail.course_level == 1
-                    ? "highLevel"
-                    : courseDetail.course_level == 2
-                    ? "midLevel"
-                    : "lowLevel"
-                }`}
-              >
-                {leverArray[courseDetail.course_level]}
-              </div>
-              <div className="CourseCard1-detailCon-bottom-coursePrice">
-                <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
-                  NT${numDotFormat(courseDetail.course_price)}
-                </span>
-                <span className="CourseCard1-detailCon-bottom-coursePrice-discount">
-                  NT${numDotFormat(courseDetail.course_price * 0.9)}
-                </span>
-              </div>
-            </div>
+      <div className="CourseCard1-detailCon">
+        <h4 className="CourseCard1-detailCon-h4">
+          <Link to={`/courses/${courseDetail.id}`}>
+            {courseDetail.course_name}
+          </Link>
+        </h4>
+        <StarGroup
+          percent={scorePercent || 0}
+          allScore={courseDetail.score_count || 0}
+        />
+        <div className="CourseCard1-detailCon-company">
+          <IoLocationSharp />
+          {courseDetail.company_name}
+          <GiCook />
+          {courseDetail.first_name + " " + courseDetail.last_name}
+        </div>
+        <div className="CourseCard1-detailCon-courseTime">
+          最近可報名梯次：
+          {console.log(courseDetail.closest_batchs)}
+          {/* {courseDetail.closest_batchs.batch_date
+            ? courseDetail.closest_batchs.batch_date
+            : "目前沒有開放"} */}
+          {courseDetail.closest_batchs?.batch_date ? courseDetail.closest_batchs.batch_date : "目前沒有開放"}
+        </div>
+        <div className="CourseCard1-detailCon-MemberCount">
+          <div className="CourseCard1-detailCon-MemberCount-progressCon">
             <div
-              className={`CourseCard1-detailCon-likeBtn ${
-                isCollection && " CourseCard1-detailCon-likeBtn-active"
-              }`}
-              onClick={() => {
-                handleAddIntoCollection(courseDetail.id);
-              }}
-            >
-              <FaRegHeart />
-            </div>
+              className="CourseCard1-detailCon-MemberCount-progress"
+              style={{ width: assignPersent + "%" }}
+            ></div>
           </div>
-          <div className="CourseCard1-buttonCon">
-            <Button
-              value={"加入購物車"}
-              className={"button-themeColor CourseCard1-buttonCon-btn"}
-              onClick={() => {
-                handleAddIntoCart({
-                  course_id: courseDetail.id,
-                  batch: courseDetail.closest_batchs,
-                });
-              }}
-            />
-            <Button
-              value={"立即訂購"}
-              className={"button-activeColor CourseCard1-buttonCon-btn"}
-              onClick={() => {
-                handlePurchase({
-                  course_id: courseDetail.id,
-                  batch: courseDetail.closest_batchs,
-                });
-              }}
-            />
+          <div>
+            報名人數 {courseDetail.closest_batchs ? courseDetail.closest_batchs.member_count : 0} / {courseDetail.member_limit}
           </div>
         </div>
-      )}
+        <div className="CourseCard1-detailCon-bottom">
+          {/* 這裡要自行判斷當前課程階級，切換className即可改變樣式(highLevel, midLevel, lowLevel) */}
+          <div
+            className={`CourseCard1-detailCon-bottom-courseLevel highLevel ${
+              courseDetail.course_level == 1
+                ? "highLevel"
+                : courseDetail.course_level == 2
+                ? "midLevel"
+                : "lowLevel"
+            }`}
+          >
+            {leverArray[courseDetail.course_level]}
+          </div>
+          <div className="CourseCard1-detailCon-bottom-coursePrice">
+            <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
+              NT${numDotFormat(courseDetail.course_price)}
+            </span>
+            <span className="CourseCard1-detailCon-bottom-coursePrice-discount">
+              NT${numDotFormat(courseDetail.course_price * 0.9)}
+            </span>
+          </div>
+        </div>
+        <div
+          className={`CourseCard1-detailCon-likeBtn ${
+            isCollection && " CourseCard1-detailCon-likeBtn-active"
+          }`}
+          onClick={() => {
+            handleAddIntoCollection(courseDetail.id);
+          }}
+        >
+          <FaRegHeart />
+        </div>
+      </div>
+      <div className="CourseCard1-buttonCon">
+        <Button
+          value={"加入購物車"}
+          className={"button-themeColor CourseCard1-buttonCon-btn"}
+          onClick={() => {
+            handleAddIntoCart({
+              course_id: courseDetail.id,
+              batch: courseDetail.closest_batchs,
+            });
+          }}
+        />
+        <Button
+          value={"立即訂購"}
+          className={"button-activeColor CourseCard1-buttonCon-btn"}
+          onClick={() => {
+            handlePurchase({
+              course_id: courseDetail.id,
+              batch: courseDetail.closest_batchs,
+            });
+          }}
+        />
+      </div>
+    </div>
+    )}
     </>
   );
 };
