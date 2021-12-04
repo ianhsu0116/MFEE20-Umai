@@ -34,7 +34,7 @@ const ForumCard = () => {
     message_text: "",
   });
 
-  const [messageDetail, setmessageDetail] = useState({});
+  const [messageDetail, setmessageDetail] = useState([]);
 
   // USEEFFECT模擬類別型元件的生命週期
   // 若把UseEffect設定為UseEffect(),[]的話，在畫面渲染完成以後執行()裡面的內容。
@@ -46,14 +46,20 @@ const ForumCard = () => {
       setForumcard(res.data.forumdata);
 
       let data = JSON.stringify(res.data.forumdata);
+      // 自後端讀取資料庫的資料，
+      let comment = await axios.get(`${API_URL}/forum/comment`, {
+        withCredentials: true,
+      });
+      console.log(comment);
+      // 第一個COMMENT是 LET的 變數名稱，依照comment形式，再判斷如何拿資料。
+      setmessageDetail(comment.data.comment);
+
+      // let message = JSON.stringify(res.message.comment);
     } catch (error) {
       console.log(error.response);
     }
-    let comment = await axios.get(`${API_URL}/forum/message`);
-    setmessageDetail(comment.data);
-    console.log(messageDetail);
   }, []);
-  console.log(messageDetail);
+
   // 改變setmessagenter的狀態
   function handleChange(e) {
     if (e.target.name == "image") {
@@ -131,7 +137,19 @@ const ForumCard = () => {
             data-forumId={forumdata.id}
             onClick={async (e) => {
               console.log(forumdata);
+              let id = e.currentTarget.dataset.forumid;
+              id = Number(id);
+              console.log(id);
               console.log(e.currentTarget.dataset.forumid);
+              // useEffect已經拿到所有的留言，也變更了messageDetail的狀態，因此messageDetail已經是所有的留言。
+              let newMessage = [...messageDetail];
+              // filter去篩選
+              let newmsg = newMessage.filter(
+                (message) => message.article_id == id
+              );
+              console.log(newMessage);
+              console.log(newmsg);
+              setmessageDetail(newmsg);
               // 去後端要資料
               // ajax
               // forumid儲存在dataset裡面。
@@ -299,52 +317,107 @@ const ForumCard = () => {
 
         <Modal.Footer ClassName="modal-footer">
           {/* message read */}
-          <div className="Forum-modal-footer-component">
-            <div className="Forum-modal-footer-account">
-              <img
-                className="Forum-modal-footer-account-image"
-                src={require(`./../../components/images/img1.jpg`).default}
-                alt="cake"
-              ></img>
-              <div>
-                <h6 className="Forum-modal-footer-account-name">
-                  {articleDetail && articleDetail.article_link}
-                </h6>
-                <h6 className="Forum-modal-footer-account-id">
-                  @olsonlovesmakelove
-                </h6>
+          {/* 為了預防沒有留言的時候報錯，所以設定條，當留言大於一筆的時候，執行第一個，當留言少於一個的時候執行第二個 */}
+          {messageDetail.length > 1 ? (
+            messageDetail.map((msg) => (
+              <div className="Forum-modal-footer-component">
+                <div className="Forum-modal-footer-account">
+                  <img
+                    className="Forum-modal-footer-account-image"
+                    src=""
+                    alt="cake"
+                  ></img>
+                  <div>
+                    <h6 className="Forum-modal-footer-account-name">
+                      {msg.member_id}
+                    </h6>
+                    <h6 className="Forum-modal-footer-account-id">
+                      @olsonlovesmakelove
+                    </h6>
+                  </div>
+                  <div className="Forum-main-DateAndDropdown">
+                    <div class="Forum-main-dropdown">
+                      <FiMoreHorizontal className="FiMoreHorizontal" />
+                      <div class="Forum-main-dropdown-content">
+                        <p>
+                          <a href="#">收藏</a>
+                        </p>
+                        <p>
+                          <a href="#">分享</a>
+                        </p>
+                        <p>
+                          <a href="#">檢舉</a>
+                        </p>
+                        <p>
+                          <a href="#">刪除</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="Forum-modal-footer-commet">
+                  {/* <p className="">{msg.comment_text}</p> */}
+                </div>
+                <img src="" alt="" />
+                <div className="Forum-modal-footer-icon">
+                  <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
+                  <p className="Forum-modal-footer-icon-p">999</p>
+                  {/* <AiOutlineMessage className="AiOutlineMessage" size="2rem" />
+              <p className="Forum-modal-footer-icon-p">999</p> */}
+                </div>
+                <div className="st-line"></div>
               </div>
-              <div className="Forum-main-DateAndDropdown">
-                <div class="Forum-main-dropdown">
-                  <FiMoreHorizontal className="FiMoreHorizontal" />
-                  <div class="Forum-main-dropdown-content">
-                    <p>
-                      <a href="#">收藏</a>
-                    </p>
-                    <p>
-                      <a href="#">分享</a>
-                    </p>
-                    <p>
-                      <a href="#">檢舉</a>
-                    </p>
-                    <p>
-                      <a href="#">刪除</a>
-                    </p>
+            ))
+          ) : (
+            <div className="Forum-modal-footer-component">
+              <div className="Forum-modal-footer-account">
+                <img
+                  className="Forum-modal-footer-account-image"
+                  src=""
+                  alt="cake"
+                ></img>
+                <div>
+                  <h6 className="Forum-modal-footer-account-name">
+                    {messageDetail.member_id}
+                  </h6>
+                  <h6 className="Forum-modal-footer-account-id">
+                    @olsonlovesmakelove
+                  </h6>
+                </div>
+                <div className="Forum-main-DateAndDropdown">
+                  <div class="Forum-main-dropdown">
+                    <FiMoreHorizontal className="FiMoreHorizontal" />
+                    <div class="Forum-main-dropdown-content">
+                      <p>
+                        <a href="#">收藏</a>
+                      </p>
+                      <p>
+                        <a href="#">分享</a>
+                      </p>
+                      <p>
+                        <a href="#">檢舉</a>
+                      </p>
+                      <p>
+                        <a href="#">刪除</a>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="Forum-modal-footer-commet">
-              <p className="">{articleDetail && articleDetail.article_link}</p>
-            </div>
-            <div className="Forum-modal-footer-icon">
-              <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
-              <p className="Forum-modal-footer-icon-p">999</p>
-              {/* <AiOutlineMessage className="AiOutlineMessage" size="2rem" />
+              <div className="Forum-modal-footer-commet">
+                {/* <p className="">{msg.comment_text}</p> */}
+              </div>
+              <img src="" alt="" />
+              <div className="Forum-modal-footer-icon">
+                <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
+                <p className="Forum-modal-footer-icon-p">999</p>
+                {/* <AiOutlineMessage className="AiOutlineMessage" size="2rem" />
               <p className="Forum-modal-footer-icon-p">999</p> */}
+              </div>
+              <div className="st-line"></div>
             </div>
-            <div className="st-line"></div>
-          </div>
+          )}
+          ;
           <div className="Forum-modal-footer-write-component">
             <div className="Forum-modal-footer-write-account">
               <img

@@ -47,6 +47,11 @@ router.use((req, res, next) => {
   next();
 });
 
+router.get("/comment", async (req, res) => {
+  let comment = await connection.queryAsync("SELECT * FROM forum_comment");
+  res.json({ comment: comment });
+});
+//  WHERE article_id=?
 // 拿到所有文章
 router.get("/", async (req, res) => {
   try {
@@ -111,20 +116,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/comment", async (req, res) => {
-  try {
-    let comment = await connection.queryAsync("SELECT * FROM forum_comment");
-    res.json({ comment: comment });
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 // 依據forumId拿到文章詳細內容
 router.get("/:forumId", async (req, res) => {
   try {
     let forumdatadetail = await connection.queryAsync(
       "SELECT * FROM forum_article WHERE id=?",
+      // 以下[]內的東西要透過網址去拿到ID
       [req.params.forumId]
     );
     //console.log(forumdatadetail);
