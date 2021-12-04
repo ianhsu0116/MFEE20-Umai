@@ -63,7 +63,7 @@ const Gallery = () => {
     <>
       <div className="massonry-title">
         <div className="massonry-title-inside">
-          <h5 className="massonry-title-inside-bread">首頁>討論區</h5>
+          <h5 className="massonry-title-inside-bread">首頁討論區</h5>
           <h1 className="massonry-title-inside-header">課程體驗</h1>
           <div className="st-line"></div>
         </div>
