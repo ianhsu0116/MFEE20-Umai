@@ -6,7 +6,7 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-  //檢查購物車中是否已經有此課程
+  //檢查購物車資料庫中是否已經有此課程
   IfCourseInCart(member_id, course_id, batch_id) {
     return axios.get(
       COURSE_API_URL + `/cart/${member_id}/${course_id}/${batch_id}`,
@@ -37,9 +37,9 @@ class CourseService {
     );
   }
 
-  // 根據cart_and_collection拿到購物車所需的課程資料 (cart)
-  getCourseOfCart(member_id) {
-    return axios.get(COURSE_API_URL + `/cart/${member_id}`, {
+  // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
+  getOneCourseObject(course_id, batch_id) {
+    return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_id}`, {
       withCredentials: true,
     });
   }

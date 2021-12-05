@@ -202,17 +202,17 @@ router.get("/member/:member_id", async (req, res) => {
   }
 });
 
-//檢查購物車中是否已經有此課程
+//檢查購物車資料庫中是否已經有此課程
 router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
-  console.log("BE");
+  console.log("check cartDB BE");
   let { member_id, course_id, batch_id } = req.params;
-  // console.log(member_id, course_id, batch_date);
+  console.log(member_id, course_id, batch_id);
   try {
     let inCart = await connection.queryAsync(
       `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
-    // console.log(member_id, course_id, batch_id);
+    console.log(member_id, course_id, batch_id);
 
     res.status(200).json({ success: true, inCart });
   } catch (error) {
@@ -225,16 +225,20 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
 router.put("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
   let { course_id, batch_id } = req.body;
-  // console.log(member_id, course_id, batch_id);
 
   try {
-    let courseInfoInCart = await connection.queryAsync(
+    let update = await connection.queryAsync(
       `UPDATE cart_and_collection SET inCart = 1 WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
+    let updateResult = await connection.queryAsync(
+      `SELECT cart_and_collection.inCart, cart_and_collection.member_id, cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+      [member_id, course_id, batch_id]
+    );
+    console.log("UpdateCart Done");
 
     // console.log(courseInfoInCart);
-    res.status(200).json({ success: true, courseInfoInCart });
+    res.status(200).json({ success: true, updateResult });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
@@ -245,34 +249,33 @@ router.put("/cart/:member_id", async (req, res) => {
 router.post("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
   let { course_id, batch_id } = req.body;
-  // console.log(member_id, course_id, batch_id);
 
   try {
     try {
     } catch (error) {}
-    let courseInfoInCart = await connection.queryAsync(
+    let addResult = await connection.queryAsync(
       "INSERT INTO cart_and_collection (member_id, course_id, batch_id, inCart) VALUE (?, ?, ?, 1)",
       [member_id, course_id, batch_id]
     );
 
     // console.log(courseInfoInCart);
-    res.status(200).json({ success: true, courseInfoInCart });
+    res.status(200).json({ success: true, addResult });
   } catch (error) {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
 
-// 根據cart_and_collection中的資料拿到購物車所需的課程資料 (cart)
-router.get("/cart/:member_id", async (req, res) => {
-  let { member_id } = req.params;
-  // console.log(member_id);
+// 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
+router.get("/cart/:course_id/:batch_id", async (req, res) => {
+  let { course_id, batch_id } = req.params;
+  console.log("加入購物車後端");
 
   try {
     // 拿到課程資料與梯次(join course_batch)
     let courseInfoInCart = await connection.queryAsync(
-      "SELECT course.id, course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id , course_batch.batch_date, course_batch.member_count FROM cart_and_collection, course, course_batch WHERE cart_and_collection.course_id = course.id = course_batch.course_id AND cart_and_collection.inCart = 1 AND cart_and_collection.member_id = ? AND course.valid = ? AND course_batch.valid = ?",
-      [member_id, 1, 1]
+      "SELECT course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.batch_date, course_batch.member_count FROM course, course_batch WHERE course.id = course_batch.course_id AND course.id = ? AND course_batch.id = ? AND course.valid = ? AND course_batch.valid = ?",
+      [course_id, batch_id, 1, 1]
     );
 
     // console.log(courseInfoInCart);

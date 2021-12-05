@@ -95,14 +95,13 @@ const Navbar = (props) => {
 
   //儲存購物車的課程資訊
   // [{
-  //   id: "",
+  //   course_id: "",
   //   member_id: "",
-  //   category_id: "",
   //   course_image: "",
   //   course_name: "",
   //   course_price: "",
   //   member_limit: "",
-  //   batch_id: "", //(course_batch table)(alia)
+  //   batch_id: "", //(course_batch table)
   //   batch_date: "", //(course_batch table)
   //   member_count: "", //(course_batch table)
   //   cartCourseCount: 1, //(notInDB)
@@ -193,11 +192,20 @@ const Navbar = (props) => {
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
-    if (newAddCourse !== {}) {
-      setCartCourseInfoList(...cartCourseInfoList, newAddCourse);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(newAddCourse);
+    if (newAddCourse.length === 1) {
+      setCartCourseInfoList(...cartCourseInfoList, newAddCourse[0]);
+    } else if (newAddCourse.length === 2) {
+      let newCartCourseInfoList = cartCourseInfoList.map((obj) => {
+        if (obj.course_id === newAddCourse.course_id) {
+          obj.cartCourseCount = obj.cartCourseCount + 1;
+        }
+        return obj;
+      });
+      setCartCourseInfoList(...newCartCourseInfoList);
     }
-    // setNewAddCourse({});
-    console.log("test" + cartCourseInfoList);
+    console.log(cartCourseInfoList);
   }, [newAddCourse]);
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
@@ -222,323 +230,335 @@ const Navbar = (props) => {
 
   return (
     <>
-    <div className="Header">
-      <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
-        <div className="Navbar-container">
-          <div className="Navbar-container-item ">
-            {/* Logo */}
-            <div className="Navbar-container-item-container Navbar-container-item-container-UmaiLogo">
-              <Link to="/">
-                <img src={UmaiLogo} alt="Umai Logo" className="UmaiLogo" />
-              </Link>
-            </div>
-
-            {/* 課程探索 */}
-            <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
-                //  12/4 亭
-                 onClick={() => {
-                 window.location.href='http://localhost:3000/courses/category?all'
-                }}>
-                課程探索
-              </button>
-              {/* 下拉式選單 */}
-              {/* <div className="Navbar-container-item-CourseDiscover-dropdown-hoverZone"></div> */}
-              <div className="Navbar-container-item-CourseDiscover-dropdown">
-                <ul>
-                  {CourseCategoryListLeft.map((cate) => (
-                    <li
-                     //  12/4 亭
-                     onClick={() => {
-                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
-                     }}>{cate}</li>
-                  ))}
-                </ul>
-                <ul>
-                  {CourseCategoryListRight.map((cate) => (
-                    <li
-                     //  12/4 亭
-                     onClick={() => {
-                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
-                     }}
-                     >{cate}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* 體驗分享 */}
-            <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-ExperienceShare">
-                體驗分享
-              </button>
-              {/* 下拉式選單 */}
-              {/* <div className="Navbar-container-item-ExperienceShare-dropdown-hoverZone"></div> */}
-              <div className="Navbar-container-item-ExperienceShare-dropdown">
-                <ul>
-                  {ExperienceShareListLeft.map((page) => (
-                    <li>{page}</li>
-                  ))}
-                </ul>
-                <ul>
-                  {ExperienceShareListRight.map((page) => (
-                    <li>{page}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* 尋找課程 */}
-            <div className="Navbar-container-item-container">
-              <button
-                className="Navbar-container-item-btn Navbar-container-item-CourseSearch"
-                onClick={async (e) => {
-                  e.stopPropagation();
-                  await handleToggleCourseSearch();
-                  isActiveCourseSearch && focusSearch();
-                }}
-              >
-                <GoSearch />
-                &ensp;尋找課程
-              </button>
-            </div>
-          </div>
-
-          {/* 購物車與會員中心(已登入) */}
-          {currentUser && (
-            <div className="Navbar-container-item">
-              <div className="Navbar-container-item-container2">
-                {/* 購物車按鈕 */}
-                <button
-                  className="Navbar-container-item-btn2 Navbar-container-item-Cart"
-                  onMouseEnter={handleCartConOpen}
-                  onMouseLeave={handleCartConClose}
-                >
-                  <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
-                </button>
-                {/* 會員中心按鈕 */}
-                <Link
-                  to="/memberCenter"
-                  className="Navbar-container-item-btn Navbar-container-item-btn2"
-                >
-                  {/* 會員已登入且有大頭貼 */}
-                  {currentUser && currentUser.avatar && (
-                    <img
-                      src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
-                      alt="使用者頭貼"
-                      className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
-                    />
-                  )}
-                  {/* 會員已登入但沒有大頭貼 */}
-                  {currentUser && !currentUser.avatar && (
-                    <img
-                      src={avatar}
-                      alt="使用者頭貼"
-                      className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
-                    />
-                  )}
+      <div className="Header">
+        <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
+          <div className="Navbar-container">
+            <div className="Navbar-container-item ">
+              {/* Logo */}
+              <div className="Navbar-container-item-container Navbar-container-item-container-UmaiLogo">
+                <Link to="/">
+                  <img src={UmaiLogo} alt="Umai Logo" className="UmaiLogo" />
                 </Link>
+              </div>
 
-                {/* 購物車框框 */}
-                <div
-                  className={`Navbar-container-item-Cart-dropdown ${
-                    cartConOpen
-                      ? "Navbar-container-item-Cart-dropdown-active"
-                      : ""
-                  }`}
+              {/* 課程探索 */}
+              <div className="Navbar-container-item-container">
+                <button
+                  className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
+                  //  12/4 亭
+                  onClick={() => {
+                    window.location.href =
+                      "http://localhost:3000/courses/category?all";
+                  }}
                 >
-                  <div className="Navbar-container-item-Cart-dropdown-container">
-                    {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
-                      cartCourseInfoList.map((Obj) => {
-                        return (
-                          Obj && (
-                            <CartCourse
-                              index={cartCourseInfoList.indexOf(Obj)}
-                              CurrentInfoObject={Obj}
-                              cartCourseInfoList={cartCourseInfoList}
-                              setCartCourseInfoList={setCartCourseInfoList}
-                              sumCartCoursePrice={sumCartCoursePrice}
-                              setSumCartCoursePrice={setSumCartCoursePrice}
-                              handleSumPriceZeroing={handleSumPriceZeroing}
-                              currentUser={currentUser}
-                            />
-                          )
-                        );
-                      })}
-                    {cartCourseInfoList.length === 0 && (
-                      <div className="CartCourse-container-empty">
-                        <h5>快去選購更多精彩課程！</h5>
-                      </div>
-                    )}
+                  課程探索
+                </button>
+                {/* 下拉式選單 */}
+                {/* <div className="Navbar-container-item-CourseDiscover-dropdown-hoverZone"></div> */}
+                <div className="Navbar-container-item-CourseDiscover-dropdown">
+                  <ul>
+                    {CourseCategoryListLeft.map((cate) => (
+                      <li
+                        //  12/4 亭
+                        onClick={() => {
+                          window.location.href =
+                            "http://localhost:3000/courses/category?" +
+                            `${cate}`;
+                        }}
+                      >
+                        {cate}
+                      </li>
+                    ))}
+                  </ul>
+                  <ul>
+                    {CourseCategoryListRight.map((cate) => (
+                      <li
+                        //  12/4 亭
+                        onClick={() => {
+                          window.location.href =
+                            "http://localhost:3000/courses/category?" +
+                            `${cate}`;
+                        }}
+                      >
+                        {cate}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
 
-                    {/* 購物車資訊與結帳按鈕 容器 */}
-                    <div className="Navbar-container-item-Cart-dropdown-info-bottom">
-                      <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
-                        {/* 課程數量 */}
-                        <div className="sumCourse">
-                          <p>總計 {numberOfCoursesInCart} 堂課</p>
+              {/* 體驗分享 */}
+              <div className="Navbar-container-item-container">
+                <button className="Navbar-container-item-btn Navbar-container-item-ExperienceShare">
+                  體驗分享
+                </button>
+                {/* 下拉式選單 */}
+                {/* <div className="Navbar-container-item-ExperienceShare-dropdown-hoverZone"></div> */}
+                <div className="Navbar-container-item-ExperienceShare-dropdown">
+                  <ul>
+                    {ExperienceShareListLeft.map((page) => (
+                      <li>{page}</li>
+                    ))}
+                  </ul>
+                  <ul>
+                    {ExperienceShareListRight.map((page) => (
+                      <li>{page}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* 尋找課程 */}
+              <div className="Navbar-container-item-container">
+                <button
+                  className="Navbar-container-item-btn Navbar-container-item-CourseSearch"
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    await handleToggleCourseSearch();
+                    isActiveCourseSearch && focusSearch();
+                  }}
+                >
+                  <GoSearch />
+                  &ensp;尋找課程
+                </button>
+              </div>
+            </div>
+
+            {/* 購物車與會員中心(已登入) */}
+            {currentUser && (
+              <div className="Navbar-container-item">
+                <div className="Navbar-container-item-container2">
+                  {/* 購物車按鈕 */}
+                  <button
+                    className="Navbar-container-item-btn2 Navbar-container-item-Cart"
+                    onMouseEnter={handleCartConOpen}
+                    onMouseLeave={handleCartConClose}
+                  >
+                    <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
+                  </button>
+                  {/* 會員中心按鈕 */}
+                  <Link
+                    to="/memberCenter"
+                    className="Navbar-container-item-btn Navbar-container-item-btn2"
+                  >
+                    {/* 會員已登入且有大頭貼 */}
+                    {currentUser && currentUser.avatar && (
+                      <img
+                        src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
+                        alt="使用者頭貼"
+                        className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
+                      />
+                    )}
+                    {/* 會員已登入但沒有大頭貼 */}
+                    {currentUser && !currentUser.avatar && (
+                      <img
+                        src={avatar}
+                        alt="使用者頭貼"
+                        className="Navbar-container-item-btn Navbar-container-item-btn2-avatar"
+                      />
+                    )}
+                  </Link>
+
+                  {/* 購物車框框 */}
+                  <div
+                    className={`Navbar-container-item-Cart-dropdown ${
+                      cartConOpen
+                        ? "Navbar-container-item-Cart-dropdown-active"
+                        : ""
+                    }`}
+                  >
+                    <div className="Navbar-container-item-Cart-dropdown-container">
+                      {/* 購物車課程卡片 */}
+                      {cartCourseInfoList.length !== 0 &&
+                        cartCourseInfoList.map((Obj) => {
+                          return (
+                            Obj && (
+                              <CartCourse
+                                index={cartCourseInfoList.indexOf(Obj)}
+                                CurrentInfoObject={Obj}
+                                cartCourseInfoList={cartCourseInfoList}
+                                setCartCourseInfoList={setCartCourseInfoList}
+                                sumCartCoursePrice={sumCartCoursePrice}
+                                setSumCartCoursePrice={setSumCartCoursePrice}
+                                handleSumPriceZeroing={handleSumPriceZeroing}
+                                currentUser={currentUser}
+                              />
+                            )
+                          );
+                        })}
+                      {cartCourseInfoList.length === 0 && (
+                        <div className="CartCourse-container-empty">
+                          <h5>快去選購更多精彩課程！</h5>
                         </div>
-                        {/* 當前購物車總金額 */}
-                        <div className="sumPrice">
-                          <h5>NT$ {sumCartCoursePrice}</h5>
+                      )}
+
+                      {/* 購物車資訊與結帳按鈕 容器 */}
+                      <div className="Navbar-container-item-Cart-dropdown-info-bottom">
+                        <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
+                          {/* 課程數量 */}
+                          <div className="sumCourse">
+                            <p>總計 {numberOfCoursesInCart} 堂課</p>
+                          </div>
+                          {/* 當前購物車總金額 */}
+                          <div className="sumPrice">
+                            <h5>NT$ {sumCartCoursePrice}</h5>
+                          </div>
                         </div>
-                      </div>
-                      <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
-                        {/* 結帳按鈕 */}
-                        <div className="goCheckOut" onClick={handleCheckout}>
-                          <h5>前往結帳</h5>
+                        <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
+                          {/* 結帳按鈕 */}
+                          <div className="goCheckOut" onClick={handleCheckout}>
+                            <h5>前往結帳</h5>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* 購物車與會員中心(未登入) */}
-          {!currentUser && (
-            <div className="Navbar-container-item">
-              <div className="Navbar-container-item-container2">
-                {/* 購物車按鈕 */}
-                <button
-                  className="Navbar-container-item-btn2 Navbar-container-item-Cart"
-                  onMouseEnter={handleCartConOpen}
-                  onMouseLeave={handleCartConClose}
-                >
-                  <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
-                </button>
-                &thinsp;
-                {/* 會員登入註冊按鈕 */}
-                <button
-                  onClick={handleLoginClick}
-                  className="Navbar-container-item-btn Navbar-container-item-btn-login"
-                >
-                  登入
-                </button>
-                {/* 購物車框框 */}
-                <div
-                  className={`Navbar-container-item-Cart-dropdown ${
-                    cartConOpen
-                      ? "Navbar-container-item-Cart-dropdown-active"
-                      : ""
-                  }`}
-                >
-                  <div className="Navbar-container-item-Cart-dropdown-container">
-                    {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
-                      cartCourseInfoList.map((Obj) => {
-                        return (
-                          Obj && (
-                            <CartCourse
-                              index={cartCourseInfoList.indexOf(Obj)}
-                              CurrentInfoObject={Obj}
-                              cartCourseInfoList={cartCourseInfoList}
-                              setCartCourseInfoList={setCartCourseInfoList}
-                              sumCartCoursePrice={sumCartCoursePrice}
-                              setSumCartCoursePrice={setSumCartCoursePrice}
-                              handleSumPriceZeroing={handleSumPriceZeroing}
-                              currentUser={currentUser}
-                            />
-                          )
-                        );
-                      })}
-                    {cartCourseInfoList.length === 0 && (
-                      <div className="CartCourse-container-empty">
-                        <h5>快去選購更多精彩課程！</h5>
-                      </div>
-                    )}
+            {/* 購物車與會員中心(未登入) */}
+            {!currentUser && (
+              <div className="Navbar-container-item">
+                <div className="Navbar-container-item-container2">
+                  {/* 購物車按鈕 */}
+                  <button
+                    className="Navbar-container-item-btn2 Navbar-container-item-Cart"
+                    onMouseEnter={handleCartConOpen}
+                    onMouseLeave={handleCartConClose}
+                  >
+                    <MdShoppingCart className="Navbar-container-item-btn2-Cart" />
+                  </button>
+                  &thinsp;
+                  {/* 會員登入註冊按鈕 */}
+                  <button
+                    onClick={handleLoginClick}
+                    className="Navbar-container-item-btn Navbar-container-item-btn-login"
+                  >
+                    登入
+                  </button>
+                  {/* 購物車框框 */}
+                  <div
+                    className={`Navbar-container-item-Cart-dropdown ${
+                      cartConOpen
+                        ? "Navbar-container-item-Cart-dropdown-active"
+                        : ""
+                    }`}
+                  >
+                    <div className="Navbar-container-item-Cart-dropdown-container">
+                      {/* 購物車課程卡片 */}
+                      {cartCourseInfoList.length !== 0 &&
+                        cartCourseInfoList.map((Obj) => {
+                          return (
+                            Obj && (
+                              <CartCourse
+                                index={cartCourseInfoList.indexOf(Obj)}
+                                CurrentInfoObject={Obj}
+                                cartCourseInfoList={cartCourseInfoList}
+                                setCartCourseInfoList={setCartCourseInfoList}
+                                sumCartCoursePrice={sumCartCoursePrice}
+                                setSumCartCoursePrice={setSumCartCoursePrice}
+                                handleSumPriceZeroing={handleSumPriceZeroing}
+                                currentUser={currentUser}
+                              />
+                            )
+                          );
+                        })}
+                      {cartCourseInfoList.length === 0 && (
+                        <div className="CartCourse-container-empty">
+                          <h5>快去選購更多精彩課程！</h5>
+                        </div>
+                      )}
 
-                    {/* 購物車資訊與結帳按鈕 容器 */}
-                    <div className="Navbar-container-item-Cart-dropdown-info-bottom">
-                      <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
-                        {/* 課程數量 */}
-                        <div className="sumCourse">
-                          <p>總計 {numberOfCoursesInCart} 堂課</p>
+                      {/* 購物車資訊與結帳按鈕 容器 */}
+                      <div className="Navbar-container-item-Cart-dropdown-info-bottom">
+                        <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
+                          {/* 課程數量 */}
+                          <div className="sumCourse">
+                            <p>總計 {numberOfCoursesInCart} 堂課</p>
+                          </div>
+                          {/* 當前購物車總金額 */}
+                          <div className="sumPrice">
+                            <h5>NT$ {sumCartCoursePrice}</h5>
+                          </div>
                         </div>
-                        {/* 當前購物車總金額 */}
-                        <div className="sumPrice">
-                          <h5>NT$ {sumCartCoursePrice}</h5>
-                        </div>
-                      </div>
-                      <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
-                        {/* 結帳按鈕 */}
-                        <div className="goCheckOut" onClick={handleCheckout}>
-                          <h5>前往結帳</h5>
+                        <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
+                          {/* 結帳按鈕 */}
+                          <div className="goCheckOut" onClick={handleCheckout}>
+                            <h5>前往結帳</h5>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* 課程searchbar */}
-      {/* <CourseSearch
+        {/* 課程searchbar */}
+        {/* <CourseSearch
           searchValue={searchValue}
           setSearchValue={setSearchValue}
         /> */}
-      {!isActiveCourseSearch ? (
-        <div className="Navbar-CourseSearch">
-          <div
-            className="Navbar-CourseSearch-container"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <div className="Navbar-CourseSearch-dropdown">
-              <input
-                type="text"
-                ref={inputSearch}
-                className="Navbar-CourseSearch-dropdown-SearchBar"
-                value={searchValue}
-                onChange={async (e) => {
-                  await setSearchValue(e.target.value);
-                  await handleCourseSearch();
-                }}
-              />
-              <button
-                className="SearchBar-cross-circle"
-                onClick={handleSearchValueDelete}
-              >
-                <ImCross className="SearchBar-cross-icon" />
-              </button>
-            </div>
-            <div className="SearchKeywordTag">
-              <span>推薦關鍵字：</span>
-              {SearchKeywordTagList.map((keywordTag) => (
-                <div
-                  className="KeywordTag"
-                  title={keywordTag}
-                  onClick={(e) => {
-                    setSearchValue(e.target.title);
+        {!isActiveCourseSearch ? (
+          <div className="Navbar-CourseSearch">
+            <div
+              className="Navbar-CourseSearch-container"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <div className="Navbar-CourseSearch-dropdown">
+                <input
+                  type="text"
+                  ref={inputSearch}
+                  className="Navbar-CourseSearch-dropdown-SearchBar"
+                  value={searchValue}
+                  onChange={async (e) => {
+                    await setSearchValue(e.target.value);
+                    await handleCourseSearch();
                   }}
+                />
+                <button
+                  className="SearchBar-cross-circle"
+                  onClick={handleSearchValueDelete}
                 >
-                  #{keywordTag}
-                </div>
-              ))}
-            </div>
-            <div className="SearchCourseList">
-              {SearchCourseList.map((Course) => (
-                <div
-                  className="recommandCourse"
-                  title={Course}
-                  onClick={(e) => {
-                    setSearchValue(e.target.title);
-                  }}
-                >
-                  {Course}
-                </div>
-              ))}
+                  <ImCross className="SearchBar-cross-icon" />
+                </button>
+              </div>
+              <div className="SearchKeywordTag">
+                <span>推薦關鍵字：</span>
+                {SearchKeywordTagList.map((keywordTag) => (
+                  <div
+                    className="KeywordTag"
+                    title={keywordTag}
+                    onClick={(e) => {
+                      setSearchValue(e.target.title);
+                    }}
+                  >
+                    #{keywordTag}
+                  </div>
+                ))}
+              </div>
+              <div className="SearchCourseList">
+                {SearchCourseList.map((Course) => (
+                  <div
+                    className="recommandCourse"
+                    title={Course}
+                    onClick={(e) => {
+                      setSearchValue(e.target.title);
+                    }}
+                  >
+                    {Course}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ) : null}
-    </div>
+        ) : null}
+      </div>
     </>
   );
 };

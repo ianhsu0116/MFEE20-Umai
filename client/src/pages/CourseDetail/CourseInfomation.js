@@ -258,7 +258,13 @@ function CourseInfomation(props) {
                   <span>
                     本梯次總名額&nbsp;{newCourseJSON[0].member_limit}
                     &nbsp;位&nbsp;/&nbsp;
-                    {batch_member == newCourseJSON[0].member_limit ? "已經額滿囉！":"剩餘名額"+" "+(newCourseJSON[0].member_limit - batch_member)+ " " + "位"}
+                    {batch_member == newCourseJSON[0].member_limit
+                      ? "已經額滿囉！"
+                      : "剩餘名額" +
+                        " " +
+                        (newCourseJSON[0].member_limit - batch_member) +
+                        " " +
+                        "位"}
                   </span>
                 </div>
                 <StarGroup
@@ -351,7 +357,9 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        } else if (batch_member == newCourseJSON[0].member_limit){
+                        } else if (
+                          batch_member == newCourseJSON[0].member_limit
+                        ) {
                           Swal.fire({
                             // title: "",
                             icon: "warning",
@@ -364,10 +372,9 @@ function CourseInfomation(props) {
                         } else {
                           addCourseIntoCart(
                             currentUser.id,
-                            id_number,
-                            batch_id
+                            Number(id_number),
+                            10
                           );
-                          console.log("addCourseIntoCart success");
                         }
                       }}
                     >
@@ -386,7 +393,9 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        }　 else if (batch_member == newCourseJSON[0].member_limit){
+                        } else if (
+                          batch_member == newCourseJSON[0].member_limit
+                        ) {
                           Swal.fire({
                             // title: "",
                             icon: "warning",

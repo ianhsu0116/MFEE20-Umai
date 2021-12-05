@@ -82,28 +82,98 @@ function App() {
 
   // 把課程加入購物車資料庫
   async function addCourseIntoCart(member_id, course_id, batch_id) {
-    //檢查購物車中是否已經有此課程
-    console.log("FE");
+    //檢查購物車資料庫中是否已經有此課程
+    console.log("addCourseIntoCart FE");
+    console.log(member_id, course_id, batch_id);
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_id
     );
-    console.log(IfInCartResult.data);
-    // console.log(IfInCartResult.data.inCart);
+    let ifIncart = IfInCartResult.data.inCart[0].inCart;
+    console.log("back to FE");
+    console.log(ifIncart);
 
+    let getOneCourseObject = async () => {
+      try {
+        let result = await courseService.getOneCourseObject(
+          course_id,
+          batch_id
+        );
+        return {
+          member_id,
+          course_id,
+          batch_id,
+          ...result.data.courseInfoInCart[0],
+          cartCourseCount: 1,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    let CartCourseObject;
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
-    if (IfInCartResult.data.inCart.length === 1) {
-      // 把課程加入購物車資料庫(UPDATE)
-      await courseService.UpdateCart(member_id, course_id, batch_id);
-    } else {
-      // 把課程加入購物車資料庫(INSERT)
-      await courseService.addCourseIntoCart(member_id, course_id, batch_id);
+    switch (ifIncart) {
+      case true:
+
+      //在資料庫中但不在購物車中
+      case 0:
+        // 把課程加入購物車資料庫(UPDATE)
+        console.log("UpdateCart");
+        let updateResult = await courseService.UpdateCart(
+          member_id,
+          course_id,
+          batch_id
+        );
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        // console.log(CartCourseObject);
+        setNewAddCourse([CartCourseObject]);
+        // console.log("setNewAddCourse");
+        break;
+
+      //在資料庫中也在購物車中
+      case 1:
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        // console.log(CartCourseObject);
+        setNewAddCourse([CartCourseObject, "+1"]);
+        console.log(CartCourseObject);
+        console.log("setNewAddCourse");
+        break;
+
+      //不在資料庫中
+      case false:
+        // 把課程加入購物車資料庫(INSERT)
+        await courseService.addCourseIntoCart(member_id, course_id, batch_id);
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        // console.log(CartCourseObject);
+        setNewAddCourse([CartCourseObject]);
+        // console.log("setNewAddCourse");
+        break;
+      default:
+        console.log("ifIncart error");
+        break;
     }
-    let result = await courseService.getCourseOfCart(4);
-    console.log(result.data);
-    // setNewAddCourse(await courseService.getCourseOfCart(member_id));
-    // setNewAddCourse({});
+
+    console.log(newAddCourse);
+    //清空紀錄新課程的state
+    setNewAddCourse();
+    console.log(newAddCourse);
   }
 
   //搜尋內容
