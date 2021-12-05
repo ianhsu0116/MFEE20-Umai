@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
@@ -242,6 +242,9 @@ const MemberInfo = (props) => {
     setPasswordConOpen(true);
   };
 
+  // ref測試中===============
+  let infoRef = useRef(new Array(3).fill(1).map((i, index) => index));
+
   return (
     <div
       className="MemberInfo"
@@ -372,6 +375,7 @@ const MemberInfo = (props) => {
                 placeholder="請輸入真實名字"
                 value={memberInfo.first_name}
                 onChange={handleMemberInfoChange}
+                ref={infoRef[0]}
               />
             </div>
             <div className="MemberInfo-container-inputCon">
@@ -390,6 +394,7 @@ const MemberInfo = (props) => {
                 placeholder="請輸入真實姓氏"
                 value={memberInfo.last_name}
                 onChange={handleMemberInfoChange}
+                ref={infoRef[1]}
               />
             </div>
           </div>
@@ -410,6 +415,7 @@ const MemberInfo = (props) => {
                 placeholder="請輸入有效行動電話"
                 value={memberInfo.telephone}
                 onChange={handleMemberInfoChange}
+                ref={infoRef[2]}
               />
             </div>
             <div className="MemberInfo-container-inputCon">
