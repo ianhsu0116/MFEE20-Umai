@@ -167,7 +167,7 @@ const ForumCard = () => {
               data-forumId={forumdata.id}
               className="Forum-main-photo"
               src={`${PUBLIC_URL}/upload-images/${
-                articleDetail && articleDetail.image_name
+                forumdata && forumdata.image_name
               }`}
               alt="drink"
             ></img>
