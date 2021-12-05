@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
   try {
     // 拿到每篇文的資料 + 愛心數量 + 留言數量
     let articles = await connection.queryAsync(
-      "SELECT forum_article.*, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id WHERE forum_article.valid = ? GROUP BY forum_article.id ",
+      "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.valid = ? GROUP BY forum_article.id ",
       [1]
     );
 
@@ -120,10 +120,10 @@ router.get("/", async (req, res) => {
 router.get("/:forumId", async (req, res) => {
   try {
     let forumdatadetail = await connection.queryAsync(
-      "SELECT * FROM forum_article WHERE id=?",
-      // 以下[]內的東西要透過網址去拿到ID
-      [req.params.forumId]
+      "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.id = ? AND forum_article.valid = ? GROUP BY forum_article.id",
+      [req.params.forumId, 1]
     );
+
     //console.log(forumdatadetail);
     res.json({ forumdatadetail: forumdatadetail[0] });
   } catch (error) {

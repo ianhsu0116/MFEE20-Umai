@@ -4,6 +4,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
+import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 
 const Discussion = () => {
   const [show, setShow] = useState(false);
@@ -32,7 +33,7 @@ const Discussion = () => {
       </Modal>
       <div className="massonry-title">
         <div className="massonry-title-inside">
-          <h5 className="massonry-title-inside-bread">首頁>討論區</h5>
+          <MultiLevelBreadcrumb />
           <h1 className="massonry-title-inside-header">討論區</h1>
           <div className="st-line"></div>
         </div>
@@ -41,7 +42,7 @@ const Discussion = () => {
         <div className="discussion">
           <h2 className="Discussion-main-theme">築地創意壽司 課程老師評價？</h2>
           <h5 className="Discussion-main-brad">
-            課程探索>日式料理>築地創意壽司
+            {/* 課程探索>日式料理>築地創意壽司 */}
           </h5>
           <div className="Discussion-main-account">
             <img

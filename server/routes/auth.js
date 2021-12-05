@@ -63,6 +63,7 @@ router.post("/login", async (req, res) => {
       facebookId: member.facebookId,
       first_name: member.first_name,
       last_name: member.last_name,
+      nick_name: member.nick_name,
       birthday: member.birthday,
       telephone: member.telephone,
       avatar: member.avatar,
@@ -130,7 +131,7 @@ router.post("/registration", async (req, res) => {
 
     res.status(200).json({ success: true });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ success: false, code: "B999", message: error });
   }
 });
@@ -188,6 +189,7 @@ router.get("/memberInfo/:id", async (req, res) => {
       facebookId: member.facebookId,
       first_name: member.first_name,
       last_name: member.last_name,
+      nick_name: member.nick_name,
       birthday: member.birthday,
       telephone: member.telephone,
       avatar: member.avatar,

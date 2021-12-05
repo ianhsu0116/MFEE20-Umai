@@ -10,6 +10,7 @@ const {
   passwordValidation,
   creditCardValidation,
   studentValidation,
+  nickNameValidation,
 } = require("../validation");
 
 // ================routes=====================
@@ -117,6 +118,27 @@ router.put("/info", async (req, res) => {
       "UPDATE member SET first_name = ?, last_name = ?, telephone = ?, birthday = ? WHERE id = ?",
       [first_name, last_name, telephone, birthday, id]
     );
+    res.status(200).json({ success: true });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
+// 修改使用者暱稱
+router.put("/nickName", async (req, res) => {
+  let { member_id, nick_name } = req.body;
+
+  // 錯誤阻擋
+  let { error } = nickNameValidation({ nick_name });
+  if (error) return res.status(403).json({ success: false, code: "G009" });
+
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE member SET nick_name = ? WHERE id = ?",
+      [nick_name, member_id]
+    );
+
     res.status(200).json({ success: true });
   } catch (error) {
     //console.log(error);

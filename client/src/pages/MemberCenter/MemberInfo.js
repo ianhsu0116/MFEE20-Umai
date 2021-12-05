@@ -46,12 +46,26 @@ const MemberInfo = (props) => {
 
   // 即時更新當前使用者資料的function
   async function refreshUser() {
-    // 更新成功後，更新當前使用者資料
-    let newUser = await AuthService.memberInfo(currentUser.id);
-    // 存入local
-    localStorage.setItem("user", JSON.stringify(newUser.data.member));
-    // 裝入state
-    setCurrentUser(AuthService.getCurrentUser());
+    try {
+      // 更新成功後，更新當前使用者資料
+      let newUser = await AuthService.memberInfo(currentUser.id);
+      // 存入local
+      localStorage.setItem("user", JSON.stringify(newUser.data.member));
+      // 裝入state
+      setCurrentUser(AuthService.getCurrentUser());
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        let { code } = error.response.data;
+        // 跳通知
+        Swal.fire({
+          icon: "error",
+          title: getValidMessage("member", code),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    }
   }
 
   // 當currentUser的值存在後，更新資料
@@ -353,6 +367,7 @@ const MemberInfo = (props) => {
                 type="text"
                 name="first_name"
                 id="first-name"
+                maxLength="15"
                 className="MemberInfo-container-inputCon-input"
                 placeholder="請輸入真實名字"
                 value={memberInfo.first_name}
@@ -370,6 +385,7 @@ const MemberInfo = (props) => {
                 type="text"
                 name="last_name"
                 id="last-name"
+                maxLength="15"
                 className="MemberInfo-container-inputCon-input"
                 placeholder="請輸入真實姓氏"
                 value={memberInfo.last_name}
@@ -389,6 +405,7 @@ const MemberInfo = (props) => {
                 type="tele"
                 name="telephone"
                 id="tele"
+                maxLength="10"
                 className="MemberInfo-container-inputCon-input"
                 placeholder="請輸入有效行動電話"
                 value={memberInfo.telephone}
