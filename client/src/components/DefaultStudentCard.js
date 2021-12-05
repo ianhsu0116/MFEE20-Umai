@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { withRouter } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Button from "./Button";
@@ -19,7 +19,15 @@ const DefaultStudentCard = (props) => {
     addIntoStudent: false,
     autoUpdateMember: false,
   });
-  let studentCardRefs = useRef();
+
+  // studentInfo的各個input的ref
+  const infoRef = useMemo(
+    () =>
+      Array(4)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
 
   // 初次render，以及每次data改變時，就render一次
   useEffect(() => {
@@ -39,6 +47,30 @@ const DefaultStudentCard = (props) => {
     }
   }, [data]);
 
+  // 前端錯即時誤阻擋
+  useEffect(() => {
+    // 前端錯誤阻擋
+    let validArray = [
+      "first_name",
+      "last_name",
+      "telephone",
+      "email",
+      "birthday",
+    ];
+    // 先拿掉所有errorInput的calssName
+    new Array(4).fill(0).forEach((item, i) => {
+      infoRef[i].current.classList.remove("inputError-red");
+    });
+    // 如果其中一項為空值，再加上紅色框框
+    for (let i = 0; i < validArray.length; i++) {
+      // i < 4 因為只有前四項有賦予ref，超過就會報錯
+      if (i < 4 && !newStudentData[validArray[i]]) {
+        //console.log(i);
+        infoRef[i].current.classList.add("inputError-red");
+      }
+    }
+  }, [newStudentData]);
+
   // 即時抓取 input value
   const handleInputChange = (e) => {
     // 判斷當前input是否為 check box
@@ -54,22 +86,11 @@ const DefaultStudentCard = (props) => {
       });
     }
   };
+
   // 即時抓取生日修改
   const handleBirthdayChange = (day) => {
     setNewStudentData({ ...newStudentData, birthday: day });
   };
-
-  // // 刪除學生(動畫)
-  // const handleDeleteStudent = (index) => (e) => {
-  //   studentCardRefs.current.style.animation =
-  //     "DefaultStudentCard-scaleDown 0.3s forwards";
-  // };
-  // // 等動畫跑完在真正刪除 (onAnimationEnd)
-  // const handleSlowDelete = (newStudentData) => {
-  //   console.log("刪除學員");
-  //   console.log(newStudentData);
-  //   studentCardRefs.current.remove();
-  // };
 
   // 啓閉學員詳細內容
   const handleOpenCard = () => {
@@ -78,10 +99,6 @@ const DefaultStudentCard = (props) => {
 
   return (
     <div
-      ref={studentCardRefs}
-      // onAnimationEnd={() => {
-      //   handleSlowDelete(newStudentData);
-      // }}
       className={`DefaultStudentCard ${
         cardOpen && "DefaultStudentCard-active"
       }`}
@@ -147,6 +164,7 @@ const DefaultStudentCard = (props) => {
               name="first_name"
               placeholder="請輸入真實名字"
               className="DefaultStudentCard-main-row-item-input"
+              ref={infoRef[0]}
               value={newStudentData.first_name}
               onChange={handleInputChange}
             />
@@ -164,6 +182,7 @@ const DefaultStudentCard = (props) => {
               name="last_name"
               placeholder="請輸入真實姓氏"
               className="DefaultStudentCard-main-row-item-input"
+              ref={infoRef[1]}
               value={newStudentData.last_name}
               onChange={handleInputChange}
             />
@@ -183,6 +202,7 @@ const DefaultStudentCard = (props) => {
               name="telephone"
               placeholder="請輸入手機號碼"
               className="DefaultStudentCard-main-row-item-input"
+              ref={infoRef[2]}
               value={newStudentData.telephone}
               onChange={handleInputChange}
             />
@@ -222,6 +242,7 @@ const DefaultStudentCard = (props) => {
               name="email"
               placeholder="請輸入Email"
               className="DefaultStudentCard-main-row-item-input"
+              ref={infoRef[3]}
               value={newStudentData.email}
               onChange={handleInputChange}
             />

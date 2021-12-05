@@ -30,8 +30,8 @@ const loginValidation = (data) => {
 // UserInfo 格式
 const userInfoValidation = (data) => {
   const schema = Joi.object({
-    first_name: Joi.string().min(1).max(50).required(),
-    last_name: Joi.string().min(1).max(50).required(),
+    first_name: Joi.string().min(1).max(15).required(),
+    last_name: Joi.string().min(1).max(15).required(),
     telephone: Joi.string()
       .length(10)
       .pattern(new RegExp("^[0, 9]{2}[0-9]{8}$"))
