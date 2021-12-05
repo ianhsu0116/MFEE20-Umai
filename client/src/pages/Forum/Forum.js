@@ -36,6 +36,7 @@ const array = [
 ];
 console.log("test");
 const Forum = (props) => {
+  // currentUser
   const { currentUser } = props;
   // useState(初始值)
   // show代表狀態，是唯獨。必須透過setshow去改變

@@ -48,10 +48,13 @@ router.use((req, res, next) => {
 });
 
 // 讀取所有的留言
-router.get("/comment", async (req, res) => {
+router.get("/comment/:id", async (req, res) => {
   let comment = await connection.queryAsync(
-    "SELECT * FROM forum_comment WHERE article_id =?"
+    "SELECT * FROM forum_comment WHERE article_id =?",
+    [req.params.id]
+    // "SELECT forum_comment.* ,member.first_name,member.last_name , member.avatar ,member_id FROM forum_comment , member WHERE member.id=forum.memberidAND  forum_comment.article_id = ? AND forum_comment.valid = 1"
   );
+
   res.json({ comment: comment });
 });
 //  WHERE article_id=?
@@ -148,8 +151,7 @@ router.get("/:forumId", async (req, res) => {
       "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.id = ? AND forum_article.valid = ? GROUP BY forum_article.id",
       [req.params.forumId, 1]
     );
-
-    //console.log(forumdatadetail);
+    console.log(forumdatadetail);
     res.json({ forumdatadetail: forumdatadetail[0] });
   } catch (error) {
     console.log(error);
@@ -194,15 +196,22 @@ router.post("/insertArticle", uploader.single("image"), async (req, res) => {
 // 新增留言
 router.post("/insertMessage", uploader.single("image"), async (req, res) => {
   console.log("body", req.body);
-  console.log("req.file insertmessage", req.file);
+  // console.log("req.file insertmessage", req.file);
   // req.body.image_name = req.file.originalname;
-  console.log(req.file.filename);
+  // console.log(req.file.filename);
   // res.json({ result: "okok" });
   let now = new Date();
   try {
     let messagedetail = await connection.queryAsync(
       "INSERT INTO forum_comment (member_id,article_id,comment_text,image_name,created_time,valid) VALUES (?,?,?,?,?,?)",
-      [1, req.body.article_id, req.body.message_text, req.file.filename, now, 1]
+      [
+        req.body.member_id,
+        req.body.article_id,
+        req.body.message_text,
+        req.file.filename,
+        now,
+        1,
+      ]
     );
     //console.log("forumdatadetail", forumdatadetail);
     // res.json({ messagedetail: messagedetail });
@@ -228,14 +237,14 @@ router.post("/insertMessage", uploader.single("image"), async (req, res) => {
 
 // 更新文章
 router.post("/updateArticle", uploader.single("image"), async (req, res) => {
-  console.log("body", req.body);
-
-  console.log("req.file", req.file);
+  // console.log("body", req.body);
+  // console.log("req.file", req.file);
   req.body.image_name = req.file.filename;
   // console.log(req.body.image_name);
   // res.json({ result: "okok" });
   let now = new Date();
   try {
+    // console.log(req.body.id);
     let forumdatadetail = await connection.queryAsync(
       "UPDATE forum_article SET image_name=?,category_id=?,course_id=?,article_title=? ,article_link=?,article_text=?,created_time=?,valid=? WHERE id=?",
       [
@@ -250,7 +259,7 @@ router.post("/updateArticle", uploader.single("image"), async (req, res) => {
         req.body.id,
       ]
     );
-    //console.log(forumdatadetail);
+    console.log(forumdatadetail);
     res.json({ forumdatadetail: forumdatadetail });
   } catch (error) {
     console.log(error);

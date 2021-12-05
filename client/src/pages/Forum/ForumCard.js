@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ForumCard = (props) => {
+  // 自前端Forum.js那邊拿到currentUser
   const { currentUser } = props;
   // setShow是一個函式，改變SHOW的狀態
   // useState(初始值)
@@ -32,12 +33,23 @@ const ForumCard = (props) => {
   const [articleDetail, setArticleDetail] = useState({});
 
   const [messageEnter, setMessageEnter] = useState({
+    member_id: currentUser.id,
+    article_id: "",
     message_text: "",
+    image: "",
   });
 
   const [messageDetail, setmessageDetail] = useState([]);
 
   const [essay, setEssay] = useState([]);
+
+  // 寫入當前登入帳號的ID
+  let id = JSON.parse(localStorage.getItem("user"));
+  // useEffect(), []);
+  // console.log(id.id);
+  // if (messageEnter.member_id == null) {
+  //   setMessageEnter({ member_id: id.id });
+  // }
 
   // USEEFFECT模擬類別型元件的生命週期
   // 若把UseEffect設定為UseEffect(),[]的話，在畫面渲染完成以後執行()裡面的內容。
@@ -61,12 +73,20 @@ const ForumCard = (props) => {
       let newMessage = { ...messageEnter };
       newMessage[e.target.name] = e.target.files[0];
       setMessageEnter(newMessage);
+      if (newMessage.length > 0) {
+        console.log(newMessage.name);
+      }
     } else {
       let newMessage = { ...messageEnter };
       newMessage[e.target.name] = e.target.value;
       setMessageEnter(newMessage);
+      if (newMessage.length > 0) {
+        console.log(newMessage.name);
+      }
     }
   }
+
+  // useEffect({setMessageEnter()}, []);
 
   // sweetalert2 & 資料送出
   const message_deliver = async (article_id) => {
@@ -74,8 +94,9 @@ const ForumCard = (props) => {
     try {
       let formData = new FormData();
       formData.append("article_id", article_id);
-      formData.append("memeber_id", messageEnter.message_text);
-
+      formData.append("member_id", messageEnter.member_id);
+      formData.append("image", messageEnter.image);
+      formData.append("message_text", messageEnter.message_text);
       let res = await axios.post(
         "http://localhost:8080/api/forum/insertMessage",
         formData
@@ -87,7 +108,7 @@ const ForumCard = (props) => {
         confirmButtonColor: "#0078b3",
         confirmButtonText: "已送出留言，返回討論區",
       }).then(function () {
-        window.location.reload();
+        // window.location.reload();
         // window.location.href = "/forum";
       });
     } catch (e) {
@@ -138,7 +159,22 @@ const ForumCard = (props) => {
       console.log(e);
     }
   };
-
+  // 圖片上傳
+  function handleUpload(e) {
+    let newMessage = { ...messageEnter };
+    messageEnter.image = e.target.files[0];
+    setMessageEnter(newMessage);
+    // console.log(newArticle.image.name);
+    // if (newMessage.length > 0) {
+    setMessageEnter({
+      ...messageEnter,
+      member_id: currentUser.id,
+      image: e.target.files[0],
+    });
+    // }
+    console.log(e.target.files[0].name);
+  }
+  console.log(messageEnter);
   return (
     <>
       {/* &&前面通常是判斷式，當判斷式式true的時候會執行&&以後的工作。內容若有東西的話就會是true */}
@@ -152,6 +188,9 @@ const ForumCard = (props) => {
               console.log(forumdata);
               let id = e.currentTarget.dataset.forumid;
               id = Number(id);
+              setMessageEnter({
+                article_id: id,
+              });
               console.log(id);
               console.log(e.currentTarget.dataset.forumid);
               // useEffect已經拿到所有的留言，也變更了messageDetail的狀態，因此messageDetail已經是所有的留言。
@@ -171,16 +210,26 @@ const ForumCard = (props) => {
               );
               // 整筆資料的儲存
               setArticleDetail(forumEach.data.forumdatadetail);
-              console.log(forumEach.data.forumdatadetail);
+              // console.log(forumEach.data.forumdatadetail);
+              console.log(forumEach.data);
               setdata(JSON.stringify(forumEach.data.forumdatadetail));
               console.log("setdata", setdata);
-              let comment = await axios.get(`${API_URL}/forum/comment`, {
+
+              let comment = await axios.get(`${API_URL}/forum/comment/${id}`, {
                 withCredentials: true,
               });
               console.log(comment);
               // 第一個COMMENT是 LET的 變數名稱，依照comment形式，再判斷如何拿資料。
               setmessageDetail(comment.data.comment);
               // let message = JSON.stringify(res.message.comment);
+
+              // let comment = await axios.get(`${API_URL}/forum/comment`, {
+              //   withCredentials: true,
+              // });
+              // console.log(comment);
+              // // 第一個COMMENT是 LET的 變數名稱，依照comment形式，再判斷如何拿資料。
+              // setmessageDetail(comment.data.comment);
+              // // let message = JSON.stringify(res.message.comment);
             }}
           >
             <img
@@ -197,9 +246,14 @@ const ForumCard = (props) => {
                 <div class="Forum-main-dropdown">
                   <FiMoreHorizontal className="FiMoreHorizontal" />
                   <div class="Forum-main-dropdown-content">
-                    <p>
-                      <a href="#">收藏</a>
-                    </p>
+                    <button
+                      class="Forum-main-dropdown-content-deletebutton"
+                      onClick={() => {
+                        article_collect(articleDetail.id);
+                      }}
+                    >
+                      收藏
+                    </button>
                     <button
                       class="Forum-main-dropdown-content-deletebutton"
                       onClick={delete_article}
@@ -245,7 +299,6 @@ const ForumCard = (props) => {
             </div>
           </div>
         ))}
-
       <Modal
         className="Forum-modal"
         id="style-10"
@@ -432,11 +485,11 @@ const ForumCard = (props) => {
 
           <div className="Forum-modal-footer-write-component">
             <div className="Forum-modal-footer-write-account">
-              <img
+              {/* <img
                 className="Forum-modal-footer-write-account-image"
-                src={require(`./../../components/images/img1.jpg`).default}
+                src={`${PUBLIC_URL}/upload-images/${forum[0].course_detail.slider_images[0]}`}
                 alt="cake"
-              ></img>
+              ></img> */}
               {/* message insert*/}
               <div>
                 <h6 className="Forum-modal-footer-write-account-name">
@@ -455,7 +508,7 @@ const ForumCard = (props) => {
                 className=""
                 type="file"
                 name="image"
-                onChange={handleChange}
+                onChange={handleUpload}
               ></input>
               <textarea
                 className="Forum-modal-footer-write-commet-textarea"
