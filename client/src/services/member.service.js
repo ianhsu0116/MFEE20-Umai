@@ -41,6 +41,21 @@ class MemberService {
     });
   }
 
+  // 修改暱稱
+  nickNameEdit(member_id, nick_name) {
+    // 送出
+    return axios.put(
+      MEMBER_API_URL + "/nickName",
+      {
+        member_id,
+        nick_name,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
   // 修改信用卡資訊
   creditCardEdit(number, name) {
     // 送出

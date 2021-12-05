@@ -152,7 +152,7 @@ const OrderInfo = (props) => {
       // 如果拿到的資料 < 每夜應該拿的資料
       // 代表拿完這次後就沒資料了
       // 關閉LoadMoreButton
-      if (newData.length < perPage) return setLoadMoreShow(false);
+      if (newData.length <= perPage) return setLoadMoreShow(false);
     }
   }, [page]);
 
