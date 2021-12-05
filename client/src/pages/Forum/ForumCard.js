@@ -94,6 +94,7 @@ const ForumCard = () => {
         confirmButtonColor: "#0078b3",
         confirmButtonText: "已送出留言，返回討論區",
       }).then(function () {
+        window.location.reload();
         // window.location.href = "/forum";
       });
     } catch (e) {
@@ -101,7 +102,7 @@ const ForumCard = () => {
     }
   };
 
-  // 刪除j文章的語法
+  // 刪除文章的語法
   const delete_article = async () => {
     let id = articleDetail.id;
     let result = await axios.post(
@@ -180,17 +181,21 @@ const ForumCard = () => {
                     <p>
                       <a href="#">收藏</a>
                     </p>
+                    <button
+                      class="Forum-main-dropdown-content-deletebutton"
+                      onClick={delete_article}
+                    >
+                      刪除
+                    </button>
                     <p>
-                      <a href="#">分享</a>
-                    </p>
-                    <p>
-                      <a href="#">檢舉</a>
-                    </p>
-                    <p>
-                      <a href="#">刪除</a>
-                    </p>
-                    <p>
-                      <a href="#">修改</a>
+                      <Link
+                        to={{
+                          pathname: "/forumupdate",
+                          state: { data: data },
+                        }}
+                      >
+                        <a>修改</a>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -208,7 +213,7 @@ const ForumCard = () => {
                 <p className="Forum-main-love">333</p>
                 <AiOutlineMessage className="AiOutlineMessage" />
                 <p className="Forum-main-love">99999</p>
-                <div className="Forum-main-small">
+                {/* <div className="Forum-main-small">
                   <BsFillTriangleFill className="BsFillTriangleFill" />
                   <p>其他功能</p>
                   <a href="#">收藏</a>
@@ -216,7 +221,7 @@ const ForumCard = () => {
                   <a href="#">引用</a>
                   <a href="#">檢舉</a>
                   <a href="#">刪除</a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -259,15 +264,12 @@ const ForumCard = () => {
                     <p>
                       <a href="#">收藏</a>
                     </p>
-                    <p>
-                      <a href="#">分享</a>
-                    </p>
-                    <p>
-                      <a href="#">檢舉</a>
-                    </p>
-                    <p>
-                      <button onClick={delete_article}>刪除</button>
-                    </p>
+                    <button
+                      class="Forum-main-dropdown-content-deletebutton"
+                      onClick={delete_article}
+                    >
+                      刪除
+                    </button>
                     <p>
                       <Link
                         to={{
@@ -292,14 +294,18 @@ const ForumCard = () => {
                 alt="cake"
               ></img>
               {/* {articleDetail && articleDetail.article_link} */}
-              <iframe
+              <br />
+              <a href="{articleDetail && articleDetail.article_link}">
+                {articleDetail && articleDetail.article_link}
+              </a>
+              {/* <iframe
                 className="Forum-modal-body-youtube"
-                src="https://www.youtube.com/watch?v=hCG6Sa7EEZ0"
+                src="https://www.youtube.com/embed/onsQ-RF0dZw"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
-              ></iframe>
+              ></iframe> */}
             </div>
             <div className="Forum-modal-body-icon">
               <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
@@ -324,30 +330,18 @@ const ForumCard = () => {
                 <div className="Forum-modal-footer-account">
                   <img
                     className="Forum-modal-footer-account-image"
-                    src=""
+                    src={`${PUBLIC_URL}/upload-images/${msg && msg.image_name}`}
                     alt="cake"
                   ></img>
                   <div>
                     <h6 className="Forum-modal-footer-account-name">
                       {msg.member_id}
                     </h6>
-                    <h6 className="Forum-modal-footer-account-id">
-                      @olsonlovesmakelove
-                    </h6>
                   </div>
                   <div className="Forum-main-DateAndDropdown">
                     <div class="Forum-main-dropdown">
                       <FiMoreHorizontal className="FiMoreHorizontal" />
                       <div class="Forum-main-dropdown-content">
-                        <p>
-                          <a href="#">收藏</a>
-                        </p>
-                        <p>
-                          <a href="#">分享</a>
-                        </p>
-                        <p>
-                          <a href="#">檢舉</a>
-                        </p>
                         <p>
                           <a href="#">刪除</a>
                         </p>
@@ -356,24 +350,24 @@ const ForumCard = () => {
                   </div>
                 </div>
                 <div className="Forum-modal-footer-commet">
-                  {/* <p className="">{msg.comment_text}</p> */}
+                  <p className="">{msg.comment_text}</p>
                 </div>
-                <img src="" alt="" />
-                <div className="Forum-modal-footer-icon">
-                  <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
-                  <p className="Forum-modal-footer-icon-p">999</p>
-                  {/* <AiOutlineMessage className="AiOutlineMessage" size="2rem" />
-              <p className="Forum-modal-footer-icon-p">999</p> */}
-                </div>
+                <img
+                  className="Forum-modal-footer-commet-image"
+                  src={`${PUBLIC_URL}/upload-images/${msg && msg.image_name}`}
+                  alt=""
+                />
                 <div className="st-line"></div>
               </div>
             ))
           ) : (
-            <div className="Forum-modal-footer-component">
+            <div className="Forum-modal-footer-component-less1">
               <div className="Forum-modal-footer-account">
                 <img
                   className="Forum-modal-footer-account-image"
-                  src=""
+                  src={`${PUBLIC_URL}/upload-images/${
+                    messageDetail && messageDetail.image_name
+                  }`}
                   alt="cake"
                 ></img>
                 <div>
@@ -388,15 +382,6 @@ const ForumCard = () => {
                   <div class="Forum-main-dropdown">
                     <FiMoreHorizontal className="FiMoreHorizontal" />
                     <div class="Forum-main-dropdown-content">
-                      <p>
-                        <a href="#">收藏</a>
-                      </p>
-                      <p>
-                        <a href="#">分享</a>
-                      </p>
-                      <p>
-                        <a href="#">檢舉</a>
-                      </p>
                       <p>
                         <a href="#">刪除</a>
                       </p>
@@ -417,7 +402,7 @@ const ForumCard = () => {
               <div className="st-line"></div>
             </div>
           )}
-          ;
+
           <div className="Forum-modal-footer-write-component">
             <div className="Forum-modal-footer-write-account">
               <img
