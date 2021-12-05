@@ -55,6 +55,7 @@ const CreditCards = (props) => {
             name="name"
             className="CreditCards-right-row-input"
             placeholder="持卡人姓名"
+            maxLength="30"
             onChange={handleCardsChange}
             onFocus={handleInputFocus}
             value={creditCardsInfo.name}

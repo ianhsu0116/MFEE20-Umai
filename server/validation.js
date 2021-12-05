@@ -41,6 +41,14 @@ const userInfoValidation = (data) => {
   return schema.validate(data);
 };
 
+// nick_name 格式
+const nickNameValidation = (data) => {
+  const schema = Joi.object({
+    nick_name: Joi.string().min(1).max(10).required(),
+  });
+  return schema.validate(data);
+};
+
 // password 格式
 const passwordValidation = (data) => {
   const schema = Joi.object({
@@ -155,6 +163,7 @@ module.exports = {
   loginValidation,
   userInfoValidation,
   passwordValidation,
+  nickNameValidation,
   // 可能會共用的
   creditCardValidation,
   studentValidation,
