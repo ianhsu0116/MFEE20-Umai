@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
@@ -44,6 +44,15 @@ const MemberInfo = (props) => {
   // 修改密碼按鈕狀態
   const [editPasswordActive, setEditPasswordActive] = useState("");
 
+  // memberInfo的各個input的ref
+  const infoRef = useMemo(
+    () =>
+      Array(3)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+
   // 即時更新當前使用者資料的function
   async function refreshUser() {
     try {
@@ -84,8 +93,8 @@ const MemberInfo = (props) => {
 
       // 更新state
       setMemberInfo({
-        last_name: currentUser.last_name || "",
         first_name: currentUser.first_name || "",
+        last_name: currentUser.last_name || "",
         telephone: currentUser.telephone || "",
         birthday: currentUser.birthday || "",
       });
@@ -134,9 +143,23 @@ const MemberInfo = (props) => {
 
   // 送出個資修改
   const handleInfoEdit = async () => {
+    // 前端錯誤阻擋
+    let validArray = ["first_name", "last_name", "telephone", "birthday"];
+    // 先拿掉所有errorInput的calssName
+    new Array(3).fill(0).forEach((item, i) => {
+      infoRef[i].current.classList.remove("inputError-red");
+    });
+    // 如果其中一項為空值，再加上紅色框框
+    for (let i = 0; i < validArray.length; i++) {
+      if (!memberInfo[validArray[i]]) {
+        // infoRef[i].current.focus();
+        infoRef[i].current.classList.add("inputError-red");
+      }
+    }
+
     // 先確認資料是否都有填寫
-    let { last_name, first_name, telephone, birthday } = memberInfo;
-    if (!last_name || !first_name || !telephone || !birthday) {
+    let { first_name, last_name, telephone, birthday } = memberInfo;
+    if (!first_name || !last_name || !telephone || !birthday) {
       return setErrorMsg("請確實填寫每個欄位再送出！");
     }
 
@@ -155,6 +178,11 @@ const MemberInfo = (props) => {
         title: "基本資料更新成功！",
         showConfirmButton: false,
         timer: 1500,
+      });
+
+      // 拿掉所有errorInput的calssName
+      new Array(3).fill(0).forEach((item, i) => {
+        infoRef[i].current.classList.remove("inputError-red");
       });
     } catch (error) {
       //console.log(error.response);
@@ -241,9 +269,6 @@ const MemberInfo = (props) => {
     e.stopPropagation();
     setPasswordConOpen(true);
   };
-
-  // ref測試中===============
-  let infoRef = useRef(new Array(3).fill(1).map((i, index) => index));
 
   return (
     <div

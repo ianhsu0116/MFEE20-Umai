@@ -5,8 +5,13 @@ import Calendar from "../Calendar";
 import ErrorMessage from "../ErrorMessage";
 
 const DefaultStudentCard2 = (props) => {
-  const { newStudentData, setNewStudentData, handleAddStudent, errorMsg } =
-    props;
+  const {
+    newStudentData,
+    setNewStudentData,
+    handleAddStudent,
+    errorMsg,
+    infoRef,
+  } = props;
   let studentCardRefs = useRef();
 
   // 即時抓取input value
@@ -53,6 +58,7 @@ const DefaultStudentCard2 = (props) => {
               name="first_name"
               placeholder="請輸入真實名字(限15字內)"
               maxLength="15"
+              ref={infoRef[0]}
               value={newStudentData.first_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -71,6 +77,7 @@ const DefaultStudentCard2 = (props) => {
               name="last_name"
               placeholder="請輸入真實姓氏(限15字內)"
               maxLength="15"
+              ref={infoRef[1]}
               value={newStudentData.last_name}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -91,6 +98,7 @@ const DefaultStudentCard2 = (props) => {
               name="telephone"
               placeholder="請輸入手機號碼"
               maxLength="10"
+              ref={infoRef[2]}
               value={newStudentData.telephone}
               className="DefaultStudentCard2-main-row-item-input"
               onChange={handleInputChange}
@@ -123,6 +131,7 @@ const DefaultStudentCard2 = (props) => {
               name="email"
               maxLength="50"
               placeholder="請輸入常用Email"
+              ref={infoRef[3]}
               value={newStudentData.email}
               className="DefaultStudentCard2-main-row-item-input DefaultStudentCard2-main-row-item-email"
               onChange={handleInputChange}
