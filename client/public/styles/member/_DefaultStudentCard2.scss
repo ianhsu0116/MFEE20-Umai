@@ -85,6 +85,11 @@
         .DefaultStudentCard2-main-row-item-email {
           width: 100%;
         }
+
+        // 錯誤時的input
+        .DefaultStudentCard2-main-row-item-inputError {
+          border: 1px solid $highLevelColor;
+        }
       }
     }
   }
