@@ -283,7 +283,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li>
-                      <Link to="/course">課程探索</Link>
+                      <Link to="/courses/category?All">課程探索</Link>
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
@@ -390,7 +390,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li onClick={() => {
-                          window.location.href = "#discuss";
+                          window.location.href = "#Comment";
                     }}>評論區</li>
                   </ul>
                 </div>

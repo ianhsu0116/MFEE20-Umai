@@ -22,6 +22,7 @@ function ChefCard(props) {
   }, [chefInfo]);
 return (
   <>
+  <div>
     <div className="st-chefCard">
       {/* 主廚照片容器(左) */}
       <div className="st-chefCardPictureWrapper">
@@ -59,6 +60,7 @@ return (
         </div>
       </div>
     </div>
+  </div>  
   </>
 );
 }
