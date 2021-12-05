@@ -437,6 +437,16 @@ function Course(props) {
   // 因為category陣列會被修改，於是使用複製一個不做改變的陣列
   useEffect(() => {
     if (selectedOptionLevel === "") {
+      setCategory([...categoryOrigin]);
+    }
+    if (selectedOptionLevel === "3") {
+      setCategory(
+        [...categoryOrigin].filter(function (item) {
+          return item.course_level == 3;
+        })
+      );
+    }
+    if (selectedOptionLevel === "2") {
       setCategory(
         [...categoryOrigin].filter(function (item) {
           return item.course_level == 2;

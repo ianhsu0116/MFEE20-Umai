@@ -71,15 +71,19 @@ const OrderInfo = (props) => {
         setLoadMoreShow(true);
     } catch (error) {
       console.log(error);
-      // console.log(error.response);
-      let { code } = error.response.data;
-      // 跳通知
-      Swal.fire({
-        icon: "error",
-        title: getValidMessage("member", code),
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      console.log(error.response);
+
+      // 如果是預料中的錯誤，再跳相關通知
+      if (error.response) {
+        let { code } = error.response.data;
+        // 跳通知
+        Swal.fire({
+          icon: "error",
+          title: getValidMessage("member", code),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
   }, [orderStatus]);
 
@@ -148,7 +152,7 @@ const OrderInfo = (props) => {
       // 如果拿到的資料 < 每夜應該拿的資料
       // 代表拿完這次後就沒資料了
       // 關閉LoadMoreButton
-      if (newData.length < perPage) return setLoadMoreShow(false);
+      if (newData.length <= perPage) return setLoadMoreShow(false);
     }
   }, [page]);
 
