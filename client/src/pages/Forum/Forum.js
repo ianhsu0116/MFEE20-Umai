@@ -16,7 +16,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ForumHeader from "./ForumHeader";
 
-
 const array = [
   "img1.jpg",
   "img2.jpg",
@@ -36,10 +35,12 @@ const array = [
   "avatar.jpg",
 ];
 console.log("test");
-const Forum = () => {
+const Forum = (props) => {
+  const { currentUser } = props;
   // useState(初始值)
   // show代表狀態，是唯獨。必須透過setshow去改變
   // article是唯獨
+
   const [article, setArticle] = useState({
     image_name: "",
     category_id: "",
@@ -135,7 +136,7 @@ const Forum = () => {
         <div className="forum">
           <div className="main">
             <ForumHeader />
-            <ForumCard />
+            <ForumCard currentUser={currentUser} />
           </div>
         </div>
         <div className="publish">

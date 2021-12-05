@@ -15,7 +15,8 @@ import { API_URL, PUBLIC_URL } from "../../config/config";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ForumCard = () => {
+const ForumCard = (props) => {
+  const { currentUser } = props;
   // setShow是一個函式，改變SHOW的狀態
   // useState(初始值)
   // show代表狀態，是唯獨。必須透過setshow去改變
@@ -36,6 +37,8 @@ const ForumCard = () => {
 
   const [messageDetail, setmessageDetail] = useState([]);
 
+  const [essay, setEssay] = useState([]);
+
   // USEEFFECT模擬類別型元件的生命週期
   // 若把UseEffect設定為UseEffect(),[]的話，在畫面渲染完成以後執行()裡面的內容。
   useEffect(async () => {
@@ -47,14 +50,6 @@ const ForumCard = () => {
 
       let data = JSON.stringify(res.data.forumdata);
       // 自後端讀取資料庫的資料，
-      let comment = await axios.get(`${API_URL}/forum/comment`, {
-        withCredentials: true,
-      });
-      console.log(comment);
-      // 第一個COMMENT是 LET的 變數名稱，依照comment形式，再判斷如何拿資料。
-      setmessageDetail(comment.data.comment);
-
-      // let message = JSON.stringify(res.message.comment);
     } catch (error) {
       console.log(error.response);
     }
@@ -79,10 +74,8 @@ const ForumCard = () => {
     try {
       let formData = new FormData();
       formData.append("article_id", article_id);
-      formData.append("message_text", messageEnter.message_text);
-      if (messageEnter.image) {
-        formData.append("image", messageEnter.image);
-      }
+      formData.append("memeber_id", messageEnter.message_text);
+
       let res = await axios.post(
         "http://localhost:8080/api/forum/insertMessage",
         formData
@@ -126,10 +119,29 @@ const ForumCard = () => {
     inputImage[1].value = "";
   };
 
+  const article_collect = async (article_id) => {
+    console.log(article_id);
+    console.log(currentUser);
+    try {
+      let res = await axios.post(
+        "http://localhost:8080/api/forum/collection/" + currentUser.id,
+        { article_id }
+      );
+      Swal.fire({
+        // title: "",
+        icon: "success",
+        // customClass: "Custom_Cancel",
+        confirmButtonColor: "#0078b3",
+        confirmButtonText: "已收藏文章",
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       {/* &&前面通常是判斷式，當判斷式式true的時候會執行&&以後的工作。內容若有東西的話就會是true */}
-
       {forumcard &&
         forumcard.map((forumdata) => (
           <div
@@ -162,6 +174,13 @@ const ForumCard = () => {
               console.log(forumEach.data.forumdatadetail);
               setdata(JSON.stringify(forumEach.data.forumdatadetail));
               console.log("setdata", setdata);
+              let comment = await axios.get(`${API_URL}/forum/comment`, {
+                withCredentials: true,
+              });
+              console.log(comment);
+              // 第一個COMMENT是 LET的 變數名稱，依照comment形式，再判斷如何拿資料。
+              setmessageDetail(comment.data.comment);
+              // let message = JSON.stringify(res.message.comment);
             }}
           >
             <img
@@ -261,9 +280,17 @@ const ForumCard = () => {
                 <div class="Forum-main-dropdown">
                   <FiMoreHorizontal className="FiMoreHorizontal" />
                   <div class="Forum-main-dropdown-content">
-                    <p>
+                    <button
+                      class="Forum-main-dropdown-content-deletebutton"
+                      onClick={() => {
+                        article_collect(articleDetail.id);
+                      }}
+                    >
+                      收藏
+                    </button>
+                    {/* <p>
                       <a href="#">收藏</a>
-                    </p>
+                    </p> */}
                     <button
                       class="Forum-main-dropdown-content-deletebutton"
                       onClick={delete_article}
@@ -295,7 +322,7 @@ const ForumCard = () => {
               ></img>
               {/* {articleDetail && articleDetail.article_link} */}
               <br />
-              <a href="{articleDetail && articleDetail.article_link}">
+              <a href={articleDetail && articleDetail.article_link}>
                 {articleDetail && articleDetail.article_link}
               </a>
               {/* <iframe
@@ -324,7 +351,7 @@ const ForumCard = () => {
         <Modal.Footer ClassName="modal-footer">
           {/* message read */}
           {/* 為了預防沒有留言的時候報錯，所以設定條，當留言大於一筆的時候，執行第一個，當留言少於一個的時候執行第二個 */}
-          {messageDetail.length > 1 ? (
+          {messageDetail.length >= 1 ? (
             messageDetail.map((msg) => (
               <div className="Forum-modal-footer-component">
                 <div className="Forum-modal-footer-account">
@@ -422,6 +449,7 @@ const ForumCard = () => {
             </div>
             <div className="Forum-modal-footer-write-commet">
               {/* <input type="text" /> */}
+
               <input
                 id=""
                 className=""

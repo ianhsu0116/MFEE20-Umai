@@ -47,8 +47,11 @@ router.use((req, res, next) => {
   next();
 });
 
+// 讀取所有的留言
 router.get("/comment", async (req, res) => {
-  let comment = await connection.queryAsync("SELECT * FROM forum_comment");
+  let comment = await connection.queryAsync(
+    "SELECT * FROM forum_comment WHERE article_id =?"
+  );
   res.json({ comment: comment });
 });
 //  WHERE article_id=?
@@ -110,6 +113,28 @@ router.get("/", async (req, res) => {
 
     //console.log(forumdata);
     res.json({ forumdata: articles });
+  } catch (error) {
+    console.log(error);
+    res.json({ error: error });
+  }
+});
+
+// 收藏文章
+router.get("/", async (req, res) => {
+  console.log("body", req.body);
+  console.log("req.file", req.file);
+  //req.body.image_name = req.file.originalname;
+  // console.log(req.body.image_name);
+  // res.json({ result: "okok" });
+  let now = new Date();
+  try {
+    let forumdatadetail = await connection.queryAsync(
+      "INSERT INTO article_collection (article_id,memeber_id) VALUES (?)",
+      [[req.body.article_id, req.body.member_id]]
+    );
+    //console.log("forumdatadetail", forumdatadetail);
+    res.json({ forumdatadetail: forumdatadetail });
+    //console.log("articel_link", forumdatadetail.article_link);
   } catch (error) {
     console.log(error);
     res.json({ error: error });

@@ -76,7 +76,7 @@ function App() {
 
   // 把課程資訊加入購物車
   async function addCourseIntoCart(course_id, batch_date) {
-    console.log(course_id,batch_date);
+    console.log(course_id, batch_date);
     // getCurrentInfoObject;
     let result = courseService.course_cart(course_id, batch_date);
 
@@ -145,7 +145,7 @@ function App() {
             />
           </Route>
           <Route path="/Forum" exact>
-            <Forum />
+            <Forum currentUser={currentUser} />
           </Route>
           <Route path="/courses/category" exact>
             <Course />
@@ -157,10 +157,10 @@ function App() {
             <Contactus />
           </Route>
           <Route path="/ForumPublish" exact>
-            <ForumPublish />
+            <ForumPublish currentUser={currentUser} />
           </Route>
           <Route path="/ForumUpdate" exact>
-            <ForumUpdate />
+            <ForumUpdate currentUser={currentUser} />
           </Route>
 
           <Route path="/courses/:course_id" exact>
