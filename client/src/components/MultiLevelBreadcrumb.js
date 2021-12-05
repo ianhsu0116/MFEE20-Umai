@@ -1,3 +1,4 @@
+import { alt } from 'joi';
 import React, { useState , useEffect } from 'react'
 // 高階元件樣式(HOC)，增強元件用的
 import { withRouter, Link } from "react-router-dom";
@@ -16,10 +17,11 @@ function MultiLevelBreadcrumb(props) {
  
   useEffect(async () => {
     try {
-      let result = await CategoryService.categoryID(category_number);
-      setCategoryid(result.data.categoryID[0].category_name)
+      let result = await CategoryService.categoryLength(category_number);
+      setCategoryid(result.data.category_length[0].category_name)
       return
     } catch (error) {
+      alert("沒開課")
       console.log(error);
    }
   }, []);

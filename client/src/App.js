@@ -148,7 +148,10 @@ function App() {
             <Forum />
           </Route>
           <Route path="/courses/category" exact>
-            <Course />
+            <Course 
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
           </Route>
           <Route path="/about" exact>
             <About />

@@ -82,18 +82,17 @@ router.use((req, res, next) => {
     }
   });
 
-  router.get("/courses/categoryLength", async (req, res) => {
-    let { id } = req.params;
-  
+  router.get("/categoryLength/:category_number", async (req, res) => {
+    let { category_number } = req.params;
     try {
       let result = await connection.queryAsync(
-        "SELECT category_name FROM course_category WHERE  valid = 1",
-        [id, 1]
+        "SELECT category_name FROM course_category WHERE id=? AND valid = 1",
+        [category_number, 1]
       );
-  
+      console.log(category_number)
       res.status(200).json({ success: true, category_length: result });
     } catch (error) {
-      //console.log(error);
+      console.log(error);
       res.status(500).json({ success: false, code: "G999", message: error });
     }
   });
