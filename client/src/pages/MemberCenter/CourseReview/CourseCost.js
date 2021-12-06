@@ -31,7 +31,7 @@ function CourseCost(props) {
               <ul>{item2}</ul>
             </div>
             <div className="Coursedetail-attention">
-              <div>注意事項：</div>
+              <div>※注意事項：</div>
               <p>{attention}</p>
             </div>
           </div>

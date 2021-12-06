@@ -14,8 +14,8 @@ class CategoryService {
       });
     }
   // 全課程  
-  categoryLength() {
-      return axios.get(AUTH_API_URL + "/courses/categoryLength", {
+  categoryLength(category_number) {
+      return axios.get(AUTH_API_URL + `/categoryLength/${category_number}`, {
         withCredentials: true,
       });
     }

@@ -137,8 +137,7 @@ function CourseInfomation(props) {
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
-      setCourse_id(result.data.course.id);
-      console.log(result.data);
+      setCourse_id(id_number);
       return;
     } catch (error) {
       console.log(error);
@@ -199,6 +198,7 @@ function CourseInfomation(props) {
     setBatch(e);
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e == course_batchJSON[i].batch_date) {
+        setBatch_id(course_batchJSON[i].id);
         setBatch_member(course_batchJSON[i].member_count);
         console.log(batch_member);
       }
@@ -228,6 +228,8 @@ function CourseInfomation(props) {
 
   return (
     <>
+    {console.log(batch_id)}
+    {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -298,7 +300,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li>
-                      <Link to="/course">課程探索</Link>
+                      <Link to="/courses/category?All">課程探索</Link>
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
@@ -377,7 +379,7 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            51,
+                            batch_id,
                           );
                         }
                       }}
@@ -417,6 +419,7 @@ function CourseInfomation(props) {
                             cartCourseCount: 1,
                           });
                           if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
+                              console.log(checkoutCourse )
                               return;
                           } else {
                               return window.location.href =
@@ -428,13 +431,9 @@ function CourseInfomation(props) {
                       現在報名
                     </li>
                     <li>|</li>
-                    <li
-                      onClick={() => {
-                        window.location.href = "#discuss";
-                      }}
-                    >
-                      評論區
-                    </li>
+                    <li onClick={() => {
+                          window.location.href = "#Comment";
+                    }}>評論區</li>
                   </ul>
                 </div>
               </div>
@@ -749,10 +748,13 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-joinLineWidth">
                   <div className="Coursedetail-joinLine"></div>
                 </div>
+                <div className="Coursedetail-textArea">
                 <p>喜歡這堂課嗎?</p>
                 <p>歡迎加入我們</p>
                 <p>成為Umai的一員</p>
                 <p>讓我們帶您前往美食的世界</p>
+                </div>
+                <div className="Coursedetail-finallyJoin">
                 <p
                   className="Coursedetail-joinNow"
                   onClick={() => {
@@ -762,8 +764,21 @@ function CourseInfomation(props) {
                     }
                   }}
                 >
-                  點擊我立即加入！
+                  加入購物車
                 </p>
+                <p>|</p>
+                <p
+                  className="Coursedetail-joinNow"
+                  onClick={() => {
+                    if (batch === "尚未選擇") {
+                      window.location.href = "#batch";
+                      alert("請先選擇梯次日期後再點擊");
+                    }
+                  }}
+                >
+                   立即加入！
+                </p>
+                </div>
               </span>
               <img src={Join} alt=""></img>
             </div>
