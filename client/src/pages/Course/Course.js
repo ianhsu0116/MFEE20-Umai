@@ -1,26 +1,27 @@
 import React, { useState , useEffect } from "react";
-import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
-import Swal from "sweetalert2";
-
 import { withRouter } from "react-router-dom";
-import { PUBLIC_URL } from "../../config/config";
+import { Player } from "video-react";
 
+import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
+import LoadMoreButton from "../../components/LoadMoreButton";
 import CourseCard from "../../components/CourseCard1";
 
 import CategoryService from "../../services/category.service";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
+import { PUBLIC_URL } from "../../config/config";
 import { number } from "joi";
 
-import LoadMoreButton from "../../components/LoadMoreButton";
+import Swal from "sweetalert2";
+
+
 
 
 function Course (props){
 
-  const { location} = props;
-
-    // 有沒有登入
-    const [memberLogin , setMemberLogin] = useState ([])
+  const {location , currentUser, setCurrentUser } = props;
+  // 抓search用 Ex category?... search抓到?...
+  let category_number = location.search.slice(1);
 
     // 當前所有收藏課程
     const [currentCourses, setCurrentCourses] = useState([]);
@@ -28,22 +29,30 @@ function Course (props){
     // 當前使用者所有的收藏課程id
     const [collectionIds, setCollectionIds] = useState([]);
 
-    useEffect(() => {
-      let Longin_check =  localStorage.user
-      if(localStorage.user){
-        console.log("我有登入")
-        Longin_check = JSON.parse(Longin_check)
-        setMemberLogin(Longin_check)
-      } else (console.log("我沒登入"))
-  
+    // 各式影片 預設日式
+    const [categoryVideo , setCategoryVideo] = useState("Japan")
+
+     useEffect(() => {
+      setCategoryVideo(category_number)
     }, []);
-    
-    let category_number = location.search.slice(1);
+    // 判斷剛近來有沒有登入
+    useEffect(() => {
+      if(currentUser){
+        console.log("我有登入")
+      } else (console.log("我沒登入"))
+    }, []);
+
+    //用來判斷有沒有登入(原本沒登入按登入)
+    useEffect(() => {
+      if(currentUser){
+        refreshCollection()
+      } 
+    }, [currentUser]);
 
     // 重整當前收藏課程
   let refreshCollection = async () => {
     try {
-      let result = await CourseService.course_collection(memberLogin.id);
+      let result = await CourseService.course_collection(currentUser.id);
 
       // 如果這次沒回傳任何course
       if (!result.data.course) {
@@ -74,24 +83,32 @@ function Course (props){
     // 拿到此會員的收藏課程
     useEffect(async () => {
       try {
+        if(currentUser){
         refreshCollection();
-      } catch (error) {
+      }} catch (error) {
         console.log(error);
       }
     }, []);
 
       // 加入/移除收藏
   const handleAddIntoCollection = async (course_id) => {
+    if (!currentUser){
+      Swal.fire({
+        icon: "error",
+        title: "請先登入後再進行操作哦！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     // 判斷此課程是否在收藏內
     let type = collectionIds.includes(course_id);
 
     try {
       let result = await CourseService.course_collection_edit(
-        memberLogin.id,
+        currentUser.id,
         course_id,
         type
       );
-      console.log(course_id)
         if(type){
       // 跳通知
       Swal.fire({
@@ -107,7 +124,9 @@ function Course (props){
       });
 
       // 拿到更新後的課程收藏
+      if(currentUser){
       refreshCollection();
+      }
     } catch (error) {
       console.log(error.response);
       // let { code } = error.response.data;
@@ -219,7 +238,6 @@ function Course (props){
   if(location.search != ""){
     if(category_number == "Japan" || category_number == 1 || category_number == "%E6%97%A5%E5%BC%8F%E6%96%99%E7%90%86" ){
       category_number = 1
-      console.log(category_number)
     } else if(category_number == "Korea" || category_number == 2 || category_number == "%E9%9F%93%E5%BC%8F%E6%96%99%E7%90%86"){
       category_number = 2
     } else if(category_number == "France" || category_number == 3 || category_number == "%E6%B3%95%E5%BC%8F%E6%96%99%E7%90%86"){
@@ -485,7 +503,21 @@ useEffect(() => {
       <div className="CourseCategroy">{categoryname}</div>
       <div className="st-line"></div>
       <div className="CourseRecommendTitle">本週推薦課程</div>
-      <div className="CourseVideo"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/MKdvHnTk0xs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+      <div className="CourseVideo">
+      
+        <Player 
+          fluid={false}
+          width="100%"
+          height="100%"
+          muted={true}
+          autoPlay={true}
+        >
+          <source src={`${PUBLIC_URL}/upload-images/${categoryVideo+".mp4"}`} />
+        </Player>
+
+        <p>畫面源自於Youtube，僅供學術交流使用，如有侵權，請通知我們，我們會立即撤下</p>
+      </div>
       {/* <div className="CourseRecommendTitle">熱門學習組合</div>
       <div className="CourseSixBox"></div> */}
       <div className="CourseCategroy">課程列表</div>
