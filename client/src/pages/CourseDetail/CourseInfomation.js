@@ -31,7 +31,7 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location, currentUser, clearNewAddCourse, addCourseIntoCart } = props;
+  const { location, currentUser, clearNewAddCourse, addCourseIntoCart, checkoutCourse, setCheckoutCourse, cartCourseInfoList, setCartCourseInfoList } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -119,6 +119,8 @@ function CourseInfomation(props) {
   const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
   const [course_Score_member, setCourse_Score_member] = useState(0);
+  // 該課程id
+  const [course_id, setCourse_id] = useState(0);
 
   useEffect(async () => {
     try {
@@ -135,6 +137,7 @@ function CourseInfomation(props) {
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
+      setCourse_id(result.data.course.id);
       console.log(result.data);
       return;
     } catch (error) {
@@ -374,7 +377,7 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            51
+                            51,
                           );
                         }
                       }}
@@ -383,7 +386,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li
-                      onClick={() => {
+                      onClick={async() => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -407,12 +410,18 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else {
-                          addCourseIntoCart(
-                            currentUser.id,
-                            id_number,
-                            batch_id
-                          );
-                          console.log("addCourseIntoCart success");
+                          await setCheckoutCourse({
+                            member_id: currentUser ? currentUser.id : undefined,
+                            course_id: course_id ? course_id : undefined,
+                            batch_id: batch_id ? batch_id : undefined,
+                            cartCourseCount: 1,
+                          });
+                          if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
+                              return;
+                          } else {
+                              return window.location.href =
+                              "http://localhost:3000/ShoppingCart";
+                          }
                         }
                       }}
                     >

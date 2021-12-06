@@ -414,9 +414,10 @@ const Navbar = (props) => {
                               await setCheckoutCourse({
                                 member_id: currentUser ? currentUser.id : undefined,
                                 course_id: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].course_id : undefined,
-                                cartCourseCount: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].cartCourseCount : undefined,
+                                batch_id: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].batch_id : undefined,
+                                cartCourseCount: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].cartCourseCount : 1,
                               });
-                              if(checkoutCourse.course_id===undefined){
+                              if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
                                 return;
                               } else {
                                 return window.location.href =

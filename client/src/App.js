@@ -198,6 +198,7 @@ function App() {
   const [checkoutCourse, setCheckoutCourse] = useState({
     member_id: undefined,
     course_id: undefined,
+    batch_id: undefined,
     cartCourseCount: undefined,
   });
 
@@ -291,6 +292,10 @@ function App() {
               currentUser={currentUser}
               clearNewAddCourse={clearNewAddCourse}
               addCourseIntoCart={addCourseIntoCart}
+              checkoutCourse={checkoutCourse}
+              setCheckoutCourse={setCheckoutCourse}
+              cartCourseInfoList={cartCourseInfoList}
+              setCartCourseInfoList={setCartCourseInfoList}
             />
           </div>
           <Footer />

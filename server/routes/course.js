@@ -347,7 +347,9 @@ router.get("/member/:member_id", async (req, res) => {
     //console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
-}); // 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
+});
+
+// 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
 router.get("/:course_id", async (req, res) => {
   let { course_id } = req.params;
   console.log("test");
