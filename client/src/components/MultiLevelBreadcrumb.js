@@ -9,7 +9,8 @@ import CategoryService from "../services/category.service";
 
 function MultiLevelBreadcrumb(props) {
   const { location } = props
-  // let page_category = location.pathname.substr(1, 7)
+  let page_category = location.pathname.substr(1, 7)
+  console.log(page_category)
   let category_number = location.search.slice(1);
   //麵包屑根據種類id判斷當前是什麼
   const [categoryid , setCategoryid] = useState('')
@@ -85,7 +86,7 @@ function MultiLevelBreadcrumb(props) {
       alert("錯誤的分類，將導向全部分類")
       window.location.href='http://localhost:3000/courses/category?All';
     }
-  }else if(pathArray[1] == "courses"){
+  }else if(pathArray[1] == "courses" && location.pathname != "category"){
     window.location.href='http://localhost:3000/courses/category?All';
   }
 

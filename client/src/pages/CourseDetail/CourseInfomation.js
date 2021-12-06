@@ -196,6 +196,12 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
+    setCheckoutCourse({
+      member_id: currentUser ? currentUser.id : undefined,
+      course_id: course_id ? course_id : undefined,
+      batch_id: batch_id ? batch_id : undefined,
+      cartCourseCount: 1,
+    })
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e == course_batchJSON[i].batch_date) {
         setBatch_id(course_batchJSON[i].id);
@@ -381,6 +387,7 @@ function CourseInfomation(props) {
                             Number(id_number),
                             batch_id,
                           );
+                          
                         }
                       }}
                     >

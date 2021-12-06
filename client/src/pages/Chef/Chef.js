@@ -2,6 +2,7 @@ import React, { useState , useEffect  } from "react";
 import MultiLevelBreadcrumb from '../../components/MultiLevelBreadcrumb'
 import ChefCard from '../../components/ChefCard'
 import { IoMdArrowDropleft } from "react-icons/io"
+import { PUBLIC_URL } from "../../config/config";
 import CourseCard from '../../components/CourseCard1'
 
 import MemberService from "../../services/member.service";
@@ -20,17 +21,34 @@ const Chef = (props) => {
   );
   //主廚數量
   const [chefCount , setChefCount] = useState();
+  // 設定哪個主廚被選
+  const [chefSelect , setChefSelect] = useState();
 
   useEffect(async () => {
     try {
-      let result = await MemberService.chefName(1);
+      let result = await MemberService.chefName();
+      for(let i = 0 ; i < result.data.chefs.length ; i++){
+         result.data.chefs[i].chef_introduction = JSON.parse(
+        result.data.chefs[i].chef_introduction
+      );
+      console.log(result.data.chefs)
+      }
+      console.log(result.data.chefs)
       setChefJSON(result.data.chefs);
       setChefCount(result.data.chefs.length)
-      console.log( result.data)
+      console.log(result.data)
     } catch (error) {
       console.log(error);
     }
   }, []);
+  useEffect(async() => {
+    try {
+      let result = await MemberService.chefCourse(chefSelect?.id);
+      console.log(123)
+    } catch (error) {
+      console.log(error);
+    }
+  }, [chefSelect]);
 
  const chefJson = []
 
@@ -49,6 +67,7 @@ const Chef = (props) => {
       <li className={active == i ? 'chef-li chef-liActive':"chef-li"} id={i} onClick={(e)=> {
         SetActive(e.target.id)
         console.log(chefJSON[i])
+        setChefSelect(chefJSON[i])
         }}>{chefJson[i]}<span className={active == i ? "chef-arrowActive":"chef-arrow"}><IoMdArrowDropleft /></span></li>
     )
   }
@@ -56,7 +75,7 @@ const Chef = (props) => {
 
   return (
     <>
-    {console.log(chefJSON)}
+    {console.log(chefSelect?.id)}
       <div className="chef-set">
         <div className="CourseBreadbox">
           <MultiLevelBreadcrumb />
@@ -69,7 +88,15 @@ const Chef = (props) => {
             </ul>
               <div className="chef-cardAndCourseCard">
                 <div className="chef-margin">
-                  <ChefCard />
+                  <ChefCard  
+                    chefIntroduce1={
+                      chefSelect?.chef_introduction.chefIntroduce1}
+                    chefInfoTitle={chefSelect?.chef_introduction.chefInfoTitle}
+                    chefInfo={chefSelect?.chef_introduction.chefInfo}
+                    chefFirstName={chefSelect?.chef_introduction.first_name}
+                    chefLastName={chefSelect?.chef_introduction.last_name}
+                    avatar={`${PUBLIC_URL}/upload-images/${chefSelect?.avatar}`}
+                  />
                 </div> 
                 <div className="chef-courseCardMargin">
                   {/* <CourseCard /> */}
