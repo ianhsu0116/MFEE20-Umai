@@ -12,21 +12,30 @@ const Footer = () => {
               <div className="col-2"></div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="#">
+                  <a className="footerTitleText" href="" onClick={() => {
+                              window.location.href =
+                                "http://localhost:3000/chef";
+                              }} >
                     主廚介紹
                   </a>
                 </p>
               </div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="#">
+                  <a className="footerTitleText" href="" onClick={() => {
+                              window.location.href =
+                                "http://localhost:3000/about";
+                              }} >
                     關於我們
                   </a>
                 </p>
               </div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="#">
+                  <a className="footerTitleText" href="" onClick={() => {
+                              window.location.href =
+                                "http://localhost:3000/contactus";
+                              }} >
                     聯絡我們
                   </a>
                 </p>

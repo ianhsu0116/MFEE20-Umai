@@ -37,13 +37,27 @@ import Footer from "./components/Footer";
 function App() {
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
+
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
-  const [checkoutList, setCheckoutList] = useState({
-    member_id: "",
-    course_id: "",
-    cartCourseCount: "",
-  });
+
+  //儲存購物車的課程資訊
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  // [{
+  //   course_id: "",
+  //   member_id: "",
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_id: "", //(course_batch table)
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // }]
+
+  //新增課程
+  const [newAddCourse, setNewAddCourse] = useState({});
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -74,114 +88,239 @@ function App() {
     }
   };
 
-  // 把課程資訊加入購物車
-  async function addCourseIntoCart(course_id, batch_date) {
-    console.log(course_id,batch_date);
-    // getCurrentInfoObject;
-    let result = courseService.course_cart(course_id, batch_date);
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
 
-    // 如果這次沒回傳任何course
-    if (!result.data.courseInfoInCart) {
-      console.log({
-        success: false,
-        code: "D999",
-        message: "課程未加入購物車",
-      });
-      return;
+  //清空新增課程state
+  async function clearNewAddCourse(){
+    await setNewAddCourse({});
+    console.log("clearNewAddCourse");
+  }
+
+  // 把課程加入購物車資料庫
+  async function addCourseIntoCart(member_id, course_id, batch_id) {
+    //檢查購物車資料庫中是否已經有此課程
+    // console.log("addCourseIntoCart FE");
+    // console.log(member_id, course_id, batch_id);
+    let IfInCartResult = await courseService.IfCourseInCart(
+      member_id,
+      course_id,
+      batch_id
+    );
+    let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
+    // console.log("back to FE");
+    // console.log(ifIncart);
+
+    //產生購物車中，單筆課程所需用到的資料
+    let getOneCourseObject = async () => {
+      try {
+        // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
+        let result = await courseService.getOneCourseObject(
+          course_id,
+          batch_id
+        );
+        return {
+          member_id,
+          course_id,
+          batch_id,
+          ...result.data.courseInfoInCart[0],
+          cartCourseCount: 1,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    //先在switch外宣告一個共用變數，用來接住函數回傳的結果
+    let CartCourseObject;
+
+    //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
+    switch (ifIncart) {
+
+      //在資料庫中但不在購物車中
+      case 0:
+        // 把課程加入購物車資料庫(UPDATE)
+        // console.log("UpdateCart");
+        let updateResult = await courseService.UpdateCart(
+          member_id,
+          course_id,
+          batch_id
+        );
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        console.log(CartCourseObject);
+        break;
+
+      //在資料庫中也在購物車中
+      case 1:
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        console.log(CartCourseObject);
+        break;
+
+      //不在資料庫中
+      case undefined:
+        // 把課程加入購物車資料庫(INSERT)
+        await courseService.addCourseIntoCart(member_id, course_id, batch_id);
+        try {
+          CartCourseObject = await getOneCourseObject();
+        } catch (error) {
+          console.log(error);
+        }
+        // console.log("回傳購物車資訊");
+        console.log(CartCourseObject);
+        break;
+      //ifIncart error
+      default:
+        console.log("ifIncart error");
+        break;
     }
 
-    // // 設定當前課程的資料Array
-    // setCurrentCourses(result.data.course);
+    if(ifIncart === 1){
+      await setNewAddCourse([CartCourseObject, "+1"]);
+    }else{
+      setNewAddCourse([CartCourseObject]);
+    }
 
-    // // 設定當前使用者的所有收藏課程Array
-    // setCollectionIds(result.data.course.map((item) => item.id));
+    // console.log("setNewAddCourse");
+    // console.log("Exit");
   }
+
+  // 結帳資料
+  const [checkoutCourse, setCheckoutCourse] = useState({
+    member_id: undefined,
+    course_id: undefined,
+    batch_id: undefined,
+    cartCourseCount: undefined,
+  });
 
   // ==================== 共用元件展示用ㄉ東西 ======================
 
-  //搜尋列推薦關鍵字
-  const SearchKeywordTagList = [
-    "創意壽司",
-    "義大利麵",
-    "紅酒燉牛肉",
-    "獵人燉雞",
-  ];
-  //搜尋列推薦課程
-  const SearchCourseList = [
-    "創意壽司",
-    "築地創意壽司",
-    "築地高級壽司",
-    "築地高級創意壽司",
-  ];
+
+  const getAllCourseObject = async function(){
+    let result = await courseService.getAllCourseObject(currentUser.id);
+    console.log("result");
+    console.log(result.data.courseInfoInCart);
+    // console.log(result.data.inCartCourseIds);
+  };
+
+  useEffect(()=>{
+    if(currentUser){
+    try{
+      getAllCourseObject();
+    }catch(error){
+      console.log(error);
+    }
+  }
+  },[currentUser])
 
   return (
     <Router>
       <Navbar2
         handleLoginClick={handleLoginClick}
         currentUser={currentUser}
-        SearchKeywordTagList={SearchKeywordTagList}
-        SearchCourseList={SearchCourseList}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
-        checkoutList={checkoutList}
-        setCheckoutList={setCheckoutList}
+        cartCourseInfoList={cartCourseInfoList}
+        setCartCourseInfoList={setCartCourseInfoList}
+        checkoutCourse={checkoutCourse}
+        setCheckoutCourse={setCheckoutCourse}
+        newAddCourse={newAddCourse}
+        setNewAddCourse={setNewAddCourse}
+        clearNewAddCourse={clearNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
       )}
-      <div className="footerPadding">
-        <Switch>
-          <Route path="/" exact>
+
+      <Switch>
+        <Route path="/" exact>
+          <div className="footerPadding">
             <HomePage />
-          </Route>
-          <Route path="/ShoppingCart" exact>
-            <ShoppingCart currentUser={currentUser} />
-          </Route>
-          <Route path="/memberCenter" exact>
-            <MemberCenter
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          </Route>
-          <Route path="/Forum" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/ShoppingCart" exact>
+          <ShoppingCart currentUser={currentUser} checkoutCourse={checkoutCourse} />
+        </Route>
+        <Route path="/memberCenter" exact>
+          <MemberCenter
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            addCourseIntoCart={addCourseIntoCart}
+          />
+        </Route>
+        <Route path="/Forum" exact>
+          <div className="footerPadding">
             <Forum />
-          </Route>
-          <Route path="/courses/category" exact>
-            <Course 
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/courses/category" exact>
+          <div className="footerPadding">
+            <Course
               currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
+              addCourseIntoCart={addCourseIntoCart}
             />
-          </Route>
-          <Route path="/about" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/about" exact>
+          <div className="footerPadding">
             <About />
-          </Route>
-          <Route path="/contactus" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/contactus" exact>
+          <div className="footerPadding">
             <Contactus />
-          </Route>
-          <Route path="/ForumPublish" exact>
-            <ForumPublish />
-          </Route>
-          <Route path="/ForumUpdate" exact>
-            <ForumUpdate />
-          </Route>
-
-          <Route path="/courses/:course_id" exact>
-            <CourseDetail addCourseIntoCart={addCourseIntoCart} />
-          </Route>
-          <Route path="/ShoppingList" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/courses/:course_id" exact>
+          <div className="footerPadding">
+            <CourseDetail
+              currentUser={currentUser}
+              clearNewAddCourse={clearNewAddCourse}
+              addCourseIntoCart={addCourseIntoCart}
+              checkoutCourse={checkoutCourse}
+              setCheckoutCourse={setCheckoutCourse}
+              cartCourseInfoList={cartCourseInfoList}
+              setCartCourseInfoList={setCartCourseInfoList}
+            />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/ShoppingList" exact>
+          <div className="footerPadding">
             <ShoppingList currentUser={currentUser} />
-          </Route>
-          <Route path="/PaymentMethod" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/PaymentMethod" exact>
+          <div className="footerPadding">
             <PaymentMethod currentUser={currentUser} />
-          </Route>
-          <Route path="/chef" exact>
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/chef" exact>
+          <div className="footerPadding">
             <Chef />
-          </Route>
-        </Switch>
-      </div>
-
-      <Footer />
+          </div>
+          <Footer />
+        </Route>
+      </Switch>
     </Router>
   );
 }
