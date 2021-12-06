@@ -30,10 +30,13 @@ $chefTextSize-li: calc(6px + 0.5vw);
   display: flex;
   justify-content: center;
   // 防暴版背景色
-  background: #707070;
+  // background: #707070;
+  // 12/6 亭 如果要改回去也OK
+  background: #F1F1F1;
   img {
     height: 100%;
   }
+  
 }
 
 // 主廚文字容器(右)

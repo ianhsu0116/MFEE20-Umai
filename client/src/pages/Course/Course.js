@@ -184,6 +184,7 @@ function Course (props){
       // loadMoreShow 回歸預設值(關閉)
       setLoadMoreShow(false);
 
+      console.log(result.data.courseDetail.slice(0, perPage))
       // 放入當前頁面需要資料
       setPageData(result.data.courseDetail.slice(0, perPage));
 
@@ -501,7 +502,7 @@ useEffect(() => {
 
   return (
     <>
-    {console.log(category)}
+    {console.log(pageData)}
     <div className="Course">
       <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
       <div className="CourseCategroy">{categoryname}</div>
