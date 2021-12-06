@@ -112,6 +112,7 @@ const Navbar = (props) => {
     let result = await axios.post("http://localhost:8080/api/course/searchcourse", {searchValue:searchValue} ,{
       withCredentials: true,
     })
+    console.log(result.data.course[0]);
     setSearchCourseList(result.data.course)
   },[searchValue])
 
@@ -500,7 +501,7 @@ const Navbar = (props) => {
                   className="recommandCourse"
                   title={Course.course_name}
                   onClick={(e) => {
-                    setSearchValue(e.target.title);
+                    window.location.href=`http://localhost:3000/courses/${Course.id}`
                   }}
                 >
                   {Course.course_name}
