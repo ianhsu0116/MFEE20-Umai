@@ -31,7 +31,16 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location, currentUser, clearNewAddCourse, addCourseIntoCart, checkoutCourse, setCheckoutCourse, cartCourseInfoList, setCartCourseInfoList } = props;
+  const {
+    location,
+    currentUser,
+    clearNewAddCourse,
+    addCourseIntoCart,
+    checkoutCourse,
+    setCheckoutCourse,
+    cartCourseInfoList,
+    setCartCourseInfoList,
+  } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -377,7 +386,7 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            51,
+                            20
                           );
                         }
                       }}
@@ -386,7 +395,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li
-                      onClick={async() => {
+                      onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -398,7 +407,7 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else if (
-                          batch_member == newCourseJSON[0].member_limit
+                          batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
                             // title: "",
@@ -416,11 +425,15 @@ function CourseInfomation(props) {
                             batch_id: batch_id ? batch_id : undefined,
                             cartCourseCount: 1,
                           });
-                          if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
-                              return;
+                          if (
+                            checkoutCourse.member_id === undefined ||
+                            checkoutCourse.course_id === undefined ||
+                            checkoutCourse.batch_id === undefined
+                          ) {
+                            return;
                           } else {
-                              return window.location.href =
-                              "http://localhost:3000/ShoppingCart";
+                            return (window.location.href =
+                              "http://localhost:3000/ShoppingCart");
                           }
                         }
                       }}

@@ -190,14 +190,14 @@ const Navbar = (props) => {
     }
 
     if (newAddCourse.length === 2) {
-      // console.log(cartCourseInfoList[0].cartCourseCount);
+      console.log(cartCourseInfoList[0].cartCourseCount);
       let newCartCourseInfoList = cartCourseInfoList;
       newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
         if (obj.course_id === newAddCourse[0].course_id) {
           obj.cartCourseCount = obj.cartCourseCount + 1;
-        };
+        }
         return obj;
-      })
+      });
       console.log("newAddCourse.length-2");
       console.log(newCartCourseInfoList);
       console.log(newCartCourseInfoList.cartCourseCount);
@@ -410,21 +410,38 @@ const Navbar = (props) => {
                           {/* 結帳按鈕 */}
                           <div className="goCheckOut" onClick={handleCheckout}>
                             <h5
-                            onClick={async() => {
-                              await setCheckoutCourse({
-                                member_id: currentUser ? currentUser.id : undefined,
-                                course_id: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].course_id : undefined,
-                                batch_id: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].batch_id : undefined,
-                                cartCourseCount: cartCourseInfoList.length !== 0 ? cartCourseInfoList[0].cartCourseCount : 1,
-                              });
-                              if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
-                                return;
-                              } else {
-                                return window.location.href =
-                                "http://localhost:3000/ShoppingCart";
-                              }
+                              onClick={async () => {
+                                await setCheckoutCourse({
+                                  member_id: currentUser
+                                    ? currentUser.id
+                                    : undefined,
+                                  course_id:
+                                    cartCourseInfoList.length !== 0
+                                      ? cartCourseInfoList[0].course_id
+                                      : undefined,
+                                  batch_id:
+                                    cartCourseInfoList.length !== 0
+                                      ? cartCourseInfoList[0].batch_id
+                                      : undefined,
+                                  cartCourseCount:
+                                    cartCourseInfoList.length !== 0
+                                      ? cartCourseInfoList[0].cartCourseCount
+                                      : 1,
+                                });
+                                if (
+                                  checkoutCourse.member_id === undefined ||
+                                  checkoutCourse.course_id === undefined ||
+                                  checkoutCourse.batch_id === undefined
+                                ) {
+                                  return;
+                                } else {
+                                  return (window.location.href =
+                                    "http://localhost:3000/ShoppingCart");
+                                }
                               }}
-                            >前往結帳</h5>
+                            >
+                              前往結帳
+                            </h5>
                           </div>
                         </div>
                       </div>

@@ -102,10 +102,10 @@ router.get("/cart/:member_id", async (req, res) => {
   }
 });
 
-// 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
+// 根據course_id與batch_id拿到購物車所需的單筆課程資料 (cart)
 router.get("/cart/:course_id/:batch_id", async (req, res) => {
   let { course_id, batch_id } = req.params;
-  // console.log("加入購物車BE");
+  console.log("加入購物車BE");
 
   try {
     // 拿到課程資料與梯次(join course_batch)
@@ -114,7 +114,7 @@ router.get("/cart/:course_id/:batch_id", async (req, res) => {
       [course_id, batch_id, 1, 1]
     );
 
-    // console.log(courseInfoInCart);
+    console.log(courseInfoInCart);
     res.status(200).json({ success: true, courseInfoInCart });
   } catch (error) {
     //console.log(error);
@@ -124,20 +124,25 @@ router.get("/cart/:course_id/:batch_id", async (req, res) => {
 
 //檢查購物車資料庫中是否已經有此課程
 router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
-  // console.log("check cartDB BE");
+  console.log("check cartDB BE");
   let { member_id, course_id, batch_id } = req.params;
-  // console.log(member_id, course_id, batch_id);
+  console.log(member_id, course_id, batch_id);
   try {
+    // let inCart = await connection.queryAsync(
+    //   `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+    //   [member_id, course_id, batch_id]
+    // );
     let inCart = await connection.queryAsync(
       `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
-    // console.log(inCart[0].inCart);
-
     res.status(200).json({ success: true, inCart });
+    console.log(inCart[0].inCart);
   } catch (error) {
     // console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
+    return [{ inCart: -1 }];
+    // res.status(200).json({ success: true, inCart: [{ inCart: -1 }] });
   }
 });
 
