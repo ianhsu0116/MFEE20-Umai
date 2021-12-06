@@ -754,7 +754,7 @@ function CourseInfomation(props) {
                 <p>成為Umai的一員</p>
                 <p>讓我們帶您前往美食的世界</p>
                 </div>
-                <div>
+                <div className="Coursedetail-finallyJoin">
                 <p
                   className="Coursedetail-joinNow"
                   onClick={() => {
@@ -764,7 +764,7 @@ function CourseInfomation(props) {
                     }
                   }}
                 >
-                  立即加入！
+                  加入購物車
                 </p>
                 <p>|</p>
                 <p
@@ -776,7 +776,7 @@ function CourseInfomation(props) {
                     }
                   }}
                 >
-                  加入購物車
+                   立即加入！
                 </p>
                 </div>
               </span>
