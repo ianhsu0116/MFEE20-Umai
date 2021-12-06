@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chef from "../images/avatar.svg";
 import { PUBLIC_URL } from "../../config/config";
-import { FaPen } from "react-icons/fa";
+import { FaPen, FaPencilAlt } from "react-icons/fa";
 
 function ChefCard2(props) {
   const { image, name, chefInfomation, setChefInfomation } = props;
@@ -93,7 +93,7 @@ function ChefCard2(props) {
               {chefInfomation.chefIntroduce1 ||
                 "請點擊輸入主廚卡片開頭介紹，建議可簡單介紹主廚的特色及專長(50字以內)..."}
               」
-              <FaPen className="chefCard2Top-introduce1-pen" />
+              <FaPencilAlt className="chefCard2Top-introduce1-pen" />
             </p>
           )}
           {inputMode[0] && (
@@ -140,7 +140,7 @@ function ChefCard2(props) {
                     "請點擊輸入開課餐廳名稱及主廚頭銜(40字以內)...",
                 }}
               ></div>
-              <FaPen className="st-chefCard2Down-chefInfoTitle-pen" />
+              <FaPencilAlt className="st-chefCard2Down-chefInfoTitle-pen" />
             </div>
           )}
           {inputMode[2] && (
@@ -173,7 +173,7 @@ function ChefCard2(props) {
               <li>{chefInfomation.chefInfo[1] || "請點擊輸入..."}</li>
               <li>{chefInfomation.chefInfo[2] || "請點擊輸入..."}</li>
               <li>{chefInfomation.chefInfo[3] || "請點擊輸入..."}</li>
-              <FaPen className="st-chefCard2Down-ul-pen" />
+              <FaPencilAlt className="st-chefCard2Down-ul-pen" />
             </ul>
           )}
           {inputMode[3] && (
