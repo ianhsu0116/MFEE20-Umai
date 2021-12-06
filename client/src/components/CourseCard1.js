@@ -59,7 +59,7 @@ const CourseCard1 = (props) => {
         if (collectionIds) {
           let result = "";
           for (let i = 0; i < collectionIds.length; i++) {
-            if (collectionIds[i] == courseDetail.id) {
+            if (collectionIds[i] == courseDetail?.id) {
               result = true;
               break;
             }
@@ -76,7 +76,7 @@ const CourseCard1 = (props) => {
     if (collectionIds) {
       let result = "";
       for (let i = 0; i < collectionIds.length; i++) {
-        if (collectionIds[i] == courseDetail.id) {
+        if (collectionIds[i] == courseDetail?.id) {
           result = true;
           break;
         }
