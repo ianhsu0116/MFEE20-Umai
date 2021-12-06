@@ -10,7 +10,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 
 import UmaiLogo from "./images/Umai.png";
-import avatar from "./images/avatar.jpg";
+import avatar from "./images/avatar.svg";
 
 import Swal from "sweetalert2";
 import CartCourse from "./Navbar/CartCourse";
@@ -210,6 +210,7 @@ const Navbar = (props) => {
   };
 
   return (
+    <>
     <div className="Header">
       <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
         <div className="Navbar-container">
@@ -223,7 +224,11 @@ const Navbar = (props) => {
 
             {/* 課程探索 */}
             <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover">
+              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
+                //  12/4 亭
+                 onClick={() => {
+                 window.location.href='http://localhost:3000/courses/category?all'
+                }}>
                 課程探索
               </button>
               {/* 下拉式選單 */}
@@ -231,12 +236,21 @@ const Navbar = (props) => {
               <div className="Navbar-container-item-CourseDiscover-dropdown">
                 <ul>
                   {CourseCategoryListLeft.map((cate) => (
-                    <li>{cate}</li>
+                    <li
+                     //  12/4 亭
+                     onClick={() => {
+                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
+                     }}>{cate}</li>
                   ))}
                 </ul>
                 <ul>
                   {CourseCategoryListRight.map((cate) => (
-                    <li>{cate}</li>
+                    <li
+                     //  12/4 亭
+                     onClick={() => {
+                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
+                     }}
+                     >{cate}</li>
                   ))}
                 </ul>
               </div>
@@ -506,6 +520,7 @@ const Navbar = (props) => {
         </div>
       ) : null}
     </div>
+    </>
   );
 };
 

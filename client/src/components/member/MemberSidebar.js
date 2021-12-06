@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import AuthService from "../../services/auth.service";
 import MemberService from "../../services/member.service";
+import getValidMessage from "../../validMessage/validMessage";
 import { PUBLIC_URL } from "../../config/config";
 import { BsPersonCircle, BsCheckCircle } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
@@ -10,7 +11,7 @@ import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
 import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
-import { FaPen, FaIdCard } from "react-icons/fa";
+import { FaPen, FaIdCard, FaPencilAlt } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.svg";
 
@@ -19,6 +20,43 @@ const MemberSidebar = (props) => {
 
   // 存avatar的二元編碼
   const [currentAvatar, setCurrentAvatar] = useState("");
+  // 即時存取nickName改變得值
+  const [nickNameValue, setNickNameValue] = useState("");
+  // 存取暱稱編輯框狀態
+  const [nickNameOpen, setNickNameOpen] = useState(false);
+
+  // 即時更新當前使用者資料的function
+  async function refreshUser() {
+    try {
+      // 更新成功後，更新當前使用者資料
+      let newUser = await AuthService.memberInfo(currentUser.id);
+      // 存入local
+      localStorage.setItem("user", JSON.stringify(newUser.data.member));
+      // 裝入state
+      setCurrentUser(AuthService.getCurrentUser());
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        let { code } = error.response.data;
+        // 跳通知
+        Swal.fire({
+          icon: "error",
+          title: getValidMessage("member", code),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    }
+  }
+
+  // 如果nick_name有東西的話就設定進去state
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.nick_name) {
+        setNickNameValue(currentUser.nick_name);
+      }
+    }
+  }, [currentUser]);
 
   // 切換sidebar內容
   const handleChangeBoard = (e) => {
@@ -50,6 +88,17 @@ const MemberSidebar = (props) => {
           console.log("good");
         } catch (error) {
           console.log(error);
+          if (error.response) {
+            let { code } = error.response.data;
+
+            // 跳通知
+            Swal.fire({
+              icon: "error",
+              title: getValidMessage("member", code),
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         }
 
         // 抓到二元編碼，即時顯示
@@ -91,6 +140,66 @@ const MemberSidebar = (props) => {
     }
   };
 
+  // nickName ref
+  const nickNameRef = useRef(null);
+
+  // 暱稱編輯框狀態切換
+  const handleNickNameOpen = () => {
+    setNickNameOpen(!nickNameOpen);
+  };
+
+  // 送出neckName
+  const handleNickNameEdit = async () => {
+    // 確認是否有修改(若是值跟之前的一樣，就不做任何事)
+    if (nickNameValue === currentUser.nick_name) return;
+
+    // 如果沒輸入東西，就不做任何事
+    if (nickNameValue.length === 0) {
+      setNickNameValue(currentUser.nick_name);
+      return;
+    }
+
+    try {
+      let result = await MemberService.nickNameEdit(
+        currentUser.id,
+        nickNameValue
+      );
+      // 跳通知
+      Swal.fire({
+        icon: "success",
+        title: "暱稱更新成功！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // 更新使者茲料
+      refreshUser();
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        let { code } = error.response.data;
+
+        // 跳通知
+        Swal.fire({
+          icon: "error",
+          title: getValidMessage("member", code),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
+      // 將原本的nick_name設定回去
+      setNickNameValue(currentUser.nick_name);
+    }
+  };
+
+  // 如果當前nickName是打開的話，馬上讓其focus
+  useEffect(() => {
+    if (nickNameOpen) {
+      nickNameRef.current.focus();
+    }
+  }, [nickNameOpen]);
+
   return (
     <div className="MemberSidebar">
       <div className="MemberSidebar-container">
@@ -125,14 +234,37 @@ const MemberSidebar = (props) => {
                   />
                 )}
               </label>
-              <FaPen className="MemberSidebar-container-avatar-pen" />
+              <FaPencilAlt className="MemberSidebar-container-avatar-pen" />
             </div>
-            <div className="MemberSidebar-container-mamberName">
-              {currentUser &&
-                currentUser.first_name &&
-                `${currentUser.first_name} ${currentUser.last_name}`}
-              {currentUser && !currentUser.first_name && `哈囉！`}
-            </div>
+            {!nickNameOpen && (
+              <div
+                className="MemberSidebar-container-mamberName"
+                onClick={handleNickNameOpen}
+              >
+                {currentUser &&
+                  currentUser.nick_name &&
+                  `${currentUser.nick_name}`}
+                {currentUser && !currentUser.nick_name && `哈囉！`}
+                <FaPencilAlt className="MemberSidebar-container-mamberName-pen" />
+              </div>
+            )}
+            {nickNameOpen && (
+              <input
+                type="text"
+                ref={nickNameRef}
+                onChange={(e) => {
+                  setNickNameValue(e.target.value);
+                }}
+                onBlur={() => {
+                  handleNickNameOpen();
+                  handleNickNameEdit();
+                }}
+                value={nickNameValue ? nickNameValue : ""}
+                maxLength="10"
+                placeholder="會員暱稱"
+                className="MemberSidebar-container-mamberNameInput"
+              />
+            )}
           </div>
 
           {currentUser && currentUser.googleId && (

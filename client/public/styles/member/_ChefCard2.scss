@@ -59,6 +59,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
     max-height: 200px;
     cursor: pointer;
     position: relative;
+    transition: all 0.25s ease;
 
     .chefCard2Top-introduce1-pen {
       opacity: 0;
@@ -67,8 +68,9 @@ $chefTextSize-li: calc(8px + 0.15vw);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(22px + 0.1vw);
-      height: calc(22px + 0.1vw);
+      width: calc(18px + 0.1vw);
+      height: calc(18px + 0.1vw);
+      transition: all 0.25s ease;
     }
 
     &:hover {
@@ -77,6 +79,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
       color: rgba(0, 0, 0, 0.25);
       .chefCard2Top-introduce1-pen {
         opacity: 1;
+        transform: translate(-50%, -50%) scale(1.25);
       }
     }
   }
@@ -131,6 +134,8 @@ $chefTextSize-li: calc(8px + 0.15vw);
     font-size: calc(0.7rem + 0.3vw);
     cursor: pointer;
     min-height: 35%;
+    transition: all 0.25s ease;
+
     .st-chefCard2Down-chefInfoTitle-pen {
       opacity: 0;
       fill: white;
@@ -138,8 +143,9 @@ $chefTextSize-li: calc(8px + 0.15vw);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(22px + 0.1vw);
-      height: calc(22px + 0.1vw);
+      width: calc(18px + 0.1vw);
+      height: calc(18px + 0.1vw);
+      transition: all 0.25s ease;
     }
 
     &:hover {
@@ -148,6 +154,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
       color: rgba(0, 0, 0, 0.25);
       .st-chefCard2Down-chefInfoTitle-pen {
         opacity: 1;
+        transform: translate(-50%, -50%) scale(1.25);
       }
     }
   }
@@ -158,6 +165,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
 
   .st-chefCard2Down-ul {
     cursor: pointer;
+    transition: all 0.25s ease;
 
     .st-chefCard2Down-ul-pen {
       opacity: 0;
@@ -166,16 +174,19 @@ $chefTextSize-li: calc(8px + 0.15vw);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(22px + 0.1vw);
-      height: calc(22px + 0.1vw);
+      width: calc(18px + 0.1vw);
+      height: calc(18px + 0.1vw);
+      transition: all 0.25s ease;
     }
 
     &:hover {
+      transition: all 0.25s ease;
       background: rgba(0, 0, 0, 0.15);
       border-radius: 5px;
       color: rgba(0, 0, 0, 0.25);
       .st-chefCard2Down-ul-pen {
         opacity: 1;
+        transform: translate(-50%, -50%) scale(1.25);
       }
     }
   }

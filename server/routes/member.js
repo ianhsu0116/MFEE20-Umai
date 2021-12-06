@@ -10,6 +10,7 @@ const {
   passwordValidation,
   creditCardValidation,
   studentValidation,
+  nickNameValidation,
 } = require("../validation");
 
 // ================routes=====================
@@ -124,6 +125,27 @@ router.put("/info", async (req, res) => {
   }
 });
 
+// 修改使用者暱稱
+router.put("/nickName", async (req, res) => {
+  let { member_id, nick_name } = req.body;
+
+  // 錯誤阻擋
+  let { error } = nickNameValidation({ nick_name });
+  if (error) return res.status(403).json({ success: false, code: "G009" });
+
+  try {
+    let result = await connection.queryAsync(
+      "UPDATE member SET nick_name = ? WHERE id = ?",
+      [nick_name, member_id]
+    );
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    //console.log(error);
+    res.status(500).json({ success: false, code: "G999", message: error });
+  }
+});
+
 // 修改使用者密碼
 router.put("/password", async (req, res) => {
   let { id } = req.session.member;
@@ -144,9 +166,13 @@ router.put("/password", async (req, res) => {
     // 比對新舊密碼
     let isCompare = await bcrypt.compare(passwordConfirm, oldPassword);
 
-    // 新舊密碼不符合
+    // 密碼確認與舊密碼不符合
     if (!isCompare)
       return res.status(401).json({ success: false, code: "G005" });
+
+    // 新密碼與舊密碼設定相同
+    if (passwordConfirm === newPassword)
+      return res.status(401).json({ success: false, code: "G008" });
 
     // 將新密碼加密
     let hashedPassword = await bcrypt.hash(newPassword, 10);

@@ -1,9 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import starGroup from "./images/starGroup.png";
 import starGroupBackground from "./images/starGroupBackground.png";
 
 const StarGroup = (props) => {
   let { percent, allScore } = props;
+
+  // const [percent1, setPersent1] = useState(0)
+  // const [allScore1, setaAlScore1] = useState(0)
+
+  // useEffect(() => {
+  //   setPersent1(percent)
+  //   // console.log(percent)
+  // }, [percent])
+  // useEffect(() => {
+  //   setaAlScore1(allScore)
+  //   // console.log(allScore)
+  // }, [allScore])
 
   return (
     <div className="StarGroup">

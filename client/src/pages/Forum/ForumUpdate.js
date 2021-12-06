@@ -69,7 +69,7 @@ const ForumUpdate = () => {
     console.log(e.target.value);
   }
 
-  // sweetalert2
+  // sweetalert2 & 資料送出
   const article_deliver = async () => {
     let formData = new FormData();
     formData.append("id", article.id);

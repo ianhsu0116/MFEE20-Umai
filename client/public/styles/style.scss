@@ -230,8 +230,13 @@ a {
   color: $activeColor;
 }
 
+// 當錯誤阻擋時，邊框變紅色的input
+.inputError-red {
+  border: 1px solid $highLevelColor !important;
+}
+
 // 共用元件
-@import "./Navbar";
+// @import "./Navbar";
 @import "./Navbar2";
 @import "./OptionBar";
 @import "./CourseCard1";
@@ -298,6 +303,7 @@ $header-border: 3px solid $activeColor; // title的左border
 @import "./CourseDetail/CourseHeaderPicture";
 @import "./CourseDetail/CourseRecommend";
 @import "./CourseDetail//CourseDecorate";
+@import "./CourseDetail/CourseCommit";
 
 // 主廚
 @import "./chef/chef";

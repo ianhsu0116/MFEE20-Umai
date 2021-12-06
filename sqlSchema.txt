@@ -265,6 +265,7 @@ CREATE TABLE `member` (
   `facebookId` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nick_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `telephone` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -277,11 +278,12 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `member` (`id`, `email`, `password`, `googleId`, `facebookId`, `first_name`, `last_name`, `birthday`, `telephone`, `avatar`, `credit_card_number`, `credit_card_name`, `chef_introduction`, `member_category`, `created_time`, `valid`) VALUES
-(1,	'ian@fake.com',	'$2b$10$0qjtKCL5rYqN.am8Aeb86u8LH3IwJ3p9c72susd3dnoBoN6k9ay6u',	NULL,	NULL,	'Tony',	'Stark',	'1999-01-01',	'0933888333',	'avatar-4ef46efd-f467-4669-8243-4f21c9caad51.png',	'5377888899990000',	'Ian Hsu',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"LONGTAL restaurant & bar\\n行政主廚 屎坦克(Stark)\",\"chefInfo\":[\"超過20年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-11-15 11:23:28',	1),
-(6,	'test@test.com',	'$2b$10$EsxWrJzVN4IVvVpsbpr7V.fLlchLANdIYv4t5D5jNw6gmcCpfsWPG',	NULL,	NULL,	'',	'',	'1990-11-14',	'',	NULL,	NULL,	NULL,	'',	2,	'2021-11-16 18:41:44',	1),
-(16,	'ianian880116@gmail.com',	'$2b$10$7GHrCn1ofBx21IUjJVm6XupdSd6UcXEEpCF2xrGEmvl0rUTao5Fxa',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-27 00:11:47',	1),
-(17,	'ianhsu0116@gmail.com',	NULL,	NULL,	'2172886946182757',	'Ian',	'Shu',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-30 16:51:30',	1);
+INSERT INTO `member` (`id`, `email`, `password`, `googleId`, `facebookId`, `first_name`, `last_name`, `nick_name`, `birthday`, `telephone`, `avatar`, `credit_card_number`, `credit_card_name`, `chef_introduction`, `member_category`, `created_time`, `valid`) VALUES
+(1,	'ian@fake.com',	'$2b$10$Cx9Ymn8W9d9GBYVXBcVSW.T/JPzlYFvUS1EKzbVZ7soWTbxFv8QWK',	NULL,	NULL,	'Tony',	'Stark',	NULL,	'1999-01-01',	'0933888333',	'avatar-4ef46efd-f467-4669-8243-4f21c9caad51.png',	'5377888899990000',	'Ian Hsu',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"LONGTAL restaurant & bar\\n行政主廚 屎坦克(Stark)\",\"chefInfo\":[\"超過20年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-11-15 11:23:28',	1),
+(6,	'test@test.com',	'$2b$10$EsxWrJzVN4IVvVpsbpr7V.fLlchLANdIYv4t5D5jNw6gmcCpfsWPG',	NULL,	NULL,	'',	'',	NULL,	'1990-11-14',	'',	NULL,	NULL,	NULL,	'',	2,	'2021-11-16 18:41:44',	1),
+(16,	'ianian880116@gmail.com',	'$2b$10$Y2aLnM.rmZ7FLQRA/HKGteM0.0AuxEzs3r0U03tt/WFy1loQsDqxu',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-27 00:11:47',	1),
+(17,	'ianhsu0116@gmail.com',	NULL,	NULL,	'2172886946182757',	'Ian',	'Shu',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-30 16:51:30',	1);
+
 
 DROP TABLE IF EXISTS `member_coupons`;
 CREATE TABLE `member_coupons` (
