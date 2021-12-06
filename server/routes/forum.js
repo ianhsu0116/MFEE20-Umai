@@ -50,7 +50,7 @@ router.use((req, res, next) => {
 // 讀取所有的留言
 router.get("/comment/:id", async (req, res) => {
   let comment = await connection.queryAsync(
-    "SELECT * FROM forum_comment WHERE article_id =?",
+    "SELECT * FROM forum_comment WHERE article_id =? AND valid=1",
     [req.params.id]
     // "SELECT forum_comment.* ,member.first_name,member.last_name , member.avatar ,member_id FROM forum_comment , member WHERE member.id=forum.memberidAND  forum_comment.article_id = ? AND forum_comment.valid = 1"
   );
@@ -273,6 +273,16 @@ router.post("/deleteArticle", async (req, res) => {
     "UPDATE forum_article SET valid=? WHERE id=?",
     [0, id]
   );
+  res.send(result);
+});
+
+router.post("/deleteMessage", async (req, res) => {
+  let id = req.body.id;
+  let result = await connection.queryAsync(
+    "UPDATE forum_comment SET valid=? WHERE id=?",
+    [0, id]
+  );
+  console.log(id);
   res.send(result);
 });
 // ian 新增

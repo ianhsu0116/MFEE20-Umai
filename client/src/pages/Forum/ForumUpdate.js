@@ -95,7 +95,7 @@ const ForumUpdate = () => {
       confirmButtonColor: "#0078b3",
       confirmButtonText: "已送出文章，返回討論區",
     }).then(function () {
-      // window.location.href = "/forum";
+      window.location.href = "/forum";
     });
   };
 

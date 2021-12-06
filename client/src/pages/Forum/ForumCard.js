@@ -41,8 +41,6 @@ const ForumCard = (props) => {
 
   const [messageDetail, setmessageDetail] = useState([]);
 
-  const [essay, setEssay] = useState([]);
-
   // 寫入當前登入帳號的ID
   let id = JSON.parse(localStorage.getItem("user"));
   // useEffect(), []);
@@ -86,8 +84,6 @@ const ForumCard = (props) => {
     }
   }
 
-  // useEffect({setMessageEnter()}, []);
-
   // sweetalert2 & 資料送出
   const message_deliver = async (article_id) => {
     console.log(article_id);
@@ -108,7 +104,7 @@ const ForumCard = (props) => {
         confirmButtonColor: "#0078b3",
         confirmButtonText: "已送出留言，返回討論區",
       }).then(function () {
-        // window.location.reload();
+        window.location.reload();
         // window.location.href = "/forum";
       });
     } catch (e) {
@@ -132,7 +128,7 @@ const ForumCard = (props) => {
     // console.log(articleDetail.id);
   };
 
-  // 刪除留言的語法
+  // 留言重整的語法
   const reset_function = () => {
     setMessageEnter({ message_text: "" });
     let inputImage = document.getElementsByName("image");
@@ -140,6 +136,7 @@ const ForumCard = (props) => {
     inputImage[1].value = "";
   };
 
+  // 收藏文章
   const article_collect = async (article_id) => {
     console.log(article_id);
     console.log(currentUser);
@@ -175,6 +172,25 @@ const ForumCard = (props) => {
     console.log(e.target.files[0].name);
   }
   console.log(messageEnter);
+
+  // 刪除留言的語法
+  const delete_message = async (id) => {
+    console.log(id);
+    try {
+      let result = await axios.post(
+        `${API_URL}/forum/deleteMessage`,
+        { id: id },
+        {
+          withCredentials: true,
+        }
+      );
+      window.location.href = "/forum";
+    } catch (e) {
+      console.log(e);
+    }
+
+    // console.log(articleDetail.id);
+  };
   return (
     <>
       {/* &&前面通常是判斷式，當判斷式式true的時候會執行&&以後的工作。內容若有東西的話就會是true */}
@@ -422,9 +438,14 @@ const ForumCard = (props) => {
                     <div class="Forum-main-dropdown">
                       <FiMoreHorizontal className="FiMoreHorizontal" />
                       <div class="Forum-main-dropdown-content">
-                        <p>
-                          <a href="#">刪除</a>
-                        </p>
+                        <button
+                          class="Forum-main-dropdown-content-deletebutton"
+                          onClick={() => {
+                            delete_message(msg.id);
+                          }}
+                        >
+                          刪除
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -438,6 +459,8 @@ const ForumCard = (props) => {
                   alt=""
                 />
                 <div className="st-line"></div>
+                {console.log("msg", msg.id)}
+                {console.log("messageDetail", messageDetail)}
               </div>
             ))
           ) : (
@@ -452,7 +475,7 @@ const ForumCard = (props) => {
                 ></img>
                 <div>
                   <h6 className="Forum-modal-footer-account-name">
-                    {messageDetail.member_id}
+                    {messageDetail.email}
                   </h6>
                   <h6 className="Forum-modal-footer-account-id">
                     @olsonlovesmakelove
@@ -485,11 +508,12 @@ const ForumCard = (props) => {
 
           <div className="Forum-modal-footer-write-component">
             <div className="Forum-modal-footer-write-account">
-              {/* <img
+              <img
                 className="Forum-modal-footer-write-account-image"
-                src={`${PUBLIC_URL}/upload-images/${forum[0].course_detail.slider_images[0]}`}
+                // src={`${PUBLIC_URL}/upload-images/${msg && msg.image_name}`}
+                // src={require(`./../../components/images/img1.jpg`).default}
                 alt="cake"
-              ></img> */}
+              ></img>
               {/* message insert*/}
               <div>
                 <h6 className="Forum-modal-footer-write-account-name">
