@@ -113,6 +113,8 @@ function CourseInfomation(props) {
   const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
+  // 該梯次ID 12/6 亭
+  const [batch_id ,setBatch_id] = useState();
   // 全部評論給的分數(下面迴圈加)
   const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
@@ -193,6 +195,7 @@ function CourseInfomation(props) {
     setBatch(e);
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e == course_batchJSON[i].batch_date) {
+        setBatch_id(course_batchJSON[i].id);
         setBatch_member(course_batchJSON[i].member_count);
         console.log(batch_member);
       }
@@ -706,10 +709,13 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-joinLineWidth">
                   <div className="Coursedetail-joinLine"></div>
                 </div>
+                <div className="Coursedetail-textArea">
                 <p>喜歡這堂課嗎?</p>
                 <p>歡迎加入我們</p>
                 <p>成為Umai的一員</p>
                 <p>讓我們帶您前往美食的世界</p>
+                </div>
+                <div>
                 <p
                   className="Coursedetail-joinNow"
                   onClick={() => {
@@ -719,8 +725,20 @@ function CourseInfomation(props) {
                     }
                   }}
                 >
-                  點擊我立即加入！
+                  立即加入！
                 </p>
+                <p
+                  className="Coursedetail-joinNow"
+                  onClick={() => {
+                    if (batch === "尚未選擇") {
+                      window.location.href = "#batch";
+                      alert("請先選擇梯次日期後再點擊");
+                    }
+                  }}
+                >
+                  加入購物車
+                </p>
+                </div>
               </span>
               <img src={Join} alt=""></img>
             </div>

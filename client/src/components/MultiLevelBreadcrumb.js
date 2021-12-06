@@ -21,7 +21,6 @@ function MultiLevelBreadcrumb(props) {
       setCategoryid(result.data.category_length[0].category_name)
       return
     } catch (error) {
-      alert("沒開課")
       console.log(error);
    }
   }, []);

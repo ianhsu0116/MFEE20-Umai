@@ -74,6 +74,9 @@
                     width: 2rem;
                   }
                 }
+                button {
+                  width: 2rem;
+                }
               }
             }
           }
@@ -91,7 +94,7 @@
         font-size: 1.25rem;
         overflow-y: scroll;
         .Forum-modal-body-image {
-          max-width: 50vw;
+          max-height: 50vh;
           display: block;
         }
         .Forum-modal-body-youtube {
@@ -143,6 +146,7 @@
   .modal-footer {
     padding: 1rem 2rem;
     justify-content: start;
+
     .Forum-modal-footer-component {
       width: 1055.55px;
       .Forum-modal-footer-account {
@@ -217,6 +221,7 @@
 
         .Forum-modal-footer-account-name {
           padding: 3px;
+          margin-left: 15px;
         }
         .Forum-modal-footer-account-id {
           padding: 3px;
@@ -225,6 +230,11 @@
       .Forum-modal-footer-commet {
         margin: 15px auto;
         font-size: 1.25rem;
+      }
+      .Forum-modal-footer-commet-image {
+        min-height: 20vh;
+        height: 30vh;
+        max-height: 40vh;
       }
       .Forum-modal-footer-icon {
         display: flex;
@@ -246,6 +256,9 @@
       .st-line {
         border: 0.5px #ebebeb solid;
       }
+    }
+    .Forum-modal-footer-component-less1 {
+      display: none;
     }
     .Forum-modal-footer-write-component {
       .Forum-modal-footer-write-account {

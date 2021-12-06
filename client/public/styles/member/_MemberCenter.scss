@@ -1,32 +1,32 @@
 .MemberCenter {
-	//font-weight: 100;
-	display: flex;
-	justify-content: center;
+  //font-weight: 100;
+  display: flex;
+  justify-content: center;
 
-	// ian 為了不讓神奇小圈圈把頁寬拉大造成scrollY
-	overflow-x: hidden;
+  // ian 為了不讓神奇小圈圈把頁寬拉大造成scrollY
+  overflow-x: clip;
 
-	// 11/24新增
-	margin-top: 63px;
-	.MemberCenter-container {
-		width: 70vw;
-		max-width: 1440px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		position: relative;
-	}
+  // 11/24新增
+  margin-top: 63px;
+  .MemberCenter-container {
+    width: 70vw;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
 }
 
 // 會員中心各個頁面，沒有資料時顯示文字的樣式
 .MemberCenter-defaultText {
-	width: 100%;
-	text-align: center;
-	& a {
-		color: $themeColor;
-		font-size: 110%;
-		&:hover {
-			color: $activeColor;
-		}
-	}
+  width: 100%;
+  text-align: center;
+  & a {
+    color: $themeColor;
+    font-size: 110%;
+    &:hover {
+      color: $activeColor;
+    }
+  }
 }

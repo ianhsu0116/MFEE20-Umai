@@ -6,7 +6,7 @@ const router = express.Router();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 
-// multer
+// multer 處理上傳檔案
 const multer = require("multer");
 // const { resourceUsage } = require("process");
 const storage = multer.diskStorage({
@@ -20,6 +20,8 @@ const storage = multer.diskStorage({
     cb(null, `forum-${uuidv4()}.${ext}`);
   },
 });
+
+// 上傳檔案的檔案限制
 const uploader = multer({
   storage: storage,
   // 可以用來過濾檔案
@@ -45,12 +47,17 @@ router.use((req, res, next) => {
   next();
 });
 
+router.get("/comment", async (req, res) => {
+  let comment = await connection.queryAsync("SELECT * FROM forum_comment");
+  res.json({ comment: comment });
+});
+//  WHERE article_id=?
 // 拿到所有文章
 router.get("/", async (req, res) => {
   try {
     // 拿到每篇文的資料 + 愛心數量 + 留言數量
     let articles = await connection.queryAsync(
-      "SELECT forum_article.*, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id WHERE forum_article.valid = ? GROUP BY forum_article.id ",
+      "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.valid = ? GROUP BY forum_article.id ",
       [1]
     );
 
@@ -113,9 +120,10 @@ router.get("/", async (req, res) => {
 router.get("/:forumId", async (req, res) => {
   try {
     let forumdatadetail = await connection.queryAsync(
-      "SELECT * FROM forum_article WHERE id=?",
-      [req.params.forumId]
+      "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.id = ? AND forum_article.valid = ? GROUP BY forum_article.id",
+      [req.params.forumId, 1]
     );
+
     //console.log(forumdatadetail);
     res.json({ forumdatadetail: forumdatadetail[0] });
   } catch (error) {
@@ -158,6 +166,42 @@ router.post("/insertArticle", uploader.single("image"), async (req, res) => {
   }
 });
 
+// 新增留言
+router.post("/insertMessage", uploader.single("image"), async (req, res) => {
+  console.log("body", req.body);
+  console.log("req.file insertmessage", req.file);
+  // req.body.image_name = req.file.originalname;
+  console.log(req.file.filename);
+  // res.json({ result: "okok" });
+  let now = new Date();
+  try {
+    let messagedetail = await connection.queryAsync(
+      "INSERT INTO forum_comment (member_id,article_id,comment_text,image_name,created_time,valid) VALUES (?,?,?,?,?,?)",
+      [1, req.body.article_id, req.body.message_text, req.file.filename, now, 1]
+    );
+    //console.log("forumdatadetail", forumdatadetail);
+    // res.json({ messagedetail: messagedetail });
+    res.json({ message: "成功了讚讚" });
+    //console.log("articel_link", forumdatadetail.article_link);
+  } catch (error) {
+    console.log(error);
+    res.json({ error: error });
+  }
+});
+
+// router.get("/comment/:id", async (req, res) => {
+//   try {
+//     let comment = await connection.queryAsync(
+//       "SELECT * FROM forum_comment WHERE id=?",
+//       [req.params.id]
+//     );
+//     res.json({ comment: comment });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
+
+// 更新文章
 router.post("/updateArticle", uploader.single("image"), async (req, res) => {
   console.log("body", req.body);
 

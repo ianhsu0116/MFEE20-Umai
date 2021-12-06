@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Swal from "sweetalert2";
 import MemberService from "../../services/member.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -21,11 +21,31 @@ const DefaultStudent = (props) => {
   // 所有此會員的預設學員
   const [allStudents, setAllStudents] = useState([]);
 
+  // studentInfo的各個input的ref
+  const infoRef = useMemo(
+    () =>
+      Array(5)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+
   // 拿取學生資料的function
   async function refreshStudent() {
-    let result = await MemberService.student();
-    let { students } = result.data;
-    setAllStudents(students);
+    try {
+      let result = await MemberService.student();
+      let { students } = result.data;
+      setAllStudents(students);
+    } catch (error) {
+      console.log(error);
+      // 跳通知
+      Swal.fire({
+        icon: "error",
+        title: "拿取學員資料錯誤！",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   }
 
   // 初次渲染時，拿取當前使用者的預設學員
@@ -40,7 +60,27 @@ const DefaultStudent = (props) => {
 
   // 送出新增學員
   const handleAddStudent = async (e) => {
-    // console.log("新增學員");
+    // 前端錯誤阻擋
+    let validArray = [
+      "first_name",
+      "last_name",
+      "telephone",
+      "email",
+      "birthday",
+    ];
+    // 先拿掉所有errorInput的calssName
+    new Array(4).fill(0).forEach((item, i) => {
+      infoRef[i].current.classList.remove("inputError-red");
+    });
+    // 如果其中一項為空值，再加上紅色框框
+    for (let i = 0; i < validArray.length; i++) {
+      // i < 4 因為只有前四項有賦予ref，超過就會報錯
+      if (i < 4 && !newStudentData[validArray[i]]) {
+        //console.log(i);
+        infoRef[i].current.classList.add("inputError-red");
+      }
+    }
+
     try {
       let result = await MemberService.studentInsert(newStudentData);
 
@@ -65,10 +105,17 @@ const DefaultStudent = (props) => {
         showConfirmButton: false,
         timer: 1500,
       });
+
+      // 拿掉所有errorInput的calssName
+      new Array(4).fill(0).forEach((item, i) => {
+        infoRef[i].current.classList.remove("inputError-red");
+      });
     } catch (error) {
-      //console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("member", code));
+      console.log(error);
+      if (error.response) {
+        let { code } = error.response.data;
+        setErrorMsg(getValidMessage("member", code));
+      }
     }
   };
 
@@ -183,6 +230,7 @@ const DefaultStudent = (props) => {
             setNewStudentData={setNewStudentData}
             handleAddStudent={handleAddStudent}
             errorMsg={errorMsg}
+            infoRef={infoRef}
           />
         </div>
         <header className="DefaultStudent-container-header">

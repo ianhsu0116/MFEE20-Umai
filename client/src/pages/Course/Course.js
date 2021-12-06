@@ -150,7 +150,7 @@ function Course (props){
   const [selectedOptionDate, setSelectedOptionDate] = useState('')
   const [selectedOptionStart, setSelectedOptionStart] = useState('')
 
-  const [categoryname, setCategoryname] = useState('')
+  const [categoryname, setCategoryname] = useState("");
 
   // 設定一個會變得陣列
   const [category , setCategory] = useState([{}])
@@ -348,7 +348,9 @@ function Course (props){
 // })
 //       Array.prototype.push.apply(TrueArrow, falseArrow);
       setCategory(
-        TrueArrow
+        [...categoryOrigin].filter(function (item) {
+          return item.course_level == 3;
+        })
       );
     }
   if(selectedOptionStart === "評分由低到高" && selectedOptionDate === "離今日最近"){
@@ -436,7 +438,9 @@ function Course (props){
     if(selectedOptionLevel === ""){
       
       setCategory(
-        [...categoryOrigin]
+        [...categoryOrigin].filter(function (item) {
+          return item.course_level == 2;
+        })
       );
       //設定等級陣列
       setCategoryLevel(
@@ -446,8 +450,8 @@ function Course (props){
   }
     if(selectedOptionLevel === "3"){
       setCategory(
-        [...categoryOrigin].filter(function(item){
-           return item.course_level == 3
+        [...categoryOrigin].filter(function (item) {
+          return item.course_level == 1;
         })
       );
       setCategoryLevel(
@@ -520,40 +524,46 @@ useEffect(() => {
       </div>
       {/* <div className="CourseRecommendTitle">熱門學習組合</div>
       <div className="CourseSixBox"></div> */}
-      <div className="CourseCategroy">課程列表</div>
-      <div className="st-line"></div>
+        <div className="CourseCategroy">課程列表</div>
+        <div className="st-line"></div>
         <div className="CourseSelect">
           <select
             onChange={(e) => {
-              setSelectedOptionLevel(e.target.value)
+              setSelectedOptionLevel(e.target.value);
               setSelectedOptionDate("");
-              setSelectedOptionStart("")
+              setSelectedOptionStart("");
             }}
           >
-          {/* 3 初級 2 中級 1 高級  */}
+            {/* 3 初級 2 中級 1 高級  */}
             <option value="">全部分類</option>
             <option value="3">初級</option>
             <option value="2">中級</option>
-            <option option value="1">高級</option>
+            <option option value="1">
+              高級
+            </option>
           </select>
 
           <select
-            onChange={(e) => { 
-              setSelectedOptionDate(e.target.value)
-              setSelectedOptionStart("")
+            onChange={(e) => {
+              setSelectedOptionDate(e.target.value);
+              setSelectedOptionStart("");
             }}
           >
-            <option value="" selected={selectedOptionDate == ''}>上課時間</option>
+            <option value="" selected={selectedOptionDate == ""}>
+              上課時間
+            </option>
             <option value="離今日最近">離今日最近</option>
             <option value="離今日最遠">離今日最遠</option>
           </select>
 
           <select
             onChange={(e) => {
-              setSelectedOptionStart(e.target.value)
+              setSelectedOptionStart(e.target.value);
             }}
           >
-            <option value="" selected={selectedOptionStart == ''}>課程評分</option>
+            <option value="" selected={selectedOptionStart == ""}>
+              課程評分
+            </option>
             <option value="評分由高到低">評分由高到低</option>
             <option value="評分由低到高">評分由低到高</option>
           </select>
@@ -587,4 +597,4 @@ useEffect(() => {
   );
 }
 
-export default withRouter (Course);
+export default withRouter(Course);
