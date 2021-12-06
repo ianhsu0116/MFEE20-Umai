@@ -41,12 +41,20 @@ function App() {
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
 
-  // 結帳資料
-  const [checkoutList, setCheckoutList] = useState({
-    member_id: "",
-    course_id: "",
-    cartCourseCount: "",
-  });
+  //儲存購物車的課程資訊
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  // [{
+  //   course_id: "",
+  //   member_id: "",
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_id: "", //(course_batch table)
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // }]
 
   //新增課程
   const [newAddCourse, setNewAddCourse] = useState({});
@@ -80,22 +88,33 @@ function App() {
     }
   };
 
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
+
+  //清空新增課程state
+  async function clearNewAddCourse(){
+    await setNewAddCourse({});
+    console.log("clearNewAddCourse");
+  }
+
   // 把課程加入購物車資料庫
   async function addCourseIntoCart(member_id, course_id, batch_id) {
     //檢查購物車資料庫中是否已經有此課程
-    console.log("addCourseIntoCart FE");
-    console.log(member_id, course_id, batch_id);
+    // console.log("addCourseIntoCart FE");
+    // console.log(member_id, course_id, batch_id);
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_id
     );
-    let ifIncart = IfInCartResult.data.inCart[0].inCart;
-    console.log("back to FE");
-    console.log(ifIncart);
+    let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
+    // console.log("back to FE");
+    // console.log(ifIncart);
 
+    //產生購物車中，單筆課程所需用到的資料
     let getOneCourseObject = async () => {
       try {
+        // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
         let result = await courseService.getOneCourseObject(
           course_id,
           batch_id
@@ -112,15 +131,16 @@ function App() {
       }
     };
 
+    //先在switch外宣告一個共用變數，用來接住函數回傳的結果
     let CartCourseObject;
+
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
     switch (ifIncart) {
-      case true:
 
       //在資料庫中但不在購物車中
       case 0:
         // 把課程加入購物車資料庫(UPDATE)
-        console.log("UpdateCart");
+        // console.log("UpdateCart");
         let updateResult = await courseService.UpdateCart(
           member_id,
           course_id,
@@ -132,9 +152,7 @@ function App() {
           console.log(error);
         }
         // console.log("回傳購物車資訊");
-        // console.log(CartCourseObject);
-        setNewAddCourse([CartCourseObject]);
-        // console.log("setNewAddCourse");
+        console.log(CartCourseObject);
         break;
 
       //在資料庫中也在購物車中
@@ -145,14 +163,11 @@ function App() {
           console.log(error);
         }
         // console.log("回傳購物車資訊");
-        // console.log(CartCourseObject);
-        setNewAddCourse([CartCourseObject, "+1"]);
         console.log(CartCourseObject);
-        console.log("setNewAddCourse");
         break;
 
       //不在資料庫中
-      case false:
+      case undefined:
         // 把課程加入購物車資料庫(INSERT)
         await courseService.addCourseIntoCart(member_id, course_id, batch_id);
         try {
@@ -161,25 +176,48 @@ function App() {
           console.log(error);
         }
         // console.log("回傳購物車資訊");
-        // console.log(CartCourseObject);
-        setNewAddCourse([CartCourseObject]);
-        // console.log("setNewAddCourse");
+        console.log(CartCourseObject);
         break;
+      //ifIncart error
       default:
         console.log("ifIncart error");
         break;
     }
 
-    console.log(newAddCourse);
-    //清空紀錄新課程的state
-    setNewAddCourse();
-    console.log(newAddCourse);
+    if(ifIncart === 1){
+      await setNewAddCourse([CartCourseObject, "+1"]);
+    }else{
+      setNewAddCourse([CartCourseObject]);
+    }
+
+    // console.log("setNewAddCourse");
+    // console.log("Exit");
   }
 
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
+  // 結帳資料
+  const [checkoutCourse, setCheckoutCourse] = useState({
+    member_id: undefined,
+    course_id: undefined,
+    cartCourseCount: undefined,
+  });
 
   // ==================== 共用元件展示用ㄉ東西 ======================
+
+
+  const getAllCourseObject = async function(){
+    let result = await courseService.getAllCourseObject(currentUser.id);
+    console.log("result");
+    console.log(result.data.courseInfoInCart);
+    // console.log(result.data.inCartCourseIds);
+  };
+
+  useEffect(()=>{
+    try{
+      getAllCourseObject();
+    }catch(error){
+      console.log(error);
+    }
+  },[])
 
   return (
     <Router>
@@ -188,10 +226,13 @@ function App() {
         currentUser={currentUser}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
-        checkoutList={checkoutList}
-        setCheckoutList={setCheckoutList}
+        cartCourseInfoList={cartCourseInfoList}
+        setCartCourseInfoList={setCartCourseInfoList}
+        checkoutCourse={checkoutCourse}
+        setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}
         setNewAddCourse={setNewAddCourse}
+        clearNewAddCourse={clearNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
@@ -202,10 +243,13 @@ function App() {
 
       <Switch>
         <Route path="/" exact>
-          <HomePage />
+          <div className="footerPadding">
+            <HomePage />
+          </div>
+          <Footer />
         </Route>
         <Route path="/ShoppingCart" exact>
-          <ShoppingCart currentUser={currentUser} />
+          <ShoppingCart currentUser={currentUser} checkoutCourse={checkoutCourse} />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter
@@ -245,6 +289,7 @@ function App() {
           <div className="footerPadding">
             <CourseDetail
               currentUser={currentUser}
+              clearNewAddCourse={clearNewAddCourse}
               addCourseIntoCart={addCourseIntoCart}
             />
           </div>

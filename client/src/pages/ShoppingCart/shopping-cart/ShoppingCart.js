@@ -7,8 +7,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function shopping_cart(props) {
+  const { checkoutCourse } = props;
+
   //如果沒有取得資料則跳回首頁
-  if(props.course_id===undefined){
+  if(checkoutCourse.course_id===undefined){
     window.location.href='http://localhost:3000/'
   }
   //會員ID

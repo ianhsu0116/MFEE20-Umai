@@ -31,7 +31,7 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location, currentUser, addCourseIntoCart } = props;
+  const { location, currentUser, clearNewAddCourse, addCourseIntoCart } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -346,7 +346,7 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-infoLeftJoin">
                   <ul>
                     <li
-                      onClick={() => {
+                      onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -370,10 +370,11 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else {
+                          await clearNewAddCourse();
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            10
+                            51
                           );
                         }
                       }}

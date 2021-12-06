@@ -25,8 +25,8 @@ const CartCourse = (props) => {
   //課堂報名人數減一
   async function handleCountMinus() {
     let newCartCourseInfoList = cartCourseInfoList;
-    //數量不可小於0
-    if (newCartCourseInfoList[index].cartCourseCount > 0) {
+    //數量不可小於1
+    if (newCartCourseInfoList[index].cartCourseCount > 1) {
       newCartCourseInfoList[index].cartCourseCount =
         CurrentInfoObject.cartCourseCount - 1;
     }
