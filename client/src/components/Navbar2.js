@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
@@ -15,13 +16,13 @@ import Swal from "sweetalert2";
 import CartCourse from "./Navbar/CartCourse";
 import { empty } from "statuses";
 import getValidMessage from "../validMessage/validMessage";
+import axios from "axios";
 
 const Navbar = (props) => {
   let {
     handleLoginClick,
     currentUser,
     SearchKeywordTagList,
-    SearchCourseList,
     isActiveCourseSearch,
     handleToggleCourseSearch,
     checkoutList,
@@ -95,6 +96,19 @@ const Navbar = (props) => {
 
   //搜尋內容
   const [searchValue, setSearchValue] = useState("");
+  const [SearchCourseList, setSearchCourseList]=useState([])
+
+  useEffect(async ()=>{
+    if(searchValue===""){
+      setSearchCourseList([])
+      return
+    }
+    
+    let result = await axios.post("http://localhost:8080/api/course/searchcourse", {searchValue:searchValue} ,{
+      withCredentials: true,
+    })
+    setSearchCourseList(result.data.course)
+  },[searchValue])
 
   //刪除搜尋內容
   async function handleSearchValueDelete() {
@@ -474,17 +488,19 @@ const Navbar = (props) => {
               ))}
             </div>
             <div className="SearchCourseList">
-              {SearchCourseList.map((Course) => (
+              {SearchCourseList.map((Course,i) => {
+                if(i<=4)
+                return(
                 <div
                   className="recommandCourse"
-                  title={Course}
+                  title={Course.course_name}
                   onClick={(e) => {
                     setSearchValue(e.target.title);
                   }}
                 >
-                  {Course}
+                  {Course.course_name}
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </div>
