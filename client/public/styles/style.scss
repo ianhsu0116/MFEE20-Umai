@@ -232,7 +232,8 @@ a {
 
 // 當錯誤阻擋時，邊框變紅色的input
 .inputError-red {
-  border: 1px solid $highLevelColor !important;
+  // border: 2px solid $highLevelColor !important;
+  border: 1px solid red !important;
 }
 
 // 共用元件
