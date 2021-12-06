@@ -229,7 +229,11 @@ const Navbar = (props) => {
 
             {/* 課程探索 */}
             <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover">
+              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
+                //  12/4 亭
+                 onClick={() => {
+                 window.location.href='http://localhost:3000/courses/category?all'
+                }}>
                 課程探索
               </button>
               {/* 下拉式選單 */}
@@ -237,12 +241,21 @@ const Navbar = (props) => {
               <div className="Navbar-container-item-CourseDiscover-dropdown">
                 <ul>
                   {CourseCategoryListLeft.map((cate) => (
-                    <li>{cate}</li>
+                    <li
+                     //  12/4 亭
+                     onClick={() => {
+                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
+                     }}>{cate}</li>
                   ))}
                 </ul>
                 <ul>
                   {CourseCategoryListRight.map((cate) => (
-                    <li>{cate}</li>
+                    <li
+                     //  12/4 亭
+                     onClick={() => {
+                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
+                     }}
+                     >{cate}</li>
                   ))}
                 </ul>
               </div>
