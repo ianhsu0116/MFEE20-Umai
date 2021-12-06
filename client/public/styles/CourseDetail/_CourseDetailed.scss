@@ -316,9 +316,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	height: 2.5vw;
-	top: -4px;
+	position: absolute;
+	height: 40px;
+	top: 110%;
 	z-index: 3;
 	font-weight: bold;
 	font-family: "Noto Sans TC", Regular;
@@ -397,8 +397,8 @@
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitle {
 	opacity: 1;
 	color: #ffffff;
-	transform: translate(0px, -6vw);
-	-webkit-transition: transform 0.5s;
+	transform: translate(0px, -7vw);
+	transition: transform 0.5s;
 }
 .Coursedetail-sixPictureTextBox_1 ul li:hover .Coursedetail-sixPictureTitleMask {
 	opacity: 0.4;
