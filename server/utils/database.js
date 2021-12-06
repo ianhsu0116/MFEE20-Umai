@@ -8,7 +8,7 @@ let connection = mysql.createConnection({
   password: process.env.DB_PWD,
   database: process.env.DB_NAME,
   // 通常會用設定檔，因為可能會需要根據設備的規格不同而調整
-  connectionLimit: process.env.CONNECTION_LIMIT || 10,
+  connectionLimit: process.env.CONNECTION_LIMIT || 100,
   dateStrings: true,
 });
 
