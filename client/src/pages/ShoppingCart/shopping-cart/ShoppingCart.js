@@ -10,9 +10,13 @@ function shopping_cart(props) {
   const { checkoutCourse } = props;
 
   //如果沒有取得資料則跳回首頁
+  // if(props.course_id===undefined){
+  //   window.location.href='http://localhost:3000/'
+  // }
   if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
     window.location.href='http://localhost:3000/'
   }
+  
   //會員ID
   const { currentUser } = props;
   //課程資訊
