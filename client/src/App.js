@@ -213,12 +213,14 @@ function App() {
   };
 
   useEffect(()=>{
+    if(currentUser){
     try{
       getAllCourseObject();
     }catch(error){
       console.log(error);
     }
-  },[])
+  }
+  },[currentUser])
 
   return (
     <Router>

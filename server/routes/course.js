@@ -288,6 +288,20 @@ router.get("/collection/:member_id", async (req, res) => {
   }
 });
 
+//搜尋課程
+router.post("/searchcourse",async (req, res) => {
+  let { searchValue } = req.body;
+  console.log(searchValue);
+  try{
+    let course = await connection.queryAsync(
+      `SELECT * FROM course WHERE course_name LIKE '%${searchValue}%'`
+    );
+    res.status(200).json({ success: true ,course});
+  }catch(error){
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+})
+
 // 依照member_id (主廚) 拿取課程資料 (課程卡片形式)
 // (有join category, comment => 抓評分, batch的最近一批梯次)
 router.get("/member/:member_id", async (req, res) => {
