@@ -49,11 +49,13 @@ router.use((req, res, next) => {
 
 // 讀取所有的留言
 router.get("/comment/:id", async (req, res) => {
+  // let {}
   let comment = await connection.queryAsync(
-    "SELECT * FROM forum_comment WHERE article_id =? AND valid=1",
+    "SELECT forum_comment.*,member.avatar,member.first_name,member.last_name FROM forum_comment,member WHERE member.id=forum_comment.member_id AND article_id=? AND forum_comment.valid=1",
     [req.params.id]
-    // "SELECT forum_comment.* ,member.first_name,member.last_name , member.avatar ,member_id FROM forum_comment , member WHERE member.id=forum.memberidAND  forum_comment.article_id = ? AND forum_comment.valid = 1"
   );
+  // "SELECT forum_comment.* ,member.first_name,member.last_name , member.avatar FROM forum_comment , member WHERE forum_comment.article_id = 28 AND forum_comment.valid = 1;",
+  //   [req.params.id];
 
   res.json({ comment: comment });
 });
@@ -443,6 +445,23 @@ router.post("/like/:member_id", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, code: "C999", message: error });
+  }
+});
+
+// eddie
+router.post("/likeHeart", async (req, res) => {
+  if (req.body.action === "add") {
+    let add = await connection.queryAsync(
+      "INSERT INTO article_like (member_id,article_id) VALUES(?)",
+      [[req.session.member.id, req.body.article_id]]
+    );
+    res.json({ code: "0", message: "按了讚" });
+  } else {
+    let minus = await connection.queryAsync(
+      "DELETE FROM article_like WHERE member_id = ? AND article_id = ?",
+      [req.session.member.id, req.body.article_id]
+    );
+    res.json({ code: "0", message: "收了讚" });
   }
 });
 

@@ -16,24 +16,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import ForumHeader from "./ForumHeader";
 
-const array = [
-  "img1.jpg",
-  "img2.jpg",
-  "img3.jpg",
-  "img4.jpg",
-  "img5.jpg",
-  "img6.jfif",
-  "img7.jpg",
-  "img8.jfif",
-  "img9.jpg",
-  "img10.jfif",
-  "確認付款.jpg",
-  "付款頁面-01.jpg",
-  "結帳頁面1-2-01.jpg",
-  "購買頁面-1.1-01-01.jpg",
-  "確認付款.jpg",
-  "avatar.jpg",
-];
+
 console.log("test");
 const Forum = (props) => {
   // currentUser
