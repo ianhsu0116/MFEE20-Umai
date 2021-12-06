@@ -94,7 +94,12 @@ const Navbar = (props) => {
   }
 
   //搜尋內容
-  const SearchKeywordTagList = []
+  const SearchKeywordTagList = [
+    "創意壽司",
+    "義大利麵",
+    "紅酒燉牛肉",
+    "獵人燉雞",
+  ];
   const [searchValue, setSearchValue] = useState("");
   const [SearchCourseList, setSearchCourseList]=useState([])
 
