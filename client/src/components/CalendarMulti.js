@@ -16,7 +16,7 @@ let todayDay = today.getDate(); // 獲取日期中的日(方便在建立日期�
 
 // 必須傳入一組 名為onChange的 eventHandler, 會自動回傳選定的日期
 const CalendarMulti = (props) => {
-  let { onChange } = props;
+  let { onChange, infoRef } = props;
 
   // 日期窗開關
   let [calendarOpen, setCalendarOpen] = useState(false);
@@ -137,7 +137,11 @@ const CalendarMulti = (props) => {
 
   return (
     <div className="CalendarMulti">
-      <div className="CalendarMulti-selector" onClick={handleCalendarOpen}>
+      <div
+        className="CalendarMulti-selector"
+        onClick={handleCalendarOpen}
+        ref={infoRef || null}
+      >
         <FcCalendar />
         <span className="CalendarMulti-selector-text">
           {selectedDays.length > 0 && "已選擇"}
