@@ -559,15 +559,19 @@ const ForumCard = (props) => {
             </div>
             <div className="Forum-modal-footer-write-commet">
               {/* <input type="text" /> */}
+              <div className="Forum-modal-footer-write-commet-space">
+                <input
+                  id=""
+                  type="file"
+                  name="image"
+                  onChange={handleUpload}
+                  className="Forum-modal-footer-write-commet-imageupload"
+                ></input>
+                <p ClassName="Forum-modal-footer-write-commet-space-word">
+                  選擇檔案
+                </p>
+              </div>
 
-              <input
-                id=""
-                className=""
-                type="file"
-                name="image"
-                onChange={handleUpload}
-                className="Forum-modal-footer-write-commet-imageupload"
-              ></input>
               <textarea
                 className="Forum-modal-footer-write-commet-textarea"
                 name="message_text"

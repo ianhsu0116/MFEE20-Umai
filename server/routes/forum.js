@@ -272,8 +272,7 @@ router.post("/updateArticle", uploader.single("image"), async (req, res) => {
 router.post("/deleteArticle", async (req, res) => {
   let id = req.body.id;
   let result = await connection.queryAsync(
-    "UPDATE forum_article SET valid=? WHERE id=?",
-    [0, id]
+    "UPDATE forum_article SET valid=? WHERE id=?"
   );
   res.send(result);
 });
@@ -281,8 +280,9 @@ router.post("/deleteArticle", async (req, res) => {
 router.post("/deleteMessage", async (req, res) => {
   let id = req.body.id;
   let result = await connection.queryAsync(
-    "UPDATE forum_comment SET valid=? WHERE id=?",
-    [0, id]
+    "DELETE FROM forum_comment where id=? "
+    // "UPDATE forum_comment SET valid=? WHERE id=?",
+    // [0, id]
   );
   console.log(id);
   res.send(result);
