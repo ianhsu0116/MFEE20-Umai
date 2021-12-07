@@ -39,7 +39,7 @@ const ForumCard = (props) => {
   const [articleDetail, setArticleDetail] = useState({});
 
   const [messageEnter, setMessageEnter] = useState({
-    member_id: currentUser.id,
+    member_id: currentUser ? currentUser.id : 1,
     article_id: "",
     message_text: "",
     image: "",
@@ -543,17 +543,21 @@ const ForumCard = (props) => {
             <div className="Forum-modal-footer-write-account">
               <img
                 className="Forum-modal-footer-write-account-image"
-                src={`${PUBLIC_URL}/upload-images/${currentUser.avatar}`}
+                src={
+                  currentUser
+                    ? `${PUBLIC_URL}/upload-images/${currentUser.avatar}`
+                    : ""
+                }
                 // src={require(`./../../components/images/img1.jpg`).default}
                 alt="cake"
               ></img>
               {/* message insert*/}
               <div>
                 <h6 className="Forum-modal-footer-write-account-name">
-                  {currentUser.first_name}
+                  {currentUser ? currentUser.first_name : ""}
                 </h6>
                 <h6 className="Forum-modal-footer-write-account-name">
-                  {currentUser.last_name}
+                  {currentUser ? currentUser.last_name : ""}
                 </h6>
               </div>
             </div>

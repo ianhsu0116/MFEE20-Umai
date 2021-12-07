@@ -68,6 +68,10 @@ router.get("/", async (req, res) => {
       "SELECT forum_article.*, member.first_name, member.last_name, member.email, member.avatar, COUNT(article_like.member_id) AS like_count, COUNT(forum_comment.member_id) AS comment_count FROM forum_article LEFT JOIN article_like ON forum_article.id = article_like.article_id LEFT JOIN forum_comment ON forum_article.id = forum_comment.article_id LEFT JOIN member ON forum_article.member_id = member.id WHERE forum_article.valid = ? GROUP BY forum_article.id ORDER BY forum_article.id DESC ",
       [1]
     );
+    console.log(articles);
+
+    // 如果沒有任何文章
+    if (articles.length === 0) return res.json({ forumdata: [] });
 
     // 將拿到的所有文章資料的id取出
     let articleIds = articles.map((item) => item.id);
