@@ -14,7 +14,14 @@ import ChefIntro from "./ChefIntro";
 import CourseReview from "./CourseReview/CourseReview";
 
 const MemberCenter = (props) => {
-  let { currentUser, setCurrentUser, addCourseIntoCart } = props;
+  let {
+    currentUser,
+    setCurrentUser,
+    clearNewAddCourse,
+    addCourseIntoCart,
+    checkoutCourse,
+    setCheckoutCourse,
+  } = props;
 
   // 確認當前登入狀態
   const history = useHistory();
@@ -31,72 +38,6 @@ const MemberCenter = (props) => {
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
 
-  // CourseReview的預設資料
-  // const [courseDetail, setCourseDetail] = useState({
-  //   slider_images: ["img_name", "img_name", "img_name"],
-  //   time_of_course: "範例：平日上午10:30 ~ 下午04:00",
-  //   course_ig: "https://www.instagram.com/",
-  //   course_fb: "https://www.facebook.com/",
-  //   title1_1: "請填寫課程介紹區的上標題",
-  //   title1_2: "請填寫課程介紹區的下標題",
-  //   content1: "請填寫課程介紹區的詳細內容",
-  //   title2: "請填寫六種課程教材展示區的標題",
-  //   six_dishes: [
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //   ],
-  //   content2: "費用包含詳細內容\n請條列式敘述",
-  //   content3: "請填寫課程所需的注意事項說明",
-
-  //   // 下方是table內的獨立欄位，不是存在json內
-  //   course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
-  //   course_name: "請填寫課程名稱",
-  //   course_price: 2000,
-  //   course_hour: "XX",
-  //   course_level: "1", // 1, 2, 3 (高階 中階 初階)
-  //   member_limit: 30,
-  //   company_name: "請填寫公司名稱",
-  //   company_address: "請填寫公司詳細地址",
-  //   category_id: "1",
-  //   member_id: "1",
-  //   course_batch: [""],
-
-  //   member_count: 0, //現在人數　　原本沒有我新增的
-  //   course_score: 5, //分數　　　　原本沒有我新增的
-  //   course_percent: 0, //評論人數　 原本沒有我新增的
-  //   course_chef: currentUser
-  //     ? `${currentUser.first_name} ${currentUser.last_name}`
-  //     : "主廚名稱", //主廚名稱　 原本沒有我新增的
-  // });
-
   // 課程新增頁面的課程詳細資料（預設）
   const [courseDetail, setCourseDetail] = useState({
     slider_images: ["img_name", "img_name", "img_name"],
@@ -104,7 +45,7 @@ const MemberCenter = (props) => {
     course_ig: "https://www.instagram.com/",
     course_fb: "https://www.facebook.com/",
     title1_1: "한국에서 가장 인기 있는 편지 요리는 모두 숨겨져 있지 않습니다！",
-    title1_2: "讓您輕鬆學會韓國時下最流行的函式料理",
+    title1_2: "讓您輕鬆學會韓國時下最流行的韓式料理",
     content1:
       "     在朝鮮半島處於1萬年前的新石器時代，就已經有原始人使用石頭做的鍋子、對綠豆等豆科植物進行烹煮的記錄，這成為了石鍋拌飯和大醬湯等韓式鍋類料理的源頭。\n\n5世紀的朝鮮三國時代，因為韓半島國家篤信佛教，因此禁止肉食和殺生，卻反而催生出了豐富的素菜文化。這些韓式小菜有一個專有名詞，叫作「飯饌」。到7世紀，由於新羅統一了朝鮮半島並且接受唐朝的禮樂服飾文化，原本純粹的佛教信仰被中國的「佛道儒」三教混合信仰稀釋。\n\n也因為唐朝經過絲綢之路而獲得的各種新式香辛料傳入新羅，導致朝鮮半島的素菜文化漸漸褪去。此時，韓式小菜又被加上了蒜、韭菜、生薑、大蔥、小蔥、唐辛子、辣椒等輔助型辛香料。\n\n而在20世紀開始，大韓民國為了尋求自己國家美食文化的獨特性，叫作「飯饌」。到7世紀，由於新羅統一了朝鮮半島並且接受唐朝的禮樂服飾文化，原本純粹的佛教信仰被中國的「佛道儒」。",
     title2: "韓國時下年輕人最愛吃的六道韓式料理！",
@@ -153,13 +94,13 @@ const MemberCenter = (props) => {
 
     // 下方是table內的獨立欄位，不是存在json內
     course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
-    course_name: "2021時下流行韓國精緻料理",
-    course_price: 4800,
-    course_hour: 6,
+    course_name: "2022韓國精緻料理高階班",
+    course_price: 4950,
+    course_hour: 5.5,
     course_level: "2", // 1, 2, 3 (高階 中階 初階)
-    member_limit: 20,
-    company_name: "楓 - 韓式料理",
-    company_address: "台北101",
+    member_limit: 35,
+    company_name: "楓酯 - 韓式料理",
+    company_address: "110台北市信義區信義路五段7號",
     category_id: "2",
     member_id: "1",
     course_batch: [""],
@@ -171,6 +112,7 @@ const MemberCenter = (props) => {
       ? `${currentUser.first_name} ${currentUser.last_name}`
       : "主廚名稱", //主廚名稱　 原本沒有我新增的
   });
+
   // 即時更新課程預設資料內的主廚名稱
   useEffect(() => {
     setCourseDetail({

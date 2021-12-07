@@ -9,6 +9,7 @@ import Calendar from "../../components/Calendar";
 import ErrorMessage from "../../components/ErrorMessage";
 import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
 import { FaPencilAlt } from "react-icons/fa";
+import moment from "moment";
 
 const MemberInfo = (props) => {
   const { currentUser, setCurrentUser } = props;
@@ -96,7 +97,7 @@ const MemberInfo = (props) => {
         first_name: currentUser.first_name || "",
         last_name: currentUser.last_name || "",
         telephone: currentUser.telephone || "",
-        birthday: currentUser.birthday || "",
+        birthday: currentUser.birthday || moment().format("YYYY-MM-DD"),
       });
       // 更新state
       setCreditCardsInfo({
@@ -143,6 +144,7 @@ const MemberInfo = (props) => {
 
   // 送出個資修改
   const handleInfoEdit = async () => {
+    console.log(memberInfo);
     // 前端錯誤阻擋
     let validArray = ["first_name", "last_name", "telephone", "birthday"];
     // 先拿掉所有errorInput的calssName
@@ -151,8 +153,8 @@ const MemberInfo = (props) => {
     });
     // 如果其中一項為空值，再加上紅色框框
     for (let i = 0; i < validArray.length; i++) {
-      if (!memberInfo[validArray[i]]) {
-        // infoRef[i].current.focus();
+      if (i < 3 && !memberInfo[validArray[i]]) {
+        //console.log(infoRef[i]);
         infoRef[i].current.classList.add("inputError-red");
       }
     }
@@ -185,24 +187,33 @@ const MemberInfo = (props) => {
         infoRef[i].current.classList.remove("inputError-red");
       });
     } catch (error) {
-      //console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("member", code));
+      console.log(error);
+      if (error.response) {
+        console.log(error.response);
+        let { code } = error.response.data;
+        setErrorMsg(getValidMessage("member", code));
+      }
     }
   };
 
   // 送出密碼修改
   const handlePasswordEdit = async () => {
     // 先確認資料是否都有填寫
-    let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
-    if (
-      !passwordConfirm ||
-      !newPassword ||
-      !confirmNewPassword ||
-      newPassword !== confirmNewPassword
-    ) {
+    // let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
+    // if (
+    //   !passwordConfirm ||
+    //   !newPassword ||
+    //   !confirmNewPassword ||
+    //   newPassword !== confirmNewPassword
+    // ) {
+    //   return;
+    // }
+
+    // 錯誤阻擋
+    if (!editPasswordActive) {
       return;
     }
+
     try {
       let result = await MemberService.passwordEdit(passwordInfo);
 

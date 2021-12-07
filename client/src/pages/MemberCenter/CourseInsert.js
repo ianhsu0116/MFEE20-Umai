@@ -14,29 +14,6 @@ let sixDishesArray = [11, 22, 33, 44, 55, 66];
 let sliderArray = [111, 222, 333];
 
 // 送出資料前 "錯誤判斷時"，需判斷的欄位
-// let validCheckArray = [
-//   "slider_images",
-//   "time_of_course",
-//   "course_ig",
-//   "course_fb",
-//   "title1_1",
-//   "title1_2",
-//   "content1",
-//   "title2",
-//   "six_dishes",
-//   "content2",
-//   "content3",
-//   "course_name",
-//   "course_price",
-//   "course_hour",
-//   "course_level",
-//   "member_limit",
-//   "company_name",
-//   "company_address",
-//   "category_id",
-//   "course_batch",
-// ];
-
 let validCheckArray = [
   "course_name",
   "company_name",
@@ -75,12 +52,12 @@ const CourseInsert = (props) => {
   // 錯誤訊息
   const [errorMsg, setErrorMsg] = useState("");
 
-  // 課程的詳細資料 以及 JSON格式
-  const [courseDetailCopy, setCourseDetailCopy] = useState({
+  // 課程的詳細資料的JSON格式（範例 + 重置時會用到）
+  const courseDetail2 = {
     slider_images: ["img_name", "img_name", "img_name"], // 圖片名稱; 原本會是一個file檔案的格式，送到後端後再改名且存進檔案夾，DB中這欄只會存檔名
     time_of_course: "", // 平日上午10:30 ~ 下午04:00
-    course_ig: "https://www.instagram.com/",
-    course_fb: "https://www.facebook.com/",
+    course_ig: "",
+    course_fb: "",
     title1_1: "", // 標題1-1號
     title1_2: "", // 標題1-2號
     content1: "", // 介紹內容1
@@ -137,7 +114,7 @@ const CourseInsert = (props) => {
 
     // 各個梯次實際上是存在 batch table 內 這裡是要將資料送進去時的樣子
     course_batch: [""], // 原本會存著各個梯次日期，到後端後再跑回圈將各個梯次 insert into 梯次的 table 內; ["2021-11-23", "2021-11-24", "2021-11-25"]
-  });
+  };
 
   // 先判斷當前登入的 User 是否已填寫主廚卡片
   // 還沒填寫的話就把他導回去卡片頁面
@@ -312,7 +289,7 @@ const CourseInsert = (props) => {
 
   // 送出課程資料
   const handleCourseInsert = async (e) => {
-    // 先拿掉所有errorInput的calssName
+    // 先拿掉所有errorInput的calssName(將所有紅外框拿掉)
     new Array(18).fill(0).forEach((item, i) => {
       infoRef[i].current.classList.remove("inputError-red");
     });
@@ -380,7 +357,7 @@ const CourseInsert = (props) => {
       let result = await CourseService.courseInsert(courseDetail);
 
       // 清空當前所有input
-      setCourseDetail(courseDetailCopy);
+      setCourseDetail(courseDetail2);
       setSliderImage(["", "", ""]);
       setSixDishesImage(["", "", "", "", "", ""]);
 
@@ -395,9 +372,12 @@ const CourseInsert = (props) => {
         timer: 1500,
       });
     } catch (error) {
-      // console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("course", code));
+      console.log(error);
+      if (error.response) {
+        // console.log(error.response);
+        let { code } = error.response.data;
+        setErrorMsg(getValidMessage("course", code));
+      }
     }
   };
 

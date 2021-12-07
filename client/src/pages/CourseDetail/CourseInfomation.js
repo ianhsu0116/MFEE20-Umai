@@ -118,17 +118,20 @@ function CourseInfomation(props) {
     },
   ]);
 
-  // 抓取課程JSON
+  const [link, setLink] = useState("/");
+  const [data, setData] = useState({});
+
+  // Data 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
-  // 該梯次目前參加人數
-  const [batch_id, setBatch_id] = useState(0);
   // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
   const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
   const [course_Score_member, setCourse_Score_member] = useState(0);
-  // 該課程id
+  // 當前梯次id
+  const [batch_id, setBatch_id] = useState(0);
+  // 當前課程id
   const [course_id, setCourse_id] = useState(0);
   // 設定一個推薦課程陣列
   const [recommend, setRecommend] = useState([]);
@@ -145,7 +148,6 @@ function CourseInfomation(props) {
       window.document.body.scrollTop = 0;
       window.document.documentElement.scrollTop = 0;
       setNewCourseJSON(result.data.course);
-      setBatch_id(result.data.course_batch[0].id);
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
@@ -222,11 +224,30 @@ function CourseInfomation(props) {
       cartCourseCount: 1,
     });
     for (let i = 0; i < course_batchJSON.length; i++) {
-      if (e == course_batchJSON[i].batch_date) {
-        setBatch_id(course_batchJSON[i].id);
+      if (e === course_batchJSON[i].batch_date) {
         setBatch_member(course_batchJSON[i].member_count);
+        console.log("batch_member: ");
+        console.log(batch_member);
+        setBatch_id(course_batchJSON[i].id);
+        console.log("batch_id: ");
+        console.log(course_batchJSON[i].id);
       }
     }
+    setCheckoutCourse({
+      member_id: currentUser ? currentUser.id : "",
+      course_id: id_number ? id_number : "",
+      batch_id: batch_id ? batch_id : "",
+      cartCourseCount: 1,
+    });
+    setLink("/shoppingCart");
+    setData(
+      JSON.stringify({
+        member_id: currentUser ? currentUser.id : "",
+        course_id: id_number ? id_number : "",
+        batch_id: batch_id ? batch_id : "",
+        cartCourseCount: 1,
+      })
+    );
   };
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
@@ -252,7 +273,8 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {console.log(recommend)}
+      {console.log(batch_id)}
+      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -377,7 +399,7 @@ function CourseInfomation(props) {
                       onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
-                            // title: "",
+                            title: "",
                             icon: "warning",
                             // customClass: "Custom_Cancel",
                             confirmButtonColor: "#0078b3",
@@ -386,7 +408,7 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else if (
-                          batch_member == newCourseJSON[0].member_limit
+                          batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
                             // title: "",
@@ -410,53 +432,48 @@ function CourseInfomation(props) {
                       加入購物車
                     </li>
                     <li>|</li>
-                    <li
-                      onClick={async () => {
-                        if (batch === "尚未選擇") {
-                          Swal.fire({
-                            // title: "",
-                            icon: "warning",
-                            // customClass: "Custom_Cancel",
-                            confirmButtonColor: "#0078b3",
-                            confirmButtonText: "請先選擇日期後再點擊",
-                          }).then(function () {
-                            // window.location.reload();
-                          });
-                        } else if (
-                          batch_member == newCourseJSON[0].member_limit
-                        ) {
-                          Swal.fire({
-                            // title: "",
-                            icon: "warning",
-                            // customClass: "Custom_Cancel",
-                            confirmButtonColor: "#0078b3",
-                            confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
-                          }).then(function () {
-                            // window.location.reload();
-                          });
-                        } else {
-                          await setCheckoutCourse({
-                            member_id: currentUser ? currentUser.id : undefined,
-                            course_id: course_id ? course_id : undefined,
-                            batch_id: batch_id ? batch_id : undefined,
-                            cartCourseCount: 1,
-                          });
-                          if (
-                            checkoutCourse.member_id === undefined ||
-                            checkoutCourse.course_id === undefined ||
-                            checkoutCourse.batch_id === undefined
+                    <Link to={{ pathname: link, state: { data: data } }}>
+                      <li
+                        onClick={async () => {
+                          if (batch === "尚未選擇") {
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "請先選擇日期後再點擊",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
+                          } else if (
+                            batch_member === newCourseJSON[0].member_limit
                           ) {
-                            console.log(checkoutCourse);
-                            return;
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
                           } else {
-                            return (window.location.href =
-                              "http://localhost:3000/ShoppingCart");
+                            // console.log("checkoutCourse");
+                            // console.log(checkoutCourse);
+
+                            if (
+                              checkoutCourse.member_id === undefined ||
+                              checkoutCourse.course_id === undefined ||
+                              checkoutCourse.batch_id === undefined
+                            ) {
+                              // return;
+                            }
                           }
-                        }
-                      }}
-                    >
-                      現在報名
-                    </li>
+                        }}
+                      >
+                        現在報名
+                      </li>
+                    </Link>
                     <li>|</li>
                     <li
                       onClick={() => {
@@ -465,6 +482,11 @@ function CourseInfomation(props) {
                     >
                       評論區
                     </li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "#Comment";
+                      }}
+                    ></li>
                   </ul>
                 </div>
               </div>

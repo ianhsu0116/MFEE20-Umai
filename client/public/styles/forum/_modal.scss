@@ -93,14 +93,21 @@
         margin: 15px auto;
         font-size: 1.25rem;
         overflow-y: scroll;
+        .Forum-modal-body-quoteword {
+          display: inline-block;
+          margin-right: 1rem;
+          // text-decoration: underline;
+        }
         .Forum-modal-body-image {
           max-height: 50vh;
           display: block;
         }
-        .Forum-modal-body-youtube {
-          width: 560px;
-          height: 315px;
-          display: block;
+        .Forum-modal-body-quotemark {
+          display: inline-block;
+          color: #eb6b6a;
+        }
+        .Forum-modal-body-quote {
+          text-decoration: underline;
         }
       }
       #Forum-modal-scrollbar::-webkit-scrollbar-track {
@@ -200,6 +207,12 @@
                 align-items: center;
                 justify-content: center;
                 padding: 2px 0;
+                .Forum-main-dropdown-content-deletebutton {
+                  width: 2rem;
+                  &:hover {
+                    color: #d8a466;
+                  }
+                }
                 p {
                   margin: 0.125rem 0;
                   a {
@@ -280,6 +293,32 @@
       .Forum-modal-footer-write-commet {
         margin: 15px auto;
         font-size: 1.25rem;
+        .Forum-modal-footer-write-commet-space {
+          overflow: hidden;
+          position: relative;
+          display: inline-block;
+          color: #d8a466;
+          text-align: center;
+          -web-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          font-size: 1rem;
+          font-family: Arial, Microsoft JhengHei;
+          text-decoration: underline;
+          .Forum-modal-footer-write-commet-imageupload {
+            position: absolute;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            display: hidden;
+          }
+        }
+
         .Forum-modal-footer-write-commet-textarea {
           width: 1055.55px;
           max-width: 1440px;

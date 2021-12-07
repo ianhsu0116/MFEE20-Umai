@@ -32,7 +32,11 @@ const ForumUpdate = () => {
     let newArticle = { ...article };
     newArticle.image = e.target.files[0];
     setArticle(newArticle);
-    console.log(newArticle);
+    // console.log(newArticle.image.name);
+    if (newArticle.length > 0) {
+      setArticle({ image_name: newArticle.image.name });
+    }
+
     console.log(e.target.files[0]);
   }
 
@@ -83,6 +87,7 @@ const ForumUpdate = () => {
       "http://localhost:8080/api/forum/updateArticle",
       formData
     );
+
     Swal.fire({
       // title: "",
       icon: "success",
@@ -116,6 +121,7 @@ const ForumUpdate = () => {
     }
   }, []);
 
+  console.log(article_deliver);
   return (
     <>
       <div className="space"></div>
@@ -168,8 +174,11 @@ const ForumUpdate = () => {
               <option value="" selected>
                 請選擇選項
               </option>
-              <option value="12">築地創意壽司</option>
-              <option value="13">炸薯條</option>
+              <option value="9">沖繩炸麻吉</option>
+              <option value="10">京都味自慢壽司</option>
+              <option value="11">奈良鹿餅</option>
+              <option value="12">大阪大阪燒</option>
+              <option value="13">香川美味烤肉</option>
             </select>
           </div>
           <label htmlFor="article_title" className="Forum-update-label-small">
