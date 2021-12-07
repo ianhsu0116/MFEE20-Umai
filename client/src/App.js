@@ -91,24 +91,26 @@ function App() {
   //搜尋內容
   const [searchValue, setSearchValue] = useState("");
 
-  //清空新增課程state
-  async function clearNewAddCourse(){
+  //清空新增課程state (加入課程A)
+  async function clearNewAddCourse() {
+    //清空並觸發Navbar2中的useEffect
     await setNewAddCourse({});
     console.log("clearNewAddCourse");
   }
 
-  // 把課程加入購物車資料庫
+  // 把課程加入購物車資料庫 (加入課程B)
   async function addCourseIntoCart(member_id, course_id, batch_id) {
     //檢查購物車資料庫中是否已經有此課程
-    // console.log("addCourseIntoCart FE");
-    // console.log(member_id, course_id, batch_id);
+    console.log("addCourseIntoCart FE");
+    console.log(member_id, course_id, batch_id);
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_id
     );
     let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
-    // console.log("back to FE");
+    console.log("back to FE");
+    console.log(ifIncart);
     // console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
@@ -136,22 +138,22 @@ function App() {
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
     switch (ifIncart) {
-
       //在資料庫中但不在購物車中
       case 0:
-        // 把課程加入購物車資料庫(UPDATE)
-        // console.log("UpdateCart");
+        // 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
+        console.log("UpdateCart");
         let updateResult = await courseService.UpdateCart(
           member_id,
           course_id,
-          batch_id
+          batch_id,
+          1
         );
         try {
           CartCourseObject = await getOneCourseObject();
         } catch (error) {
           console.log(error);
         }
-        // console.log("回傳購物車資訊");
+        console.log("回傳購物車資訊");
         console.log(CartCourseObject);
         break;
 
@@ -162,7 +164,7 @@ function App() {
         } catch (error) {
           console.log(error);
         }
-        // console.log("回傳購物車資訊");
+        console.log("回傳購物車資訊");
         console.log(CartCourseObject);
         break;
 
@@ -175,24 +177,22 @@ function App() {
         } catch (error) {
           console.log(error);
         }
-        // console.log("回傳購物車資訊");
+        console.log("回傳購物車資訊");
         console.log(CartCourseObject);
         break;
       //ifIncart error
       default:
         console.log("ifIncart error");
         break;
-
     }
 
-    if(ifIncart === 1){
+    if (ifIncart === 1) {
       await setNewAddCourse([CartCourseObject, "+1"]);
-    }else{
+    } else {
       setNewAddCourse([CartCourseObject]);
     }
-
-    // console.log("setNewAddCourse");
-    // console.log("Exit");
+    console.log("setNewAddCourse");
+    console.log("Exit");
   }
 
   // 結帳資料
@@ -200,28 +200,25 @@ function App() {
     member_id: undefined,
     course_id: undefined,
     batch_id: undefined,
-    cartCourseCount: undefined,
+    cartCourseCount: 1,
   });
 
-  // ==================== 共用元件展示用ㄉ東西 ======================
-
-
-  const getAllCourseObject = async function(){
-    let result = await courseService.getAllCourseObject(currentUser.id);
-    console.log("result");
-    console.log(result.data.courseInfoInCart);
-    // console.log(result.data.inCartCourseIds);
+  const getAllCourseObject = async function (member_id) {
+    let result = await courseService.getAllCourseObject(member_id);
+    let newCartCourseInfoList = result.data.courseInfoInCart;
+    setCartCourseInfoList(newCartCourseInfoList);
+    console.log(newCartCourseInfoList);
   };
 
-  useEffect(()=>{
-    if(currentUser){
-    try{
-      getAllCourseObject();
-    }catch(error){
-      console.log(error);
+  useEffect(() => {
+    if (currentUser) {
+      try {
+        getAllCourseObject();
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-  },[currentUser])
+  }, [currentUser]);
 
   return (
     <Router>
@@ -238,8 +235,6 @@ function App() {
         setNewAddCourse={setNewAddCourse}
         clearNewAddCourse={clearNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
@@ -253,13 +248,18 @@ function App() {
           <Footer />
         </Route>
         <Route path="/ShoppingCart" exact>
-          <ShoppingCart currentUser={currentUser} checkoutCourse={checkoutCourse} />
+          <ShoppingCart
+            currentUser={currentUser}
+            checkoutCourse={checkoutCourse}
+          />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
+            clearNewAddCourse={clearNewAddCourse}
             addCourseIntoCart={addCourseIntoCart}
+            checkoutCourse={checkoutCourse}
+            setCheckoutCourse={setCheckoutCourse}
           />
         </Route>
         <Route path="/Forum" exact>
@@ -272,32 +272,38 @@ function App() {
           <div className="footerPadding">
             <Course
               currentUser={currentUser}
+              clearNewAddCourse={clearNewAddCourse}
               addCourseIntoCart={addCourseIntoCart}
+              checkoutCourse={checkoutCourse}
+              setCheckoutCourse={setCheckoutCourse}
             />
-
           </div>
           <Footer />
         </Route>
-        <Route path="/about" exact>
+
+        <Route path="/ForumPublish" exact>
           <div className="footerPadding">
-            <About />
-          </div>
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
           <Footer />
         </Route>
-        <Route path="/contactus" exact>
+        <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
-            <Contactus /></div>
-
-          </Route>
-          <Route path="/ForumPublish" exact>
-               <div className="footerPadding">
-            <ForumPublish currentUser={currentUser} />   </div>  <Footer /> 
-          </Route>
-          <Route path="/ForumUpdate" exact>
-               <div className="footerPadding">
-            <ForumUpdate currentUser={currentUser} />   </div>
-           <Footer /> </Route>
-
+            <Contactus />
+          </div>
+        </Route>
+        <Route path="/ForumPublish" exact>
+          <div className="footerPadding">
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
+          <Footer />
+        </Route>
+        <Route path="/ForumUpdate" exact>
+          <div className="footerPadding">
+            <ForumUpdate currentUser={currentUser} />{" "}
+          </div>
+          <Footer />{" "}
+        </Route>
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -306,15 +312,12 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
-              cartCourseInfoList={cartCourseInfoList}
-              setCartCourseInfoList={setCartCourseInfoList}
             />
           </div>
           <Footer />
         </Route>
         <Route path="/ShoppingList" exact>
           <div className="footerPadding">
-
             <ShoppingList currentUser={currentUser} />
           </div>
           <Footer />
@@ -327,9 +330,19 @@ function App() {
         </Route>
         <Route path="/chef" exact>
           <div className="footerPadding">
-            <Chef 
-               currentUser={currentUser}
-            />
+            <Chef currentUser={currentUser} />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/about" exact>
+          <div className="footerPadding">
+            <About />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/contactus" exact>
+          <div className="footerPadding">
+            <Contactus />
           </div>
           <Footer />
         </Route>
