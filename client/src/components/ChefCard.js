@@ -41,7 +41,7 @@ return (
           <div className="st-chefCardTopChefName">
           <pre>
           我是
-          {chefFirstName}{chefLastName}
+          {chefFirstName} {chefLastName}
           <br />
           我想與您一起開心地做料理！
           </pre>

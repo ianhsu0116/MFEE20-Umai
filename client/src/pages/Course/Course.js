@@ -473,10 +473,10 @@ useEffect(() => {
           >
             {/* 3 初級 2 中級 1 高級  */}
             <option value="">全部分類</option>
-            <option value="3">初級</option>
-            <option value="2">中級</option>
+            <option value="3">初階</option>
+            <option value="2">中階</option>
             <option option value="1">
-              高級
+              高階
             </option>
           </select>
 
