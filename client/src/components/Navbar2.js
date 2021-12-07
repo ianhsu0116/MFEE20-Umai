@@ -32,11 +32,6 @@ const Navbar = (props) => {
     setNewAddCourse,
     clearNewAddCourse,
     addCourseIntoCart,
-    searchValue,
-    setSearchValue,
-    SearchCourseList,
-    SearchKeywordTagList,
-    handleSearchValueDelete,
   } = props;
 
   const [active, setActive] = useState("");
@@ -107,8 +102,11 @@ const Navbar = (props) => {
     "紅酒燉牛肉",
     "獵人燉雞",
   ];
+
   const [searchValue, setSearchValue] = useState("");
   const [SearchCourseList, setSearchCourseList] = useState([]);
+
+  const [checkoutList, setCheckoutList] = useState("");
 
   useEffect(async () => {
     if (searchValue === "") {
