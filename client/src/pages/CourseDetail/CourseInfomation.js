@@ -116,6 +116,7 @@ function CourseInfomation(props) {
     },
   ]);
 
+  //用Link傳資料給結帳頁面
   const [link, setLink] = useState("/");
   const [data, setData] = useState({});
 
@@ -218,23 +219,27 @@ function CourseInfomation(props) {
         setBatch_id(course_batchJSON[i].id);
         console.log("batch_id: ");
         console.log(course_batchJSON[i].id);
+        setData(
+          JSON.stringify({
+            member_id: currentUser ? currentUser.id : "",
+            course_id: course_batchJSON[i].course_id
+              ? course_batchJSON[i].course_id
+              : "",
+            batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+            cartCourseCount: 1,
+          })
+        );
+        setCheckoutCourse({
+          member_id: currentUser ? currentUser.id : "",
+          course_id: course_batchJSON[i].course_id
+            ? course_batchJSON[i].course_id
+            : "",
+          batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+          cartCourseCount: 1,
+        });
       }
     }
-    setCheckoutCourse({
-      member_id: currentUser ? currentUser.id : "",
-      course_id: id_number ? id_number : "",
-      batch_id: batch_id ? batch_id : "",
-      cartCourseCount: 1,
-    });
     setLink("/shoppingCart");
-    setData(
-      JSON.stringify({
-        member_id: currentUser ? currentUser.id : "",
-        course_id: id_number ? id_number : "",
-        batch_id: batch_id ? batch_id : "",
-        cartCourseCount: 1,
-      })
-    );
   };
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
@@ -407,7 +412,9 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else {
+                          //清空新增課程state
                           await clearNewAddCourse();
+                          // 把課程加入購物車資料庫
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
