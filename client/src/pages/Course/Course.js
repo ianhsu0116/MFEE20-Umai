@@ -414,6 +414,11 @@ function Course(props) {
       );
       setCategoryLevel(
         [...categoryOrigin].filter(function (item) {
+          return item.course_level == 1;
+        })
+      );
+      setCategoryLevel(
+        [...categoryOrigin].filter(function (item) {
           return item.course_level == 3;
         })
       );
@@ -550,6 +555,18 @@ function Course(props) {
                 // checkoutCourse={checkoutCourse}
                 // setCheckoutCourse={setCheckoutCourse}
               />
+
+              // <CourseCard
+              //   courseDetail={category[i]}
+              //   // collectionIds={["1"]} //判斷是否收藏(可以給空)
+              //   // handleAddIntoCollection={122} //加入收藏
+              //   // handleAddIntoCart={5464} //加入購物車
+              //   // handlePurchase={4564} //直接購買
+              //   clearNewAddCourse={clearNewAddCourse}
+              //   addCourseIntoCart={addCourseIntoCart}
+              //   checkoutCourse={checkoutCourse}
+              //   setCheckoutCourse={setCheckoutCourse}
+              // />
             ))}
         </div>
 

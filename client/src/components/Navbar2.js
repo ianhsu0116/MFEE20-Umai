@@ -24,12 +24,19 @@ const Navbar = (props) => {
     currentUser,
     isActiveCourseSearch,
     handleToggleCourseSearch,
-    checkoutList,
-    setCheckoutList,
-    newAddCourse,
+    cartCourseInfoList,
+    setCartCourseInfoList,
     checkoutCourse,
     setCheckoutCourse,
+    newAddCourse,
+    setNewAddCourse,
     clearNewAddCourse,
+    addCourseIntoCart,
+    searchValue,
+    setSearchValue,
+    SearchCourseList,
+    SearchKeywordTagList,
+    handleSearchValueDelete,
   } = props;
 
   const [active, setActive] = useState("");
@@ -58,9 +65,6 @@ const Navbar = (props) => {
   //體驗分享右
   const ExperienceShareListRight = ["討論區"];
 
-  //儲存購物車的課程資訊
-  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
-
   // {
   //   id: "",
 
@@ -84,7 +88,7 @@ const Navbar = (props) => {
   const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
 
   //當前選購課程的總數量
-  const numberOfCoursesInCart = cartCourseInfoList.length;
+  const numberOfCoursesInCart = cartCourseInfoList?.length;
 
   //當前購物車總金額
   const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
@@ -438,8 +442,8 @@ const Navbar = (props) => {
                 >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList.length !== 0 &&
-                      cartCourseInfoList.map((Obj) => {
+                    {cartCourseInfoList?.length !== 0 &&
+                      cartCourseInfoList?.map((Obj) => {
                         return (
                           Obj && (
                             <CartCourse
@@ -454,7 +458,7 @@ const Navbar = (props) => {
                           )
                         );
                       })}
-                    {cartCourseInfoList.length === 0 && (
+                    {cartCourseInfoList?.length === 0 && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
                       </div>
