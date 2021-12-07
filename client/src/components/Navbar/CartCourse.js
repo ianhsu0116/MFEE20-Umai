@@ -95,7 +95,7 @@ const CartCourse = (props) => {
       //計算當前購物車總金額
       getSumCartCoursePrice();
       //當購物車沒課程時，將總金額歸零
-      handleSumPriceZeroing();
+      // handleSumPriceZeroing();
       //從購物車資料庫中移除(將inCart歸零)
       let updateResult = await courseService.UpdateCart(
         currentUser.id,

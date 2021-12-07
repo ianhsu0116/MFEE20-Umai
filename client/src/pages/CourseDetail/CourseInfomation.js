@@ -129,6 +129,8 @@ function CourseInfomation(props) {
   const [course_Score_member, setCourse_Score_member] = useState(0);
   // 當前梯次id
   const [batch_id, setBatch_id] = useState(0);
+  // 當前課程id
+  const [course_id, setCourse_id] = useState(0);
 
   useEffect(async () => {
     try {
@@ -144,13 +146,11 @@ function CourseInfomation(props) {
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
-      setBatch_id(result.data.course_batch[0].id);
-      console.log(result.data);
+      setCourse_id(id_number);
       return;
     } catch (error) {
       console.log(error);
       // alert("似乎沒有這堂課的資料哦!\n即將導回首頁")
-      alert(error);
       // window.location.href='http://localhost:3000/';
     }
   }, []);
@@ -204,6 +204,12 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
+    setCheckoutCourse({
+      member_id: currentUser ? currentUser.id : undefined,
+      course_id: course_id ? course_id : undefined,
+      batch_id: batch_id ? batch_id : undefined,
+      cartCourseCount: 1,
+    });
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e === course_batchJSON[i].batch_date) {
         setBatch_member(course_batchJSON[i].member_count);
@@ -254,6 +260,8 @@ function CourseInfomation(props) {
 
   return (
     <>
+      {console.log(batch_id)}
+      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -324,7 +332,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li>
-                      <Link to="/course">課程探索</Link>
+                      <Link to="/courses/category?All">課程探索</Link>
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
@@ -456,7 +464,7 @@ function CourseInfomation(props) {
                     <li>|</li>
                     <li
                       onClick={() => {
-                        window.location.href = "#discuss";
+                        window.location.href = "#Comment";
                       }}
                     >
                       評論區
@@ -775,21 +783,37 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-joinLineWidth">
                   <div className="Coursedetail-joinLine"></div>
                 </div>
-                <p>喜歡這堂課嗎?</p>
-                <p>歡迎加入我們</p>
-                <p>成為Umai的一員</p>
-                <p>讓我們帶您前往美食的世界</p>
-                <p
-                  className="Coursedetail-joinNow"
-                  onClick={() => {
-                    if (batch === "尚未選擇") {
-                      window.location.href = "#batch";
-                      alert("請先選擇梯次日期後再點擊");
-                    }
-                  }}
-                >
-                  點擊我立即加入！
-                </p>
+                <div className="Coursedetail-textArea">
+                  <p>喜歡這堂課嗎?</p>
+                  <p>歡迎加入我們</p>
+                  <p>成為Umai的一員</p>
+                  <p>讓我們帶您前往美食的世界</p>
+                </div>
+                <div className="Coursedetail-finallyJoin">
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    加入購物車
+                  </p>
+                  <p>|</p>
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    立即加入！
+                  </p>
+                </div>
               </span>
               <img src={Join} alt=""></img>
             </div>

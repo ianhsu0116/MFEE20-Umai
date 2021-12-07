@@ -88,9 +88,6 @@ function App() {
     }
   };
 
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
-
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
     //清空並觸發Navbar2中的useEffect
@@ -211,14 +208,14 @@ function App() {
   };
 
   useEffect(() => {
-    try {
-      getAllCourseObject(currentUser.id);
-    } catch (error) {
-      console.log(error);
+    if (currentUser) {
+      try {
+        getAllCourseObject();
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, []);
-
-  // ==================== 共用元件展示用ㄉ東西 ======================
+  }, [currentUser]);
 
   return (
     <Router>
@@ -235,8 +232,6 @@ function App() {
         setNewAddCourse={setNewAddCourse}
         clearNewAddCourse={clearNewAddCourse}
         addCourseIntoCart={addCourseIntoCart}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
@@ -266,7 +261,7 @@ function App() {
         </Route>
         <Route path="/Forum" exact>
           <div className="footerPadding">
-            <Forum />
+            <Forum currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
@@ -292,8 +287,20 @@ function App() {
           <div className="footerPadding">
             <Contactus />
           </div>
+        </Route>
+        <Route path="/ForumPublish" exact>
+          <div className="footerPadding">
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
           <Footer />
         </Route>
+        <Route path="/ForumUpdate" exact>
+          <div className="footerPadding">
+            <ForumUpdate currentUser={currentUser} />{" "}
+          </div>
+          <Footer />{" "}
+        </Route>
+
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -320,7 +327,7 @@ function App() {
         </Route>
         <Route path="/chef" exact>
           <div className="footerPadding">
-            <Chef />
+            <Chef currentUser={currentUser} />
           </div>
           <Footer />
         </Route>

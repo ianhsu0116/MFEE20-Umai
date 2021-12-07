@@ -18,7 +18,7 @@
 .st-line {
   border: 3px solid #d8a466;
   border-radius: 10px;
-  margin: 15px 0px;
+  margin-top: 15px;
   background-color: #d8a466;
 }
 .CourseRecommendTitle {
@@ -74,4 +74,8 @@
   justify-content: center;
   width: 100%;
   margin: auto;
+}
+.CourseCard-moreButton{
+  display: flex;
+  justify-content: center;
 }

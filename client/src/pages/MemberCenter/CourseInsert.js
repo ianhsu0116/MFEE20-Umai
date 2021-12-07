@@ -14,29 +14,6 @@ let sixDishesArray = [11, 22, 33, 44, 55, 66];
 let sliderArray = [111, 222, 333];
 
 // 送出資料前 "錯誤判斷時"，需判斷的欄位
-// let validCheckArray = [
-//   "slider_images",
-//   "time_of_course",
-//   "course_ig",
-//   "course_fb",
-//   "title1_1",
-//   "title1_2",
-//   "content1",
-//   "title2",
-//   "six_dishes",
-//   "content2",
-//   "content3",
-//   "course_name",
-//   "course_price",
-//   "course_hour",
-//   "course_level",
-//   "member_limit",
-//   "company_name",
-//   "company_address",
-//   "category_id",
-//   "course_batch",
-// ];
-
 let validCheckArray = [
   "course_name",
   "company_name",
@@ -395,9 +372,12 @@ const CourseInsert = (props) => {
         timer: 1500,
       });
     } catch (error) {
-      // console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("course", code));
+      console.log(error);
+      if (error.response) {
+        // console.log(error.response);
+        let { code } = error.response.data;
+        setErrorMsg(getValidMessage("course", code));
+      }
     }
   };
 

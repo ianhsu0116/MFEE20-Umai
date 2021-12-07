@@ -1,3 +1,4 @@
+import { alt } from 'joi';
 import React, { useState , useEffect } from 'react'
 // 高階元件樣式(HOC)，增強元件用的
 import { withRouter, Link } from "react-router-dom";
@@ -8,7 +9,8 @@ import CategoryService from "../services/category.service";
 
 function MultiLevelBreadcrumb(props) {
   const { location } = props
-  // let page_category = location.pathname.substr(1, 7)
+  let page_category = location.pathname.substr(1, 7)
+  console.log(page_category)
   let category_number = location.search.slice(1);
   //麵包屑根據種類id判斷當前是什麼
   const [categoryid , setCategoryid] = useState('')
@@ -16,8 +18,8 @@ function MultiLevelBreadcrumb(props) {
  
   useEffect(async () => {
     try {
-      let result = await CategoryService.categoryID(category_number);
-      setCategoryid(result.data.categoryID[0].category_name)
+      let result = await CategoryService.categoryLength(category_number);
+      setCategoryid(result.data.category_length[0].category_name)
       return
     } catch (error) {
       console.log(error);
@@ -84,7 +86,7 @@ function MultiLevelBreadcrumb(props) {
       alert("錯誤的分類，將導向全部分類")
       window.location.href='http://localhost:3000/courses/category?All';
     }
-  }else if(pathArray[1] == "courses"){
+  }else if(pathArray[1] == "courses" && location.pathname != "category"){
     window.location.href='http://localhost:3000/courses/category?All';
   }
 
