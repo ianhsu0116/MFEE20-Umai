@@ -33,7 +33,7 @@ const Discussion = () => {
       </Modal>
       <div className="massonry-title">
         <div className="massonry-title-inside">
-          <MultiLevelBreadcrumb />
+          {/* <h5 className="massonry-title-inside-bread">首頁>討論區</h5> */}
           <h1 className="massonry-title-inside-header">討論區</h1>
           <div className="st-line"></div>
         </div>
