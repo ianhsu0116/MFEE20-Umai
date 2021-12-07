@@ -131,7 +131,7 @@ class MemberService {
     });
   }
   chefCourse(chefID) {
-    return axios.get(MEMBER_API_URL + "/member/:chefID", {
+    return axios.get(MEMBER_API_URL +  `/member/${chefID}`, {
       withCredentials: true,
     });
   }

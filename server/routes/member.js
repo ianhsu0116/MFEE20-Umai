@@ -26,25 +26,25 @@ router.get("/member/chefName", async (req, res) => {
 
   try {
     let result = await connection.queryAsync(
-      "SELECT member.* FROM member WHERE member_category = 2 AND valid = 1",
+      "SELECT member.* FROM member WHERE chef_introduction IS NOT null AND member_category = 2 AND valid = 1",
     );
 
-    console.log(result)
+    console.log(123 , result)
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, code: "G999", message: error });
   }
 });
-router.get("/member/:chefName", async (req, res) => {
-  let { id } = req.params;
+router.get("/member/:chefID", async (req, res) => {
+  let { chefID } = req.params;
   try {
     let result = await connection.queryAsync(
-      "SELECT member.* FROM member WHERE member_category = 2 AND valid = 1",
-      [id , 1]
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.member_id = ? AND course.valid = ? GROUP BY course.id",
+      [chefID , 1]
       );
 
-    console.log(id)
+    console.log(chefID)
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     console.log(error);

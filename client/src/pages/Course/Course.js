@@ -161,6 +161,9 @@ function Course (props){
   //設定一個專門存課程等級的陣列
   const [categoryLevel , setCategoryLevel] = useState([])
 
+   //設定一個專門存篩選後的陣列
+   const [categoryCondition , setCategoryCondition] = useState([])
+
   // 當前頁碼
   const [page, setPage] = useState(1);
   // 一頁顯示幾筆
@@ -184,6 +187,7 @@ function Course (props){
       // loadMoreShow 回歸預設值(關閉)
       setLoadMoreShow(false);
 
+      console.log(result.data.courseDetail.slice(0, perPage))
       // 放入當前頁面需要資料
       setPageData(result.data.courseDetail.slice(0, perPage));
 
@@ -280,6 +284,10 @@ function Course (props){
       setCategory(
         TrueArrow
       );
+      // 再存一個篩選後的陣列
+      setCategoryCondition(
+        TrueArrow
+      )
   }
   // 根據上面相反
   if(selectedOptionDate === "離今日最遠"){
@@ -295,7 +303,34 @@ function Course (props){
   Array.prototype.push.apply(TrueArrow, falseArrow);
     setCategory(
       TrueArrow
+    )
+    setCategoryCondition(
+      TrueArrow
     );}
+    
+
+    if(selectedOptionDate === "評分由高到低"){
+      let TrueArrow = [...categoryLevel].sort(function (a, b) {
+        return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
+        })
+      setCategory(
+        TrueArrow
+      )
+      setCategoryCondition(
+        TrueArrow
+      );}
+
+      if(selectedOptionDate === "評分由低到高"){
+        let TrueArrow = [...categoryLevel].sort(function (a, b) {
+          return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
+          })
+        setCategory(
+          TrueArrow
+        )
+        setCategoryCondition(
+          TrueArrow
+        );}
+
   },[selectedOptionDate]);
   
   useEffect(()=> {
@@ -306,125 +341,29 @@ function Course (props){
     setLoadMoreShow(true);}
     else(setLoadMoreShow(false))
 
-    if(selectedOptionStart === "評分由高到低" && selectedOptionDate === "離今日最近"){
-      console.log(selectedOptionStart , selectedOptionDate) 
-      let TrueArrow = [...category].filter(function(item){
-        return item.closest_batchs?.batch_date != null
-     }).sort(function (a, b) {
-      //  這邊必須先排分數再排日期，分數排好再排日期就能剛好是指定日期後去比評分
-      //  總分/評分人數 先判斷數再去比大小
-        return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-        }).sort(function (a, b) {
-       return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
-    })
-
-//     let falseArrow = [...category].filter(function(item){
-//       return item.closest_batchs?.batch_date == null
-//    }).sort(function (a, b) {
-//     return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-//     }).sort(function (a, b) {
-//    return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
-// })
-//       Array.prototype.push.apply(TrueArrow, falseArrow);
-      setCategory(
-        TrueArrow
-      );
-    } else if(selectedOptionStart === "評分由高到低" && selectedOptionDate === "離今日最遠"){
-      console.log(selectedOptionStart , selectedOptionDate) 
-      let TrueArrow = [...category].filter(function(item){
-        return item.closest_batchs?.batch_date != null
-     }).sort(function (a, b) {
-        return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-        }).sort(function (a, b) {
-       return a.closest_batchs?.batch_date <  b.closest_batchs?.batch_date  ? 1 : -1;
-    })
-
-//     let falseArrow = [...category].filter(function(item){
-//       return item.closest_batchs?.batch_date == null
-//    }).sort(function (a, b) {
-//     return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-//     }).sort(function (a, b) {
-//    return a.closest_batchs?.batch_date <  b.closest_batchs?.batch_date  ? 1 : -1;
-// })
-//       Array.prototype.push.apply(TrueArrow, falseArrow);
-      setCategory(
-        [...categoryOrigin].filter(function (item) {
-          return item.course_level == 3;
-        })
-      );
-    }
-  if(selectedOptionStart === "評分由低到高" && selectedOptionDate === "離今日最近"){
-    console.log(selectedOptionStart , selectedOptionDate) 
-    let TrueArrow = [...category].filter(function(item){
-      return item.closest_batchs?.batch_date != null
-   }).sort(function (a, b) {
-      return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-      }).sort(function (a, b) {
-     return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
-  })
-
-//   let falseArrow = [...category].filter(function(item){
-//     return item.closest_batchs?.batch_date == null
-//  }).sort(function (a, b) {
-//   return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-//   }).sort(function (a, b) {
-//  return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
-// })
-//     Array.prototype.push.apply(TrueArrow, falseArrow);
-    setCategory(
-      TrueArrow
-    );
- }  else if(selectedOptionStart === "評分由低到高" && selectedOptionDate === "離今日最遠"){
-  console.log(selectedOptionStart , selectedOptionDate) 
-  let TrueArrow = [...category].filter(function(item){
+  if (selectedOptionStart === "true" && selectedOptionDate === ""){ 
+  let TrueArrow = [...categoryLevel].filter(function(item){
     return item.closest_batchs?.batch_date != null
- }).sort(function (a, b) {
-    return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-    }).sort(function (a, b) {
-   return a.closest_batchs?.batch_date <  b.closest_batchs?.batch_date  ? 1 : -1;
-})
+ })
 
-// let falseArrow = [...category].filter(function(item){
-//   return item.closest_batchs?.batch_date == null
-// }).sort(function (a, b) {
-// return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-// }).sort(function (a, b) {
-// return a.closest_batchs?.batch_date >  b.closest_batchs?.batch_date  ? 1 : -1;
-// })
-//   Array.prototype.push.apply(TrueArrow, falseArrow);
+  let falseArrow = [...categoryLevel].filter(function(item){
+    return item.closest_batchs?.batch_date == null
+ })
+
+    Array.prototype.push.apply(TrueArrow, falseArrow);
   setCategory(
     TrueArrow
   );
-}  else if (selectedOptionStart === "評分由高到低" && selectedOptionDate === ""){
-  console.log(selectedOptionStart ) 
-  let TrueArrow = [...category].filter(function(item){
-    return item.closest_batchs?.batch_date != null
- }).sort(function (a, b) {
-    return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-    })
-//   let falseArrow = [...category].filter(function(item){
-//     return item.closest_batchs?.batch_date == null
-//  }).sort(function (a, b) {
-//   return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  < (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-//   })
-//     Array.prototype.push.apply(TrueArrow, falseArrow);
+} else if (selectedOptionStart === "true" && selectedOptionDate != ""){ 
+  console.log("123")
   setCategory(
-    TrueArrow
+    categoryCondition
   );
 }
- else if (selectedOptionStart === "評分由低到高"  && selectedOptionDate === ""){
-  console.log(selectedOptionStart ) 
+ else if (selectedOptionStart === "false"){ 
   let TrueArrow = [...category].filter(function(item){
     return item.closest_batchs?.batch_date != null
- }).sort(function (a, b) {
-    return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-    })
-// let falseArrow = [...category].filter(function(item){
-//   return item.closest_batchs?.batch_date == null
-// }).sort(function (a, b) {
-// return (isNaN(a.score_sum / a.score_count) ? 0 : a.score_sum / a.score_count )  > (isNaN(b.score_sum / b.score_count) ?  0 : b.score_sum / b.score_count) ? 1 : -1;
-// })
-//   Array.prototype.push.apply(TrueArrow, falseArrow);
+ })
   setCategory(
     TrueArrow
   );
@@ -438,9 +377,7 @@ function Course (props){
     if(selectedOptionLevel === ""){
       
       setCategory(
-        [...categoryOrigin].filter(function (item) {
-          return item.course_level == 2;
-        })
+        [...categoryOrigin]
       );
       //設定等級陣列
       setCategoryLevel(
@@ -451,7 +388,7 @@ function Course (props){
     if(selectedOptionLevel === "3"){
       setCategory(
         [...categoryOrigin].filter(function (item) {
-          return item.course_level == 1;
+          return item.course_level == 3;
         })
       );
       setCategoryLevel(
@@ -501,7 +438,7 @@ useEffect(() => {
 
   return (
     <>
-    {console.log(category)}
+    {console.log(pageData)}
     <div className="Course">
       <div className="CourseBreadbox"><MultiLevelBreadcrumb /></div>
       <div className="CourseCategroy">{categoryname}</div>
@@ -536,10 +473,10 @@ useEffect(() => {
           >
             {/* 3 初級 2 中級 1 高級  */}
             <option value="">全部分類</option>
-            <option value="3">初級</option>
-            <option value="2">中級</option>
+            <option value="3">初階</option>
+            <option value="2">中階</option>
             <option option value="1">
-              高級
+              高階
             </option>
           </select>
 
@@ -550,10 +487,12 @@ useEffect(() => {
             }}
           >
             <option value="" selected={selectedOptionDate == ""}>
-              上課時間
+              課程排序
             </option>
             <option value="離今日最近">離今日最近</option>
             <option value="離今日最遠">離今日最遠</option>
+            <option value="評分由高到低">評分由高到低</option>
+            <option value="評分由低到高">評分由低到高</option>
           </select>
 
           <select
@@ -562,10 +501,10 @@ useEffect(() => {
             }}
           >
             <option value="" selected={selectedOptionStart == ""}>
-              課程評分
+            課程顯示
             </option>
-            <option value="評分由高到低">評分由高到低</option>
-            <option value="評分由低到高">評分由低到高</option>
+            <option value="true">顯示全部課程</option>
+            <option value="false">僅開課課程</option>
           </select>
         </div>
             <div className="CourseCard">

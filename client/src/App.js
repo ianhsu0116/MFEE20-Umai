@@ -316,7 +316,9 @@ function App() {
         </Route>
         <Route path="/chef" exact>
           <div className="footerPadding">
-            <Chef />
+            <Chef 
+               currentUser={currentUser}
+            />
           </div>
           <Footer />
         </Route>
