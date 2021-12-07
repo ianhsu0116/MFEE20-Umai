@@ -4,15 +4,16 @@
 import Course_list from "./CourseList";
 import Course_detail from "./CourseDetail";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 function shopping_cart(props) {
-  const { checkoutCourse } = props;
+  const location = useLocation();
+  let { data } = location.state;
 
+  const checkoutCourse = JSON.parse(data);
+  console.log(checkoutCourse);
   //如果沒有取得資料則跳回首頁
-  // if(props.course_id===undefined){
-  //   window.location.href='http://localhost:3000/'
-  // }
   if (
     checkoutCourse.member_id === undefined ||
     checkoutCourse.course_id === undefined ||
@@ -27,13 +28,16 @@ function shopping_cart(props) {
   const [coursetitle, setCoursetitle] = useState({});
   useEffect(async () => {
     try {
-      let course = await axios.get(`http://localhost:8080/api/course/9`, {
-        withCredentials: true,
-      });
+      let course = await axios.get(
+        `http://localhost:8080/api/course/${checkoutCourse.course_id}`,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(course.data.course[0]);
       setCoursetitle({
-        course_id: "9",
-        batch_id: "35",
+        course_id: checkoutCourse.member_id,
+        batch_id: checkoutCourse.batch_id,
         name: course.data.course[0].course_name,
         value: course.data.course[0].course_price,
         studentnumber: 1,
