@@ -284,12 +284,24 @@ const Navbar = (props) => {
               <div className="Navbar-container-item-ExperienceShare-dropdown">
                 <ul>
                   {ExperienceShareListLeft.map((page) => (
-                    <li>{page}</li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "http://localhost:3000/forum";
+                      }}
+                    >
+                      {page}
+                    </li>
                   ))}
                 </ul>
                 <ul>
                   {ExperienceShareListRight.map((page) => (
-                    <li>{page}</li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "http://localhost:3000/forum";
+                      }}
+                    >
+                      {page}
+                    </li>
                   ))}
                 </ul>
               </div>

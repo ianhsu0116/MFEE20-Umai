@@ -92,7 +92,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
 
   //清空新增課程state
-  async function clearNewAddCourse(){
+  async function clearNewAddCourse() {
     await setNewAddCourse({});
     console.log("clearNewAddCourse");
   }
@@ -136,7 +136,6 @@ function App() {
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
     switch (ifIncart) {
-
       //在資料庫中但不在購物車中
       case 0:
         // 把課程加入購物車資料庫(UPDATE)
@@ -182,12 +181,11 @@ function App() {
       default:
         console.log("ifIncart error");
         break;
-
     }
 
-    if(ifIncart === 1){
+    if (ifIncart === 1) {
       await setNewAddCourse([CartCourseObject, "+1"]);
-    }else{
+    } else {
       setNewAddCourse([CartCourseObject]);
     }
 
@@ -205,23 +203,22 @@ function App() {
 
   // ==================== 共用元件展示用ㄉ東西 ======================
 
-
-  const getAllCourseObject = async function(){
+  const getAllCourseObject = async function () {
     let result = await courseService.getAllCourseObject(currentUser.id);
     console.log("result");
     console.log(result.data.courseInfoInCart);
     // console.log(result.data.inCartCourseIds);
   };
 
-  useEffect(()=>{
-    if(currentUser){
-    try{
-      getAllCourseObject();
-    }catch(error){
-      console.log(error);
+  useEffect(() => {
+    if (currentUser) {
+      try {
+        getAllCourseObject();
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-  },[currentUser])
+  }, [currentUser]);
 
   return (
     <Router>
@@ -253,7 +250,10 @@ function App() {
           <Footer />
         </Route>
         <Route path="/ShoppingCart" exact>
-          <ShoppingCart currentUser={currentUser} checkoutCourse={checkoutCourse} />
+          <ShoppingCart
+            currentUser={currentUser}
+            checkoutCourse={checkoutCourse}
+          />
         </Route>
         <Route path="/memberCenter" exact>
           <MemberCenter
@@ -274,30 +274,22 @@ function App() {
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
             />
-
           </div>
           <Footer />
         </Route>
-        <Route path="/about" exact>
+
+        <Route path="/ForumPublish" exact>
           <div className="footerPadding">
-            <About />
-          </div>
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
           <Footer />
         </Route>
-        <Route path="/contactus" exact>
+        <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
-            <Contactus /></div>
-
-          </Route>
-          <Route path="/ForumPublish" exact>
-               <div className="footerPadding">
-            <ForumPublish currentUser={currentUser} />   </div>  <Footer /> 
-          </Route>
-          <Route path="/ForumUpdate" exact>
-               <div className="footerPadding">
-            <ForumUpdate currentUser={currentUser} />   </div>
-           <Footer /> </Route>
-
+            <ForumUpdate currentUser={currentUser} />{" "}
+          </div>
+          <Footer />{" "}
+        </Route>
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -314,7 +306,6 @@ function App() {
         </Route>
         <Route path="/ShoppingList" exact>
           <div className="footerPadding">
-
             <ShoppingList currentUser={currentUser} />
           </div>
           <Footer />
@@ -327,9 +318,19 @@ function App() {
         </Route>
         <Route path="/chef" exact>
           <div className="footerPadding">
-            <Chef 
-               currentUser={currentUser}
-            />
+            <Chef currentUser={currentUser} />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/about" exact>
+          <div className="footerPadding">
+            <About />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/contactus" exact>
+          <div className="footerPadding">
+            <Contactus />
           </div>
           <Footer />
         </Route>
