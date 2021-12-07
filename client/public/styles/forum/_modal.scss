@@ -93,14 +93,21 @@
         margin: 15px auto;
         font-size: 1.25rem;
         overflow-y: scroll;
+        .Forum-modal-body-quoteword {
+          display: inline-block;
+          margin-right: 1rem;
+          // text-decoration: underline;
+        }
         .Forum-modal-body-image {
           max-height: 50vh;
           display: block;
         }
-        .Forum-modal-body-youtube {
-          width: 560px;
-          height: 315px;
-          display: block;
+        .Forum-modal-body-quotemark {
+          display: inline-block;
+          color: #eb6b6a;
+        }
+        .Forum-modal-body-quote {
+          text-decoration: underline;
         }
       }
       #Forum-modal-scrollbar::-webkit-scrollbar-track {
@@ -280,6 +287,10 @@
       .Forum-modal-footer-write-commet {
         margin: 15px auto;
         font-size: 1.25rem;
+        .Forum-modal-footer-write-commet-imageupload {
+          border: none;
+          outline: medium;
+        }
         .Forum-modal-footer-write-commet-textarea {
           width: 1055.55px;
           max-width: 1440px;

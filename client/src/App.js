@@ -182,6 +182,7 @@ function App() {
       default:
         console.log("ifIncart error");
         break;
+
     }
 
     if(ifIncart === 1){
@@ -263,7 +264,7 @@ function App() {
         </Route>
         <Route path="/Forum" exact>
           <div className="footerPadding">
-            <Forum />
+            <Forum currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
@@ -273,6 +274,7 @@ function App() {
               currentUser={currentUser}
               addCourseIntoCart={addCourseIntoCart}
             />
+
           </div>
           <Footer />
         </Route>
@@ -284,10 +286,18 @@ function App() {
         </Route>
         <Route path="/contactus" exact>
           <div className="footerPadding">
-            <Contactus />
-          </div>
-          <Footer />
-        </Route>
+            <Contactus /></div>
+
+          </Route>
+          <Route path="/ForumPublish" exact>
+               <div className="footerPadding">
+            <ForumPublish currentUser={currentUser} />   </div>  <Footer /> 
+          </Route>
+          <Route path="/ForumUpdate" exact>
+               <div className="footerPadding">
+            <ForumUpdate currentUser={currentUser} />   </div>
+           <Footer /> </Route>
+
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -304,6 +314,7 @@ function App() {
         </Route>
         <Route path="/ShoppingList" exact>
           <div className="footerPadding">
+
             <ShoppingList currentUser={currentUser} />
           </div>
           <Footer />

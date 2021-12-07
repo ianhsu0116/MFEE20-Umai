@@ -32,7 +32,11 @@ const ForumUpdate = () => {
     let newArticle = { ...article };
     newArticle.image = e.target.files[0];
     setArticle(newArticle);
-    console.log(newArticle);
+    // console.log(newArticle.image.name);
+    if (newArticle.length > 0) {
+      setArticle({ image_name: newArticle.image.name });
+    }
+
     console.log(e.target.files[0]);
   }
 
@@ -83,6 +87,7 @@ const ForumUpdate = () => {
       "http://localhost:8080/api/forum/updateArticle",
       formData
     );
+
     Swal.fire({
       // title: "",
       icon: "success",
@@ -116,6 +121,7 @@ const ForumUpdate = () => {
     }
   }, []);
 
+  console.log(article_deliver);
   return (
     <>
       <div className="space"></div>
