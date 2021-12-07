@@ -116,7 +116,10 @@ function CourseInfomation(props) {
     },
   ]);
 
-  // 抓取課程JSON
+  const [link, setLink] = useState("/");
+  const [data, setData] = useState({});
+
+  // Data 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
@@ -211,6 +214,21 @@ function CourseInfomation(props) {
         console.log(course_batchJSON[i].id);
       }
     }
+    setCheckoutCourse({
+      member_id: currentUser ? currentUser.id : "",
+      course_id: id_number ? id_number : "",
+      batch_id: batch_id ? batch_id : "",
+      cartCourseCount: 1,
+    });
+    setLink("/shoppingCart");
+    setData(
+      JSON.stringify({
+        member_id: currentUser ? currentUser.id : "",
+        course_id: id_number ? id_number : "",
+        batch_id: batch_id ? batch_id : "",
+        cartCourseCount: 1,
+      })
+    );
   };
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
@@ -393,52 +411,48 @@ function CourseInfomation(props) {
                       加入購物車
                     </li>
                     <li>|</li>
-                    <li
-                      onClick={async () => {
-                        if (batch === "尚未選擇") {
-                          Swal.fire({
-                            // title: "",
-                            icon: "warning",
-                            // customClass: "Custom_Cancel",
-                            confirmButtonColor: "#0078b3",
-                            confirmButtonText: "請先選擇日期後再點擊",
-                          }).then(function () {
-                            // window.location.reload();
-                          });
-                        } else if (
-                          batch_member === newCourseJSON[0].member_limit
-                        ) {
-                          Swal.fire({
-                            // title: "",
-                            icon: "warning",
-                            // customClass: "Custom_Cancel",
-                            confirmButtonColor: "#0078b3",
-                            confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
-                          }).then(function () {
-                            // window.location.reload();
-                          });
-                        } else {
-                          await setCheckoutCourse({
-                            member_id: currentUser ? currentUser.id : undefined,
-                            course_id: id_number ? id_number : undefined,
-                            batch_id: batch_id ? batch_id : undefined,
-                            cartCourseCount: 1,
-                          });
-                          if (
-                            checkoutCourse.member_id === undefined ||
-                            checkoutCourse.course_id === undefined ||
-                            checkoutCourse.batch_id === undefined
+                    <Link to={{ pathname: link, state: { data: data } }}>
+                      <li
+                        onClick={async () => {
+                          if (batch === "尚未選擇") {
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "請先選擇日期後再點擊",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
+                          } else if (
+                            batch_member === newCourseJSON[0].member_limit
                           ) {
-                            return;
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
                           } else {
-                            return (window.location.href =
-                              "http://localhost:3000/ShoppingCart");
+                            // console.log("checkoutCourse");
+                            // console.log(checkoutCourse);
+
+                            if (
+                              checkoutCourse.member_id === undefined ||
+                              checkoutCourse.course_id === undefined ||
+                              checkoutCourse.batch_id === undefined
+                            ) {
+                              // return;
+                            }
                           }
-                        }
-                      }}
-                    >
-                      現在報名
-                    </li>
+                        }}
+                      >
+                        現在報名
+                      </li>
+                    </Link>
                     <li>|</li>
                     <li
                       onClick={() => {
