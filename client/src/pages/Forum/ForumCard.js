@@ -269,7 +269,7 @@ const ForumCard = (props) => {
               <div className="Forum-main-middle">
                 <div className="Forum-main-DateAndDropdown">
                   <p className="Forum-main-date">{forumdata.created_time}</p>
-                  <div class="Forum-main-dropdown">
+                  {/* <div class="Forum-main-dropdown">
                     <FiMoreHorizontal className="FiMoreHorizontal" />
                     <div class="Forum-main-dropdown-content">
                       <button
@@ -297,7 +297,7 @@ const ForumCard = (props) => {
                         </Link>
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="Forum-main-dateAndTheme" onClick={handleShow}>
                   <h5 className="Forum-main-theme" onClick={handleShow}>
@@ -431,24 +431,15 @@ const ForumCard = (props) => {
               ></img>
               {/* {articleDetail && articleDetail.article_link} */}
               <br />
-              <p>引用連結</p>
-              <a href={articleDetail && articleDetail.article_link}>
+              <p className="Forum-modal-body-quoteword">引用連結：</p>
+              <p className="Forum-modal-body-quotemark">"</p>
+              <a
+                href={articleDetail && articleDetail.article_link}
+                className="Forum-modal-body-quote"
+              >
                 {articleDetail && articleDetail.article_link}
               </a>
-            </div>
-            <div className="Forum-modal-body-icon">
-              <AiOutlineHeart className="AiOutlineHeart" size="2rem" />
-              <p className="Forum-modal-body-icon-p">
-                {articleDetail && articleDetail.like_count}
-              </p>
-              <AiOutlineMessage className="AiOutlineMessage" size="2rem" />
-              <p className="Forum-modal-body-icon-p">
-                {articleDetail && articleDetail.comment_count}
-              </p>
-              <div className="Forum-modal-body-icon-fb">
-                <AiFillFacebook size="2rem" />
-                <AiOutlineInstagram size="2rem" />
-              </div>
+              <p className="Forum-modal-body-quotemark">"</p>
             </div>
             <div className="st-line"></div>
           </div>
@@ -471,6 +462,8 @@ const ForumCard = (props) => {
                     {/* 帳號的姓名 */}
                     <h6 className="Forum-modal-footer-account-name">
                       {msg.first_name}
+                    </h6>
+                    <h6 className="Forum-modal-footer-account-name">
                       {msg.last_name}
                     </h6>
                   </div>
@@ -559,8 +552,8 @@ const ForumCard = (props) => {
                 <h6 className="Forum-modal-footer-write-account-name">
                   {currentUser.first_name}
                 </h6>
-                <h6 className="Forum-modal-footer-write-account-id">
-                  @olsonlovesmakelove
+                <h6 className="Forum-modal-footer-write-account-name">
+                  {currentUser.last_name}
                 </h6>
               </div>
             </div>
@@ -573,6 +566,7 @@ const ForumCard = (props) => {
                 type="file"
                 name="image"
                 onChange={handleUpload}
+                className="Forum-modal-footer-write-commet-imageupload"
               ></input>
               <textarea
                 className="Forum-modal-footer-write-commet-textarea"
