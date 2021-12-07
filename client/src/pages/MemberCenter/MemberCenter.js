@@ -38,72 +38,6 @@ const MemberCenter = (props) => {
   // 是否為預覽狀態 (給CourseInsert專用)
   const [isReview, setIsReview] = useState(false);
 
-  // CourseReview的預設資料
-  // const [courseDetail, setCourseDetail] = useState({
-  //   slider_images: ["img_name", "img_name", "img_name"],
-  //   time_of_course: "範例：平日上午10:30 ~ 下午04:00",
-  //   course_ig: "https://www.instagram.com/",
-  //   course_fb: "https://www.facebook.com/",
-  //   title1_1: "請填寫課程介紹區的上標題",
-  //   title1_2: "請填寫課程介紹區的下標題",
-  //   content1: "請填寫課程介紹區的詳細內容",
-  //   title2: "請填寫六種課程教材展示區的標題",
-  //   six_dishes: [
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //     {
-  //       dishes_image: "img_name",
-  //       dishes_title: "教材標題",
-  //       dishes_content: "請填寫課程教材介紹",
-  //     },
-  //   ],
-  //   content2: "費用包含詳細內容\n請條列式敘述",
-  //   content3: "請填寫課程所需的注意事項說明",
-
-  //   // 下方是table內的獨立欄位，不是存在json內
-  //   course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
-  //   course_name: "請填寫課程名稱",
-  //   course_price: 2000,
-  //   course_hour: "XX",
-  //   course_level: "1", // 1, 2, 3 (高階 中階 初階)
-  //   member_limit: 30,
-  //   company_name: "請填寫公司名稱",
-  //   company_address: "請填寫公司詳細地址",
-  //   category_id: "1",
-  //   member_id: "1",
-  //   course_batch: [""],
-
-  //   member_count: 0, //現在人數　　原本沒有我新增的
-  //   course_score: 5, //分數　　　　原本沒有我新增的
-  //   course_percent: 0, //評論人數　 原本沒有我新增的
-  //   course_chef: currentUser
-  //     ? `${currentUser.first_name} ${currentUser.last_name}`
-  //     : "主廚名稱", //主廚名稱　 原本沒有我新增的
-  // });
-
   // 課程新增頁面的課程詳細資料（預設）
   const [courseDetail, setCourseDetail] = useState({
     slider_images: ["img_name", "img_name", "img_name"],
@@ -160,13 +94,13 @@ const MemberCenter = (props) => {
 
     // 下方是table內的獨立欄位，不是存在json內
     course_image: "", // 課程卡片的首圖 (拿slider的第一張圖來用)
-    course_name: "2021時下流行韓國精緻料理",
-    course_price: 4800,
-    course_hour: 6,
+    course_name: "2022韓國精緻料理高階班",
+    course_price: 4950,
+    course_hour: 5.5,
     course_level: "2", // 1, 2, 3 (高階 中階 初階)
-    member_limit: 20,
-    company_name: "楓 - 韓式料理",
-    company_address: "台北101",
+    member_limit: 35,
+    company_name: "楓酯 - 韓式料理",
+    company_address: "110台北市信義區信義路五段7號",
     category_id: "2",
     member_id: "1",
     course_batch: [""],
@@ -178,6 +112,7 @@ const MemberCenter = (props) => {
       ? `${currentUser.first_name} ${currentUser.last_name}`
       : "主廚名稱", //主廚名稱　 原本沒有我新增的
   });
+
   // 即時更新課程預設資料內的主廚名稱
   useEffect(() => {
     setCourseDetail({
