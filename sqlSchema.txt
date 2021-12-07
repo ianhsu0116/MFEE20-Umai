@@ -464,15 +464,15 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `member` (`id`, `email`, `password`, `googleId`, `facebookId`, `first_name`, `last_name`, `nick_name`, `birthday`, `telephone`, `avatar`, `credit_card_number`, `credit_card_name`, `chef_introduction`, `member_category`, `created_time`, `valid`) VALUES
-(1,	'ian@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	NULL,	NULL,	'大帥',	'徐',	'Ian Stark',	'1999-01-01',	'0988888888',	'avatar-206a6abd-b017-4544-aea6-bfdcd5e905fd.png',	'5377888899990000',	'Ian Hsu',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你!\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"LONGTAL restaurant & bar\\n行政主廚 屎坦克(tony)\",\"chefInfo\":[\"超過30年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-11-15 11:23:28',	1),
-(6,	'test@test.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	NULL,	NULL,	'',	'',	'',	'1990-11-14',	'',	NULL,	NULL,	NULL,	'',	1,	'2021-11-16 18:41:44',	1),
-(16,	'ianian880116@gmail.com',	'$2b$10$ahAH6z2Zk.OVJAe5tkAml.Sj9hjhDPL55W/nosHacD5dJI/fur6Ae',	NULL,	NULL,	'ian',	'h',	'ian',	'2021-12-01',	'0988640764',	'avatar-ca3685b4-e3c4-483c-8166-728dac8095b2.jpeg',	'5399999999999999',	'ian hsu',	NULL,	1,	'2021-11-27 00:11:47',	1),
-(17,	'ianhsu0116@gmail.com',	NULL,	NULL,	'2172886946182757',	'Ian',	'Shu',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-11-30 16:51:30',	1),
-(18,	'ian2@umai.com',	'$2b$10$MYrOkZkhmtcU6mfKzTJorOHkZGwxG/36WksETUY1ea87y0fBY9dB.',	NULL,	NULL,	'李鴻',	'鐘',	NULL,	'1992-12-09',	'0988112332',	'avatar-df501eba-a83a-4c3e-bf7b-4ff27ce592a2.jpeg',	NULL,	NULL,	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"雅閣中餐廳 restaurant & bar\\n行政總主廚 李鴻(Lee)\",\"chefInfo\":[\"超過20年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-12-07 14:06:05',	1),
-(19,	'ian3@umai.com',	'$2b$10$MYrOkZkhmtcU6mfKzTJorOHkZGwxG/36WksETUY1ea87y0fBY9dB.',	NULL,	NULL,	'野格',	'李',	'ChefLee',	'1994-12-06',	'0911883227',	'avatar-0119a11b-fd76-464c-a44b-311c4d117bef.jpg',	NULL,	NULL,	'{\"chefIntroduce1\":\"廚藝生涯 20 餘年，喜愛義法歐陸料理及葡萄酒，樂當料理人，認為生活中不能沒有料理。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"曾任職國內多家國際級五星飯店及餐廳廚師\",\"chefInfo\":[\"W Taipei\",\"W Taipei\",\"W Taipei\",\"W Taipei\"]}',	2,	'2021-12-07 14:15:12',	1),
-(20,	'ian4@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	NULL,	NULL,	'Midi',	'Li',	'Drink King',	'2021-12-01',	'0987654321',	'avatar-b1be2eff-aeb0-4631-9d76-33a7a0b1e5a4.jpg',	NULL,	NULL,	'{\"chefIntroduce1\":\"常有人問我，該怎麼樣才能像您一樣，成為調飲大師，我總是笑笑的回答，現在加入Umai，讓我來指導你\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"頂級酒bar中央總店\\n調飲師 Midi\",\"chefInfo\":[\"連續三年調飲冠軍\",\"榮獲最佳調酒勳章\",\"榮獲台灣指定優秀店家\",\"想喝什麼都給你\"]}',	2,	'2021-12-07 13:45:15',	1),
-(21,	'ian5@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	NULL,	NULL,	'Lily',	'Lu',	'Lily',	'2021-12-01',	'0987654321',	'avatar-5f02c0de-b9ed-4b50-9724-7223556f0013.jpg',	NULL,	NULL,	'{\"chefIntroduce1\":\"在巴黎斐杭狄（Ferrandi）廚藝學校學習的那段日子，我才發現巧克力擁有這麼多我所不知道的樣貌。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"法式料理餐廳-中央分店\\n行政總主廚 Lily Lu\",\"chefInfo\":[\"米其林一星推薦\",\"最佳廚師獎\",\"最棒廚師獎\",\"廚神大賽 銀賞\"]}',	2,	'2021-12-07 14:25:25',	1),
-(22,	'test2@fake.com',	'$2b$10$V8q/v1tZGvCVgpB5YbKRQOsmOHvsTl.tNOi9.nLHWAmSTpaIU9hZq',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-12-07 22:15:40',	1);
+(1,	'ian@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	'',	'',	'大帥',	'徐',	'Ian Stark',	'1999-01-01',	'0988888888',	'avatar-206a6abd-b017-4544-aea6-bfdcd5e905fd.png',	'5377888899990000',	'Ian Hsu',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你!\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"LONGTAL restaurant & bar\\n行政主廚 屎坦克(tony)\",\"chefInfo\":[\"超過30年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-11-15 11:23:28',	1),
+(6,	'test@test.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	'',	'',	'',	'',	'',	'1990-11-14',	'',	'',	'',	'',	'',	1,	'2021-11-16 18:41:44',	1),
+(16,	'ianian88011611@gmail.com',	'$2b$10$ahAH6z2Zk.OVJAe5tkAml.Sj9hjhDPL55W/nosHacD5dJI/fur6Ae',	'',	'',	'ian',	'h',	'ian',	'2021-12-01',	'0988640764',	'avatar-ca3685b4-e3c4-483c-8166-728dac8095b2.jpeg',	'5399999999999999',	'ian hsu',	'',	1,	'2021-11-27 00:11:47',	1),
+(17,	'ianhsu0116@gmail.com',	'',	'',	'2172886946182757',	'Ian',	'Shu',	'',	NULL,	'',	'',	'',	'',	'',	1,	'2021-11-30 16:51:30',	1),
+(18,	'ian2@umai.com',	'$2b$10$MYrOkZkhmtcU6mfKzTJorOHkZGwxG/36WksETUY1ea87y0fBY9dB.',	'',	'',	'李鴻',	'鐘',	'',	'1992-12-09',	'0988112332',	'avatar-df501eba-a83a-4c3e-bf7b-4ff27ce592a2.jpeg',	'',	'',	'{\"chefIntroduce1\":\"做菜總是讓人很開心，做菜總是讓人很開心，做菜總是讓人很開心，因為料理永遠會給以最直接的方式回饋給你。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"雅閣中餐廳 restaurant & bar\\n行政總主廚 李鴻(Lee)\",\"chefInfo\":[\"超過20年專業廚師經歷\",\"創立四間餐飲品牌\",\"創立品牌連續四年獲得米其林一星肯定\",\"創立品牌連續四年獲得米其餐盤推薦\"]}',	2,	'2021-12-07 14:06:05',	1),
+(19,	'ian3@umai.com',	'$2b$10$q5/Qk1id3rLNNja7XvCe9.iwGRdyUp8Hciu5.ihlGVRSGiR28Ib3a',	'',	'',	'野格',	'李',	'ChefLee',	'1994-12-06',	'0911883227',	'avatar-0119a11b-fd76-464c-a44b-311c4d117bef.jpg',	'',	'',	'{\"chefIntroduce1\":\"廚藝生涯 20 餘年，喜愛義法歐陸料理及葡萄酒，樂當料理人，認為生活中不能沒有料理。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"曾任職國內多家國際級五星飯店及餐廳廚師\",\"chefInfo\":[\"W Taipei\",\"W Taipei\",\"W Taipei\",\"W Taipei\"]}',	2,	'2021-12-07 14:15:12',	1),
+(20,	'ian4@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	'',	'',	'Midi',	'Li',	'Drink King',	'2021-12-01',	'0987654321',	'avatar-b1be2eff-aeb0-4631-9d76-33a7a0b1e5a4.jpg',	'',	'',	'{\"chefIntroduce1\":\"常有人問我，該怎麼樣才能像您一樣，成為調飲大師，我總是笑笑的回答，現在加入Umai，讓我來指導你\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"頂級酒bar中央總店\\n調飲師 Midi\",\"chefInfo\":[\"連續三年調飲冠軍\",\"榮獲最佳調酒勳章\",\"榮獲台灣指定優秀店家\",\"想喝什麼都給你\"]}',	2,	'2021-12-07 13:45:15',	1),
+(21,	'ian5@umai.com',	'$2b$10$ZtWX5hctnlFvbpVb8A6E..9wD2WZRlWmKY5vR0E5GMOL2JuPQFjYy',	'',	'',	'Lily',	'Lu',	'Lily',	'2021-12-01',	'0987654321',	'avatar-5f02c0de-b9ed-4b50-9724-7223556f0013.jpg',	'',	'',	'{\"chefIntroduce1\":\"在巴黎斐杭狄（Ferrandi）廚藝學校學習的那段日子，我才發現巧克力擁有這麼多我所不知道的樣貌。\",\"chefIntroduce2\":\"Name\",\"chefInfoTitle\":\"法式料理餐廳-中央分店\\n行政總主廚 Lily Lu\",\"chefInfo\":[\"米其林一星推薦\",\"最佳廚師獎\",\"最棒廚師獎\",\"廚神大賽 銀賞\"]}',	2,	'2021-12-07 14:25:25',	1),
+(23,	'70612042@stu.nkuht.edu.tw',	NULL,	'113071455388292003730',	NULL,	'Hsu',	'Ian',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	1,	'2021-12-08 04:44:25',	1);
 
 DROP TABLE IF EXISTS `member_coupons`;
 CREATE TABLE `member_coupons` (
@@ -497,7 +497,7 @@ INSERT INTO `member_coupons` (`id`, `member_id`, `coupons_id`, `expire_date`, `s
 (5,	1,	2,	'2021-12-28',	1,	1),
 (6,	1,	3,	'2021-12-25',	1,	1),
 (7,	18,	5,	'2022-01-06',	1,	1),
-(8,	22,	5,	'2022-01-06',	1,	1);
+(9,	23,	5,	'2022-01-07',	1,	1);
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
@@ -615,4 +615,4 @@ INSERT INTO `student` (`id`, `member_id`, `first_name`, `last_name`, `birthday`,
 (3,	1,	'李鴻',	'鐘',	'2021-12-07',	'Leo@fake.com',	'0988112332',	'2021-12-07 16:26:22',	1),
 (4,	1,	'Ian',	'Hsu',	'2021-12-02',	'70612042@stu.nkuht.com',	'0988640764',	'2021-12-07 19:07:42',	1);
 
--- 2021-12-07 16:01:35
+-- 2021-12-07 20:46:57
