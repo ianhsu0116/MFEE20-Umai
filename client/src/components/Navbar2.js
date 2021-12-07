@@ -10,7 +10,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { ImCross } from "react-icons/im";
 
 import UmaiLogo from "./images/Umai.png";
-import avatar from "./images/avatar.jpg";
+import avatar from "./images/avatar.svg";
 
 import Swal from "sweetalert2";
 import CartCourse from "./Navbar/CartCourse";

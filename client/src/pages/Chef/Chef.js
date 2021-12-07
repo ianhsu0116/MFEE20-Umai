@@ -243,7 +243,7 @@ const Chef = (props) => {
   for( let j = 0  ; j < chefCount  ; j++)
   {
     chefJson.push(
-      chefJSON[j].first_name + "" + chefJSON[j].last_name
+      chefJSON[j].first_name + " " + chefJSON[j].last_name
     )}
 
   let liForLoop = [];
@@ -286,7 +286,9 @@ const Chef = (props) => {
                 </div> 
                 <div>
                 {console.log(pageData)}
-                {pageData &&
+                {
+                pageData == 0?<p>主廚目前還沒開課哦!</p>: 
+                pageData&&
                 pageData.map((orderDetail, index) => (
               <CourseCard
                 key={index}

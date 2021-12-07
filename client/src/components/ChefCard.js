@@ -27,7 +27,7 @@ return (
     <div className="st-chefCard">
       {/* 主廚照片容器(左) */}
       <div className="st-chefCardPictureWrapper">
-        <img className="st-chefCardPicture" src={avatar == "http://localhost:8080/upload-images/null" ?Chef:avatar} alt=""></img>
+        <img className="st-chefCardPicture" src={avatar == "http://localhost:8080/upload-images/null" || avatar == "http://localhost:8080/upload-images/undefined" ?Chef:avatar} alt=""></img>
       </div>
 
       {/* 主廚文字容器(右) */}
