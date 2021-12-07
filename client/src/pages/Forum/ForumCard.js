@@ -409,7 +409,7 @@ const ForumCard = (props) => {
                     <p>
                       <Link
                         to={{
-                          pathname: "/forumupdate",
+                          pathname: "/ForumUpdate",
                           state: { data: data },
                         }}
                       >
