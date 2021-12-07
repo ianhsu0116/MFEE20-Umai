@@ -280,11 +280,11 @@ router.post("/deleteArticle", async (req, res) => {
 router.post("/deleteMessage", async (req, res) => {
   let id = req.body.id;
   let result = await connection.queryAsync(
-    "DELETE FROM forum_comment where id=? "
     // "UPDATE forum_comment SET valid=? WHERE id=?",
-    // [0, id]
+    "DELETE FROM forum_comment where id=? ",
+    [id]
   );
-  console.log(id);
+  console.log("id", id);
   res.send(result);
 });
 // ian 新增

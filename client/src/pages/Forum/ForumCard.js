@@ -477,7 +477,7 @@ const ForumCard = (props) => {
                             delete_message(msg.id);
                           }}
                         >
-                          刪除
+                          {console.log(msg.id)} 刪除
                         </button>
                       </div>
                     </div>

@@ -134,9 +134,11 @@ const ForumPublish = () => {
               <option value="" selected>
                 請選擇選項
               </option>
-              <option value="9">日式料理</option>
-              <option value="10">美式料理</option>
-              <option value="11">韓式料理</option>
+              <option value="9">沖繩炸麻吉</option>
+              <option value="10">京都味自慢壽司</option>
+              <option value="11">奈良鹿餅</option>
+              <option value="12">大阪大阪燒</option>
+              <option value="13">香川美味烤肉</option>
             </select>
           </div>
           <label htmlFor="article_title" className="Forum-publish-label-small">
