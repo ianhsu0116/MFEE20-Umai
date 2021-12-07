@@ -6,7 +6,6 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-
   // 根據member_id拿到購物車所需的全部課程資料 (cart)
   getAllCourseObject(member_id) {
     return axios.get(COURSE_API_URL + `/cart/${member_id}`, {
@@ -55,6 +54,13 @@ class CourseService {
   // 根據course_name拿到搜尋結果的課程資料(cart)
   CourseSearch(searchValue) {
     return axios.get(COURSE_API_URL + `/?search=${searchValue}`, {
+      withCredentials: true,
+    });
+  }
+
+  // 測試隨機抓資料
+  course_recommend() {
+    return axios.get(COURSE_API_URL + "/course/recommend", {
       withCredentials: true,
     });
   }

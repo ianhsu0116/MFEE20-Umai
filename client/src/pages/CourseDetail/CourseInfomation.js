@@ -31,7 +31,16 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location, currentUser, clearNewAddCourse, addCourseIntoCart, checkoutCourse, setCheckoutCourse, cartCourseInfoList, setCartCourseInfoList } = props;
+  const {
+    location,
+    currentUser,
+    clearNewAddCourse,
+    addCourseIntoCart,
+    checkoutCourse,
+    setCheckoutCourse,
+    cartCourseInfoList,
+    setCartCourseInfoList,
+  } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -121,6 +130,8 @@ function CourseInfomation(props) {
   const [course_Score_member, setCourse_Score_member] = useState(0);
   // 該課程id
   const [course_id, setCourse_id] = useState(0);
+  // 設定一個推薦課程陣列
+  const [recommend, setRecommend] = useState([]);
 
   useEffect(async () => {
     try {
@@ -131,13 +142,22 @@ function CourseInfomation(props) {
       result.data.course[0].course_detail = JSON.parse(
         result.data.course[0].course_detail
       );
-      console.log(result.data.course_comment[0]);
+      window.document.body.scrollTop = 0;
+      window.document.documentElement.scrollTop = 0;
       setNewCourseJSON(result.data.course);
       setBatch_id(result.data.course_batch[0].id);
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
       setCourse_id(id_number);
+      // 推薦課程
+      let Recommend = await CourseService.course_recommend();
+      for (let i = 0; i < Recommend.data.recommend.length; i++) {
+        Recommend.data.recommend[i].course_detail = JSON.parse(
+          Recommend.data.recommend[i].course_detail
+        );
+      }
+      setRecommend(Recommend.data.recommend);
       return;
     } catch (error) {
       console.log(error);
@@ -200,12 +220,11 @@ function CourseInfomation(props) {
       course_id: course_id ? course_id : undefined,
       batch_id: batch_id ? batch_id : undefined,
       cartCourseCount: 1,
-    })
+    });
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e == course_batchJSON[i].batch_date) {
         setBatch_id(course_batchJSON[i].id);
         setBatch_member(course_batchJSON[i].member_count);
-        console.log(batch_member);
       }
     }
   };
@@ -233,8 +252,7 @@ function CourseInfomation(props) {
 
   return (
     <>
-    {console.log(batch_id)}
-    {console.log(course_id)}
+      {console.log(recommend)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -384,9 +402,8 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            batch_id,
+                            batch_id
                           );
-                          
                         }
                       }}
                     >
@@ -394,7 +411,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li
-                      onClick={async() => {
+                      onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -424,12 +441,16 @@ function CourseInfomation(props) {
                             batch_id: batch_id ? batch_id : undefined,
                             cartCourseCount: 1,
                           });
-                          if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
-                              console.log(checkoutCourse )
-                              return;
+                          if (
+                            checkoutCourse.member_id === undefined ||
+                            checkoutCourse.course_id === undefined ||
+                            checkoutCourse.batch_id === undefined
+                          ) {
+                            console.log(checkoutCourse);
+                            return;
                           } else {
-                              return window.location.href =
-                              "http://localhost:3000/ShoppingCart";
+                            return (window.location.href =
+                              "http://localhost:3000/ShoppingCart");
                           }
                         }
                       }}
@@ -437,9 +458,13 @@ function CourseInfomation(props) {
                       現在報名
                     </li>
                     <li>|</li>
-                    <li onClick={() => {
-                          window.location.href = "#Comment";
-                    }}>評論區</li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "#Comment";
+                      }}
+                    >
+                      評論區
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -746,8 +771,23 @@ function CourseInfomation(props) {
             ></img>
             <div className="Coursedetail-outsideTitle">推薦課程</div>
             <div className="Coursedetail-titleLine"></div>
-            <CourseRecommend />
-
+            <div className="Coursedetail-recommendDiv">
+              {recommend &&
+                recommend.map((key, index) => (
+                  <CourseRecommend
+                    key={index}
+                    coursePicturs={`${PUBLIC_URL}/upload-images/${recommend[index]?.course_detail.six_dishes[0].dishes_image}`}
+                    courseCategory={recommend[index]?.category_id}
+                    courseLevel={recommend[index]?.course_level}
+                    courseName={recommend[index]?.course_name}
+                    courseArea={
+                      recommend[index]?.course_detail.six_dishes[0]
+                        .dishes_content
+                    }
+                    courseLink={recommend[index]?.id}
+                  />
+                ))}
+            </div>
             <div className="Coursedetail-join">
               <span>
                 <p className="Coursedetail-joinTitle">立即報名</p>
@@ -755,35 +795,35 @@ function CourseInfomation(props) {
                   <div className="Coursedetail-joinLine"></div>
                 </div>
                 <div className="Coursedetail-textArea">
-                <p>喜歡這堂課嗎?</p>
-                <p>歡迎加入我們</p>
-                <p>成為Umai的一員</p>
-                <p>讓我們帶您前往美食的世界</p>
+                  <p>喜歡這堂課嗎?</p>
+                  <p>歡迎加入我們</p>
+                  <p>成為Umai的一員</p>
+                  <p>讓我們帶您前往美食的世界</p>
                 </div>
                 <div className="Coursedetail-finallyJoin">
-                <p
-                  className="Coursedetail-joinNow"
-                  onClick={() => {
-                    if (batch === "尚未選擇") {
-                      window.location.href = "#batch";
-                      alert("請先選擇梯次日期後再點擊");
-                    }
-                  }}
-                >
-                  加入購物車
-                </p>
-                <p>|</p>
-                <p
-                  className="Coursedetail-joinNow"
-                  onClick={() => {
-                    if (batch === "尚未選擇") {
-                      window.location.href = "#batch";
-                      alert("請先選擇梯次日期後再點擊");
-                    }
-                  }}
-                >
-                   立即加入！
-                </p>
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    加入購物車
+                  </p>
+                  <p>|</p>
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    立即加入！
+                  </p>
                 </div>
               </span>
               <img src={Join} alt=""></img>

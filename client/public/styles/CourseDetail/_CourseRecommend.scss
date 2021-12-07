@@ -1,12 +1,16 @@
+.Coursedetail-recommendDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .Coursedetail-recommend {
   margin: 60px 0;
   height: 30vw;
-  width: 103.5%;
+  width: 22vw;
   display: flex;
 }
 .Coursedetail-recommendLeft {
   height: 100%;
-  width: 30%;
   border-radius: 5px;
   overflow: hidden;
   margin: 0 auto auto 0;
