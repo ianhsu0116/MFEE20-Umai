@@ -1,6 +1,5 @@
 /* eslint-disable default-case */
 import { useEffect, useState } from "react";
-import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import datacheck from "../validation";
@@ -35,32 +34,16 @@ function CourseDetail(props) {
       setlink("/PaymentMethod");
       setdataerror(false);
     }
-    let carddata = props.carddata;
-    let OrderData = props.OrderData;
-    //自動抓每個物件內的 name，再比對物件內的值
-    function checkdata(){
-        // carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((name)=>{if(carddata[0][name]===""){dataerror=true}});
-        // Object.keys(OrderData).map((name)=>{if(OrderData[name]===""){dataerror=true}})
-        if(datacheck.ordererValidation(OrderData).error!==undefined){
+    for(let i=0;i<carddata.length;i++){
+        console.log(carddata[i]);
+        if(datacheck.studentValidation(carddata[i]).error !==undefined){
+            console.log(datacheck.studentValidation(carddata[i]).error);
             setlink("/ShoppingCart")
             setdataerror(true)
             return
         }else{
             setlink("/PaymentMethod")
             setdataerror(false)
-        }
-
-        for(let i=0;i<carddata.length;i++){
-            console.log(carddata[i]);
-            if(datacheck.studentValidation(carddata[i]).error !==undefined){
-                console.log(datacheck.studentValidation(carddata[i]).error);
-                setlink("/ShoppingCart")
-                setdataerror(true)
-                return
-            }else{
-                setlink("/PaymentMethod")
-                setdataerror(false)
-            }
         }
     }
   }

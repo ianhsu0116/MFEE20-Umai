@@ -12,7 +12,6 @@ function shopping_cart(props) {
   let { data } = location.state;
 
   const checkoutCourse = JSON.parse(data);
-  console.log(checkoutCourse);
   //如果沒有取得資料則跳回首頁
   if (
     checkoutCourse.member_id === undefined ||
@@ -34,16 +33,21 @@ function shopping_cart(props) {
           withCredentials: true,
         }
       );
-      console.log(course.data.course[0]);
-      setCoursetitle({
-        course_id: checkoutCourse.member_id,
-        batch_id: checkoutCourse.batch_id,
-        name: course.data.course[0].course_name,
-        value: course.data.course[0].course_price,
-        studentnumber: 1,
-        courseimage: course.data.course[0].course_image,
-        membercount: course.data.course_batch[0].member_count,
-      });
+      
+      for(let i=0;i<=course.data.course_batch.length;i++){
+        if(course.data.course_batch[i]["id"]===checkoutCourse.batch_id)
+          setCoursetitle({
+            course_id: checkoutCourse.course_id,
+            batch_id: checkoutCourse.batch_id,
+            name: course.data.course[0].course_name,
+            value: course.data.course[0].course_price,
+            studentnumber: 1,
+            courseimage: course.data.course[0].course_image,
+            memberlimit: course.data.course[0].member_limit,
+            membercount: course.data.course_batch[i].member_count,
+          });
+      }
+      
     } catch (error) {
       console.log(error);
     }
