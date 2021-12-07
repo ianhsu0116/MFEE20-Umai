@@ -88,6 +88,9 @@ function App() {
     }
   };
 
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
+
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
     //清空並觸發Navbar2中的useEffect
@@ -277,13 +280,14 @@ function App() {
           </div>
           <Footer />
         </Route>
-        <Route path="/about" exact>
+
+        <Route path="/ForumPublish" exact>
           <div className="footerPadding">
-            <About />
-          </div>
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
           <Footer />
         </Route>
-        <Route path="/contactus" exact>
+        <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
             <Contactus />
           </div>
@@ -300,7 +304,6 @@ function App() {
           </div>
           <Footer />{" "}
         </Route>
-
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -328,6 +331,18 @@ function App() {
         <Route path="/chef" exact>
           <div className="footerPadding">
             <Chef currentUser={currentUser} />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/about" exact>
+          <div className="footerPadding">
+            <About />
+          </div>
+          <Footer />
+        </Route>
+        <Route path="/contactus" exact>
+          <div className="footerPadding">
+            <Contactus />
           </div>
           <Footer />
         </Route>

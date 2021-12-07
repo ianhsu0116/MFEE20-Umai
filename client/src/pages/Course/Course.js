@@ -22,6 +22,7 @@ function Course(props) {
     checkoutCourse,
     setCheckoutCourse,
   } = props;
+  // 抓search用 Ex category?... search抓到?...
   let category_number = location.search.slice(1);
 
   // 當前所有收藏課程
@@ -240,7 +241,7 @@ function Course(props) {
       // 如果拿到的資料 < 每夜應該拿的資料
       // 代表拿完這次後就沒資料了
       // 關閉LoadMoreButton
-      if (newData.length <= perPage) return setLoadMoreShow(false);
+      if (newData.length < perPage) return setLoadMoreShow(false);
     }
   }, [page]);
 
