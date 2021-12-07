@@ -126,6 +126,8 @@ function CourseInfomation(props) {
   const [course_Score_member, setCourse_Score_member] = useState(0);
   // 當前梯次id
   const [batch_id, setBatch_id] = useState(0);
+  // 該課程id
+  const [course_id, setCourse_id] = useState(0);
 
   useEffect(async () => {
     try {
@@ -141,12 +143,9 @@ function CourseInfomation(props) {
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
-<<<<<<< HEAD
       setBatch_id(result.data.course_batch[0].id);
       console.log(result.data);
-=======
       setCourse_id(id_number);
->>>>>>> 777d4b47234150990178224780f326b5bf2fed07
       return;
     } catch (error) {
       console.log(error);
@@ -206,12 +205,7 @@ function CourseInfomation(props) {
   const onChange = (e) => {
     setBatch(e);
     for (let i = 0; i < course_batchJSON.length; i++) {
-<<<<<<< HEAD
       if (e === course_batchJSON[i].batch_date) {
-=======
-      if (e == course_batchJSON[i].batch_date) {
-        setBatch_id(course_batchJSON[i].id);
->>>>>>> 777d4b47234150990178224780f326b5bf2fed07
         setBatch_member(course_batchJSON[i].member_count);
         console.log("batch_member: ");
         console.log(batch_member);
@@ -245,8 +239,8 @@ function CourseInfomation(props) {
 
   return (
     <>
-    {console.log(batch_id)}
-    {console.log(course_id)}
+      {console.log(batch_id)}
+      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -396,11 +390,7 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-<<<<<<< HEAD
                             batch_id
-=======
-                            batch_id,
->>>>>>> 777d4b47234150990178224780f326b5bf2fed07
                           );
                         }
                       }}
@@ -439,18 +429,12 @@ function CourseInfomation(props) {
                             batch_id: batch_id ? batch_id : undefined,
                             cartCourseCount: 1,
                           });
-<<<<<<< HEAD
                           if (
                             checkoutCourse.member_id === undefined ||
                             checkoutCourse.course_id === undefined ||
                             checkoutCourse.batch_id === undefined
                           ) {
                             return;
-=======
-                          if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
-                              console.log(checkoutCourse )
-                              return;
->>>>>>> 777d4b47234150990178224780f326b5bf2fed07
                           } else {
                             return (window.location.href =
                               "http://localhost:3000/ShoppingCart");
@@ -461,9 +445,13 @@ function CourseInfomation(props) {
                       現在報名
                     </li>
                     <li>|</li>
-                    <li onClick={() => {
-                          window.location.href = "#Comment";
-                    }}>評論區</li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "#Comment";
+                      }}
+                    >
+                      評論區
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -779,35 +767,35 @@ function CourseInfomation(props) {
                   <div className="Coursedetail-joinLine"></div>
                 </div>
                 <div className="Coursedetail-textArea">
-                <p>喜歡這堂課嗎?</p>
-                <p>歡迎加入我們</p>
-                <p>成為Umai的一員</p>
-                <p>讓我們帶您前往美食的世界</p>
+                  <p>喜歡這堂課嗎?</p>
+                  <p>歡迎加入我們</p>
+                  <p>成為Umai的一員</p>
+                  <p>讓我們帶您前往美食的世界</p>
                 </div>
                 <div className="Coursedetail-finallyJoin">
-                <p
-                  className="Coursedetail-joinNow"
-                  onClick={() => {
-                    if (batch === "尚未選擇") {
-                      window.location.href = "#batch";
-                      alert("請先選擇梯次日期後再點擊");
-                    }
-                  }}
-                >
-                  加入購物車
-                </p>
-                <p>|</p>
-                <p
-                  className="Coursedetail-joinNow"
-                  onClick={() => {
-                    if (batch === "尚未選擇") {
-                      window.location.href = "#batch";
-                      alert("請先選擇梯次日期後再點擊");
-                    }
-                  }}
-                >
-                   立即加入！
-                </p>
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    加入購物車
+                  </p>
+                  <p>|</p>
+                  <p
+                    className="Coursedetail-joinNow"
+                    onClick={() => {
+                      if (batch === "尚未選擇") {
+                        window.location.href = "#batch";
+                        alert("請先選擇梯次日期後再點擊");
+                      }
+                    }}
+                  >
+                    立即加入！
+                  </p>
                 </div>
               </span>
               <img src={Join} alt=""></img>
