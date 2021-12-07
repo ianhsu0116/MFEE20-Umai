@@ -5,7 +5,7 @@ import AuthService from "./services/auth.service";
 import NavbarOld from "./components/Navbar";
 import courseService from "./services/course.service";
 import HomePage from "./pages/Homepage/HomePage";
-import Navbar2 from "./components/Navbar2";
+import Navbar2 from "./components/Navbar";
 import NavbarHomePage from "./components/NavbarHomePage";
 import MemberCenter from "./pages/MemberCenter/MemberCenter";
 import Login from "./components/member/Login";
