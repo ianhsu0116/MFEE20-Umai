@@ -142,7 +142,6 @@ function CourseInfomation(props) {
     } catch (error) {
       console.log(error);
       // alert("似乎沒有這堂課的資料哦!\n即將導回首頁")
-      alert(error);
       // window.location.href='http://localhost:3000/';
     }
   }, []);
