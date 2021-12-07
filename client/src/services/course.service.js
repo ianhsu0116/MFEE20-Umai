@@ -6,7 +6,6 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-
   // 根據member_id拿到購物車所需的全部課程資料 (cart)
   getAllCourseObject(member_id) {
     return axios.get(COURSE_API_URL + `/cart/${member_id}`, {
@@ -31,11 +30,11 @@ class CourseService {
     );
   }
 
-  // 根據course_id把課程加入購物車資料庫(Update)
-  UpdateCart(member_id, course_id, batch_id) {
+  // 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
+  UpdateCart(member_id, course_id, batch_id, inCart) {
     return axios.put(
       COURSE_API_URL + `/cart/${member_id}`,
-      { course_id, batch_id },
+      { course_id, batch_id, inCart },
       {
         withCredentials: true,
       }

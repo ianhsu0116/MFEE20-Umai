@@ -69,36 +69,47 @@ router.get("/cart/:member_id", async (req, res) => {
       [member_id]
     );
 
-    let inCartCourseIds = inCart.map((obj) => {
+    //生成課程id陣列
+    let courseIds = inCart.map((obj) => {
       return obj.course_id;
     });
-    let inCartBatchIds = inCart.map((obj) => {
+
+    //刪除重複課程id
+    courseIds = courseIds.filter(function (ele, idx) {
+      return courseIds.indexOf(ele) == idx;
+    });
+
+    //生成梯次id陣列
+    let batchIds = inCart.map((obj) => {
       return obj.batch_id;
     });
 
-    // console.log(inCartCourseIds);
+    //刪除重複梯次id
+    batchIds = batchIds.filter(function (ele, idx) {
+      return batchIds.indexOf(ele) == idx;
+    });
 
-    // 拿到課程資料與梯次(join course_batch)
-    let courseInfoInCart = await connection.queryAsync(
-      "SELECT course.course_image, course.course_name, course.course_price, course.member_limit FROM course WHERE course.id = ? AND course.valid = ? AND course_batch.valid = ?",
-      [inCartCourseIds, 1, 1]
+    // 拿到課程資料(join course_batch)
+    let result = await connection.queryAsync(
+      "SELECT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id FROM course, course_batch, cart_and_collection WHERE course.id IN (?) AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1",
+      [courseIds, batchIds, member_id]
     );
 
-    // // 拿到課程資料與梯次(join course_batch)
-    // let courseInfoInCart = await connection.queryAsync(
-    //   "SELECT course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.batch_date, course_batch.member_count FROM course, course_batch WHERE course.id = course_batch.course_id AND course.id = ? AND course_batch.id = ? AND course.valid = ? AND course_batch.valid = ?",
-    //   [inCartCourseIds, inCartBatchIds, 1, 1]
-    // );
+    //刪除重複課程資料
+    const set = new Set();
+    courseInfo = result.filter((obj) =>
+      !set.has(obj.course_id) ? set.add(obj.course_id) : false
+    );
+    courseInfoInCart = courseInfo.map((obj) => {
+      return { ...obj, cartCourseCount: 1 };
+    });
 
-    console.log("courseInfoInCart");
-    console.log(courseInfoInCart);
-
-    // console.log(courseInfoInCart);
-    // res.status(200).json({ success: true, inCartCourseIds });
-    res.status(200).json({ success: true, courseInfoInCart });
+    res
+      .status(200)
+      .json({ success: true, courseIds, batchIds, courseInfoInCart });
   } catch (error) {
-    //console.log(error);
-    res.status(500).json({ success: false, code: "E999", message: error });
+    // console.log(error);
+    res.status(200).json({ success: true, message: "此課程未曾加入購物車" });
   }
 });
 
@@ -128,10 +139,6 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
   let { member_id, course_id, batch_id } = req.params;
   console.log(member_id, course_id, batch_id);
   try {
-    // let inCart = await connection.queryAsync(
-    //   `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
-    //   [member_id, course_id, batch_id]
-    // );
     let inCart = await connection.queryAsync(
       `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
@@ -140,21 +147,21 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
     console.log(inCart[0].inCart);
   } catch (error) {
     // console.log(error);
-    res.status(500).json({ success: false, code: "E999", message: error });
-    return [{ inCart: -1 }];
-    // res.status(200).json({ success: true, inCart: [{ inCart: -1 }] });
+    res
+      .status(200)
+      .json({ success: true, message: "購物車中目前沒有選購任何課程" });
   }
 });
 
-// 根據course_id把課程加入購物車資料庫(Update)
+// 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
 router.put("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
-  let { course_id, batch_id } = req.body;
+  let { course_id, batch_id, inCart } = req.body;
 
   try {
     let update = await connection.queryAsync(
-      `UPDATE cart_and_collection SET inCart = 1 WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
-      [member_id, course_id, batch_id]
+      `UPDATE cart_and_collection SET inCart = ? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+      [inCart, member_id, course_id, batch_id]
     );
     let updateResult = await connection.queryAsync(
       `SELECT cart_and_collection.inCart, cart_and_collection.member_id, cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,

@@ -12,7 +12,14 @@ import getValidMessage from "../../validMessage/validMessage";
 import { number } from "joi";
 
 function Course(props) {
-  const { location } = props;
+  const {
+    location,
+    currentUser,
+    clearNewAddCourse,
+    addCourseIntoCart,
+    checkoutCourse,
+    setCheckoutCourse,
+  } = props;
   let category_number = location.search.slice(1);
 
   const [selectedOptionLevel, setSelectedOptionLevel] = useState("");
@@ -468,9 +475,13 @@ function Course(props) {
       <CourseCard
         courseDetail={category[i]}
         // collectionIds={["1"]} //判斷是否收藏(可以給空)
-        handleAddIntoCollection={122} //加入收藏
-        handleAddIntoCart={5464} //加入購物車
-        handlePurchase={4564} //直接購買
+        // handleAddIntoCollection={122} //加入收藏
+        // handleAddIntoCart={5464} //加入購物車
+        // handlePurchase={4564} //直接購買
+        clearNewAddCourse={clearNewAddCourse}
+        addCourseIntoCart={addCourseIntoCart}
+        checkoutCourse={checkoutCourse}
+        setCheckoutCourse={setCheckoutCourse}
       />
     );
   }

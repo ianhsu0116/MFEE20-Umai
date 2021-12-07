@@ -140,12 +140,13 @@ function App() {
     switch (ifIncart) {
       //在資料庫中但不在購物車中
       case 0:
-        // 把課程加入購物車資料庫(UPDATE)
+        // 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
         console.log("UpdateCart");
         let updateResult = await courseService.UpdateCart(
           member_id,
           course_id,
-          batch_id
+          batch_id,
+          1
         );
         try {
           CartCourseObject = await getOneCourseObject();
@@ -168,7 +169,7 @@ function App() {
         break;
 
       //不在資料庫中
-      case -1:
+      case undefined:
         // 把課程加入購物車資料庫(INSERT)
         await courseService.addCourseIntoCart(member_id, course_id, batch_id);
         try {
@@ -202,22 +203,22 @@ function App() {
     cartCourseCount: 1,
   });
 
-  // ==================== 共用元件展示用ㄉ東西 ======================
-
-  const getAllCourseObject = async function () {
-    let result = await courseService.getAllCourseObject(currentUser.id);
-    console.log("result");
-    console.log(result.data.courseInfoInCart);
-    // console.log(result.data.inCartCourseIds);
+  const getAllCourseObject = async function (member_id) {
+    let result = await courseService.getAllCourseObject(member_id);
+    let newCartCourseInfoList = result.data.courseInfoInCart;
+    setCartCourseInfoList(newCartCourseInfoList);
+    console.log(newCartCourseInfoList);
   };
 
   useEffect(() => {
     try {
-      getAllCourseObject();
+      getAllCourseObject(currentUser.id);
     } catch (error) {
       console.log(error);
     }
   }, []);
+
+  // ==================== 共用元件展示用ㄉ東西 ======================
 
   return (
     <Router>
@@ -257,8 +258,10 @@ function App() {
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
+            clearNewAddCourse={clearNewAddCourse}
             addCourseIntoCart={addCourseIntoCart}
+            checkoutCourse={checkoutCourse}
+            setCheckoutCourse={setCheckoutCourse}
           />
         </Route>
         <Route path="/Forum" exact>
@@ -271,7 +274,10 @@ function App() {
           <div className="footerPadding">
             <Course
               currentUser={currentUser}
+              clearNewAddCourse={clearNewAddCourse}
               addCourseIntoCart={addCourseIntoCart}
+              checkoutCourse={checkoutCourse}
+              setCheckoutCourse={setCheckoutCourse}
             />
           </div>
           <Footer />
@@ -296,8 +302,6 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
-              cartCourseInfoList={cartCourseInfoList}
-              setCartCourseInfoList={setCartCourseInfoList}
             />
           </div>
           <Footer />

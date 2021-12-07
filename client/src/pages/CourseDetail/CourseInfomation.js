@@ -38,8 +38,6 @@ function CourseInfomation(props) {
     addCourseIntoCart,
     checkoutCourse,
     setCheckoutCourse,
-    cartCourseInfoList,
-    setCartCourseInfoList,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -121,15 +119,13 @@ function CourseInfomation(props) {
   // 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
-  const [batch_id, setBatch_id] = useState(0);
-  // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
   const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
   const [course_Score_member, setCourse_Score_member] = useState(0);
-  // 該課程id
-  const [course_id, setCourse_id] = useState(0);
+  // 當前梯次id
+  const [batch_id, setBatch_id] = useState(0);
 
   useEffect(async () => {
     try {
@@ -142,11 +138,10 @@ function CourseInfomation(props) {
       );
       console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
-      setBatch_id(result.data.course_batch[0].id);
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
-      setCourse_id(result.data.course.id);
+      setBatch_id(result.data.course_batch[0].id);
       console.log(result.data);
       return;
     } catch (error) {
@@ -207,9 +202,13 @@ function CourseInfomation(props) {
   const onChange = (e) => {
     setBatch(e);
     for (let i = 0; i < course_batchJSON.length; i++) {
-      if (e == course_batchJSON[i].batch_date) {
+      if (e === course_batchJSON[i].batch_date) {
         setBatch_member(course_batchJSON[i].member_count);
+        console.log("batch_member: ");
         console.log(batch_member);
+        setBatch_id(course_batchJSON[i].id);
+        console.log("batch_id: ");
+        console.log(course_batchJSON[i].id);
       }
     }
   };
@@ -361,7 +360,7 @@ function CourseInfomation(props) {
                       onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
-                            // title: "",
+                            title: "",
                             icon: "warning",
                             // customClass: "Custom_Cancel",
                             confirmButtonColor: "#0078b3",
@@ -370,7 +369,7 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else if (
-                          batch_member == newCourseJSON[0].member_limit
+                          batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
                             // title: "",
@@ -386,7 +385,7 @@ function CourseInfomation(props) {
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
-                            20
+                            batch_id
                           );
                         }
                       }}
@@ -421,7 +420,7 @@ function CourseInfomation(props) {
                         } else {
                           await setCheckoutCourse({
                             member_id: currentUser ? currentUser.id : undefined,
-                            course_id: course_id ? course_id : undefined,
+                            course_id: id_number ? id_number : undefined,
                             batch_id: batch_id ? batch_id : undefined,
                             cartCourseCount: 1,
                           });
