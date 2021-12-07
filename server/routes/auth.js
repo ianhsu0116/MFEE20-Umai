@@ -46,6 +46,13 @@ router.post("/login", async (req, res) => {
     if (member.length === 0)
       return res.status(401).json({ success: false, code: "A002" });
 
+    // 判斷是否為第三方註冊
+    if (member[0].googleId) {
+      return res.status(401).json({ success: false, code: "A006" });
+    } else if (member[0].facebookId) {
+      return res.status(401).json({ success: false, code: "A007" });
+    }
+
     // 取出member資料
     member = member[0];
 

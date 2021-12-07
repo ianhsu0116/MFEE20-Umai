@@ -97,10 +97,9 @@ const CollectionArticle = (props) => {
                   <img
                     src={
                       article.image_name
-                        ? `${PUBLIC_URL}/uploads-image/${article.image_name}`
+                        ? `${PUBLIC_URL}/upload-images/${article.image_name}`
                         : image
                     }
-                    alt="image"
                   />
                 </div>
               </div>
