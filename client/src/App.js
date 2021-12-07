@@ -258,6 +258,7 @@ function App() {
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
             clearNewAddCourse={clearNewAddCourse}
             addCourseIntoCart={addCourseIntoCart}
             checkoutCourse={checkoutCourse}
