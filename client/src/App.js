@@ -247,12 +247,14 @@ function App() {
           </div>
           <Footer />
         </Route>
+
         <Route path="/ShoppingCart" exact>
           <ShoppingCart
             currentUser={currentUser}
             checkoutCourse={checkoutCourse}
           />
         </Route>
+
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
@@ -262,12 +264,14 @@ function App() {
             setCheckoutCourse={setCheckoutCourse}
           />
         </Route>
+
         <Route path="/Forum" exact>
           <div className="footerPadding">
             <Forum currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
+
         <Route path="/courses/category" exact>
           <div className="footerPadding">
             <Course
@@ -287,6 +291,7 @@ function App() {
           </div>{" "}
           <Footer />
         </Route>
+
         <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
             <Contactus />
@@ -304,6 +309,7 @@ function App() {
           </div>
           <Footer />{" "}
         </Route>
+
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -316,30 +322,35 @@ function App() {
           </div>
           <Footer />
         </Route>
+
         <Route path="/ShoppingList" exact>
           <div className="footerPadding">
             <ShoppingList currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
+
         <Route path="/PaymentMethod" exact>
           <div className="footerPadding">
             <PaymentMethod currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
+
         <Route path="/chef" exact>
           <div className="footerPadding">
             <Chef currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
+
         <Route path="/about" exact>
           <div className="footerPadding">
             <About />
           </div>
           <Footer />
         </Route>
+
         <Route path="/contactus" exact>
           <div className="footerPadding">
             <Contactus />

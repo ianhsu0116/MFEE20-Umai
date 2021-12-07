@@ -116,17 +116,21 @@
         }
 
         .Forum-main-p {
-          padding: 5px;
+          padding-top: 5px;
+          padding-bottom: 5px;
           font-size: 1rem;
           max-width: 60vw;
-          width: 50vw;
+          width: 40vw;
           min-height: 2rem;
+          max-height: 5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: wrap;
         }
         .Forum-main-little {
           display: flex;
           justify-content: left;
           align-items: center;
-          margin-top: 8px;
           padding-left: 5px;
 
           .AiOutlineHeart {

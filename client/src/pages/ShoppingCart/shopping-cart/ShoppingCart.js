@@ -18,7 +18,7 @@ function shopping_cart(props) {
     checkoutCourse.course_id === undefined ||
     checkoutCourse.batch_id === undefined
   ) {
-    // window.location.href = "http://localhost:3000/";
+    window.location.href = "http://localhost:3000/";
   }
 
   //會員ID
