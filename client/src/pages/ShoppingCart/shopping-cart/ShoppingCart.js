@@ -16,9 +16,19 @@ function shopping_cart(props) {
   // }
 
   //如果沒有取得資料則跳回首頁
+<<<<<<< HEAD
   // if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
   //   window.location.href='http://localhost:3000/'
   // }
+=======
+  // if(props.course_id===undefined){
+  //   window.location.href='http://localhost:3000/'
+  // }
+  if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
+    window.location.href='http://localhost:3000/'
+  }
+  
+>>>>>>> 777d4b47234150990178224780f326b5bf2fed07
   //會員ID
   const { currentUser } = props;
   //課程資訊

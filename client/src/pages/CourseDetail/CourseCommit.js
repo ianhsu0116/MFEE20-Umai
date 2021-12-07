@@ -17,7 +17,7 @@ function CourseCommit(props){
   return (
     <>
     {console.log(articleData)}
-    <div className="CourseCategroy" id="discuss">討論區</div>
+    <div className="CourseCategroy" id="Comment">課程評論</div>
     <div className="st-line"></div>
      <div className="CoursesCommitCard-container-cards">
      {articleData.map((article) => (
