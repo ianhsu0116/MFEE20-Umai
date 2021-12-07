@@ -294,17 +294,6 @@ function App() {
 
         <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
-            <Contactus />
-          </div>
-        </Route>
-        <Route path="/ForumPublish" exact>
-          <div className="footerPadding">
-            <ForumPublish currentUser={currentUser} />{" "}
-          </div>{" "}
-          <Footer />
-        </Route>
-        <Route path="/ForumUpdate" exact>
-          <div className="footerPadding">
             <ForumUpdate currentUser={currentUser} />{" "}
           </div>
           <Footer />{" "}
@@ -352,7 +341,7 @@ function App() {
         </Route>
 
         <Route path="/contactus" exact>
-          <div className="footerPadding">
+          <div className="contactus">
             <Contactus />
           </div>
           <Footer />
