@@ -151,8 +151,8 @@ const MemberInfo = (props) => {
     });
     // 如果其中一項為空值，再加上紅色框框
     for (let i = 0; i < validArray.length; i++) {
-      if (!memberInfo[validArray[i]]) {
-        // infoRef[i].current.focus();
+      if (i < 3 && !memberInfo[validArray[i]]) {
+        //console.log(infoRef[i]);
         infoRef[i].current.classList.add("inputError-red");
       }
     }
@@ -194,15 +194,21 @@ const MemberInfo = (props) => {
   // 送出密碼修改
   const handlePasswordEdit = async () => {
     // 先確認資料是否都有填寫
-    let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
-    if (
-      !passwordConfirm ||
-      !newPassword ||
-      !confirmNewPassword ||
-      newPassword !== confirmNewPassword
-    ) {
+    // let { passwordConfirm, newPassword, confirmNewPassword } = passwordInfo;
+    // if (
+    //   !passwordConfirm ||
+    //   !newPassword ||
+    //   !confirmNewPassword ||
+    //   newPassword !== confirmNewPassword
+    // ) {
+    //   return;
+    // }
+
+    // 錯誤阻擋
+    if (!editPasswordActive) {
       return;
     }
+
     try {
       let result = await MemberService.passwordEdit(passwordInfo);
 

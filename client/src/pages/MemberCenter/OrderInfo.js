@@ -56,6 +56,7 @@ const OrderInfo = (props) => {
 
       // 將所有資料放入
       setCurrentData(result.data.order);
+      console.log(result.data.order);
 
       // 頁碼回歸成第一頁
       setPage(1);
@@ -141,7 +142,7 @@ const OrderInfo = (props) => {
     if (page > 1) {
       // 這次要拿幾筆
       let start = (page - 1) * perPage;
-      console.log(start, perPage);
+      //console.log(start, perPage);
 
       // 模擬去拿新資料
       let newData = currentData.slice(start, start + perPage);
@@ -152,7 +153,7 @@ const OrderInfo = (props) => {
       // 如果拿到的資料 < 每夜應該拿的資料
       // 代表拿完這次後就沒資料了
       // 關閉LoadMoreButton
-      if (newData.length <= perPage) return setLoadMoreShow(false);
+      if (newData.length < perPage) return setLoadMoreShow(false);
     }
   }, [page]);
 

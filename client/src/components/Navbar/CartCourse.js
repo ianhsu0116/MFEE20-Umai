@@ -71,9 +71,9 @@ const CartCourse = (props) => {
 
   //計算當前購物車總金額
   async function getSumCartCoursePrice() {
-    if (cartCourseInfoList.length !== 0) {
+    if (cartCourseInfoList?.length !== 0) {
       let subtotalList = cartCourseInfoList.map((obj) => {
-        return obj.course_price * obj.cartCourseCount;
+        return obj?.course_price * obj?.cartCourseCount;
       });
       let newSumCartCoursePrice = subtotalList.reduce((acc, v) => {
         return acc + v;
@@ -89,6 +89,20 @@ const CartCourse = (props) => {
         return obj !== CurrentInfoObject;
       });
       await setCartCourseInfoList(newCartCourseInfoList);
+
+      //計算特定課程金額小計
+      getSubtotal(CurrentInfoObject);
+      //計算當前購物車總金額
+      getSumCartCoursePrice();
+      //當購物車沒課程時，將總金額歸零
+      // handleSumPriceZeroing();
+      //從購物車資料庫中移除(將inCart歸零)
+      let updateResult = await courseService.UpdateCart(
+        currentUser.id,
+        CurrentInfoObject.course_id,
+        CurrentInfoObject.batch_id,
+        0
+      );
     }
   }
 
@@ -111,20 +125,12 @@ const CartCourse = (props) => {
       getSumCartCoursePrice();
       //當購物車沒課程時，將總金額歸零
       handleSumPriceZeroing();
+      // // 重新整理購物車資訊，並刪除購物車中數量小於0的課程
+      // refreshCartCourse();
     } catch (error) {
       console.log(error);
     }
   }, [cartCourseInfoList]);
-
-  //頁面初次渲染時，重新整理購物車資訊
-  useEffect(() => {
-    try {
-      // 重新整理購物車資訊，並刪除購物車中數量小於0的課程
-      refreshCartCourse();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
   return (
     <div className="CartCourse-container">

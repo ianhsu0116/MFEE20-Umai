@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaFacebookSquare } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 
@@ -12,32 +13,41 @@ const Footer = () => {
               <div className="col-2"></div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="" onClick={() => {
-                              window.location.href =
-                                "http://localhost:3000/chef";
-                              }} >
+                  {/* <a
+                    className="footerTitleText"
+                    href=""
+                    onClick={() => {
+                      window.location.href = "http://localhost:3000/chef";
+                    }}
+                  >
                     主廚介紹
-                  </a>
+                  </a> */}
+                  <Link to="/chef" className="footerTitleText">
+                    主廚介紹
+                  </Link>
                 </p>
               </div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="" onClick={() => {
-                              window.location.href =
-                                "http://localhost:3000/about";
-                              }} >
+                  <Link to="/about" className="footerTitleText">
                     關於我們
-                  </a>
+                  </Link>
                 </p>
               </div>
               <div className="col-2">
                 <p className="footerTitle">
-                  <a className="footerTitleText" href="" onClick={() => {
-                              window.location.href =
-                                "http://localhost:3000/contactus";
-                              }} >
+                  {/* <a
+                    className="footerTitleText"
+                    href=""
+                    onClick={() => {
+                      window.location.href = "http://localhost:3000/contactus";
+                    }}
+                  >
                     聯絡我們
-                  </a>
+                  </a> */}
+                  <Link to="/contactus" className="footerTitleText">
+                    聯絡我們
+                  </Link>
                 </p>
               </div>
               <div className="col-2">
