@@ -7,7 +7,7 @@ const registerValidation = (data) => {
       .min(6)
       .max(50)
       .required()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "tw"] } }),
     password: Joi.string().min(8).max(12).required(),
   });
 
@@ -21,7 +21,7 @@ const loginValidation = (data) => {
       .min(6)
       .max(50)
       .required()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "tw"] } }),
     password: Joi.string().min(8).max(12).required(),
   });
   return schema.validate(data);
@@ -83,7 +83,7 @@ const studentValidation = (data) => {
       .min(6)
       .max(50)
       .required()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "tw"] } }),
   });
 
   return schema.validate(data);
