@@ -59,7 +59,7 @@ const CourseCard1 = (props) => {
         if (collectionIds) {
           let result = "";
           for (let i = 0; i < collectionIds.length; i++) {
-            if (collectionIds[i] == courseDetail.id) {
+            if (collectionIds[i] == courseDetail?.id) {
               result = true;
               break;
             }
@@ -76,7 +76,7 @@ const CourseCard1 = (props) => {
     if (collectionIds) {
       let result = "";
       for (let i = 0; i < collectionIds.length; i++) {
-        if (collectionIds[i] == courseDetail.id) {
+        if (collectionIds[i] == courseDetail?.id) {
           result = true;
           break;
         }
@@ -157,10 +157,11 @@ const CourseCard1 = (props) => {
           </div>
           <div className="CourseCard1-detailCon-bottom-coursePrice">
             <span className="CourseCard1-detailCon-bottom-coursePrice-origin">
-              NT${numDotFormat(courseDetail.course_price)}
+            {/* 先改這樣 不然我主廚頁面會報錯 12/7 不能改這樣再通知我*/}
+              NT${numDotFormat(courseDetail.course_price?courseDetail.course_price:0)}
             </span>
             <span className="CourseCard1-detailCon-bottom-coursePrice-discount">
-              NT${numDotFormat(courseDetail.course_price * 0.9)}
+              NT${numDotFormat(courseDetail.course_price?courseDetail.course_price* 0.9:0 )}
             </span>
           </div>
         </div>

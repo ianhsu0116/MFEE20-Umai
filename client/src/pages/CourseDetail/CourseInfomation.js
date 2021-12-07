@@ -31,7 +31,7 @@ import { MdCollectionsBookmark } from "react-icons/md";
 
 function CourseInfomation(props) {
   //簡易判斷詳細課程ID
-  const { location, addCourseIntoCart } = props;
+  const { location, currentUser, clearNewAddCourse, addCourseIntoCart, checkoutCourse, setCheckoutCourse, cartCourseInfoList, setCartCourseInfoList } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
 
@@ -112,11 +112,15 @@ function CourseInfomation(props) {
   // 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
   // 該梯次目前參加人數
+  const [batch_id, setBatch_id] = useState(0);
+  // 該梯次目前參加人數
   const [batch_member, setBatch_member] = useState(0);
   // 全部評論給的分數(下面迴圈加)
   const [course_Score, setCourse_Score] = useState(0);
   // 該堂幾人評論
   const [course_Score_member, setCourse_Score_member] = useState(0);
+  // 該課程id
+  const [course_id, setCourse_id] = useState(0);
 
   useEffect(async () => {
     try {
@@ -125,19 +129,19 @@ function CourseInfomation(props) {
         result.data.course[0].chef_introduction
       );
       result.data.course[0].course_detail = JSON.parse(
-      result.data.course[0].course_detail
+        result.data.course[0].course_detail
       );
       console.log(result.data.course_comment[0]);
       setNewCourseJSON(result.data.course);
-      setCourse_batchJSON(result.data.course_batch)
-      setCourse_Score(result.data.course_comment)
-      setCourse_Score_member(result.data.course_comment.length)
-      console.log(result.data)
-      return
+      setBatch_id(result.data.course_batch[0].id);
+      setCourse_batchJSON(result.data.course_batch);
+      setCourse_Score(result.data.course_comment);
+      setCourse_Score_member(result.data.course_comment.length);
+      setCourse_id(id_number);
+      return;
     } catch (error) {
       console.log(error);
       // alert("似乎沒有這堂課的資料哦!\n即將導回首頁")
-      alert(error)
       // window.location.href='http://localhost:3000/';
     }
   }, []);
@@ -191,8 +195,15 @@ function CourseInfomation(props) {
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
+    setCheckoutCourse({
+      member_id: currentUser ? currentUser.id : undefined,
+      course_id: course_id ? course_id : undefined,
+      batch_id: batch_id ? batch_id : undefined,
+      cartCourseCount: 1,
+    })
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e == course_batchJSON[i].batch_date) {
+        setBatch_id(course_batchJSON[i].id);
         setBatch_member(course_batchJSON[i].member_count);
         console.log(batch_member);
       }
@@ -203,7 +214,10 @@ function CourseInfomation(props) {
     newCourseJSON[0].company_address +
     "&z=16&output=embed&t=";
 
-    const [articleData, setArticleData] = useState([{member_id:1},{article_id:1}]);
+  const [articleData, setArticleData] = useState([
+    { member_id: 1 },
+    { article_id: 1 },
+  ]);
 
   const cart_deliver = () => {
     Swal.fire({
@@ -219,6 +233,8 @@ function CourseInfomation(props) {
 
   return (
     <>
+    {console.log(batch_id)}
+    {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -252,7 +268,13 @@ function CourseInfomation(props) {
                   <span>
                     本梯次總名額&nbsp;{newCourseJSON[0].member_limit}
                     &nbsp;位&nbsp;/&nbsp;
-                    {batch_member == newCourseJSON[0].member_limit ? "已經額滿囉！":"剩餘名額"+" "+(newCourseJSON[0].member_limit - batch_member)+ " " + "位"}
+                    {batch_member == newCourseJSON[0].member_limit
+                      ? "已經額滿囉！"
+                      : "剩餘名額" +
+                        " " +
+                        (newCourseJSON[0].member_limit - batch_member) +
+                        " " +
+                        "位"}
                   </span>
                 </div>
                 <StarGroup
@@ -283,7 +305,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li>
-                      <Link to="/course">課程探索</Link>
+                      <Link to="/courses/category?All">課程探索</Link>
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name Coursedetail-mapClose">
@@ -334,7 +356,7 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-infoLeftJoin">
                   <ul>
                     <li
-                      onClick={() => {
+                      onClick={async () => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -345,7 +367,9 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        } else if (batch_member == newCourseJSON[0].member_limit){
+                        } else if (
+                          batch_member == newCourseJSON[0].member_limit
+                        ) {
                           Swal.fire({
                             // title: "",
                             icon: "warning",
@@ -355,6 +379,14 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
+                        } else {
+                          await clearNewAddCourse();
+                          addCourseIntoCart(
+                            currentUser.id,
+                            Number(id_number),
+                            batch_id,
+                          );
+                          
                         }
                       }}
                     >
@@ -362,7 +394,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li
-                      onClick={() => {
+                      onClick={async() => {
                         if (batch === "尚未選擇") {
                           Swal.fire({
                             // title: "",
@@ -373,7 +405,9 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        }　 else if (batch_member == newCourseJSON[0].member_limit){
+                        } else if (
+                          batch_member == newCourseJSON[0].member_limit
+                        ) {
                           Swal.fire({
                             // title: "",
                             icon: "warning",
@@ -383,6 +417,20 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
+                        } else {
+                          await setCheckoutCourse({
+                            member_id: currentUser ? currentUser.id : undefined,
+                            course_id: course_id ? course_id : undefined,
+                            batch_id: batch_id ? batch_id : undefined,
+                            cartCourseCount: 1,
+                          });
+                          if(checkoutCourse.member_id === undefined || checkoutCourse.course_id === undefined || checkoutCourse.batch_id === undefined){
+                              console.log(checkoutCourse )
+                              return;
+                          } else {
+                              return window.location.href =
+                              "http://localhost:3000/ShoppingCart";
+                          }
                         }
                       }}
                     >
@@ -390,7 +438,7 @@ function CourseInfomation(props) {
                     </li>
                     <li>|</li>
                     <li onClick={() => {
-                          window.location.href = "#discuss";
+                          window.location.href = "#Comment";
                     }}>評論區</li>
                   </ul>
                 </div>
@@ -706,10 +754,13 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-joinLineWidth">
                   <div className="Coursedetail-joinLine"></div>
                 </div>
+                <div className="Coursedetail-textArea">
                 <p>喜歡這堂課嗎?</p>
                 <p>歡迎加入我們</p>
                 <p>成為Umai的一員</p>
                 <p>讓我們帶您前往美食的世界</p>
+                </div>
+                <div className="Coursedetail-finallyJoin">
                 <p
                   className="Coursedetail-joinNow"
                   onClick={() => {
@@ -719,14 +770,25 @@ function CourseInfomation(props) {
                     }
                   }}
                 >
-                  點擊我立即加入！
+                  加入購物車
                 </p>
+                <p>|</p>
+                <p
+                  className="Coursedetail-joinNow"
+                  onClick={() => {
+                    if (batch === "尚未選擇") {
+                      window.location.href = "#batch";
+                      alert("請先選擇梯次日期後再點擊");
+                    }
+                  }}
+                >
+                   立即加入！
+                </p>
+                </div>
               </span>
               <img src={Join} alt=""></img>
             </div>
-            <CourseCommit 
-              course_comment={course_Score}
-            />
+            <CourseCommit course_comment={course_Score} />
           </div>
         </div>
       </div>

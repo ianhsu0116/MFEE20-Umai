@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Swal from "sweetalert2";
 import CourseService from "../../services/course.service";
 import getValidMessage from "../../validMessage/validMessage";
@@ -7,7 +7,7 @@ import CalendarMulti from "../../components/CalendarMulti";
 import Button from "../../components/Button";
 import ErrorMessage from "../../components/ErrorMessage";
 import { mergeSort } from "../../config/formula";
-import { FaPen } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 
 // 給下方的兩個map使用（因 label 對應的 id 值不能相同，故 id 的值用下列這些來代替）
 let sixDishesArray = [11, 22, 33, 44, 55, 66];
@@ -15,26 +15,24 @@ let sliderArray = [111, 222, 333];
 
 // 送出資料前 "錯誤判斷時"，需判斷的欄位
 let validCheckArray = [
-  "slider_images",
+  "course_name",
+  "company_name",
+  "company_address",
   "time_of_course",
+  "course_hour",
+  "course_batch",
+  "course_level",
+  "category_id",
+  "member_limit",
+  "course_price",
   "course_ig",
   "course_fb",
   "title1_1",
   "title1_2",
   "content1",
   "title2",
-  "six_dishes",
   "content2",
   "content3",
-  "course_name",
-  "course_price",
-  "course_hour",
-  "course_level",
-  "member_limit",
-  "company_name",
-  "company_address",
-  "category_id",
-  "course_batch",
 ];
 
 const CourseInsert = (props) => {
@@ -256,27 +254,100 @@ const CourseInsert = (props) => {
     }
   };
 
+  // 非圖片的所有input
+  const infoRef = useMemo(
+    () =>
+      Array(18)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+  // 六道教材的相關input(title)
+  const sixDishesRef = useMemo(
+    () =>
+      Array(6)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+  // 六道教材的相關input(content)
+  const sixDishesRef2 = useMemo(
+    () =>
+      Array(6)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+  // 圖片的所有input
+  const imageRef = useMemo(
+    () =>
+      Array(9)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+
   // 送出課程資料
   const handleCourseInsert = async (e) => {
+    // 先拿掉所有errorInput的calssName
+    new Array(18).fill(0).forEach((item, i) => {
+      infoRef[i].current.classList.remove("inputError-red");
+    });
+    new Array(9).fill(0).forEach((item, i) => {
+      imageRef[i].current.classList.remove("inputError-red");
+    });
+    new Array(6).fill(0).forEach((item, i) => {
+      sixDishesRef[i].current.classList.remove("inputError-red");
+      sixDishesRef2[i].current.classList.remove("inputError-red");
+    });
+
     // 錯誤判斷 (非圖片類別的所有欄位)
     let isError = false;
-    validCheckArray.forEach((item) => {
+    validCheckArray.forEach((item, index) => {
       if (!courseDetail[item]) {
+        //console.info(infoRef[index]);
+        infoRef[index].current.classList.add("inputError-red");
         isError = true;
-      } else if (courseDetail.course_batch.length === 0) {
+      }
+
+      if (item === "course_batch") {
+        if (courseDetail.course_batch.length === 0) {
+          // console.log(infoRef[index]);
+          infoRef[index].current.classList.add("inputError-red");
+          isError = true;
+        }
+      }
+    });
+
+    // 六道菜的內文錯誤判斷(任意欄位沒填寫就阻擋)
+    courseDetail.six_dishes.forEach((item, index) => {
+      if (!item.dishes_image || !item.dishes_title || !item.dishes_content) {
         isError = true;
+      }
+      // 單獨判斷title
+      if (!item.dishes_title) {
+        isError = true;
+        sixDishesRef[index].current.classList.add("inputError-red");
+      }
+
+      // 單獨判斷content
+      if (!item.dishes_content) {
+        isError = true;
+        sixDishesRef2[index].current.classList.add("inputError-red");
       }
     });
 
     // 圖片部分錯誤判斷
-    sliderImage.forEach((item) => {
+    sliderImage.forEach((item, index) => {
       if (!item) {
         isError = true;
+        imageRef[index].current.classList.add("inputError-red");
       }
     });
-    sixDishesImage.forEach((item) => {
+    sixDishesImage.forEach((item, index) => {
       if (!item) {
         isError = true;
+        imageRef[index + 3].current.classList.add("inputError-red");
       }
     });
     if (isError) return setErrorMsg("請確認每個欄位都填寫完畢再提交！");
@@ -301,9 +372,12 @@ const CourseInsert = (props) => {
         timer: 1500,
       });
     } catch (error) {
-      // console.log(error.response);
-      let { code } = error.response.data;
-      setErrorMsg(getValidMessage("course", code));
+      console.log(error);
+      if (error.response) {
+        // console.log(error.response);
+        let { code } = error.response.data;
+        setErrorMsg(getValidMessage("course", code));
+      }
     }
   };
 
@@ -328,6 +402,7 @@ const CourseInsert = (props) => {
                 name="course_name"
                 value={courseDetail.course_name}
                 onChange={handleCourseChange}
+                ref={infoRef[0]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="50"
@@ -348,6 +423,7 @@ const CourseInsert = (props) => {
                 name="company_name"
                 value={courseDetail.company_name}
                 onChange={handleCourseChange}
+                ref={infoRef[1]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="50"
@@ -366,6 +442,7 @@ const CourseInsert = (props) => {
                 name="company_address"
                 value={courseDetail.company_address}
                 onChange={handleCourseChange}
+                ref={infoRef[2]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="70"
@@ -384,11 +461,12 @@ const CourseInsert = (props) => {
                     <label
                       htmlFor={item}
                       className="CourseInsert-container-row-inputCon-sliderImage-label"
+                      ref={imageRef[index]}
                     >
                       {sliderImage[index] ? (
                         <img src={sliderImage[index]} alt="Slider圖片預覽" />
                       ) : (
-                        <FaPen />
+                        <FaPencilAlt />
                       )}
                     </label>
                     <input
@@ -417,6 +495,7 @@ const CourseInsert = (props) => {
                 name="time_of_course"
                 value={courseDetail.time_of_course}
                 onChange={handleCourseChange}
+                ref={infoRef[3]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="50"
@@ -435,6 +514,7 @@ const CourseInsert = (props) => {
                 name="course_hour"
                 value={courseDetail.course_hour}
                 onChange={handleCourseChange}
+                ref={infoRef[4]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="number"
                 max="24"
@@ -450,7 +530,10 @@ const CourseInsert = (props) => {
               >
                 開課梯次
               </label>
-              <CalendarMulti onChange={handleBatchChange} />
+              <CalendarMulti
+                onChange={handleBatchChange}
+                infoRef={infoRef[5]}
+              />
             </div>
             <div className="CourseInsert-container-row-inputCon">
               <label
@@ -464,6 +547,7 @@ const CourseInsert = (props) => {
                 id="course_level"
                 className="CourseInsert-container-row-inputCon-input"
                 onChange={handleCourseChange}
+                ref={infoRef[6]}
               >
                 <option value="1">高階</option>
                 <option value="2">中階</option>
@@ -484,6 +568,7 @@ const CourseInsert = (props) => {
                 id="category_id"
                 className="CourseInsert-container-row-inputCon-input"
                 onChange={handleCourseChange}
+                ref={infoRef[7]}
                 value={courseDetail.category_id}
               >
                 <option value="1">日式料理</option>
@@ -506,6 +591,7 @@ const CourseInsert = (props) => {
                 name="member_limit"
                 value={courseDetail.member_limit}
                 onChange={handleCourseChange}
+                ref={infoRef[8]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="2"
@@ -523,6 +609,7 @@ const CourseInsert = (props) => {
                 name="course_price"
                 value={courseDetail.course_price}
                 onChange={handleCourseChange}
+                ref={infoRef[9]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="4"
@@ -542,6 +629,7 @@ const CourseInsert = (props) => {
                 name="course_ig"
                 value={courseDetail.course_ig}
                 onChange={handleCourseChange}
+                ref={infoRef[10]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="100"
@@ -560,6 +648,7 @@ const CourseInsert = (props) => {
                 name="course_fb"
                 value={courseDetail.course_fb}
                 onChange={handleCourseChange}
+                ref={infoRef[11]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="100"
@@ -584,6 +673,7 @@ const CourseInsert = (props) => {
                 name="title1_1"
                 value={courseDetail.title1_1}
                 onChange={handleCourseChange}
+                ref={infoRef[12]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="ˇ30"
@@ -604,6 +694,7 @@ const CourseInsert = (props) => {
                 name="title1_2"
                 value={courseDetail.title1_2}
                 onChange={handleCourseChange}
+                ref={infoRef[13]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="30"
@@ -626,6 +717,7 @@ const CourseInsert = (props) => {
                 rows="10"
                 value={courseDetail.content1}
                 onChange={handleCourseChange}
+                ref={infoRef[14]}
                 maxLength="380"
                 placeholder="信じられない！とても美味しい！..."
               ></textarea>
@@ -644,6 +736,7 @@ const CourseInsert = (props) => {
                 name="title2"
                 value={courseDetail.title2}
                 onChange={handleCourseChange}
+                ref={infoRef[15]}
                 className="CourseInsert-container-row-inputCon-input"
                 type="text"
                 maxLength="50"
@@ -664,11 +757,12 @@ const CourseInsert = (props) => {
                   <label
                     htmlFor={item}
                     className="CourseInsert-container-row-inputCon-sixDishes-label"
+                    ref={imageRef[index + 3]}
                   >
                     {sixDishesImage[index] ? (
                       <img src={sixDishesImage[index]} alt="sixImage圖片預覽" />
                     ) : (
-                      <FaPen />
+                      <FaPencilAlt />
                     )}
                   </label>
                   <input
@@ -689,6 +783,7 @@ const CourseInsert = (props) => {
                       value={courseDetail.six_dishes[index].dishes_title}
                       placeholder="課程教材名稱..."
                       maxLength="10"
+                      ref={sixDishesRef[index]}
                     />
                     <textarea
                       name="dishes_content"
@@ -699,6 +794,7 @@ const CourseInsert = (props) => {
                       value={courseDetail.six_dishes[index].dishes_content}
                       placeholder="課程教材詳細介紹..."
                       maxLength="200"
+                      ref={sixDishesRef2[index]}
                     ></textarea>
                   </div>
                 </div>
@@ -720,6 +816,7 @@ const CourseInsert = (props) => {
                 rows="7"
                 value={courseDetail.content2}
                 onChange={handleCourseChange}
+                ref={infoRef[16]}
                 maxLength="340"
                 placeholder="請條列式述敘..."
               ></textarea>
@@ -740,6 +837,7 @@ const CourseInsert = (props) => {
                 rows="7"
                 value={courseDetail.content3}
                 onChange={handleCourseChange}
+                ref={infoRef[17]}
                 maxLength="340"
                 placeholder="請條著名此課程需要注意的事宜..."
               ></textarea>

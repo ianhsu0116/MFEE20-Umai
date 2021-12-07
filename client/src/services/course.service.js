@@ -6,9 +6,55 @@ dotenv.config();
 const COURSE_API_URL = API_URL + "/course";
 
 class CourseService {
-  // 根據course_id拿到購物車所需的課程資料(cart)
-  course_cart(course_id, batch_date) {
-    return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_date}`, {
+
+  // 根據member_id拿到購物車所需的全部課程資料 (cart)
+  getAllCourseObject(member_id) {
+    return axios.get(COURSE_API_URL + `/cart/${member_id}`, {
+      withCredentials: true,
+    });
+  }
+
+  // 根據course_id與batch_id拿到購物車所需的單筆課程資料 (cart)
+  getOneCourseObject(course_id, batch_id) {
+    return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_id}`, {
+      withCredentials: true,
+    });
+  }
+
+  //檢查購物車資料庫中是否已經有此課程
+  IfCourseInCart(member_id, course_id, batch_id) {
+    return axios.get(
+      COURSE_API_URL + `/cart/${member_id}/${course_id}/${batch_id}`,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  // 根據course_id把課程加入購物車資料庫(Update)
+  UpdateCart(member_id, course_id, batch_id) {
+    return axios.put(
+      COURSE_API_URL + `/cart/${member_id}`,
+      { course_id, batch_id },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+  // 根據course_id把課程加入購物車資料庫(cart)
+  addCourseIntoCart(member_id, course_id, batch_id) {
+    return axios.post(
+      COURSE_API_URL + `/cart/${member_id}`,
+      { course_id, batch_id },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  // 根據course_name拿到搜尋結果的課程資料(cart)
+  CourseSearch(searchValue) {
+    return axios.get(COURSE_API_URL + `/?search=${searchValue}`, {
       withCredentials: true,
     });
   }

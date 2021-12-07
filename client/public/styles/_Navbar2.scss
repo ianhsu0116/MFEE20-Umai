@@ -84,23 +84,6 @@
             cursor: pointer;
           }
 
-          // .Navbar-container-item-CourseDiscover-dropdown-hoverZone,
-          // .Navbar-container-item-ExperienceShare-dropdown-hoverZone {
-          //   visibility: visible;
-          //   position: absolute;
-          //   top: var(--navbar-height);
-          //   display: block;
-          //   height: 1rem;
-          //   width: calc(15rem + 5vw);
-          //   background: transparent;
-          //   &:hover + .Navbar-container-item-CourseDiscover-dropdown,
-          //   &:hover + .Navbar-container-item-ExperienceShare-dropdown {
-          //     visibility: visible;
-          //     opacity: 1;
-          //     box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
-          //   }
-          // }
-
           &:hover .Navbar-container-item-CourseDiscover-dropdown,
           &:hover .Navbar-container-item-ExperienceShare-dropdown {
             visibility: visible;

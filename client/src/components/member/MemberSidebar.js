@@ -11,7 +11,7 @@ import { ImGift } from "react-icons/im";
 import { HiOutlineLogout } from "react-icons/hi";
 import { VscListUnordered } from "react-icons/vsc";
 import { MdBookmarkBorder, MdOutlineFavoriteBorder } from "react-icons/md";
-import { FaPen, FaIdCard } from "react-icons/fa";
+import { FaPen, FaIdCard, FaPencilAlt } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
 import avatar from "../images/avatar.svg";
 
@@ -234,7 +234,7 @@ const MemberSidebar = (props) => {
                   />
                 )}
               </label>
-              <FaPen className="MemberSidebar-container-avatar-pen" />
+              <FaPencilAlt className="MemberSidebar-container-avatar-pen" />
             </div>
             {!nickNameOpen && (
               <div
@@ -245,7 +245,7 @@ const MemberSidebar = (props) => {
                   currentUser.nick_name &&
                   `${currentUser.nick_name}`}
                 {currentUser && !currentUser.nick_name && `哈囉！`}
-                <FaPen className="MemberSidebar-container-mamberName-pen" />
+                <FaPencilAlt className="MemberSidebar-container-mamberName-pen" />
               </div>
             )}
             {nickNameOpen && (

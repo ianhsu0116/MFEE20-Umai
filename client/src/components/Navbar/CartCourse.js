@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { numDotFormat } from "../../config/formula";
+import courseService from "../../services/course.service";
 
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -15,6 +16,7 @@ const CartCourse = (props) => {
     setSumCartCoursePrice,
     handleSumPriceZeroing,
     addCourseIntoCart,
+    currentUser,
   } = props;
 
   //特定課程金額小計
@@ -23,8 +25,8 @@ const CartCourse = (props) => {
   //課堂報名人數減一
   async function handleCountMinus() {
     let newCartCourseInfoList = cartCourseInfoList;
-    //數量不可小於0
-    if (newCartCourseInfoList[index].cartCourseCount > 0) {
+    //數量不可小於1
+    if (newCartCourseInfoList[index].cartCourseCount > 1) {
       newCartCourseInfoList[index].cartCourseCount =
         CurrentInfoObject.cartCourseCount - 1;
     }

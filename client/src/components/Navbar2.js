@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
@@ -15,13 +16,12 @@ import Swal from "sweetalert2";
 import CartCourse from "./Navbar/CartCourse";
 import { empty } from "statuses";
 import getValidMessage from "../validMessage/validMessage";
+import axios from "axios";
 
 const Navbar = (props) => {
   let {
     handleLoginClick,
     currentUser,
-    SearchKeywordTagList,
-    SearchCourseList,
     isActiveCourseSearch,
     handleToggleCourseSearch,
     checkoutList,
@@ -94,7 +94,30 @@ const Navbar = (props) => {
   }
 
   //搜尋內容
+  const SearchKeywordTagList = [
+    "創意壽司",
+    "義大利麵",
+    "紅酒燉牛肉",
+    "獵人燉雞",
+  ];
   const [searchValue, setSearchValue] = useState("");
+  const [SearchCourseList, setSearchCourseList] = useState([]);
+
+  useEffect(async () => {
+    if (searchValue === "") {
+      setSearchCourseList([]);
+      return;
+    }
+
+    let result = await axios.post(
+      "http://localhost:8080/api/course/searchcourse",
+      { searchValue: searchValue },
+      {
+        withCredentials: true,
+      }
+    );
+    setSearchCourseList(result.data.course);
+  }, [searchValue]);
 
   //刪除搜尋內容
   async function handleSearchValueDelete() {
@@ -196,7 +219,6 @@ const Navbar = (props) => {
   };
 
   return (
-    <>
     <div className="Header">
       <div className={`Navbar ${active ? "Navbar-active" : ""}`}>
         <div className="Navbar-container">
@@ -210,11 +232,14 @@ const Navbar = (props) => {
 
             {/* 課程探索 */}
             <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
+              <button
+                className="Navbar-container-item-btn Navbar-container-item-CourseDiscover Navbar-container-item-CourseSearch"
                 //  12/4 亭
-                 onClick={() => {
-                 window.location.href='http://localhost:3000/courses/category?all'
-                }}>
+                onClick={() => {
+                  window.location.href =
+                    "http://localhost:3000/courses/category?all";
+                }}
+              >
                 課程探索
               </button>
               {/* 下拉式選單 */}
@@ -223,20 +248,27 @@ const Navbar = (props) => {
                 <ul>
                   {CourseCategoryListLeft.map((cate) => (
                     <li
-                     //  12/4 亭
-                     onClick={() => {
-                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
-                     }}>{cate}</li>
+                      //  12/4 亭
+                      onClick={() => {
+                        window.location.href =
+                          "http://localhost:3000/courses/category?" + `${cate}`;
+                      }}
+                    >
+                      {cate}
+                    </li>
                   ))}
                 </ul>
                 <ul>
                   {CourseCategoryListRight.map((cate) => (
                     <li
-                     //  12/4 亭
-                     onClick={() => {
-                      window.location.href='http://localhost:3000/courses/category?'+`${cate}`
-                     }}
-                     >{cate}</li>
+                      //  12/4 亭
+                      onClick={() => {
+                        window.location.href =
+                          "http://localhost:3000/courses/category?" + `${cate}`;
+                      }}
+                    >
+                      {cate}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -488,23 +520,25 @@ const Navbar = (props) => {
               ))}
             </div>
             <div className="SearchCourseList">
-              {SearchCourseList.map((Course) => (
-                <div
-                  className="recommandCourse"
-                  title={Course}
-                  onClick={(e) => {
-                    setSearchValue(e.target.title);
-                  }}
-                >
-                  {Course}
-                </div>
-              ))}
+              {SearchCourseList.map((Course, i) => {
+                if (i <= 4)
+                  return (
+                    <div
+                      className="recommandCourse"
+                      title={Course.course_name}
+                      onClick={(e) => {
+                        window.location.href = `http://localhost:3000/courses/${Course.id}`;
+                      }}
+                    >
+                      {Course.course_name}
+                    </div>
+                  );
+              })}
             </div>
           </div>
         </div>
       ) : null}
     </div>
-    </>
   );
 };
 
