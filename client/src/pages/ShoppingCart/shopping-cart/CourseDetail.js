@@ -69,7 +69,7 @@ function CourseDetail(props) {
           </td>
           <td>
             <h5>
-              NT${" "}
+              -NT${" "}
               {Math.floor(
                 coursetitle.value *
                   coursetitle.studentnumber *

@@ -47,7 +47,7 @@ function CourseDetail(props){
             </tr>
             <tr>
                 <td><h5>優惠折扣</h5></td>
-                <td><h5>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h5></td>
+                <td><h5>-NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h5></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
