@@ -582,18 +582,18 @@ const Navbar = (props) => {
                         </div>
                         <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
                           {/* 結帳按鈕 */}
-                          <div
-                            className="goCheckOut"
-                            onClick={() => {
-                              handleCheckout();
-                            }}
-                          >
                             <Link
                               to={{ pathname: link, state: { data: data } }}
                             >
+                            <div
+                            className="goCheckOut"
+                            onClick={() => {
+                              // handleCheckout();
+                            }}
+                          >
                               <h5>前往結帳</h5>
-                            </Link>
                           </div>
+                            </Link>
                         </div>
                       </div>
                     </div>
