@@ -68,6 +68,8 @@ router.get("/cart/:member_id", async (req, res) => {
       `SELECT cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE cart_and_collection.inCart = 1 AND cart_and_collection.member_id = ?`,
       [member_id]
     );
+    console.log("inCart");
+    console.log(inCart);
 
     //生成課程id陣列
     let courseIds = inCart.map((obj) => {
@@ -78,6 +80,8 @@ router.get("/cart/:member_id", async (req, res) => {
     courseIds = courseIds.filter(function (ele, idx) {
       return courseIds.indexOf(ele) == idx;
     });
+    console.log("courseIds");
+    console.log(courseIds);
 
     //生成梯次id陣列
     let batchIds = inCart.map((obj) => {
@@ -88,6 +92,8 @@ router.get("/cart/:member_id", async (req, res) => {
     batchIds = batchIds.filter(function (ele, idx) {
       return batchIds.indexOf(ele) == idx;
     });
+    console.log("batchIds");
+    console.log(batchIds);
 
     // 拿到課程資料(join course_batch)
     let result = await connection.queryAsync(
@@ -103,6 +109,8 @@ router.get("/cart/:member_id", async (req, res) => {
     courseInfoInCart = courseInfo.map((obj) => {
       return { ...obj, cartCourseCount: 1 };
     });
+    console.log("courseInfoInCart");
+    console.log(courseInfoInCart);
 
     res
       .status(200)
@@ -408,19 +416,6 @@ router.get("/:course_id", async (req, res) => {
       .json({ success: true, course, course_batch, course_comment });
   } catch (error) {
     // console.log(error);
-    res.status(500).json({ success: false, code: "E999", message: error });
-  }
-});
-
-// 根據course_id把課程加入購物車資料庫(cart)
-router.get("/course/recommend", async (req, res) => {
-  try {
-    let recommend = await connection.queryAsync(
-      "Select course.* From course Where valid = 1 ORDER BY RAND() LIMIT 3"
-    );
-    res.status(200).json({ success: true, recommend });
-  } catch (error) {
-    console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });

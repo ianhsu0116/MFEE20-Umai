@@ -40,6 +40,10 @@ function CourseInfomation(props) {
     setCheckoutCourse,
     cartCourseInfoList,
     setCartCourseInfoList,
+    data,
+    setData,
+    link,
+    setLink,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -117,9 +121,6 @@ function CourseInfomation(props) {
       member_id: "",
     },
   ]);
-
-  const [link, setLink] = useState("/");
-  const [data, setData] = useState({});
 
   // Data 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
@@ -234,19 +235,23 @@ function CourseInfomation(props) {
         setData(
           JSON.stringify({
             member_id: currentUser ? currentUser.id : "",
-            course_id: id_number ? id_number : "",
+            course_id: course_batchJSON[i].course_id
+              ? course_batchJSON[i].course_id
+              : "",
             batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
             cartCourseCount: 1,
           })
         );
+        setCheckoutCourse({
+          member_id: currentUser ? currentUser.id : "",
+          course_id: course_batchJSON[i].course_id
+            ? course_batchJSON[i].course_id
+            : "",
+          batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+          cartCourseCount: 1,
+        });
       }
     }
-    setCheckoutCourse({
-      member_id: currentUser ? currentUser.id : "",
-      course_id: id_number ? id_number : "",
-      batch_id: batch_id ? batch_id : "",
-      cartCourseCount: 1,
-    });
     setLink("/shoppingCart");
   };
   let googleMap =
@@ -273,6 +278,8 @@ function CourseInfomation(props) {
 
   return (
     <>
+      {console.log(batch_id)}
+      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -418,7 +425,9 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else {
-                          await clearNewAddCourse();
+                          //清空新增課程state
+                          // await clearNewAddCourse();
+                          // 把課程加入購物車資料庫
                           addCourseIntoCart(
                             currentUser.id,
                             Number(id_number),
@@ -823,10 +832,38 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-finallyJoin">
                   <p
                     className="Coursedetail-joinNow"
-                    onClick={() => {
+                    onClick={async () => {
                       if (batch === "尚未選擇") {
-                        window.location.href = "#batch";
-                        alert("請先選擇梯次日期後再點擊");
+                        await Swal.fire({
+                          title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "請先選擇日期後再點擊",
+                        }).then(function () {
+                          window.location.href = "#batch";
+                        });
+                      } else if (
+                        batch_member === newCourseJSON[0].member_limit
+                      ) {
+                        Swal.fire({
+                          // title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                        }).then(function () {
+                          // window.location.reload();
+                        });
+                      } else {
+                        //清空新增課程state
+                        await clearNewAddCourse();
+                        // 把課程加入購物車資料庫
+                        addCourseIntoCart(
+                          currentUser.id,
+                          Number(id_number),
+                          batch_id
+                        );
                       }
                     }}
                   >
@@ -835,14 +872,46 @@ function CourseInfomation(props) {
                   <p>|</p>
                   <p
                     className="Coursedetail-joinNow"
-                    onClick={() => {
+                    onClick={async () => {
                       if (batch === "尚未選擇") {
-                        window.location.href = "#batch";
-                        alert("請先選擇梯次日期後再點擊");
+                        Swal.fire({
+                          // title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "請先選擇日期後再點擊",
+                        }).then(function () {
+                          // window.location.reload();
+                        });
+                      } else if (
+                        batch_member === newCourseJSON[0].member_limit
+                      ) {
+                        Swal.fire({
+                          // title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                        }).then(function () {
+                          // window.location.reload();
+                        });
+                      } else {
+                        // console.log("checkoutCourse");
+                        // console.log(checkoutCourse);
+
+                        if (
+                          checkoutCourse.member_id === undefined ||
+                          checkoutCourse.course_id === undefined ||
+                          checkoutCourse.batch_id === undefined
+                        ) {
+                          // return;
+                        }
                       }
                     }}
                   >
-                    立即加入！
+                    <Link to={{ pathname: link, state: { data: data } }}>
+                      現在報名
+                    </Link>
                   </p>
                 </div>
               </span>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { PUBLIC_URL } from "../config/config";
 import { numDotFormat } from "../config/formula";
 import OrderService from "../services/order.service";
+import courseService from "../services/course.service";
 
 import { GoSearch } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
@@ -24,15 +25,64 @@ const Navbar = (props) => {
     currentUser,
     isActiveCourseSearch,
     handleToggleCourseSearch,
-    cartCourseInfoList,
-    setCartCourseInfoList,
+    // cartCourseInfoList,
+    // setCartCourseInfoList,
     checkoutCourse,
     setCheckoutCourse,
     newAddCourse,
     setNewAddCourse,
     clearNewAddCourse,
+    sumCartCoursePrice,
+    setSumCartCoursePrice,
     addCourseIntoCart,
+    data,
+    setData,
+    link,
+    setLink,
   } = props;
+
+  //儲存購物車的課程資訊
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  // [{
+  //   course_id: "",
+  //   member_id: "",
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_id: "", //(course_batch table)
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // }]
+
+  //課程分類左
+  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
+  //課程分類右
+  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
+
+  //體驗分享左
+  const ExperienceShareListLeft = ["故事牆"];
+  //體驗分享右
+  const ExperienceShareListRight = ["討論區"];
+
+  // 錯誤訊息
+  const [errorMsg, setErrorMsg] = useState("");
+  // 判斷購物車中是否只有一堂課
+  const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
+
+  //搜尋內容
+  const SearchKeywordTagList = [
+    "創意壽司",
+    "義大利麵",
+    "紅酒燉牛肉",
+    "獵人燉雞",
+  ];
+
+  const [searchValue, setSearchValue] = useState("");
+  const [SearchCourseList, setSearchCourseList] = useState([]);
+
+  const [checkoutList, setCheckoutList] = useState("");
 
   const [active, setActive] = useState("");
   useEffect(() => {
@@ -49,64 +99,6 @@ const Navbar = (props) => {
       handleToggleCourseSearch("close");
     });
   }, []);
-
-  //課程分類左
-  const CourseCategoryListLeft = ["日式料理", "法式料理", "中式料理"];
-  //課程分類右
-  const CourseCategoryListRight = ["韓式料理", "義式料理", "經典調飲"];
-
-  //體驗分享左
-  const ExperienceShareListLeft = ["故事牆"];
-  //體驗分享右
-  const ExperienceShareListRight = ["討論區"];
-
-  // {
-  //   id: "",
-
-  //   member_id: "",
-  //   category_id: "",
-  //   course_image: "",
-  //   course_name: "",
-  //   course_price: "",
-  //   member_limit: "",
-
-  //   batch_id: "", //(course_batch table)(alia)
-  //   batch_date: "", //(course_batch table)
-  //   member_count: "", //(course_batch table)
-  //   cartCourseCount: 1, //(notInDB)
-  // },
-  // course.member_id, course.category_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id, course_batch,batch_date, course_batch.member_count FROM course, course_batch
-
-  // 錯誤訊息
-  const [errorMsg, setErrorMsg] = useState("");
-  // 判斷購物車中是否只有一堂課
-  const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
-
-  //當前選購課程的總數量
-  const numberOfCoursesInCart = cartCourseInfoList?.length;
-
-  //當前購物車總金額
-  const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
-
-  //當購物車沒課程時，將總金額歸零
-  async function handleSumPriceZeroing() {
-    if (numberOfCoursesInCart === 0) {
-      setCartCourseInfoList([]);
-      setSumCartCoursePrice(0);
-    }
-  }
-  //搜尋內容
-  const SearchKeywordTagList = [
-    "創意壽司",
-    "義大利麵",
-    "紅酒燉牛肉",
-    "獵人燉雞",
-  ];
-
-  const [searchValue, setSearchValue] = useState("");
-  const [SearchCourseList, setSearchCourseList] = useState([]);
-
-  const [checkoutList, setCheckoutList] = useState("");
 
   useEffect(async () => {
     if (searchValue === "") {
@@ -127,6 +119,80 @@ const Navbar = (props) => {
   //刪除搜尋內容
   async function handleSearchValueDelete() {
     setSearchValue("");
+  }
+
+  // 拿到購物車所需的全部課程資料，並加入購物車
+  async function getAllCourseObject(member_id) {
+    // 根據member_id拿到購物車所需的全部課程資料 (cart)
+    let result = await courseService.getAllCourseObject(member_id);
+    let newCartCourseInfoList = result.data.courseInfoInCart;
+    setCartCourseInfoList([...newCartCourseInfoList]);
+    console.log("newCartCourseInfoList");
+    console.log(newCartCourseInfoList);
+  }
+
+  // 重新整理購物車資訊、計算總金額
+  async function refreshCartCourse() {
+    let newCartCourseInfoList;
+    if (!ifNoCourseInCart) {
+      newCartCourseInfoList = cartCourseInfoList?.filter((obj) => {
+        return obj.cartCourseCount > 0;
+      });
+    } else {
+      newCartCourseInfoList = [];
+    }
+    //會影響cartCourseInfoList，放在useEffect時要小心
+    setCartCourseInfoList(newCartCourseInfoList);
+    //計算當前購物車總金額
+    getSumCartCoursePrice();
+  }
+
+  //判斷購物車是否為沒課程的狀態
+  const [ifNoCourseInCart, setIfNoCourseInCart] = useState(true);
+  //當購物車沒課程時，改變狀態判斷
+  function handleIfCourseInCart() {
+    if (
+      !cartCourseInfoList ||
+      cartCourseInfoList === [] ||
+      cartCourseInfoList?.length === 0
+    ) {
+      setIfNoCourseInCart(true);
+    } else {
+      setIfNoCourseInCart(false);
+    }
+  }
+  //當購物車沒課程時，將總金額歸零
+  async function handleSumPriceZeroing() {
+    if (ifNoCourseInCart) {
+      setSumCartCoursePrice(0);
+    }
+  }
+
+  //計算當前購物車總金額
+  async function getSumCartCoursePrice() {
+    if (!ifNoCourseInCart) {
+      let subtotalList;
+      let newSumCartCoursePrice;
+      if (cartCourseInfoList !== []) {
+        //產生金額小計陣列
+        subtotalList = cartCourseInfoList?.map((obj) => {
+          return obj?.course_price * obj?.cartCourseCount;
+        });
+        //計算總價
+        newSumCartCoursePrice = subtotalList?.reduce((acc, v) => {
+          return acc + v, 0;
+        });
+      }
+      if (newSumCartCoursePrice) {
+        console.log("subtotalList");
+        console.log(subtotalList);
+        console.log("newSumCartCoursePrice");
+        console.log(newSumCartCoursePrice);
+        setSumCartCoursePrice(numDotFormat(newSumCartCoursePrice));
+      }
+    } else {
+      setSumCartCoursePrice(0);
+    }
   }
 
   //確認購物車是否只有一堂課程
@@ -231,6 +297,17 @@ const Navbar = (props) => {
     }
   };
 
+  // 控制購物車容器開合
+  const [cartConOpen, setCartConOpen] = useState(false);
+  const handleCartConOpen = () => {
+    // console.log("in");
+    setCartConOpen(true);
+  };
+  const handleCartConClose = () => {
+    // console.log("out");
+    setCartConOpen(false);
+  };
+
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
     console.log("觸發navbar2");
@@ -244,7 +321,7 @@ const Navbar = (props) => {
 
     if (newAddCourse.length === 2) {
       // console.log(cartCourseInfoList[0].cartCourseCount);
-      let newCartCourseInfoList = cartCourseInfoList;
+      let newCartCourseInfoList = [newAddCourse[0]];
       newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
         if (obj.course_id === newAddCourse[0].course_id) {
           obj.cartCourseCount = obj.cartCourseCount + 1;
@@ -253,43 +330,51 @@ const Navbar = (props) => {
       });
       console.log("newAddCourse.length-2");
       console.log(newCartCourseInfoList);
-      console.log(newCartCourseInfoList.cartCourseCount);
-      setCartCourseInfoList([...newCartCourseInfoList]);
+      console.log(newCartCourseInfoList[0].cartCourseCount);
+      setCartCourseInfoList([{ ...newCartCourseInfoList[0] }]);
+      console.log([{ ...newCartCourseInfoList[0] }]);
     }
-
     console.log("cartCourseInfoList");
+    // // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+    // refreshCartCourse();
+    // // 拿到購物車所需的全部課程資料，並加入購物車
+    // getAllCourseObject(currentUser.id);
   }, [newAddCourse]);
 
   //頁面初次渲染、課程加入購物車、課程報名數量改變時，即時更新金額
   useEffect(() => {
-    //清空新增課程state
-    clearNewAddCourse();
+    // //清空新增課程state
+    // clearNewAddCourse();
+
+    //判斷購物車是否只有一堂課程
+    ifOnlyCourseInCart();
+
+    //當購物車沒課程時，改變狀態判斷
+    handleIfCourseInCart();
 
     //當購物車沒課程時，將總金額歸零
     handleSumPriceZeroing();
 
-    //判斷購物車是否只有一堂課程
-    ifOnlyCourseInCart();
+    // 拿到購物車所需的全部課程資料，並加入購物車
+    getAllCourseObject(currentUser.id);
+    console.log("getAllCourseObject");
+    // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+    refreshCartCourse();
+    console.log("refreshCartCourse");
   }, []);
 
-  // useEffect(() => {
-  //   //當購物車沒課程時，將總金額歸零
-  //   handleSumPriceZeroing();
-
-  //   //確認購物車是否只有一堂課程
-  //   ifOnlyCourseInCart();
-  // }, [cartCourseInfoList]);
-
-  // 控制購物車容器開合
-  const [cartConOpen, setCartConOpen] = useState(false);
-  const handleCartConOpen = () => {
-    // console.log("in");
-    setCartConOpen(true);
-  };
-  const handleCartConClose = () => {
-    // console.log("out");
-    setCartConOpen(false);
-  };
+  useEffect(() => {
+    //計算當前購物車總金額
+    getSumCartCoursePrice();
+    //判斷購物車是否只有一堂課程
+    ifOnlyCourseInCart();
+    //當購物車沒課程時，改變狀態判斷
+    handleIfCourseInCart();
+    //當購物車沒課程時，將總金額歸零
+    handleSumPriceZeroing();
+    console.log("cartCourseInfoList");
+    console.log(cartCourseInfoList);
+  }, [cartCourseInfoList]);
 
   return (
     <div className="Header">
@@ -349,7 +434,12 @@ const Navbar = (props) => {
 
             {/* 體驗分享 */}
             <div className="Navbar-container-item-container">
-              <button className="Navbar-container-item-btn Navbar-container-item-ExperienceShare">
+              <button
+                className="Navbar-container-item-btn Navbar-container-item-ExperienceShare"
+                onClick={() => {
+                  refreshCartCourse();
+                }}
+              >
                 體驗分享
               </button>
               {/* 下拉式選單 */}
@@ -360,6 +450,7 @@ const Navbar = (props) => {
                     <li
                       onClick={() => {
                         window.location.href = "http://localhost:3000/forum";
+                        // console.log(cartCourseInfoList);
                       }}
                     >
                       {page}
@@ -371,6 +462,7 @@ const Navbar = (props) => {
                     <li
                       onClick={() => {
                         window.location.href = "http://localhost:3000/forum";
+                        // console.log(cartCourseInfoList);
                       }}
                     >
                       {page}
@@ -440,34 +532,49 @@ const Navbar = (props) => {
                 >
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
-                    {cartCourseInfoList?.length !== 0 &&
+                    {cartCourseInfoList &&
+                      !ifNoCourseInCart &&
                       cartCourseInfoList?.map((Obj) => {
                         return (
                           Obj && (
                             <CartCourse
                               index={cartCourseInfoList.indexOf(Obj)}
+                              currentUser={currentUser}
                               CurrentInfoObject={Obj}
                               cartCourseInfoList={cartCourseInfoList}
                               setCartCourseInfoList={setCartCourseInfoList}
                               sumCartCoursePrice={sumCartCoursePrice}
                               setSumCartCoursePrice={setSumCartCoursePrice}
-                              currentUser={currentUser}
+                              getSumCartCoursePrice={getSumCartCoursePrice}
+                              handleSumPriceZeroing={handleSumPriceZeroing}
+                              addCourseIntoCart={addCourseIntoCart}
+                              refreshCartCourse={refreshCartCourse}
+                              ifNoCourseInCart={ifNoCourseInCart}
+                              getAllCourseObject={getAllCourseObject}
                             />
                           )
                         );
                       })}
-                    {cartCourseInfoList?.length === 0 && (
-                      <div className="CartCourse-container-empty">
-                        <h5>快去選購更多精彩課程！</h5>
-                      </div>
-                    )}
+                    {cartCourseInfoList &&
+                      ifNoCourseInCart &&
+                      cartCourseInfoList.length === 0 && (
+                        <div className="CartCourse-container-empty">
+                          <h5>快去選購更多精彩課程！</h5>
+                        </div>
+                      )}
 
                     {/* 購物車資訊與結帳按鈕 容器 */}
                     <div className="Navbar-container-item-Cart-dropdown-info-bottom">
                       <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
                         {/* 課程數量 */}
                         <div className="sumCourse">
-                          <p>總計 {numberOfCoursesInCart} 堂課</p>
+                          <p>
+                            總計{" "}
+                            {cartCourseInfoList === []
+                              ? 0
+                              : cartCourseInfoList?.length}{" "}
+                            堂課
+                          </p>
                         </div>
                         {/* 當前購物車總金額 */}
                         <div className="sumPrice">
@@ -475,14 +582,18 @@ const Navbar = (props) => {
                         </div>
                         <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
                           {/* 結帳按鈕 */}
-                          <div
+                            <Link
+                              to={{ pathname: link, state: { data: data } }}
+                            >
+                            <div
                             className="goCheckOut"
                             onClick={() => {
-                              handleCheckout();
+                              // handleCheckout();
                             }}
                           >
-                            <h5>前往結帳</h5>
+                              <h5>前往結帳</h5>
                           </div>
+                            </Link>
                         </div>
                       </div>
                     </div>
@@ -523,34 +634,47 @@ const Navbar = (props) => {
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
                     {cartCourseInfoList &&
-                      cartCourseInfoList.length !== 0 &&
+                      !ifNoCourseInCart &&
                       cartCourseInfoList.map((Obj) => {
                         return (
                           Obj && (
                             <CartCourse
                               index={cartCourseInfoList.indexOf(Obj)}
+                              currentUser={currentUser}
                               CurrentInfoObject={Obj}
                               cartCourseInfoList={cartCourseInfoList}
                               setCartCourseInfoList={setCartCourseInfoList}
                               sumCartCoursePrice={sumCartCoursePrice}
                               setSumCartCoursePrice={setSumCartCoursePrice}
+                              getSumCartCoursePrice={getSumCartCoursePrice}
                               handleSumPriceZeroing={handleSumPriceZeroing}
+                              addCourseIntoCart={addCourseIntoCart}
+                              refreshCartCourse={refreshCartCourse}
+                              ifNoCourseInCart={ifNoCourseInCart}
                             />
                           )
                         );
                       })}
-                    {cartCourseInfoList && cartCourseInfoList.length === 0 && (
-                      <div className="CartCourse-container-empty">
-                        <h5>快去選購更多精彩課程！</h5>
-                      </div>
-                    )}
+                    {cartCourseInfoList &&
+                      ifNoCourseInCart &&
+                      cartCourseInfoList.length === 0 && (
+                        <div className="CartCourse-container-empty">
+                          <h5>快去選購更多精彩課程！</h5>
+                        </div>
+                      )}
 
                     {/* 購物車資訊與結帳按鈕 容器 */}
                     <div className="Navbar-container-item-Cart-dropdown-info-bottom">
                       <div className="Navbar-container-item-Cart-dropdown-info-bottom-left">
                         {/* 課程數量 */}
                         <div className="sumCourse">
-                          <p>總計 {numberOfCoursesInCart} 堂課</p>
+                          <p>
+                            總計{" "}
+                            {cartCourseInfoList === []
+                              ? 0
+                              : cartCourseInfoList?.length}{" "}
+                            堂課
+                          </p>
                         </div>
                         {/* 當前購物車總金額 */}
                         <div className="sumPrice">
@@ -564,7 +688,11 @@ const Navbar = (props) => {
                               ifLogIn();
                             }}
                           >
+                            {/* <Link
+                              to={{ pathname: link, state: { data: data } }}
+                            > */}
                             <h5>前往結帳</h5>
+                            {/* </Link> */}
                           </div>
                         </div>
                       </div>
