@@ -42,7 +42,8 @@ function Orderinfo(props){
                     <label>連絡電話</label>
                     <input 
                     type="text"
-                    name="telephone"
+                    name="telephone" 
+                    maxlength="10"
                     onChange={handleInputChange}
                     />
                 </td>
