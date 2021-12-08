@@ -2,7 +2,7 @@ $chefTextColor: #ffffff;
 $chefFontWeightText: "Noto Sans TC", Regular;
 //$chefTextSize: 1.25rem;
 $chefTextSizeDown: 18px;
-$chefTextSize-li: calc(8px + 0.15vw);
+$chefTextSize-li: calc(8px + 0.25vw);
 
 // 主廚卡片大小
 .st-chefCard2 {
@@ -166,6 +166,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
   .st-chefCard2Down-ul {
     cursor: pointer;
     transition: all 0.25s ease;
+    height: 53%;
 
     .st-chefCard2Down-ul-pen {
       opacity: 0;
@@ -197,7 +198,7 @@ $chefTextSize-li: calc(8px + 0.15vw);
     position: relative;
     @include flex(column);
     justify-content: space-between;
-    height: 52%;
+    height: 53%;
     overflow: scroll;
 
     .st-chefCard2Down-chefInfo {

@@ -262,6 +262,7 @@ const CourseInsert = (props) => {
     }
   };
 
+  // 各個種類input的ref
   // 非圖片的所有input
   const infoRef = useMemo(
     () =>
@@ -297,6 +298,15 @@ const CourseInsert = (props) => {
 
   // 送出課程資料
   const handleCourseInsert = async (e) => {
+    // 專題發表用
+    // // 清空當前所有input
+    // setCourseDetail(courseDetail2);
+    // setSliderImage(["", "", ""]);
+    // setSixDishesImage(["", "", "", "", "", ""]);
+    // return;
+
+    // ===============================================
+
     // 先拿掉所有errorInput的calssName(將所有紅外框拿掉)
     new Array(18).fill(0).forEach((item, i) => {
       infoRef[i].current.classList.remove("inputError-red");

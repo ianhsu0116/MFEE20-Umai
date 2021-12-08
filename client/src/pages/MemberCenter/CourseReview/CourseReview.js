@@ -96,8 +96,10 @@ function CourseInfomation(props) {
                   <span className="Coursedetail-originalPrice">
                     原價NT$
                     {courseDetail.course_price
-                      .toString()
-                      .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
+                      ? courseDetail.course_price
+                          .toString()
+                          .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")
+                      : "XXXXX"}
                   </span>
                   <span className="Coursedetail-infoRightPrice">
                     早鳥優惠價
@@ -106,16 +108,18 @@ function CourseInfomation(props) {
                 <div>
                   <span className="Coursedetail-specialPrice">
                     NT$
-                    {Math.floor(courseDetail.course_price * 0.9)
-                      .toString()
-                      .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")}
+                    {courseDetail.course_price
+                      ? Math.floor(courseDetail.course_price * 0.9)
+                          .toString()
+                          .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")
+                      : "XXXXX"}
                   </span>
                 </div>
                 <div className="Coursedetail-quota">
                   <span>
                     本梯次總名額&nbsp;{courseDetail.member_limit}
                     &nbsp;位&nbsp;/&nbsp;剩餘名額&nbsp;
-                    {courseDetail.member_limit - courseDetail.member_count}
+                    {courseDetail.member_limit - courseDetail.member_count || 0}
                     &nbsp;位
                   </span>
                 </div>
@@ -150,12 +154,12 @@ function CourseInfomation(props) {
                     </li>
                     <li>{">"}</li>
                     <li className="Coursedetail-infoLeft-breadcrumb-name">
-                      {courseDetail.course_name}
+                      {courseDetail.course_name || "此位置為課程名稱"}
                     </li>
                   </ul>
                 </div>
                 <div className="Coursedetail-infoLeftTitle">
-                  {courseDetail.course_name}
+                  {courseDetail.course_name || "此位置為課程名稱"}
                 </div>
                 <div className="Coursedetail-placeWithChef">
                   <ul>
@@ -167,7 +171,7 @@ function CourseInfomation(props) {
                       }
                     >
                       <IoLocationSharp />
-                      {courseDetail.company_name}
+                      {courseDetail.company_name || "此位置為公司名稱"}
                       <iframe src={googleMap} alt="" title="這是地圖">
                         地圖
                       </iframe>
@@ -175,7 +179,7 @@ function CourseInfomation(props) {
                     <li>
                       <a href="#chef" alt="" target="_parent">
                         <GiCook />
-                        {courseDetail.course_chef}
+                        {courseDetail.course_chef || "此位置為主廚(講師)名稱"}
                       </a>
                     </li>
                   </ul>
@@ -189,7 +193,10 @@ function CourseInfomation(props) {
                   />
                   <div>
                     <p>選擇梯次日期：{batch}</p>
-                    <p>{courseDetail.time_of_course}</p>
+                    <p>
+                      {courseDetail.time_of_course ||
+                        "平日上午 XX:XX ~ 下午XX:XX"}
+                    </p>
                   </div>
                 </div>
                 <div className="Coursedetail-infoLeftJoin">
@@ -233,22 +240,26 @@ function CourseInfomation(props) {
             ></img>
 
             <div className="Coursedetail-outsideTitle">
-              {courseDetail.title1_1}
+              {courseDetail.title1_1 || "此位置為課程介紹標題1-1"}
             </div>
             <div className="Coursedetail-infoBox">
               <div className="Coursedetail-insideTitle">
-                <span>{courseDetail.title1_2}</span>
+                <span>
+                  {courseDetail.title1_2 || "此位置為課程介紹標題1-2"}
+                </span>
               </div>
               <div className="Coursedetail-whiteLine"></div>
               <div className="Coursedetail-insideText">
-                {courseDetail.content1.split("\n").map(function (item) {
-                  return (
-                    <div>
-                      {item}
-                      <br />
-                    </div>
-                  );
-                })}
+                {courseDetail.content1
+                  ? courseDetail.content1.split("\n").map(function (item) {
+                      return (
+                        <div>
+                          {item}
+                          <br />
+                        </div>
+                      );
+                    })
+                  : "此位置為課程介紹詳細內容"}
               </div>
             </div>
 
@@ -288,7 +299,7 @@ function CourseInfomation(props) {
 
             <div className="Coursedetail-infoBox2">
               <div className="Coursedetail-insideTitle Coursedetail-foodInfo">
-                {courseDetail.title2}
+                {courseDetail.title2 || "此位置為課程介紹標題2-1"}
               </div>
               <div className="Coursedetail-whiteLine"></div>
               <div className="Coursedetail-pictureBox">
