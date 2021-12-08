@@ -68,6 +68,8 @@ router.get("/cart/:member_id", async (req, res) => {
       `SELECT cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE cart_and_collection.inCart = 1 AND cart_and_collection.member_id = ?`,
       [member_id]
     );
+    console.log("inCart");
+    console.log(inCart);
 
     //生成課程id陣列
     let courseIds = inCart.map((obj) => {
@@ -78,6 +80,8 @@ router.get("/cart/:member_id", async (req, res) => {
     courseIds = courseIds.filter(function (ele, idx) {
       return courseIds.indexOf(ele) == idx;
     });
+    console.log("courseIds");
+    console.log(courseIds);
 
     //生成梯次id陣列
     let batchIds = inCart.map((obj) => {
@@ -88,6 +92,8 @@ router.get("/cart/:member_id", async (req, res) => {
     batchIds = batchIds.filter(function (ele, idx) {
       return batchIds.indexOf(ele) == idx;
     });
+    console.log("batchIds");
+    console.log(batchIds);
 
     // 拿到課程資料(join course_batch)
     let result = await connection.queryAsync(
@@ -103,6 +109,8 @@ router.get("/cart/:member_id", async (req, res) => {
     courseInfoInCart = courseInfo.map((obj) => {
       return { ...obj, cartCourseCount: 1 };
     });
+    console.log("courseInfoInCart");
+    console.log(courseInfoInCart);
 
     res
       .status(200)
@@ -301,18 +309,18 @@ router.get("/collection/:member_id", async (req, res) => {
 });
 
 //搜尋課程
-router.post("/searchcourse",async (req, res) => {
+router.post("/searchcourse", async (req, res) => {
   let { searchValue } = req.body;
   console.log(searchValue);
-  try{
+  try {
     let course = await connection.queryAsync(
       `SELECT * FROM course WHERE course_name LIKE '%${searchValue}%'`
     );
-    res.status(200).json({ success: true ,course});
-  }catch(error){
+    res.status(200).json({ success: true, course });
+  } catch (error) {
     res.status(500).json({ success: false, code: "E999", message: error });
   }
-})
+});
 
 // 依照member_id (主廚) 拿取課程資料 (課程卡片形式)
 // (有join category, comment => 抓評分, batch的最近一批梯次)
