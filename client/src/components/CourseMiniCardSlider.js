@@ -5,13 +5,17 @@ import CourseService from "../services/course.service";
 import { PUBLIC_URL } from "../config/config";
 
 function CourseMiniCardSlider(props) {
+  let { SliderTitle, tag } = props;
   const [homepageCourse, setHomepageCourse] = useState([]);
 
   useEffect(async () => {
     try {
       let homepage = await CourseService.course_homepage();
+      let TrueArrow = [...homepage.data.course].filter(function (item) {
+        return item.closest_batchs?.batch_date != null;
+      });
       console.log(homepage.data.course);
-      setHomepageCourse(homepage.data.course);
+      setHomepageCourse(TrueArrow);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +64,9 @@ function CourseMiniCardSlider(props) {
       {console.log(homepageCourse)}
       <div className="SliderTitle">
         <div className="circle"></div>
-        <div className="TitleText">{/* <h1>{props.SliderTitle}</h1> */}</div>
+        <div className="TitleText">
+          <h1>{SliderTitle}</h1>
+        </div>
       </div>
       <Slider {...settings}>
         <div className="CourseMiniCardWrapper">
@@ -77,22 +83,44 @@ function CourseMiniCardSlider(props) {
             coursePrice={homepageCourse[0]?.course_price}
             score_sum={homepageCourse[0]?.score_sum}
             score_count={homepageCourse[0]?.score_count}
+            id={homepageCourse[0]?.id}
+            tag={tag}
           />
         </div>
         <div className="CourseMiniCardWrapper">
           <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[2]?.course_image}`}
-            courseName={homepageCourse[2]?.course_name}
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[1]?.course_image}`}
+            courseName={homepageCourse[1]?.course_name}
             chefName={
-              homepageCourse[2]?.first_name + homepageCourse[0]?.last_name
+              homepageCourse[1]?.first_name + homepageCourse[1]?.last_name
             }
-            courseBatch={homepageCourse[2]?.closest_batchs.batch_date}
-            courseQuota={homepageCourse[2]?.member_limit}
-            courseNowQuota={homepageCourse[2]?.closest_batchs.member_count}
-            courseLevel={homepageCourse[2]?.course_level}
-            coursePrice={homepageCourse[2]?.course_price}
-            score_sum={homepageCourse[2]?.score_sum}
-            score_count={homepageCourse[2]?.score_count}
+            courseBatch={homepageCourse[1]?.closest_batchs.batch_date}
+            courseQuota={homepageCourse[1]?.member_limit}
+            courseNowQuota={homepageCourse[1]?.closest_batchs.member_count}
+            courseLevel={homepageCourse[1]?.course_level}
+            coursePrice={homepageCourse[1]?.course_price}
+            score_sum={homepageCourse[1]?.score_sum}
+            score_count={homepageCourse[1]?.score_count}
+            id={homepageCourse[1]?.id}
+            tag={tag}
+          />
+        </div>
+        <div className="CourseMiniCardWrapper">
+          <CourseMiniCard
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[3]?.course_image}`}
+            courseName={homepageCourse[3]?.course_name}
+            chefName={
+              homepageCourse[3]?.first_name + homepageCourse[0]?.last_name
+            }
+            courseBatch={homepageCourse[3]?.closest_batchs.batch_date}
+            courseQuota={homepageCourse[3]?.member_limit}
+            courseNowQuota={homepageCourse[3]?.closest_batchs.member_count}
+            courseLevel={homepageCourse[3]?.course_level}
+            coursePrice={homepageCourse[3]?.course_price}
+            score_sum={homepageCourse[3]?.score_sum}
+            score_count={homepageCourse[3]?.score_count}
+            id={homepageCourse[3]?.id}
+            tag={tag}
           />
         </div>
         <div className="CourseMiniCardWrapper">
@@ -100,7 +128,7 @@ function CourseMiniCardSlider(props) {
             coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[4]?.course_image}`}
             courseName={homepageCourse[4]?.course_name}
             chefName={
-              homepageCourse[4]?.first_name + homepageCourse[0]?.last_name
+              homepageCourse[4]?.first_name + homepageCourse[4]?.last_name
             }
             courseBatch={homepageCourse[4]?.closest_batchs.batch_date}
             courseQuota={homepageCourse[4]?.member_limit}
@@ -109,11 +137,49 @@ function CourseMiniCardSlider(props) {
             coursePrice={homepageCourse[4]?.course_price}
             score_sum={homepageCourse[4]?.score_sum}
             score_count={homepageCourse[4]?.score_count}
+            id={homepageCourse[4]?.id}
+            tag={tag}
           />
         </div>
         <div className="CourseMiniCardWrapper">
           <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[6]?.course_image}`}
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[2]?.course_image}`}
+            courseName={homepageCourse[2]?.course_name}
+            chefName={
+              homepageCourse[6]?.first_name + homepageCourse[2]?.last_name
+            }
+            courseBatch={homepageCourse[2]?.closest_batchs.batch_date}
+            courseQuota={homepageCourse[2]?.member_limit}
+            courseNowQuota={homepageCourse[2]?.closest_batchs.member_count}
+            courseLevel={homepageCourse[2]?.course_level}
+            coursePrice={homepageCourse[2]?.course_price}
+            score_sum={homepageCourse[2]?.score_sum}
+            score_count={homepageCourse[2]?.score_count}
+            id={homepageCourse[2]?.id}
+            tag={tag}
+          />
+        </div>
+        <div className="CourseMiniCardWrapper">
+          <CourseMiniCard
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[5]?.course_image}`}
+            courseName={homepageCourse[5]?.course_name}
+            chefName={
+              homepageCourse[5]?.first_name + homepageCourse[5]?.last_name
+            }
+            courseBatch={homepageCourse[5]?.closest_batchs.batch_date}
+            courseQuota={homepageCourse[5]?.member_limit}
+            courseNowQuota={homepageCourse[5]?.closest_batchs.member_count}
+            courseLevel={homepageCourse[5]?.course_level}
+            coursePrice={homepageCourse[5]?.course_price}
+            score_sum={homepageCourse[5]?.score_sum}
+            score_count={homepageCourse[5]?.score_count}
+            id={homepageCourse[5]?.id}
+            tag={tag}
+          />
+        </div>
+        <div className="CourseMiniCardWrapper">
+          <CourseMiniCard
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[2]?.course_image}`}
             courseName={homepageCourse[6]?.course_name}
             chefName={
               homepageCourse[6]?.first_name + homepageCourse[6]?.last_name
@@ -125,70 +191,26 @@ function CourseMiniCardSlider(props) {
             coursePrice={homepageCourse[6]?.course_price}
             score_sum={homepageCourse[6]?.score_sum}
             score_count={homepageCourse[6]?.score_count}
+            id={homepageCourse[6]?.id}
+            tag={tag}
           />
         </div>
         <div className="CourseMiniCardWrapper">
           <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[8]?.course_image}`}
-            courseName={homepageCourse[8]?.course_name}
+            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[7]?.course_image}`}
+            courseName={homepageCourse[7]?.course_name}
             chefName={
-              homepageCourse[6]?.first_name + homepageCourse[8]?.last_name
+              homepageCourse[7]?.first_name + homepageCourse[7]?.last_name
             }
-            courseBatch={homepageCourse[8]?.closest_batchs.batch_date}
-            courseQuota={homepageCourse[8]?.member_limit}
-            courseNowQuota={homepageCourse[8]?.closest_batchs.member_count}
-            courseLevel={homepageCourse[8]?.course_level}
-            coursePrice={homepageCourse[8]?.course_price}
-            score_sum={homepageCourse[8]?.score_sum}
-            score_count={homepageCourse[8]?.score_count}
-          />
-        </div>
-        <div className="CourseMiniCardWrapper">
-          <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[10]?.course_image}`}
-            courseName={homepageCourse[10]?.course_name}
-            chefName={
-              homepageCourse[10]?.first_name + homepageCourse[10]?.last_name
-            }
-            courseBatch={homepageCourse[10]?.closest_batchs.batch_date}
-            courseQuota={homepageCourse[10]?.member_limit}
-            courseNowQuota={homepageCourse[10]?.closest_batchs.member_count}
-            courseLevel={homepageCourse[10]?.course_level}
-            coursePrice={homepageCourse[10]?.course_price}
-            score_sum={homepageCourse[10]?.score_sum}
-            score_count={homepageCourse[10]?.score_count}
-          />
-        </div>
-        <div className="CourseMiniCardWrapper">
-          <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[2]?.course_image}`}
-            courseName={homepageCourse[12]?.course_name}
-            chefName={
-              homepageCourse[12]?.first_name + homepageCourse[12]?.last_name
-            }
-            courseBatch={homepageCourse[12]?.closest_batchs.batch_date}
-            courseQuota={homepageCourse[12]?.member_limit}
-            courseNowQuota={homepageCourse[12]?.closest_batchs.member_count}
-            courseLevel={homepageCourse[12]?.course_level}
-            coursePrice={homepageCourse[12]?.course_price}
-            score_sum={homepageCourse[12]?.score_sum}
-            score_count={homepageCourse[12]?.score_count}
-          />
-        </div>
-        <div className="CourseMiniCardWrapper">
-          <CourseMiniCard
-            coursePicture={`${PUBLIC_URL}/upload-images/${homepageCourse[14]?.course_image}`}
-            courseName={homepageCourse[14]?.course_name}
-            chefName={
-              homepageCourse[14]?.first_name + homepageCourse[14]?.last_name
-            }
-            courseBatch={homepageCourse[14]?.closest_batchs.batch_date}
-            courseQuota={homepageCourse[14]?.member_limit}
-            courseNowQuota={homepageCourse[14]?.closest_batchs.member_count}
-            courseLevel={homepageCourse[14]?.course_level}
-            coursePrice={homepageCourse[14]?.course_price}
-            score_sum={homepageCourse[14]?.score_sum}
-            score_count={homepageCourse[14]?.score_count}
+            courseBatch={homepageCourse[7]?.closest_batchs.batch_date}
+            courseQuota={homepageCourse[7]?.member_limit}
+            courseNowQuota={homepageCourse[7]?.closest_batchs.member_count}
+            courseLevel={homepageCourse[7]?.course_level}
+            coursePrice={homepageCourse[7]?.course_price}
+            score_sum={homepageCourse[7]?.score_sum}
+            score_count={homepageCourse[7]?.score_count}
+            id={homepageCourse[7]?.id}
+            tag={tag}
           />
         </div>
       </Slider>

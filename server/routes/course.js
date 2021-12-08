@@ -628,6 +628,21 @@ router.post("/collection/:member_id", async (req, res) => {
   });
 });
 
+//首頁抓三評論
+router.get("/homepage/comment", async (req, res) => {
+  try {
+    // 依序抓到每筆課程
+    let result = await connection.queryAsync(
+      "SELECT course_comment.* , orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member WHERE member.id = orders.member_id AND course_comment.orders_id = orders.id  AND course_comment.valid = 1 LIMIT 3"
+    );
+    res.status(200).json({ success: true, course: result });
+    return;
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
 // 熱門的八堂課
 router.get("/hottest", async (req, res) => {
   try {
@@ -675,9 +690,8 @@ router.get("/hottest", async (req, res) => {
       result[index].closest_batchs = item;
     });
 
-    console.log(result);
-
     res.status(200).json({ success: true, course: result });
+    return;
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });

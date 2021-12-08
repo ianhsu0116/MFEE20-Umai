@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import starGroup from "./images/starGroup.png";
 import starGroupBackground from "./images/starGroupBackground.png";
 
@@ -18,22 +18,25 @@ const StarGroup = (props) => {
   // }, [allScore])
 
   return (
-    <div className="StarGroup">
-      <div className="StarGroup-container">
-        <img
-          src={starGroup}
-          alt="starGroup"
-          className="StarGroup-container-star"
-        />
-        <img
-          src={starGroupBackground}
-          alt="starGroup"
-          className="StarGroup-container-background"
-          style={{ width: `${percent}%` }}
-        />
+    <>
+      {console.log(props)}
+      <div className="StarGroup">
+        <div className="StarGroup-container">
+          <img
+            src={starGroup}
+            alt="starGroup"
+            className="StarGroup-container-star"
+          />
+          <img
+            src={starGroupBackground}
+            alt="starGroup"
+            className="StarGroup-container-background"
+            style={{ width: isNaN(percent) ? 0 : `${percent}%` }}
+          />
+        </div>
+        <p>({allScore || 0})</p>
       </div>
-      <p>({allScore || 0})</p>
-    </div>
+    </>
   );
 };
 

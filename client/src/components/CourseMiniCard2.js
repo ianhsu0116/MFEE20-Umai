@@ -16,6 +16,8 @@ const CourseMiniCard = (props) => {
     coursePrice,
     score_sum,
     score_count,
+    id,
+    tag,
   } = props;
   const CardTest = [
     {
@@ -32,9 +34,15 @@ const CourseMiniCard = (props) => {
       courseLevel: "1",
     },
   ];
-  const courseLevelList = ["初級", "中級", "高級"];
+  const courseLevelList = ["高階", "中階", "初階"];
 
-  const [homepageCourse, setHomepageCourse] = useState([]);
+  // const [levelColor, setLevelColor] = useState();
+
+  // if (courseLevel == 1) {
+  //   setLevelColor("highLevel");
+  // } else if (courseLevel == 2) {
+  //   setLevelColor("midLevel");
+  // } else setLevelColor("");
 
   // useEffect(async () => {
   //   try {
@@ -47,8 +55,12 @@ const CourseMiniCard = (props) => {
 
   return (
     <>
-      {console.log(props)}
-      <div className="st-courseMiniCard">
+      <div
+        onClick={() => {
+          window.location.href = "http://localhost:3000/courses/" + id;
+        }}
+        className="st-courseMiniCard"
+      >
         <div className="st-courseMiniCardWrapper">
           {/* 課程照片容器 */}
           <div className="courseMiniCardPictureWrapper">
@@ -59,7 +71,7 @@ const CourseMiniCard = (props) => {
             ></img>
             {/* 課程標籤(即將截止/即將額滿) */}
             <div className="st-courseMiniCardTag st-courseMiniCardBarActiveDeadline">
-              <p>即將截止</p>
+              <p>{tag}</p>
             </div>
           </div>
 
@@ -68,7 +80,7 @@ const CourseMiniCard = (props) => {
             {/* 上方文字容器 */}
             <div className="st-courseMiniCardName">
               {/* 課程名稱 */}
-              {courseName}
+              <p>{courseName}</p>
 
               <div className="st-courseMiniCardChefName">
                 {/* 主廚名稱 */}
@@ -77,7 +89,10 @@ const CourseMiniCard = (props) => {
 
               {/* 評價星數 */}
               <div className="st-startWidth">
-                <StarGroup allScore={score_sum} precent={score_count} />
+                <StarGroup
+                  allScore={score_sum}
+                  percent={(20 * score_sum) / score_count}
+                />
               </div>
             </div>
           </div>
