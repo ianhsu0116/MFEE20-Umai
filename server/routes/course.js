@@ -301,18 +301,18 @@ router.get("/collection/:member_id", async (req, res) => {
 });
 
 //搜尋課程
-router.post("/searchcourse",async (req, res) => {
+router.post("/searchcourse", async (req, res) => {
   let { searchValue } = req.body;
   console.log(searchValue);
-  try{
+  try {
     let course = await connection.queryAsync(
       `SELECT * FROM course WHERE course_name LIKE '%${searchValue}%'`
     );
-    res.status(200).json({ success: true ,course});
-  }catch(error){
+    res.status(200).json({ success: true, course });
+  } catch (error) {
     res.status(500).json({ success: false, code: "E999", message: error });
   }
-})
+});
 
 // 依照member_id (主廚) 拿取課程資料 (課程卡片形式)
 // (有join category, comment => 抓評分, batch的最近一批梯次)
@@ -410,6 +410,19 @@ router.get("/:course_id", async (req, res) => {
       .json({ success: true, course, course_batch, course_comment });
   } catch (error) {
     // console.log(error);
+    res.status(500).json({ success: false, code: "E999", message: error });
+  }
+});
+
+// 根據course_id把課程加入購物車資料庫(cart)
+router.get("/course/recommend", async (req, res) => {
+  try {
+    let recommend = await connection.queryAsync(
+      "Select course.* From course Where valid = 1 ORDER BY RAND() LIMIT 3"
+    );
+    res.status(200).json({ success: true, recommend });
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
