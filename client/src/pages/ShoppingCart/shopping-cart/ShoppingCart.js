@@ -40,7 +40,7 @@ function shopping_cart(props) {
             course_id: checkoutCourse.course_id,
             batch_id: checkoutCourse.batch_id,
             name: course.data.course[0].course_name,
-            value: course.data.course[0].course_price,
+            value: course.data.course[0].course_price*0.9,
             studentnumber: 1,
             courseimage: course.data.course[0].course_image,
             memberlimit: course.data.course[0].member_limit,
