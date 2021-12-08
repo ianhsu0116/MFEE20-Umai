@@ -77,14 +77,13 @@ router.post("/member/:member_id", async (req, res) => {
       "SELECT orders_id, COUNT(orders_student.student_id) orders_student_count FROM orders_student WHERE orders_id IN (?) GROUP BY orders_id",
       [id_array]
     );
-      
+
     // 將 students 按照計數板排好
     let sortedStudents = {};
     students.forEach((item) => {
       sortedStudents[item.orders_id] = item.orders_student_count;
     });
-    console.log(students);
-    console.log(sortedStudents);
+
     // 將個別報名人數塞入各個order detial
     result.forEach((item, index) => {
       item.orders_student_count = sortedStudents[item.id];
@@ -173,7 +172,7 @@ router.post("/insertOrderData", async (req, res) => {
         1,
       ]
     );
-      console.log(result);
+    // console.log(result);
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });
@@ -223,13 +222,26 @@ router.post("/insertStudentData", async (req, res) => {
       if (addIntoStudent) {
         const result = await connection.queryAsync(
           "INSERT INTO student (member_id, first_name, last_name, telephone, birthday, email, created_time, valid) VALUES(?,?,?,?,?,?,?,?)",
-          [memberid, first_name, last_name, telephone, birthday, email, now, 1]
-        );
+          [memberid, first_name, last_name, telephone, birthday, email, now, 1]);
+
+         //取得學員id
+        const getstudentid = await connection.queryAsync(
+          "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+          [memberid, first_name, last_name, telephone, birthday, email]
+        ); 
+         studentid = getstudentid[0]["id"];
       } else {
         const result = await connection.queryAsync(
           "INSERT INTO student (member_id, first_name, last_name, telephone, birthday, email, created_time, valid) VALUES(?,?,?,?,?,?,?,?)",
           [null, first_name, last_name, telephone, birthday, email, now, 1]
         );
+
+         //取得學員id
+          const getstudentid = await connection.queryAsync(
+            "SELECT id FROM student WHERE  first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+            [ first_name, last_name, telephone, birthday, email]
+          );
+           studentid = getstudentid[0]["id"];
       }
     } else {
       if (autoUpdateMember) {
@@ -237,29 +249,20 @@ router.post("/insertStudentData", async (req, res) => {
           "UPDATE student SET first_name = ?, last_name = ?, telephone = ?, birthday = ?, email = ? WHERE id = ? AND member_id = ?",
           [first_name, last_name, telephone, birthday, email, id, memberid]
         );
+         //取得學員id
+        const getstudentid = await connection.queryAsync(
+          "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+          [memberid, first_name, last_name, telephone, birthday, email]
+        );
+         studentid = getstudentid[0]["id"];
       }
     }
-
-    res.status(200).json({ success: true });
-  } catch (error) {
-    res.status(500).json({ success: false, code: "G999", message: error });
-  }
-
-  //將訂單與學員連結
-  try {
-    //取得學員id
-    const getstudentid = await connection.queryAsync(
-      "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ?",
-      [memberid, first_name, last_name, telephone, birthday, email]
-    );
-    const studentid = getstudentid[0]["id"];
 
     //取得訂單id
     const getorderid = await connection.queryAsync(
       "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ? ORDER BY id DESC",
       [memberid, courseid, batchid]
     );
-    console.log(getorderid);
     const orderid = getorderid[0]["id"];
 
     //確認是否連結
@@ -275,10 +278,46 @@ router.post("/insertStudentData", async (req, res) => {
         [orderid, studentid]
       );
     }
+
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });
   }
+
+  //將訂單與學員連結
+  // try {
+  //   //取得學員id
+  //   const getstudentid = await connection.queryAsync(
+  //     "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ?",
+  //     [memberid, first_name, last_name, telephone, birthday, email]
+  //   );
+  //   const studentid = getstudentid[0]["id"];
+
+  //   //取得訂單id
+  //   const getorderid = await connection.queryAsync(
+  //     "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ? ORDER BY id DESC",
+  //     [memberid, courseid, batchid]
+  //   );
+  //   console.log(getorderid);
+  //   const orderid = getorderid[0]["id"];
+
+  //   //確認是否連結
+  //   const checkorders_student = await connection.queryAsync(
+  //     "SELECT * FROM orders_student WHERE orders_id = ? AND student_id = ?",
+  //     [orderid, studentid]
+  //   );
+
+  //   //輸入學員資料
+  //   if (checkorders_student.length === 0) {
+  //     const result = await connection.queryAsync(
+  //       "INSERT INTO orders_student (orders_id, student_id) VALUES(?,?)",
+  //       [orderid, studentid]
+  //     );
+  //   }
+  //   res.status(200).json({ success: true });
+  // } catch (error) {
+  //   res.status(500).json({ success: false, code: "G999", message: error });
+  // }
 });
 
 //修改課程剩餘人數
@@ -323,14 +362,24 @@ router.put("/modifycart", async (req, res) => {
 
 //將訂單加入收藏
 router.put("/modifycollection", async (req, res) => {
-  let { memberid, courseid, batchid } = req.body;
-
+  let { memberid, courseid } = req.body;
   try {
-    const modifymembercount = await connection.queryAsync(
-      "UPDATE cart_and_collection SET inCollection = 1 WHERE member_id = ? AND course_id = ? AND batch_id = ?",
-      [memberid, courseid, batchid]
+    const checkcollection = await connection.queryAsync(
+      "SELECT * FROM cart_and_collection WHERE member_id = ? AND course_id = ?",
+      [memberid, courseid]
     );
-
+    console.log(checkcollection);
+    if(checkcollection.length!==0){
+      const modifymembercount = await connection.queryAsync(
+        "UPDATE cart_and_collection SET inCollection = 1 WHERE member_id = ? AND course_id = ?",
+        [memberid, courseid]
+      );
+    }else{
+      const modifymembercount = await connection.queryAsync(
+        "INSERT INTO cart_and_collection (member_id, course_id,batch_id,inCart,inCollection) VALUES(?,?,?,?,?)",
+        [memberid, courseid, null , 0 , 1 ]
+      );
+    }
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });

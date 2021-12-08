@@ -26,6 +26,7 @@ function shopping_cart(props) {
   //課程資訊
   const [coursetitle, setCoursetitle] = useState({});
   useEffect(async () => {
+    console.log(`http://localhost:8080/api/course/${checkoutCourse.course_id}`);
     try {
       let course = await axios.get(
         `http://localhost:8080/api/course/${checkoutCourse.course_id}`,
@@ -47,9 +48,7 @@ function shopping_cart(props) {
             membercount: course.data.course_batch[i].member_count,
           });
       }
-      
     } catch (error) {
-      console.log(error);
     }
   }, []);
 
