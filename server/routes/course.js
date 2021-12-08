@@ -373,8 +373,6 @@ router.get("/member/:member_id", async (req, res) => {
   }
 });
 
-
-
 // 隨機抓三筆推薦
 router.get("/course/recommend", async (req, res) => {
   try {
@@ -559,69 +557,70 @@ router.post("/collection/:member_id", async (req, res) => {
       res.status(500).json({ success: false, code: "E999", message: error });
     }
   }
-// 全課程
+  // 全課程
   router.get("/homepage/course_id", async (req, res) => {
     let { category_id } = req.params;
-  
+
     try {
       // 種類
       let category_count = await connection.queryAsync(
         "SELECT category_name FROM course_category WHERE id=? AND valid = 1",
-        [category_id , 1]
+        [category_id, 1]
       );
       let category_detail = await connection.queryAsync(
         "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.category_id = ? AND course.valid = ? GROUP BY course.id",
         [category_id, 1]
-      )
-      if(category_id == 7)
-      category_detail = await connection.queryAsync(
-        "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE  course.valid = 1 GROUP BY course.id",
+      );
+      if (category_id == 7)
+        category_detail = await connection.queryAsync(
+          "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE  course.valid = 1 GROUP BY course.id",
           [category_id, 1]
         );
-        // 每個課程的id
-        let id_array = category_detail.map((item) => item.id);
-        // 裝所有個別課程的最近一筆梯次的Array
-        let closest_batchs = [];
-        // 現在時間
-        let now = new Date();
-        // 抓到每筆課程的每個梯次(今日以後的所有梯次)
-        let batchs = await connection.queryAsync(
+      // 每個課程的id
+      let id_array = category_detail.map((item) => item.id);
+      // 裝所有個別課程的最近一筆梯次的Array
+      let closest_batchs = [];
+      // 現在時間
+      let now = new Date();
+      // 抓到每筆課程的每個梯次(今日以後的所有梯次)
+      let batchs = await connection.queryAsync(
         `SELECT id AS batch_id, course_id, batch_date, member_count FROM course_batch  WHERE course_id IN (?) AND valid = ? AND batch_date > ? `,
-         [id_array, 1, now]
-        );
-         // 根據每個course_id 抓出此課程的最近一比梯次
-         id_array.forEach((course_id) => {
-           for (let i = 0; i < batchs.length; i++) {
-            // console.log(batchs)
-         if (course_id == batchs[i].course_id) {
-           closest_batchs.push(batchs[i]);
-           break;
+        [id_array, 1, now]
+      );
+      // 根據每個course_id 抓出此課程的最近一比梯次
+      id_array.forEach((course_id) => {
+        for (let i = 0; i < batchs.length; i++) {
+          // console.log(batchs)
+          if (course_id == batchs[i].course_id) {
+            closest_batchs.push(batchs[i]);
+            break;
           }
 
           // 全跑完還是不符合
-          if(i === batchs.length - 1) {
+          if (i === batchs.length - 1) {
             closest_batchs.push({
-           batch_id: null,
-           course_id,
-           batch_date: null,
-           member_count: 0
-         });
-          
-         }
-         }
-         
-        });
-          // 把梯次依序裝入course的json中
-    closest_batchs.forEach((item, index) => {
-      console.log(item)
-      category_detail[index].closest_batchs = item;
-      console.log(index)
-    });
+              batch_id: null,
+              course_id,
+              batch_date: null,
+              member_count: 0,
+            });
+          }
+        }
+      });
+      // 把梯次依序裝入course的json中
+      closest_batchs.forEach((item, index) => {
+        console.log(item);
+        category_detail[index].closest_batchs = item;
+        console.log(index);
+      });
 
-
-    // console.log(id_array)
-     console.log(category_detail)
-      res.status(200).json({ success: true, categoryID: category_count , courseDetail:category_detail });
+      // console.log(id_array)
+      console.log(category_detail);
+      res.status(200).json({
+        success: true,
+        categoryID: category_count,
+        courseDetail: category_detail,
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, code: "G999", message: error });
@@ -629,16 +628,15 @@ router.post("/collection/:member_id", async (req, res) => {
   });
 });
 
-
 // 熱門的八堂課
 router.get("/hottest", async (req, res) => {
   try {
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE  course.valid = ? GROUP BY course.id",
-      [ 1]
+      "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE  course.valid = ? GROUP BY course.id ORDER BY RAND()",
+      [1]
     );
-      
+
     // 每個課程的id
     let id_array = result.map((item) => item.id);
     // 裝所有個別課程的最近一筆梯次的Array
@@ -685,7 +683,6 @@ router.get("/hottest", async (req, res) => {
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
-
 
 // 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
 router.get("/:course_id", async (req, res) => {

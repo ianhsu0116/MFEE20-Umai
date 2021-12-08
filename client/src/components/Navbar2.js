@@ -91,7 +91,7 @@ const Navbar = (props) => {
   //當購物車沒課程時，將總金額歸零
   async function handleSumPriceZeroing() {
     if (numberOfCoursesInCart === 0) {
-      setCartCourseInfoList([]);
+      // setCartCourseInfoList([]);
       setSumCartCoursePrice(0);
     }
   }
@@ -244,17 +244,21 @@ const Navbar = (props) => {
 
     if (newAddCourse.length === 2) {
       // console.log(cartCourseInfoList[0].cartCourseCount);
+      console.log(cartCourseInfoList);
       let newCartCourseInfoList = cartCourseInfoList;
-      newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
-        if (obj.course_id === newAddCourse[0].course_id) {
-          obj.cartCourseCount = obj.cartCourseCount + 1;
-        }
-        return obj;
-      });
-      console.log("newAddCourse.length-2");
-      console.log(newCartCourseInfoList);
-      console.log(newCartCourseInfoList.cartCourseCount);
-      setCartCourseInfoList([...newCartCourseInfoList]);
+      // if 購物車真的有東西
+      if (newCartCourseInfoList?.length > 0) {
+        newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
+          if (obj.course_id === newAddCourse[0].course_id) {
+            obj.cartCourseCount = obj.cartCourseCount + 1;
+          }
+          return obj;
+        });
+        console.log("newAddCourse.length-2");
+        console.log(newCartCourseInfoList);
+        console.log(newCartCourseInfoList.cartCourseCount);
+        setCartCourseInfoList([...newCartCourseInfoList]);
+      }
     }
 
     console.log("cartCourseInfoList");

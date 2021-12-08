@@ -171,6 +171,7 @@ const DefaultStudentCard = (props) => {
               type="text"
               id="telephone"
               name="telephone"
+              maxlength="10"
               value={newStudentData.telephone}
               placeholder="請輸入手機號碼"
               className="DefaultStudentCard-main-row-item-input"

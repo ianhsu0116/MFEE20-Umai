@@ -124,7 +124,7 @@ const CartCourse = (props) => {
       //計算當前購物車總金額
       getSumCartCoursePrice();
       //當購物車沒課程時，將總金額歸零
-      handleSumPriceZeroing();
+      // handleSumPriceZeroing();
       // // 重新整理購物車資訊，並刪除購物車中數量小於0的課程
       // refreshCartCourse();
     } catch (error) {
