@@ -178,7 +178,11 @@ const CourseInsert = (props) => {
 
     // 格式符合就顯示，否則提醒
     if (file) {
-      if (file.type.match(imageType) && file.size < 4000000) {
+      // 判斷副檔名
+      let ext = file.type.split("/").pop();
+      let isMatch = ext === "png" || ext === "jpg" || ext === "jpeg";
+
+      if (isMatch && file.type.match(imageType) && file.size < 4000000) {
         // 將圖裝入，等待送到後端
         let newCourseDetail = { ...courseDetail };
         newCourseDetail["slider_images"][inputIndex] = file;
@@ -197,7 +201,7 @@ const CourseInsert = (props) => {
         // 跳通知
         Swal.fire({
           icon: "warning",
-          title: "只能上傳圖片歐！(檔案須小於4mb)",
+          title: "只能上傳jpg、jpeg、png類型的圖片檔！(檔案須小於4mb)",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -215,7 +219,11 @@ const CourseInsert = (props) => {
 
     // 格式符合就顯示，否則提醒
     if (file) {
-      if (file.type.match(imageType) && file.size < 2500000) {
+      // 判斷副檔名
+      let ext = file.type.split("/").pop();
+      let isMatch = ext === "png" || ext === "jpg" || ext === "jpeg";
+
+      if (isMatch && file.type.match(imageType) && file.size < 2500000) {
         // 將圖裝入courseDetail，等待送到後端
         let newCourseDetail = { ...courseDetail };
         newCourseDetail["six_dishes"][inputIndex]["dishes_image"] = file;
@@ -233,7 +241,7 @@ const CourseInsert = (props) => {
         // 跳通知
         Swal.fire({
           icon: "warning",
-          title: "只能上傳圖片歐！(檔案須小於2.5mb)",
+          title: "只能上傳jpg、jpeg、png類型的圖片檔！(檔案須小於2.5mb)",
           showConfirmButton: false,
           timer: 1500,
         });

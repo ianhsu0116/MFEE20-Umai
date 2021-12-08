@@ -285,7 +285,16 @@ function App() {
           </div>
           <Footer />
         </Route>
-
+        {/* 課程探索 */}
+        <Route path="/courses" exact>
+          <div className="footerPadding">
+            <Course
+              currentUser={currentUser}
+              addCourseIntoCart={addCourseIntoCart}
+            />
+          </div>
+          <Footer />
+        </Route>
         <Route path="/ForumPublish" exact>
           <div className="footerPadding">
             <ForumPublish currentUser={currentUser} />{" "}
