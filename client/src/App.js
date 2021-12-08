@@ -258,6 +258,7 @@ function App() {
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
             clearNewAddCourse={clearNewAddCourse}
             addCourseIntoCart={addCourseIntoCart}
             checkoutCourse={checkoutCourse}
@@ -284,18 +285,15 @@ function App() {
           </div>
           <Footer />
         </Route>
-
-        <Route path="/ForumPublish" exact>
+        {/* 課程探索 */}
+        <Route path="/courses" exact>
           <div className="footerPadding">
-            <ForumPublish currentUser={currentUser} />{" "}
-          </div>{" "}
-          <Footer />
-        </Route>
-
-        <Route path="/ForumUpdate" exact>
-          <div className="footerPadding">
-            <Contactus />
+            <Course
+              currentUser={currentUser}
+              addCourseIntoCart={addCourseIntoCart}
+            />
           </div>
+          <Footer />
         </Route>
         <Route path="/ForumPublish" exact>
           <div className="footerPadding">
@@ -303,6 +301,7 @@ function App() {
           </div>{" "}
           <Footer />
         </Route>
+
         <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
             <ForumUpdate currentUser={currentUser} />{" "}
@@ -352,7 +351,7 @@ function App() {
         </Route>
 
         <Route path="/contactus" exact>
-          <div className="footerPadding">
+          <div className="contactus">
             <Contactus />
           </div>
           <Footer />

@@ -38,6 +38,8 @@ function CourseInfomation(props) {
     addCourseIntoCart,
     checkoutCourse,
     setCheckoutCourse,
+    cartCourseInfoList,
+    setCartCourseInfoList,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -131,6 +133,8 @@ function CourseInfomation(props) {
   const [batch_id, setBatch_id] = useState(0);
   // 當前課程id
   const [course_id, setCourse_id] = useState(0);
+  // 設定一個推薦課程陣列
+  const [recommend, setRecommend] = useState([]);
 
   useEffect(async () => {
     try {
@@ -141,12 +145,21 @@ function CourseInfomation(props) {
       result.data.course[0].course_detail = JSON.parse(
         result.data.course[0].course_detail
       );
-      console.log(result.data.course_comment[0]);
+      window.document.body.scrollTop = 0;
+      window.document.documentElement.scrollTop = 0;
       setNewCourseJSON(result.data.course);
       setCourse_batchJSON(result.data.course_batch);
       setCourse_Score(result.data.course_comment);
       setCourse_Score_member(result.data.course_comment.length);
       setCourse_id(id_number);
+      // 推薦課程
+      let Recommend = await CourseService.course_recommend();
+      for (let i = 0; i < Recommend.data.recommend.length; i++) {
+        Recommend.data.recommend[i].course_detail = JSON.parse(
+          Recommend.data.recommend[i].course_detail
+        );
+      }
+      setRecommend(Recommend.data.recommend);
       return;
     } catch (error) {
       console.log(error);
@@ -467,6 +480,11 @@ function CourseInfomation(props) {
                     >
                       評論區
                     </li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "#Comment";
+                      }}
+                    ></li>
                   </ul>
                 </div>
               </div>
@@ -773,8 +791,23 @@ function CourseInfomation(props) {
             ></img>
             <div className="Coursedetail-outsideTitle">推薦課程</div>
             <div className="Coursedetail-titleLine"></div>
-            <CourseRecommend />
-
+            <div className="Coursedetail-recommendDiv">
+              {recommend &&
+                recommend.map((key, index) => (
+                  <CourseRecommend
+                    key={index}
+                    coursePicturs={`${PUBLIC_URL}/upload-images/${recommend[index]?.course_detail.six_dishes[0].dishes_image}`}
+                    courseCategory={recommend[index]?.category_id}
+                    courseLevel={recommend[index]?.course_level}
+                    courseName={recommend[index]?.course_name}
+                    courseArea={
+                      recommend[index]?.course_detail.six_dishes[0]
+                        .dishes_content
+                    }
+                    courseLink={recommend[index]?.id}
+                  />
+                ))}
+            </div>
             <div className="Coursedetail-join">
               <span>
                 <p className="Coursedetail-joinTitle">立即報名</p>

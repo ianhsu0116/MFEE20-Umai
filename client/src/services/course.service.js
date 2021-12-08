@@ -58,6 +58,13 @@ class CourseService {
     });
   }
 
+  // 測試隨機抓資料
+  course_recommend() {
+    return axios.get(COURSE_API_URL + "/course/recommend", {
+      withCredentials: true,
+    });
+  }
+
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
     return axios.get(COURSE_API_URL + `/${course_id}`, {

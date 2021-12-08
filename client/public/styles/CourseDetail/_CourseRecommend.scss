@@ -1,12 +1,16 @@
+.Coursedetail-recommendDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .Coursedetail-recommend {
   margin: 60px 0;
   height: 30vw;
-  width: 103.5%;
+  width: 22vw;
   display: flex;
 }
 .Coursedetail-recommendLeft {
   height: 100%;
-  width: 30%;
   border-radius: 5px;
   overflow: hidden;
   margin: 0 auto auto 0;
@@ -79,6 +83,10 @@
   position: relative;
   color: white;
   opacity: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .Coursedetail-recommendInfo {
   text-align: left;
@@ -96,6 +104,7 @@
   overflow: hidden;
   font-weight: 500;
   // font-size: 24px;
+  height: 11.3vw;
 }
 .Coursedetail-recommendClick {
   text-align: center;

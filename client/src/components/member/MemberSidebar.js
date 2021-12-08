@@ -124,7 +124,7 @@ const MemberSidebar = (props) => {
   const handleLogout = async () => {
     try {
       let result = await AuthService.logout();
-      //console.log(result);
+      console.log(result);
       // 清空當前user資料
       setCurrentUser(null);
       // 跳通知
