@@ -26,29 +26,20 @@ function CourseDetail(props) {
     // carddata.map((data)=>Object.keys(data))[0].map((index)=> {return index}).map((name)=>{if(carddata[0][name]===""){dataerror=true}});
     // Object.keys(OrderData).map((name)=>{if(OrderData[name]===""){dataerror=true}})
     if (datacheck.ordererValidation(OrderData).error !== undefined) {
-      setlink("/ShoppingCart");
-      setdataerror(true);
-      return;
-    } else {
-      console.log("orderer success");
-      setlink("/PaymentMethod");
-      setdataerror(false);
+      setdataerror(true)
+    }else{
+      setdataerror(false)
     }
     for(let i=0;i<carddata.length;i++){
-        console.log(carddata[i]);
-        if(datacheck.studentValidation(carddata[i]).error !==undefined){
-            console.log(datacheck.studentValidation(carddata[i]).error);
-            setlink("/ShoppingCart")
-            setdataerror(true)
-            return
-        }else{
-            setlink("/PaymentMethod")
-            setdataerror(false)
-        }
+      if(datacheck.studentValidation(carddata[i]).error !==undefined){
+        setdataerror(true)
+      }else{
+        setdataerror(false)
+      }
     }
   }
   useEffect(() => {
-    checkdata();
+    checkdata(dataerror);
   });
   let data = JSON.stringify({
     coursetitle: coursetitle,
@@ -125,7 +116,23 @@ function CourseDetail(props) {
           </td>
         </tr>
       </table>
-      <Link to={{ pathname: link, state: { data: data } }}>
+      {dataerror?
+        <div className="ToShoppingList">
+          <button
+            onClick={() => {
+              if (dataerror === true) {
+                Swal.fire({
+                  icon: "error",
+                  title: "訂單資料有誤",
+                  text: "資料未輸入完整或資料有誤",
+                });
+              }
+            }}
+          >
+            <h4>選擇付款方式</h4>
+          </button>
+        </div>:
+        <Link to={{ pathname: "/paymentMethod", state: { data: data } }}>
         <div className="ToShoppingList">
           <button
             onClick={() => {
@@ -142,6 +149,7 @@ function CourseDetail(props) {
           </button>
         </div>
       </Link>
+        }
     </>
   );
 }
