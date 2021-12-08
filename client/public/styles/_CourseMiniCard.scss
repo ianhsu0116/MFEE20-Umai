@@ -27,6 +27,7 @@ $st-courseMiniCardSpecialPriceTextSize: calc(8px + 0.75vw);
   background: white;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  cursor: pointer;
   .st-courseMiniCardBarActiveDeadline {
     background: $activeColor;
   }
@@ -90,7 +91,13 @@ $st-courseMiniCardSpecialPriceTextSize: calc(8px + 0.75vw);
         font-weight: 700;
         margin: 10px 20px;
         line-height: $courseMiniCardNameLineHeight;
-
+        p {
+          height: 3vw;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
         // 主廚名稱
         .st-courseMiniCardChefName {
           margin-top: 5px;
@@ -182,6 +189,12 @@ $st-courseMiniCardSpecialPriceTextSize: calc(8px + 0.75vw);
       font-weight: 500;
       cursor: pointer;
       font-size: 80%;
+    }
+    .highLevel {
+      background: $highLevelColor;
+    }
+    .midLevel {
+      background: $midLevelColor;
     }
     .st-courseMiniCardPriceBox {
       top: 0;
