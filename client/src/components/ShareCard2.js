@@ -1,6 +1,6 @@
 import React from "react";
 // import { useState } from 'react'
-import avatar from "./images/avatar.jpg";
+import avatar from "./images/avatar.svg";
 import StarGroup from "./StarGroup";
 
 function ShareCard(props) {

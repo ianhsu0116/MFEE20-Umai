@@ -374,22 +374,24 @@
             width: calc(9.25rem + 6vw);
           }
         }
-        .chefIntroductionContentWrapper {
-          margin-top: calc(0.25rem + 2vw);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          width: 100%;
-          // overflow: hidden;
-          .chefIntroductionContent {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 3vw;
-            z-index: 6;
-          }
-        }
+
+        // ian
+        // .chefIntroductionContentWrapper {
+        //   margin-top: calc(0.25rem + 2vw);
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   height: 100%;
+        //   width: 100%;
+        //   // overflow: hidden;
+        //   .chefIntroductionContent {
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     padding: 0 3vw;
+        //     z-index: 6;
+        //   }
+        // }
       }
     }
   }

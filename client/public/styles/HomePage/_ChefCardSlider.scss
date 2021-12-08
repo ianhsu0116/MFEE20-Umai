@@ -19,20 +19,66 @@
       width: calc(9.25rem + 6vw);
     }
   }
+  // .chefIntroductionContentWrapper {
+  //   margin-top: calc(0.25rem + 2vw);
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   height: 100%;
+  //   width: 100%;
+  //   // overflow: hidden;
+  //   .chefIntroductionContent {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     padding: 0 3vw;
+  //     z-index: 6;
+  //   }
+  // }
   .chefIntroductionContentWrapper {
     margin-top: calc(0.25rem + 2vw);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    min-height: 40vw;
+    width: 100vw !important;
+    position: relative;
+
     // overflow: hidden;
-    .chefIntroductionContent {
-      display: flex;
+
+    .ContentWrapperMask {
+      //background: black;
+      width: calc(60vw + 6em);
+      height: calc(35vw + 2vw);
+      min-width: calc(450px + 6em);
+      min-height: calc(300px + 2vw);
+      max-width: calc(900px + 6em);
+      max-height: calc(600px + 2vw);
       justify-content: center;
-      align-items: center;
-      padding: 0 3vw;
-      z-index: 6;
+
+      .ContentWrapper-row {
+        @include flex(row);
+        //justify-content: center;
+        align-items: center;
+        left: -100%;
+        transition: all 0.5s ease;
+        .chefIntroductionContent {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          //padding: 0 3vw;
+          z-index: 6;
+          cursor: pointer;
+          margin: 0 3em;
+          transform: scale(0.95);
+          transition: all 0.5s ease;
+        }
+
+        .chefIntroductionContent-canter {
+          transform: scale(1.05);
+        }
+      }
     }
   }
 }
