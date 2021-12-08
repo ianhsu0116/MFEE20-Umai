@@ -83,8 +83,7 @@ router.post("/member/:member_id", async (req, res) => {
     students.forEach((item) => {
       sortedStudents[item.orders_id] = item.orders_student_count;
     });
-    console.log(students);
-    console.log(sortedStudents);
+
     // 將個別報名人數塞入各個order detial
     result.forEach((item, index) => {
       item.orders_student_count = sortedStudents[item.id];
@@ -173,7 +172,7 @@ router.post("/insertOrderData", async (req, res) => {
         1,
       ]
     );
-    console.log(result);
+    // console.log(result);
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });
