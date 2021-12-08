@@ -70,7 +70,9 @@
             //margin: 0.15rem;
             text-align: center;
             font-weight: 900;
-            border: 1px solid $fontColor;
+            //border: 1px solid $fontColor;
+            font-size: 0.9rem;
+            border-bottom: 1px solid $fontColor;
           }
         }
       }

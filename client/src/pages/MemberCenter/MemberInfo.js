@@ -369,13 +369,17 @@ const MemberInfo = (props) => {
 
         <header className="MemberInfo-container-header">
           <h2>會員資訊</h2>
-          <div
-            className="MemberInfo-passwordEditButton"
-            onClick={handlePwdConOpen}
-          >
-            <FaPencilAlt />
-            <span>密碼修改</span>
-          </div>
+
+          {/* 只有本地註冊的會員 才顯示修改密碼 */}
+          {currentUser && !currentUser.googleId && !currentUser.facebookId && (
+            <div
+              className="MemberInfo-passwordEditButton"
+              onClick={handlePwdConOpen}
+            >
+              <FaPencilAlt />
+              <span>密碼修改</span>
+            </div>
+          )}
         </header>
 
         <div className="MemberInfo-container-cards">
