@@ -1,9 +1,11 @@
-import React from "react";
-// import { useState } from 'react'
 import Chef from "./images/test/photoAC設置拌飯.jpg";
 import StarGroup from "./StarGroup";
+import React, { Component , useState, useEffect } from "react";
+import CourseService from "../services/course.service";
 
 const CourseMiniCard = (props) => {
+  
+  let {coursePicture , courseName , chefName , courseBatch , courseQuota , courseNowQuota , courseLevel ,coursePrice} = props
   const CardTest = [
     {
       courseCategory: "日式料理", //分類
@@ -20,6 +22,19 @@ const CourseMiniCard = (props) => {
     },
   ];
   const courseLevelList = ["初級", "中級", "高級"];
+
+  const [homepageCourse , setHomepageCourse] = useState([])
+  
+  // 拿到課程
+  // useEffect(async () => {
+  //   try {
+  //     let homepage = await CourseService.course_homepage();
+  //     console.log(homepage.data)
+  //     setHomepageCourse(homepage.data)
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   return (
     <>

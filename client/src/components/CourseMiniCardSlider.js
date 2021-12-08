@@ -1,9 +1,23 @@
-import React, { Component } from "react";
+import React, { Component , useState, useEffect } from "react";
 import Slider from "react-slick";
 import CourseMiniCard from "./CourseMiniCard2";
+import CourseService from "../services/course.service";
 
-export default class Responsive extends Component {
-  render() {
+
+
+function CourseMiniCardSlider(props){
+
+  const [homepageCourse , setHomepageCourse] = useState([])
+
+    useEffect(async () => {
+      try {
+        let homepage = await CourseService.course_homepage();
+        setHomepageCourse(homepage.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }, []);
+
     var settings = {
       dots: true,
       // infinite: false,
@@ -47,7 +61,7 @@ export default class Responsive extends Component {
         <div className="SliderTitle">
           <div className="circle"></div>
           <div className="TitleText">
-            <h1>{this.props.SliderTitle}</h1>
+            {/* <h1>{props.SliderTitle}</h1> */}
           </div>
         </div>
         <Slider {...settings}>
@@ -79,4 +93,4 @@ export default class Responsive extends Component {
       </>
     );
   }
-}
+export default CourseMiniCardSlider
