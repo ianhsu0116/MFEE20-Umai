@@ -27,12 +27,14 @@ function CourseDetail(props) {
     // Object.keys(OrderData).map((name)=>{if(OrderData[name]===""){dataerror=true}})
     if (datacheck.ordererValidation(OrderData).error !== undefined) {
       setdataerror(true)
+      return
     }else{
       setdataerror(false)
     }
     for(let i=0;i<carddata.length;i++){
       if(datacheck.studentValidation(carddata[i]).error !==undefined){
         setdataerror(true)
+        return
       }else{
         setdataerror(false)
       }
