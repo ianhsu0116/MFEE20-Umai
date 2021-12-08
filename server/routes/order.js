@@ -223,13 +223,26 @@ router.post("/insertStudentData", async (req, res) => {
       if (addIntoStudent) {
         const result = await connection.queryAsync(
           "INSERT INTO student (member_id, first_name, last_name, telephone, birthday, email, created_time, valid) VALUES(?,?,?,?,?,?,?,?)",
-          [memberid, first_name, last_name, telephone, birthday, email, now, 1]
-        );
+          [memberid, first_name, last_name, telephone, birthday, email, now, 1]);
+
+         //取得學員id
+        const getstudentid = await connection.queryAsync(
+          "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+          [memberid, first_name, last_name, telephone, birthday, email]
+        ); 
+         studentid = getstudentid[0]["id"];
       } else {
         const result = await connection.queryAsync(
           "INSERT INTO student (member_id, first_name, last_name, telephone, birthday, email, created_time, valid) VALUES(?,?,?,?,?,?,?,?)",
           [null, first_name, last_name, telephone, birthday, email, now, 1]
         );
+
+         //取得學員id
+          const getstudentid = await connection.queryAsync(
+            "SELECT id FROM student WHERE  first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+            [ first_name, last_name, telephone, birthday, email]
+          );
+           studentid = getstudentid[0]["id"];
       }
     } else {
       if (autoUpdateMember) {
@@ -237,22 +250,20 @@ router.post("/insertStudentData", async (req, res) => {
           "UPDATE student SET first_name = ?, last_name = ?, telephone = ?, birthday = ?, email = ? WHERE id = ? AND member_id = ?",
           [first_name, last_name, telephone, birthday, email, id, memberid]
         );
+         //取得學員id
+        const getstudentid = await connection.queryAsync(
+          "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ? ORDER BY id DESC",
+          [memberid, first_name, last_name, telephone, birthday, email]
+        );
+         studentid = getstudentid[0]["id"];
       }
     }
-
-    //取得學員id
-    const getstudentid = await connection.queryAsync(
-      "SELECT id FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ?",
-      [memberid, first_name, last_name, telephone, birthday, email]
-    );
-    const studentid = getstudentid[0]["id"];
 
     //取得訂單id
     const getorderid = await connection.queryAsync(
       "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ? ORDER BY id DESC",
       [memberid, courseid, batchid]
     );
-    console.log(getorderid);
     const orderid = getorderid[0]["id"];
 
     //確認是否連結

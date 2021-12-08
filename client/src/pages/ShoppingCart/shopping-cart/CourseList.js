@@ -20,11 +20,6 @@ function CourseList(props) {
   //將訂單移除購物車
   async function modifycart() {
     try {
-      console.log({
-        memberid: currentUser.id,
-        courseid: coursetitle.course_id,
-        batchid: coursetitle.batch_id,
-      });
       let result = await axios.put(
         `http://localhost:8080/api/order/modifycart`,
         {
