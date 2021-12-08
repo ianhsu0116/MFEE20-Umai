@@ -230,10 +230,10 @@ function App() {
     //前往執行以NewAddCourse作為依賴的useEffect(在Navbar2當中)
   }
 
-  // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+  // 重新整理購物車資訊、計算總金額
   async function refreshCartCourse() {
     let newCartCourseInfoList;
-    if (!handleIfCourseInCart) {
+    if (!ifNoCourseInCart) {
       newCartCourseInfoList = cartCourseInfoList?.filter((obj) => {
         return obj.cartCourseCount > 0;
       });

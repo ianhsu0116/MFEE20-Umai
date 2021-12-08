@@ -272,14 +272,12 @@ const Navbar = (props) => {
   }, []);
 
   useEffect(() => {
-    //判斷購物車是否只有一堂課程
-    ifOnlyCourseInCart();
-
-    //當購物車沒課程時，改變狀態判斷
-    handleIfCourseInCart();
-
-    //當購物車沒課程時，將總金額歸零
-    handleSumPriceZeroing();
+    // //判斷購物車是否只有一堂課程
+    // ifOnlyCourseInCart();
+    // //當購物車沒課程時，改變狀態判斷
+    // handleIfCourseInCart();
+    // //當購物車沒課程時，將總金額歸零
+    // handleSumPriceZeroing();
   }, [cartCourseInfoList]);
 
   return (
@@ -457,7 +455,7 @@ const Navbar = (props) => {
                           )
                         );
                       })}
-                    {!ifNoCourseInCart && (
+                    {ifNoCourseInCart && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
                       </div>
@@ -530,7 +528,7 @@ const Navbar = (props) => {
                   <div className="Navbar-container-item-Cart-dropdown-container">
                     {/* 購物車課程卡片 */}
                     {!ifNoCourseInCart &&
-                      cartCourseInfoList.map((Obj) => {
+                      cartCourseInfoList?.map((Obj) => {
                         return (
                           Obj && (
                             <CartCourse
@@ -550,7 +548,7 @@ const Navbar = (props) => {
                           )
                         );
                       })}
-                    {!ifNoCourseInCart && (
+                    {ifNoCourseInCart && (
                       <div className="CartCourse-container-empty">
                         <h5>快去選購更多精彩課程！</h5>
                       </div>
