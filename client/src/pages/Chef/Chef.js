@@ -159,6 +159,8 @@ const Chef = (props) => {
         result.data.chefs[i].chef_introduction = JSON.parse(
           result.data.chefs[i].chef_introduction
         );
+        window.document.body.scrollTop = 0;
+        window.document.documentElement.scrollTop = 0;
       }
       setChefSelect(result.data.chefs[0]);
       setChefJSON(result.data.chefs);

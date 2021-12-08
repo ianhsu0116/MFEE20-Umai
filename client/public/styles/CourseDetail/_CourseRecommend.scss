@@ -83,6 +83,10 @@
   position: relative;
   color: white;
   opacity: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .Coursedetail-recommendInfo {
   text-align: left;
@@ -100,6 +104,7 @@
   overflow: hidden;
   font-weight: 500;
   // font-size: 24px;
+  height: 11.3vw;
 }
 .Coursedetail-recommendClick {
   text-align: center;
