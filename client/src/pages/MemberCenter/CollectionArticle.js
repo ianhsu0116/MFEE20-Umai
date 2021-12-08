@@ -23,16 +23,19 @@ const CollectionArticle = (props) => {
       // 將資料裝入
       setArticleData(result.data.article);
     } catch (error) {
-      //console.log(error.response);
-      let { code } = error.response.data;
+      console.log(error);
 
-      // 提示錯誤
-      Swal.fire({
-        icon: "error",
-        title: getValidMessage("forum", code),
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (error.response) {
+        let { code } = error.response.data;
+
+        // 提示錯誤
+        Swal.fire({
+          icon: "error",
+          title: getValidMessage("forum", code),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     }
   }
 
