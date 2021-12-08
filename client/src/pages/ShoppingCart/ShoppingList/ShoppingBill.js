@@ -3,7 +3,6 @@ function ShoppingBill(props){
     let coupon = props.coupon;
     let carddata = props.carddata;
     let OrdererData = props.OrdererData;
-    console.log(carddata);
     return(
         <>
         <div className="ShoppingBill-padding">
