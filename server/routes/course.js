@@ -151,10 +151,10 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
       `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
-    res.status(200).json({ success: true, inCart });
     console.log(inCart[0].inCart);
+    res.status(200).json({ success: true, inCart });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res
       .status(200)
       .json({ success: true, message: "購物車中目前沒有選購任何課程" });
