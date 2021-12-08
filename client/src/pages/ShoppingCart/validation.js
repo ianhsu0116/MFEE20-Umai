@@ -47,6 +47,18 @@ studentValidation(data){
 
   return schema.validate(data);
 };
+
+// creditCard 格式
+creditCardValidation = (data) => {
+  const schema = Joi.object({
+    number: Joi.string().length(16).required(),
+    name: Joi.string().min(1).max(30).required(),
+    expiry:Joi.string().length(4),
+    cvc:Joi.string().length(3)
+  });
+
+  return schema.validate(data);
+};
 }
 
 //let datacheck1 = new datacheck()
