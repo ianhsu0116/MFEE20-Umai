@@ -126,7 +126,10 @@ const Navbar = (props) => {
     // 根據member_id拿到購物車所需的全部課程資料 (cart)
     let result = await courseService.getAllCourseObject(member_id);
     let newCartCourseInfoList = result.data.courseInfoInCart;
-    setCartCourseInfoList([...newCartCourseInfoList]);
+    if (newCartCourseInfoList) {
+      setCartCourseInfoList([...newCartCourseInfoList]);
+    }
+
     console.log("newCartCourseInfoList");
     console.log(newCartCourseInfoList);
   }
@@ -356,7 +359,9 @@ const Navbar = (props) => {
     handleSumPriceZeroing();
 
     // 拿到購物車所需的全部課程資料，並加入購物車
-    getAllCourseObject(currentUser.id);
+    if (currentUser) {
+      getAllCourseObject(currentUser.id);
+    }
     console.log("getAllCourseObject");
     // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
     refreshCartCourse();
@@ -582,18 +587,16 @@ const Navbar = (props) => {
                         </div>
                         <div className="Navbar-container-item-Cart-dropdown-info-bottom-right">
                           {/* 結帳按鈕 */}
-                            <Link
-                              to={{ pathname: link, state: { data: data } }}
-                            >
+                          <Link to={{ pathname: link, state: { data: data } }}>
                             <div
-                            className="goCheckOut"
-                            onClick={() => {
-                              // handleCheckout();
-                            }}
-                          >
+                              className="goCheckOut"
+                              onClick={() => {
+                                // handleCheckout();
+                              }}
+                            >
                               <h5>前往結帳</h5>
-                          </div>
-                            </Link>
+                            </div>
+                          </Link>
                         </div>
                       </div>
                     </div>
