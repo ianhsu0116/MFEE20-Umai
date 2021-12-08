@@ -77,13 +77,14 @@ router.post("/member/:member_id", async (req, res) => {
       "SELECT orders_id, COUNT(orders_student.student_id) orders_student_count FROM orders_student WHERE orders_id IN (?) GROUP BY orders_id",
       [id_array]
     );
-
+      
     // 將 students 按照計數板排好
     let sortedStudents = {};
     students.forEach((item) => {
       sortedStudents[item.orders_id] = item.orders_student_count;
     });
-
+    console.log(students);
+    console.log(sortedStudents);
     // 將個別報名人數塞入各個order detial
     result.forEach((item, index) => {
       item.orders_student_count = sortedStudents[item.id];
@@ -172,7 +173,7 @@ router.post("/insertOrderData", async (req, res) => {
         1,
       ]
     );
-
+      console.log(result);
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });
@@ -213,7 +214,6 @@ router.post("/insertStudentData", async (req, res) => {
     autoUpdateMember,
   } = req.body;
   let now = momnet().format("YYYY-MM-DDTHH:mm:ss");
-  console.log(id);
   try {
     //確認沒有重複的資料
     // const checkstudent = await connection.queryAsync("SELECT * FROM student WHERE member_id = ? AND first_name = ? AND last_name = ? AND telephone = ? AND birthday = ? AND email = ?",[memberid, first_name, last_name, telephone, birthday, email]);
@@ -256,15 +256,11 @@ router.post("/insertStudentData", async (req, res) => {
 
     //取得訂單id
     const getorderid = await connection.queryAsync(
-      "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ?",
+      "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ? ORDER BY id DESC",
       [memberid, courseid, batchid]
     );
+    console.log(getorderid);
     const orderid = getorderid[0]["id"];
-    console.log(
-      "SELECT id FROM orders WHERE member_id = ? AND course_id = ? AND batch_id = ?",
-      [memberid, courseid, batchid]
-    );
-    console.log(orderid);
 
     //確認是否連結
     const checkorders_student = await connection.queryAsync(
