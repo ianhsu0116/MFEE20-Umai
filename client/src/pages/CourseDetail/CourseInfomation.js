@@ -231,6 +231,14 @@ function CourseInfomation(props) {
         setBatch_id(course_batchJSON[i].id);
         console.log("batch_id: ");
         console.log(course_batchJSON[i].id);
+        setData(
+          JSON.stringify({
+            member_id: currentUser ? currentUser.id : "",
+            course_id: id_number ? id_number : "",
+            batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+            cartCourseCount: 1,
+          })
+        );
       }
     }
     setCheckoutCourse({
@@ -240,14 +248,6 @@ function CourseInfomation(props) {
       cartCourseCount: 1,
     });
     setLink("/shoppingCart");
-    setData(
-      JSON.stringify({
-        member_id: currentUser ? currentUser.id : "",
-        course_id: id_number ? id_number : "",
-        batch_id: batch_id ? batch_id : "",
-        cartCourseCount: 1,
-      })
-    );
   };
   let googleMap =
     "https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
@@ -273,8 +273,6 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {console.log(batch_id)}
-      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}

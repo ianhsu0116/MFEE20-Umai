@@ -1,9 +1,8 @@
 /* eslint-disable default-case */
 import { useEffect, useState } from "react";
-import { VscDebugBreakpointLog } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import datacheck from "./validation";
+import Swal from 'sweetalert2';
+import datacheck from "../validation";
 
 function CourseDetail(props) {
   //優惠卷額度
@@ -35,19 +34,17 @@ function CourseDetail(props) {
       setlink("/PaymentMethod");
       setdataerror(false);
     }
-
-    for (let i = 0; i < carddata.length; i++) {
-      console.log(carddata[i]);
-      if (datacheck.studentValidation(carddata[i]).error !== undefined) {
-        console.log(datacheck.studentValidation(carddata[i]).error);
-        setlink("/ShoppingCart");
-        setdataerror(true);
-        return;
-      } else {
-        console.log("carddata success");
-        setlink("/PaymentMethod");
-        setdataerror(false);
-      }
+    for(let i=0;i<carddata.length;i++){
+        console.log(carddata[i]);
+        if(datacheck.studentValidation(carddata[i]).error !==undefined){
+            console.log(datacheck.studentValidation(carddata[i]).error);
+            setlink("/ShoppingCart")
+            setdataerror(true)
+            return
+        }else{
+            setlink("/PaymentMethod")
+            setdataerror(false)
+        }
     }
   }
   useEffect(() => {
@@ -136,7 +133,7 @@ function CourseDetail(props) {
                 Swal.fire({
                   icon: "error",
                   title: "訂單資料有誤",
-                  text: "資料未輸入完整",
+                  text: "資料未輸入完整或資料有誤",
                 });
               }
             }}
