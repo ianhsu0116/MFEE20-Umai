@@ -23,13 +23,12 @@ router.use((req, res, next) => {
 // 這裡為不需登入也可使用的路由
 // 抓member_category = 2(主廚)資料
 router.get("/member/chefName", async (req, res) => {
-
   try {
     let result = await connection.queryAsync(
-      "SELECT member.* FROM member WHERE chef_introduction IS NOT null AND member_category = 2 AND valid = 1",
+      "SELECT member.* FROM member WHERE chef_introduction IS NOT null AND member_category = 2 AND valid = 1"
     );
 
-    console.log(123 , result)
+    console.log(123, result);
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     console.log(error);
@@ -41,10 +40,10 @@ router.get("/member/:chefID", async (req, res) => {
   try {
     let result = await connection.queryAsync(
       "SELECT course.*, course_category.category_name, member.first_name, member.last_name, SUM(course_comment.score) AS score_sum, COUNT(course_comment.score) AS score_count FROM course JOIN course_category ON course.category_id = course_category.id LEFT JOIN course_comment ON course.id = course_comment.course_id JOIN member ON course.member_id = member.id WHERE course.member_id = ? AND course.valid = ? GROUP BY course.id",
-      [chefID , 1]
-      );
+      [chefID, 1]
+    );
 
-    console.log(chefID)
+    console.log(chefID);
     res.status(200).json({ success: true, chefs: result });
   } catch (error) {
     console.log(error);
@@ -303,7 +302,7 @@ router.get("/student", async (req, res) => {
 
   try {
     let result = await connection.queryAsync(
-      "SELECT * FROM student WHERE member_id = ? AND valid = ?",
+      "SELECT * FROM student WHERE member_id = ? AND valid = ? ORDER BY id DESC",
       [id, 1]
     );
     res.status(200).json({ success: true, students: result });
