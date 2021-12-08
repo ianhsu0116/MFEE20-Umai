@@ -247,7 +247,7 @@ function CourseInfomation(props) {
           course_id: course_batchJSON[i].course_id
             ? course_batchJSON[i].course_id
             : "",
-          batch_id: course_ba tchJSON[i].id ? course_batchJSON[i].id : "",
+          batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
           cartCourseCount: 1,
         });
       }
