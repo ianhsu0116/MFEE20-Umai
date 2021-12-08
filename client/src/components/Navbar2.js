@@ -449,8 +449,8 @@ const Navbar = (props) => {
                   {ExperienceShareListLeft.map((page) => (
                     <li
                       onClick={() => {
-                        // window.location.href = "http://localhost:3000/forum";
-                        console.log(cartCourseInfoList);
+                        window.location.href = "http://localhost:3000/forum";
+                        // console.log(cartCourseInfoList);
                       }}
                     >
                       {page}
@@ -461,8 +461,8 @@ const Navbar = (props) => {
                   {ExperienceShareListRight.map((page) => (
                     <li
                       onClick={() => {
-                        // window.location.href = "http://localhost:3000/forum";
-                        console.log(cartCourseInfoList);
+                        window.location.href = "http://localhost:3000/forum";
+                        // console.log(cartCourseInfoList);
                       }}
                     >
                       {page}
