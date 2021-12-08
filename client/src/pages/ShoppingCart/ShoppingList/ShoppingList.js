@@ -44,7 +44,6 @@ function ShoppingList(props) {
           });
       }
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -69,7 +68,6 @@ function ShoppingList(props) {
             (1 - coupon.discount_percent / 100)
         ),
     };
-    console.log(orderdata);
     try {
       let insert_order_data = await axios.post(
         API_URL + "/order/insertOrderData",
