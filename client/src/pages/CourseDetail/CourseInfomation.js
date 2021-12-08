@@ -40,6 +40,10 @@ function CourseInfomation(props) {
     setCheckoutCourse,
     cartCourseInfoList,
     setCartCourseInfoList,
+    data,
+    setData,
+    link,
+    setLink,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -117,10 +121,6 @@ function CourseInfomation(props) {
       member_id: "",
     },
   ]);
-
-  //用Link傳資料給結帳頁面
-  const [link, setLink] = useState("/");
-  const [data, setData] = useState({});
 
   // Data 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
@@ -235,22 +235,21 @@ function CourseInfomation(props) {
         setData(
           JSON.stringify({
             member_id: currentUser ? currentUser.id : "",
-            // course_id: course_batchJSON[i].course_id
-            //   ? course_batchJSON[i].course_id
-            //   : "",
-            course_id: id_number ? id_number : "",
+            course_id: course_batchJSON[i].course_id
+              ? course_batchJSON[i].course_id
+              : "",
             batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
             cartCourseCount: 1,
           })
         );
-        // setCheckoutCourse({
-        //   member_id: currentUser ? currentUser.id : "",
-        //   course_id: course_batchJSON[i].course_id
-        //     ? course_batchJSON[i].course_id
-        //     : "",
-        //   batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
-        //   cartCourseCount: 1,
-        // });
+        setCheckoutCourse({
+          member_id: currentUser ? currentUser.id : "",
+          course_id: course_batchJSON[i].course_id
+            ? course_batchJSON[i].course_id
+            : "",
+          batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+          cartCourseCount: 1,
+        });
       }
     }
     setLink("/shoppingCart");
@@ -279,6 +278,8 @@ function CourseInfomation(props) {
 
   return (
     <>
+      {console.log(batch_id)}
+      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}

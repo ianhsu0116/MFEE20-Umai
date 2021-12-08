@@ -35,6 +35,10 @@ const Navbar = (props) => {
     sumCartCoursePrice,
     setSumCartCoursePrice,
     addCourseIntoCart,
+    data,
+    setData,
+    link,
+    setLink,
   } = props;
 
   //儲存購物車的課程資訊
@@ -584,7 +588,11 @@ const Navbar = (props) => {
                               handleCheckout();
                             }}
                           >
-                            <h5>前往結帳</h5>
+                            <Link
+                              to={{ pathname: link, state: { data: data } }}
+                            >
+                              <h5>前往結帳</h5>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -680,7 +688,11 @@ const Navbar = (props) => {
                               ifLogIn();
                             }}
                           >
+                            {/* <Link
+                              to={{ pathname: link, state: { data: data } }}
+                            > */}
                             <h5>前往結帳</h5>
+                            {/* </Link> */}
                           </div>
                         </div>
                       </div>
