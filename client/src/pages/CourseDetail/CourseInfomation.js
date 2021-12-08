@@ -235,21 +235,22 @@ function CourseInfomation(props) {
         setData(
           JSON.stringify({
             member_id: currentUser ? currentUser.id : "",
-            course_id: course_batchJSON[i].course_id
-              ? course_batchJSON[i].course_id
-              : "",
+            // course_id: course_batchJSON[i].course_id
+            //   ? course_batchJSON[i].course_id
+            //   : "",
+            course_id: id_number ? id_number : "",
             batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
             cartCourseCount: 1,
           })
         );
-        setCheckoutCourse({
-          member_id: currentUser ? currentUser.id : "",
-          course_id: course_batchJSON[i].course_id
-            ? course_batchJSON[i].course_id
-            : "",
-          batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
-          cartCourseCount: 1,
-        });
+        // setCheckoutCourse({
+        //   member_id: currentUser ? currentUser.id : "",
+        //   course_id: course_batchJSON[i].course_id
+        //     ? course_batchJSON[i].course_id
+        //     : "",
+        //   batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
+        //   cartCourseCount: 1,
+        // });
       }
     }
     setLink("/shoppingCart");
@@ -278,8 +279,6 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {console.log(batch_id)}
-      {console.log(course_id)}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}

@@ -1,5 +1,8 @@
 /* eslint-disable default-case */
 import { Link } from "react-router-dom";
+import datacheck from "../validation";
+import Swal from 'sweetalert2';
+import { useState , useEffect} from "react";
 
 function CourseDetail(props){
 
@@ -10,6 +13,23 @@ function CourseDetail(props){
     let creditCards = props.creditCards;
     let paymenttype = props.paymenttype;
     let receipttype = props.receipttype;
+
+    const [link,setlink]=useState("/ShoppingList")
+    const [dataerror,setdataerror]=useState(false)
+
+    function checkdata(){
+        if(datacheck.creditCardValidation(creditCards).error!==undefined){
+            setlink("/PaymentMethod")
+            setdataerror(true)
+            return
+        }else{
+            setlink("/ShoppingList")
+            setdataerror(false)
+        }
+    }
+    useEffect(()=>{
+        checkdata()
+    })
 
     //要傳送至下一個頁面的資料
     let data = JSON.stringify({coursetitle:coursetitle,coupon:coupon,carddata:carddata,OrderData:OrderData,creditCards:creditCards,paymenttype:paymenttype,receipttype:receipttype});
@@ -27,7 +47,7 @@ function CourseDetail(props){
             </tr>
             <tr>
                 <td><h5>優惠折扣</h5></td>
-                <td><h5>NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h5></td>
+                <td><h5>-NT$ {Math.floor(props.coursetitle.value*props.coursetitle.studentnumber*(1-props.coupon.discount_percent/100))}</h5></td>
             </tr>
             <tr>
                 <td><h3>總金額</h3></td>
@@ -47,12 +67,23 @@ function CourseDetail(props){
         </table>
         <Link 
         to={{
-            pathname:"/ShoppingList",
+            pathname:link,
             state:{data: data}
         }}
         >
             <div className="ToShoppingList">
-                <button>
+                <button
+                    onClick={()=>{
+                    if(dataerror===true){
+                        Swal.fire({
+                            icon: 'error',
+                            title: '信用卡資料有誤',
+                            text:'資料未輸入完整或資料有誤'
+                            })
+                        }
+                     }
+                }
+                >
                     <h4>結帳</h4>
                 </button>
             </div>

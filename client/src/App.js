@@ -12,7 +12,6 @@ import Login from "./components/member/Login";
 import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
 import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
 import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
-import { numDotFormat } from "./config/formula";
 
 // 測試元件區
 import Masonry from "./pages/Masonry/Masonry";
@@ -41,6 +40,21 @@ function App() {
 
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
+
+  //儲存購物車的課程資訊
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  // [{
+  //   course_id: "",
+  //   member_id: "",
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_id: "", //(course_batch table)
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // }]
 
   //新增課程
   const [newAddCourse, setNewAddCourse] = useState({});
@@ -74,16 +88,10 @@ function App() {
     }
   };
 
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
-
-  //當前購物車總金額
-  const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
-
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
     //清空並觸發Navbar2中的useEffect
-    setNewAddCourse({});
+    await setNewAddCourse({});
     console.log("clearNewAddCourse");
   }
 
@@ -99,8 +107,8 @@ function App() {
     );
     let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
     console.log("back to FE");
-    // 回傳Incart值;
     console.log(ifIncart);
+    // console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
     let getOneCourseObject = async () => {
@@ -138,7 +146,7 @@ function App() {
           1
         );
         try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
+          CartCourseObject = await getOneCourseObject();
         } catch (error) {
           console.log(error);
         }
@@ -149,7 +157,7 @@ function App() {
       //在資料庫中也在購物車中
       case 1:
         try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
+          CartCourseObject = await getOneCourseObject();
         } catch (error) {
           console.log(error);
         }
@@ -175,17 +183,13 @@ function App() {
         break;
     }
 
-    //確認此課程梯次是否已存在該會員的購物車資料庫中
     if (ifIncart === 1) {
-      //已存在
-      setNewAddCourse([CartCourseObject, "+1"]);
+      await setNewAddCourse([CartCourseObject, "+1"]);
     } else {
-      //從未將此課程梯次加入購物車
       setNewAddCourse([CartCourseObject]);
     }
     console.log("setNewAddCourse");
     console.log("Exit");
-    //前往執行以NewAddCourse作為依賴的useEffect(在Navbar2當中)
   }
 
   // 結帳資料
@@ -196,14 +200,17 @@ function App() {
     cartCourseCount: 1,
   });
 
-  //會員狀態改變時，重新從資料庫取得購物車資訊，並加入購物車
+  const getAllCourseObject = async function (member_id) {
+    let result = await courseService.getAllCourseObject(member_id);
+    let newCartCourseInfoList = result.data.courseInfoInCart;
+    setCartCourseInfoList(newCartCourseInfoList);
+    console.log(newCartCourseInfoList);
+  };
+
   useEffect(() => {
     if (currentUser) {
       try {
-        // //當購物車沒課程時，將總金額歸零
-        // handleSumPriceZeroing();
-        // // 拿到購物車所需的全部課程資料，並加入購物車
-        // getAllCourseObject(currentUser.id);
+        getAllCourseObject();
       } catch (error) {
         console.log(error);
       }
@@ -217,13 +224,13 @@ function App() {
         currentUser={currentUser}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
+        cartCourseInfoList={cartCourseInfoList}
+        setCartCourseInfoList={setCartCourseInfoList}
         checkoutCourse={checkoutCourse}
         setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}
         setNewAddCourse={setNewAddCourse}
         clearNewAddCourse={clearNewAddCourse}
-        sumCartCoursePrice={sumCartCoursePrice}
-        setSumCartCoursePrice={setSumCartCoursePrice}
         addCourseIntoCart={addCourseIntoCart}
       />
       {showLogin && (
@@ -237,32 +244,27 @@ function App() {
           </div>
           <Footer />
         </Route>
-
         <Route path="/ShoppingCart" exact>
           <ShoppingCart
             currentUser={currentUser}
             checkoutCourse={checkoutCourse}
           />
         </Route>
-
         <Route path="/memberCenter" exact>
           <MemberCenter
             currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
             clearNewAddCourse={clearNewAddCourse}
             addCourseIntoCart={addCourseIntoCart}
             checkoutCourse={checkoutCourse}
             setCheckoutCourse={setCheckoutCourse}
           />
         </Route>
-
         <Route path="/Forum" exact>
           <div className="footerPadding">
             <Forum currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
-
         <Route path="/courses/category" exact>
           <div className="footerPadding">
             <Course
@@ -275,15 +277,17 @@ function App() {
           </div>
           <Footer />
         </Route>
-        {/* 課程探索 */}
-        <Route path="/courses" exact>
+
+        <Route path="/ForumPublish" exact>
           <div className="footerPadding">
-            <Course
-              currentUser={currentUser}
-              addCourseIntoCart={addCourseIntoCart}
-            />
-          </div>
+            <ForumPublish currentUser={currentUser} />{" "}
+          </div>{" "}
           <Footer />
+        </Route>
+        <Route path="/ForumUpdate" exact>
+          <div className="footerPadding">
+            <Contactus />
+          </div>
         </Route>
         <Route path="/ForumPublish" exact>
           <div className="footerPadding">
@@ -291,14 +295,12 @@ function App() {
           </div>{" "}
           <Footer />
         </Route>
-
         <Route path="/ForumUpdate" exact>
           <div className="footerPadding">
             <ForumUpdate currentUser={currentUser} />{" "}
           </div>
           <Footer />{" "}
         </Route>
-
         <Route path="/courses/:course_id" exact>
           <div className="footerPadding">
             <CourseDetail
@@ -311,37 +313,32 @@ function App() {
           </div>
           <Footer />
         </Route>
-
         <Route path="/ShoppingList" exact>
           <div className="footerPadding">
             <ShoppingList currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
-
         <Route path="/PaymentMethod" exact>
           <div className="footerPadding">
             <PaymentMethod currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
-
         <Route path="/chef" exact>
           <div className="footerPadding">
             <Chef currentUser={currentUser} />
           </div>
           <Footer />
         </Route>
-
         <Route path="/about" exact>
           <div className="footerPadding">
             <About />
           </div>
           <Footer />
         </Route>
-
         <Route path="/contactus" exact>
-          <div className="contactus">
+          <div className="footerPadding">
             <Contactus />
           </div>
           <Footer />

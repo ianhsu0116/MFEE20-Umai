@@ -191,8 +191,6 @@ router.post("/cart/:member_id", async (req, res) => {
   let { course_id, batch_id } = req.body;
 
   try {
-    try {
-    } catch (error) {}
     let addResult = await connection.queryAsync(
       "INSERT INTO cart_and_collection (member_id, course_id, batch_id, inCart) VALUE (?, ?, ?, 1)",
       [member_id, course_id, batch_id]

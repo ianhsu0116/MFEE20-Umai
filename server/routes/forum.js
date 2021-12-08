@@ -276,7 +276,8 @@ router.post("/updateArticle", uploader.single("image"), async (req, res) => {
 router.post("/deleteArticle", async (req, res) => {
   let id = req.body.id;
   let result = await connection.queryAsync(
-    "UPDATE forum_article SET valid=? WHERE id=?"
+    "UPDATE forum_article SET valid=? WHERE id=?",
+    [0, id]
   );
   res.send(result);
 });

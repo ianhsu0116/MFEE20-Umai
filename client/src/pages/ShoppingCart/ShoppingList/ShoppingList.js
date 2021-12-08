@@ -32,7 +32,11 @@ function ShoppingList(props){
             let result = await axios.get(`http://localhost:8080/api/course/${coursetitle.course_id}`, {
             withCredentials: true,
             });
-            setcoursetitle({...coursetitle,membercount:result.data.course_batch[0].member_count,memberlimit:result.data.course[0].member_limit})
+            for(let i=0;i<=result.data.course_batch.length;i++){
+                if(result.data.course_batch[i]["id"]===coursetitle.batch_id)
+                setcoursetitle({...coursetitle,membercount:result.data.course_batch[i].member_count,memberlimit:result.data.course[0].member_limit})
+            }
+            
         } catch (error) {
             console.log(error);
         }
@@ -53,6 +57,7 @@ function ShoppingList(props){
             receipttype: receipttype,
             ordersprice: coursetitle.value*coursetitle.studentnumber-Math.floor(coursetitle.value*coursetitle.studentnumber*(1-coupon.discount_percent/100))
         };
+        console.log(orderdata);
         try{
             let insert_order_data =await axios.post( API_URL + "/order/insertOrderData",orderdata,{ withCredentials: true });
         }catch(error){

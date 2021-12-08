@@ -125,7 +125,7 @@ const DefaultStudent = (props) => {
     try {
       let result = await MemberService.studentEdit(studentData);
 
-      // 清空錯誤訊息
+      // 清空指定卡片錯誤訊息
       setErrorMsgEdit({
         ...errorMsgEdit,
         [index]: "",
@@ -153,6 +153,8 @@ const DefaultStudent = (props) => {
 
   // 存要被刪除的學生資料
   const [studentDataDelete, setStudentDataDelete] = useState({});
+  // 存要被刪除的學生的index （給清空指定卡片的錯誤訊息使用）
+  const [deleteIndex, setDeleteIndex] = useState(-1);
   // 按下確認刪除的didUpdate(非同步)
   const [didDelete, setDidDelete] = useState(false);
 
@@ -160,6 +162,9 @@ const DefaultStudent = (props) => {
   const handleDeleteStudent = (index, studentData) => {
     //console.log(index);
     //console.log(studentData);
+
+    // 將當看卡片的 index 放入
+    setDeleteIndex(index);
 
     // 將此次要刪除的學生資料存進state備份，等使用者按下確認刪除
     setStudentDataDelete(studentData);
@@ -191,6 +196,12 @@ const DefaultStudent = (props) => {
 
         //清空待刪除的學員資料
         setStudentDataDelete({});
+
+        // 清空指定卡片錯誤訊息
+        setErrorMsgEdit({
+          ...errorMsgEdit,
+          [deleteIndex]: "",
+        });
 
         // 將didDelete恢復成false
         setDidDelete(false);
