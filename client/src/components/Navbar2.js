@@ -312,9 +312,9 @@ const Navbar = (props) => {
     setData(
       JSON.stringify({
         member_id: currentUser ? currentUser.id : "",
-        course_id: cartCourseInfoList[0] ? cartCourseInfoList[0].course_id : "",
-        batch_id: cartCourseInfoList[0] ? cartCourseInfoList[0].batch_id : "",
-        cartCourseCount: cartCourseInfoList[0]
+        course_id: cartCourseInfoList ? cartCourseInfoList[0].course_id : "",
+        batch_id: cartCourseInfoList ? cartCourseInfoList[0].batch_id : "",
+        cartCourseCount: cartCourseInfoList
           ? cartCourseInfoList[0].cartCourseCount
           : "",
       })

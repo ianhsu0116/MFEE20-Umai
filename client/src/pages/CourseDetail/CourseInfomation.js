@@ -242,7 +242,8 @@ function CourseInfomation(props) {
             cartCourseCount: 1,
           })
         );
-        setCheckoutCourse({
+        console.log("setData");
+        console.log({
           member_id: currentUser ? currentUser.id : "",
           course_id: course_batchJSON[i].course_id
             ? course_batchJSON[i].course_id
@@ -278,8 +279,8 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {console.log(batch_id)}
-      {console.log(course_id)}
+      {/* {console.log(batch_id)} */}
+      {/* {console.log(course_id)} */}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -846,7 +847,7 @@ function CourseInfomation(props) {
                         });
                       } else {
                         //清空新增課程state
-                        await clearNewAddCourse();
+                        // await clearNewAddCourse();
                         // 把課程加入購物車資料庫
                         addCourseIntoCart(
                           currentUser.id,
