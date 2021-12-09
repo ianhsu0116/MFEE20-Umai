@@ -92,7 +92,12 @@ const CourseCard1 = (props) => {
     <>
       {courseDetail && (
         <div className={`CourseCard1 ${className ? " " + className : ""}`}>
-          <div className="CourseCard1-imageCon">
+          <div
+            className="CourseCard1-imageCon"
+            onClick={() => {
+              window.location.href = `http://localhost:3000/courses/${courseDetail.id}`;
+            }}
+          >
             <img
               src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
               alt="course_image"
