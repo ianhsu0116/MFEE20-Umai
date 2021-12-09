@@ -1,5 +1,5 @@
 import React from "react";
-import Food4 from "../../../components/images/test/istock韓風課程.jpg";
+import Food4 from "../../../components/images/courseCostBackground.jpg";
 import CircleBlue from "../../../components/images/circle_blue.svg";
 
 function CourseCost(props) {

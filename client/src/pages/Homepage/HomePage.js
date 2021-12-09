@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
 
@@ -49,8 +49,8 @@ const HomePage = () => {
   useEffect(async () => {
     try {
       let result = await CourseService.course_homepageComment();
-      console.log(result.data.course)
-      setHomepageComment(result.data.course)
+      console.log(result.data.course);
+      setHomepageComment(result.data.course);
       return;
     } catch (error) {
       console.log(error);
@@ -190,10 +190,14 @@ const HomePage = () => {
               </div>
               <div className="platformIntroductionButtonWrapper">
                 <div className="platformIntroductionButton">
-                <p 
-                   onClick={() => {
-                        window.location.href = "http://localhost:3000/courses/category";
-                      }}>報名課程</p>
+                  <p
+                    onClick={() => {
+                      window.location.href =
+                        "http://localhost:3000/courses/category";
+                    }}
+                  >
+                    報名課程
+                  </p>
                 </div>
               </div>
             </div>
@@ -286,40 +290,64 @@ const HomePage = () => {
                 <div className="ShareCardContent">
                   <ShareCard
                     course_name={homepageComment[0]?.course_name}
-                    member_name={homepageComment[0]?.first_name + " " + homepageComment[0]?.last_name}
+                    member_name={
+                      homepageComment[0]?.first_name +
+                      " " +
+                      homepageComment[0]?.last_name
+                    }
                     commentText={homepageComment[0]?.comment_text}
                     score_sum={homepageComment[0]?.score}
                     score_count={1}
-                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[0]?.avatar}
+                    member_avatar={
+                      "http://localhost:8080/upload-images/" +
+                      homepageComment[0]?.avatar
+                    }
                   />
                 </div>
                 <div className="ShareCardContent">
                   <ShareCard
                     course_name={homepageComment[1]?.course_name}
-                    member_name={homepageComment[1]?.first_name + " " + homepageComment[1]?.last_name}
+                    member_name={
+                      homepageComment[1]?.first_name +
+                      " " +
+                      homepageComment[1]?.last_name
+                    }
                     commentText={homepageComment[1]?.comment_text}
                     score_sum={homepageComment[0]?.score}
                     score_count={1}
-                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[1]?.avatar}
+                    member_avatar={
+                      "http://localhost:8080/upload-images/" +
+                      homepageComment[1]?.avatar
+                    }
                   />
                 </div>
                 <div className="ShareCardContent">
                   <ShareCard
                     course_name={homepageComment[2]?.course_name}
-                    member_name={homepageComment[2]?.first_name + " " + homepageComment[2]?.last_name}
+                    member_name={
+                      homepageComment[2]?.first_name +
+                      " " +
+                      homepageComment[2]?.last_name
+                    }
                     commentText={homepageComment[2]?.comment_text}
                     score_sum={homepageComment[0]?.score}
                     score_count={1}
-                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[2]?.avatar}
+                    member_avatar={
+                      "http://localhost:8080/upload-images/" +
+                      homepageComment[2]?.avatar
+                    }
                   />
                 </div>
               </div>
               <div className="moreShareButtonWrapper">
                 <div className="moreShareButton">
-                <p 
-                   onClick={() => {
-                        window.location.href = "http://localhost:3000/forum";
-                      }}>更多分享</p>
+                  <p
+                    onClick={() => {
+                      window.location.href = "http://localhost:3000/forum";
+                    }}
+                  >
+                    更多分享
+                  </p>
                 </div>
               </div>
             </div>
