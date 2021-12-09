@@ -302,6 +302,7 @@ function App() {
             currentUser={currentUser}
             checkoutCourse={checkoutCourse}
           />
+          <Footer />
         </Route>
 
         <Route path="/memberCenter" exact>

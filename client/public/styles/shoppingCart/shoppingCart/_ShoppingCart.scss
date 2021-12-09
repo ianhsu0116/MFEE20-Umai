@@ -20,6 +20,9 @@
   margin: 20px auto;
   display: flex;
   margin-top: 65px;
+
+  // ian新增，為了讓footer不會跑上來
+  min-height: calc(100vh - 180px);
   hr {
     background: var(--main-color);
     height: 5px;
@@ -29,7 +32,7 @@
 }
 .mainblock {
   width: 70%;
-  margin-right:30px;
+  margin-right: 30px;
   min-width: 740px;
 }
 .fas {

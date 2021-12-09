@@ -33,9 +33,32 @@
       @include flex(row);
       justify-content: center;
       flex-wrap: wrap;
+
+      // 12/09
+      overflow: scroll;
+
+      .DefaultStudent-container-header {
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        border-left: $header-border;
+        width: 100%;
+        background: white;
+
+        & h1 {
+          font-weight: 100;
+        }
+      }
     }
     .DefaultStudent-container-cards-bottom {
       overflow: scroll;
     }
   }
+}
+
+.headerSticky {
+  position: sticky;
+  top: -1px;
+  z-index: 5;
+  margin: 0.75rem 0;
+  min-height: 45px;
 }

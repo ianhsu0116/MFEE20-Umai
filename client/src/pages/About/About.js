@@ -6,6 +6,12 @@ import CardBack1 from "../../components/images/about/CardBack1.png";
 // import CardBack2 from "../../components/images/about/CardBack2.jpg"
 import CardConer from "../../components/images/about/CardConer.png";
 import CardConer2 from "../../components/images/about/CardConer2.png";
+import avatar1 from "../../components/images/about/64315.jpg";
+import avatar2 from "../../components/images/about/64316.jpg";
+import avatar3 from "../../components/images/about/64317.jpg";
+import avatar4 from "../../components/images/about/64318.jpg";
+import avatar5 from "../../components/images/about/64319.jpg";
+import avatar6 from "../../components/images/about/64320.jpg";
 
 // import headerPicture from "../../components/images/about/cocktail1.jpg"
 // import headerPicture from "../../components/images/about/cocktail1.jpg"
@@ -32,7 +38,7 @@ const About = (props) => {
 
       <div className="Card1">
         <section className="Card1front">
-          <img className="Teammate1" src={CardFront1} alt="" />
+          <img className="Teammate1" src={avatar3} alt="" />
           <img className="Coner1" src={CardConer} alt="" />
           <h2 className="Title1">蔡泊璟</h2>
           <div class="Linefront1"></div>
@@ -69,8 +75,7 @@ const About = (props) => {
 
       <div className="Card2">
         <section className="Card2front">
-          <img className="Teammate2" src={CardFront1} alt="" />
-
+          <img className="Teammate2" src={avatar6} alt="" />
           <img className="Coner2" src={CardConer2} alt="" />
           <h2 className="Title2">林奇毅</h2>
           <div class="Linefront2"></div>
@@ -109,7 +114,7 @@ const About = (props) => {
 
       <div className="Card1">
         <section className="Card1front">
-          <img className="Teammate1" src={CardFront1} alt="" />
+          <img className="Teammate1" src={avatar4} alt="" />
           <img className="Coner1" src={CardConer} alt="" />
           <h2 className="Title1">徐翔硯</h2>
           <div class="Linefront1"></div>
@@ -141,7 +146,7 @@ const About = (props) => {
 
       <div className="Card2">
         <section className="Card2front">
-          <img className="Teammate2" src={CardFront1} alt="" />
+          <img className="Teammate2" src={avatar1} alt="" />
           <img className="Coner2" src={CardConer2} alt="" />
           <h2 className="Title2">林誠誼</h2>
           <div class="Linefront2"></div>
@@ -176,7 +181,7 @@ const About = (props) => {
 
       <div className="Card1">
         <section className="Card1front">
-          <img className="Teammate1" src={CardFront1} alt="" />
+          <img className="Teammate1" src={avatar2} alt="" />
           <img className="Coner1" src={CardConer} alt="" />
           <h2 className="Title1">鍾禮鴻</h2>
           <div class="Linefront1"></div>
@@ -210,7 +215,7 @@ const About = (props) => {
 
       <div className="Card2">
         <section className="Card2front">
-          <img className="Teammate2" src={CardFront1} alt="" />
+          <img className="Teammate2" src={avatar5} alt="" />
           <img className="Coner2" src={CardConer2} alt="" />
           <h2 className="Title2">李冠亭</h2>
           <div class="Linefront2"></div>
