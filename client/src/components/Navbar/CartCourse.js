@@ -9,6 +9,7 @@ import CoursePic from "../images/img7.jpg";
 const CartCourse = (props) => {
   const {
     index,
+    currentUser,
     CurrentInfoObject,
     cartCourseInfoList,
     setCartCourseInfoList,
@@ -143,81 +144,93 @@ const CartCourse = (props) => {
     }
   }, [cartCourseInfoList]);
 
+  useEffect(() => {
+    try {
+      // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+      refreshCartCourse();
+      console.log("refreshCartCourse");
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
-    <div className="CartCourse-container">
-      {/* 課程圖片容器 */}
-      <div className="CartCourse-info-left">
-        <div className="CartCourse-pic-container">
-          {/* 課程圖片 */}
-          <img src={CoursePic} className="CartCourse-pic"></img>
-        </div>
-      </div>
-
-      {/* 課程資訊容器 */}
-      <div className="CartCourse-info-right">
-        <div className="CartCourse-info-right-top">
-          {/* 此課程名稱 */}
-          <div className="CartCourse-name">
-            <h6>{cartCourseInfoList[index].course_name}</h6>
-          </div>
-          {/* 此課程梯次日期 */}
-          <div className="CartCourse-batch">
-            <p>課程梯次：{cartCourseInfoList[index].batch_date}</p>
+    <>
+      <div className="CartCourse-container">
+        {/* 課程圖片容器 */}
+        <div className="CartCourse-info-left">
+          <div className="CartCourse-pic-container">
+            {/* 課程圖片 */}
+            <img src={CoursePic} className="CartCourse-pic"></img>
           </div>
         </div>
 
-        {/* 報名人數調整 */}
-        <div className="CartCourse-info-right-bottom">
-          <div className="count-container">
-            {/* 課堂報名人數減一 */}
-            <button
-              className="count-minus"
-              id={cartCourseInfoList[index].id}
-              onClick={handleCountMinus}
-            >
-              <FaMinus />
-            </button>
-
-            {/* 此課程報名人數 */}
-            <div className="count" id={cartCourseInfoList[index].id}>
-              {cartCourseInfoList[index].cartCourseCount}
+        {/* 課程資訊容器 */}
+        <div className="CartCourse-info-right">
+          <div className="CartCourse-info-right-top">
+            {/* 此課程名稱 */}
+            <div className="CartCourse-name">
+              <h6>{cartCourseInfoList[index].course_name}</h6>
             </div>
-
-            {/* 課堂報名人數加一 */}
-            <button
-              className="count-plus"
-              id={cartCourseInfoList[index].id}
-              onClick={handleCountPlus}
-            >
-              <FaPlus />
-            </button>
+            {/* 此課程梯次日期 */}
+            <div className="CartCourse-batch">
+              <p>課程梯次：{cartCourseInfoList[index].batch_date}</p>
+            </div>
           </div>
 
-          {/* 此課程金額小計 */}
-          <div className="price">
-            <h5>{"NT$" + subtotal}</h5>
-          </div>
+          {/* 報名人數調整 */}
+          <div className="CartCourse-info-right-bottom">
+            <div className="count-container">
+              {/* 課堂報名人數減一 */}
+              <button
+                className="count-minus"
+                id={cartCourseInfoList[index].id}
+                onClick={handleCountMinus}
+              >
+                <FaMinus />
+              </button>
 
-          {/* 課程編輯按鈕容器 */}
-          <div className="edit-Button">
-            {/* 收藏此課程 */}
-            <div className="addToCollection">
-              <button>
-                <p>收藏</p>
+              {/* 此課程報名人數 */}
+              <div className="count" id={cartCourseInfoList[index].id}>
+                {cartCourseInfoList[index].cartCourseCount}
+              </div>
+
+              {/* 課堂報名人數加一 */}
+              <button
+                className="count-plus"
+                id={cartCourseInfoList[index].id}
+                onClick={handleCountPlus}
+              >
+                <FaPlus />
               </button>
             </div>
-            <div className="seperationLine"></div>
 
-            {/* 從購物車中刪除此課程 */}
-            <div className="DeleteThisCourse">
-              <button index={index} onClick={handleDeleteClick}>
-                <p>刪除</p>
-              </button>
+            {/* 此課程金額小計 */}
+            <div className="price">
+              <h5>{"NT$" + subtotal}</h5>
+            </div>
+
+            {/* 課程編輯按鈕容器 */}
+            <div className="edit-Button">
+              {/* 收藏此課程 */}
+              <div className="addToCollection">
+                <button>
+                  <p>收藏</p>
+                </button>
+              </div>
+              <div className="seperationLine"></div>
+
+              {/* 從購物車中刪除此課程 */}
+              <div className="DeleteThisCourse">
+                <button index={index} onClick={handleDeleteClick}>
+                  <p>刪除</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

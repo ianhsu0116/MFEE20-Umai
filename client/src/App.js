@@ -12,6 +12,7 @@ import Login from "./components/member/Login";
 import ShoppingCart from "./pages/ShoppingCart/shopping-cart/ShoppingCart";
 import ShoppingList from "./pages/ShoppingCart/ShoppingList/ShoppingList";
 import PaymentMethod from "./pages/ShoppingCart/paymentMethod/PaymentMethod";
+import { numDotFormat } from "./config/formula";
 
 // 測試元件區
 import Masonry from "./pages/Masonry/Masonry";
@@ -35,6 +36,10 @@ import ForumUpdate from "./pages/Forum/ForumUpdate";
 import Footer from "./components/Footer";
 
 function App() {
+  //用Link傳資料給結帳頁面
+  const [link, setLink] = useState("/");
+  const [data, setData] = useState({});
+
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
   // 登入視窗開關狀態
@@ -99,7 +104,7 @@ function App() {
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
     //清空並觸發Navbar2中的useEffect
-    await setNewAddCourse({});
+    setNewAddCourse({});
     console.log("clearNewAddCourse");
   }
 
@@ -115,8 +120,8 @@ function App() {
     );
     let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
     console.log("back to FE");
+    // 回傳Incart值;
     console.log(ifIncart);
-    // console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
     let getOneCourseObject = async () => {
@@ -154,7 +159,7 @@ function App() {
           1
         );
         try {
-          CartCourseObject = await getOneCourseObject();
+          CartCourseObject = await getOneCourseObject(course_id, batch_id);
         } catch (error) {
           console.log(error);
         }
@@ -165,7 +170,7 @@ function App() {
       //在資料庫中也在購物車中
       case 1:
         try {
-          CartCourseObject = await getOneCourseObject();
+          CartCourseObject = await getOneCourseObject(course_id, batch_id);
         } catch (error) {
           console.log(error);
         }
@@ -191,9 +196,11 @@ function App() {
         break;
     }
 
+    //確認此課程梯次是否已存在該會員的購物車資料庫中
     if (ifIncart === 1) {
       setNewAddCourse([CartCourseObject, "+1"]);
     } else {
+      //從未將此課程梯次加入購物車
       setNewAddCourse([CartCourseObject]);
     }
 
@@ -217,6 +224,7 @@ function App() {
     getAllCourseObject(currentUser.id);
     console.log("setNewAddCourse");
     console.log("Exit");
+    //前往執行以NewAddCourse作為依賴的useEffect(在Navbar2當中)
   }
 
   // 結帳資料
@@ -252,8 +260,6 @@ function App() {
         currentUser={currentUser}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
-        cartCourseInfoList={cartCourseInfoList}
-        setCartCourseInfoList={setCartCourseInfoList}
         checkoutCourse={checkoutCourse}
         setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}
