@@ -429,11 +429,23 @@ function CourseInfomation(props) {
                           //清空新增課程state
                           // await clearNewAddCourse();
                           // 把課程加入購物車資料庫
-                          addCourseIntoCart(
-                            currentUser.id,
-                            Number(id_number),
-                            batch_id
-                          );
+                          if (currentUser) {
+                            addCourseIntoCart(
+                              currentUser.id,
+                              Number(id_number),
+                              batch_id
+                            );
+                          } else {
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "請先登入再結帳",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
+                          }
                         }
                       }}
                     >

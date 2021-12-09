@@ -39,8 +39,8 @@ const CartCourse = (props) => {
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
-    // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
-    refreshCartCourse();
+    // // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
+    // refreshCartCourse();
 
     setData(
       JSON.stringify({
@@ -77,15 +77,15 @@ const CartCourse = (props) => {
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
-    // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
-    refreshCartCourse();
+    // // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
+    // refreshCartCourse();
 
     setData(
       JSON.stringify({
         member_id: currentUser ? currentUser.id : "",
-        course_id: cartCourseInfoList[0] ? cartCourseInfoList[0].course_id : "",
-        batch_id: cartCourseInfoList[0] ? cartCourseInfoList[0].batch_id : "",
-        cartCourseCount: cartCourseInfoList[0]
+        course_id: cartCourseInfoList ? cartCourseInfoList[0].course_id : "",
+        batch_id: cartCourseInfoList ? cartCourseInfoList[0].batch_id : "",
+        cartCourseCount: cartCourseInfoList
           ? cartCourseInfoList[0].cartCourseCount
           : "",
       })
@@ -93,9 +93,9 @@ const CartCourse = (props) => {
     console.log("data: ");
     console.log({
       member_id: currentUser ? currentUser.id : "",
-      course_id: cartCourseInfoList[0] ? cartCourseInfoList[0].course_id : "",
-      batch_id: cartCourseInfoList[0] ? cartCourseInfoList[0].batch_id : "",
-      cartCourseCount: cartCourseInfoList[0]
+      course_id: cartCourseInfoList ? cartCourseInfoList[0].course_id : "",
+      batch_id: cartCourseInfoList ? cartCourseInfoList[0].batch_id : "",
+      cartCourseCount: cartCourseInfoList
         ? cartCourseInfoList[0].cartCourseCount
         : "",
     });
@@ -138,6 +138,7 @@ const CartCourse = (props) => {
       getSubtotal(CurrentInfoObject);
       //計算當前購物車總金額
       getSumCartCoursePrice();
+      console.log("88888888888888888888888888888888888888888888888");
     } catch (error) {
       console.log(error);
     }
@@ -145,8 +146,8 @@ const CartCourse = (props) => {
 
   useEffect(() => {
     try {
-      // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
-      refreshCartCourse();
+      // // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+      // refreshCartCourse();
       console.log("refreshCartCourse");
     } catch (error) {
       console.log(error);

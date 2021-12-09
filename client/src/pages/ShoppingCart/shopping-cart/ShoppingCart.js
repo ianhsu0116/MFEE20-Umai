@@ -45,7 +45,7 @@ function shopping_cart(props) {
             batch_id: checkoutCourse.batch_id,
             name: course.data.course[0].course_name,
             value: course.data.course[0].course_price * 0.9,
-            studentnumber: 1,
+            studentnumber: checkoutCourse.cartCourseCount,
             courseimage: course.data.course[0].course_image,
             memberlimit: course.data.course[0].member_limit,
             membercount: course.data.course_batch[i].member_count,
@@ -124,9 +124,11 @@ function shopping_cart(props) {
   //第一次進入頁面時生成學員資料卡片
   if (carddata.length === 0) {
     let defultcard = [];
-    defultcard.push({
-      ...defaultcarddata,
-    });
+    for (let i = 0; i < checkoutCourse.cartCourseCount; i++) {
+      defultcard.push({
+        ...defaultcarddata,
+      });
+    }
     setCarddata(defultcard);
   }
 
