@@ -417,7 +417,10 @@ const Navbar = (props) => {
                 {/* 購物車按鈕 */}
                 <button
                   className="Navbar-container-item-btn2 Navbar-container-item-Cart"
-                  onMouseEnter={handleCartConOpen}
+                  onMouseEnter={() => {
+                    handleCartConOpen();
+                    console.log(cartCourseInfoList);
+                  }}
                   onMouseLeave={handleCartConClose}
                 >
                   <MdShoppingCart className="Navbar-container-item-btn2-Cart" />

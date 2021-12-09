@@ -120,13 +120,10 @@ function App() {
     console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
-    let getOneCourseObject = async () => {
+    let getOneCourseObject = async (batch_id) => {
       try {
-        // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
-        let result = await courseService.getOneCourseObject(
-          course_id,
-          batch_id
-        );
+        // 根據batch_id拿到購物車所需的單筆課程資料 (cart)
+        let result = await courseService.getOneCourseObject(batch_id);
         return {
           member_id,
           course_id,
@@ -155,7 +152,7 @@ function App() {
           1
         );
         try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
+          CartCourseObject = await getOneCourseObject(batch_id);
         } catch (error) {
           console.log(error);
         }
@@ -166,7 +163,7 @@ function App() {
       //在資料庫中也在購物車中
       case 1:
         try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
+          CartCourseObject = await getOneCourseObject(batch_id);
         } catch (error) {
           console.log(error);
         }
@@ -179,7 +176,7 @@ function App() {
         // 把課程加入購物車資料庫(INSERT)
         await courseService.addCourseIntoCart(member_id, course_id, batch_id);
         try {
-          CartCourseObject = await getOneCourseObject();
+          CartCourseObject = await getOneCourseObject(batch_id);
         } catch (error) {
           console.log(error);
         }
@@ -233,7 +230,6 @@ function App() {
 
   const getAllCourseObject = async function (member_id) {
     try {
-      console.log("99999999999999999999999999999999999999");
       let result = await courseService.getAllCourseObject(member_id);
       console.log(result);
       let consoleCheck = result.data.courseInfoInCart;
@@ -246,7 +242,6 @@ function App() {
     }
   };
   useEffect(() => {
-    console.log("88888887423572577547257258725");
     console.log(cartCourseInfoList);
   }, [cartCourseInfoList]);
 
@@ -254,7 +249,6 @@ function App() {
     if (currentUser) {
       try {
         getAllCourseObject(currentUser.id);
-        console.log("99999999999999999999999999999999999999");
       } catch (error) {
         console.log(error);
       }

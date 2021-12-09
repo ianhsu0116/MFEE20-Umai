@@ -102,14 +102,14 @@ const CartCourse = (props) => {
   }
 
   //從購物車中刪除指定課程
-  async function handleDeleteClick() {
+  async function handleDeleteClick(member_id, course_id, batch_id, inCart) {
     if (cartCourseInfoList.length !== 0) {
       //從購物車資料庫中移除(將inCart歸零)
       let updateResult = await courseService.UpdateCart(
-        currentUser.id,
-        CurrentInfoObject.course_id,
-        CurrentInfoObject.batch_id,
-        0
+        member_id,
+        course_id,
+        batch_id,
+        inCart
       );
 
       console.log("Delete_Course: ");
@@ -138,7 +138,6 @@ const CartCourse = (props) => {
       getSubtotal(CurrentInfoObject);
       //計算當前購物車總金額
       getSumCartCoursePrice();
-      console.log("88888888888888888888888888888888888888888888888");
     } catch (error) {
       console.log(error);
     }
@@ -148,7 +147,7 @@ const CartCourse = (props) => {
     try {
       // // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
       // refreshCartCourse();
-      console.log("refreshCartCourse");
+      // console.log("refreshCartCourse");
     } catch (error) {
       console.log(error);
     }
@@ -222,7 +221,17 @@ const CartCourse = (props) => {
 
               {/* 從購物車中刪除此課程 */}
               <div className="DeleteThisCourse">
-                <button index={index} onClick={handleDeleteClick}>
+                <button
+                  index={index}
+                  onClick={() => {
+                    handleDeleteClick(
+                      currentUser.id,
+                      CurrentInfoObject.course_id,
+                      CurrentInfoObject.batch_id,
+                      0
+                    );
+                  }}
+                >
                   <p>刪除</p>
                 </button>
               </div>
