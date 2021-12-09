@@ -362,14 +362,24 @@ router.put("/modifycart", async (req, res) => {
 
 //將訂單加入收藏
 router.put("/modifycollection", async (req, res) => {
-  let { memberid, courseid, batchid } = req.body;
-
+  let { memberid, courseid } = req.body;
   try {
-    const modifymembercount = await connection.queryAsync(
-      "UPDATE cart_and_collection SET inCollection = 1 WHERE member_id = ? AND course_id = ? AND batch_id = ?",
-      [memberid, courseid, batchid]
+    const checkcollection = await connection.queryAsync(
+      "SELECT * FROM cart_and_collection WHERE member_id = ? AND course_id = ?",
+      [memberid, courseid]
     );
-
+    console.log(checkcollection);
+    if(checkcollection.length!==0){
+      const modifymembercount = await connection.queryAsync(
+        "UPDATE cart_and_collection SET inCollection = 1 WHERE member_id = ? AND course_id = ?",
+        [memberid, courseid]
+      );
+    }else{
+      const modifymembercount = await connection.queryAsync(
+        "INSERT INTO cart_and_collection (member_id, course_id,batch_id,inCart,inCollection) VALUES(?,?,?,?,?)",
+        [memberid, courseid, null , 0 , 1 ]
+      );
+    }
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json({ success: false, code: "G999", message: error });

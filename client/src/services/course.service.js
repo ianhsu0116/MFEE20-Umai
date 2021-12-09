@@ -30,7 +30,7 @@ class CourseService {
     );
   }
 
-  // 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
+  // 根據member_id, course_id, batch_id更新購物車資料庫(Update)
   UpdateCart(member_id, course_id, batch_id, inCart) {
     return axios.put(
       COURSE_API_URL + `/cart/${member_id}`,
