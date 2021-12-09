@@ -4,9 +4,8 @@ import avatar from "./images/avatar.svg";
 import StarGroup from "./StarGroup";
 
 function ShareCard(props) {
-  let { course_name, member_name, commentText, member_avatar } = props;
-  let [scoreSum, allScore] = [5, 1];
-  let percent = (scoreSum / allScore) * 20;
+  let { course_name, member_name, commentText, member_avatar ,score_sum, score_count,} = props;
+
 
   return (
     <>
@@ -16,11 +15,12 @@ function ShareCard(props) {
             <img className="ShareCardPicture" src={member_avatar} alt=""></img>
           </div>
           <div className="ShareCardPictureName">{member_name}</div>
-          <div className="ShareCardCourseName">《 {course_name} 》</div>
-          <div className="ShareCardStar">
-            <div className="st-boxPos">
-              <StarGroup percent={percent} allScore={scoreSum} />
+          <div className="st-boxPos">
+              <StarGroup percent={(20 * score_sum) / score_count} allScore={score_sum} />
             </div>
+          <div className="ShareCardCourseName">
+          《 {course_name} 》</div>
+          <div >
           </div>
           <div className="ShareCardText">
             <div className="ShareCardTextTop">"</div>

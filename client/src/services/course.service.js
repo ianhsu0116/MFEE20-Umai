@@ -70,6 +70,11 @@ class CourseService {
       withCredentials: true,
     });
   }
+  course_homepageComment() {
+    return axios.get(COURSE_API_URL + "/homepage/comment", {
+      withCredentials: true,
+    });
+  }
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
