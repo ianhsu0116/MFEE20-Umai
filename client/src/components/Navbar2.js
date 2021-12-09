@@ -25,8 +25,8 @@ const Navbar = (props) => {
     currentUser,
     isActiveCourseSearch,
     handleToggleCourseSearch,
-    // cartCourseInfoList,
-    // setCartCourseInfoList,
+    cartCourseInfoList,
+    setCartCourseInfoList,
     checkoutCourse,
     setCheckoutCourse,
     newAddCourse,
@@ -79,7 +79,6 @@ const Navbar = (props) => {
     "入門",
   ];
 
-  const [active, setActive] = useState("");
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
       if (window.scrollY >= 200) {

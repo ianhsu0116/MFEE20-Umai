@@ -70,10 +70,6 @@ function App() {
   const numberOfCoursesInCart = cartCourseInfoList?.length;
   //當前購物車總金額
   const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
-  //結帳頁面url
-  const [link, setLink] = useState("/");
-  //結帳資訊
-  const [data, setData] = useState({});
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {

@@ -14,7 +14,6 @@ const CartCourse = (props) => {
     cartCourseInfoList,
     setCartCourseInfoList,
     getSumCartCoursePrice,
-    currentUser,
     refreshCartCourse,
     data,
     setData,
