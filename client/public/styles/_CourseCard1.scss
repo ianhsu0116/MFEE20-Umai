@@ -1,208 +1,208 @@
 .CourseCard1 {
-  @include flex(row);
-  border-radius: 15px;
-  // width: 90%;
-  max-width: 900px;
-  max-height: 200px;
-  background: white;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
-  margin: 1rem 0.5rem;
-  flex: 1 1 600px;
+	@include flex(row);
+	border-radius: 15px;
+	// width: 90%;
+	max-width: 900px;
+	max-height: 200px;
+	background: white;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+	position: relative;
+	margin: 1rem 0.5rem;
+	flex: 1 1 600px;
 
-  .CourseCard1-imageCon {
-    //height: 100%;
-    max-height: 200px;
-    width: 38%;
-    transition: 0.3s ease;
-    //flex: 2 1 230px;
-    position: relative;
-    overflow: hidden;
-    @include flex(row);
-    align-items: center;
-    justify-content: center;
+	.CourseCard1-imageCon {
+		//height: 100%;
+		max-height: 200px;
+		width: 38%;
+		transition: 0.3s ease;
+		//flex: 2 1 230px;
+		position: relative;
+		overflow: hidden;
+		@include flex(row);
+		align-items: center;
+		justify-content: center;
 
-    & img {
-      height: 100%;
-      min-width: 100%;
-      max-height: 265px;
-      //width: 100%;
-      object-fit: cover;
-      object-position: center center;
-    }
+		& img {
+			height: 100%;
+			min-width: 100%;
+			max-height: 265px;
+			//width: 100%;
+			object-fit: cover;
+			object-position: center center;
+		}
 
-    .CourseCard1-imageCon-banner {
-      position: absolute;
-      background: $activeColor;
-      color: white;
-      padding: 0.25rem 1rem;
-      z-index: 3;
-      width: 150px;
-      top: 15px;
-      right: -45px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 90%;
-      transform: rotate(45deg);
-    }
-  }
+		.CourseCard1-imageCon-banner {
+			position: absolute;
+			background: $activeColor;
+			color: white;
+			padding: 0.25rem 1rem;
+			z-index: 3;
+			width: 150px;
+			top: 15px;
+			right: -45px;
+			text-align: center;
+			font-weight: 700;
+			font-size: 90%;
+			transform: rotate(45deg);
+		}
+	}
 
-  .CourseCard1-detailCon {
-    padding: 1rem;
-    font-size: 95%;
-    width: 60%;
-    transition: 0.3s ease;
-    border-top-right-radius: 60px 130px;
-    border-bottom-right-radius: 60px 130px;
-    z-index: 3;
-    background: white;
-    position: relative;
+	.CourseCard1-detailCon {
+		padding: 1rem;
+		font-size: 95%;
+		width: 60%;
+		transition: 0.3s ease;
+		border-top-right-radius: 60px 130px;
+		border-bottom-right-radius: 60px 130px;
+		z-index: 3;
+		background: white;
+		position: relative;
 
-    .CourseCard1-detailCon-h4 {
-      font-weight: 900;
-      font-size: 1.25rem;
-      // 12/4亭
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
-    }
+		.CourseCard1-detailCon-h4 {
+			font-weight: 900;
+			font-size: 1.25rem;
+			// 12/4亭
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
+		}
 
-    .CourseCard1-detailCon-company {
-      & svg {
-        fill: $activeColor;
-        font-size: 1.15rem;
-      }
-    }
+		.CourseCard1-detailCon-company {
+			& svg {
+				fill: $activeColor;
+				font-size: 1.15rem;
+			}
+		}
 
-    .CourseCard1-detailCon-courseTime {
-      margin-top: 0.25rem;
-    }
+		.CourseCard1-detailCon-courseTime {
+			margin-top: 0.25rem;
+		}
 
-    .CourseCard1-detailCon-MemberCount {
-      font-size: 80%;
-      margin-top: 0.25rem;
+		.CourseCard1-detailCon-MemberCount {
+			font-size: 80%;
+			margin-top: 0.25rem;
 
-      .CourseCard1-detailCon-MemberCount-progressCon {
-        width: 130px;
-        height: 6px;
-        border-radius: 5px;
-        border: 1px solid $activeColor;
-        position: relative;
+			.CourseCard1-detailCon-MemberCount-progressCon {
+				width: 130px;
+				height: 6px;
+				border-radius: 5px;
+				border: 1px solid $activeColor;
+				position: relative;
 
-        .CourseCard1-detailCon-MemberCount-progress {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 0;
-          height: 100%;
-          border-radius: 5px;
-          background-color: $activeColor;
-          border: 1px solid $activeColor;
-        }
-      }
-    }
+				.CourseCard1-detailCon-MemberCount-progress {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 0;
+					height: 100%;
+					border-radius: 5px;
+					background-color: $activeColor;
+					border: 1px solid $activeColor;
+				}
+			}
+		}
 
-    .CourseCard1-detailCon-bottom {
-      @include flex(row);
-      width: 95%;
-      justify-content: space-between;
-      align-items: flex-end;
-      //margin-top: -6px;
+		.CourseCard1-detailCon-bottom {
+			@include flex(row);
+			width: 95%;
+			justify-content: space-between;
+			align-items: flex-end;
+			//margin-top: -6px;
 
-      .CourseCard1-detailCon-bottom-courseLevel {
-        display: block;
-        color: white;
-        padding: 0.15rem 0.5rem;
-        border-radius: 5px;
-        font-weight: 500;
-        cursor: pointer;
-        font-size: 80%;
-      }
-      // 三種不同的課程階級 顏色
-      & .highLevel {
-        background: $highLevelColor;
-      }
-      & .midLevel {
-        background: $midLevelColor;
-      }
-      & .lowLevel {
-        background: $lowLevelColor;
-      }
+			.CourseCard1-detailCon-bottom-courseLevel {
+				display: block;
+				color: white;
+				padding: 0.15rem 0.5rem;
+				border-radius: 5px;
+				font-weight: 500;
+				cursor: pointer;
+				font-size: 80%;
+			}
+			// 三種不同的課程階級 顏色
+			// &.hightLevel {
+			// 	background: $highLevelColor;
+			// }
+			// &.midLevel {
+			// 	background: $highLevelColor;
+			// }
+			// & .lowLevel {
+			// 	background: $lowLevelColor;
+			// }
 
-      .CourseCard1-detailCon-bottom-coursePrice {
-        @include flex(column);
-        align-items: flex-end;
+			.CourseCard1-detailCon-bottom-coursePrice {
+				@include flex(column);
+				align-items: flex-end;
 
-        .CourseCard1-detailCon-bottom-coursePrice-origin {
-          color: rgba(0, 0, 0, 0.4);
-          text-decoration: line-through;
-          margin-bottom: -8px;
-        }
-        .CourseCard1-detailCon-bottom-coursePrice-discount {
-          font-size: 1.5rem;
-          font-weight: 900;
-        }
-      }
-    }
+				.CourseCard1-detailCon-bottom-coursePrice-origin {
+					color: rgba(0, 0, 0, 0.4);
+					text-decoration: line-through;
+					margin-bottom: -8px;
+				}
+				.CourseCard1-detailCon-bottom-coursePrice-discount {
+					font-size: 1.5rem;
+					font-weight: 900;
+				}
+			}
+		}
 
-    // 小愛心按鈕
-    .CourseCard1-detailCon-likeBtn {
-      position: absolute;
-      z-index: 6;
-      right: -7px;
-      top: 5px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: white;
-      @include flex(row);
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      & svg {
-        fill: $highLevelColor;
-      }
+		// 小愛心按鈕
+		.CourseCard1-detailCon-likeBtn {
+			position: absolute;
+			z-index: 6;
+			right: -7px;
+			top: 5px;
+			width: 22px;
+			height: 22px;
+			border-radius: 50%;
+			background: white;
+			@include flex(row);
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			& svg {
+				fill: $highLevelColor;
+			}
 
-      &:hover svg {
-        background: url(../icons/heart-solid.svg) center center no-repeat;
-      }
-    }
-    .CourseCard1-detailCon-likeBtn-active {
-      & svg {
-        background: url(../icons/heart-solid.svg) center center no-repeat;
-      }
-    }
-  }
+			&:hover svg {
+				background: url(../icons/heart-solid.svg) center center no-repeat;
+			}
+		}
+		.CourseCard1-detailCon-likeBtn-active {
+			& svg {
+				background: url(../icons/heart-solid.svg) center center no-repeat;
+			}
+		}
+	}
 
-  .CourseCard1-buttonCon {
-    width: 30%;
-    height: 100%;
-    background: $cardDarkColor;
-    position: absolute;
-    top: 0;
-    right: 0;
-    @include flex(column);
-    justify-content: center;
-    align-items: flex-end;
+	.CourseCard1-buttonCon {
+		width: 30%;
+		height: 100%;
+		background: $cardDarkColor;
+		position: absolute;
+		top: 0;
+		right: 0;
+		@include flex(column);
+		justify-content: center;
+		align-items: flex-end;
 
-    .CourseCard1-buttonCon-btn {
-      margin: 0.5rem 1.3rem;
-      position: relative;
-      width: 88px;
-      text-align: center;
-      font-size: 80%;
-    }
-  }
+		.CourseCard1-buttonCon-btn {
+			margin: 0.5rem 1.3rem;
+			position: relative;
+			width: 88px;
+			text-align: center;
+			font-size: 80%;
+		}
+	}
 
-  &:hover {
-    .CourseCard1-imageCon {
-      width: 34%;
-    }
-    .CourseCard1-detailCon {
-      width: 47%;
-    }
-  }
+	&:hover {
+		.CourseCard1-imageCon {
+			width: 34%;
+		}
+		.CourseCard1-detailCon {
+			width: 47%;
+		}
+	}
 }
