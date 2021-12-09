@@ -413,7 +413,15 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        } else if (
+                        } else if (!currentUser){
+                          Swal.fire({
+                            title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先登入後再加入購物車哦",
+                          })
+                        }  else if(
                           batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
