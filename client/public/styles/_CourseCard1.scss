@@ -23,6 +23,7 @@
 		@include flex(row);
 		align-items: center;
 		justify-content: center;
+		cursor: pointer;
 
 		& img {
 			height: 100%;
@@ -71,6 +72,11 @@
 		}
 
 		.CourseCard1-detailCon-company {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
+
 			& svg {
 				fill: $activeColor;
 				font-size: 1.15rem;
@@ -79,6 +85,11 @@
 
 		.CourseCard1-detailCon-courseTime {
 			margin-top: 0.25rem;
+
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
 		}
 
 		.CourseCard1-detailCon-MemberCount {
@@ -122,15 +133,15 @@
 				font-size: 80%;
 			}
 			// 三種不同的課程階級 顏色
-			// &.hightLevel {
-			// 	background: $highLevelColor;
-			// }
-			// &.midLevel {
-			// 	background: $highLevelColor;
-			// }
-			// & .lowLevel {
-			// 	background: $lowLevelColor;
-			// }
+			& .highLevel {
+				background: $highLevelColor;
+			}
+			& .midLevel {
+				background: $midLevelColor;
+			}
+			& .lowLevel {
+				background: $lowLevelColor;
+			}
 
 			.CourseCard1-detailCon-bottom-coursePrice {
 				@include flex(column);
