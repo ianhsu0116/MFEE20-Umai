@@ -70,10 +70,7 @@ router.get("/cart/:member_id", async (req, res) => {
       `SELECT cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE cart_and_collection.inCart = 1 AND cart_and_collection.member_id = ?`,
       [member_id]
     );
-<<<<<<< HEAD
-=======
     console.log("inCart");
->>>>>>> 4fc6b467f25c932280d1a304f0934e4d1d3e9e88
     console.log(inCart);
 
     //生成課程id陣列
@@ -84,10 +81,7 @@ router.get("/cart/:member_id", async (req, res) => {
     courseIds = courseIds.filter(function (ele, idx) {
       return courseIds.indexOf(ele) == idx;
     });
-<<<<<<< HEAD
-=======
     console.log("courseIds");
->>>>>>> 4fc6b467f25c932280d1a304f0934e4d1d3e9e88
     console.log(courseIds);
 
     //生成梯次id陣列
@@ -98,10 +92,7 @@ router.get("/cart/:member_id", async (req, res) => {
     batchIds = batchIds.filter(function (ele, idx) {
       return batchIds.indexOf(ele) == idx;
     });
-<<<<<<< HEAD
-=======
     console.log("batchIds");
->>>>>>> 4fc6b467f25c932280d1a304f0934e4d1d3e9e88
     console.log(batchIds);
 
     // 拿到課程資料(course join course_batch)(an array of objects)
@@ -118,13 +109,8 @@ router.get("/cart/:member_id", async (req, res) => {
     let courseInfoInCart = courseInfo.map((obj) => {
       return { ...obj, cartCourseCount: 1 };
     });
-<<<<<<< HEAD
-    console.log(courseInfoInCart);
-    console.log(`- 取得會員${member_id} 購物車中的全部課程資料`);
-=======
     console.log("courseInfoInCart");
     console.log(courseInfoInCart);
->>>>>>> 4fc6b467f25c932280d1a304f0934e4d1d3e9e88
 
     res
       .status(200)
@@ -170,15 +156,8 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
     res.status(200).json({ success: true, inCart });
     // console.log(inCart[0].inCart);
   } catch (error) {
-<<<<<<< HEAD
     console.log(error);
     res.status(200).json({ success: true, message: "此課程從未被選購過" });
-=======
-    // console.log(error);
-    res
-      .status(200)
-      .json({ success: true, message: "購物車中目前沒有選購任何課程" });
->>>>>>> 0facf1eed9e5c8ccd9701f8806e3297504537dfc
   }
 });
 
@@ -403,7 +382,6 @@ router.get("/member/:member_id", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // 隨機抓三筆推薦
 router.get("/course/recommend", async (req, res) => {
   try {
@@ -429,46 +407,6 @@ router.get("/course/recommend", async (req, res) => {
 //     res.status(500).json({ success: false, code: "E999", message: error });
 //   }
 // });
-=======
-// 依照課程id拿到課程詳細資料 (課程詳細頁) (包含課程詳細，所有梯次，主廚介紹)
-router.get("/:course_id", async (req, res) => {
-  let { course_id } = req.params;
-  console.log("test");
-
-  try {
-    // 拿到課程詳細資料(有join category, member)
-    let course = await connection.queryAsync(
-      "SELECT course.*, course_category.category_name, member.id, member.first_name, member.last_name, member.chef_introduction , member.avatar FROM course, course_category, member WHERE course.category_id = course_category.id AND course.member_id = member.id AND course.id = ? AND course.valid = ?",
-      [course_id, 1]
-    );
-
-    // 課程的所有梯次
-    let course_batch = [];
-    if (course.length !== 0) {
-      course_batch = await connection.queryAsync(
-        "SELECT course_batch.*  FROM course_batch WHERE course_id = ? AND valid = 1",
-        [course_id, 1]
-      );
-    }
-
-    //拿到課程討論的各種資料
-    let course_comment = [];
-    if (course.length !== 0) {
-      course_comment = await connection.queryAsync(
-        "SELECT course_comment.* , orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member WHERE member.id = orders.member_id AND course_comment.orders_id = orders.id  AND  course_comment.course_id = ? AND course_comment.valid = 1",
-        [course_id, 1]
-      );
-    }
-
-    res
-      .status(200)
-      .json({ success: true, course, course_batch, course_comment });
-  } catch (error) {
-    // console.log(error);
-    res.status(500).json({ success: false, code: "E999", message: error });
-  }
-});
->>>>>>> 4fc6b467f25c932280d1a304f0934e4d1d3e9e88
 
 // 新增課程
 router.post("/", authCheck, uploader.array("images"), async (req, res) => {
