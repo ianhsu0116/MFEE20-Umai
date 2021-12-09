@@ -40,6 +40,10 @@ function CourseInfomation(props) {
     setCheckoutCourse,
     cartCourseInfoList,
     setCartCourseInfoList,
+    link,
+    setLink,
+    data,
+    setData,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -117,9 +121,6 @@ function CourseInfomation(props) {
       member_id: "",
     },
   ]);
-
-  const [link, setLink] = useState("/");
-  const [data, setData] = useState({});
 
   // Data 抓取課程JSON
   const [course_batchJSON, setCourse_batchJSON] = useState({});
@@ -455,17 +456,6 @@ function CourseInfomation(props) {
                             }).then(function () {
                               // window.location.reload();
                             });
-                          } else {
-                            // console.log("checkoutCourse");
-                            // console.log(checkoutCourse);
-
-                            if (
-                              checkoutCourse.member_id === undefined ||
-                              checkoutCourse.course_id === undefined ||
-                              checkoutCourse.batch_id === undefined
-                            ) {
-                              // return;
-                            }
                           }
                         }}
                       >

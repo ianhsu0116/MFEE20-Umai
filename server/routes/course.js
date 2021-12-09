@@ -58,61 +58,67 @@ router.get("/testAPI", async (req, res) => {
   return res.json(msgObj);
 });
 
+// getAllCourseObject
 // 根據member_id拿到購物車所需的全部課程資料 (cart)
 router.get("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
-  console.log("更新購物車BE");
+  console.log("[function] getAllCourseObject");
+  console.log(`- 用member_id取得購物車中的課程資料`);
 
   try {
     let inCart = await connection.queryAsync(
       `SELECT cart_and_collection.course_id, cart_and_collection.batch_id FROM cart_and_collection WHERE cart_and_collection.inCart = 1 AND cart_and_collection.member_id = ?`,
       [member_id]
     );
+    console.log(inCart);
 
     //生成課程id陣列
     let courseIds = inCart.map((obj) => {
       return obj.course_id;
     });
-
-    //刪除重複課程id
+    // 刪除重複
     courseIds = courseIds.filter(function (ele, idx) {
       return courseIds.indexOf(ele) == idx;
     });
+    console.log(courseIds);
 
     //生成梯次id陣列
     let batchIds = inCart.map((obj) => {
       return obj.batch_id;
     });
-
-    //刪除重複梯次id
+    // 刪除重複
     batchIds = batchIds.filter(function (ele, idx) {
       return batchIds.indexOf(ele) == idx;
     });
+    console.log(batchIds);
 
-    // 拿到課程資料(join course_batch)
+    // 拿到課程資料(course join course_batch)(an array of objects)
+    const set = new Set();
     let result = await connection.queryAsync(
       "SELECT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id FROM course, course_batch, cart_and_collection WHERE course.id IN (?) AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1",
       [courseIds, batchIds, member_id]
     );
-
-    //刪除重複課程資料
-    const set = new Set();
-    courseInfo = result.filter((obj) =>
+    // 刪除重複
+    let courseInfo = result.filter((obj) =>
       !set.has(obj.course_id) ? set.add(obj.course_id) : false
     );
-    courseInfoInCart = courseInfo.map((obj) => {
+    //增加cartCourseCount(紀錄報名人數)
+    let courseInfoInCart = courseInfo.map((obj) => {
       return { ...obj, cartCourseCount: 1 };
     });
+    console.log(courseInfoInCart);
+    console.log(`- 取得會員${member_id} 購物車中的全部課程資料`);
 
     res
       .status(200)
       .json({ success: true, courseIds, batchIds, courseInfoInCart });
   } catch (error) {
     // console.log(error);
-    res.status(200).json({ success: true, message: "此課程未曾加入購物車" });
+    res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
 
+// getOneCourseObject
 // 根據course_id與batch_id拿到購物車所需的單筆課程資料 (cart)
 router.get("/cart/:course_id/:batch_id", async (req, res) => {
   let { course_id, batch_id } = req.params;
@@ -129,10 +135,11 @@ router.get("/cart/:course_id/:batch_id", async (req, res) => {
     res.status(200).json({ success: true, courseInfoInCart });
   } catch (error) {
     //console.log(error);
-    res.status(500).json({ success: false, code: "E999", message: error });
+    res.status(200).json({ success: true, message: "此課程未曾加入購物車" });
   }
 });
 
+// IfCourseInCart
 //檢查購物車資料庫中是否已經有此課程
 router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
   console.log("check cartDB BE");
@@ -147,16 +154,12 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
     // console.log(inCart[0].inCart);
   } catch (error) {
     console.log(error);
-    res
-      .status(200)
-      .json({ success: true, message: "購物車中目前沒有選購任何課程" });
-    // res
-    //   .status(200)
-    //   .json({ success: true, message: "購物車中目前沒有選購任何課程" });
+    res.status(200).json({ success: true, message: "此課程從未被選購過" });
   }
 });
 
-// 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
+// UpdateCart
+// 根據member_id, course_id, batch_id更新購物車資料庫(Update)
 router.put("/cart/:member_id", async (req, res) => {
   let { member_id } = req.params;
   let { course_id, batch_id, inCart } = req.body;

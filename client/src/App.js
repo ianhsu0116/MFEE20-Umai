@@ -37,9 +37,13 @@ import Footer from "./components/Footer";
 function App() {
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
-
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
+
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
+  //課程搜尋列狀態
+  const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
 
   //儲存購物車的課程資訊
   const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
@@ -55,9 +59,16 @@ function App() {
   //   member_count: "", //(course_batch table)
   //   cartCourseCount: 1, //(notInDB)
   // }]
-
   //新增課程
   const [newAddCourse, setNewAddCourse] = useState({});
+  //當前購物車課程數量
+  const numberOfCoursesInCart = cartCourseInfoList?.length;
+  //當前購物車總金額
+  const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
+  //結帳頁面url
+  const [link, setLink] = useState("/");
+  //結帳資訊
+  const [data, setData] = useState({});
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -74,9 +85,6 @@ function App() {
     });
   }, []);
 
-  //課程搜尋列狀態
-  const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
-
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async (msg) => {
     // 點擊任意處關閉
@@ -87,9 +95,6 @@ function App() {
       setActiveCourseSearch(!isActiveCourseSearch);
     }
   };
-
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
 
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
@@ -133,7 +138,7 @@ function App() {
       }
     };
 
-    //先在switch外宣告一個共用變數，用來接住函數回傳的結果
+    //先在switch外宣告一個共用變數，用來接住資料庫回傳的個別課程資料
     let CartCourseObject;
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
@@ -187,10 +192,29 @@ function App() {
     }
 
     if (ifIncart === 1) {
-      await setNewAddCourse([CartCourseObject, "+1"]);
+      setNewAddCourse([CartCourseObject, "+1"]);
     } else {
       setNewAddCourse([CartCourseObject]);
     }
+
+    if (newAddCourse.length === 2) {
+      console.log(cartCourseInfoList);
+      let newCartCourseInfoList = cartCourseInfoList;
+      // if 購物車真的有東西
+      if (newCartCourseInfoList?.length > 0) {
+        newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
+          if (obj.course_id === newAddCourse[0].course_id) {
+            obj.cartCourseCount = obj.cartCourseCount + 1;
+          }
+          return obj;
+        });
+        console.log("newAddCourse.length-2");
+        console.log(newCartCourseInfoList);
+        console.log(newCartCourseInfoList.cartCourseCount);
+        setCartCourseInfoList([...newCartCourseInfoList]);
+      }
+    }
+    getAllCourseObject(currentUser.id);
     console.log("setNewAddCourse");
     console.log("Exit");
   }
@@ -205,20 +229,21 @@ function App() {
 
   const getAllCourseObject = async function (member_id) {
     let result = await courseService.getAllCourseObject(member_id);
-    let newCartCourseInfoList = result.data.courseInfoInCart;
-    setCartCourseInfoList(newCartCourseInfoList);
-    console.log(newCartCourseInfoList);
+    let consoleCheck = result.data.courseInfoInCart;
+    setCartCourseInfoList(result.data.courseInfoInCart);
+    console.log("getAllCourseObject :");
+    console.log(consoleCheck);
   };
 
   useEffect(() => {
     if (currentUser) {
       try {
-        getAllCourseObject();
+        getAllCourseObject(currentUser.id);
       } catch (error) {
         console.log(error);
       }
     }
-  }, [currentUser]);
+  }, []);
 
   return (
     <Router>
@@ -232,9 +257,14 @@ function App() {
         checkoutCourse={checkoutCourse}
         setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}
-        setNewAddCourse={setNewAddCourse}
         clearNewAddCourse={clearNewAddCourse}
-        addCourseIntoCart={addCourseIntoCart}
+        numberOfCoursesInCart={numberOfCoursesInCart}
+        sumCartCoursePrice={sumCartCoursePrice}
+        setSumCartCoursePrice={setSumCartCoursePrice}
+        link={link}
+        setLink={setLink}
+        data={data}
+        setData={setData}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
@@ -281,6 +311,10 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
+              link={link}
+              setLink={setLink}
+              data={data}
+              setData={setData}
             />
           </div>
           <Footer />
@@ -317,6 +351,10 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
+              link={link}
+              setLink={setLink}
+              data={data}
+              setData={setData}
             />
           </div>
           <Footer />
