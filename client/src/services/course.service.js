@@ -64,6 +64,12 @@ class CourseService {
       withCredentials: true,
     });
   }
+    // 測試首頁抓資料
+    course_homepage() {
+      return axios.get(COURSE_API_URL + "/hottest", {
+        withCredentials: true,
+      });
+    }
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {

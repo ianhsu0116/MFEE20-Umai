@@ -266,13 +266,28 @@ const HomePage = () => {
               </div>
               <div className="ShareCardContentWrapper">
                 <div className="ShareCardContent">
-                  <ShareCard />
+                  <ShareCard
+                    course_name="法式甜點與馬卡龍"
+                    member_name="小小蔡"
+                    commentText="非常好吃的甜點，讓人想一再回味那幸福洋溢的甜味"
+                    member_avatar="http://localhost:8080/upload-images/course-4ac0bf56-1abc-432b-b369-cf66487b2c2a.jpg"
+                  />
                 </div>
                 <div className="ShareCardContent">
-                  <ShareCard />
+                  <ShareCard
+                    course_name="流行韓國精緻料理"
+                    member_name="歐打QQ貓"
+                    commentText="非常優秀的主廚，非常推薦大家來學習"
+                    member_avatar="http://localhost:8080/upload-images/course-9a836180-81d2-43be-87e9-00099bc77739.jpg"
+                  />
                 </div>
                 <div className="ShareCardContent">
-                  <ShareCard />
+                  <ShareCard
+                    course_name="義式Pizza專修首部曲"
+                    member_name="Ting"
+                    commentText="第一次製作pizza，沒想到這麼簡單，謝謝主廚的細心教導"
+                    member_avatar="http://localhost:8080/upload-images/course-09f737f2-ac26-4fd1-a13a-92e6f3a3f080.jpg"
+                  />
                 </div>
               </div>
               <div className="moreShareButtonWrapper">
@@ -307,8 +322,8 @@ const HomePage = () => {
           </div>
           <div className="RecommandCourseCardContentWrapper">
             <div className="RecommandCourseCardSliderWrapper">
-              <CourseMiniCardSlider SliderTitle="熱門課程" />
-              <CourseMiniCardSlider SliderTitle="即將截止課程" />
+              <CourseMiniCardSlider SliderTitle="熱門課程" tag="熱門課程" />
+              <CourseMiniCardSlider SliderTitle="即將截止課程" tag="即將截止" />
             </div>
           </div>
         </div>

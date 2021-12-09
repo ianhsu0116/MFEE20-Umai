@@ -40,12 +40,12 @@ const About = (props) => {
         使用技能組合
       </p> */}
           <ul className="List1">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>網頁規劃切版</li>
+            <li>關於我們頁面撰寫</li>
+            <li>聯絡我們頁面撰寫</li>
+            <li>版面規劃設計</li>
+            <li>資料提供</li>
+            <li>網頁影片剪輯</li>
           </ul>
         </section>
         <section className="Card1back">
@@ -78,12 +78,12 @@ const About = (props) => {
         使用技能組合
       </p> */}
           <ul className="List2">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>網頁規劃切版</li>
+            <li>討論區功能撰寫</li>
+            <li>串接API</li>
+            <li>版面規劃設計</li>
+            <li>資料庫設計</li>
+            <li>其他文書處理以及進度管理</li>
           </ul>
         </section>
         <section className="Card2back">
@@ -114,12 +114,12 @@ const About = (props) => {
           <h2 className="Title1">徐翔硯</h2>
           <div class="Linefront1"></div>
           <ul className="List1">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>登入註冊與會員中心</li>
+            <li>各頁面相關功能與共用元件撰寫</li>
+            <li>前後端串接API(包括FB、GOOGLE登入等)</li>
+            <li>忘記密碼找回功能</li>
+            <li>資料庫與後端架構設計撰寫</li>
+            <li>組員資訊協助</li>
           </ul>
         </section>
         <section className="Card1back">
@@ -146,12 +146,12 @@ const About = (props) => {
           <h2 className="Title2">林誠誼</h2>
           <div class="Linefront2"></div>
           <ul className="List2">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>串階前後端API</li>
+            <li>共用元件撰寫</li>
+            <li>網頁規劃排版</li>
+            <li>首頁功能撰寫</li>
+            <li>版面設計規劃</li>
+            <li>購物車與搜尋功能撰寫</li>
           </ul>
         </section>
         <section className="Card2back">
@@ -181,12 +181,12 @@ const About = (props) => {
           <h2 className="Title1">鍾禮鴻</h2>
           <div class="Linefront1"></div>
           <ul className="List1">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>串階前後端API</li>
+            <li>結帳功能撰寫</li>
+            <li>版面規劃設計</li>
+            <li>資料庫設計</li>
+            <li>網頁規劃排版</li>
+            <li>組員資訊協助</li>
           </ul>
         </section>
         <section className="Card1back">
@@ -215,12 +215,12 @@ const About = (props) => {
           <h2 className="Title2">李冠亭</h2>
           <div class="Linefront2"></div>
           <ul className="List2">
-            <li>切版RWD</li>
-            <li>首頁、會員註冊/登入</li>
-            <li>串接API(FB、GOOGLE登入)</li>
-            <li>會員資料庫設計</li>
-            <li>後台會員管理</li>
-            <li>視覺設計/logo設計</li>
+            <li>串接前後端API</li>
+            <li>主廚和課程頁面撰寫</li>
+            <li>網頁規劃排版</li>
+            <li>資料庫設計</li>
+            <li>組員資訊協助</li>
+            <li>部分元件協助</li>
           </ul>
         </section>
         <section className="Card2back">
