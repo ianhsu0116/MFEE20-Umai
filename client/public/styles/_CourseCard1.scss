@@ -71,6 +71,11 @@
     }
 
     .CourseCard1-detailCon-company {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+
       & svg {
         fill: $activeColor;
         font-size: 1.15rem;
@@ -79,6 +84,11 @@
 
     .CourseCard1-detailCon-courseTime {
       margin-top: 0.25rem;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
     }
 
     .CourseCard1-detailCon-MemberCount {
