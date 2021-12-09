@@ -19,7 +19,7 @@ const StarGroup = (props) => {
 
   return (
     <>
-      {console.log(props)}
+      {/* {console.log(props)} */}
       <div className="StarGroup">
         <div className="StarGroup-container">
           <img
