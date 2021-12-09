@@ -232,17 +232,29 @@ function App() {
   });
 
   const getAllCourseObject = async function (member_id) {
-    let result = await courseService.getAllCourseObject(member_id);
-    let consoleCheck = result.data.courseInfoInCart;
-    setCartCourseInfoList(result.data.courseInfoInCart);
-    console.log("getAllCourseObject :");
-    console.log(consoleCheck);
+    try {
+      console.log("99999999999999999999999999999999999999");
+      let result = await courseService.getAllCourseObject(member_id);
+      console.log(result);
+      let consoleCheck = result.data.courseInfoInCart;
+      setCartCourseInfoList(consoleCheck);
+      console.log("getAllCourseObject :");
+      console.log(consoleCheck);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response);
+    }
   };
+  useEffect(() => {
+    console.log("88888887423572577547257258725");
+    console.log(cartCourseInfoList);
+  }, [cartCourseInfoList]);
 
   useEffect(() => {
     if (currentUser) {
       try {
         getAllCourseObject(currentUser.id);
+        console.log("99999999999999999999999999999999999999");
       } catch (error) {
         console.log(error);
       }
@@ -256,6 +268,8 @@ function App() {
         currentUser={currentUser}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
+        cartCourseInfoList={cartCourseInfoList}
+        setCartCourseInfoList={setCartCourseInfoList}
         checkoutCourse={checkoutCourse}
         setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}

@@ -95,6 +95,12 @@ router.get("/cart/:member_id", async (req, res) => {
     console.log("batchIds");
     console.log(batchIds);
 
+    console.log(courseIds.length === 0);
+    console.log(batchIds.length === 0);
+
+    if (batchIds.length === 0 || courseIds.length === 0)
+      return res.status(200).json({ success: true });
+
     // 拿到課程資料(course join course_batch)(an array of objects)
     const set = new Set();
     let result = await connection.queryAsync(
@@ -116,7 +122,7 @@ router.get("/cart/:member_id", async (req, res) => {
       .status(200)
       .json({ success: true, courseIds, batchIds, courseInfoInCart });
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res.status(500).json({ success: false, code: "E999", message: error });
   }
 });
