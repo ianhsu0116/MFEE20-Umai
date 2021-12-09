@@ -154,7 +154,7 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
       [member_id, course_id, batch_id]
     );
     res.status(200).json({ success: true, inCart });
-    console.log(inCart[0].inCart);
+    // console.log(inCart[0].inCart);
   } catch (error) {
     console.log(error);
     res.status(200).json({ success: true, message: "此課程從未被選購過" });
