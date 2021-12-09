@@ -36,13 +36,17 @@ const CourseMiniCard = (props) => {
   ];
   const courseLevelList = ["高階", "中階", "初階"];
 
-  // const [levelColor, setLevelColor] = useState();
+  const [levelColor, setLevelColor] = useState();
 
-  // if (courseLevel == 1) {
-  //   setLevelColor("highLevel");
-  // } else if (courseLevel == 2) {
-  //   setLevelColor("midLevel");
-  // } else setLevelColor("");
+  useEffect( () => {
+    if(courseLevel != undefined){
+  if (courseLevel == 1) {
+    setLevelColor("highLevel");
+  }  else if(courseLevel == 2){
+    setLevelColor("midLevel");
+  } 
+}
+  }, [courseLevel]);
 
   // useEffect(async () => {
   //   try {
@@ -125,7 +129,7 @@ const CourseMiniCard = (props) => {
           {/* 課程分級與價格 */}
           <div className="courseMiniCardContentDown">
             {/* 課程分級 */}
-            <div className="st-courseMiniCardLevel">
+            <div className= {`st-courseMiniCardLevel ${levelColor}`}>
               <p className="st-courseMiniCardLevelText">
                 {courseLevelList[courseLevel - 1]}
               </p>
@@ -139,7 +143,7 @@ const CourseMiniCard = (props) => {
                       .replace(/(\d)(?=(?:\d{3})+$)/g, "$1,")
                   : 0}
               </p>
-              <p className="st-courseMiniCardSpecialPrice ">
+              <p className="st-courseMiniCardSpecialPrice">
                 NT$
                 {coursePrice
                   ? (coursePrice * 0.9)
@@ -155,4 +159,4 @@ const CourseMiniCard = (props) => {
   );
 };
 
-export default CourseMiniCard;
+export default CourseMiniCard

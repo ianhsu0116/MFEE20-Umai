@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+import { Link } from "react-router-dom";
 import { TiArrowSortedDown } from "react-icons/ti";
 
 // 圖片
@@ -22,6 +23,9 @@ import ShareCard from "../../components/ShareCard2";
 import CourseMiniCardSlider from "../../components/CourseMiniCardSlider";
 import ChefCard from "../../components/ChefCard2";
 
+// course後端
+import CourseService from "../../services/course.service";
+
 // import ChefCardSlider from "../../components/homepage/ChefCardSlider";
 
 const HomePage = () => {
@@ -41,6 +45,17 @@ const HomePage = () => {
       row.style.left = "-200%";
     }
   };
+  const [homepageComment, setHomepageComment] = useState({});
+  useEffect(async () => {
+    try {
+      let result = await CourseService.course_homepageComment();
+      console.log(result.data.course)
+      setHomepageComment(result.data.course)
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   // 主廚假資料
   const chefInfomation = [
@@ -175,7 +190,10 @@ const HomePage = () => {
               </div>
               <div className="platformIntroductionButtonWrapper">
                 <div className="platformIntroductionButton">
-                  <p>報名課程</p>
+                <p 
+                   onClick={() => {
+                        window.location.href = "http://localhost:3000/courses/category";
+                      }}>報名課程</p>
                 </div>
               </div>
             </div>
@@ -267,32 +285,41 @@ const HomePage = () => {
               <div className="ShareCardContentWrapper">
                 <div className="ShareCardContent">
                   <ShareCard
-                    course_name="法式甜點與馬卡龍"
-                    member_name="小小蔡"
-                    commentText="非常好吃的甜點，讓人想一再回味那幸福洋溢的甜味"
-                    member_avatar="http://localhost:8080/upload-images/course-4ac0bf56-1abc-432b-b369-cf66487b2c2a.jpg"
+                    course_name={homepageComment[0]?.course_name}
+                    member_name={homepageComment[0]?.first_name + " " + homepageComment[0]?.last_name}
+                    commentText={homepageComment[0]?.comment_text}
+                    score_sum={homepageComment[0]?.score}
+                    score_count={1}
+                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[0]?.avatar}
                   />
                 </div>
                 <div className="ShareCardContent">
                   <ShareCard
-                    course_name="流行韓國精緻料理"
-                    member_name="歐打QQ貓"
-                    commentText="非常優秀的主廚，非常推薦大家來學習"
-                    member_avatar="http://localhost:8080/upload-images/course-9a836180-81d2-43be-87e9-00099bc77739.jpg"
+                    course_name={homepageComment[1]?.course_name}
+                    member_name={homepageComment[1]?.first_name + " " + homepageComment[1]?.last_name}
+                    commentText={homepageComment[1]?.comment_text}
+                    score_sum={homepageComment[0]?.score}
+                    score_count={1}
+                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[1]?.avatar}
                   />
                 </div>
                 <div className="ShareCardContent">
                   <ShareCard
-                    course_name="義式Pizza專修首部曲"
-                    member_name="Ting"
-                    commentText="第一次製作pizza，沒想到這麼簡單，謝謝主廚的細心教導"
-                    member_avatar="http://localhost:8080/upload-images/course-09f737f2-ac26-4fd1-a13a-92e6f3a3f080.jpg"
+                    course_name={homepageComment[2]?.course_name}
+                    member_name={homepageComment[2]?.first_name + " " + homepageComment[2]?.last_name}
+                    commentText={homepageComment[2]?.comment_text}
+                    score_sum={homepageComment[0]?.score}
+                    score_count={1}
+                    member_avatar={"http://localhost:8080/upload-images/"+homepageComment[2]?.avatar}
                   />
                 </div>
               </div>
               <div className="moreShareButtonWrapper">
                 <div className="moreShareButton">
-                  <p>更多分享</p>
+                <p 
+                   onClick={() => {
+                        window.location.href = "http://localhost:3000/forum";
+                      }}>更多分享</p>
                 </div>
               </div>
             </div>

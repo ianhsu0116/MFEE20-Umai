@@ -648,7 +648,7 @@ router.get("/homepage/comment", async (req, res) => {
   try {
     // 依序抓到每筆課程
     let result = await connection.queryAsync(
-      "SELECT course_comment.* , orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member WHERE member.id = orders.member_id AND course_comment.orders_id = orders.id  AND course_comment.valid = 1 LIMIT 3"
+      "SELECT course_comment.* , course.course_name ,  orders.member_id , member.first_name , member.last_name , member.avatar FROM course_comment , orders , member , course WHERE course.id = course_comment.course_id  AND member.id = orders.member_id AND course_comment.orders_id = orders.id  AND course_comment.valid = 1 ORDER BY course_comment.id DESC LIMIT 3"
     );
     res.status(200).json({ success: true, course: result });
     return;
