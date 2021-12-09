@@ -1,210 +1,210 @@
 .Linktop1 {
-	width: 70%;
-	max-width: 1440px;
-	border: 3px solid #d8a466;
-	border-radius: 10px;
-	margin: 15px 0px;
-	background-color: #d8a466;
+  width: 70%;
+  max-width: 1440px;
+  border: 3px solid #d8a466;
+  border-radius: 10px;
+  margin: 15px 0px;
+  background-color: #d8a466;
 }
 
 .Classroom h1 {
-	color: #d8a466;
-	font-size: 42px;
+  color: #d8a466;
+  font-size: 42px;
 }
 
 .Classroom {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	margin-top: 63px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 63px;
 }
 .contactus_breadCrum {
-	padding-top: 45px;
-	width: 70vw;
-	max-width: 1440px;
-	h1 {
-		font-style: normal;
-		font-weight: 700;
-		font-size: 2.8vw;
-		line-height: 55px;
-		margin-left: 1.5vw;
-		margin-top: 40px;
-		color: #d8a466;
-	}
+  padding-top: 45px;
+  width: 70vw;
+  max-width: 1440px;
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.8vw;
+    line-height: 55px;
+    margin-left: 1.5vw;
+    margin-top: 40px;
+    color: #d8a466;
+  }
 }
 .Location-container {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	margin: 60px auto;
-	width: 70%;
-	max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 60px auto;
+  width: 70%;
+  max-width: 1440px;
 }
 
 .Location-container h1 {
-	margin: 0;
+  margin: 0;
 }
 
 div.Location-container-word {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	color: #1f4557;
-	position: absolute;
-	left: 0px;
-	font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #1f4557;
+  position: absolute;
+  left: 0px;
+  font-weight: 700;
 }
 
 .Location-container-word h1 {
-	color: #1f4557;
-	font-size: 42px;
-	margin-bottom: 12px;
+  color: #1f4557;
+  font-size: 42px;
+  margin-bottom: 12px;
 }
 
 .Location-container-word p {
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 32px;
-	letter-spacing: 3px;
-	margin: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 3px;
+  margin: 8px;
 }
 
 .Map {
-	position: absolute;
-	right: 0px;
+  position: absolute;
+  right: 0px;
 }
 
 .Detail {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	position: relative;
-	top: 450px;
-	color: #1f4557;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  top: 450px;
+  color: #1f4557;
 }
 
 .Detail h1 {
-	font-size: 42px;
-	z-index: 1;
+  font-size: 42px;
+  z-index: 1;
 }
 
 .Detail p {
-	font-size: 18px;
-	font-weight: 600;
-	display: inline-block;
-	z-index: 1;
+  font-size: 18px;
+  font-weight: 600;
+  display: inline-block;
+  z-index: 1;
 }
 
 div.Container {
-	display: inline-block;
-	/* background-color: aqua; */
-	max-width: 600px;
-	margin-top: 10vw;
+  display: inline-block;
+  /* background-color: aqua; */
+  max-width: 600px;
+  margin-top: 10vw;
 }
 
 .Both {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .Urname {
-	margin-top: 29px;
-	margin-bottom: 20px;
-	width: 48%;
+  margin-top: 29px;
+  margin-bottom: 20px;
+  width: 48%;
 }
 
 .Uremail {
-	/* margin-left: 10px; */
-	margin-top: 29px;
-	margin-bottom: 20px;
-	width: 48%;
+  /* margin-left: 10px; */
+  margin-top: 29px;
+  margin-bottom: 20px;
+  width: 48%;
 }
 
 .Urtitle {
-	margin-left: 464px;
-	margin-right: 240px;
+  margin-left: 464px;
+  margin-right: 240px;
 }
 
 .Urcontent {
-	margin-left: 464px;
+  margin-left: 464px;
 }
 
 input[type="submit"].Form-btn {
-	width: 165px;
-	display: block;
-	height: 40px;
-	/* padding:15px; */
-	color: #fff;
-	font-size: 15px;
-	font-weight: 600;
-	background: #d8a466;
-	border: none;
-	border-radius: 24px;
-	outline: none;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
-	margin: auto;
-	margin-top: 80px;
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-	position: relative;
-	z-index: 1;
-	&:hover {
-		background: #111;
-		color: white;
-		border: none;
-	}
-	&:active {
-		opacity: 0.9;
-	}
-	& .Form-btn:active {
-		opacity: 0.9;
-	}
+  width: 165px;
+  display: block;
+  height: 40px;
+  /* padding:15px; */
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  background: #d8a466;
+  border: none;
+  border-radius: 24px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  margin: auto;
+  margin-top: 80px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  &:hover {
+    background: #111;
+    color: white;
+    border: none;
+  }
+  &:active {
+    opacity: 0.9;
+  }
+  & .Form-btn:active {
+    opacity: 0.9;
+  }
 }
 
 .Trapezoid::before {
-	content: '';
-	line-height: 0;
-	font-size: 0;
-	width: 0;
-	height: 0;
-	border-top: 60px solid transparent;
-	border-bottom: 1000px solid #eeeeee;
-	border-left: 0px solid transparent;
-	border-right: 70vw solid #eeeeee;
-	bottom: 46%;
-	z-index: 0;
-	position: relative;
-	top: -1000px;
-	left: 4px;
+  content: "";
+  line-height: 0;
+  font-size: 0;
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 1000px solid #eeeeee;
+  border-left: 0px solid transparent;
+  border-right: 70vw solid #eeeeee;
+  bottom: 46%;
+  z-index: 0;
+  position: relative;
+  top: -1000px;
+  left: 4px;
 }
-.Contactus_height{
-	height: 1700px;
+.Contactus_height {
+  height: 1900px;
 }

@@ -9,14 +9,20 @@ import axios from "axios";
 
 function shopping_cart(props) {
   const location = useLocation();
+  if(location.state===undefined){
+    window.location.href = "http://localhost:3000/";
+  }
   let { data } = location.state;
 
   const checkoutCourse = JSON.parse(data);
   //如果沒有取得資料則跳回首頁
   if (
-    checkoutCourse.member_id === undefined ||
-    checkoutCourse.course_id === undefined ||
-    checkoutCourse.batch_id === undefined
+    !checkoutCourse ||
+    checkoutCourse === {} ||
+    checkoutCourse.member_id === "" ||
+    checkoutCourse.course_id === "" ||
+    checkoutCourse.batch_id === "" ||
+    checkoutCourse.cartCourseCount < 1
   ) {
     window.location.href = "http://localhost:3000/";
   }
@@ -34,22 +40,21 @@ function shopping_cart(props) {
           withCredentials: true,
         }
       );
-      
-      for(let i=0;i<=course.data.course_batch.length;i++){
-        if(course.data.course_batch[i]["id"]===checkoutCourse.batch_id)
+
+      for (let i = 0; i <= course.data.course_batch.length; i++) {
+        if (course.data.course_batch[i]["id"] === checkoutCourse.batch_id)
           setCoursetitle({
             course_id: checkoutCourse.course_id,
             batch_id: checkoutCourse.batch_id,
             name: course.data.course[0].course_name,
-            value: course.data.course[0].course_price*0.9,
-            studentnumber: 1,
+            value: course.data.course[0].course_price * 0.9,
+            studentnumber: checkoutCourse.cartCourseCount,
             courseimage: course.data.course[0].course_image,
             memberlimit: course.data.course[0].member_limit,
             membercount: course.data.course_batch[i].member_count,
           });
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   }, []);
 
   //優惠券
@@ -122,9 +127,11 @@ function shopping_cart(props) {
   //第一次進入頁面時生成學員資料卡片
   if (carddata.length === 0) {
     let defultcard = [];
-    defultcard.push({
-      ...defaultcarddata,
-    });
+    for (let i = 0; i < checkoutCourse.cartCourseCount; i++) {
+      defultcard.push({
+        ...defaultcarddata,
+      });
+    }
     setCarddata(defultcard);
   }
 

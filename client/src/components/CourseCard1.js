@@ -23,12 +23,19 @@ let newCourseCompare = new Date(Date.now() - 86400000);
 // collectionIds = 當前登入的使用者收藏的所有課程ID array, 有登入的時候再傳進來即可
 const CourseCard1 = (props) => {
   let {
+    key,
+    index,
     courseDetail,
     collectionIds,
     handleAddIntoCollection,
     handleAddIntoCart,
     handlePurchase,
     className,
+    link,
+    setLink,
+    data,
+    setData,
+    currentUser,
   } = props;
 
   // 當前課程是否被當前登入的使用者加入收藏
@@ -85,7 +92,12 @@ const CourseCard1 = (props) => {
     <>
       {courseDetail && (
         <div className={`CourseCard1 ${className ? " " + className : ""}`}>
-          <div className="CourseCard1-imageCon">
+          <div
+            className="CourseCard1-imageCon"
+            onClick={() => {
+              window.location.href = `http://localhost:3000/courses/${courseDetail.id}`;
+            }}
+          >
             <img
               src={`${PUBLIC_URL}/upload-images/${courseDetail.course_image}`}
               alt="course_image"
@@ -194,6 +206,20 @@ const CourseCard1 = (props) => {
                 });
               }}
             />
+            {/* <Link
+              to={{ pathname: link, state: { data: data } }}
+              onMouseEnter={() => {
+                setLink("/shoppingCart");
+                setData(
+                  JSON.stringify({
+                    member_id: currentUser ? currentUser.id : "",
+                    course_id: courseDetail ? courseDetail.course_id : "",
+                    batch_id: courseDetail ? courseDetail.batch_id : "",
+                    cartCourseCount: courseDetail ? 1 : "",
+                  })
+                );
+              }}
+            > */}
             <Button
               value={"立即訂購"}
               className={"button-activeColor CourseCard1-buttonCon-btn"}
@@ -204,6 +230,7 @@ const CourseCard1 = (props) => {
                 });
               }}
             />
+            {/* </Link> */}
           </div>
         </div>
       )}

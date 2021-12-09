@@ -42,12 +42,34 @@ function App() {
 
   // 存取當前登入中的使用者資料
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
-
   // 登入視窗開關狀態
   const [showLogin, setShowLogin] = useState(false);
 
+  //搜尋內容
+  const [searchValue, setSearchValue] = useState("");
+  //課程搜尋列狀態
+  const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
+
+  //儲存購物車的課程資訊
+  const [cartCourseInfoList, setCartCourseInfoList] = useState([]);
+  // [{
+  //   course_id: "",
+  //   member_id: "",
+  //   course_image: "",
+  //   course_name: "",
+  //   course_price: "",
+  //   member_limit: "",
+  //   batch_id: "", //(course_batch table)
+  //   batch_date: "", //(course_batch table)
+  //   member_count: "", //(course_batch table)
+  //   cartCourseCount: 1, //(notInDB)
+  // }]
   //新增課程
   const [newAddCourse, setNewAddCourse] = useState({});
+  //當前購物車課程數量
+  const numberOfCoursesInCart = cartCourseInfoList?.length;
+  //當前購物車總金額
+  const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
 
   // 開啟Login Container(登入視窗)
   const handleLoginClick = (e) => {
@@ -64,9 +86,6 @@ function App() {
     });
   }, []);
 
-  //課程搜尋列狀態
-  const [isActiveCourseSearch, setActiveCourseSearch] = useState("false");
-
   //課程搜尋列狀態判斷
   const handleToggleCourseSearch = async (msg) => {
     // 點擊任意處關閉
@@ -77,12 +96,6 @@ function App() {
       setActiveCourseSearch(!isActiveCourseSearch);
     }
   };
-
-  //搜尋內容
-  const [searchValue, setSearchValue] = useState("");
-
-  //當前購物車總金額
-  const [sumCartCoursePrice, setSumCartCoursePrice] = useState(0);
 
   //清空新增課程state (加入課程A)
   async function clearNewAddCourse() {
@@ -129,7 +142,7 @@ function App() {
       }
     };
 
-    //先在switch外宣告一個共用變數，用來接住函數回傳的結果
+    //先在switch外宣告一個共用變數，用來接住資料庫回傳的個別課程資料
     let CartCourseObject;
 
     //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
@@ -184,12 +197,30 @@ function App() {
 
     //確認此課程梯次是否已存在該會員的購物車資料庫中
     if (ifIncart === 1) {
-      //已存在
       setNewAddCourse([CartCourseObject, "+1"]);
     } else {
       //從未將此課程梯次加入購物車
       setNewAddCourse([CartCourseObject]);
     }
+
+    if (newAddCourse.length === 2) {
+      console.log(cartCourseInfoList);
+      let newCartCourseInfoList = cartCourseInfoList;
+      // if 購物車真的有東西
+      if (newCartCourseInfoList?.length > 0) {
+        newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
+          if (obj.course_id === newAddCourse[0].course_id) {
+            obj.cartCourseCount = obj.cartCourseCount + 1;
+          }
+          return obj;
+        });
+        console.log("newAddCourse.length-2");
+        console.log(newCartCourseInfoList);
+        console.log(newCartCourseInfoList.cartCourseCount);
+        setCartCourseInfoList([...newCartCourseInfoList]);
+      }
+    }
+    getAllCourseObject(currentUser.id);
     console.log("setNewAddCourse");
     console.log("Exit");
     //前往執行以NewAddCourse作為依賴的useEffect(在Navbar2當中)
@@ -203,19 +234,35 @@ function App() {
     cartCourseCount: 1,
   });
 
-  //會員狀態改變時，重新從資料庫取得購物車資訊，並加入購物車
+  const getAllCourseObject = async function (member_id) {
+    try {
+      console.log("99999999999999999999999999999999999999");
+      let result = await courseService.getAllCourseObject(member_id);
+      console.log(result);
+      let consoleCheck = result.data.courseInfoInCart;
+      setCartCourseInfoList(consoleCheck);
+      console.log("getAllCourseObject :");
+      console.log(consoleCheck);
+    } catch (error) {
+      console.log(error);
+      console.log(error.response);
+    }
+  };
+  useEffect(() => {
+    console.log("88888887423572577547257258725");
+    console.log(cartCourseInfoList);
+  }, [cartCourseInfoList]);
+
   useEffect(() => {
     if (currentUser) {
       try {
-        // //當購物車沒課程時，將總金額歸零
-        // handleSumPriceZeroing();
-        // // 拿到購物車所需的全部課程資料，並加入購物車
-        // getAllCourseObject(currentUser.id);
+        getAllCourseObject(currentUser.id);
+        console.log("99999999999999999999999999999999999999");
       } catch (error) {
         console.log(error);
       }
     }
-  }, [currentUser]);
+  }, []);
 
   return (
     <Router>
@@ -224,18 +271,19 @@ function App() {
         currentUser={currentUser}
         isActiveCourseSearch={isActiveCourseSearch}
         handleToggleCourseSearch={handleToggleCourseSearch}
+        cartCourseInfoList={cartCourseInfoList}
+        setCartCourseInfoList={setCartCourseInfoList}
         checkoutCourse={checkoutCourse}
         setCheckoutCourse={setCheckoutCourse}
         newAddCourse={newAddCourse}
-        setNewAddCourse={setNewAddCourse}
         clearNewAddCourse={clearNewAddCourse}
+        numberOfCoursesInCart={numberOfCoursesInCart}
         sumCartCoursePrice={sumCartCoursePrice}
         setSumCartCoursePrice={setSumCartCoursePrice}
-        addCourseIntoCart={addCourseIntoCart}
-        data={data}
-        setData={setData}
         link={link}
         setLink={setLink}
+        data={data}
+        setData={setData}
       />
       {showLogin && (
         <Login setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} />
@@ -282,6 +330,10 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
+              link={link}
+              setLink={setLink}
+              data={data}
+              setData={setData}
             />
           </div>
           <Footer />
@@ -318,10 +370,10 @@ function App() {
               addCourseIntoCart={addCourseIntoCart}
               checkoutCourse={checkoutCourse}
               setCheckoutCourse={setCheckoutCourse}
-              data={data}
-              setData={setData}
               link={link}
               setLink={setLink}
+              data={data}
+              setData={setData}
             />
           </div>
           <Footer />

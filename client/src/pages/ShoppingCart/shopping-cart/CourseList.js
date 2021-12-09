@@ -25,6 +25,7 @@ function CourseList(props) {
         {
           memberid: currentUser.id,
           courseid: coursetitle.course_id,
+          batchid: coursetitle.batch_id,
         },
         { withCredentials: true }
       );
@@ -47,7 +48,6 @@ function CourseList(props) {
         {
           memberid: currentUser.id,
           courseid: coursetitle.course_id,
-          batchid: coursetitle.batch_id,
         },
         { withCredentials: true }
       );
@@ -121,7 +121,10 @@ function CourseList(props) {
 
             <div>
               <h4>{coursetitle.name}</h4>
-              <h6>報名人數剩餘{coursetitle.memberlimit-coursetitle.membercount}人</h6>
+              <h6>
+                報名人數剩餘{coursetitle.memberlimit - coursetitle.membercount}
+                人
+              </h6>
             </div>
           </td>
           <td>

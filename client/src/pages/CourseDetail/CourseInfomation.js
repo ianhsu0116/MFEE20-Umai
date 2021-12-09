@@ -40,10 +40,10 @@ function CourseInfomation(props) {
     setCheckoutCourse,
     cartCourseInfoList,
     setCartCourseInfoList,
-    data,
-    setData,
     link,
     setLink,
+    data,
+    setData,
   } = props;
   //                               /courses/id 從第9位判斷 /courses/1 = id1 /courses/2 = id2 以此類推
   let id_number = location.pathname.slice(9);
@@ -242,7 +242,8 @@ function CourseInfomation(props) {
             cartCourseCount: 1,
           })
         );
-        setCheckoutCourse({
+        console.log("setData");
+        console.log({
           member_id: currentUser ? currentUser.id : "",
           course_id: course_batchJSON[i].course_id
             ? course_batchJSON[i].course_id
@@ -278,8 +279,8 @@ function CourseInfomation(props) {
 
   return (
     <>
-      {console.log(batch_id)}
-      {console.log(course_id)}
+      {/* {console.log(batch_id)} */}
+      {/* {console.log(course_id)} */}
       <CourseHeaderPicture
         image1={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[0]}`}
         image2={`${PUBLIC_URL}/upload-images/${newCourseJSON[0].course_detail.slider_images[1]}`}
@@ -412,7 +413,15 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        } else if (
+                        } else if (!currentUser){
+                          Swal.fire({
+                            title: "",
+                            icon: "warning",
+                            // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先登入後再加入購物車哦",
+                          })
+                        }  else if(
                           batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
@@ -428,11 +437,23 @@ function CourseInfomation(props) {
                           //清空新增課程state
                           // await clearNewAddCourse();
                           // 把課程加入購物車資料庫
-                          addCourseIntoCart(
-                            currentUser.id,
-                            Number(id_number),
-                            batch_id
-                          );
+                          if (currentUser) {
+                            addCourseIntoCart(
+                              currentUser.id,
+                              Number(id_number),
+                              batch_id
+                            );
+                          } else {
+                            Swal.fire({
+                              // title: "",
+                              icon: "warning",
+                              // customClass: "Custom_Cancel",
+                              confirmButtonColor: "#0078b3",
+                              confirmButtonText: "請先登入再結帳",
+                            }).then(function () {
+                              // window.location.reload();
+                            });
+                          }
                         }
                       }}
                     >
@@ -464,17 +485,6 @@ function CourseInfomation(props) {
                             }).then(function () {
                               // window.location.reload();
                             });
-                          } else {
-                            // console.log("checkoutCourse");
-                            // console.log(checkoutCourse);
-
-                            if (
-                              checkoutCourse.member_id === undefined ||
-                              checkoutCourse.course_id === undefined ||
-                              checkoutCourse.batch_id === undefined
-                            ) {
-                              // return;
-                            }
                           }
                         }}
                       >
@@ -857,7 +867,7 @@ function CourseInfomation(props) {
                         });
                       } else {
                         //清空新增課程state
-                        await clearNewAddCourse();
+                        // await clearNewAddCourse();
                         // 把課程加入購物車資料庫
                         addCourseIntoCart(
                           currentUser.id,
@@ -909,8 +919,9 @@ function CourseInfomation(props) {
                       }
                     }}
                   >
+                  現在報名
                     <Link to={{ pathname: link, state: { data: data } }}>
-                      現在報名
+                      
                     </Link>
                   </p>
                 </div>

@@ -17,10 +17,14 @@ function Course(props) {
   const {
     location,
     currentUser,
-    clearNewAddCourse,
-    addCourseIntoCart,
-    checkoutCourse,
-    setCheckoutCourse,
+    link,
+    setLink,
+    data,
+    setData,
+    // clearNewAddCourse,
+    // addCourseIntoCart,
+    // checkoutCourse,
+    // setCheckoutCourse,
   } = props;
   // 抓search用 Ex category?... search抓到?...
   let category_number = location.search.slice(1);
@@ -550,6 +554,11 @@ function Course(props) {
                 handleAddIntoCollection={handleAddIntoCollection} //加入收藏
                 handleAddIntoCart={handleAddIntoCart} //加入購物車
                 handlePurchase={handlePurchase} //直接購買
+                link={link}
+                setLink={setLink}
+                data={data}
+                setData={setData}
+                currentUser={currentUser}
                 // clearNewAddCourse={clearNewAddCourse}
                 // addCourseIntoCart={addCourseIntoCart}
                 // checkoutCourse={checkoutCourse}

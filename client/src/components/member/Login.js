@@ -102,10 +102,14 @@ const Login = (props) => {
       // 關閉登入的視窗
       setShowLogin(false);
 
+      let tex =
+        result.data.member.member_category == "2"
+          ? "授課主廚登入成功!"
+          : "登入成功！";
       // 跳通知
       Swal.fire({
         icon: "success",
-        title: "登入成功！",
+        title: tex,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -172,7 +176,7 @@ const Login = (props) => {
       // 跳通知
       Swal.fire({
         icon: "success",
-        title: "登入成功！",
+        title: "Google登入成功！",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -200,7 +204,7 @@ const Login = (props) => {
       // 跳通知
       Swal.fire({
         icon: "success",
-        title: "登入成功！",
+        title: "Facebook登入成功！",
         showConfirmButton: false,
         timer: 1500,
       });

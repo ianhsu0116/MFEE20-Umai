@@ -38,7 +38,7 @@ const uploader = multer({
   },
   // 限定檔案大小 4M
   limits: {
-    fileSize: 1024 * 1024 * 4,
+    fileSize: 1024 * 1024 * 10,
   },
 });
 
