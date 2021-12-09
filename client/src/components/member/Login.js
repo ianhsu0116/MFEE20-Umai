@@ -176,7 +176,7 @@ const Login = (props) => {
       // 跳通知
       Swal.fire({
         icon: "success",
-        title: "登入成功！",
+        title: "Google登入成功！",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -204,7 +204,7 @@ const Login = (props) => {
       // 跳通知
       Swal.fire({
         icon: "success",
-        title: "登入成功！",
+        title: "Facebook登入成功！",
         showConfirmButton: false,
         timer: 1500,
       });
