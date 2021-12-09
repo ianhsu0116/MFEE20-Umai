@@ -206,6 +206,7 @@ $icon-size: 2vw;
 
           &:hover {
             color: $activeColor;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
           }
         }
 
@@ -216,16 +217,19 @@ $icon-size: 2vw;
 
           &:hover {
             color: $themeColorBlue;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
           }
         }
 
         .MemberSidebar-container-ul-li-active {
           color: $activeColor;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
         }
 
         // 主廚專屬功能
         .MemberSidebar-container-ul-li-active2 {
           color: $themeColorBlue;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
         }
       }
     }

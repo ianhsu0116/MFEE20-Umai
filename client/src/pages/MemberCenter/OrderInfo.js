@@ -130,13 +130,14 @@ const OrderInfo = (props) => {
     }
   };
 
-  //載入更多
+  // 按下載入更多
   const handleLoadMore = () => {
     let newPage = page;
     newPage = newPage + 1;
     setPage(newPage);
   };
 
+  // 載入更多
   useEffect(() => {
     // 第二頁後再開始
     if (page > 1) {
