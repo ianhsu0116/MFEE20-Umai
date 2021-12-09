@@ -9,6 +9,9 @@ import axios from "axios";
 
 function shopping_cart(props) {
   const location = useLocation();
+  if(location.state===undefined){
+    window.location.href = "http://localhost:3000/";
+  }
   let { data } = location.state;
 
   const checkoutCourse = JSON.parse(data);

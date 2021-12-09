@@ -114,7 +114,10 @@ function App() {
       course_id,
       batch_id
     );
-    let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
+    // console.log(IfInCartResult.data.inCart);
+    // let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
+    let ifIncart = IfInCartResult.data.inCart;
+    // let ifIncart = 1;
     console.log("back to FE");
     // 回傳Incart值;
     console.log(ifIncart);
