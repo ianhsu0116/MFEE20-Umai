@@ -168,7 +168,7 @@ router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
       [member_id, course_id, batch_id]
     );
     res.status(200).json({ success: true, inCart });
-    console.log(inCart[0].inCart);
+    // console.log(inCart[0].inCart);
   } catch (error) {
 <<<<<<< HEAD
     console.log(error);
