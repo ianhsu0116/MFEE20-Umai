@@ -24,8 +24,7 @@ const CartCourse = (props) => {
 
   //計算特定課程金額小計
   async function getSubtotal(CurrentInfoObject) {
-    let newSubtotal =
-      CurrentInfoObject.course_price * CurrentInfoObject.cartCourseCount;
+    let newSubtotal = CurrentInfoObject.course_price * CurrentInfoObject.amount;
     setSubtotal(numDotFormat(newSubtotal));
   }
 
@@ -33,9 +32,8 @@ const CartCourse = (props) => {
   async function handleCountMinus() {
     let newCartCourseInfoList = cartCourseInfoList;
     //數量不可小於1
-    if (newCartCourseInfoList[index].cartCourseCount > 1) {
-      newCartCourseInfoList[index].cartCourseCount =
-        CurrentInfoObject.cartCourseCount - 1;
+    if (newCartCourseInfoList[index].amount > 1) {
+      newCartCourseInfoList[index].amount = CurrentInfoObject.amount - 1;
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
@@ -47,9 +45,7 @@ const CartCourse = (props) => {
         member_id: currentUser ? currentUser.id : "",
         course_id: cartCourseInfoList[0] ? cartCourseInfoList[0].course_id : "",
         batch_id: cartCourseInfoList[0] ? cartCourseInfoList[0].batch_id : "",
-        cartCourseCount: cartCourseInfoList[0]
-          ? cartCourseInfoList[0].cartCourseCount
-          : "",
+        amount: cartCourseInfoList[0] ? cartCourseInfoList[0].amount : "",
       })
     );
     console.log("data: ");
@@ -57,9 +53,7 @@ const CartCourse = (props) => {
       member_id: currentUser ? currentUser.id : "",
       course_id: cartCourseInfoList[0] ? cartCourseInfoList[0].course_id : "",
       batch_id: cartCourseInfoList[0] ? cartCourseInfoList[0].batch_id : "",
-      cartCourseCount: cartCourseInfoList[0]
-        ? cartCourseInfoList[0].cartCourseCount
-        : "",
+      amount: cartCourseInfoList[0] ? cartCourseInfoList[0].amount : "",
     });
   }
 
@@ -68,12 +62,11 @@ const CartCourse = (props) => {
     let newCartCourseInfoList = cartCourseInfoList;
     //數量不可高於可報名人數上限
     if (
-      newCartCourseInfoList[index].cartCourseCount <
+      newCartCourseInfoList[index].amount <
       newCartCourseInfoList[index].member_limit -
         newCartCourseInfoList[index].member_count
     ) {
-      newCartCourseInfoList[index].cartCourseCount =
-        CurrentInfoObject.cartCourseCount + 1;
+      newCartCourseInfoList[index].amount = CurrentInfoObject.amount + 1;
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
@@ -85,9 +78,7 @@ const CartCourse = (props) => {
         member_id: currentUser ? currentUser.id : "",
         course_id: cartCourseInfoList ? cartCourseInfoList[0].course_id : "",
         batch_id: cartCourseInfoList ? cartCourseInfoList[0].batch_id : "",
-        cartCourseCount: cartCourseInfoList
-          ? cartCourseInfoList[0].cartCourseCount
-          : "",
+        amount: cartCourseInfoList ? cartCourseInfoList[0].amount : "",
       })
     );
     console.log("data: ");
@@ -95,9 +86,7 @@ const CartCourse = (props) => {
       member_id: currentUser ? currentUser.id : "",
       course_id: cartCourseInfoList ? cartCourseInfoList[0].course_id : "",
       batch_id: cartCourseInfoList ? cartCourseInfoList[0].batch_id : "",
-      cartCourseCount: cartCourseInfoList
-        ? cartCourseInfoList[0].cartCourseCount
-        : "",
+      amount: cartCourseInfoList ? cartCourseInfoList[0].amount : "",
     });
   }
 
@@ -138,21 +127,20 @@ const CartCourse = (props) => {
       getSubtotal(CurrentInfoObject);
       //計算當前購物車總金額
       getSumCartCoursePrice();
-      console.log("88888888888888888888888888888888888888888888888");
     } catch (error) {
       console.log(error);
     }
   }, [cartCourseInfoList]);
 
-  useEffect(() => {
-    try {
-      // // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
-      // refreshCartCourse();
-      console.log("refreshCartCourse");
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     // // 重新整理購物車資訊、計算總金額，並刪除購物車中數量小於0的課程
+  //     // refreshCartCourse();
+  //     // console.log("refreshCartCourse");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -192,7 +180,7 @@ const CartCourse = (props) => {
 
               {/* 此課程報名人數 */}
               <div className="count" id={cartCourseInfoList[index].id}>
-                {cartCourseInfoList[index].cartCourseCount}
+                {cartCourseInfoList[index].amount}
               </div>
 
               {/* 課堂報名人數加一 */}

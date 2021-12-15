@@ -30,21 +30,11 @@ class CourseService {
     );
   }
 
-  // 根據member_id, course_id, batch_id更新購物車資料庫(Update)
-  UpdateCart(member_id, course_id, batch_id, inCart) {
+  // 根據member_id, course_id, batch_id更新購物車資料庫
+  UpdateCart(member_id, course_id, batch_id, inCart, updateAmount) {
     return axios.put(
       COURSE_API_URL + `/cart/${member_id}`,
-      { course_id, batch_id, inCart },
-      {
-        withCredentials: true,
-      }
-    );
-  }
-  // 根據course_id把課程加入購物車資料庫(cart)
-  addCourseIntoCart(member_id, course_id, batch_id) {
-    return axios.post(
-      COURSE_API_URL + `/cart/${member_id}`,
-      { course_id, batch_id },
+      { course_id, batch_id, inCart, updateAmount },
       {
         withCredentials: true,
       }
@@ -64,17 +54,17 @@ class CourseService {
       withCredentials: true,
     });
   }
-    // 測試首頁抓資料
-    course_homepage() {
-      return axios.get(COURSE_API_URL + "/hottest", {
-        withCredentials: true,
-      });
-    }
-    course_homepageComment(){
-      return axios.get(COURSE_API_URL + "/homepage/comment", {
-        withCredentials: true,
-      });
-    }
+  // 測試首頁抓資料
+  course_homepage() {
+    return axios.get(COURSE_API_URL + "/hottest", {
+      withCredentials: true,
+    });
+  }
+  course_homepageComment() {
+    return axios.get(COURSE_API_URL + "/homepage/comment", {
+      withCredentials: true,
+    });
+  }
 
   // 依照course_id拿到課程詳細資料(detail)
   course_courseId(course_id) {
