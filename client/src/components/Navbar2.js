@@ -65,19 +65,6 @@ const Navbar = (props) => {
   // 判斷購物車中是否只有一堂課
   const [isOnlyCourseInCart, setIsOnlyCourseInCart] = useState(false);
 
-  //計算當前購物車總金額
-  async function getSumCartCoursePrice() {
-    if (cartCourseInfoList?.length !== 0) {
-      let subtotalList = cartCourseInfoList.map((obj) => {
-        return obj?.course_price * obj?.amount;
-      });
-      let newSumCartCoursePrice = subtotalList.reduce((acc, v) => {
-        return acc + v;
-      }, 0);
-      setSumCartCoursePrice(numDotFormat(newSumCartCoursePrice));
-    }
-  }
-
   const [searchValue, setSearchValue] = useState("");
   const [SearchCourseList, setSearchCourseList] = useState([]);
 
@@ -159,25 +146,25 @@ const Navbar = (props) => {
 
   //計算當前購物車總金額
   async function getSumCartCoursePrice() {
-    if (!ifNoCourseInCart) {
-      let subtotalList;
-      let newSumCartCoursePrice;
+    if (cartCourseInfoList) {
+      let subtotalList = [];
+      let newSumCartCoursePrice = undefined;
+      //產生金額小計陣列
       if (cartCourseInfoList !== []) {
-        //產生金額小計陣列
         subtotalList = cartCourseInfoList?.map((obj) => {
           return obj?.course_price * obj?.amount;
         });
         //計算總價
         newSumCartCoursePrice = subtotalList?.reduce((acc, v) => {
-          return acc + v, 0;
-        });
-      }
-      if (newSumCartCoursePrice) {
-        console.log("subtotalList");
-        console.log(subtotalList);
-        console.log("newSumCartCoursePrice");
-        console.log(newSumCartCoursePrice);
-        setSumCartCoursePrice(numDotFormat(newSumCartCoursePrice));
+          return acc + v;
+        }, 0);
+        if (newSumCartCoursePrice) {
+          console.log("subtotalList");
+          console.log(subtotalList);
+          console.log("newSumCartCoursePrice");
+          console.log(newSumCartCoursePrice);
+          setSumCartCoursePrice(numDotFormat(newSumCartCoursePrice));
+        }
       }
     } else {
       setSumCartCoursePrice(0);
@@ -250,6 +237,9 @@ const Navbar = (props) => {
   useEffect(() => {
     // //清空新增課程state
     // clearNewAddCourse();
+
+    //計算當前購物車總金額
+    getSumCartCoursePrice();
 
     //判斷購物車是否只有一堂課程
     ifOnlyCourseInCart();

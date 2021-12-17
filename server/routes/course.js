@@ -162,24 +162,24 @@ router.put("/cart/:member_id", async (req, res) => {
 
   try {
     // 檢查購物車資料庫中是否已經有此課程
-    let inCart = await connection.queryAsync(
+    let ifInCart = await connection.queryAsync(
       `SELECT cart_and_collection.inCart, cart_and_collection.amount FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
-    if (inCart[0]?.inCart === undefined) {
+    if (ifInCart[0]?.ifInCart === undefined) {
       // 若不存在於購物車資料庫中，加入資料庫
       let addResult = await connection.queryAsync(
         "INSERT INTO cart_and_collection (member_id, course_id, batch_id, inCart) VALUE (?, ?, ?, 1)",
         [member_id, course_id, batch_id]
       );
-    } else if (inCart[0]?.inCart === 1) {
-      let amount = inCart[0]?.amount + updateAmount;
+    } else if (ifInCart[0]?.ifInCart === 1) {
+      let amount = ifInCart[0]?.amount + updateAmount;
       // 若存在於購物車中，更新資料庫數量
       let update = await connection.queryAsync(
         `UPDATE cart_and_collection SET amount = ? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
         [amount, member_id, course_id, batch_id]
       );
-    } else if (inCart[0]?.inCart === 0) {
+    } else if (ifInCart[0]?.ifInCart === 0) {
       // 若存在於購物車資料庫中，更新資料庫
       let update = await connection.queryAsync(
         `UPDATE cart_and_collection SET inCart = ? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,

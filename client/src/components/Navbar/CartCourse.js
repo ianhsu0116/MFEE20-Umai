@@ -37,8 +37,10 @@ const CartCourse = (props) => {
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
-    // // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
-    // refreshCartCourse();
+    //計算特定課程金額小計
+    getSubtotal(CurrentInfoObject);
+    //計算當前購物車總金額
+    getSumCartCoursePrice();
 
     setData(
       JSON.stringify({
@@ -70,8 +72,10 @@ const CartCourse = (props) => {
     }
     await setCartCourseInfoList(newCartCourseInfoList);
 
-    // // 重新整理購物車 (刪除購物車中數量小於0的課程/當購物車沒課程時，將總金額歸零)
-    // refreshCartCourse();
+    //計算特定課程金額小計
+    getSubtotal(CurrentInfoObject);
+    //計算當前購物車總金額
+    getSumCartCoursePrice();
 
     setData(
       JSON.stringify({
@@ -98,7 +102,8 @@ const CartCourse = (props) => {
         currentUser.id,
         CurrentInfoObject.course_id,
         CurrentInfoObject.batch_id,
-        0
+        0,
+        -1 * (CurrentInfoObject.amount - 1)
       );
 
       console.log("Delete_Course: ");
@@ -117,6 +122,11 @@ const CartCourse = (props) => {
       setCartCourseInfoList(newCartCourseInfoList);
       console.log("剩餘課程：");
       console.log(newCartCourseInfoList);
+
+      //計算特定課程金額小計
+      getSubtotal(CurrentInfoObject);
+      //計算當前購物車總金額
+      getSumCartCoursePrice();
     }
   }
 
