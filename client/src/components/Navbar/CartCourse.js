@@ -106,14 +106,15 @@ const CartCourse = (props) => {
         -1 * (CurrentInfoObject.amount - 1)
       );
 
-      console.log("Delete_Course: ");
-      console.log(
-        currentUser.id,
-        CurrentInfoObject.course_id,
-        CurrentInfoObject.batch_id,
-        0
-      );
-      console.log(updateResult.data.updateResult[0]);
+      // console.log("Delete_Course: ");
+      // console.log(
+      //   currentUser.id,
+      //   CurrentInfoObject.course_id,
+      //   CurrentInfoObject.batch_id,
+      //   0,
+      //   -1 * (CurrentInfoObject.amount - 1)
+      // );
+      // console.log(updateResult.data.updateResult[0]);
 
       //從購物車中刪除當前課程
       let newCartCourseInfoList = cartCourseInfoList.filter((obj) => {

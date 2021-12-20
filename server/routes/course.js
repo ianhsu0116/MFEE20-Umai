@@ -78,6 +78,10 @@ router.get("/cart/:member_id", async (req, res) => {
     let batchIds = inCart.map((obj) => {
       return obj.batch_id;
     });
+    // 刪除陣列中重複梯次id(保留最初加入的資料)(避免資料庫錯誤出現多筆同梯次資料)
+    batchIds = batchIds.filter(function (ele, idx) {
+      return batchIds.indexOf(ele) == idx;
+    });
     console.log("batchIds");
     console.log(batchIds);
 
@@ -85,9 +89,14 @@ router.get("/cart/:member_id", async (req, res) => {
     if (batchIds.length === 0) res.status(200).json({ success: true });
 
     // 拿到課程資料(course JOIN course_batch JOIN cart_and_collection)(an array of objects)
+    const set = new Set();
     let courseInfoInCart = await connection.queryAsync(
-      "SELECT DISTINCT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id, cart_and_collection.amount FROM course, course_batch, cart_and_collection WHERE course.id = course_batch.course_id AND cart_and_collection.batch_id = course_batch.id AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1",
+      "SELECT DISTINCT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id, cart_and_collection.amount FROM course, course_batch, cart_and_collection WHERE course.id = course_batch.course_id AND cart_and_collection.batch_id = course_batch.id AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1 ORDER BY course_id ASC, course_batch.batch_date ASC",
       [batchIds, member_id]
+    );
+    // 刪除陣列中重複資料(根據batch_id判斷)(避免資料庫錯誤出現多筆同梯次資料)
+    courseInfoInCart = courseInfoInCart.filter((obj) =>
+      !set.has(obj.batch_id) ? set.add(obj.batch_id) : false
     );
     console.log("courseInfoInCart");
     console.log(courseInfoInCart);
@@ -166,20 +175,25 @@ router.put("/cart/:member_id", async (req, res) => {
       `SELECT cart_and_collection.inCart, cart_and_collection.amount FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
-    if (ifInCart[0]?.ifInCart === undefined) {
+    if (ifInCart[0]?.inCart === undefined) {
+      // console.log("inCart === undefined");
       // 若不存在於購物車資料庫中，加入資料庫
       let addResult = await connection.queryAsync(
         "INSERT INTO cart_and_collection (member_id, course_id, batch_id, inCart) VALUE (?, ?, ?, 1)",
         [member_id, course_id, batch_id]
       );
-    } else if (ifInCart[0]?.ifInCart === 1) {
+    } else if (ifInCart[0]?.inCart === 1) {
       let amount = ifInCart[0]?.amount + updateAmount;
+      // console.log("inCart === 1");
+      // console.log("amount: ");
+      // console.log(amount);
       // 若存在於購物車中，更新資料庫數量
       let update = await connection.queryAsync(
-        `UPDATE cart_and_collection SET amount = ? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
-        [amount, member_id, course_id, batch_id]
+        `UPDATE cart_and_collection SET amount = ?, inCart=? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+        [amount, inCart, member_id, course_id, batch_id]
       );
-    } else if (ifInCart[0]?.ifInCart === 0) {
+    } else if (ifInCart[0]?.inCart === 0) {
+      // console.log("inCart === 0");
       // 若存在於購物車資料庫中，更新資料庫
       let update = await connection.queryAsync(
         `UPDATE cart_and_collection SET inCart = ? WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
@@ -188,7 +202,7 @@ router.put("/cart/:member_id", async (req, res) => {
     }
     // 回傳資料庫目前狀態
     let updateResult = await connection.queryAsync(
-      `SELECT cart_and_collection.inCart, cart_and_collection.member_id, cart_and_collection.course_id, cart_and_collection.batch_id, cart_and_collection.amount FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
+      `SELECT cart_and_collection.inCart, cart_and_collection.amount, cart_and_collection.member_id, cart_and_collection.course_id, cart_and_collection.batch_id, cart_and_collection.amount FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]
     );
 
