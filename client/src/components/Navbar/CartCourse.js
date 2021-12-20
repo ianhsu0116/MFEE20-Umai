@@ -95,7 +95,7 @@ const CartCourse = (props) => {
   }
 
   //從購物車中刪除指定課程
-  async function handleDeleteClick() {
+  async function handleDeleteClick(member_id, course_id, batch_id, inCart) {
     if (cartCourseInfoList.length !== 0) {
       //從購物車資料庫中移除(將inCart歸零)
       let updateResult = await courseService.UpdateCart(
@@ -221,7 +221,17 @@ const CartCourse = (props) => {
 
               {/* 從購物車中刪除此課程 */}
               <div className="DeleteThisCourse">
-                <button index={index} onClick={handleDeleteClick}>
+                <button
+                  index={index}
+                  onClick={() => {
+                    handleDeleteClick(
+                      currentUser.id,
+                      CurrentInfoObject.course_id,
+                      CurrentInfoObject.batch_id,
+                      0
+                    );
+                  }}
+                >
                   <p>刪除</p>
                 </button>
               </div>

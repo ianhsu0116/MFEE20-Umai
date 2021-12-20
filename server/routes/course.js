@@ -60,7 +60,7 @@ router.get("/testAPI", async (req, res) => {
 
 // getAllCourseObject
 // 根據member_id拿到購物車所需的全部課程資料 (cart)
-router.get("/cart/:member_id", async (req, res) => {
+router.get("/cart/all/:member_id", async (req, res) => {
   let { member_id } = req.params;
   console.log("[function] getAllCourseObject");
   console.log(`- 用member_id取得購物車中的課程資料`);
@@ -138,6 +138,11 @@ router.get("/cart/:course_id/:batch_id", async (req, res) => {
 router.get("/cart/:member_id/:course_id/:batch_id", async (req, res) => {
   let { member_id, course_id, batch_id } = req.params;
   try {
+    // 待改成「判斷是否有任何項目的batch_id為Null，有的話將所有batch_id=Null的項目刪到剩一筆，並將目前的batch_id存進這一筆裡面，同時將此筆的inCart改成1」
+    // let inCart = await connection.queryAsync(
+    //   `SELECT cart_and_collection.inCart cart_and_collectionbatch_id FROM cart_and_collection WHERE AND member_id = ? AND course_id = ?`,
+    //   [member_id, course_id]
+    // );
     let inCart = await connection.queryAsync(
       `SELECT cart_and_collection.inCart FROM cart_and_collection WHERE member_id = ? AND course_id = ? AND batch_id = ?`,
       [member_id, course_id, batch_id]

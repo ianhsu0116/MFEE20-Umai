@@ -8,14 +8,14 @@ const COURSE_API_URL = API_URL + "/course";
 class CourseService {
   // 根據member_id拿到購物車所需的全部課程資料 (cart)
   getAllCourseObject(member_id) {
-    return axios.get(COURSE_API_URL + `/cart/${member_id}`, {
+    return axios.get(COURSE_API_URL + `/cart/all/${member_id}`, {
       withCredentials: true,
     });
   }
 
   // 根據course_id與batch_id拿到購物車所需的單筆課程資料 (cart)
-  getOneCourseObject(course_id, batch_id) {
-    return axios.get(COURSE_API_URL + `/cart/${course_id}/${batch_id}`, {
+  getOneCourseObject(batch_id) {
+    return axios.get(COURSE_API_URL + `/cart/single/${batch_id}`, {
       withCredentials: true,
     });
   }

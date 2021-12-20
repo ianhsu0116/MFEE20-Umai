@@ -121,7 +121,7 @@ function App() {
     console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
-    let getOneCourseObject = async () => {
+    let getOneCourseObject = async (batch_id) => {
       try {
         // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
         let result = await courseService.getOneCourseObject(
