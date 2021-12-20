@@ -136,7 +136,6 @@ function CourseInfomation(props) {
   const [course_id, setCourse_id] = useState(0);
   // 設定一個推薦課程陣列
   const [recommend, setRecommend] = useState([]);
- 
 
   useEffect(async () => {
     try {
@@ -217,12 +216,11 @@ function CourseInfomation(props) {
   }, [color]);
   // 重整一次，防止梯次的BUG
   useEffect(() => {
-    if(batch != "尚未選擇"){
-    window.location.reload();
+    if (batch != "尚未選擇") {
+      window.location.reload();
     }
   }, [currentUser]);
 
- 
   // 給萬年曆用的(回傳已選定日期)
   const onChange = (e) => {
     setBatch(e);
@@ -230,7 +228,7 @@ function CourseInfomation(props) {
       member_id: currentUser ? currentUser.id : undefined,
       course_id: course_id ? course_id : undefined,
       batch_id: batch_id ? batch_id : undefined,
-      cartCourseCount: 1,
+      amount: 1,
     });
     for (let i = 0; i < course_batchJSON.length; i++) {
       if (e === course_batchJSON[i].batch_date) {
@@ -247,17 +245,17 @@ function CourseInfomation(props) {
               ? course_batchJSON[i].course_id
               : "",
             batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
-            cartCourseCount: 1,
+            amount: 1,
           })
         );
-        console.log("setData");
+        console.log("結帳資訊(setData)：");
         console.log({
           member_id: currentUser ? currentUser.id : "",
           course_id: course_batchJSON[i].course_id
             ? course_batchJSON[i].course_id
             : "",
           batch_id: course_batchJSON[i].id ? course_batchJSON[i].id : "",
-          cartCourseCount: 1,
+          amount: 1,
         });
       }
     }
@@ -421,15 +419,15 @@ function CourseInfomation(props) {
                           }).then(function () {
                             // window.location.reload();
                           });
-                        } else if (!currentUser){
+                        } else if (!currentUser) {
                           Swal.fire({
                             title: "",
                             icon: "warning",
                             // customClass: "Custom_Cancel",
                             confirmButtonColor: "#0078b3",
                             confirmButtonText: "請先登入後再加入購物車哦",
-                          })
-                        }  else if(
+                          });
+                        } else if (
                           batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
@@ -442,11 +440,9 @@ function CourseInfomation(props) {
                             // window.location.reload();
                           });
                         } else {
-                          //清空新增課程state
-                          // await clearNewAddCourse();
                           // 把課程加入購物車資料庫
                           if (currentUser) {
-                              addCourseIntoCart(
+                            addCourseIntoCart(
                               currentUser.id,
                               Number(id_number),
                               batch_id
@@ -458,16 +454,21 @@ function CourseInfomation(props) {
                               // customClass: "Custom_Cancel",
                               confirmButtonColor: "#0078b3",
                               confirmButtonText: "請先登入再結帳",
-                            })
+                            });
                           }
                         }
                       }}
                     >
                       加入購物車
                     </li>
-                    <li >|</li>
-                    {batch != "尚未選擇" && currentUser && batch_member <= newCourseJSON[0].member_limit? <Link to={{ pathname: link, state: { data: data } }}><li>現在報名</li></Link>:
-                
+                    <li>|</li>
+                    {batch != "尚未選擇" &&
+                    currentUser &&
+                    batch_member <= newCourseJSON[0].member_limit ? (
+                      <Link to={{ pathname: link, state: { data: data } }}>
+                        <li>現在報名</li>
+                      </Link>
+                    ) : (
                       <li
                         onClick={async () => {
                           if (batch === "尚未選擇") {
@@ -475,13 +476,13 @@ function CourseInfomation(props) {
                               icon: "warning",
                               confirmButtonColor: "#0078b3",
                               confirmButtonText: "請先選擇日期後再點擊",
-                            })
-                          }else if (!currentUser) {
+                            });
+                          } else if (!currentUser) {
                             Swal.fire({
                               icon: "warning",
                               confirmButtonColor: "#0078b3",
                               confirmButtonText: "請先登入後再進行報名哦",
-                            })
+                            });
                           } else if (
                             batch_member === newCourseJSON[0].member_limit
                           ) {
@@ -491,22 +492,20 @@ function CourseInfomation(props) {
                               // customClass: "Custom_Cancel",
                               confirmButtonColor: "#0078b3",
                               confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
-                            })
+                            });
                           }
                         }}
                       >
                         現在報名
-                    
                       </li>
-                    }
-                  
+                    )}
+
                     <li>|</li>
                     <li
                       onClick={() => {
                         window.location.href = "#Comment";
                       }}
                     >
-                    
                       評論區
                     </li>
                   </ul>
@@ -847,25 +846,93 @@ function CourseInfomation(props) {
                 <div className="Coursedetail-finallyJoin">
                   <p
                     onClick={async () => {
-                        if (batch === "尚未選擇") {
+                      if (batch === "尚未選擇") {
+                        Swal.fire({
+                          title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "請先選擇日期後再點擊",
+                        }).then(function () {
+                          // window.location.reload();
+                        });
+                      } else if (!currentUser) {
+                        Swal.fire({
+                          title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "請先登入後再加入購物車哦",
+                        });
+                      } else if (
+                        batch_member === newCourseJSON[0].member_limit
+                      ) {
+                        Swal.fire({
+                          // title: "",
+                          icon: "warning",
+                          // customClass: "Custom_Cancel",
+                          confirmButtonColor: "#0078b3",
+                          confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
+                        }).then(function () {
+                          window.document.body.scrollTop = 0;
+                          window.document.documentElement.scrollTop = 0;
+                        });
+                      } else {
+                        //清空新增課程state
+                        // await clearNewAddCourse();
+                        // 把課程加入購物車資料庫
+                        if (currentUser) {
+                          addCourseIntoCart(
+                            currentUser.id,
+                            Number(id_number),
+                            batch_id
+                          );
+                        } else {
                           Swal.fire({
-                            title: "",
+                            // title: "",
                             icon: "warning",
                             // customClass: "Custom_Cancel",
+                            confirmButtonColor: "#0078b3",
+                            confirmButtonText: "請先登入再結帳",
+                          });
+                        }
+                      }
+                    }}
+                  >
+                    加入購物車
+                  </p>
+                  <p>|</p>
+                  {batch != "尚未選擇" &&
+                  currentUser &&
+                  batch_member <= newCourseJSON[0].member_limit ? (
+                    <p className="Coursedetail-joinNow">
+                      <Link
+                        className="Coursedetail-joinNow"
+                        to={{ pathname: link, state: { data: data } }}
+                      >
+                        現在報名
+                      </Link>
+                    </p>
+                  ) : (
+                    <p
+                      className="Coursedetail-joinNow"
+                      onClick={async () => {
+                        if (batch === "尚未選擇") {
+                          Swal.fire({
+                            icon: "warning",
                             confirmButtonColor: "#0078b3",
                             confirmButtonText: "請先選擇日期後再點擊",
                           }).then(function () {
-                            // window.location.reload();
+                            window.document.body.scrollTop = 0;
+                            window.document.documentElement.scrollTop = 0;
                           });
-                        } else if (!currentUser){
+                        } else if (!currentUser) {
                           Swal.fire({
-                            title: "",
                             icon: "warning",
-                            // customClass: "Custom_Cancel",
                             confirmButtonColor: "#0078b3",
-                            confirmButtonText: "請先登入後再加入購物車哦",
-                          })
-                        }  else if(
+                            confirmButtonText: "請先登入後再進行報名哦",
+                          });
+                        } else if (
                           batch_member === newCourseJSON[0].member_limit
                         ) {
                           Swal.fire({
@@ -875,78 +942,15 @@ function CourseInfomation(props) {
                             confirmButtonColor: "#0078b3",
                             confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
                           }).then(function () {
-                              window.document.body.scrollTop = 0;
-                              window.document.documentElement.scrollTop = 0;
+                            window.document.body.scrollTop = 0;
+                            window.document.documentElement.scrollTop = 0;
                           });
-                        } else {
-                          //清空新增課程state
-                          // await clearNewAddCourse();
-                          // 把課程加入購物車資料庫
-                          if (currentUser) {
-                              addCourseIntoCart(
-                              currentUser.id,
-                              Number(id_number),
-                              batch_id
-                            );
-                          } else {
-                            Swal.fire({
-                              // title: "",
-                              icon: "warning",
-                              // customClass: "Custom_Cancel",
-                              confirmButtonColor: "#0078b3",
-                              confirmButtonText: "請先登入再結帳",
-                            })
-                          }
                         }
                       }}
-                  >
-                    加入購物車
-                  </p>
-                  <p>|</p>
-                  {batch != "尚未選擇" && currentUser && batch_member <= newCourseJSON[0].member_limit? <p className="Coursedetail-joinNow"><Link className="Coursedetail-joinNow" to={{ pathname: link, state: { data: data } }}>現在報名</Link></p>:
-                
-                      <p
-                      className="Coursedetail-joinNow"
-                        onClick={async () => {
-                          if (batch === "尚未選擇") {
-                            Swal.fire({
-                              icon: "warning",
-                              confirmButtonColor: "#0078b3",
-                              confirmButtonText: "請先選擇日期後再點擊",
-                            }).then(function(){
-                              window.document.body.scrollTop = 0;
-                              window.document.documentElement.scrollTop = 0;
-                            })
-                            
-                            }
-                          else if (!currentUser) {
-                            Swal.fire({
-                              icon: "warning",
-                              confirmButtonColor: "#0078b3",
-                              confirmButtonText: "請先登入後再進行報名哦",
-                            })
-                          } else if (
-                            batch_member === newCourseJSON[0].member_limit
-                          ) {
-                            Swal.fire({
-                              // title: "",
-                              icon: "warning",
-                              // customClass: "Custom_Cancel",
-                              confirmButtonColor: "#0078b3",
-                              confirmButtonText: "該梯次額滿囉，請選擇其他梯次",
-                            }).then(function(){
-                              window.document.body.scrollTop = 0;
-                              window.document.documentElement.scrollTop = 0;
-                            })
-                            
-                          }
-                        }}
-                      >
-                        現在報名
-                    
-                      </p>
-                    }
-
+                    >
+                      現在報名
+                    </p>
+                  )}
                 </div>
               </span>
               <img src={Join} alt=""></img>

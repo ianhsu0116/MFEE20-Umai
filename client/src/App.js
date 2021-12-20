@@ -62,7 +62,7 @@ function App() {
   //   batch_id: "", //(course_batch table)
   //   batch_date: "", //(course_batch table)
   //   member_count: "", //(course_batch table)
-  //   cartCourseCount: 1, //(notInDB)
+  //   amount: 1, //(notInDB)
   // }]
   //新增課程
   const [newAddCourse, setNewAddCourse] = useState({});
@@ -107,36 +107,28 @@ function App() {
   // 把課程加入購物車資料庫 (加入課程B)
   async function addCourseIntoCart(member_id, course_id, batch_id) {
     //檢查購物車資料庫中是否已經有此課程
-    console.log("addCourseIntoCart FE");
+    console.log("addCourseIntoCart start");
+    console.log("member_id, course_id, batch_id: ");
     console.log(member_id, course_id, batch_id);
     let IfInCartResult = await courseService.IfCourseInCart(
       member_id,
       course_id,
       batch_id
     );
-    // console.log(IfInCartResult.data.inCart);
-    // let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
-    let ifIncart = IfInCartResult.data.inCart;
-    // let ifIncart = 1;
-    console.log("back to FE");
+    let ifIncart = IfInCartResult.data.inCart[0]?.inCart;
+    console.log("ifIncart: ");
     // 回傳Incart值;
     console.log(ifIncart);
 
     //產生購物車中，單筆課程所需用到的資料
-    let getOneCourseObject = async () => {
+    let getOneCourseObject = async (batch_id) => {
       try {
         // 根據course_id與batch_id拿到購物車所需的課程資料 (cart)
         let result = await courseService.getOneCourseObject(
           course_id,
           batch_id
         );
-        return {
-          member_id,
-          course_id,
-          batch_id,
-          ...result.data.courseInfoInCart[0],
-          cartCourseCount: 1,
-        };
+        return result;
       } catch (error) {
         console.log(error);
       }
@@ -144,86 +136,26 @@ function App() {
 
     //先在switch外宣告一個共用變數，用來接住資料庫回傳的個別課程資料
     let CartCourseObject;
+    // 先在switch外宣告一個共用變數，用來接住回傳的資料庫狀態
+    let updateResult;
 
-    //已有此課程就更新的購物車(UPDATE inCart)，若沒有則新增資料(INSERT)
-    switch (ifIncart) {
-      //在資料庫中但不在購物車中
-      case 0:
-        // 根據member_id, course_id, batch_id把更新購物車資料庫(Update)
-        console.log("UpdateCart");
-        let updateResult = await courseService.UpdateCart(
-          member_id,
-          course_id,
-          batch_id,
-          1
-        );
-        try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
-        } catch (error) {
-          console.log(error);
-        }
-        console.log("回傳購物車資訊");
-        console.log(CartCourseObject);
-        break;
-
-      //在資料庫中也在購物車中
-      case 1:
-        try {
-          CartCourseObject = await getOneCourseObject(course_id, batch_id);
-        } catch (error) {
-          console.log(error);
-        }
-        console.log("回傳購物車資訊");
-        console.log(CartCourseObject);
-        break;
-
-      //不在資料庫中
-      case undefined:
-        // 把課程加入購物車資料庫(INSERT)
-        await courseService.addCourseIntoCart(member_id, course_id, batch_id);
-        try {
-          CartCourseObject = await getOneCourseObject();
-        } catch (error) {
-          console.log(error);
-        }
-        console.log("回傳購物車資訊");
-        console.log(CartCourseObject);
-        break;
-      //ifIncart error
-      default:
-        console.log("ifIncart error");
-        break;
+    try {
+      // 把該課程加入購物車資料庫
+      updateResult = await courseService.UpdateCart(
+        member_id,
+        course_id,
+        batch_id,
+        1,
+        1
+      );
+    } catch (error) {
+      console.log(error);
     }
-
-    //確認此課程梯次是否已存在該會員的購物車資料庫中
-    if (ifIncart === 1) {
-      setNewAddCourse([CartCourseObject, "+1"]);
-    } else {
-      //從未將此課程梯次加入購物車
-      setNewAddCourse([CartCourseObject]);
-    }
-
-    if (newAddCourse.length === 2) {
-      console.log(cartCourseInfoList);
-      let newCartCourseInfoList = cartCourseInfoList;
-      // if 購物車真的有東西
-      if (newCartCourseInfoList?.length > 0) {
-        newCartCourseInfoList = newCartCourseInfoList.map((obj) => {
-          if (obj.course_id === newAddCourse[0].course_id) {
-            obj.cartCourseCount = obj.cartCourseCount + 1;
-          }
-          return obj;
-        });
-        console.log("newAddCourse.length-2");
-        console.log(newCartCourseInfoList);
-        console.log(newCartCourseInfoList.cartCourseCount);
-        setCartCourseInfoList([...newCartCourseInfoList]);
-      }
-    }
+    console.log("此課程於資料庫中的狀態: ");
+    console.log(updateResult.data.updateResult[0]);
+    //取得所有課程資料，同時re-render購物車
     getAllCourseObject(currentUser.id);
-    console.log("setNewAddCourse");
-    console.log("Exit");
-    //前往執行以NewAddCourse作為依賴的useEffect(在Navbar2當中)
+    console.log("addCourseIntoCart done");
   }
 
   // 結帳資料
@@ -231,33 +163,33 @@ function App() {
     member_id: undefined,
     course_id: undefined,
     batch_id: undefined,
-    cartCourseCount: 1,
+    amount: 1,
   });
 
   const getAllCourseObject = async function (member_id) {
     try {
-      console.log("99999999999999999999999999999999999999");
+      console.log("getAllCourseObject start");
       let result = await courseService.getAllCourseObject(member_id);
-      console.log(result);
       let consoleCheck = result.data.courseInfoInCart;
+      // 如果購物車沒課程則將cartCourseInfoList恢復成空陣列
+      if (consoleCheck === undefined) consoleCheck = [];
       setCartCourseInfoList(consoleCheck);
-      console.log("getAllCourseObject :");
+      console.log("cartCourseInfoList :");
       console.log(consoleCheck);
     } catch (error) {
       console.log(error);
-      console.log(error.response);
     }
   };
-  useEffect(() => {
-    console.log("88888887423572577547257258725");
-    console.log(cartCourseInfoList);
-  }, [cartCourseInfoList]);
+
+  // useEffect(() => {
+  // }, [cartCourseInfoList]);
 
   useEffect(() => {
     if (currentUser) {
       try {
         getAllCourseObject(currentUser.id);
-        console.log("99999999999999999999999999999999999999");
+        console.log("member_id: ");
+        console.log(currentUser.id);
       } catch (error) {
         console.log(error);
       }
