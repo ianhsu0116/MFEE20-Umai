@@ -74,32 +74,39 @@ router.get("/cart/all/:member_id", async (req, res) => {
     console.log("inCart");
     console.log(inCart);
 
-    // 生成梯次id陣列
-    let batchIds = inCart.map((obj) => {
-      return obj.batch_id;
-    });
-    // 刪除陣列中重複梯次id(保留最初加入的資料)(避免資料庫錯誤出現多筆同梯次資料)
-    batchIds = batchIds.filter(function (ele, idx) {
-      return batchIds.indexOf(ele) == idx;
-    });
-    console.log("batchIds");
-    console.log(batchIds);
+    let batchIds = [];
+    let courseInfoInCart = [];
 
-    // 若沒課程加入購物車則回傳空值
-    if (batchIds.length === 0) res.status(200).json({ success: true });
+    if (inCart.length !== 0) {
+      // 生成梯次id陣列
+      batchIds = inCart.map((obj) => {
+        return obj.batch_id;
+      });
+      // 刪除陣列中重複梯次id(保留最初加入的資料)(避免資料庫錯誤出現多筆同梯次資料)
+      batchIds = batchIds.filter(function (ele, idx) {
+        return batchIds.indexOf(ele) == idx;
+      });
+      console.log("batchIds");
+      console.log(batchIds);
 
-    // 拿到課程資料(course JOIN course_batch JOIN cart_and_collection)(an array of objects)
-    const set = new Set();
-    let courseInfoInCart = await connection.queryAsync(
-      "SELECT DISTINCT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id, cart_and_collection.amount FROM course, course_batch, cart_and_collection WHERE course.id = course_batch.course_id AND cart_and_collection.batch_id = course_batch.id AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1 ORDER BY course_id ASC, course_batch.batch_date ASC",
-      [batchIds, member_id]
-    );
-    // 刪除陣列中重複資料(根據batch_id判斷)(避免資料庫錯誤出現多筆同梯次資料)
-    courseInfoInCart = courseInfoInCart.filter((obj) =>
-      !set.has(obj.batch_id) ? set.add(obj.batch_id) : false
-    );
-    console.log("courseInfoInCart");
-    console.log(courseInfoInCart);
+      // 若沒課程加入購物車則回傳空值
+      if (batchIds.length === 0) res.status(200).json({ success: true });
+
+      // 拿到課程資料(course JOIN course_batch JOIN cart_and_collection)(an array of objects)
+      const set = new Set();
+      courseInfoInCart = await connection.queryAsync(
+        "SELECT DISTINCT course.id AS course_id, course.course_image, course.course_name, course.course_price, course.member_limit, course_batch.id AS batch_id, course_batch.batch_date, course_batch.member_count, cart_and_collection.member_id, cart_and_collection.amount FROM course, course_batch, cart_and_collection WHERE course.id = course_batch.course_id AND cart_and_collection.batch_id = course_batch.id AND course_batch.id IN (?) AND cart_and_collection.member_id IN (?) AND course_batch.valid = 1 AND cart_and_collection.inCart = 1 ORDER BY course.id ASC, course_batch.batch_date ASC",
+        [batchIds, member_id]
+      );
+      // 刪除陣列中重複資料(根據batch_id判斷)(避免資料庫錯誤出現多筆同梯次資料)
+      courseInfoInCart = courseInfoInCart.filter((obj) =>
+        !set.has(obj.batch_id) ? set.add(obj.batch_id) : false
+      );
+      console.log("courseInfoInCart");
+      console.log(courseInfoInCart);
+    } else {
+      console.log("No course in ShoppingCart.");
+    }
 
     res.status(200).json({ success: true, batchIds, courseInfoInCart });
   } catch (error) {
