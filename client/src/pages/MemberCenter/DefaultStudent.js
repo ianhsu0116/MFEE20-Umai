@@ -231,11 +231,10 @@ const DefaultStudent = (props) => {
   return (
     <div className="DefaultStudent">
       <div className="DefaultStudent-container">
-        <header className="DefaultStudent-container-header">
-          <h2>預設學員</h2>
-        </header>
-
         <div className="DefaultStudent-container-cards">
+          <header className="DefaultStudent-container-header">
+            <h2>預設學員</h2>
+          </header>
           <DefaultStudentCard2
             newStudentData={newStudentData}
             setNewStudentData={setNewStudentData}
@@ -243,27 +242,28 @@ const DefaultStudent = (props) => {
             errorMsg={errorMsg}
             infoRef={infoRef}
           />
-        </div>
-        <header className="DefaultStudent-container-header">
-          <h2>已儲存</h2>
-        </header>
-        <div className="DefaultStudent-container-cards DefaultStudent-container-cards-bottom">
-          {allStudents.map((data, index) => (
-            <DefaultStudentCard
-              key={index}
-              index={index}
-              data={data}
-              handleEditStudent={handleEditStudent}
-              handleDeleteStudent={handleDeleteStudent}
-              errorMsg={errorMsgEdit}
-            />
-          ))}
 
-          {allStudents.length === 0 && (
-            <div className="MemberCenter-defaultText">
-              目前還沒有任何已儲存的學員資料喔！
-            </div>
-          )}
+          <header className="DefaultStudent-container-header headerSticky">
+            <h2>已儲存學員</h2>
+          </header>
+          <div className="DefaultStudent-container-cards DefaultStudent-container-cards-bottom">
+            {allStudents.map((data, index) => (
+              <DefaultStudentCard
+                key={index}
+                index={index}
+                data={data}
+                handleEditStudent={handleEditStudent}
+                handleDeleteStudent={handleDeleteStudent}
+                errorMsg={errorMsgEdit}
+              />
+            ))}
+
+            {allStudents.length === 0 && (
+              <div className="MemberCenter-defaultText">
+                目前還沒有任何已儲存的學員資料喔！
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

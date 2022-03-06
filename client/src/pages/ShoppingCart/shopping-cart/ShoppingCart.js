@@ -9,7 +9,7 @@ import axios from "axios";
 
 function shopping_cart(props) {
   const location = useLocation();
-  if(location.state===undefined){
+  if (location.state === undefined) {
     window.location.href = "http://localhost:3000/";
   }
   let { data } = location.state;
@@ -22,7 +22,7 @@ function shopping_cart(props) {
     checkoutCourse.member_id === "" ||
     checkoutCourse.course_id === "" ||
     checkoutCourse.batch_id === "" ||
-    checkoutCourse.cartCourseCount < 1
+    checkoutCourse.amount < 1
   ) {
     window.location.href = "http://localhost:3000/";
   }
@@ -48,7 +48,7 @@ function shopping_cart(props) {
             batch_id: checkoutCourse.batch_id,
             name: course.data.course[0].course_name,
             value: course.data.course[0].course_price * 0.9,
-            studentnumber: checkoutCourse.cartCourseCount,
+            studentnumber: checkoutCourse.amount,
             courseimage: course.data.course[0].course_image,
             memberlimit: course.data.course[0].member_limit,
             membercount: course.data.course_batch[i].member_count,
@@ -127,7 +127,7 @@ function shopping_cart(props) {
   //第一次進入頁面時生成學員資料卡片
   if (carddata.length === 0) {
     let defultcard = [];
-    for (let i = 0; i < checkoutCourse.cartCourseCount; i++) {
+    for (let i = 0; i < checkoutCourse.amount; i++) {
       defultcard.push({
         ...defaultcarddata,
       });

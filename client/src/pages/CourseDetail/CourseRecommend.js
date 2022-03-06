@@ -30,7 +30,7 @@ function CourseRecommend(props) {
   } else if (courseLevel == 2) {
     courseLevel = "中階";
   } else courseLevel = "初階";
-  console.log(props);
+  // console.log(props);
   let recommendText =
     "辛奇，又稱韓式泡菜、韓國泡菜或朝鮮泡菜，是朝鮮族的一種傳統發酵食品，通常作為飯饌和米飯一起食用。因為通常使用大白菜製作，中國東北稱其為辣白菜。";
   let recommendText2 =

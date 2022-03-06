@@ -44,6 +44,7 @@ CREATE TABLE `cart_and_collection` (
   `member_id` int(10) unsigned NOT NULL,
   `course_id` int(11) NOT NULL,
   `batch_id` int(11) DEFAULT NULL,
+  `amount` int(11) NOT NULL DEFAULT '1',
   `inCart` int(1) NOT NULL DEFAULT '0',
   `inCollection` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
